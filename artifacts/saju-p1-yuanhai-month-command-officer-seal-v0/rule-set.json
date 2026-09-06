@@ -1,7 +1,7 @@
 {
   "schemaVersion": "saju-p1-source-rule-research-v0",
-  "status": "P1_CANDIDATE_SELECTED_MAPPING_UNRESOLVED",
-  "basisHead": "e19e394dfcaf725826d72731f0cb468e6cfbf5fc",
+  "status": "P1_CANDIDATE_CLOSED_NOT_APPLICABLE",
+  "basisHead": "1d7308ac8d647fa4c97a5eaa04962b88caefde44",
   "lens": "saju",
   "domain": "temperament",
   "topic": "月令帶官星印綬 → 慷慨聰明、見識高人",
@@ -111,10 +111,58 @@
     },
     "interpretationBoundary": "Source-local temperament wording only; no personal claim, reflection, comparison, or new rule."
   },
+  "boundedRecheck": {
+    "recheckId": "yuanhai-p4-p6-p7-scope-recheck",
+    "scope": "same-source pp.4, 6, and 7 direct visual context only",
+    "sourceEvidence": {
+      "path": "artifacts/saju-p1-yuanhai-month-command-officer-seal-v0/bounded-recheck-source-evidence.json",
+      "byteSha256": "6e78fbc0e5a5b3593c889d6b49268ea4e4310005112eb8981f00007961bc767a"
+    },
+    "directObservations": [
+      {
+        "id": "carry-scope",
+        "locator": "p.7",
+        "finding": "兩個 帶官星印綬 문장이 연주·월령 anchor와 함께 나오지만 surface stem, hidden stem, month-pillar content, whole-chart 중 어느 층인지 정의하지 않는다.",
+        "status": "unresolved"
+      },
+      {
+        "id": "polarity-scope",
+        "locator": "p.4/p.6",
+        "finding": "同一 권역은 官/殺 및 印綬/倒食, 偏官/七殺 및 倒食/偏印의 짝을 보여 주지만 p.7은 정관·정인 또는 대체 명칭의 포함 여부를 고르지 않는다.",
+        "status": "unresolved"
+      },
+      {
+        "id": "branch-separation",
+        "locator": "p.7",
+        "finding": "年为本, 时为辅佐, 吉凶神, 月令有用神 관련 문장은 별도 위치·결과 branch이며 후보의 operand layer나 polarity를 정의하지 않는다.",
+        "status": "not_bound"
+      }
+    ],
+    "definitionDecision": {
+      "carryScope": "unresolved",
+      "officerSealPolarity": "unresolved",
+      "predicateOverVisibleHidden": "not_justified"
+    },
+    "calculationDecision": {
+      "status": "not_mappable",
+      "predicate": null,
+      "candidatePaths": [
+        "/raw/pillars/month",
+        "/raw/tenGods/visible",
+        "/raw/tenGods/hidden"
+      ],
+      "reason": "Current fields exist, but source scope and polarity do not define a direct predicate."
+    },
+    "externalAdvisory": {
+      "attempted": false,
+      "status": "blocked_by_auto_review",
+      "reason": "Sensitive-egress review rejected transmission of local transcription, internal artifact hashes, and calculation snapshot; no retry."
+    }
+  },
   "unresolvedCandidates": [
     {
       "candidateId": "yuanhai-p7-month-command-officer-seal-temperament",
-      "admission": "candidate_selected_mapping_unresolved",
+      "admission": "not_applicable_fixed_current_P1",
       "sourceEpistemicStatus": "unresolved",
       "blockers": [
         "帶 scope: visible versus hidden and month-only versus chart-wide is undefined",
@@ -321,6 +369,10 @@
     {
       "path": "artifacts/saju-p1-yuanhai-month-command-officer-seal-v0/source-evidence.json",
       "byteSha256": "fae3c8d11cf824716bce91ffb8d1b1110ee14f2643eff80d884e7e01d2516ee7"
+    },
+    {
+      "path": "artifacts/saju-p1-yuanhai-month-command-officer-seal-v0/bounded-recheck-source-evidence.json",
+      "byteSha256": "6e78fbc0e5a5b3593c889d6b49268ea4e4310005112eb8981f00007961bc767a"
     }
   ],
   "delegation": {
@@ -506,5 +558,38 @@
     "activationChanged": false,
     "adapterOrUiCreated": false
   },
-  "nextDiscriminatingCheck": "Only a directly identified witness or same-work usage review may resolve 带 scope and polarity/layer selection; until then keep executablePredicate null and do not create a user claim."
+  "finalAdjudication": {
+    "basisHead": "1d7308ac8d647fa4c97a5eaa04962b88caefde44",
+    "predecessorRuleSetByteSha256": "f2bd1e8cfc8de21b6be4d2c42a381057f1b64e882ed31d45ffd1d025914a21be",
+    "boundedRechecks": 1,
+    "decision": "NOT_APPLICABLE_FIXED_CURRENT_P1",
+    "meaning": "Local application exclusion under this source/evidence basis; not proof that the historical wording is universally false.",
+    "definitionProgress": "Same-source pp.4, 6, and 7 were directly checked; neither 带 scope nor 官星/印綬 polarity closed.",
+    "conditionClassification": [
+      {
+        "term": "带",
+        "role": "candidate premise",
+        "closure": "scope_unresolved"
+      },
+      {
+        "term": "官星/印綬",
+        "role": "candidate premise",
+        "closure": "polarity_and_family_scope_unresolved"
+      },
+      {
+        "term": "年为本/月为提纲/时为辅佐",
+        "role": "separate_position_branches",
+        "closure": "not_merged"
+      },
+      {
+        "term": "visible/hidden tenGods",
+        "role": "calculation_bindings",
+        "closure": "available_fields_no_direct_predicate"
+      }
+    ],
+    "calculationDecision": "Parent reran val-solar-normal; receipt hash is unchanged and visible/hidden outputs remain existing structural fields only. No direct predicate closes.",
+    "expansionAllowed": false,
+    "automaticReopen": false
+  },
+  "nextDiscriminatingCheck": "No further expansion of this candidate. A separate P1 candidate may be considered only under a new bounded task."
 }

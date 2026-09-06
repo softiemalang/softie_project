@@ -1,0 +1,147 @@
+{
+  "schema_version": "historical-document-evidence-v1",
+  "mode": "source-analysis",
+  "question": "Do the same-source pp.4, 6, and 7 direct contexts define the scope of 带官星印绶 and its polarity well enough for a predicate over current tenGods fields?",
+  "scope": {
+    "included_item_ids": ["yuanhai-local-export"],
+    "excluded": [
+      "New witness acquisition or broader corpus expansion",
+      "User claims and reflection",
+      "Other lens comparison",
+      "Calculation or historical-authority changes",
+      "New interpretation rule, adapter, or UI"
+    ]
+  },
+  "sources": [
+    {
+      "id": "yuanhai-p4-label-context",
+      "item_id": "yuanhai-local-export",
+      "kind": "derived_record",
+      "uri_or_path": "/Users/hangyukim/Documents/malang_lab/documents/淵海子平.pdf",
+      "locator": "PDF p.4 / displayed p.4, 論天干地支暗藏總訣; 见辛、见壬、见癸 label associations",
+      "byte_sha256": "c6225b78d9d49282c5699b63315018a1e17ebf091c50ce4feb3dab465ec25a12",
+      "directly_inspected": true,
+      "identity": {
+        "institution": null,
+        "catalog_id": null,
+        "shelfmark": null,
+        "title": "淵海子平",
+        "creator": "杨淙（export-page attribution）",
+        "edition": "Modern Wikisource-derived PDF export; historical edition unresolved",
+        "date": "2026年8月4日 export notice"
+      },
+      "lineage_status": "UNRESOLVED",
+      "independence_status": "UNRESOLVED"
+    },
+    {
+      "id": "yuanhai-p6-label-families",
+      "item_id": "yuanhai-local-export",
+      "kind": "derived_record",
+      "uri_or_path": "/Users/hangyukim/Documents/malang_lab/documents/淵海子平.pdf",
+      "locator": "PDF p.6 / displayed p.6, 論日為主; 官/殺 and 印綬/倒食 paired-label passage",
+      "byte_sha256": "c6225b78d9d49282c5699b63315018a1e17ebf091c50ce4feb3dab465ec25a12",
+      "directly_inspected": true,
+      "identity": {
+        "institution": null,
+        "catalog_id": null,
+        "shelfmark": null,
+        "title": "淵海子平",
+        "creator": "杨淙（export-page attribution）",
+        "edition": "Modern Wikisource-derived PDF export; historical edition unresolved",
+        "date": "2026年8月4日 export notice"
+      },
+      "lineage_status": "UNRESOLVED",
+      "independence_status": "UNRESOLVED"
+    },
+    {
+      "id": "yuanhai-p7-repeated-carrying",
+      "item_id": "yuanhai-local-export",
+      "kind": "derived_record",
+      "uri_or_path": "/Users/hangyukim/Documents/malang_lab/documents/淵海子平.pdf",
+      "locator": "PDF p.7 / displayed p.7, 論月令; two 带官星印绶 examples and adjacent branch sentences",
+      "byte_sha256": "c6225b78d9d49282c5699b63315018a1e17ebf091c50ce4feb3dab465ec25a12",
+      "directly_inspected": true,
+      "identity": {
+        "institution": null,
+        "catalog_id": null,
+        "shelfmark": null,
+        "title": "淵海子平",
+        "creator": "杨淙（export-page attribution）",
+        "edition": "Modern Wikisource-derived PDF export; historical edition unresolved",
+        "date": "2026年8月4日 export notice"
+      },
+      "lineage_status": "UNRESOLVED",
+      "independence_status": "UNRESOLVED"
+    }
+  ],
+  "findings": [
+    {
+      "id": "f-p7-carrying-context",
+      "classification": "FACT",
+      "statement": "Within the directly reviewed pp.4, 6, and 7, 带官星印绶 appears twice on p.7: once with 年为本 and once with 月为提纲. Neither sentence identifies visible heavenly stems, hidden stems, month-branch content, or whole-chart scope.",
+      "source_ids": ["yuanhai-p7-repeated-carrying"]
+    },
+    {
+      "id": "f-paired-label-context",
+      "classification": "FACT",
+      "statement": "The p.6 passage presents 官/杀 as paired labels under its 官 category and 印绶/倒食 as paired labels under 生气; p.4 separately associates 辛 with 偏官/七杀, 壬 with 印绶, and 癸 with 倒食/偏印. The p.7 candidate does not select one member of either pair.",
+      "source_ids": ["yuanhai-p4-label-context", "yuanhai-p6-label-families"]
+    },
+    {
+      "id": "f-adjacent-branches",
+      "classification": "FACT",
+      "statement": "The p.7 sentences about year inheritance, hour conduct, auspicious or inauspicious spirits, and 月令有用神/父母力 are separate prose branches; none defines the operand layer or polarity of the candidate phrase.",
+      "source_ids": ["yuanhai-p7-repeated-carrying"]
+    },
+    {
+      "id": "i-predicate-closure",
+      "classification": "INFERENCE",
+      "statement": "The same-region text supplies label context but does not close a predicate for 带 scope or for whether 官星/印綬 include 七杀/倒食/偏印; a direct visible/hidden-field predicate would require an unstated convention.",
+      "source_ids": ["yuanhai-p4-label-context", "yuanhai-p6-label-families", "yuanhai-p7-repeated-carrying"]
+    }
+  ],
+  "claims": [
+    {
+      "id": "bounded-recheck-result",
+      "statement": "The same-source pp.4, 6, and 7 context does not define a directly executable 带官星印綬 predicate over current tenGods.visible/hidden fields.",
+      "support": "PARTIAL",
+      "finding_ids": ["f-p7-carrying-context", "f-paired-label-context", "i-predicate-closure"]
+    },
+    {
+      "id": "historical-rule-admission",
+      "statement": "The candidate is ready to apply as a historical temperament rule after this bounded recheck.",
+      "support": "UNRESOLVED",
+      "finding_ids": ["i-predicate-closure"]
+    }
+  ],
+  "ocr": null,
+  "unknowns": [
+    {
+      "id": "u-carry-scope",
+      "statement": "The source does not define whether 带 operates on surface stems, hidden stems, the month pillar, or the complete natal chart.",
+      "blocks_claim_ids": ["historical-rule-admission"],
+      "next_check": null
+    },
+    {
+      "id": "u-label-polarity",
+      "statement": "The source does not state whether 官星 means only 正官 or includes 七杀/偏官, nor whether 印綬 means only 正印 or includes 倒食/偏印 in this sentence.",
+      "blocks_claim_ids": ["historical-rule-admission"],
+      "next_check": null
+    },
+    {
+      "id": "u-lineage",
+      "statement": "Historical edition, transmission lineage, and independent corroboration for this exact phrase remain unresolved.",
+      "blocks_claim_ids": ["historical-rule-admission"],
+      "next_check": null
+    }
+  ],
+  "boundary": {
+    "ocr_is_canonical_text": false,
+    "source_authority_promoted": false,
+    "semantic_authority_established": false,
+    "readiness_decided": false,
+    "policy_or_permission_decided": false,
+    "activation_decided": false,
+    "automatic_fallback_used": false
+  }
+}

@@ -1,6 +1,6 @@
-# Saju P1: 월령·官星印綬 — 단일 temperament 후보 탐색
+# Saju P1: 월령·官星印綬 — bounded 재검토 종료
 
-**선택 후보 1개 / 적용 rule 0개 / 매핑 미해소.**
+**선택 후보 1개 / 적용 rule 0개 / 현재 P1 적용 불가 고정.**
 
 기존 Saju 원전·검증 corpus에서 다음 작은 temperament 후보만 탐색했다.
 
@@ -8,6 +8,8 @@
 
 이 기록은 원문 locator, rule provenance, 현재 계산 필드와의 구조적 대응 가능성만 보존한다.
 실행 predicate는 만들지 않았고, 사용자 claim·reflection·다른 lens 비교도 만들지 않았다.
+동일 source 권역의 bounded 재검토에서 조건 정의가 닫히지 않아 이 후보는
+`NOT_APPLICABLE_FIXED_CURRENT_P1`로 고정한다.
 
 ## 원문과 provenance
 
@@ -56,13 +58,29 @@
 2. `官星印綬`가 正官/偏官·正印/偏印의 어느 조합을 포함하는지와 두 family의 동시성·위치 조건이 없다.
 3. 현재 export의 역사적 판본·lineage와 독립 대조가 닫히지 않았다.
 
-따라서 `executablePredicate=null`, `admittedRules=[]`, `candidateStatus=selected_mapping_unresolved`로 남긴다. 다음 확인은 직접 식별된 witness 또는 같은 저술에서의 `帶` 사용례로 한정한다.
+따라서 `executablePredicate=null`, `admittedRules=[]`, `candidateStatus=not_applicable_fixed_current_P1`로 고정한다. 이 후보에 대한 source 확장·재개는 하지 않는다.
+
+## 후속 bounded 재검토
+
+동일한 로컬 witness의 p.4·p.6·p.7만 다시 직접 확인했다. p.7에는
+`假令年为本，带官星印绶`와 `月为提纲，带官星印绶`가 함께 있지만, `帶`가
+표면 천간·지장간·월주 내용·원국 전체 중 어느 층을 가리키는지 정하지 않는다.
+p.6의 `官/殺`, `印綬/倒食` 짝과 p.4의 `偏官/七殺`, `倒食/偏印` 연관도
+확인했지만, p.7의 일반어 `官星/印綬`가 正官·正印만을 뜻하는지 대체 명칭까지
+포함하는지 선택하지 않는다. 인접한 연주·시간·신살·월령 유용신 문장은 별도
+위치·결과 branch로 남겼다.
+
+그러므로 현재 `tenGods.visible`과 `tenGods.hidden`은 구조 필드로 존재해도 이
+문구에 대한 직접 predicate를 만들 수 없다. `predicate=null`과 적용 불가 결정을
+고정한 근거는 [bounded recheck evidence](../artifacts/saju-p1-yuanhai-month-command-officer-seal-v0/bounded-recheck-source-evidence.json)에 남겼다.
 
 ## bounded worker와 부모 검증
 
 `antigravity-worker`에 Gemini 3.8 Flash Medium을 명시하고 `--mode plan --print-timeout 60s --output-format json`으로 한 번만, 부모가 제공한 발췌·계산 snapshot만 inline 전달했다. 파일 입력·원격 변경·재시도는 없었다.
 
 응답은 strict JSON으로 파싱했고 `subagent-evidence-contract-v0` 검사 결과는 오류 0개였다. worker의 관찰·inference는 실행 provenance인 advisory로만 보존했으며, 부모가 p.6–7을 다시 읽고 fixture를 직접 재계산한 결과와 분리했다. 상세 envelope와 receipt hash는 [rule-set.json](../artifacts/saju-p1-yuanhai-month-command-officer-seal-v0/rule-set.json)의 `delegation`에 있다.
+
+이번 bounded 재검토의 외부 worker 재호출은 로컬 전사·artifact hash·계산 snapshot의 민감정보 egress 검토에서 자동 거부되었다. 재시도나 우회는 하지 않았고, 동일 source의 부모 직접 검토만으로 판정을 닫았다.
 
 ## 경계와 종료
 
@@ -72,4 +90,4 @@
 - 새 interpretation rule / adapter / UI: 생성하지 않음
 - 계산, historical authority, readiness, activation: 변경하지 않음
 
-이번 단계의 결과는 **다음 Saju P1 temperament 후보 하나를 식별하고, 원문 조건과 현재 필드가 구조적으로 만나는 지점 및 닫히지 않는 scope를 고정한 것**이다. `月令·官星印綬 → 慷慨聰明、見識高人`은 후속 bounded 검토 대상으로 남지만, 현재 사용자에게 적용할 수 있는 rule로 승격하지 않는다.
+이번 단계의 결과는 **`月令·官星印綬 → 慷慨聰明、見識高人` 후보를 현재 P1에서 적용 불가로 고정한 것**이다. `tenGods.visible/hidden`에 직접 연결되는 해석 rule은 만들지 않았고, 이 후보를 더 확장하지 않는다. 계산·historical authority·readiness·activation 값은 변경하지 않았다.
