@@ -1,0 +1,220 @@
+{
+  "schemaVersion": "saju-p1-calculation-first-search-v0",
+  "status": "NO_EXECUTABLE_CLASSICAL_TEMPERAMENT_RULE_FOUND_IN_BOUNDED_SCOPE",
+  "verdict": "no executable classical temperament rule found in bounded scope",
+  "basisHead": "4866876dc983c5ccad1bd3ac2b1774b38e859983",
+  "lens": "saju",
+  "domains": ["temperament", "behavior_style"],
+  "method": {
+    "mode": "calculation_first",
+    "candidateLimit": 3,
+    "sourceScope": "existing local source corpus and its directly reviewed source contexts only",
+    "selectionRule": "Start from a current engine value whose meaning and scope are explicit; immediately exclude any source candidate requiring an undefined 旺相、帶、格局、得氣, relation-to-person, or equivalent semantic bridge.",
+    "phraseFirstReuse": "excluded; the previously closed 月令帶官星印綬 candidate is not reopened"
+  },
+  "sourceEvidence": {
+    "path": "artifacts/saju-p1-calculation-first-v0/source-evidence.json",
+    "byteSha256": "110769373262dffb3c230364cd603838d17628a7ffee3d4254eb11db4413c1ad"
+  },
+  "calculationProbe": {
+    "role": "existing_internal_regression_fixture_path_observation_only",
+    "fixtureId": "val-solar-normal",
+    "fixtureLocator": "src/interpretationPrep/fixtures/sajuValidationFixtures.js: entry id=val-solar-normal",
+    "invocation": "calculateSajuSystem(sajuValidationFixtures.find(x => x.id === \"val-solar-normal\").input, DEFAULT_PROFILES.saju)",
+    "wholeResultReceiptSha256": "4bdfc89df2c45424080fa109a0a508efde037d5b734f3d56daa7749bb2ad5319",
+    "userChartProvided": false,
+    "interpretationApplied": false,
+    "observedPaths": [
+      {
+        "path": "/raw/dayMaster/stem",
+        "value": "계"
+      },
+      {
+        "path": "/raw/dayMaster/yinYang",
+        "value": "음"
+      },
+      {
+        "path": "/raw/dayMaster/element",
+        "value": "수"
+      },
+      {
+        "path": "/raw/pillars/month",
+        "value": {
+          "stem": "갑",
+          "branch": "진",
+          "value": "갑진",
+          "status": "calculated"
+        }
+      },
+      {
+        "path": "/raw/tenGods/visible",
+        "value": {
+          "편재": 1,
+          "편관": 3,
+          "상관": 1,
+          "정관": 1,
+          "정재": 1
+        }
+      },
+      {
+        "path": "/raw/tenGods/hidden",
+        "value": {
+          "편관": 1.2,
+          "비견": 0.4,
+          "편인": 0.1,
+          "정관": 0.7,
+          "식신": 0.4,
+          "정재": 0.6,
+          "정인": 0.3,
+          "편재": 0.3
+        }
+      },
+      {
+        "path": "/raw/season",
+        "value": {
+          "monthBranch": "진",
+          "seasonElement": "목",
+          "weights": {
+            "목": 0.8,
+            "토": 0.6,
+            "수": 0.2
+          },
+          "earthSupport": true
+        }
+      },
+      {
+        "path": "/raw/strength",
+        "value": {
+          "baseLevel": "weak",
+          "adjustedLevel": "weak"
+        }
+      },
+      {
+        "path": "/raw/branchRelations",
+        "value": {
+          "basis": "reference_pillars",
+          "interpretationScope": "관계 존재와 제한된 합화 후보를 계산하며 방합의 실제 오행 전환·길흉은 확정하지 않음",
+          "relations": ["파", "충", "형"]
+        }
+      }
+    ],
+    "policySnapshot": {
+      "historicalAuthority": "insufficient_evidence",
+      "readinessStatus": "blocked",
+      "activationStatus": "not_activated"
+    }
+  },
+  "candidateShortlist": [
+    {
+      "candidateId": "yuanhai-p2-p4-visible-ten-god-role-friend",
+      "sourceEvidenceId": "yuanhai-p2-p4-ten-god-role-lines",
+      "sourceLocator": "淵海子平 PDF pp.2-4 / 基礎; 以甲為例·以乙為例 stem examples before 論天干地支暗藏總訣",
+      "sourceAntecedent": "以乙为例见乙",
+      "sourceConsequence": "为比肩、兄弟、朋友",
+      "targetDomain": "behavior_style",
+      "engineAntecedentPaths": [
+        "/raw/tenGods/visible",
+        "/raw/tenGods/hidden",
+        "/raw/dayMaster/stem",
+        "/raw/pillars/*/stem"
+      ],
+      "premiseStatus": "not_closed",
+      "provenanceStatus": "direct_visual_observation_local_edition_unresolved",
+      "decision": "immediate_exclude",
+      "exclusionReasons": [
+        "见 is an example stem operand, while current tenGods.visible aggregates surface stems with branch main stems and tenGods.hidden is a weighted hidden-stem aggregate; neither preserves the source operand identity without an extra scope convention.",
+        "The observed consequence is kinship/role terminology; converting it into an individual behavior_style would add a person-level semantic bridge not stated in the passage."
+      ]
+    },
+    {
+      "candidateId": "ditian-p4-yang-yin-qi-yanggang-yinshun",
+      "sourceEvidenceId": "ditian-p4-yang-yin-qi",
+      "sourceLocator": "滴天髓 PDF p.4 / 五陽五陰 sentence immediately before 天干論 / 甲木",
+      "sourceAntecedent": "五阳得阳之气 / 五阴得阴之气",
+      "sourceConsequence": "成其阳刚 / 成其阴顺",
+      "targetDomain": "temperament",
+      "engineAntecedentPaths": [
+        "/raw/dayMaster/yinYang",
+        "/raw/dayMaster/stem",
+        "/raw/strength"
+      ],
+      "premiseStatus": "not_closed",
+      "provenanceStatus": "direct_visual_observation_local_edition_unresolved",
+      "decision": "immediate_exclude",
+      "exclusionReasons": [
+        "The source premise is 得阳之气 / 得阴之气 and then 势盛·势衰, not the emitted yinYang label alone; the engine has no source-defined qi or force threshold with this scope.",
+        "The adjacent 甲木 seasonal section cannot be silently generalized to the current 癸 day master."
+      ]
+    },
+    {
+      "candidateId": "ziping-p5-branch-relation-friend-neighbor",
+      "sourceEvidenceId": "ziping-p5-branch-relation-meanings",
+      "sourceLocator": "子平真诠 PDF p.5 / 七、论刑冲会合解法",
+      "sourceAntecedent": "三方为会 / 并对为合",
+      "sourceConsequence": "朋友之意 / 比邻之意",
+      "targetDomain": "behavior_style",
+      "engineAntecedentPaths": [
+        "/raw/branchRelations/basis",
+        "/raw/branchRelations/items[*].relation",
+        "/raw/branchRelations/items[*].positions"
+      ],
+      "premiseStatus": "not_closed",
+      "provenanceStatus": "direct_visual_observation_local_edition_unresolved",
+      "decision": "immediate_exclude",
+      "exclusionReasons": [
+        "The source glosses branch-relation topology; it does not state an individual temperament or behavior_style disposition.",
+        "三会/三方 does not have a direct one-to-one label in the current output (the engine separates 三合 and 方合), so a relation-name bridge would be required even before any person-level interpretation."
+      ]
+    }
+  ],
+  "selectionDecision": {
+    "survivorCount": 0,
+    "boundedCandidateId": null,
+    "status": "no_candidate_reached_bounded_adjudication",
+    "reason": "All three candidates were excluded at the immediate semantic-bridge gate; no candidate was selected or turned into a rule."
+  },
+  "boundedAdjudication": null,
+  "ruleOutcome": {
+    "admittedRules": [],
+    "executablePredicate": null,
+    "verdict": "no executable classical temperament rule found in bounded scope"
+  },
+  "boundary": {
+    "userClaimsCreated": false,
+    "reflectionCreated": false,
+    "crossLensComparisonCreated": false,
+    "newInterpretationRuleCreated": false,
+    "calculationChanged": false,
+    "historicalAuthorityChanged": false,
+    "readinessChanged": false,
+    "activationChanged": false,
+    "adapterOrUiCreated": false,
+    "sourceExpansionPerformed": false
+  },
+  "inputByteIdentity": [
+    {
+      "path": "artifacts/saju-five-classics-grounding-v0/complete.json",
+      "byteSha256": "aaee0710bc855f00c459767c2ea07bd8e8d25ef9052c4f145ffb513c78426138"
+    },
+    {
+      "path": "src/interpretationPrep/sajuLocalSourceCorpusEvidence.js",
+      "byteSha256": "3375b3cff9f88dd8fc6b22cab9a8025136cdf6089ae650e50690793635b215cd"
+    },
+    {
+      "path": "src/interpretationPrep/sajuAdapter.js",
+      "byteSha256": "17538fa2864d9d5d64290c5c6c0385957c66f4c4a0684f97f0293eb028e9be82"
+    },
+    {
+      "path": "src/saju/engine/core.js",
+      "byteSha256": "b10e06ed6ef0858ebbac0de1d6127279ee8f3b4d87d2ac2d60e82655ccf0e4fa"
+    },
+    {
+      "path": "src/interpretationPrep/sajuRelationRules.js",
+      "byteSha256": "bfdfc82d91d563674ac95e6310d8c500918839373f51def40daf254af719cd9c"
+    },
+    {
+      "path": "src/interpretationPrep/fixtures/sajuValidationFixtures.js",
+      "byteSha256": "c6e983015f06968f7d326c17c5151a81b3554300ad8fa5d59897bdd2eed50ffe"
+    }
+  ]
+}

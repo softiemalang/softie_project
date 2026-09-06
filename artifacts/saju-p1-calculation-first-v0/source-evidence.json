@@ -1,0 +1,194 @@
+{
+  "schema_version": "historical-document-evidence-v1",
+  "mode": "source-analysis",
+  "question": "Within the existing Saju corpus, does any source-local temperament or behavior-style passage take an explicitly scoped engine value directly as its antecedent without an undefined semantic bridge?",
+  "scope": {
+    "included_item_ids": [
+      "yuanhai-local-export",
+      "ditian-local-export",
+      "ziping-local-export"
+    ],
+    "included_source_contexts": [
+      "淵海子平 p.2-p.4 基礎 ten-stem role lines",
+      "滴天髓 p.4 五陽五陰 and 甲木 context",
+      "子平真詮 p.5 刑沖會合解法"
+    ],
+    "excluded": [
+      "Phrase-first reuse of the previously closed 月令帶官星印綬 candidate",
+      "New witness acquisition or broader corpus expansion",
+      "New 旺相、帶、格局、得氣 or equivalent semantic bridge",
+      "User claims and reflection",
+      "Other-lens comparison",
+      "Calculation, historical-authority, readiness, or activation changes",
+      "New interpretation rule, adapter, or UI"
+    ]
+  },
+  "sources": [
+    {
+      "id": "yuanhai-p2-p4-ten-god-role-lines",
+      "item_id": "yuanhai-local-export",
+      "kind": "derived_record",
+      "uri_or_path": "/Users/hangyukim/Documents/malang_lab/documents/淵海子平.pdf",
+      "locator": "PDF pp.2-4 / displayed pp.2-4; 基礎 stem examples before 論天干地支暗藏總訣",
+      "byte_sha256": "c6225b78d9d49282c5699b63315018a1e17ebf091c50ce4feb3dab465ec25a12",
+      "directly_inspected": true,
+      "identity": {
+        "institution": null,
+        "catalog_id": null,
+        "shelfmark": null,
+        "title": "淵海子平",
+        "creator": "杨淙（export-page attribution）",
+        "edition": "Modern Wikisource-derived PDF export; historical edition unresolved",
+        "date": "2026年8月4日 export notice"
+      },
+      "observation_method": {
+        "renderer": "pdftoppm 26.05.0",
+        "pages": [2, 3, 4],
+        "direct_visual_review": true,
+        "ocr_canonical": false,
+        "transcription_status": "direct_visual_observation_candidate_not_canonical_source_text"
+      },
+      "lineage_status": "UNRESOLVED",
+      "independence_status": "UNRESOLVED"
+    },
+    {
+      "id": "ditian-p4-yang-yin-qi",
+      "item_id": "ditian-local-export",
+      "kind": "derived_record",
+      "uri_or_path": "/Users/hangyukim/Documents/malang_lab/documents/滴天髓.pdf",
+      "locator": "PDF p.4 / displayed p.4; 五陽五陰 sentence immediately before 天干論 / 甲木",
+      "byte_sha256": "6285805c91b79f1b5bccdfce1cdab1d7ec684731160b4191a25e8f1d23c229dd",
+      "directly_inspected": true,
+      "identity": {
+        "institution": null,
+        "catalog_id": null,
+        "shelfmark": null,
+        "title": "滴天髓",
+        "creator": "刘基（导出页标识）",
+        "edition": "Derived typeset local export; historical edition unresolved",
+        "date": null
+      },
+      "observation_method": {
+        "renderer": "pdftoppm 26.05.0",
+        "pages": [4],
+        "direct_visual_review": true,
+        "ocr_canonical": false,
+        "transcription_status": "direct_visual_observation_candidate_not_canonical_source_text"
+      },
+      "lineage_status": "UNRESOLVED",
+      "independence_status": "UNRESOLVED"
+    },
+    {
+      "id": "ziping-p5-branch-relation-meanings",
+      "item_id": "ziping-local-export",
+      "kind": "derived_record",
+      "uri_or_path": "/Users/hangyukim/Documents/malang_lab/documents/子平真诠-沈孝瞻原著.pdf",
+      "locator": "PDF p.5 / displayed p.5; 七、论刑冲会合解法",
+      "byte_sha256": "449336b5e35aa6811b0462093d0175c45a0add44065bf2d3845cff75981db692",
+      "directly_inspected": true,
+      "identity": {
+        "institution": null,
+        "catalog_id": null,
+        "shelfmark": null,
+        "title": "子平真诠",
+        "creator": "沈孝瞻（export-page attribution）",
+        "edition": "Modern typeset local export; historical edition unresolved",
+        "date": null
+      },
+      "observation_method": {
+        "renderer": "pdftoppm 26.05.0",
+        "pages": [5],
+        "direct_visual_review": true,
+        "ocr_canonical": false,
+        "transcription_status": "direct_visual_observation_candidate_not_canonical_source_text"
+      },
+      "lineage_status": "UNRESOLVED",
+      "independence_status": "UNRESOLVED"
+    }
+  ],
+  "findings": [
+    {
+      "id": "f-yuanhai-role-line",
+      "classification": "FACT",
+      "statement": "The Yuanhai 基礎 block uses 以甲為例 / 以乙為例 with 见 stem examples, including 见乙：为比肩、兄弟、朋友. The 論天干地支暗藏總訣 heading begins later on p.4, so this observed block is a stem-example context distinct from the later hidden-stem heading.",
+      "source_ids": ["yuanhai-p2-p4-ten-god-role-lines"]
+    },
+    {
+      "id": "f-ditian-yang-yin-line",
+      "classification": "FACT",
+      "statement": "The Ditiansui p.4 sentence states 五阳得阳之气，即能成其阳刚 ... 五阴得阴之气，即能成其阴顺 and continues with 势盛/势衰 and 情义 wording before the 甲木 section.",
+      "source_ids": ["ditian-p4-yang-yin-qi"]
+    },
+    {
+      "id": "f-ziping-relation-line",
+      "classification": "FACT",
+      "statement": "The Ziping p.5 section defines 会 as 三会 and 合 as 六合, then states 三方为会，朋友之意也 and 并对为合，比邻之意也. The passage discusses earthly-branch relation topology and examples.",
+      "source_ids": ["ziping-p5-branch-relation-meanings"]
+    },
+    {
+      "id": "i-no-direct-antecedent-closure",
+      "classification": "INFERENCE",
+      "statement": "None of the three source contexts supplies a premise that is simultaneously an explicitly scoped current engine value and a person-level temperament or behavior-style antecedent: the Yuanhai 见 operand is not the current aggregated visible/hidden distribution, Ditiansui 得阳之气/势 is not a current field, and Ziping relation glosses do not state an individual behavior disposition.",
+      "source_ids": [
+        "yuanhai-p2-p4-ten-god-role-lines",
+        "ditian-p4-yang-yin-qi",
+        "ziping-p5-branch-relation-meanings"
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "id": "bounded-calculation-first-result",
+      "statement": "The bounded calculation-first scan found no executable classical temperament rule candidate after immediate semantic-bridge exclusion.",
+      "support": "PARTIAL",
+      "finding_ids": [
+        "f-yuanhai-role-line",
+        "f-ditian-yang-yin-line",
+        "f-ziping-relation-line",
+        "i-no-direct-antecedent-closure"
+      ]
+    },
+    {
+      "id": "historical-rule-admission",
+      "statement": "A classical temperament rule is ready for admission from this bounded scan.",
+      "support": "UNRESOLVED",
+      "finding_ids": ["i-no-direct-antecedent-closure"]
+    }
+  ],
+  "ocr": null,
+  "unknowns": [
+    {
+      "id": "u-yuanhai-operand-scope",
+      "statement": "The Yuanhai 见 stem examples do not define whether a current tenGods.visible or tenGods.hidden aggregate is an equivalent operand, and the aggregate loses the source stem/pillar identity.",
+      "blocks_claim_ids": ["historical-rule-admission"],
+      "next_check": null
+    },
+    {
+      "id": "u-ditian-qi-scope",
+      "statement": "The Ditiansui terms 得阳之气, 得阴之气, and subsequent 势盛/势衰 are not emitted as current engine fields with a source-defined threshold or scope.",
+      "blocks_claim_ids": ["historical-rule-admission"],
+      "next_check": null
+    },
+    {
+      "id": "u-ziping-person-bridge",
+      "statement": "The Ziping 朋友之意 / 比邻之意 wording does not define a person-level temperament or behavior-style rule, and 三会/三方 has no direct one-to-one label in the current branch relation output.",
+      "blocks_claim_ids": ["historical-rule-admission"],
+      "next_check": null
+    },
+    {
+      "id": "u-source-lineage",
+      "statement": "The historical edition, transmission lineage, and independent witness status of all three local exports remain unresolved.",
+      "blocks_claim_ids": ["historical-rule-admission"],
+      "next_check": null
+    }
+  ],
+  "boundary": {
+    "ocr_is_canonical_text": false,
+    "source_authority_promoted": false,
+    "semantic_authority_established": false,
+    "readiness_decided": false,
+    "policy_or_permission_decided": false,
+    "activation_decided": false,
+    "automatic_fallback_used": false
+  }
+}
