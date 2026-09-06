@@ -1,0 +1,207 @@
+{
+  "schema_version": "historical-document-evidence-v1",
+  "mode": "source-analysis",
+  "question": "Does the inspected Sanming Tonghui export wood 旺相/博爱恻隐 passage support a bounded temperament rule connected to current Saju results?",
+  "scope": {
+    "included_item_ids": [
+      "sanming-local-export"
+    ],
+    "excluded": [
+      "Other lens comparisons",
+      "User claims and reflection",
+      "Disease, physiognomy, moral ranking and fate application",
+      "New historical witness acquisition",
+      "OCR evaluation",
+      "Authority/readiness/activation changes"
+    ]
+  },
+  "sources": [
+    {
+      "id": "export-cover",
+      "item_id": "sanming-local-export",
+      "kind": "derived_record",
+      "uri_or_path": "/Users/hangyukim/Documents/malang_lab/documents/三命通會.pdf",
+      "locator": "PDF p1 / displayed page 1, title and export-date line",
+      "byte_sha256": "f09bce7c6dbe1e222746ad8c97f49d132ed4e8da6d3c1d0399b0824b3794593f",
+      "directly_inspected": true,
+      "identity": {
+        "institution": null,
+        "catalog_id": null,
+        "shelfmark": null,
+        "title": "三命通會",
+        "creator": null,
+        "edition": "Modern Wikisource PDF export; historical edition unresolved",
+        "date": "2026年8月4日"
+      },
+      "lineage_status": "UNRESOLVED",
+      "independence_status": "UNRESOLVED"
+    },
+    {
+      "id": "wood-section",
+      "item_id": "sanming-local-export",
+      "kind": "derived_record",
+      "uri_or_path": "/Users/hangyukim/Documents/malang_lab/documents/三命通會.pdf",
+      "locator": "PDF p242 / displayed page 242, 卷七 論性情相貌, first paragraph from 东方震位木 through 其余四行例见",
+      "byte_sha256": "f09bce7c6dbe1e222746ad8c97f49d132ed4e8da6d3c1d0399b0824b3794593f",
+      "directly_inspected": true,
+      "identity": {
+        "institution": null,
+        "catalog_id": null,
+        "shelfmark": null,
+        "title": "三命通會",
+        "creator": null,
+        "edition": "Modern Wikisource PDF export; historical edition unresolved",
+        "date": "2026年8月4日"
+      },
+      "lineage_status": "UNRESOLVED",
+      "independence_status": "UNRESOLVED"
+    },
+    {
+      "id": "qualifications",
+      "item_id": "sanming-local-export",
+      "kind": "derived_record",
+      "uri_or_path": "/Users/hangyukim/Documents/malang_lab/documents/三命通會.pdf",
+      "locator": "PDF p243 / displayed page 243, first paragraph tail from 以上五行、情性 through 无有不验; following 又曰 paragraph",
+      "byte_sha256": "f09bce7c6dbe1e222746ad8c97f49d132ed4e8da6d3c1d0399b0824b3794593f",
+      "directly_inspected": true,
+      "identity": {
+        "institution": null,
+        "catalog_id": null,
+        "shelfmark": null,
+        "title": "三命通會",
+        "creator": null,
+        "edition": "Modern Wikisource PDF export; historical edition unresolved",
+        "date": "2026年8月4日"
+      },
+      "lineage_status": "UNRESOLVED",
+      "independence_status": "UNRESOLVED"
+    },
+    {
+      "id": "chapter-end",
+      "item_id": "sanming-local-export",
+      "kind": "derived_record",
+      "uri_or_path": "/Users/hangyukim/Documents/malang_lab/documents/三命通會.pdf",
+      "locator": "PDF p244 / displayed page 244, top continuation through 作事多虚声, before 論疾病 heading",
+      "byte_sha256": "f09bce7c6dbe1e222746ad8c97f49d132ed4e8da6d3c1d0399b0824b3794593f",
+      "directly_inspected": true,
+      "identity": {
+        "institution": null,
+        "catalog_id": null,
+        "shelfmark": null,
+        "title": "三命通會",
+        "creator": null,
+        "edition": "Modern Wikisource PDF export; historical edition unresolved",
+        "date": "2026年8月4日"
+      },
+      "lineage_status": "UNRESOLVED",
+      "independence_status": "UNRESOLVED"
+    }
+  ],
+  "findings": [
+    {
+      "id": "f-cover",
+      "classification": "FACT",
+      "statement": "The cover displays 三命通會 and 以2026年8月4日从维基文库导出. Current full PDF bytes equal the existing local-corpus expected hash; this identifies the derivative file, not its historical edition.",
+      "source_ids": [
+        "export-cover"
+      ]
+    },
+    {
+      "id": "f-wood",
+      "classification": "FACT",
+      "statement": "In the wood paragraph the visible text says 旺相主有博爱恻隐之心，慈祥恺悌之意 and contrasts 休囚 and 死绝. The wording is a conditional within this derivative, not an unconditional day-stem claim.",
+      "source_ids": [
+        "wood-section"
+      ]
+    },
+    {
+      "id": "f-qualifiers",
+      "classification": "FACT",
+      "statement": "The next page requires consideration of 神煞 and 克, says 若有煞临，不在此限，又从煞上断 and 若有克，则从所克之五行断, then mentions 日时 and 纳音. A separate 又曰 passage says 看本五行，不论纳音.",
+      "source_ids": [
+        "qualifications"
+      ]
+    },
+    {
+      "id": "f-end",
+      "classification": "FACT",
+      "statement": "The inspected chapter tail also discusses 得地失地 and 太过不及 before the disease heading; it does not provide an algorithm or numeric threshold equating wood 旺相 to current repository counts or strength scores.",
+      "source_ids": [
+        "chapter-end"
+      ]
+    },
+    {
+      "id": "i-scope",
+      "classification": "INFERENCE",
+      "statement": "Based on f-wood and f-qualifiers, wood presence alone cannot close this rule. The object/layer, 旺相 predicate, and exception handling need independent closure; the two 日时/纳音 statements are retained as distinct unresolved layers rather than forcibly harmonized or declared a proven textual contradiction.",
+      "source_ids": [
+        "wood-section",
+        "qualifications"
+      ]
+    },
+    {
+      "id": "u-edition",
+      "classification": "UNKNOWN",
+      "statement": "Historical edition, physical witness lineage, and independent corroboration for this exact passage are not established by this export.",
+      "source_ids": [
+        "export-cover"
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "id": "source-local-conditional",
+      "statement": "The inspected modern export presents the bounded wood disposition wording with 旺相 and qualifying clauses.",
+      "support": "PARTIAL",
+      "finding_ids": [
+        "f-wood",
+        "f-qualifiers"
+      ]
+    },
+    {
+      "id": "historical-rule-admission",
+      "statement": "The passage can be admitted as an exact historical interpretation rule applicable to current Saju calculation outputs.",
+      "support": "UNRESOLVED",
+      "finding_ids": [
+        "i-scope",
+        "u-edition"
+      ]
+    }
+  ],
+  "ocr": null,
+  "unknowns": [
+    {
+      "id": "u1",
+      "statement": "Exact historical witness/edition and lineage for this passage are missing.",
+      "blocks_claim_ids": [
+        "historical-rule-admission"
+      ],
+      "next_check": "Inspect an identified primary witness at the same chapter and establish edition and locator correspondence."
+    },
+    {
+      "id": "u2",
+      "statement": "The selected wood referent, operational 旺相 criterion, and 神煞/克 exception branch are not bound to current result semantics.",
+      "blocks_claim_ids": [
+        "historical-rule-admission"
+      ],
+      "next_check": "Acquire exact rule definitions and map each condition to verified result paths without using count/strength proxies."
+    },
+    {
+      "id": "u3",
+      "statement": "The relation between the 纳音 passage and the adjacent 不论纳音 又曰 passage is unresolved.",
+      "blocks_claim_ids": [
+        "historical-rule-admission"
+      ],
+      "next_check": "Resolve attribution and context of these two source layers before choosing any computational basis."
+    }
+  ],
+  "boundary": {
+    "ocr_is_canonical_text": false,
+    "source_authority_promoted": false,
+    "semantic_authority_established": false,
+    "readiness_decided": false,
+    "policy_or_permission_decided": false,
+    "activation_decided": false,
+    "automatic_fallback_used": false
+  }
+}

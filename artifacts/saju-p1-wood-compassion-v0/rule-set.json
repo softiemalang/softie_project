@@ -1,0 +1,409 @@
+{
+  "schemaVersion": "saju-p1-source-rule-research-v0",
+  "status": "P1_STARTED_RULE_ADMISSION_UNRESOLVED",
+  "basisHead": "b6426c707b1604158e38abae2ebe4688dfc743bf",
+  "lens": "saju",
+  "domain": "temperament",
+  "topic": "木旺相與博愛惻隱",
+  "sourceEvidence": {
+    "path": "artifacts/saju-p1-wood-compassion-v0/source-evidence.json",
+    "byteSha256": "56fd119db094783dccd0b27a9bc74e48a3917f6d266aa79519877998b5d1b60a"
+  },
+  "admittedRules": [],
+  "unresolvedCandidates": [
+    {
+      "candidateId": "sanming-vol7-wood-wangxiang-compassion",
+      "sourceStatement": "旺相主有博爱恻隐之心，慈祥恺悌之意",
+      "sourceLocator": "PDF p242 / displayed 242; wood paragraph beginning 东方震位木; exact inspected export bytes in sourceEvidence",
+      "premises": [
+        {
+          "id": "wood-referent",
+          "requirement": "Identify which source layer and chart referent the wood paragraph applies to; do not assume dayMaster or total wood count.",
+          "status": "unresolved",
+          "locator": "p242 wood paragraph; p243 日时/纳音 and separate 又曰"
+        },
+        {
+          "id": "wood-wangxiang",
+          "requirement": "Establish 木旺相 with a source-defined criterion for that same referent.",
+          "status": "unresolved",
+          "locator": "p242 旺相 clause"
+        },
+        {
+          "id": "qualification-route",
+          "requirement": "Resolve source-specific 神煞, 克 and 有气无气 conditions and whether the base paragraph remains applicable.",
+          "status": "unresolved",
+          "locator": "p243 以上五行、情性 through 无有不验"
+        }
+      ],
+      "exceptions": [
+        {
+          "condition": "休囚 or 死绝",
+          "effect": "Outside this 旺相 candidate; never invert into a negative user label.",
+          "locator": "p242 same wood paragraph"
+        },
+        {
+          "condition": "煞临",
+          "effect": "Source explicitly directs away from the base clause; exact operational route unresolved.",
+          "locator": "p243 若有煞临，不在此限，又从煞上断"
+        },
+        {
+          "condition": "有克",
+          "effect": "Source directs to the controlled element; no current proxy chosen.",
+          "locator": "p243 若有克，则从所克之五行断"
+        }
+      ],
+      "sourceLayerIssue": "p243 纳音 and the adjacent 又曰 不论纳音 are kept separate. Neither dominance nor equivalence is inferred.",
+      "interpretationScope": "Source-local terminology only. No personality diagnosis, moral worth, physiognomy, fate, user hypothesis or instruction.",
+      "admission": "unresolved",
+      "executablePredicate": null
+    }
+  ],
+  "calculationProbe": {
+    "role": "existing_internal_regression_fixture_path_observation_only",
+    "fixtureId": "val-solar-normal",
+    "fixtureLocator": "src/interpretationPrep/fixtures/sajuValidationFixtures.js: sajuValidationFixtures entry id=val-solar-normal",
+    "invocation": "calculateSajuSystem(sajuValidationFixtures.find(x => x.id === \"val-solar-normal\").input, DEFAULT_PROFILES.saju)",
+    "wholeResultReceiptSha256": "da465f610cbe100acd15da4d6e30a809143aa60112e735babc0dd69f0369f47c",
+    "observedPaths": [
+      {
+        "path": "/raw/dayMaster",
+        "value": {
+          "stem": "계",
+          "yinYang": "음",
+          "element": "수",
+          "candidates": [
+            "계"
+          ]
+        }
+      },
+      {
+        "path": "/raw/pillars/month",
+        "value": {
+          "label": "월주",
+          "stem": "갑",
+          "branch": "진",
+          "value": "갑진",
+          "referenceValue": "갑진",
+          "candidates": [
+            "갑진"
+          ],
+          "status": "calculated",
+          "stemElement": "목",
+          "branchElement": "토"
+        }
+      },
+      {
+        "path": "/raw/season",
+        "value": {
+          "monthBranch": "진",
+          "seasonElement": "목",
+          "weights": {
+            "목": 0.8,
+            "토": 0.6,
+            "수": 0.2
+          },
+          "earthSupport": true,
+          "notes": [
+            "봄의 끝자락",
+            "토의 정리 기운"
+          ]
+        }
+      },
+      {
+        "path": "/raw/elements/counts",
+        "value": {
+          "목": 1,
+          "화": 2,
+          "토": 4,
+          "금": 0,
+          "수": 1
+        }
+      },
+      {
+        "path": "/raw/elements/weightedCounts",
+        "value": {
+          "목": 1.2,
+          "화": 0.9,
+          "토": 2.5,
+          "금": 0.4,
+          "수": 0.6
+        }
+      },
+      {
+        "path": "/raw/strength",
+        "value": {
+          "baseScore": 10,
+          "baseLevel": "weak",
+          "adjustedScore": 7.96,
+          "adjustedLevel": "weak",
+          "flags": [
+            "element_overload",
+            "element_missing",
+            "pressure_high",
+            "support_low",
+            "hidden_support_present",
+            "hidden_pressure_present",
+            "hidden_resource_support",
+            "hidden_wealth_pressure",
+            "seasonal_pressure",
+            "adjusted_weak"
+          ]
+        }
+      },
+      {
+        "path": "/raw/experimental/strength/model",
+        "value": "surface_support_heuristic"
+      },
+      {
+        "path": "/raw/experimental/strength/score",
+        "value": 0
+      },
+      {
+        "path": "/raw/experimental/strength/includesHiddenStemRoots",
+        "value": false
+      },
+      {
+        "path": "/stateContract",
+        "value": {
+          "inputStatus": "valid",
+          "calculationStatus": "calculated",
+          "verificationStatus": "verified",
+          "interpretationStatus": "experimental",
+          "confidence": "high"
+        }
+      },
+      {
+        "path": "/policyContract/schemaVersion",
+        "value": "saju-policy-contract-v1"
+      },
+      {
+        "path": "/policyContract/status",
+        "value": "SELECTED"
+      }
+    ],
+    "userChartProvided": false,
+    "interpretationApplied": false
+  },
+  "calculationBindings": [
+    {
+      "premiseId": "wood-referent",
+      "candidatePaths": [
+        "/raw/dayMaster/element",
+        "/raw/elements/counts/목",
+        "/raw/pillars/month",
+        "/raw/season/seasonElement"
+      ],
+      "status": "available_not_equivalent",
+      "reason": "These identify day stem, count, month and season; the passage does not specify them as the sole wood referent."
+    },
+    {
+      "premiseId": "wood-wangxiang",
+      "candidatePaths": [
+        "/raw/season",
+        "/raw/elements/weightedCounts/목",
+        "/raw/strength",
+        "/raw/experimental/strength"
+      ],
+      "status": "unresolved",
+      "reason": "Current season and strength outputs do not establish this exact source-specific 木旺相 predicate. The profile strength model is explicitly surface_support_heuristic, with 40/20 weights and 45/55 thresholds, not a source-proven mapping."
+    },
+    {
+      "premiseId": "qualification-route",
+      "candidatePaths": [
+        "/raw/experimental/shinsal",
+        "/raw/stemRelations",
+        "/raw/branchRelations",
+        "/raw/pillars/day",
+        "/raw/pillars/hour"
+      ],
+      "status": "unresolved",
+      "reason": "Existence of implementation outputs is not closure of this passage-specific 煞/克/納音 rule or exception precedence; no list-empty shortcut is used."
+    }
+  ],
+  "inputByteIdentity": [
+    {
+      "path": "src/interpretationPrep/fixtures/sajuValidationFixtures.js",
+      "byteSha256": "c6e983015f06968f7d326c17c5151a81b3554300ad8fa5d59897bdd2eed50ffe"
+    },
+    {
+      "path": "src/interpretationPrep/schema.js",
+      "byteSha256": "03058cdc3880a580edbd14bca9ce093dd145e34a2d996e0f107855040a8aa033"
+    },
+    {
+      "path": "src/interpretationPrep/sajuAdapter.js",
+      "byteSha256": "17538fa2864d9d5d64290c5c6c0385957c66f4c4a0684f97f0293eb028e9be82"
+    },
+    {
+      "path": "src/interpretationPrep/sajuProfileRules.js",
+      "byteSha256": "b4bcfad0764467713f4476a69e1a08295d9d2eef2c2f2d79c8258a6d3474ff05"
+    },
+    {
+      "path": "src/saju/engine/constants.js",
+      "byteSha256": "71dd30808f45a88043e101985e06a0196cc72423a30a4243910cb7c265f6b4e7"
+    },
+    {
+      "path": "src/interpretationPrep/sajuLocalSourceCorpusEvidence.js",
+      "byteSha256": "3375b3cff9f88dd8fc6b22cab9a8025136cdf6089ae650e50690793635b215cd"
+    },
+    {
+      "path": "docs/self-understanding-grounding-contract-v0.md",
+      "byteSha256": "ef7708b912b705189528ed227d8ceddd8d0fd9444203ac5ef7fcbfb86be58704"
+    },
+    {
+      "path": "src/selfUnderstandingGroundingContract.js",
+      "byteSha256": "56a3e0bfb087bf52cbff1b5c58c6913534630141c85be8bebfd4794cdef020ac"
+    }
+  ],
+  "delegation": {
+    "model": "gemini-3.8-flash-medium",
+    "timeout": "60s",
+    "mode": "plan",
+    "invocations": 1,
+    "fileInputs": false,
+    "transportStatus": "SUCCESS",
+    "processExitCode": 0,
+    "responseByteSha256": "fb32533914f4cf7fb10b0ac86bf79958dfcead258d61ec2dec0099b3bc836a5f",
+    "envelope": {
+      "schemaVersion": "subagent-evidence-contract-v0",
+      "contractVersion": "0.1.0",
+      "identity": {
+        "childId": "agy-saju-p1",
+        "taskId": "wood-premise-review",
+        "parentGoalId": "saju-p1",
+        "researchUnitId": "wood-wangxiang"
+      },
+      "scope": {
+        "assigned": "Review only parent-supplied excerpt for necessary predicates and exceptions; no tool calls.",
+        "allowedActions": [
+          "inspect"
+        ],
+        "forbiddenActions": [
+          "edit",
+          "install",
+          "remote",
+          "destructive",
+          "claim_promotion",
+          "semantic_authority_promotion",
+          "readiness_promotion",
+          "activation",
+          "production"
+        ],
+        "outOfScope": []
+      },
+      "basis": {
+        "branch": "main",
+        "basisHead": "b6426c707b1604158e38abae2ebe4688dfc743bf",
+        "observedHead": "b6426c707b1604158e38abae2ebe4688dfc743bf",
+        "worktreeState": "unknown"
+      },
+      "inputRefs": [
+        {
+          "refId": "excerpt",
+          "pathOrUri": "https://zh.wikisource.org/wiki/三命通會/卷七",
+          "locator": "Parent-supplied local PDF export p242 wood paragraph and p243 qualifications; webpage not inspected by child",
+          "access": "locator_only",
+          "byteSha256": null
+        }
+      ],
+      "inspectedRefs": [],
+      "artifactRefs": [],
+      "observations": [
+        {
+          "id": "obs-1",
+          "statement": "On PDF p242, benevolent and commiserative qualities (博爱恻隐之心) are explicitly conditioned on wood being in a prosperous/assisting state (旺相), directly contrasted with rest/decay (休囚) and death/extinction (死绝).",
+          "evidenceRefs": [
+            "excerpt"
+          ]
+        },
+        {
+          "id": "obs-2",
+          "statement": "On PDF p243, the application of five-element dispositions is qualified and superseded if adverse spirits are present (若有煞临，不在此限，又从煞上断) or if overcome/controlled (若有克，则从所克之五行断).",
+          "evidenceRefs": [
+            "excerpt"
+          ]
+        },
+        {
+          "id": "obs-3",
+          "statement": "On PDF p243, two juxtaposed statements conflict regarding layer application: one requires taking day and hour with NaYin (概取日时，上纳音，看有克无克), while an adjacent '又曰' passage states temperament relies solely on day and hour using the base five elements without NaYin (推人性行，只在日时上，看本五行，不论纳音).",
+          "evidenceRefs": [
+            "excerpt"
+          ]
+        }
+      ],
+      "inferences": [
+        {
+          "id": "inf-1",
+          "statement": "Neither dayMaster.element=wood nor a predominant surface wood count is sufficient to assign the 慈愛/惻隱 reading, because the excerpt strictly requires an affirmative 旺相 condition and the absence of overriding 煞 (spirits) or 克 (controlling elements).",
+          "basedOn": [
+            "obs-1",
+            "obs-2"
+          ],
+          "authority": "non_authoritative"
+        },
+        {
+          "id": "inf-2",
+          "statement": "A deterministic character-reading rule cannot be formalized from this excerpt alone because the relationship between the day/hour base five elements and the NaYin layer remains an unresolved textual conflict.",
+          "basedOn": [
+            "obs-3"
+          ],
+          "authority": "non_authoritative"
+        }
+      ],
+      "validations": [],
+      "unknowns": [
+        {
+          "id": "unk-1",
+          "statement": "The hierarchical precedence or reconciliation between evaluating day/hour via NaYin ('上纳音') versus strictly via base elements ('不论纳音') is unresolved in the excerpt.",
+          "blocksParent": true,
+          "nextCheck": "Inspect broader editions or commentaries of Sanming Tonghui to determine whether '不论纳音' acts as an exception, revision, or alternative tradition.",
+          "evidenceRefs": [
+            "excerpt"
+          ]
+        },
+        {
+          "id": "unk-2",
+          "statement": "The precise threshold for evaluating wood as 旺相 versus 休囚/死绝 and the formal criteria for when 煞 or 克 overrides the base elemental disposition are undefined in the excerpt.",
+          "blocksParent": true,
+          "nextCheck": "Examine source chapters defining seasonal energy states (旺相休囚死) and evil-spirit interaction rules (吉凶神煞).",
+          "evidenceRefs": [
+            "excerpt"
+          ]
+        }
+      ],
+      "blockers": [],
+      "status": "completed_with_unknowns",
+      "error": null,
+      "cancellation": null,
+      "authorityBoundary": {
+        "envelopeRole": "execution_provenance_only",
+        "observationAuthority": "child_reported_only",
+        "inferenceAuthority": "non_authoritative",
+        "validationAuthority": "check_scope_only",
+        "sourceEvidence": "not_created",
+        "semanticAuthority": "not_established",
+        "claimPromotion": false,
+        "readinessPromotion": false,
+        "activation": false,
+        "childPassIsParentGoalPass": false
+      },
+      "summary": "Neither dayMaster.element=wood nor surface wood count is sufficient to assign the 慈愛/惻隱 disposition. The text strictly requires a 旺相 seasonal state, establishes explicit overrides for 煞 (spirits) and 克 (controls), and presents an unresolved textual conflict regarding whether day/hour disposition analysis incorporates or excludes NaYin.",
+      "parentVerification": {
+        "status": "pending",
+        "mode": "none",
+        "recheckedValidationIds": [],
+        "reason": null
+      }
+    },
+    "parentAcceptance": "Accepted as bounded advisory leads after strict parsing and envelope validation. Parent reread PDF pp242-244 and reran the existing fixture. Child conflict/absence phrasing is not adopted as proof of contradiction or a new universal exception rule."
+  },
+  "boundary": {
+    "userClaimsCreated": false,
+    "reflectionCreated": false,
+    "crossLensComparisonCreated": false,
+    "calculationChanged": false,
+    "historicalAuthorityChanged": false,
+    "readinessChanged": false,
+    "activationChanged": false
+  },
+  "nextDiscriminatingCheck": "Obtain a source-identified definition of the relevant wood referent and 旺相 plus the 日时/纳音 layer relation. Do not expand to another topic to manufacture an admitted rule."
+}
