@@ -1,0 +1,127 @@
+{
+  "schema_version": "historical-document-evidence-v1",
+  "mode": "source-analysis",
+  "question": "Does the Yuanhai Ziping p.7 month-command sentence provide one bounded temperament-rule candidate whose officer/seal premise can be mapped to existing Saju fields without inventing scope?",
+  "scope": {
+    "included_item_ids": ["yuanhai-local-export"],
+    "excluded": [
+      "User claims and reflection",
+      "Other lens comparison",
+      "New interpretation rule implementation",
+      "Calculation, historical-authority, readiness, or activation changes",
+      "Year, hour, parentage, fate, physiognomy, moral ranking, and outcome branches adjacent to the candidate"
+    ]
+  },
+  "sources": [
+    {
+      "id": "yuanhai-p6-label-families",
+      "item_id": "yuanhai-local-export",
+      "kind": "derived_record",
+      "uri_or_path": "/Users/hangyukim/Documents/malang_lab/documents/淵海子平.pdf",
+      "locator": "PDF p.6 / displayed p.6, section 論日為主; visible 官/殺 and 印綬/倒食 label-family passage",
+      "byte_sha256": "c6225b78d9d49282c5699b63315018a1e17ebf091c50ce4feb3dab465ec25a12",
+      "directly_inspected": true,
+      "identity": {
+        "institution": null,
+        "catalog_id": null,
+        "shelfmark": null,
+        "title": "淵海子平",
+        "creator": "杨淙（export-page attribution）",
+        "edition": "Modern Wikisource-derived PDF export; historical edition unresolved",
+        "date": "2026年8月4日 export notice"
+      },
+      "lineage_status": "UNRESOLVED",
+      "independence_status": "UNRESOLVED"
+    },
+    {
+      "id": "yuanhai-p7-month-command",
+      "item_id": "yuanhai-local-export",
+      "kind": "derived_record",
+      "uri_or_path": "/Users/hangyukim/Documents/malang_lab/documents/淵海子平.pdf",
+      "locator": "PDF p.7 / displayed p.7, heading 論月令; candidate sentence and adjacent branch sentences",
+      "byte_sha256": "c6225b78d9d49282c5699b63315018a1e17ebf091c50ce4feb3dab465ec25a12",
+      "directly_inspected": true,
+      "identity": {
+        "institution": null,
+        "catalog_id": null,
+        "shelfmark": null,
+        "title": "淵海子平",
+        "creator": "杨淙（export-page attribution）",
+        "edition": "Modern Wikisource-derived PDF export; historical edition unresolved",
+        "date": "2026年8月4日 export notice"
+      },
+      "lineage_status": "UNRESOLVED",
+      "independence_status": "UNRESOLVED"
+    }
+  ],
+  "findings": [
+    {
+      "id": "f-label-families",
+      "classification": "FACT",
+      "statement": "The directly reviewed p.6 passage names 官 and 殺 as the two yin-yang labels under 官 and 印綬 and 倒食 as the two yin-yang labels under 生氣, with element examples.",
+      "source_ids": ["yuanhai-p6-label-families"]
+    },
+    {
+      "id": "f-candidate",
+      "classification": "FACT",
+      "statement": "Under the p.7 heading 論月令, the visible sentence reads 月为提纲，带官星印绶，则慷慨聪明、见识高人. The neighboring sentences separately discuss year inheritance, hour conduct, auspicious or inauspicious spirits, and 月令有用神/父母力.",
+      "source_ids": ["yuanhai-p7-month-command"]
+    },
+    {
+      "id": "i-candidate-boundary",
+      "classification": "INFERENCE",
+      "statement": "The candidate is a source-local conditional linking month command plus carried officer/seal labels to a temperament wording; the neighboring year, hour, spirit, and parentage sentences are separate branches unless an independent witness establishes a different syntax.",
+      "source_ids": ["yuanhai-p6-label-families", "yuanhai-p7-month-command"]
+    },
+    {
+      "id": "i-source-status",
+      "classification": "INFERENCE",
+      "statement": "The export supplies a reproducible locator and visible wording but does not establish historical edition, lineage, or semantic authority for a promoted rule.",
+      "source_ids": ["yuanhai-p6-label-families", "yuanhai-p7-month-command"]
+    }
+  ],
+  "claims": [
+    {
+      "id": "source-local-candidate",
+      "statement": "The reviewed export contains a bounded month-command officer/seal temperament candidate with an identifiable p.6 label context and p.7 locator.",
+      "support": "PARTIAL",
+      "finding_ids": ["f-label-families", "f-candidate"]
+    },
+    {
+      "id": "historical-rule-admission",
+      "statement": "The candidate is an exact historical interpretation rule ready to apply to current Saju results.",
+      "support": "UNRESOLVED",
+      "finding_ids": ["i-candidate-boundary", "i-source-status"]
+    }
+  ],
+  "ocr": null,
+  "unknowns": [
+    {
+      "id": "u-edition-lineage",
+      "statement": "The local export's historical edition, transmission lineage, and independent corroboration for pp.6-7 are not established.",
+      "blocks_claim_ids": ["historical-rule-admission"],
+      "next_check": "Collate the p.6-p.7 wording and printed folios against an identified historical witness."
+    },
+    {
+      "id": "u-carry-scope",
+      "statement": "帶 does not specify whether officer and seal must be visible stems, month-branch content, any branch content, or a simultaneous conjunction.",
+      "blocks_claim_ids": ["historical-rule-admission"],
+      "next_check": "Inspect usage of 帶 in the same work or a directly identified witness before defining a presence predicate."
+    },
+    {
+      "id": "u-polarity-scope",
+      "statement": "The p.7 phrase 官星印綬 does not state whether 殺/倒食 (the alternate p.6 family labels) are included, and the source does not define visible-versus-hidden counting.",
+      "blocks_claim_ids": ["historical-rule-admission"],
+      "next_check": "Verify the source's polarity and layer convention for 官星 and 印綬 before mapping the label families."
+    }
+  ],
+  "boundary": {
+    "ocr_is_canonical_text": false,
+    "source_authority_promoted": false,
+    "semantic_authority_established": false,
+    "readiness_decided": false,
+    "policy_or_permission_decided": false,
+    "activation_decided": false,
+    "automatic_fallback_used": false
+  }
+}

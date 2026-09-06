@@ -1,0 +1,510 @@
+{
+  "schemaVersion": "saju-p1-source-rule-research-v0",
+  "status": "P1_CANDIDATE_SELECTED_MAPPING_UNRESOLVED",
+  "basisHead": "e19e394dfcaf725826d72731f0cb468e6cfbf5fc",
+  "lens": "saju",
+  "domain": "temperament",
+  "topic": "月令帶官星印綬 → 慷慨聰明、見識高人",
+  "admittedRules": [],
+  "selectedCandidate": {
+    "candidateId": "yuanhai-p7-month-command-officer-seal-temperament",
+    "sourceStatement": "月为提纲，带官星印绶，则慷慨聪明、见识高人。",
+    "sourceLocator": "淵海子平.pdf PDF p.7 / displayed p.7, heading 論月令; p.6 label-family context",
+    "sourceRefs": [
+      "yuanhai-p6-label-families",
+      "yuanhai-p7-month-command"
+    ],
+    "sourceProvenance": {
+      "sourceId": "saju-source-yuanhai-ziping",
+      "localPath": "/Users/hangyukim/Documents/malang_lab/documents/淵海子平.pdf",
+      "byteSha256": "c6225b78d9d49282c5699b63315018a1e17ebf091c50ce4feb3dab465ec25a12",
+      "sourceForm": "web_text_export_with_explicit_source_warning",
+      "editionIdentity": "unresolved_edition",
+      "directVisualReview": {
+        "pages": [
+          6,
+          7
+        ],
+        "renderer": "pdftoppm 26.05.0",
+        "ocrCanonical": false,
+        "transcriptionStatus": "direct_visual_observation_candidate_not_canonical_source_text"
+      },
+      "existingCorpusResearchUnit": "five-classics.day-master-and-month-command.yuanhai-p6-p7",
+      "existingCorpusRelation": "partial_support",
+      "semanticAuthority": "not_established"
+    },
+    "premises": [
+      {
+        "id": "month-command",
+        "role": "source_condition",
+        "sourceText": "月为提纲",
+        "status": "structural_field_available_not_equivalent",
+        "calculationPaths": [
+          "/raw/pillars/month",
+          "/raw/pillars/month/branch",
+          "/raw/pillars/month/stem",
+          "/raw/pillars/month/referenceValue"
+        ],
+        "note": "The month pillar is calculated, but the source meaning of 提纲 is not treated as an implementation or historical authority."
+      },
+      {
+        "id": "officer-seal-carried",
+        "role": "source_condition",
+        "sourceText": "带官星印绶",
+        "status": "unresolved",
+        "calculationPaths": [
+          "/raw/tenGods/visible",
+          "/raw/tenGods/hidden"
+        ],
+        "note": "The fields expose officer/resource labels, but the source does not state whether 带 means visible stem, month-branch content, any hidden stem, or a conjunction requirement."
+      },
+      {
+        "id": "label-family-context",
+        "role": "source_lexical_context",
+        "sourceText": "官/杀 and 印绶/倒食 are named as yin-yang families on p.6",
+        "status": "available_as_label_context_not_equivalent",
+        "calculationPaths": [
+          "/raw/dayMaster/stem",
+          "/raw/tenGods/visible",
+          "/raw/tenGods/hidden"
+        ],
+        "note": "The current engine has polarity-sensitive Korean labels, but p.7 does not select which polarity or whether alternate labels are included."
+      },
+      {
+        "id": "temperament-wording",
+        "role": "source_consequence_wording",
+        "sourceText": "则慷慨聪明、见识高人",
+        "status": "source_text_only",
+        "calculationPaths": [],
+        "note": "Recorded as the source wording only; no user-facing interpretation or claim is created."
+      }
+    ],
+    "separateBranches": [
+      {
+        "sourceText": "假令年为本，带官星印绶，则早年有官出自祖宗。",
+        "locator": "p.7, immediately before the candidate",
+        "status": "not_bound_to_candidate",
+        "reason": "year/ancestral outcome branch with a different consequence"
+      },
+      {
+        "sourceText": "时为辅佐，平生操履。",
+        "locator": "p.7, immediately after the candidate",
+        "status": "not_bound_to_candidate",
+        "reason": "hour/conduct statement is separate prose"
+      },
+      {
+        "sourceText": "若年月日有吉神...若凶神，则要归时制伏之乡。",
+        "locator": "p.7, later in the same section",
+        "status": "not_bound_to_candidate",
+        "reason": "spirit and hour redirection branch; no candidate-specific precedence is inferred"
+      },
+      {
+        "sourceText": "假令月令有用神，得父母力。",
+        "locator": "p.7, later in the same section",
+        "status": "not_bound_to_candidate",
+        "reason": "month-use/parentage outcome branch"
+      }
+    ],
+    "exceptions": {
+      "candidateLocalExceptions": [],
+      "note": "No explicit exception marker appears in the candidate sentence itself. Adjacent conditional sentences remain separate branches pending a directly identified witness."
+    },
+    "interpretationBoundary": "Source-local temperament wording only; no personal claim, reflection, comparison, or new rule."
+  },
+  "unresolvedCandidates": [
+    {
+      "candidateId": "yuanhai-p7-month-command-officer-seal-temperament",
+      "admission": "candidate_selected_mapping_unresolved",
+      "sourceEpistemicStatus": "unresolved",
+      "blockers": [
+        "帶 scope: visible versus hidden and month-only versus chart-wide is undefined",
+        "官星/印绶 polarity and whether 殺/倒食 are included is undefined",
+        "historical edition and textual lineage are unresolved"
+      ],
+      "executablePredicate": null
+    }
+  ],
+  "calculationProbe": {
+    "role": "existing_internal_regression_fixture_path_observation_only",
+    "fixtureId": "val-solar-normal",
+    "fixtureLocator": "src/interpretationPrep/fixtures/sajuValidationFixtures.js: entry id=val-solar-normal",
+    "invocation": "calculateSajuSystem(sajuValidationFixtures.find(x => x.id === \"val-solar-normal\").input, DEFAULT_PROFILES.saju)",
+    "wholeResultReceiptSha256": "4bdfc89df2c45424080fa109a0a508efde037d5b734f3d56daa7749bb2ad5319",
+    "resultBytes": 194590,
+    "observedPaths": [
+      {
+        "path": "/raw/dayMaster",
+        "value": {
+          "stem": "계",
+          "yinYang": "음",
+          "element": "수",
+          "candidates": [
+            "계"
+          ]
+        }
+      },
+      {
+        "path": "/raw/pillars/month",
+        "value": {
+          "label": "월주",
+          "stem": "갑",
+          "branch": "진",
+          "value": "갑진",
+          "referenceValue": "갑진",
+          "candidates": [
+            "갑진"
+          ],
+          "status": "calculated",
+          "stemElement": "목",
+          "branchElement": "토"
+        }
+      },
+      {
+        "path": "/raw/tenGods/visible",
+        "value": {
+          "편재": 1,
+          "편관": 3,
+          "상관": 1,
+          "정관": 1,
+          "정재": 1
+        }
+      },
+      {
+        "path": "/raw/tenGods/hidden",
+        "value": {
+          "편관": 1.2,
+          "비견": 0.4,
+          "편인": 0.1,
+          "정관": 0.7,
+          "식신": 0.4,
+          "정재": 0.6,
+          "정인": 0.3,
+          "편재": 0.3
+        }
+      },
+      {
+        "path": "/raw/experimental/gyeokguk",
+        "value": {
+          "name": "정관격",
+          "type": "정격",
+          "reason": "천간에 투출한 지장간 글자가 없어, 월지 진의 본기인 무의 십성을 기준으로 격국을 형성함",
+          "stem": "무",
+          "source": "본기(미투출)",
+          "epistemicMetadata": {
+            "epistemicStatus": "derived",
+            "confidence": "medium",
+            "method": {
+              "id": "month-jijangan-tugan-v1",
+              "label": "월지 지장간 투간 및 본기 기준 정격 산식"
+            },
+            "evidence": [
+              {
+                "source": "pillars.month.branch",
+                "value": "진",
+                "role": "월지 기준 지장간 확인"
+              },
+              {
+                "source": "gyeokguk.stem",
+                "value": "무",
+                "role": "투출 또는 기준 천간"
+              }
+            ],
+            "alternatives": [],
+            "limitations": [
+              "변격, 가종격 및 파격 정밀 판정은 지원 범위 외(advanced-following-structures)입니다."
+            ],
+            "reviewNotes": "월지 진의 지장간 투간/본기 기준으로 정관격을 도출하였습니다."
+          }
+        }
+      },
+      {
+        "path": "/raw/season",
+        "value": {
+          "monthBranch": "진",
+          "seasonElement": "목",
+          "weights": {
+            "목": 0.8,
+            "토": 0.6,
+            "수": 0.2
+          },
+          "earthSupport": true,
+          "notes": [
+            "봄의 끝자락",
+            "토의 정리 기운"
+          ]
+        }
+      },
+      {
+        "path": "/stateContract",
+        "value": {
+          "inputStatus": "valid",
+          "calculationStatus": "calculated",
+          "verificationStatus": "verified",
+          "interpretationStatus": "experimental",
+          "confidence": "high"
+        }
+      },
+      {
+        "path": "/policyContract",
+        "value": {
+          "schemaVersion": "saju-policy-contract-v1",
+          "status": "SELECTED",
+          "historicalAuthority": "insufficient_evidence",
+          "readinessStatus": "blocked",
+          "activationStatus": "not_activated"
+        }
+      }
+    ],
+    "userChartProvided": false,
+    "interpretationApplied": false
+  },
+  "calculationBindings": [
+    {
+      "premiseId": "month-command",
+      "candidatePaths": [
+        "/raw/pillars/month",
+        "/raw/pillars/month/branch",
+        "/raw/pillars/month/stem"
+      ],
+      "status": "available_not_equivalent",
+      "reason": "Current month pillar is a direct structural field; the source semantic role 提纲 is not adopted as an implementation rule."
+    },
+    {
+      "premiseId": "officer-seal-carried",
+      "candidatePaths": [
+        "/raw/tenGods/visible",
+        "/raw/tenGods/hidden"
+      ],
+      "status": "available_but_scope_unresolved",
+      "reason": "The fixture has visible 官 labels and hidden 印 labels, but the current output does not define the source-specific 带 predicate or layer."
+    },
+    {
+      "premiseId": "label-family-context",
+      "candidatePaths": [
+        "/raw/dayMaster/stem",
+        "/raw/tenGods/visible",
+        "/raw/tenGods/hidden"
+      ],
+      "status": "available_but_polarity_unresolved",
+      "reason": "getTenGod is polarity-sensitive, while the source candidate does not select 官 versus 杀 or 印绶 versus 倒食."
+    },
+    {
+      "premiseId": "experimental-gyeokguk",
+      "candidatePaths": [
+        "/raw/experimental/gyeokguk"
+      ],
+      "status": "excluded_from_premise",
+      "reason": "Derived month-jijangan heuristic is not a historical source bridge and does not establish simultaneous officer/seal presence."
+    }
+  ],
+  "inputByteIdentity": [
+    {
+      "path": "src/interpretationPrep/fixtures/sajuValidationFixtures.js",
+      "byteSha256": "c6e983015f06968f7d326c17c5151a81b3554300ad8fa5d59897bdd2eed50ffe"
+    },
+    {
+      "path": "src/interpretationPrep/sajuAdapter.js",
+      "byteSha256": "17538fa2864d9d5d64290c5c6c0385957c66f4c4a0684f97f0293eb028e9be82"
+    },
+    {
+      "path": "src/saju/engine/core.js",
+      "byteSha256": "b10e06ed6ef0858ebbac0de1d6127279ee8f3b4d87d2ac2d60e82655ccf0e4fa"
+    },
+    {
+      "path": "src/subagentEvidenceContract.js",
+      "byteSha256": "3bdfdb07268bd368cdc73d404805235020521b58d7cbaf654890f059a96d127e"
+    },
+    {
+      "path": "artifacts/saju-five-classics-grounding-v0/complete.json",
+      "byteSha256": "aaee0710bc855f00c459767c2ea07bd8e8d25ef9052c4f145ffb513c78426138"
+    },
+    {
+      "path": "artifacts/saju-p1-yuanhai-month-command-officer-seal-v0/source-evidence.json",
+      "byteSha256": "fae3c8d11cf824716bce91ffb8d1b1110ee14f2643eff80d884e7e01d2516ee7"
+    }
+  ],
+  "delegation": {
+    "model": "gemini-3.8-flash-medium",
+    "timeout": "60s",
+    "mode": "plan",
+    "invocations": 1,
+    "fileInputs": false,
+    "transportStatus": "SUCCESS",
+    "processExitCode": 0,
+    "responseByteSha256": "862dfbf9dc21ed5f060f4fc17a9044464c16e1ab24f0c045a9ebcbdc444fb2d1",
+    "responseEnvelopeContentSha256": "cccbc711feb7d3aa92ffb4207aeb76785977cb27d85480f2c839daa0f4cc258b",
+    "envelope": {
+      "schemaVersion": "subagent-evidence-contract-v0",
+      "contractVersion": "0.1.0",
+      "identity": {
+        "childId": "agy-saju-p1-next",
+        "taskId": "temperament-candidate-review",
+        "parentGoalId": "saju-p1",
+        "researchUnitId": "yuanhai-month-command-officer-seal"
+      },
+      "scope": {
+        "assigned": "Review one parent-supplied Yuanhai temperament candidate for premises, branches, provenance, and current field mapping; no tool calls.",
+        "allowedActions": [
+          "inspect"
+        ],
+        "forbiddenActions": [
+          "edit",
+          "install",
+          "remote",
+          "destructive",
+          "claim_promotion",
+          "semantic_authority_promotion",
+          "readiness_promotion",
+          "activation",
+          "production"
+        ],
+        "outOfScope": []
+      },
+      "basis": {
+        "branch": "main",
+        "basisHead": "e19e394dfcaf725826d72731f0cb468e6cfbf5fc",
+        "observedHead": "e19e394dfcaf725826d72731f0cb468e6cfbf5fc",
+        "worktreeState": "dirty"
+      },
+      "inputRefs": [
+        {
+          "refId": "source-excerpt",
+          "pathOrUri": "artifacts/saju-five-classics-grounding-v0/complete.json",
+          "locator": "researchUnit five-classics.day-master-and-month-command.yuanhai-p6-p7; parent-supplied visual excerpts from local PDF pp.6-7",
+          "access": "text",
+          "byteSha256": "aaee0710bc855f00c459767c2ea07bd8e8d25ef9052c4f145ffb513c78426138"
+        },
+        {
+          "refId": "calculation-snapshot",
+          "pathOrUri": "src/interpretationPrep/fixtures/sajuValidationFixtures.js",
+          "locator": "entry id=val-solar-normal; parent-supplied calculated field snapshot",
+          "access": "text",
+          "byteSha256": "c6e983015f06968f7d326c17c5151a81b3554300ad8fa5d59897bdd2eed50ffe"
+        }
+      ],
+      "inspectedRefs": [],
+      "artifactRefs": [
+        {
+          "refId": "grounding-artifact",
+          "path": "artifacts/saju-five-classics-grounding-v0/complete.json",
+          "artifactId": "saju-five-classics-grounding-v0",
+          "schemaVersion": "saju-five-classics-claim-grounding-v0",
+          "byteSha256": "aaee0710bc855f00c459767c2ea07bd8e8d25ef9052c4f145ffb513c78426138",
+          "integrityRef": "artifacts/saju-five-classics-grounding-v0/complete.json.integrity.json",
+          "role": "existing_canonical"
+        }
+      ],
+      "observations": [
+        {
+          "id": "obs-1",
+          "statement": "The p.7 sentence states month command carrying officer star and seal ribbon indicates generous intelligence and distinguished insight, while adjacent sentences treat year inheritance, day strength, and hour governance as grammatically separate branches.",
+          "evidenceRefs": [
+            "source-excerpt"
+          ]
+        },
+        {
+          "id": "obs-2",
+          "statement": "Regression snapshot fixture val-solar-normal exposes separate visible and hidden ten-god distributions and experimental gyeokguk, but lacks a source-defined presence predicate or scope for carrying officer and seal.",
+          "evidenceRefs": [
+            "calculation-snapshot"
+          ]
+        },
+        {
+          "id": "obs-3",
+          "statement": "Parent-reviewed source witness is a byte-verified modern Wikisource PDF export whose textual lineage and critical edition status remain unestablished.",
+          "evidenceRefs": [
+            "source-excerpt"
+          ]
+        }
+      ],
+      "inferences": [
+        {
+          "id": "inf-1",
+          "statement": "The source premise links month command carrying officer star and seal ribbon to temperament without syntactically binding neighboring life outcomes, but existing tenGods fields provide an available-but-not-equivalent structural correspondence rather than a closed historical rule.",
+          "basedOn": [
+            "obs-1",
+            "obs-2"
+          ],
+          "authority": "non_authoritative"
+        },
+        {
+          "id": "inf-2",
+          "statement": "Direct mapping to engine fields cannot proceed without inventing ungrounded heuristics regarding visible versus hidden stem scopes, polarity distinctions within label families, and conjunction requirements.",
+          "basedOn": [
+            "obs-1",
+            "obs-2",
+            "obs-3"
+          ],
+          "authority": "non_authoritative"
+        }
+      ],
+      "validations": [],
+      "unknowns": [
+        {
+          "id": "unk-1",
+          "statement": "Textual lineage and variant readings for the Yuanhai Ziping month command passage remain unverified against historical critical editions.",
+          "blocksParent": true,
+          "nextCheck": "Collate passage against historical print editions such as Siku Quanshu or Ming block prints.",
+          "evidenceRefs": [
+            "source-excerpt"
+          ]
+        },
+        {
+          "id": "unk-2",
+          "statement": "The operational scope of carrying (带) regarding stem protrusion, branch containment, or simultaneous conjunction of officer and seal is undefined in source text.",
+          "blocksParent": true,
+          "nextCheck": "Inspect Yuanhai Ziping usage of carrying across related chapters to clarify structural presence rules.",
+          "evidenceRefs": [
+            "source-excerpt"
+          ]
+        },
+        {
+          "id": "unk-3",
+          "statement": "Whether p.6 label families apply symmetrically to p.7 or require specific polarities (orthodox officer/seal vs seven killings/owl) is unresolved.",
+          "blocksParent": true,
+          "nextCheck": "Check source commentary on whether officer star and seal ribbon strictly exclude inverted seal or killer.",
+          "evidenceRefs": [
+            "source-excerpt",
+            "calculation-snapshot"
+          ]
+        }
+      ],
+      "blockers": [],
+      "status": "completed_with_unknowns",
+      "error": null,
+      "cancellation": null,
+      "authorityBoundary": {
+        "envelopeRole": "execution_provenance_only",
+        "observationAuthority": "child_reported_only",
+        "inferenceAuthority": "non_authoritative",
+        "validationAuthority": "check_scope_only",
+        "sourceEvidence": "not_created",
+        "semanticAuthority": "not_established",
+        "claimPromotion": false,
+        "readinessPromotion": false,
+        "activation": false,
+        "childPassIsParentGoalPass": false
+      },
+      "summary": "Assessed the Yuanhai Ziping p.7 candidate under month command connecting officer star and seal ribbon to generous intelligence and high insight. Adjacent sentences for year ancestral inheritance, day strength assessment, and hour governance form distinct branches rather than conjoined preconditions. While existing calculated ten-god distributions offer an available-but-not-equivalent structural correspondence, the candidate cannot be directly mapped without inventing unstated operational rules for carrying scope, visible versus hidden status, and label polarity. Lineage and critical edition authority remain unresolved.",
+      "parentVerification": {
+        "status": "pending",
+        "mode": "none",
+        "recheckedValidationIds": [],
+        "reason": null
+      }
+    },
+    "parentAcceptance": "Strict JSON parsed and subagent-evidence-contract-v0 returned no errors. Parent reread the local pp.6-7 renders and reran the existing fixture; child observations remain advisory and do not admit this rule."
+  },
+  "boundary": {
+    "userClaimsCreated": false,
+    "reflectionCreated": false,
+    "crossLensComparisonCreated": false,
+    "newInterpretationRuleCreated": false,
+    "calculationChanged": false,
+    "historicalAuthorityChanged": false,
+    "readinessChanged": false,
+    "activationChanged": false,
+    "adapterOrUiCreated": false
+  },
+  "nextDiscriminatingCheck": "Only a directly identified witness or same-work usage review may resolve 带 scope and polarity/layer selection; until then keep executablePredicate null and do not create a user claim."
+}
