@@ -1,0 +1,198 @@
+{
+  "schema_version": "historical-document-evidence-v1",
+  "mode": "secondary-modern-source-analysis",
+  "question": "Within a bounded review of secondary and modern Saju sources, does any temperament or behavior-style description have a predicate that maps directly to an explicitly emitted current Saju engine value?",
+  "scope": {
+    "included_item_ids": [
+      "insight6348-ganyeojidong",
+      "sajuday-jeongin-glossary",
+      "cynicalkim-ilgan-personality"
+    ],
+    "included_source_contexts": [
+      "public modern practitioner page: 간여지동 definition, listed day pillars, and general interpretation points",
+      "public modern commercial glossary: 정인 definition, count guidance, and temperament description",
+      "public modern explanatory page: 일간 description limits and behavior-question table"
+    ],
+    "excluded": [
+      "Reopening the bounded classical executable-temperament route, which is already closed",
+      "New classical witness acquisition or historical-authority adjudication",
+      "User claims, reflection entries, and cross-lens comparison",
+      "New interpretation-rule registration, adapter, UI, readiness, activation, or calculation changes",
+      "Undefined 旺相、帶、格局、得氣、用神, hidden-versus-visible dominance, or relation-to-person bridges"
+    ]
+  },
+  "sources": [
+    {
+      "id": "insight6348-ganyeojidong",
+      "kind": "public_secondary_modern_web_page",
+      "uri_or_path": "https://insight6348.tistory.com/365",
+      "locator": "HTML lines 12-25 and 29-81 (title/date, definition, interpretation points, and 12 day-pillar entries)",
+      "byte_sha256": "7bd7c1be9b0f028e6a3f1e826d759bcfc8614e33f13f33b1432246e92ec2e261",
+      "directly_inspected": true,
+      "retrieved_at": "2026-09-07",
+      "identity": {
+        "institution": null,
+        "catalog_id": null,
+        "shelfmark": null,
+        "title": "간여지동(干與支同)이란? - 천간지지같은글자...",
+        "creator": "천명선생",
+        "publication": "천명선생 사주천궁 039 blog",
+        "published": "2025-06-20 10:22"
+      },
+      "provenance": {
+        "source_type": "modern_practitioner_web_publication",
+        "lineage": "contemporary Korean Saju practice; no historical textual lineage asserted",
+        "semantic_authority": "descriptive practitioner convention only",
+        "personal_validity": "not established"
+      },
+      "school_or_practice": "일주론·간여지동 (modern Korean practitioner usage)",
+      "rule_scope": "day pillar only; the page lists twelve exact day-pillar values and describes a general temperament direction"
+    },
+    {
+      "id": "sajuday-jeongin-glossary",
+      "kind": "public_secondary_modern_web_page",
+      "uri_or_path": "https://sajuday.kr/%EC%9A%A9%EC%96%B4/%EC%A0%95%EC%9D%B8",
+      "locator": "HTML lines 2-4, 18-20, 67-92 (definition, count wording, temperament, and pattern caveat)",
+      "byte_sha256": "9724df8e759f4218cea007e57b15228a09ecc75a1de265b2d3d159cfa2bbd202",
+      "directly_inspected": true,
+      "retrieved_at": "2026-09-07",
+      "identity": {
+        "institution": null,
+        "catalog_id": null,
+        "shelfmark": null,
+        "title": "정인(正印) — 다른 음양의 인성 — 정통 학문·정실 어머니의 결",
+        "creator": "사주데이 editorial/service page",
+        "publication": "사주데이 사주 용어 사전",
+        "published": null
+      },
+      "provenance": {
+        "source_type": "modern_commercial_saju_glossary",
+        "lineage": "contemporary ten-god explanatory practice; no canonical lineage asserted",
+        "semantic_authority": "service glossary convention only",
+        "personal_validity": "not established"
+      },
+      "school_or_practice": "현대 십신 용어 풀이·상담 서비스 관행",
+      "rule_scope": "정인 count/strength across an unspecified eight-character chart; a separate 정인격 branch is mentioned"
+    },
+    {
+      "id": "cynicalkim-ilgan-personality",
+      "kind": "public_secondary_modern_web_page",
+      "uri_or_path": "https://cynicalkim.com/saju/ilgan-personality/",
+      "locator": "HTML lines 3-12, 18-33 (scope warning, day-master table, and required context)",
+      "byte_sha256": "962db9cf97250c3bb78e52a49450e32bb2e61c9f2081592343cffd242eb30d52",
+      "directly_inspected": true,
+      "retrieved_at": "2026-09-07",
+      "identity": {
+        "institution": null,
+        "catalog_id": null,
+        "shelfmark": null,
+        "title": "일간별 성격 — 갑을병정무기경신임계 읽는 법",
+        "creator": "시니컬킴",
+        "publication": "시니컬킴 explanatory web page",
+        "published": null
+      },
+      "provenance": {
+        "source_type": "modern_explanatory_practitioner_web_publication",
+        "lineage": "modernized 물상 and question-oriented practice; no canonical lineage asserted",
+        "semantic_authority": "explicitly limited descriptive analogy",
+        "personal_validity": "not established"
+      },
+      "school_or_practice": "일간 물상·자기점검 질문 중심의 현대 설명 관행",
+      "rule_scope": "dayMaster is a calculation anchor; the page expressly requires season, roots, surrounding elements, and relations before a personality conclusion"
+    }
+  ],
+  "findings": [
+    {
+      "id": "f-ganyeojidong-direct-description",
+      "classification": "FACT",
+      "statement": "The insight6348 page defines 干與支同 as a same-element or same-qi stem/branch configuration, lists general points of strong self-direction, concentration, stubbornness, and possible inflexibility, and enumerates twelve exact day-pillar values.",
+      "source_ids": ["insight6348-ganyeojidong"]
+    },
+    {
+      "id": "f-ganyeojidong-engine-field",
+      "classification": "FACT",
+      "statement": "The current adapter emits an explicit day-pillar value at /raw/pillars/day/referenceValue together with a calculated status and a candidate list; the observed regression fixture value is 계사 with one candidate.",
+      "source_ids": ["insight6348-ganyeojidong"]
+    },
+    {
+      "id": "f-jeongin-scope-gap",
+      "classification": "FACT",
+      "statement": "The 사주데이 page defines 正印 and says that a strong 正印 has a calm, scholarly, honest temperament; it refers to counting the eight-character chart and separately mentions a month-branch 正印格, but it does not define the current visible-versus-hidden layer or a closed strength threshold.",
+      "source_ids": ["sajuday-jeongin-glossary"]
+    },
+    {
+      "id": "f-daymaster-caveat",
+      "classification": "FACT",
+      "statement": "The 시니컬킴 page states that a day-master token alone is insufficient for a whole personality table, treats the table as modern translations and questions, and says season, roots, surrounding elements, and relations must remain in view.",
+      "source_ids": ["cynicalkim-ilgan-personality"]
+    },
+    {
+      "id": "i-ganyeojidong-predicate-closed",
+      "classification": "INFERENCE",
+      "statement": "A strict enum predicate over /raw/pillars/day/referenceValue, limited to the twelve values explicitly listed by the insight6348 page, is directly executable without deriving an unmodeled 旺相·帶·格局·得氣 state. The predicate is assessed as not_matched for the current 계사 fixture, while the rule candidate itself remains executable for a matching calculated day pillar.",
+      "source_ids": ["insight6348-ganyeojidong"]
+    },
+    {
+      "id": "i-jeongin-predicate-not-closed",
+      "classification": "INFERENCE",
+      "statement": "The 正印 candidate cannot be closed against tenGods.visible or tenGods.hidden because the source's eight-character count, the word 강한, and the separate pattern branch do not specify a visible/hidden scope or threshold.",
+      "source_ids": ["sajuday-jeongin-glossary"]
+    },
+    {
+      "id": "i-daymaster-single-token-excluded",
+      "classification": "INFERENCE",
+      "statement": "The single-dayMaster temperament candidate is excluded because the source itself limits the one-line description to a starting analogy and requires additional seasonal and structural context before a personality conclusion.",
+      "source_ids": ["cynicalkim-ilgan-personality"]
+    }
+  ],
+  "claims": [
+    {
+      "id": "secondary-modern-bounded-admission",
+      "statement": "One secondary/modern source supplies a bounded, directly executable day-pillar membership predicate for a temperament description; no user-specific interpretation is made.",
+      "support": "PARTIAL",
+      "finding_ids": [
+        "f-ganyeojidong-direct-description",
+        "f-ganyeojidong-engine-field",
+        "i-ganyeojidong-predicate-closed",
+        "i-jeongin-predicate-not-closed",
+        "i-daymaster-single-token-excluded"
+      ]
+    },
+    {
+      "id": "historical-or-personal-promotion",
+      "statement": "The bounded review establishes historical authority or personal validity for the modern description.",
+      "support": "UNRESOLVED",
+      "finding_ids": ["i-ganyeojidong-predicate-closed"]
+    }
+  ],
+  "ocr": null,
+  "unknowns": [
+    {
+      "id": "u-modern-source-lineage",
+      "statement": "The three public pages do not provide an independently verified textual lineage or psychometric validation; their source provenance remains modern practitioner or service convention.",
+      "blocks_claim_ids": ["historical-or-personal-promotion"],
+      "next_check": null
+    },
+    {
+      "id": "u-current-fixture-application",
+      "statement": "The observed fixture's day pillar is 계사, which is outside the twelve enumerated day-pillar values; no user chart or user claim is supplied here.",
+      "blocks_claim_ids": [],
+      "next_check": null
+    }
+  ],
+  "boundary": {
+    "source_identity": "public modern pages were directly read and retrieved-byte hashes recorded",
+    "source_lineage_promoted": false,
+    "semantic_authority_promoted": false,
+    "historical_authority_promoted": false,
+    "personal_validity_promoted": false,
+    "user_claims_created": false,
+    "reflection_created": false,
+    "cross_lens_comparison_created": false,
+    "interpretation_rule_registered": false,
+    "calculation_changed": false,
+    "readiness_changed": false,
+    "activation_changed": false,
+    "automatic_fallback_used": false
+  }
+}

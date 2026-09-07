@@ -1,0 +1,288 @@
+{
+  "schemaVersion": "saju-p1-secondary-modern-search-v0",
+  "status": "ONE_SECONDARY_MODERN_P1_ADMISSION_CANDIDATE_FOUND_BOUNDED",
+  "verdict": "one executable secondary/modern temperament rule candidate closed in bounded scope",
+  "basisHead": "b7670e1706ba3646cb84764337a2fb8e3009c68f",
+  "lens": "saju",
+  "domains": ["temperament", "behavior_style"],
+  "method": {
+    "mode": "calculation_first_secondary_modern",
+    "candidateLimit": 3,
+    "sourceScope": "public secondary and modern Korean Saju explanatory pages directly read by the parent",
+    "selectionRule": "Start from a current engine path whose field and scope are explicit. Admit only a source rule whose premise can be represented as a closed predicate over that path, with no undefined 旺相、帶、格局、得氣、用神, hidden-versus-visible dominance, or relation-to-person bridge.",
+    "classicalRoute": "closed and not reopened",
+    "claimAndReflection": "not created"
+  },
+  "externalWorker": {
+    "requested": true,
+    "skill": "antigravity-worker",
+    "model": "gemini-3.8-flash-medium",
+    "invocationStatus": "completed",
+    "outputValidation": "strict_json_pass",
+    "candidateCount": 3,
+    "use": "advisory lead generation only",
+    "parentVerification": "Worker suggestions were not treated as provenance or authority. The parent directly read the cited public pages and used only the parent-verified locators below.",
+    "retry": false
+  },
+  "sourceEvidence": {
+    "path": "artifacts/saju-p1-secondary-modern-v0/source-evidence.json",
+    "byteSha256": "a7beca21956d457ad20b077ca42ad4eb02741ad5ee3079e3c42eb59fa65abc16"
+  },
+  "calculationProbe": {
+    "role": "existing_internal_regression_fixture_path_observation_only",
+    "fixtureId": "val-solar-normal",
+    "fixtureLocator": "src/interpretationPrep/fixtures/sajuValidationFixtures.js: entry id=val-solar-normal",
+    "invocation": "calculateSajuSystem(sajuValidationFixtures.find(x => x.id === \"val-solar-normal\").input, DEFAULT_PROFILES.saju)",
+    "resultBasis": {
+      "path": "artifacts/saju-p1-calculation-first-v0/search-record.json",
+      "byteSha256": "5fa351dd6fd89993760fb5cfe9d3b290837c99415d1f9857a63a901597b1500c",
+      "wholeResultReceiptSha256": "4bdfc89df2c45424080fa109a0a508efde037d5b734f3d56daa7749bb2ad5319"
+    },
+    "userChartProvided": false,
+    "interpretationApplied": false,
+    "observedPaths": [
+      {
+        "path": "/raw/pillars/day/referenceValue",
+        "value": "계사",
+        "status": "calculated",
+        "candidates": ["계사"],
+        "stemElement": "수",
+        "branchElement": "화"
+      },
+      {
+        "path": "/raw/dayMaster",
+        "value": {
+          "stem": "계",
+          "yinYang": "음",
+          "element": "수",
+          "candidates": ["계"]
+        }
+      },
+      {
+        "path": "/raw/tenGods/visible",
+        "value": {
+          "편재": 1,
+          "편관": 3,
+          "상관": 1,
+          "정관": 1,
+          "정재": 1
+        }
+      },
+      {
+        "path": "/raw/tenGods/hidden",
+        "value": {
+          "편관": 1.2,
+          "비견": 0.4,
+          "편인": 0.1,
+          "정관": 0.7,
+          "식신": 0.4,
+          "정재": 0.6,
+          "정인": 0.3,
+          "편재": 0.3
+        }
+      },
+      {
+        "path": "/raw/branchRelations",
+        "value": {
+          "basis": "reference_pillars",
+          "relations": ["파", "충", "형"]
+        }
+      }
+    ],
+    "policySnapshot": {
+      "historicalAuthority": "insufficient_evidence",
+      "readinessStatus": "blocked",
+      "activationStatus": "not_activated"
+    }
+  },
+  "candidateShortlist": [
+    {
+      "candidateId": "modern-insight6348-ganyeojidong-temperament",
+      "sourceEvidenceId": "insight6348-ganyeojidong",
+      "sourceProvenance": {
+        "sourceIdentity": "public page by 천명선생, dated 2025-06-20, retrieved 2026-09-07",
+        "sourceType": "modern_practitioner_web_publication",
+        "lineage": "contemporary Korean Saju practice; no classical lineage asserted",
+        "semanticAuthority": "descriptive practitioner convention only",
+        "personalValidity": "not established"
+      },
+      "schoolOrPractice": "일주론·간여지동 (modern Korean practitioner usage)",
+      "ruleScope": "natal day pillar only; the page's general interpretation points are used without its later spouse, twelve-stage, or favorable/unfavorable extensions",
+      "sourceLocator": "https://insight6348.tistory.com/365 lines 12-25 and 29-81",
+      "sourceAntecedent": "the day pillar is one of the twelve exact values listed as 干與支同",
+      "sourceConsequence": "strong self-direction, concentration, stubbornness, and possible inflexibility are presented as interpretation points",
+      "engineMapping": {
+        "path": "/raw/pillars/day/referenceValue",
+        "statusGuardPath": "/raw/pillars/day/status",
+        "candidateGuardPath": "/raw/pillars/day/candidates",
+        "predicateType": "enum_membership",
+        "operator": "in",
+        "values": [
+          "갑인",
+          "을묘",
+          "병오",
+          "정사",
+          "무진",
+          "무술",
+          "기미",
+          "기축",
+          "경신",
+          "신유",
+          "임자",
+          "계해"
+        ],
+        "guard": "status == calculated and candidates has exactly one value; otherwise preserve unresolved candidate state"
+      },
+      "exceptions": {
+        "sourceStated": [
+          "The page frames the listed traits as interpretation points and includes a possible lack of flexibility, rather than an unconditional life prediction."
+        ],
+        "applicationBoundary": [
+          "A time-sensitive, unknown, or multi-candidate day pillar is not collapsed into a single match.",
+          "No seasonal strength, ten-god count, branch relation, spouse, destiny, or favorable/unfavorable condition is added."
+        ]
+      },
+      "premiseStatus": "closed",
+      "provenanceStatus": "direct_public_page_and_retrieved_bytes_parent_verified",
+      "currentFixtureAssessment": {
+        "value": "계사",
+        "assessment": "not_matched",
+        "reason": "계사 is not in the source's twelve-value list; this is a rule applicability result for the internal fixture, not a personal claim."
+      },
+      "decision": "admission_candidate_only"
+    },
+    {
+      "candidateId": "modern-sajuday-jeongin-visible-hidden-temperament",
+      "sourceEvidenceId": "sajuday-jeongin-glossary",
+      "sourceProvenance": {
+        "sourceIdentity": "public 사주데이 terminology page, retrieved 2026-09-07",
+        "sourceType": "modern_commercial_saju_glossary",
+        "lineage": "contemporary ten-god explanatory practice; no canonical lineage asserted",
+        "semanticAuthority": "service glossary convention only",
+        "personalValidity": "not established"
+      },
+      "schoolOrPractice": "현대 십신 용어 풀이·상담 서비스 관행",
+      "ruleScope": "unspecified eight-character chart; the page also mentions a separate month-branch 正印格 branch",
+      "sourceLocator": "https://sajuday.kr/%EC%9A%A9%EC%96%B4/%EC%A0%95%EC%9D%B8 lines 2-4, 18-20, 67-92",
+      "sourceAntecedent": "정인이 강하면, with a count of the eight-character chart",
+      "sourceConsequence": "calm, scholarly, honest temperament and academic/certificate orientation",
+      "engineMappingAttempt": {
+        "candidatePaths": ["/raw/tenGods/visible/정인", "/raw/tenGods/hidden/정인"],
+        "predicateAttempt": "visible or hidden 정인 count reaches an unspecified strong threshold",
+        "missingDefinitions": [
+          "the source does not choose visible versus hidden aggregation",
+          "강한 has no numeric cutoff",
+          "the page's 정인격 branch adds an unrequested pattern condition"
+        ]
+      },
+      "premiseStatus": "not_closed",
+      "provenanceStatus": "direct_public_page_parent_verified_but_scope_incomplete",
+      "currentFixtureAssessment": {
+        "value": {
+          "visible": 0,
+          "hidden": 0.3
+        },
+        "assessment": "unresolved",
+        "reason": "The source's count and strength wording cannot be assigned to either current layer without inventing a convention."
+      },
+      "decision": "immediate_exclude"
+    },
+    {
+      "candidateId": "modern-cynicalkim-daymaster-single-token",
+      "sourceEvidenceId": "cynicalkim-ilgan-personality",
+      "sourceProvenance": {
+        "sourceIdentity": "public explanatory page by 시니컬킴, retrieved 2026-09-07",
+        "sourceType": "modern_explanatory_practitioner_web_publication",
+        "lineage": "modernized 물상 and question-oriented practice; no canonical lineage asserted",
+        "semanticAuthority": "explicitly limited descriptive analogy",
+        "personalValidity": "not established"
+      },
+      "schoolOrPractice": "일간 물상·자기점검 질문 중심의 현대 설명 관행",
+      "ruleScope": "dayMaster as a calculation anchor; a full temperament conclusion is expressly withheld without season, roots, surrounding elements, and relations",
+      "sourceLocator": "https://cynicalkim.com/saju/ilgan-personality/ lines 3-12, 18-33",
+      "sourceAntecedent": "dayMaster.stem == 甲 as an example of the table's starting description",
+      "sourceConsequence": "direction-setting and initiating when used well; possible inflexible principle as an over-signal",
+      "engineMappingAttempt": {
+        "path": "/raw/dayMaster/stem",
+        "predicateAttempt": "stem equals 甲",
+        "requiredContextNotClosed": [
+          "season and day-master force",
+          "roots and surrounding elements",
+          "ten-god and branch-relational operation"
+        ]
+      },
+      "premiseStatus": "not_closed",
+      "provenanceStatus": "direct_public_page_parent_verified_but_source_limits_single_token",
+      "currentFixtureAssessment": {
+        "value": "계",
+        "assessment": "not_matched",
+        "reason": "The fixture is not 甲, and the source does not authorize a standalone personality conclusion in any case."
+      },
+      "decision": "immediate_exclude"
+    }
+  ],
+  "selectionDecision": {
+    "survivorCount": 1,
+    "boundedCandidateId": "modern-insight6348-ganyeojidong-temperament",
+    "status": "one_candidate_reached_bounded_admission_candidate",
+    "reason": "Only the exact twelve-value day-pillar membership predicate is closed against an emitted engine path. The current fixture is not matched, so no user-specific application follows."
+  },
+  "boundedAdjudication": {
+    "candidateId": "modern-insight6348-ganyeojidong-temperament",
+    "predicateClosed": true,
+    "directEngineMapping": true,
+    "sourcePremiseClosed": true,
+    "undefinedSemanticBridge": false,
+    "sourceProvenanceRecordedSeparately": true,
+    "schoolOrPracticeRecordedSeparately": true,
+    "ruleScopeRecordedSeparately": true,
+    "admissionStatus": "P1_admission_candidate_only",
+    "registeredAsEngineRule": false,
+    "historicalAuthorityPromotion": false,
+    "personalValidityPromotion": false,
+    "userClaimCreated": false,
+    "reflectionCreated": false,
+    "comparisonCreated": false
+  },
+  "ruleOutcome": {
+    "admissionCandidateIds": ["modern-insight6348-ganyeojidong-temperament"],
+    "registeredRules": [],
+    "executablePredicate": null,
+    "status": "candidate_record_only_no_interpretation_rule_registered"
+  },
+  "boundary": {
+    "userClaimsCreated": false,
+    "reflectionCreated": false,
+    "crossLensComparisonCreated": false,
+    "newInterpretationRuleCreated": false,
+    "calculationChanged": false,
+    "historicalAuthorityChanged": false,
+    "readinessChanged": false,
+    "activationChanged": false,
+    "adapterOrUiCreated": false,
+    "classicalRouteReopened": false,
+    "scoreOrRankingCreated": false
+  },
+  "inputByteIdentity": [
+    {
+      "path": "artifacts/saju-p1-calculation-first-v0/search-record.json",
+      "byteSha256": "5fa351dd6fd89993760fb5cfe9d3b290837c99415d1f9857a63a901597b1500c"
+    },
+    {
+      "path": "src/interpretationPrep/sajuAdapter.js",
+      "byteSha256": "17538fa2864d9d5d64290c5c6c0385957c66f4c4a0684f97f0293eb028e9be82"
+    },
+    {
+      "path": "src/saju/engine/core.js",
+      "byteSha256": "b10e06ed6ef0858ebbac0de1d6127279ee8f3b4d87d2ac2d60e82655ccf0e4fa"
+    },
+    {
+      "path": "src/interpretationPrep/sajuRelationRules.js",
+      "byteSha256": "bfdfc82d91d563674ac95e6310d8c500918839373f51def40daf254af719cd9c"
+    },
+    {
+      "path": "src/interpretationPrep/fixtures/sajuValidationFixtures.js",
+      "byteSha256": "c6e983015f06968f7d326c17c5151a81b3554300ad8fa5d59897bdd2eed50ffe"
+    }
+  ]
+}
