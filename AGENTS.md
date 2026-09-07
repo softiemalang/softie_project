@@ -47,9 +47,9 @@
 
 ## Delegated work and bounded continuation
 
-- Actively use Native subagents for bounded investigation, implementation, or verification when delegation or parallel work is useful; the parent retains scope, judgment, and final integration.
-- Prefer the existing bounded worker (`zen-worker`) lane over arbitrary subagent creation for bounded implementation, testing, or refactoring. When follow-ups or fixes are needed, re-delegate within the same worker/workstream session whenever possible. Final judgment, integration review, and all `git commit`/`git push` responsibilities remain exclusively with Native Codex.
-- Use the registered `antigravity-worker` portable Skill for bounded external work when Antigravity is available, within existing permissions and evidence boundaries.
+- For delegated execution (bounded implementation, testing, or refactoring), Native Codex prioritizes the registered `antigravity-worker` as the default bounded worker; `zen-worker` serves as a dedicated capacity and alternative lane.
+- Manual deep advisory lanes (e.g. Claude Sonnet Thinking via Antigravity) are strictly manual upon explicit request and must never be included in automated routing or fallback.
+- When follow-ups or fixes are needed, re-delegate within the same worker/workstream session whenever possible. Final judgment, integration review, and all `git commit`/`git push` responsibilities remain exclusively with Native Codex.
 - Use the registered `historical-document-evidence` portable Skill for historical-source identity, OCR evidence, layout/grid, and component evaluation. These role guidelines prescribe no call order, call count, or detailed orchestration and introduce no duplicate workflow infrastructure or new routing layer.
 - Delegated investigation or verification uses the existing `subagent-evidence-contract-v0` contract in [`docs/subagent-evidence-contract-v0.md`](docs/subagent-evidence-contract-v0.md) and [`src/subagentEvidenceContract.js`](src/subagentEvidenceContract.js); validate the exact envelope before using it.
 - A child result is execution provenance only: `child PASS != parent goal PASS`. Keep observations, inferences, validations, unknowns, blockers, parent verification, readiness, and activation separate.

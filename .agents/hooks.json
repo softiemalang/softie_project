@@ -1,0 +1,14 @@
+{
+  "production-runtime-guard": {
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "command": "python3 ./scripts/runtime-guard.py"
+          }
+        ]
+      }
+    ]
+  }
+}

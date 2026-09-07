@@ -8,6 +8,7 @@ dist/
 .vercel
 supabase/.temp/
 .codex/
+/.antigravity-worker-state/
 scratch/actualLlmResponseReport.json
 # DE405 canonical v2 native build artifacts
 /tools/de405-cspice-runner/build/
