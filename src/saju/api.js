@@ -1,5 +1,6 @@
 import { supabase } from '../lib/supabase'
 import { normalizeSajuPolicyContractForConsumer } from './engine/sajuPolicyContract.js'
+import { buildSajuP1ReadOnlyHandoff } from './p1ReadOnlyHandoff.js'
 
 const isRecord = value => Boolean(value) && typeof value === 'object' && !Array.isArray(value)
 
@@ -244,6 +245,28 @@ export async function getNatalSnapshot(profileId) {
 
   if (error) throw error
   return normalizeSajuSnapshotForConsumer(data)
+}
+
+/**
+ * Read the authenticated user's existing natal snapshot through the same RLS
+ * boundary as getNatalSnapshot, then project only the Saju P1 handoff fields.
+ * No calculation, fallback reconstruction, or write is performed here.
+ */
+export async function getSajuP1ReadOnlyHandoff(profileId) {
+  if (!supabase || typeof profileId !== 'string' || profileId.trim() === '') {
+    return buildSajuP1ReadOnlyHandoff(null)
+  }
+
+  try {
+    const snapshot = await getNatalSnapshot(profileId)
+    return buildSajuP1ReadOnlyHandoff(snapshot)
+  } catch {
+    // Do not expose database/auth details through the handoff. The consumer
+    // remains fail-closed when the authoritative payload cannot be read.
+    return buildSajuP1ReadOnlyHandoff(null, {
+      reasonCodes: ['authoritative_payload_unavailable'],
+    })
+  }
 }
 
 /**
