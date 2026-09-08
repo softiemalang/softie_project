@@ -38,6 +38,177 @@ export const SYSTEM_DISPLAY_NAMES = Object.freeze({
   astrology: '서양 점성학 (Western Astrology)',
 })
 
+const SAJU_TIMING_PERIOD_KEYS = [
+  'sourceLabels',
+  'label',
+  'status',
+  'stem',
+  'branch',
+  'value',
+  'stemElement',
+  'branchElement',
+  'stemTenGod',
+  'branchMainStem',
+  'branchTenGod',
+  'twelveStage',
+  'dayMaster',
+]
+
+const SAJU_TIMING_CYCLE_KEYS = [
+  ...SAJU_TIMING_PERIOD_KEYS,
+  'index',
+  'startDate',
+  'nextStartDate',
+  'startAgeYears',
+  'isActive',
+]
+
+const SAJU_TIMING_REFERENCE_BOUNDARY_KEYS = [
+  'direction',
+  'longitude',
+  'utcIso',
+  'kstDateTime',
+  'distanceMinutes',
+  'method',
+]
+
+const SAJU_TIMING_START_AGE_KEYS = [
+  'years',
+  'months',
+  'days',
+  'decimalYears',
+  'conversion',
+]
+
+const SAJU_TIMING_CALCULATION_OPTION_KEYS = [
+  'calculationProfile',
+  'timezone',
+  'useSolarTimeCorrection',
+  'useEquationOfTimeCorrection',
+  'longitudeDegrees',
+  'standardMeridianDegrees',
+  'solarTimeOffsetMinutes',
+  'dayBoundaryRule',
+  'yearBoundaryPolicy',
+  'monthBoundaryPolicy',
+  'dayBoundaryPolicy',
+  'hourTimeBasisPolicy',
+  'qiyunConversionPolicy',
+  'ziHourStart',
+  'rollDayAtZiHour',
+]
+
+function pickFields(value, keys) {
+  if (value === null || value === undefined) return value ?? null
+  return Object.fromEntries(
+    keys
+      .filter((key) => Object.hasOwn(value, key) && value[key] !== undefined)
+      .map((key) => [key, value[key]]),
+  )
+}
+
+function dedupeStable(values = []) {
+  const seen = new Set()
+  return values.filter((value) => {
+    const identity = typeof value === 'string' ? value : JSON.stringify(value)
+    if (seen.has(identity)) return false
+    seen.add(identity)
+    return true
+  })
+}
+
+function isAttachmentSafeSajuWarning(warning) {
+  return typeof warning !== 'string' || !/실험적 해석 항목|경향성 중심 안내/.test(warning)
+}
+
+function projectSajuTimingPeriod(period) {
+  if (period === null || period === undefined) return period ?? null
+  return pickFields(period, SAJU_TIMING_PERIOD_KEYS)
+}
+
+function projectSajuTimingCycle(cycle) {
+  if (cycle === null || cycle === undefined) return cycle ?? null
+  return pickFields(cycle, SAJU_TIMING_CYCLE_KEYS)
+}
+
+function projectSajuTiming(timing = {}) {
+  if (!timing || typeof timing !== 'object') {
+    return { daYun: null, seUn: null, wolUn: null, ilJin: null }
+  }
+
+  const projected = pickFields(timing, [
+    'ruleVersion',
+    'targetDate',
+    'requiresVerification',
+    'uncertaintyReason',
+  ])
+
+  if (timing.targetDateBoundary) {
+    projected.targetDateBoundary = pickFields(timing.targetDateBoundary, [
+      'status',
+      'referenceTime',
+      'yearPillarCandidates',
+      'monthPillarCandidates',
+      'reason',
+    ])
+  }
+
+  if (timing.daYun) {
+    projected.daYun = pickFields(timing.daYun, [
+      'sourceLabel',
+      'status',
+      'direction',
+      'directionLabel',
+      'basis',
+      'monthPillar',
+      'firstStartDate',
+      'activeCycleIndex',
+      'requiresVerification',
+      'startDateRange',
+      'uncertaintyReason',
+      'reason',
+    ])
+    if (timing.daYun.referenceBoundary) {
+      projected.daYun.referenceBoundary = pickFields(timing.daYun.referenceBoundary, SAJU_TIMING_REFERENCE_BOUNDARY_KEYS)
+    }
+    if (timing.daYun.startAge) {
+      projected.daYun.startAge = pickFields(timing.daYun.startAge, SAJU_TIMING_START_AGE_KEYS)
+    }
+    if (Array.isArray(timing.daYun.cycles)) {
+      projected.daYun.cycles = timing.daYun.cycles.map(projectSajuTimingCycle)
+    }
+    if (timing.daYun.calculationOptions) {
+      projected.daYun.calculationOptions = pickFields(timing.daYun.calculationOptions, SAJU_TIMING_CALCULATION_OPTION_KEYS)
+    }
+  }
+
+  for (const key of ['seUn', 'wolUn', 'ilJin']) {
+    const period = timing.periods?.[key === 'seUn' ? 'year' : key === 'wolUn' ? 'month' : 'day']
+    projected[key] = period ? projectSajuTimingPeriod(period) : null
+  }
+
+  if (!Object.hasOwn(projected, 'daYun')) projected.daYun = null
+
+  return projected
+}
+
+function projectSajuRelation(item, collection) {
+  const relation = item.name || item.relation || item.type || null
+  const positions = item.positions || []
+  const branchesOrStems = collection === 'stem'
+    ? (item.stems || [])
+    : (item.branches || [])
+  const projected = {
+    name: relation,
+    [collection === 'stem' ? 'stems' : 'branches']: branchesOrStems,
+    positions,
+  }
+  if (item.label !== undefined) projected.label = item.label
+  if (item.element !== undefined) projected.element = item.element
+  if (item.ruleType !== undefined) projected.ruleType = item.ruleType
+  return projected
+}
+
 /**
  * Machine-readable Fact Provenance Groundings for Saju Stable FACTs.
  * Distinguishes classical textual references, modern astronomical methods,
@@ -184,6 +355,10 @@ export function extractSajuFoundation(sajuInput = {}, options = {}) {
     subjectName: norm.subjectName || sajuInput.subjectName || system.subjectName || null,
     birthDate: norm.birthDate || null,
     birthTime: norm.birthTime || null,
+    targetDate: norm.targetDate || null,
+    placeName: norm.placeName || null,
+    referenceCity: norm.referenceCity || null,
+    gender: norm.gender || null,
     calendar: norm.calendar || 'solar',
     isLeapMonth: Boolean(norm.isLeapMonth),
     timezone: norm.timezone || 'Asia/Seoul',
@@ -213,18 +388,13 @@ export function extractSajuFoundation(sajuInput = {}, options = {}) {
     elementsDistribution: raw.elements?.counts || {},
     tenGodsVisible: raw.tenGods?.visible || {},
     branchRelations: (raw.branchRelations?.items || []).map((item) => ({
-      name: item.name || item.type,
+      name: item.name || item.relation || item.type || null,
       branches: item.branches || [],
       positions: item.positions || [],
     })),
-    stemRelations: raw.stemRelations?.items || [],
+    stemRelations: (raw.stemRelations?.items || []).map((item) => projectSajuRelation(item, 'stem')),
     isGanyeojidong,
-    timing: {
-      daYun: raw.timing?.daYun || null,
-      seUn: raw.timing?.periods?.year || null,
-      wolUn: raw.timing?.periods?.month || null,
-      ilJin: raw.timing?.periods?.day || null,
-    },
+    timing: projectSajuTiming(raw.timing),
     policyBoundary: formatSajuPolicyBoundary(policyContract),
   }
 
@@ -252,22 +422,14 @@ export function extractSajuFoundation(sajuInput = {}, options = {}) {
   }
 
   // 4. UNKNOWN (계산 불확실성 및 지원 상태)
-  const exp = raw.experimental || {}
   const unknown = {
     personalValidity: 'not_established',
     isPsychometrics: false,
-    experimentalProfiling: {
-      status: 'experimental',
-      gyeokguk: exp.gyeokguk?.name || (typeof exp.gyeokguk === 'string' ? exp.gyeokguk : 'experimental'),
-      shinsal: Array.isArray(exp.shinsal) ? exp.shinsal.map((s) => s.name || s).join(', ') : (typeof exp.shinsal === 'string' ? exp.shinsal : 'experimental'),
-      strength: exp.strength?.level || (typeof exp.strength === 'string' ? exp.strength : 'experimental'),
-      yongShin: exp.yongShin?.ruleType ? `${exp.yongShin.ruleType}(${exp.yongShin.primaryYongShinElement || ''})` : (typeof exp.yongShin === 'string' ? exp.yongShin : 'experimental'),
-    },
     uncertaintyFactors: raw.calculationUncertainty || context.uncertainFactors || [],
-    warnings: [
+    warnings: dedupeStable([
       ...(system.warnings || []),
       ...(calcResult.warnings || []),
-    ],
+    ]).filter(isAttachmentSafeSajuWarning),
   }
 
   return {
@@ -1117,6 +1279,10 @@ function createDeterministicBasePackage({ subjectName, systems, rootInput = {}, 
     subjectName: subjectName || rootInput.subjectName || sajuInput.subjectName || '내담자',
     birthDate: rootInput.birthDate || sajuInput.birthDate || null,
     birthTime: rootInput.birthTime || sajuInput.birthTime || null,
+    targetDate: rootInput.targetDate || sajuInput.targetDate || null,
+    placeName: rootInput.placeName || sajuInput.placeName || null,
+    referenceCity: rootInput.referenceCity || sajuInput.referenceCity || null,
+    gender: rootInput.gender || sajuInput.gender || null,
     calendar: rootInput.calendar || sajuInput.calendar || 'solar',
     isLeapMonth: Boolean(rootInput.isLeapMonth ?? sajuInput.isLeapMonth),
     timezone: rootInput.timezone || sajuInput.timezone || 'Asia/Seoul',
@@ -1141,7 +1307,7 @@ function createDeterministicBasePackage({ subjectName, systems, rootInput = {}, 
 
   // Attach single-file markdown format
   basePackage.markdown = formatDeterministicBaseMarkdown(basePackage)
-  // Backward compatibility alias for markdown
+  // Keep the runtime compatibility alias; canonical JSON export strips both copies.
   basePackage.formattedMarkdown = basePackage.markdown
 
   return basePackage
@@ -1164,7 +1330,10 @@ export function formatDeterministicBaseMarkdown(basePackage) {
     `| :--- | :--- |`,
     `| 대상자명 | ${normalizedInput.subjectName || '미상'} |`,
     `| 생년월일시 | ${normalizedInput.birthDate || '미상'} ${normalizedInput.birthTime || '미상'} (${normalizedInput.calendar === 'lunar' ? '음력' : '양력'}${normalizedInput.isLeapMonth ? ', 윤달' : ''}) |`,
+    `| 기준일 | ${normalizedInput.targetDate || '미상'} |`,
+    `| 출생지/기준 도시 | ${normalizedInput.placeName || '미상'} / ${normalizedInput.referenceCity || '미상'} |`,
     `| 좌표/기준 | 위도 ${normalizedInput.latitude || '-'}, 경도 ${normalizedInput.longitude || '-'} (${normalizedInput.timezone}) |`,
+    `| 성별 | ${normalizedInput.gender || '미상'} |`,
     `| 시간 정확도 | ${normalizedInput.timeAccuracy} |`,
     '',
   ]
@@ -1186,13 +1355,29 @@ export function formatDeterministicBaseMarkdown(basePackage) {
     // 1. FACT
     lines.push('### 1. FACT (결정론적 계산/관측 사실)')
     if (key === 'saju') {
+      const timing = sys.fact.timing || {}
+      const daYun = timing.daYun || null
+      const activeDaYun = daYun?.cycles?.find((cycle) => cycle.isActive === true) || null
+      const daYunValue = activeDaYun?.value || (activeDaYun?.stem && activeDaYun?.branch ? `${activeDaYun.stem}${activeDaYun.branch}` : '대운 없음')
+      const daYunStartAge = daYun?.startAge
+        ? `${daYun.startAge.years ?? '-'}년 ${daYun.startAge.months ?? '-'}개월 ${daYun.startAge.days ?? '-'}일`
+        : '미상'
+      const daYunText = daYun
+        ? `대운 ${daYunValue} · 방향 ${daYun.directionLabel || daYun.direction || '미상'} · 기산 ${daYunStartAge} · 첫 시작일 ${daYun.firstStartDate || '미상'}`
+        : '대운 없음'
+      const seUn = timing.seUn || null
+      const seUnValue = seUn?.value || (seUn?.stem && seUn?.branch ? `${seUn.stem}${seUn.branch}` : '세운 없음')
+      const wolUn = timing.wolUn || null
+      const wolUnValue = wolUn?.value || (wolUn?.stem && wolUn?.branch ? `${wolUn.stem}${wolUn.branch}` : '월운 없음')
+      const ilJin = timing.ilJin || null
+      const ilJinValue = ilJin?.value || (ilJin?.stem && ilJin?.branch ? `${ilJin.stem}${ilJin.branch}` : '일진 없음')
       lines.push(
         `- 사주 명식: ${sys.fact.pillarsFormatted}`,
         `- 일간(일주): ${sys.fact.dayMaster} (간여지동 여부: ${sys.fact.isGanyeojidong ? '해당' : '비해당'})`,
         `- 오행 분포: ${Object.entries(sys.fact.elementsDistribution).map(([k, v]) => `${k} ${v}`).join(' · ') || '없음'}`,
         `- 십성 표출: ${Object.entries(sys.fact.tenGodsVisible).map(([k, v]) => `${k} ${v}`).join(' · ') || '없음'}`,
-        `- 지지 관계: ${sys.fact.branchRelations.map((r) => `${r.name}(${r.branches.join('')})`).join(', ') || '특이 관계 없음'}`,
-        `- 대운/세운: ${sys.fact.timing.daYun ? `대운 ${sys.fact.timing.daYun.currentCycle?.stem || ''}${sys.fact.timing.daYun.currentCycle?.branch || ''}` : '대운 없음'} / 세운 ${sys.fact.timing.seUn?.name || '세운 없음'}`,
+        `- 지지 관계: ${sys.fact.branchRelations.map((r) => `${r.name || '미상'}(${r.branches.join('')})`).join(', ') || '특이 관계 없음'}`,
+        `- 대운/세운: ${daYunText} / 세운 ${seUnValue} · 월운 ${wolUnValue} · 일진 ${ilJinValue}`,
         `- 계산 정책 경계: ${sys.fact.policyBoundary}`,
       )
     } else if (key === 'ziwei') {
@@ -1298,7 +1483,6 @@ export function formatDeterministicBaseMarkdown(basePackage) {
     if (key === 'saju') {
       lines.push(
         `- 개인 유효성: personalValidity=${sys.unknown.personalValidity}`,
-        `- 프로파일링 상태: status=${sys.unknown.experimentalProfiling.status} (실험적 규칙 기반 판정) · gyeokguk=${sys.unknown.experimentalProfiling.gyeokguk} · shinsal=${sys.unknown.experimentalProfiling.shinsal} · strength=${sys.unknown.experimentalProfiling.strength} · yongShin=${sys.unknown.experimentalProfiling.yongShin}`,
       )
     } else if (key === 'ziwei') {
       lines.push(
@@ -1328,7 +1512,10 @@ export const formatConversationFoundationMarkdown = formatDeterministicBaseMarkd
  * Export Deterministic Base as Canonical JSON String
  */
 export function exportDeterministicBaseJson(basePackage, indent = 2) {
-  return JSON.stringify(basePackage, null, indent)
+  const canonicalPackage = { ...basePackage }
+  delete canonicalPackage.markdown
+  delete canonicalPackage.formattedMarkdown
+  return JSON.stringify(canonicalPackage, null, indent)
 }
 
 /**

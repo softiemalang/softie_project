@@ -41,6 +41,30 @@ const REAL_BIRTH_INPUT = {
 const ASTRO_PACKET_PATH = resolve('artifacts/astrology-interpretation-packet-v1/complete.json')
 const ASTRO_GROUNDING_PATH = resolve('artifacts/astrology-conversation-grounding-v1/complete.json')
 
+const ATTACHMENT_FORBIDDEN_KEYS = new Set([
+  'analysis',
+  'dominantTenGods',
+  'roleHints',
+  'supportsWeakElement',
+  'addsToOverloadedElement',
+  'experimentalProfiling',
+  'gyeokguk',
+  'yongShin',
+  'strength',
+  'shinsal',
+])
+
+function findForbiddenKeyPaths(value, path = '$') {
+  if (Array.isArray(value)) {
+    return value.flatMap((item, index) => findForbiddenKeyPaths(item, `${path}[${index}]`))
+  }
+  if (!value || typeof value !== 'object') return []
+  return Object.entries(value).flatMap(([key, child]) => [
+    ...(ATTACHMENT_FORBIDDEN_KEYS.has(key) ? [`${path}.${key}`] : []),
+    ...findForbiddenKeyPaths(child, `${path}.${key}`),
+  ])
+}
+
 test('Saju Real Fixture: extracts normalized INPUT, FACT, SOURCE, UNKNOWN with zero recalculation, zero synthesis, and preserves boundaries', () => {
   const prepared = prepareThreeSystemInterpretationData(REAL_BIRTH_INPUT)
   const sajuFoundation = extractSajuFoundation(prepared.result)
@@ -57,6 +81,10 @@ test('Saju Real Fixture: extracts normalized INPUT, FACT, SOURCE, UNKNOWN with z
   assert.equal(sajuFoundation.input.subjectName, '한규')
   assert.equal(sajuFoundation.input.birthDate, '1997-04-21')
   assert.equal(sajuFoundation.input.birthTime, '14:40')
+  assert.equal(sajuFoundation.input.targetDate, '2026-07-26')
+  assert.equal(sajuFoundation.input.placeName, '대한민국 서울')
+  assert.equal(sajuFoundation.input.referenceCity, 'seoul')
+  assert.equal(sajuFoundation.input.gender, 'male')
   assert.equal(sajuFoundation.input.calendar, 'solar')
   assert.equal(sajuFoundation.input.timezone, 'Asia/Seoul')
   assert.equal(sajuFoundation.input.latitude, '37.57')
@@ -74,6 +102,16 @@ test('Saju Real Fixture: extracts normalized INPUT, FACT, SOURCE, UNKNOWN with z
   assert.match(sajuFoundation.fact.pillarsFormatted, /연주 정축 · 월주 갑진 · 일주 계사 · 시주 기미/)
   assert.ok(sajuFoundation.fact.timing.daYun, '대운 데이터 존재')
   assert.ok(sajuFoundation.fact.timing.seUn, '세운 데이터 존재')
+  assert.equal(sajuFoundation.fact.timing.daYun.direction, 'backward')
+  assert.equal(sajuFoundation.fact.timing.daYun.startAge.decimalYears, 5.4963)
+  assert.equal(sajuFoundation.fact.timing.daYun.firstStartDate, '2002-10-20')
+  assert.equal(sajuFoundation.fact.timing.daYun.cycles.find((cycle) => cycle.isActive).value, '신축')
+  assert.equal(sajuFoundation.fact.timing.seUn.value, '병오')
+  assert.equal(sajuFoundation.fact.timing.wolUn.value, '을미')
+  assert.equal(sajuFoundation.fact.timing.ilJin.value, '신축')
+  assert.equal(sajuFoundation.unknown.experimentalProfiling, undefined)
+  assert.equal(new Set(sajuFoundation.unknown.warnings).size, sajuFoundation.unknown.warnings.length)
+  assert.deepEqual(findForbiddenKeyPaths(sajuFoundation), [])
 
   // 3. SOURCE verification
   assert.equal(sajuFoundation.source.lineageTexts.length, 5)
@@ -147,7 +185,6 @@ test('Saju Real Fixture: extracts normalized INPUT, FACT, SOURCE, UNKNOWN with z
   // 4. UNKNOWN verification
   assert.equal(sajuFoundation.unknown.personalValidity, 'not_established')
   assert.equal(sajuFoundation.unknown.isPsychometrics, false)
-  assert.equal(sajuFoundation.unknown.experimentalProfiling.status, 'experimental')
   assert.equal(sajuFoundation.unknown.mustNotAssume, undefined, 'mustNotAssume behavioral directives must be removed')
 })
 
@@ -352,6 +389,10 @@ test('buildDeterministicBase: bundles all three real domains into a single self-
   assert.equal(base.foundationVersion, FOUNDATION_VERSION)
   assert.equal(base.normalizedInput.subjectName, '한규')
   assert.equal(base.normalizedInput.birthDate, '1997-04-21')
+  assert.equal(base.normalizedInput.targetDate, '2026-07-26')
+  assert.equal(base.normalizedInput.placeName, '대한민국 서울')
+  assert.equal(base.normalizedInput.referenceCity, 'seoul')
+  assert.equal(base.normalizedInput.gender, 'male')
   assert.equal(base.summary.purityStatus, 'deterministic_pure_base')
   assert.equal(base.summary.synthesisIncluded, false)
 
@@ -368,6 +409,9 @@ test('buildDeterministicBase: bundles all three real domains into a single self-
   const parsed = JSON.parse(jsonStr)
   assert.equal(parsed.schemaVersion, CANONICAL_SCHEMA_VERSION)
   assert.equal(parsed.normalizedInput.subjectName, '한규')
+  assert.equal(Object.hasOwn(parsed, 'markdown'), false)
+  assert.equal(Object.hasOwn(parsed, 'formattedMarkdown'), false)
+  assert.equal(base.formattedMarkdown, base.markdown)
 
   // Check markdown output contains calculation basis table and 3 blocks per domain
   const md = base.markdown
@@ -405,8 +449,17 @@ test('buildDeterministicBase: bundles all three real domains into a single self-
   assert.match(md, /blockedFeatures: interpretation_service_activation/)
   assert.match(md, /availableForInterpretation=false.*softie_project 내부 interpretation service\/runtime integration 미연결/)
   assert.match(md, /일반 ChatGPT\/Gemini downstream 대화: 금지하지 않음/)
+  assert.match(md, /\| 기준일 \| 2026-07-26 \|/)
+  assert.match(md, /\| 출생지\/기준 도시 \| 대한민국 서울 \/ seoul \|/)
+  assert.match(md, /\| 성별 \| male \|/)
+  assert.match(md, /지지 관계: 파\(진축\), 충\(미축\), 형\(미축\)/)
+  assert.match(md, /대운\/세운: 대운 신축 · 방향 역행 · 기산 5년 5개월 29일 · 첫 시작일 2002-10-20 \/ 세운 병오/)
+  assert.match(md, /월운 을미/)
+  assert.match(md, /일진 신축/)
   assert.doesNotMatch(md, /소비자 직접 전달이 엄격히 차단/)
   assert.doesNotMatch(md, /phase=|dominance=|meaning=/)
+  assert.doesNotMatch(md, /undefined|null/)
+  assert.doesNotMatch(md, /프로파일링|gyeokguk|yongShin|strength|shinsal/)
 
   // Exported JSON must be consumable as the same deterministic base and must
   // regenerate the same Markdown report without losing provenance fields.
@@ -424,6 +477,16 @@ test('buildDeterministicBase: bundles all three real domains into a single self-
   assert.deepEqual(parsed.systems.astrology.unknown.unsupportedFeatures, base.systems.astrology.unknown.unsupportedFeatures)
   assert.deepEqual(parsed.systems.astrology.unknown.blockedFeatures, base.systems.astrology.unknown.blockedFeatures)
   assert.deepEqual(parsed.systems.astrology.unknown.interpretationBoundary, base.systems.astrology.unknown.interpretationBoundary)
+  assert.deepEqual(findForbiddenKeyPaths(parsed), [])
+  assert.doesNotMatch(jsonStr, /\bundefined\b/)
+  assert.equal(new Set(parsed.systems.saju.unknown.warnings).size, parsed.systems.saju.unknown.warnings.length)
+  for (const relation of parsed.systems.saju.fact.branchRelations) {
+    assert.match(md, new RegExp(`${relation.name}\\(${relation.branches.join('')}\\)`))
+  }
+  const activeDaYun = parsed.systems.saju.fact.timing.daYun.cycles.find((cycle) => cycle.isActive)
+  assert.match(md, new RegExp(`대운 ${activeDaYun.value}`))
+  assert.match(md, new RegExp(`세운 ${parsed.systems.saju.fact.timing.seUn.value}`))
+  assert.match(md, new RegExp(`기산 ${parsed.systems.saju.fact.timing.daYun.startAge.years}년 ${parsed.systems.saju.fact.timing.daYun.startAge.months}개월 ${parsed.systems.saju.fact.timing.daYun.startAge.days}일`))
 
   const exportDirectory = await mkdtemp(join(tmpdir(), 'deterministic-base-export-'))
   try {
@@ -434,12 +497,21 @@ test('buildDeterministicBase: bundles all three real domains into a single self-
 
     const consumedJson = JSON.parse(await readFile(jsonPath, 'utf8'))
     const consumedMarkdown = await readFile(markdownPath, 'utf8')
+    assert.equal(Object.hasOwn(consumedJson, 'markdown'), false)
+    assert.equal(Object.hasOwn(consumedJson, 'formattedMarkdown'), false)
     assert.deepEqual(consumedJson.systems.saju.source.factGroundings, base.systems.saju.source.factGroundings)
     assert.deepEqual(consumedJson.systems.astrology.fact.aspects, base.systems.astrology.fact.aspects)
     assert.deepEqual(consumedJson.systems.astrology.source.provenance, base.systems.astrology.source.provenance)
     assert.deepEqual(consumedJson.systems.astrology.unknown.blockedFeatures, base.systems.astrology.unknown.blockedFeatures)
     assert.deepEqual(consumedJson.systems.astrology.unknown.interpretationBoundary, base.systems.astrology.unknown.interpretationBoundary)
+    assert.deepEqual(findForbiddenKeyPaths(consumedJson), [])
+    assert.doesNotMatch(await readFile(jsonPath, 'utf8'), /\bundefined\b/)
+    assert.doesNotMatch(consumedMarkdown, /undefined|null/)
     assert.equal(formatDeterministicBaseMarkdown(consumedJson), consumedMarkdown)
+    const freshAttachmentPrompt = createFreshChatContinuationPrompt(consumedJson, '이 astrology FACT를 바탕으로 해석해줘.')
+    assert.match(freshAttachmentPrompt, /\[ATTACHED FILE: deterministic_base\.md\]/)
+    assert.match(freshAttachmentPrompt, /availableForInterpretation=false는 softie_project 내부 interpretation service\/runtime integration 미연결/)
+    assert.match(freshAttachmentPrompt, /일반 ChatGPT\/Gemini downstream 대화를 금지하지 않는다/)
   } finally {
     await rm(exportDirectory, { recursive: true, force: true })
   }
