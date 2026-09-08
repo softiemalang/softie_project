@@ -62,6 +62,7 @@ test('Korea administrative location snapshot is complete, verified, and searchab
   assert.equal(getKoreaAdministrativeLocation('sgg:11110').label, '서울특별시 종로구')
   assert.equal(getKoreaAdministrativeLocation('sgg:26350').label, '부산광역시 해운대구')
   assert.equal(getKoreaAdministrativeLocation('sgg:50110').label, '제주특별자치도 제주시')
+  assert.equal(getKoreaAdministrativeLocation('sgg:41210').label, '경기도 광명시')
   assert.equal(getKoreaAdministrativeLocation('sgg:43111').coordinateMethod, 'boundary_interior_fallback')
   assert.equal(getKoreaAdministrativeLocation('sgg:not-a-location'), null)
   assert.deepEqual(
@@ -75,7 +76,7 @@ test('Korea administrative location snapshot is complete, verified, and searchab
 })
 
 test('selected Seoul and non-Seoul locations propagate exact coordinates into Saju and canonical Base', () => {
-  for (const locationId of ['sgg:11110', 'sgg:26350', 'sgg:50110', 'sgg:41281', 'sgg:51720', 'sgg:43111']) {
+  for (const locationId of ['sgg:11110', 'sgg:26350', 'sgg:50110', 'sgg:41210', 'sgg:41281', 'sgg:51720', 'sgg:43111']) {
     const location = getKoreaAdministrativeLocation(locationId)
     const { prepared, base } = buildBaseForLocation(location)
     const normalized = prepared.result.input.normalized
@@ -114,6 +115,9 @@ test('selected Seoul and non-Seoul locations propagate exact coordinates into Sa
     assert.equal(Object.hasOwn(canonical, 'markdown'), false)
     assert.equal(Object.hasOwn(canonical, 'formattedMarkdown'), false)
     assert.doesNotMatch(canonicalJson, /undefined/u)
+    assert.doesNotMatch(canonicalJson, /서울\(126\.97°E\)|126\.97°E|-32\.12분/u)
+    assert.doesNotMatch(base.markdown, /서울\(126\.97°E\)|126\.97°E|-32\.12분/u)
+    assert.match(canonicalJson, /선택된 행정구역 대표경도에 4분\/도 보정 \+ NOAA 균시차 EoT/u)
     assert.equal(formatDeterministicBaseMarkdown(base), base.markdown)
   }
 })

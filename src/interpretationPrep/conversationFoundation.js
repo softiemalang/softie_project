@@ -32,6 +32,10 @@ import { SIGN_METADATA } from '../astrology/astrologyRulers.js'
 export const FOUNDATION_VERSION = 'deterministic-base-v0'
 export const CANONICAL_SCHEMA_VERSION = 'tri-system-deterministic-base-v0'
 
+// Keep the browser-reachable Base formatter aligned with the packet contract
+// without importing its Node crypto dependency into the client bundle.
+const ASTROLOGY_PACKET_BLOCK_REASON = 'interpretation_packet_not_activated'
+
 export const SYSTEM_DISPLAY_NAMES = Object.freeze({
   saju: '사주 (Four Pillars)',
   ziwei: '자미두수 (Ziwei Dou Shu)',
@@ -281,11 +285,11 @@ export const SAJU_FACT_GROUNDINGS = Object.freeze([
   },
   {
     factKey: 'solarTime.apparentSolarTime',
-    factLabel: '진태양시 보정 (KST 135°E 대비 경도차 -32.12분 + NOAA 균시차 EoT)',
+    factLabel: '진태양시 보정 (선택된 행정구역 대표경도에 4분/도 보정 + NOAA 균시차 EoT)',
     evidenceType: 'modern_astronomical_method',
     authorityScope: 'astronomy_method_not_classical_saju_mandate',
     classicalWitness: '고대 해시계(규표/일구) 자연 시각 환경을 가리키는 설명만 참조되며, 경도 환산식의 정확한 판본·locator는 이 패키지에서 확정하지 않음',
-    modernPolicy: '서울(126.97°E) 경도 편차 4분/도 환산 및 NOAA Spencer(1971) fractional-year equation of time 합산 (local-apparent-solar-kst)',
+    modernPolicy: '선택된 행정구역 대표경도에 4분/도 보정 + NOAA 균시차 EoT (NOAA Spencer(1971), local-apparent-solar-kst)',
     distinctionNote: '문헌 참조 범위와 표준시·균시차를 현대 시계 시간에 접합하는 천문학적 보정 정책을 분리 기록함',
   },
   {
@@ -756,6 +760,25 @@ function formatAstrologyFeatureEntries(entries, expectedStatus) {
     }))
 }
 
+function formatAstrologyProvenanceLinks(source) {
+  if (source?.provenanceStatus !== 'complete') {
+    const missing = Array.isArray(source?.provenanceMissing) && source.provenanceMissing.length > 0
+      ? source.provenanceMissing.join(', ')
+      : '확인 필요'
+    return `미확인 (provenanceStatus=${source?.provenanceStatus || 'unknown'}; missing=${missing})`
+  }
+  return JSON.stringify(source.provenanceLinks)
+}
+
+function createAstrologyActivationBlockedFeature() {
+  return {
+    feature: 'interpretation_service_activation',
+    status: 'blocked',
+    reason: ASTROLOGY_PACKET_BLOCK_REASON,
+    sourceRefs: ['activation'],
+  }
+}
+
 function validateAndBuildAstrologyFacts(packet, provenance) {
   const errors = [...provenance.missing]
   if (!provenance.complete) return { valid: false, errors: uniqueStrings(errors) }
@@ -1168,6 +1191,13 @@ export function extractAstrologyFoundation(astrologyInput = {}, options = {}) {
     },
   }
 
+  const blockedFeatures = provenance.complete
+    ? formatAstrologyFeatureEntries(packet?.blockedFeatures, 'blocked')
+    : []
+  if (!blockedFeatures.some((feature) => feature.feature === 'interpretation_service_activation')) {
+    blockedFeatures.unshift(createAstrologyActivationBlockedFeature())
+  }
+
   // 4. UNKNOWN (비활성화, 비개입 경계, 사용자 경험 미제공)
   const unknown = {
     activationStatus: 'blocked',
@@ -1185,7 +1215,7 @@ export function extractAstrologyFoundation(astrologyInput = {}, options = {}) {
       '천문력 Adapter 미연결 상태 (runtime simulation unavailable)',
     ],
     unsupportedFeatures: formatAstrologyFeatureEntries(provenance.complete ? packet?.unsupportedFeatures : null, 'unsupported'),
-    blockedFeatures: formatAstrologyFeatureEntries(provenance.complete ? packet?.blockedFeatures : null, 'blocked'),
+    blockedFeatures,
   }
 
   return {
@@ -1329,6 +1359,17 @@ export function formatDeterministicBaseMarkdown(basePackage) {
     `- 생성 일시: ${generatedAt}`,
     `- 규격 버전: ${basePackage.schemaVersion || CANONICAL_SCHEMA_VERSION}`,
     `- 기준 성격: 계산 재현성 보증 (Computational Reproducibility Base · 동일 입력/규칙에 따른 계산 산출값·출처·엔진 상태만 기록하며 운명 결정론이나 다운스트림 대화 통제 지침을 포함하지 않음)`,
+    '',
+    '## AI CONSUMER GUIDE (사람·AI 공용 읽기 안내)',
+    '| 항목 | 읽기 규칙 |',
+    '| :--- | :--- |',
+    '| READ_ORDER | `0.INPUT` → 각 도메인 `1.FACT` → `2.SOURCE` → `3.STATUS` 순서로 확인 |',
+    '| FACT | 이미 제공된 결정적 계산값을 그대로 사용하고 임의 재계산하지 않음 |',
+    '| SOURCE / provenance | source, rule identity, sourceRefs, provenance status를 계산 근거와 의존성으로 읽음 |',
+    '| STATUS / activation | `complete`, `missing`, `incomplete`, `blocked`, `unsupported`를 원문 상태 그대로 유지 |',
+    '| RESPONSE_BOUNDARY | FACT·provenance·해석을 분리해 말하며, FACT를 개인 경험·개인 의미·권위로 단정하지 않음 |',
+    '| INTERPRETATION_ACCESS | `availableForInterpretation=false`는 softie_project 내부 interpretation service/runtime integration 미연결을 뜻하며 일반 ChatGPT/Gemini downstream 대화를 금지하지 않음 |',
+    '| EXAMPLES | 이 가이드는 구체적 해석 예시나 개인화 결론을 제공하지 않음 |',
     '',
     '## 0. 정규화된 계산 입력 (Calculation Basis)',
     `| 항목 | 값 |`,
@@ -1480,7 +1521,7 @@ export function formatDeterministicBaseMarkdown(basePackage) {
         `- 룰 코어: ${sys.source.ruleCoreVersion}`,
         `- Rule identity: ${JSON.stringify(sys.source.ruleIdentity)}`,
         `- Provenance status: ${sys.source.provenanceStatus}`,
-        `- Provenance links: ${JSON.stringify(sys.source.provenanceLinks)}`,
+        `- Provenance links: ${formatAstrologyProvenanceLinks(sys.source)}`,
         `- Claim-level sourceRefs: ${sys.source.provenance?.claimSourceRefs?.length || 0}개 보존됨`,
       )
     }

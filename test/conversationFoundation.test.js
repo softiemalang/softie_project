@@ -168,7 +168,8 @@ test('Saju Real Fixture: extracts normalized INPUT, FACT, SOURCE, UNKNOWN with z
   assert.match(groundingsByKey['pillars.year.solarBoundary'].modernPolicy, /Meeus.*315°/)
 
   assert.equal(groundingsByKey['solarTime.apparentSolarTime'].evidenceType, 'modern_astronomical_method')
-  assert.match(groundingsByKey['solarTime.apparentSolarTime'].modernPolicy, /126\.97°E.*NOAA/)
+  assert.match(groundingsByKey['solarTime.apparentSolarTime'].modernPolicy, /선택된 행정구역 대표경도에 4분\/도 보정 \+ NOAA 균시차 EoT/)
+  assert.doesNotMatch(groundingsByKey['solarTime.apparentSolarTime'].modernPolicy, /서울|126\.97°E|-32\.12분/)
 
   // 3. Implementation Policies
   assert.equal(groundingsByKey['timing.daYun.firstStartDate.calendarMapping'].evidenceType, 'implementation_policy')
@@ -353,8 +354,13 @@ test('Astrology Base fails closed when provenance or parent-side deterministic c
     assert.equal(foundation.activation.serviceEligibility, 'blocked', label)
     if (label === 'invalid blocked feature status') {
       assert.deepEqual(foundation.unknown.unsupportedFeatures, [], label)
-      assert.deepEqual(foundation.unknown.blockedFeatures, [], label)
     }
+    assert.deepEqual(foundation.unknown.blockedFeatures, [{
+      feature: 'interpretation_service_activation',
+      status: 'blocked',
+      reason: 'interpretation_packet_not_activated',
+      sourceRefs: ['activation'],
+    }], label)
   }
 
   const nearMismatch = structuredClone({ ...packetRaw, bundle: groundingRaw.bundle })
@@ -367,6 +373,53 @@ test('Astrology Base fails closed when provenance or parent-side deterministic c
   assert.equal(groundingOnly.fact.hasVerifiedData, false)
   assert.equal(groundingOnly.source.provenanceStatus, 'missing')
   assert.equal(groundingOnly.activation.status, 'blocked')
+  assert.deepEqual(groundingOnly.unknown.blockedFeatures, [{
+    feature: 'interpretation_service_activation',
+    status: 'blocked',
+    reason: 'interpretation_packet_not_activated',
+    sourceRefs: ['activation'],
+  }])
+})
+
+test('Astrology packet absent, incomplete, and complete states keep blocked feature and JSON/Markdown semantic parity', async () => {
+  const packetRaw = JSON.parse(await readFile(ASTRO_PACKET_PATH, 'utf8'))
+  const groundingRaw = JSON.parse(await readFile(ASTRO_GROUNDING_PATH, 'utf8'))
+  const incompleteArtifact = structuredClone({ ...packetRaw, bundle: groundingRaw.bundle })
+  delete incompleteArtifact.packet.identities.adapterSha256
+  const cases = [
+    ['absent', {}],
+    ['incomplete', incompleteArtifact],
+    ['complete', { ...packetRaw, bundle: groundingRaw.bundle }],
+  ]
+
+  for (const [label, artifact] of cases) {
+    const expectedProvenanceStatus = label === 'absent' ? 'missing' : label
+    const base = buildDeterministicBase({
+      domain: 'astrology',
+      subjectName: `packet-${label}`,
+      data: artifact,
+    })
+    const canonical = JSON.parse(exportDeterministicBaseJson(base))
+    const astrology = canonical.systems.astrology
+
+    assert.equal(astrology.source.provenanceStatus, expectedProvenanceStatus, label)
+    assert.deepEqual(astrology.unknown.blockedFeatures, [{
+      feature: 'interpretation_service_activation',
+      status: 'blocked',
+      reason: 'interpretation_packet_not_activated',
+      sourceRefs: ['activation'],
+    }], label)
+    assert.equal(formatDeterministicBaseMarkdown(canonical), base.markdown, label)
+    assert.doesNotMatch(base.markdown, /undefined|null/, label)
+
+    if (label === 'complete') {
+      assert.match(base.markdown, /Provenance links: \{/)
+      assert.doesNotMatch(base.markdown, /미확인 \(provenanceStatus=/)
+    } else {
+      assert.match(base.markdown, new RegExp(`Provenance links: 미확인 \\(provenanceStatus=${expectedProvenanceStatus};`))
+      assert.doesNotMatch(base.markdown, /Provenance links: \{.*null/s)
+    }
+  }
 })
 
 test('buildDeterministicBase: bundles all three real domains into a single self-contained JSON/Markdown deterministic base', async () => {
@@ -416,6 +469,11 @@ test('buildDeterministicBase: bundles all three real domains into a single self-
   // Check markdown output contains calculation basis table and 3 blocks per domain
   const md = base.markdown
   assert.match(md, /# DETERMINISTIC BASE MANIFEST · 한규/)
+  assert.match(md, /## AI CONSUMER GUIDE \(사람·AI 공용 읽기 안내\)/)
+  assert.match(md, /READ_ORDER.*`0\.INPUT`.*`1\.FACT`.*`2\.SOURCE`.*`3\.STATUS`/)
+  assert.match(md, /RESPONSE_BOUNDARY.*FACT·provenance·해석을 분리/)
+  assert.match(md, /INTERPRETATION_ACCESS.*availableForInterpretation=false.*일반 ChatGPT\/Gemini downstream 대화를 금지하지 않음/)
+  assert.match(md, /EXAMPLES.*구체적 해석 예시나 개인화 결론을 제공하지 않음/)
   assert.match(md, /## 0\. 정규화된 계산 입력 \(Calculation Basis\)/)
   assert.match(md, /## \[사주 \(Four Pillars\)\]/)
   assert.match(md, /## \[자미두수 \(Ziwei Dou Shu\)\]/)
@@ -445,6 +503,8 @@ test('buildDeterministicBase: bundles all three real domains into a single self-
   assert.match(md, /Distribution tie \(RuleSet-derived\)/)
   assert.match(md, /Chart ruler mapping \(RuleSet-derived\)/)
   assert.match(md, /Provenance status: complete/)
+  assert.match(md, /선택된 행정구역 대표경도에 4분\/도 보정 \+ NOAA 균시차 EoT/)
+  assert.doesNotMatch(md, /서울\(126\.97°E\)|126\.97°E|-32\.12분/)
   assert.match(md, /unsupportedFeatures: legacy_simulation_placidus_date_seed/)
   assert.match(md, /blockedFeatures: interpretation_service_activation/)
   assert.match(md, /availableForInterpretation=false.*softie_project 내부 interpretation service\/runtime integration 미연결/)
@@ -465,6 +525,7 @@ test('buildDeterministicBase: bundles all three real domains into a single self-
   // regenerate the same Markdown report without losing provenance fields.
   assert.doesNotMatch(jsonStr, /による/)
   assert.doesNotMatch(jsonStr, /authority_supported_classical_text|classical_systematic_authority/)
+  assert.doesNotMatch(jsonStr, /AI CONSUMER GUIDE|READ_ORDER|RESPONSE_BOUNDARY/)
   assert.doesNotMatch(md, /による/)
   assert.doesNotMatch(md, /authority_supported_classical_text|classical_systematic_authority/)
   assert.deepEqual(parsed.systems.saju.source.factGroundings, base.systems.saju.source.factGroundings)
@@ -507,9 +568,12 @@ test('buildDeterministicBase: bundles all three real domains into a single self-
     assert.deepEqual(findForbiddenKeyPaths(consumedJson), [])
     assert.doesNotMatch(await readFile(jsonPath, 'utf8'), /\bundefined\b/)
     assert.doesNotMatch(consumedMarkdown, /undefined|null/)
+    assert.match(consumedMarkdown, /## AI CONSUMER GUIDE \(사람·AI 공용 읽기 안내\)/)
+    assert.match(consumedMarkdown, /READ_ORDER.*`0\.INPUT`.*`1\.FACT`.*`2\.SOURCE`.*`3\.STATUS`/)
     assert.equal(formatDeterministicBaseMarkdown(consumedJson), consumedMarkdown)
     const freshAttachmentPrompt = createFreshChatContinuationPrompt(consumedJson, '이 astrology FACT를 바탕으로 해석해줘.')
     assert.match(freshAttachmentPrompt, /\[ATTACHED FILE: deterministic_base\.md\]/)
+    assert.match(freshAttachmentPrompt, /## AI CONSUMER GUIDE \(사람·AI 공용 읽기 안내\)/)
     assert.match(freshAttachmentPrompt, /availableForInterpretation=false는 softie_project 내부 interpretation service\/runtime integration 미연결/)
     assert.match(freshAttachmentPrompt, /일반 ChatGPT\/Gemini downstream 대화를 금지하지 않는다/)
   } finally {
