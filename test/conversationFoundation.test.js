@@ -470,10 +470,11 @@ test('buildDeterministicBase: bundles all three real domains into a single self-
   const md = base.markdown
   assert.match(md, /# DETERMINISTIC BASE MANIFEST · 한규/)
   assert.match(md, /## AI CONSUMER GUIDE \(사람·AI 공용 읽기 안내\)/)
-  assert.match(md, /READ_ORDER.*`0\.INPUT`.*`1\.FACT`.*`2\.SOURCE`.*`3\.STATUS`/)
-  assert.match(md, /RESPONSE_BOUNDARY.*FACT·provenance·해석을 분리/)
-  assert.match(md, /INTERPRETATION_ACCESS.*availableForInterpretation=false.*일반 ChatGPT\/Gemini downstream 대화를 금지하지 않음/)
-  assert.match(md, /EXAMPLES.*구체적 해석 예시나 개인화 결론을 제공하지 않음/)
+  assert.match(md, /READ_ORDER.*`0\.INPUT`.*`1\.FACT`.*`3\.STATUS`.*TECHNICAL PROVENANCE/)
+  assert.match(md, /CONSUME.*사용자 질문.*관련 FACT 확인.*FACT와 해석 분리.*필요한 개인 맥락은 대화에서 확인/)
+  assert.match(md, /BOUNDARY.*FACT·provenance·해석을 분리/)
+  assert.match(md, /ACCESS.*availableForInterpretation=false.*일반 ChatGPT\/Gemini 대화를 금지하지 않음/)
+  assert.match(md, /EXAMPLES.*구체적 해석 예시나 개인화 결론 없음/)
   assert.match(md, /## 0\. 정규화된 계산 입력 \(Calculation Basis\)/)
   assert.match(md, /## \[사주 \(Four Pillars\)\]/)
   assert.match(md, /## \[자미두수 \(Ziwei Dou Shu\)\]/)
@@ -486,7 +487,17 @@ test('buildDeterministicBase: bundles all three real domains into a single self-
   // Check 3 deterministic blocks present in markdown
   assert.match(md, /### 1\. FACT \(결정론적 계산\/관측 사실\)/)
   assert.match(md, /### 2\. SOURCE \(문헌 전승·규칙 버전 및 출처 한계\)/)
+  assert.match(md, /## TECHNICAL PROVENANCE \(상세 source·SHA·locator·계산 정책\)/)
+  assert.match(md, /좌표 provenance \| 미상/)
   assert.match(md, /### 3\. STATUS & SUPPORT SCOPE \(지원 범위 및 상태\)/)
+  assert.ok(
+    md.indexOf('### 3. STATUS & SUPPORT SCOPE') < md.indexOf('## TECHNICAL PROVENANCE'),
+    'Technical Provenance must follow the compact domain status blocks',
+  )
+  assert.ok(
+    md.indexOf('## TECHNICAL PROVENANCE') < md.indexOf('### 2. SOURCE'),
+    'Long source blocks must remain inside Technical Provenance',
+  )
 
   // Verify Fact Provenance Groundings in markdown
   assert.match(md, /계산 사실별 근거 유형 및 권위 구분 \(Fact Provenance Groundings\)/)
@@ -569,7 +580,7 @@ test('buildDeterministicBase: bundles all three real domains into a single self-
     assert.doesNotMatch(await readFile(jsonPath, 'utf8'), /\bundefined\b/)
     assert.doesNotMatch(consumedMarkdown, /undefined|null/)
     assert.match(consumedMarkdown, /## AI CONSUMER GUIDE \(사람·AI 공용 읽기 안내\)/)
-    assert.match(consumedMarkdown, /READ_ORDER.*`0\.INPUT`.*`1\.FACT`.*`2\.SOURCE`.*`3\.STATUS`/)
+    assert.match(consumedMarkdown, /READ_ORDER.*`0\.INPUT`.*`1\.FACT`.*`3\.STATUS`.*TECHNICAL PROVENANCE/)
     assert.equal(formatDeterministicBaseMarkdown(consumedJson), consumedMarkdown)
     const freshAttachmentPrompt = createFreshChatContinuationPrompt(consumedJson, '이 astrology FACT를 바탕으로 해석해줘.')
     assert.match(freshAttachmentPrompt, /\[ATTACHED FILE: deterministic_base\.md\]/)

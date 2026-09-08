@@ -1354,6 +1354,11 @@ function createDeterministicBasePackage({ subjectName, systems, rootInput = {}, 
  */
 export function formatDeterministicBaseMarkdown(basePackage) {
   const { normalizedInput, systems, generatedAt } = basePackage
+  const technicalProvenanceSections = [
+    '### 0. INPUT PROVENANCE (좌표 매핑 상세)',
+    `- coordinateProvenance: ${normalizedInput.coordinateProvenance ? JSON.stringify(normalizedInput.coordinateProvenance) : '미상'}`,
+    '',
+  ]
   const lines = [
     `# DETERMINISTIC BASE MANIFEST · ${normalizedInput.subjectName || '내담자'}`,
     `- 생성 일시: ${generatedAt}`,
@@ -1363,13 +1368,13 @@ export function formatDeterministicBaseMarkdown(basePackage) {
     '## AI CONSUMER GUIDE (사람·AI 공용 읽기 안내)',
     '| 항목 | 읽기 규칙 |',
     '| :--- | :--- |',
-    '| READ_ORDER | `0.INPUT` → 각 도메인 `1.FACT` → `2.SOURCE` → `3.STATUS` 순서로 확인 |',
-    '| FACT | 이미 제공된 결정적 계산값을 그대로 사용하고 임의 재계산하지 않음 |',
-    '| SOURCE / provenance | source, rule identity, sourceRefs, provenance status를 계산 근거와 의존성으로 읽음 |',
-    '| STATUS / activation | `complete`, `missing`, `incomplete`, `blocked`, `unsupported`를 원문 상태 그대로 유지 |',
-    '| RESPONSE_BOUNDARY | FACT·provenance·해석을 분리해 말하며, FACT를 개인 경험·개인 의미·권위로 단정하지 않음 |',
-    '| INTERPRETATION_ACCESS | `availableForInterpretation=false`는 softie_project 내부 interpretation service/runtime integration 미연결을 뜻하며 일반 ChatGPT/Gemini downstream 대화를 금지하지 않음 |',
-    '| EXAMPLES | 이 가이드는 구체적 해석 예시나 개인화 결론을 제공하지 않음 |',
+    '| READ_ORDER | `0.INPUT` → 각 도메인 `1.FACT` → `3.STATUS` → `TECHNICAL PROVENANCE` |',
+    '| CONSUME | 사용자 질문 → 관련 FACT 확인 → FACT와 해석 분리 → 필요한 개인 맥락은 대화에서 확인 |',
+    '| FACT | 제공된 결정값을 우선 사용하고 임의 재계산하지 않음 |',
+    '| STATUS | `complete`, `missing`, `incomplete`, `blocked`, `unsupported`를 그대로 유지 |',
+    '| BOUNDARY | FACT·provenance·해석을 분리하고 FACT를 개인 경험·의미·권위로 단정하지 않음 |',
+    '| ACCESS | `availableForInterpretation=false`는 내부 interpretation service/runtime 미연결이며 일반 ChatGPT/Gemini 대화를 금지하지 않음 |',
+    '| EXAMPLES | 구체적 해석 예시나 개인화 결론 없음 |',
     '',
     '## 0. 정규화된 계산 입력 (Calculation Basis)',
     `| 항목 | 값 |`,
@@ -1381,7 +1386,7 @@ export function formatDeterministicBaseMarkdown(basePackage) {
     `| 행정구역 코드/명칭 | ${normalizedInput.administrativeAreaCode || '미상'} / ${normalizedInput.administrativeAreaName || '미상'} |`,
     `| 계산용 대표좌표 | 위도 ${normalizedInput.latitude || '-'}, 경도 ${normalizedInput.longitude || '-'} (${normalizedInput.timezone}) |`,
     `| 좌표 성격/방법 | ${normalizedInput.locationResolution === 'administrative_area_representative_point' ? '행정구역 대표점 (administrative_area_representative_point) · 주소 단위 좌표 아님' : (normalizedInput.locationResolution || '미상')} / ${normalizedInput.coordinateMethod || '미상'} |`,
-    `| 좌표 provenance | ${normalizedInput.coordinateProvenance ? JSON.stringify(normalizedInput.coordinateProvenance) : '미상'} |`,
+    `| 좌표 provenance | ${normalizedInput.coordinateProvenance ? '보존됨 (상세: Technical Provenance)' : '미상'} |`,
     `| 성별 | ${normalizedInput.gender || '미상'} |`,
     `| 시간 정확도 | ${normalizedInput.timeAccuracy} |`,
     '',
@@ -1427,7 +1432,6 @@ export function formatDeterministicBaseMarkdown(basePackage) {
         `- 십성 표출: ${Object.entries(sys.fact.tenGodsVisible).map(([k, v]) => `${k} ${v}`).join(' · ') || '없음'}`,
         `- 지지 관계: ${sys.fact.branchRelations.map((r) => `${r.name || '미상'}(${r.branches.join('')})`).join(', ') || '특이 관계 없음'}`,
         `- 대운/세운: ${daYunText} / 세운 ${seUnValue} · 월운 ${wolUnValue} · 일진 ${ilJinValue}`,
-        `- 계산 정책 경계: ${sys.fact.policyBoundary}`,
       )
     } else if (key === 'ziwei') {
       lines.push(
@@ -1446,9 +1450,9 @@ export function formatDeterministicBaseMarkdown(basePackage) {
         if (Array.isArray(sys.fact.aspects) && sys.fact.aspects.length > 0) {
           lines.push(
             '- Aspect angular separation (계산 primitive):',
-            ...sys.fact.aspects.map((aspect) => `  - ${aspect.pointA}/${aspect.pointB}: ${aspect.calculationPrimitive.angularDistanceDegrees.toFixed(6)}° · refs=${aspect.dependencyRefs.join(',')}`),
+            ...sys.fact.aspects.map((aspect) => `  - ${aspect.pointA}/${aspect.pointB}: ${aspect.calculationPrimitive.angularDistanceDegrees.toFixed(6)}°`),
             '- Aspect classification (RuleSet-derived):',
-            ...sys.fact.aspects.map((aspect) => `  - ${aspect.pointA}/${aspect.pointB}: ${aspect.derivedClassification.aspectId} · exact=${aspect.derivedClassification.exactAngleDegrees}° · orb=${aspect.derivedClassification.orbDegrees.toFixed(6)}°/${aspect.derivedClassification.maxOrbDegrees}° · rule=${aspect.derivedClassification.ruleId} · refs=${aspect.sourceRefs.join(',')}`),
+            ...sys.fact.aspects.map((aspect) => `  - ${aspect.pointA}/${aspect.pointB}: ${aspect.derivedClassification.aspectId} · exact=${aspect.derivedClassification.exactAngleDegrees}° · orb=${aspect.derivedClassification.orbDegrees.toFixed(6)}°/${aspect.derivedClassification.maxOrbDegrees}° · rule=${aspect.derivedClassification.ruleId}`),
           )
         }
         if (sys.fact.wholeSignHouses) {
@@ -1456,7 +1460,7 @@ export function formatDeterministicBaseMarkdown(basePackage) {
           const houseClassification = sys.fact.wholeSignHouses.derivedClassification
           lines.push(
             `- Whole Sign house placement (계산 primitive): ASC ${housePrimitive.ascendant.signId}[${housePrimitive.ascendant.signIndex}] · ${housePrimitive.placements.map((placement) => `${placement.id}=${placement.house}H`).join(' · ')}`,
-            `- Whole Sign classification (RuleSet-derived): houseSystem=${houseClassification.houseSystem} · rule=${houseClassification.ruleId} · refs=${houseClassification.sourceRefs.join(',')}`,
+            `- Whole Sign classification (RuleSet-derived): houseSystem=${houseClassification.houseSystem} · rule=${houseClassification.ruleId}`,
           )
         }
         if (sys.fact.distribution) {
@@ -1464,7 +1468,7 @@ export function formatDeterministicBaseMarkdown(basePackage) {
           const formatCounts = (scope) => Object.entries(scope.counts).map(([dimension, counts]) => `${dimension}(${Object.entries(counts).map(([key, value]) => `${key}=${value}`).join(',')})`).join(' · ')
           lines.push(
             `- Distribution count (계산 primitive): overall[${distribution.calculationPrimitive.overall.bodyIds.join(',')}] ${formatCounts(distribution.calculationPrimitive.overall)} / personal[${distribution.calculationPrimitive.personal.bodyIds.join(',')}] ${formatCounts(distribution.calculationPrimitive.personal)}`,
-            `- Distribution tie (RuleSet-derived): ${JSON.stringify(distribution.derivedClassification.tie)} · rule=${distribution.derivedClassification.ruleId} · refs=${distribution.derivedClassification.sourceRefs.join(',')}`,
+            `- Distribution tie (RuleSet-derived): ${JSON.stringify(distribution.derivedClassification.tie)} · rule=${distribution.derivedClassification.ruleId}`,
           )
         }
         if (sys.fact.chartRulers) {
@@ -1472,7 +1476,7 @@ export function formatDeterministicBaseMarkdown(basePackage) {
           const rulerClassification = sys.fact.chartRulers.derivedClassification
           lines.push(
             `- Chart ruler mapping (계산 primitive): ASC sign=${rulerPrimitive.ascendantSignId}`,
-            `- Chart ruler mapping (RuleSet-derived): traditional=${rulerClassification.traditionalChartRuler} · modern=${rulerClassification.modernChartRuler} · rule=${rulerClassification.ruleId} · refs=${rulerClassification.sourceRefs.join(',')}`,
+            `- Chart ruler mapping (RuleSet-derived): traditional=${rulerClassification.traditionalChartRuler} · modern=${rulerClassification.modernChartRuler} · rule=${rulerClassification.ruleId}`,
           )
         }
       } else {
@@ -1481,17 +1485,19 @@ export function formatDeterministicBaseMarkdown(basePackage) {
     }
     lines.push('')
 
-    // 2. SOURCE
-    lines.push('### 2. SOURCE (문헌 전승·규칙 버전 및 출처 한계)')
+    // 2. SOURCE is rendered after the front readout so long provenance does
+    // not interrupt the user-facing FACT/STATUS flow.
+    const sourceLines = [`### 2. SOURCE (문헌 전승·규칙 버전 및 출처 한계) · [${sys.displayName}]`]
     if (key === 'saju') {
-      lines.push(
+      sourceLines.push(
         '- 고서 5종 원전 문헌 서지 목록:',
         ...sys.source.lineageTexts.map((t) => `  - 《${t.title}》: ${t.focus}`),
         `- 구조적 분류 출처: ${sys.source.structuralReference?.citation || '자평명리 분류'}`,
         `- 전승 한계: unresolved_edition=${sys.source.historicalLimitations.unresolvedEdition}, authority=${sys.source.historicalLimitations.historicalAuthority}, fact=${sys.source.historicalLimitations.historicalFact}`,
+        `- 계산 정책 경계: ${sys.fact.policyBoundary}`,
       )
       if (Array.isArray(sys.source.factGroundings) && sys.source.factGroundings.length > 0) {
-        lines.push(
+        sourceLines.push(
           '- 계산 사실별 근거 유형 및 권위 구분 (Fact Provenance Groundings):',
           ...sys.source.factGroundings.map((g) => {
             const typeHeader = g.evidenceType === 'primary_textual_witness'
@@ -1510,12 +1516,12 @@ export function formatDeterministicBaseMarkdown(basePackage) {
         )
       }
     } else if (key === 'ziwei') {
-      lines.push(
+      sourceLines.push(
         `- RuleSet Profile: ${sys.source.ruleSetProfile}`,
         `- 파생 근거: ${sys.source.sourceDerivation}`,
       )
     } else if (key === 'astrology') {
-      lines.push(
+      sourceLines.push(
         `- 천문력 커널: ${sys.source.ephemerisKernel}`,
         `- 프로토콜: ${sys.source.protocolVersion}`,
         `- 룰 코어: ${sys.source.ruleCoreVersion}`,
@@ -1523,9 +1529,10 @@ export function formatDeterministicBaseMarkdown(basePackage) {
         `- Provenance status: ${sys.source.provenanceStatus}`,
         `- Provenance links: ${formatAstrologyProvenanceLinks(sys.source)}`,
         `- Claim-level sourceRefs: ${sys.source.provenance?.claimSourceRefs?.length || 0}개 보존됨`,
+        `- Claim-level sourceRefs (full): ${JSON.stringify(sys.source.provenance?.claimSourceRefs || [])}`,
       )
     }
-    lines.push('')
+    technicalProvenanceSections.push(...sourceLines, '')
 
     // 3. STATUS & SUPPORT SCOPE
     lines.push('### 3. STATUS & SUPPORT SCOPE (지원 범위 및 상태)')
@@ -1550,6 +1557,13 @@ export function formatDeterministicBaseMarkdown(basePackage) {
     }
     lines.push('')
   }
+
+  lines.push(
+    '---',
+    '## TECHNICAL PROVENANCE (상세 source·SHA·locator·계산 정책)',
+    '> 긴 source, SHA, locator, rule identity, 계산 정책은 이 절에서 확인합니다.',
+    ...technicalProvenanceSections,
+  )
 
   return lines.join('\n')
 }

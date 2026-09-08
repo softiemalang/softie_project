@@ -57,13 +57,6 @@ export function ChatHandoffCard({ onPrepare }) {
     }
   }
 
-  function downloadJson() {
-    if (!basePackage) return
-    downloadText('deterministic-base.json', exportDeterministicBaseJson(basePackage), 'application/json')
-    setStatus('JSON 파일을 다운로드했습니다.')
-    setError('')
-  }
-
   function downloadMarkdown() {
     if (!basePackage) return
     downloadText('deterministic-base.md', basePackage.markdown, 'text/markdown')
@@ -94,9 +87,6 @@ export function ChatHandoffCard({ onPrepare }) {
           <div className="prep-base-actions">
             <button type="button" className="prep-base-action-button" onClick={copyCanonicalBase}>
               canonical Base 복사
-            </button>
-            <button type="button" className="prep-base-action-button" onClick={downloadJson}>
-              JSON 다운로드
             </button>
             <button type="button" className="prep-base-action-button" onClick={downloadMarkdown}>
               Markdown 다운로드
