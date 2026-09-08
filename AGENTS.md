@@ -49,7 +49,7 @@
 
 - For delegated execution (bounded implementation, testing, or refactoring), Native Codex prioritizes the registered `antigravity-worker` as the default bounded worker; `zen-worker` serves as a dedicated capacity and alternative lane.
 - Manual deep advisory lanes (e.g. Claude Sonnet Thinking via Antigravity) are strictly manual upon explicit request and must never be included in automated routing or fallback.
-- State reconstruction lane (Gemini 3.5 Flash Lite via Zen) is read-only and explicitly invoked upon conversation start or workstream resumption to emit a compact STATE_PACKET; it is excluded from automated routing/fallback.
+- `zen-state-manager` serves as a read-only state reconstruction lane, explicitly invoked upon conversation start or workstream resumption to emit a compact STATE_PACKET; it is excluded from automated routing or fallback.
 - When follow-ups or fixes are needed, re-delegate within the same worker/workstream session whenever possible. Final judgment, integration review, and all `git commit`/`git push` responsibilities remain exclusively with Native Codex.
 - Use the registered `historical-document-evidence` portable Skill for historical-source identity, OCR evidence, layout/grid, and component evaluation. These role guidelines prescribe no call order, call count, or detailed orchestration and introduce no duplicate workflow infrastructure or new routing layer.
 - Delegated investigation or verification uses the existing `subagent-evidence-contract-v0` contract in [`docs/subagent-evidence-contract-v0.md`](docs/subagent-evidence-contract-v0.md) and [`src/subagentEvidenceContract.js`](src/subagentEvidenceContract.js); validate the exact envelope before using it.
