@@ -1,7 +1,8 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { readFile } from 'node:fs/promises'
-import { resolve } from 'node:path'
+import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
+import { join, resolve } from 'node:path'
+import { tmpdir } from 'node:os'
 import {
   buildDeterministicBase,
   buildConversationFoundation,
@@ -14,6 +15,7 @@ import {
   extractContinuationContext,
   FOUNDATION_VERSION,
   CANONICAL_SCHEMA_VERSION,
+  SAJU_FACT_GROUNDINGS,
 } from '../src/interpretationPrep/conversationFoundation.js'
 import { prepareThreeSystemInterpretationData } from '../src/interpretationPrep/threeSystemPrepPipeline.js'
 import { buildChatHandoffPackage } from '../src/interpretationPrep/chatHandoffPackage.js'
@@ -85,6 +87,62 @@ test('Saju Real Fixture: extracts normalized INPUT, FACT, SOURCE, UNKNOWN with z
   assert.equal(sajuFoundation.source.historicalLimitations.unresolvedEdition, true)
   assert.equal(sajuFoundation.source.historicalLimitations.historicalAuthority, 'insufficient_evidence')
   assert.equal(sajuFoundation.source.historicalLimitations.historicalFact, false)
+
+  // Fact Groundings Provenance verification (distinguishing textual references vs modern policy)
+  assert.ok(Array.isArray(sajuFoundation.source.factGroundings))
+  assert.equal(sajuFoundation.source.factGroundings.length, SAJU_FACT_GROUNDINGS.length)
+
+  const groundingsByKey = Object.fromEntries(
+    sajuFoundation.source.factGroundings.map((g) => [g.factKey, g]),
+  )
+
+  const expectedGroundingKeys = [
+    'factKey',
+    'factLabel',
+    'evidenceType',
+    'authorityScope',
+    'classicalWitness',
+    'modernPolicy',
+    'distinctionNote',
+  ]
+  for (const grounding of sajuFoundation.source.factGroundings) {
+    assert.deepEqual(Object.keys(grounding), expectedGroundingKeys)
+    assert.doesNotMatch(grounding.classicalWitness || '', /["]/, '문헌 인용은 JSON/Markdown 보고서용 ASCII quoting을 사용하지 않음')
+  }
+
+  // 1. Classical textual references
+  assert.equal(groundingsByKey['timing.daYun.direction'].evidenceType, 'primary_textual_witness')
+  assert.equal(groundingsByKey['timing.daYun.direction'].authorityScope, 'classical_textual_reference_unverified')
+  assert.match(groundingsByKey['timing.daYun.direction'].classicalWitness, /삼명통회.*陽男陰女順行/)
+
+  assert.equal(groundingsByKey['timing.daYun.startAge.conversionRate'].evidenceType, 'primary_textual_witness')
+  assert.equal(groundingsByKey['timing.daYun.startAge.conversionRate'].authorityScope, 'classical_textual_reference_unverified')
+  assert.match(groundingsByKey['timing.daYun.startAge.conversionRate'].classicalWitness, /三日為一歲/)
+
+  assert.equal(groundingsByKey['pillars.month.fiveTigers'].evidenceType, 'primary_textual_witness')
+  assert.match(groundingsByKey['pillars.month.fiveTigers'].classicalWitness, /五虎遁/)
+
+  assert.equal(groundingsByKey['pillars.hour.fiveRats'].evidenceType, 'primary_textual_witness')
+  assert.match(groundingsByKey['pillars.hour.fiveRats'].classicalWitness, /五鼠遁/)
+
+  // 2. Modern Astronomical Methods
+  assert.equal(groundingsByKey['pillars.year.solarBoundary'].evidenceType, 'modern_astronomical_method')
+  assert.match(groundingsByKey['pillars.year.solarBoundary'].modernPolicy, /Meeus.*315°/)
+
+  assert.equal(groundingsByKey['solarTime.apparentSolarTime'].evidenceType, 'modern_astronomical_method')
+  assert.match(groundingsByKey['solarTime.apparentSolarTime'].modernPolicy, /126\.97°E.*NOAA/)
+
+  // 3. Implementation Policies
+  assert.equal(groundingsByKey['timing.daYun.firstStartDate.calendarMapping'].evidenceType, 'implementation_policy')
+  assert.match(groundingsByKey['timing.daYun.firstStartDate.calendarMapping'].modernPolicy, /source-ratio-rounded-360-30-calendar/)
+
+  assert.equal(groundingsByKey['solarTerms.uncertaintyWindow'].evidenceType, 'implementation_policy')
+  assert.match(groundingsByKey['solarTerms.uncertaintyWindow'].modernPolicy, /SOLAR_TERM_UNCERTAINTY_MINUTES = 20/)
+
+  // 4. Conflicting Lineages
+  assert.equal(groundingsByKey['pillars.day.boundary'].evidenceType, 'conflicting_lineage')
+  assert.match(groundingsByKey['pillars.day.boundary'].classicalWitness, /신당서.*子半.*서로 다른 선택/)
+  assert.match(groundingsByKey['pillars.day.boundary'].modernPolicy, /solar-midnight-split-zi/)
 
   // 4. UNKNOWN verification
   assert.equal(sajuFoundation.unknown.personalValidity, 'not_established')
@@ -244,6 +302,40 @@ test('buildDeterministicBase: bundles all three real domains into a single self-
   assert.match(md, /### 1\. FACT \(결정론적 계산\/관측 사실\)/)
   assert.match(md, /### 2\. SOURCE \(문헌 전승·규칙 버전 및 출처 한계\)/)
   assert.match(md, /### 3\. STATUS & SUPPORT SCOPE \(지원 범위 및 상태\)/)
+
+  // Verify Fact Provenance Groundings in markdown
+  assert.match(md, /계산 사실별 근거 유형 및 권위 구분 \(Fact Provenance Groundings\)/)
+  assert.match(md, /\[고전 문헌 참조 · primary_textual_witness\]/)
+  assert.match(md, /\[현대 천문 계산법 · modern_astronomical_method\]/)
+  assert.match(md, /\[현대 구현 정책 · implementation_policy\]/)
+  assert.match(md, /\[학파 대립 미합의 정책 · conflicting_lineage\]/)
+  assert.match(md, /「陽男陰女順行，陰男陽女逆行」/)
+  assert.match(md, /현대 계산\/정책: source-ratio-rounded-360-30-calendar/)
+  assert.match(md, /authorityScope: classical_textual_reference_unverified/)
+
+  // Exported JSON must be consumable as the same deterministic base and must
+  // regenerate the same Markdown report without losing provenance fields.
+  assert.doesNotMatch(jsonStr, /による/)
+  assert.doesNotMatch(jsonStr, /authority_supported_classical_text|classical_systematic_authority/)
+  assert.doesNotMatch(md, /による/)
+  assert.doesNotMatch(md, /authority_supported_classical_text|classical_systematic_authority/)
+  assert.deepEqual(parsed.systems.saju.source.factGroundings, base.systems.saju.source.factGroundings)
+  assert.equal(formatDeterministicBaseMarkdown(parsed), md)
+
+  const exportDirectory = await mkdtemp(join(tmpdir(), 'deterministic-base-export-'))
+  try {
+    const jsonPath = join(exportDirectory, 'deterministic_base.json')
+    const markdownPath = join(exportDirectory, 'deterministic_base.md')
+    await writeFile(jsonPath, jsonStr, 'utf8')
+    await writeFile(markdownPath, md, 'utf8')
+
+    const consumedJson = JSON.parse(await readFile(jsonPath, 'utf8'))
+    const consumedMarkdown = await readFile(markdownPath, 'utf8')
+    assert.deepEqual(consumedJson.systems.saju.source.factGroundings, base.systems.saju.source.factGroundings)
+    assert.equal(formatDeterministicBaseMarkdown(consumedJson), consumedMarkdown)
+  } finally {
+    await rm(exportDirectory, { recursive: true, force: true })
+  }
 
   // Verify that SYNTHESIS, mustNotAssume, and preachy directives are completely absent
   assert.doesNotMatch(md, /SYNTHESIS/)

@@ -34,6 +34,123 @@ export const SYSTEM_DISPLAY_NAMES = Object.freeze({
 })
 
 /**
+ * Machine-readable Fact Provenance Groundings for Saju Stable FACTs.
+ * Distinguishes classical textual references, modern astronomical methods,
+ * implementation policies, and conflicting lineages without assigning
+ * semantic authority.
+ */
+export const SAJU_FACT_GROUNDINGS = Object.freeze([
+  {
+    factKey: 'timing.daYun.direction',
+    factLabel: '대운 순역 방향 (양남음녀 순행, 음남양녀 역행)',
+    evidenceType: 'primary_textual_witness',
+    authorityScope: 'classical_textual_reference_unverified',
+    classicalWitness: '《삼명통회》 권2(論大運): 「陽男陰女順行，陰男陽女逆行」, 《연해자평》 권1(起運氣例)',
+    modernPolicy: null,
+    distinctionNote: '해당 문헌의 규칙 문구를 참조해 기록한 항목이며, 특정 판본·전승·의미의 독립 검증은 별도임',
+  },
+  {
+    factKey: 'timing.daYun.startAge.conversionRate',
+    factLabel: '대운수 기운 환산 비율 (3일=1년, 1일=4개월, 1시=10일, 12분=1일)',
+    evidenceType: 'primary_textual_witness',
+    authorityScope: 'classical_textual_reference_unverified',
+    classicalWitness: '《삼명통회》 권2(論大運): 「三日為一歲，一日為四箇月，一時為十日」, 《낙록자소식부》: 「折除乃三日為年」',
+    modernPolicy: null,
+    distinctionNote: '해당 문헌의 환산 문구를 참조해 기록한 비율이며, 특정 판본·전승·적용 범위의 독립 검증은 별도임',
+  },
+  {
+    factKey: 'timing.daYun.firstStartDate.calendarMapping',
+    factLabel: '대운 시작일 그레고리력 날짜 매핑 및 소수점 나이',
+    evidenceType: 'implementation_policy',
+    authorityScope: 'modern_calendar_arithmetic_policy',
+    classicalWitness: '문헌상 정수 나이/달수 단위의 개략 기산만 언급되며, 정확한 판본·locator는 이 패키지에서 확정하지 않음',
+    modernPolicy: 'source-ratio-rounded-360-30-calendar (1년 360일·1개월 30일 상징 분해 후 그레고리력 clamping 가산)',
+    distinctionNote: '문헌 참조 범위와 그레고리력 날짜·소수점 나이 환산 정책을 분리 기록하며, 후자는 엔진의 현대 역법 접합 정책임',
+  },
+  {
+    factKey: 'pillars.month.fiveTigers',
+    factLabel: '월두법 (오호둔법 五虎遁을 이용한 월간 도출)',
+    evidenceType: 'primary_textual_witness',
+    authorityScope: 'classical_textual_reference_unverified',
+    classicalWitness: '《삼명통회》 권2(五虎遁): 「甲己之年，正月起丙寅」, 《연해자평》',
+    modernPolicy: null,
+    distinctionNote: '연간(年干)에 따라 인월(정월)의 천간을 정하고 순차 배속하는 문헌 참조 규칙이며, 특정 판본·전승의 독립 검증은 별도임',
+  },
+  {
+    factKey: 'pillars.hour.fiveRats',
+    factLabel: '시두법 (오서둔법 五鼠遁을 이용한 시간 도출)',
+    evidenceType: 'primary_textual_witness',
+    authorityScope: 'classical_textual_reference_unverified',
+    classicalWitness: '《삼명통회》 권2(五鼠遁): 「甲己起甲子」, 《연해자평》',
+    modernPolicy: null,
+    distinctionNote: '일간(日干)에 따라 자시 천간을 정하고 순차 배속하는 문헌 참조 규칙이며, 특정 판본·전승의 독립 검증은 별도임',
+  },
+  {
+    factKey: 'pillars.year.solarBoundary',
+    factLabel: '연주 세수(歲首) 기준 (입춘 분기)',
+    evidenceType: 'modern_astronomical_method',
+    authorityScope: 'classical_principle_modern_astronomical_computation',
+    classicalWitness: '《연해자평》(月令節氣), 《삼명통회》(論節氣)에 입춘을 연도의 시작으로 삼는 원칙이 언급되는 것으로 참조되며, 정확한 판본·locator는 이 패키지에서 확정하지 않음',
+    modernPolicy: 'Jean Meeus 태양 황경 315° 시황경 정기법 수치 적분 (li-chun-apparent-solar-315)',
+    distinctionNote: '입춘 기준에 관한 문헌 참조와 분·초 단위 황경 계산 정책을 분리 기록하며, 후자는 현대 천문학적 구현임',
+  },
+  {
+    factKey: 'pillars.month.solarBoundary',
+    factLabel: '월주 지지 12절월 분기 (12 節 절입시)',
+    evidenceType: 'modern_astronomical_method',
+    authorityScope: 'classical_principle_modern_astronomical_computation',
+    classicalWitness: '《삼명통회》, 《연해자평》에 12절기로 인월부터 축월까지 월건을 배속하는 원칙이 언급되는 것으로 참조되며, 정확한 판본·locator는 이 패키지에서 확정하지 않음',
+    modernPolicy: 'Jean Meeus 황경 30° 간격 정기법 12절기 절입시 계산 (jie-solar-longitude-30-degree)',
+    distinctionNote: '12절 기준에 관한 문헌 참조와 중기(中氣)를 배제하는 현대 정기법 수치 계산을 분리 기록함',
+  },
+  {
+    factKey: 'solarTime.apparentSolarTime',
+    factLabel: '진태양시 보정 (KST 135°E 대비 경도차 -32.12분 + NOAA 균시차 EoT)',
+    evidenceType: 'modern_astronomical_method',
+    authorityScope: 'astronomy_method_not_classical_saju_mandate',
+    classicalWitness: '고대 해시계(규표/일구) 자연 시각 환경을 가리키는 설명만 참조되며, 경도 환산식의 정확한 판본·locator는 이 패키지에서 확정하지 않음',
+    modernPolicy: '서울(126.97°E) 경도 편차 4분/도 환산 및 NOAA Spencer(1971) fractional-year equation of time 합산 (local-apparent-solar-kst)',
+    distinctionNote: '문헌 참조 범위와 표준시·균시차를 현대 시계 시간에 접합하는 천문학적 보정 정책을 분리 기록함',
+  },
+  {
+    factKey: 'pillars.day.boundary',
+    factLabel: '자시 일주 분리 (00:00 자정 롤오버, 조자시/야자시 구분)',
+    evidenceType: 'conflicting_lineage',
+    authorityScope: 'unresolved_classical_lineage_arbitrated_by_engine_policy',
+    classicalWitness: '《신당서》 권25(起于子半)의 자반 구분과 《연해자평》/원수산(23:00 자초설) 등 서로 다른 선택이 보고된 것으로 참조되며, 정확한 판본·locator는 이 패키지에서 확정하지 않음',
+    modernPolicy: 'solar-midnight-split-zi (진태양시 00:00 기준 일주 분리 정책을 엔진 기본값으로 채택)',
+    distinctionNote: '서로 다른 문헌·학파 선택과 엔진 정책을 분리 기록하며, 엔진은 명시적 구현 정책으로 선택함',
+  },
+  {
+    factKey: 'solarTerms.uncertaintyWindow',
+    factLabel: '절기 경계 오차 불확실성 윈도우 (±20분)',
+    evidenceType: 'implementation_policy',
+    authorityScope: 'numerical_precision_margin_policy',
+    classicalWitness: null,
+    modernPolicy: 'SOLAR_TERM_UNCERTAINTY_MINUTES = 20 (Meeus 간이식과 공인 정밀 역표 KASI/HKO 간 최대 편차 ≤15분을 방어하는 계산 안전 마진)',
+    distinctionNote: '천문 계산 정밀도 한계를 관리하기 위한 순수 소프트웨어 공학적 방어 정책',
+  },
+  {
+    factKey: 'elementsAndTenGods',
+    factLabel: '오행 생극제화 및 일간 기준 십성(十神) 표출',
+    evidenceType: 'primary_textual_witness',
+    authorityScope: 'classical_system_reference_unverified',
+    classicalWitness: '《연해자평》(十神), 《삼명통회》(干支五行論)',
+    modernPolicy: null,
+    distinctionNote: '일간을 기준으로 타 간지와의 생극 관계를 10가지 신(神)으로 분류하는 문헌 참조 체계이며, 특정 판본·전승의 권위는 확정하지 않음',
+  },
+  {
+    factKey: 'branchRelations',
+    factLabel: '지지 삼합·육합·충·형·파·해',
+    evidenceType: 'primary_textual_witness',
+    authorityScope: 'classical_system_reference_unverified',
+    classicalWitness: '《자평진전》(論支中刑沖會合), 《삼명통회》',
+    modernPolicy: null,
+    distinctionNote: '지지 방합/삼합/육합 및 형충파해 상호작용을 기록한 문헌 참조 체계이며, 특정 판본·전승의 권위는 확정하지 않음',
+  },
+])
+
+/**
  * Extract Saju Deterministic Base
  */
 export function extractSajuFoundation(sajuInput = {}, options = {}) {
@@ -126,6 +243,7 @@ export function extractSajuFoundation(sajuInput = {}, options = {}) {
       historicalFact: false,
       note: '고서 판본 전승이 미확정이며 현대 수치 계산 엔진과의 매핑 차이가 존재함',
     },
+    factGroundings: SAJU_FACT_GROUNDINGS,
   }
 
   // 4. UNKNOWN (계산 불확실성 및 지원 상태)
@@ -583,6 +701,25 @@ export function formatDeterministicBaseMarkdown(basePackage) {
         `- 구조적 분류 출처: ${sys.source.structuralReference?.citation || '자평명리 분류'}`,
         `- 전승 한계: unresolved_edition=${sys.source.historicalLimitations.unresolvedEdition}, authority=${sys.source.historicalLimitations.historicalAuthority}, fact=${sys.source.historicalLimitations.historicalFact}`,
       )
+      if (Array.isArray(sys.source.factGroundings) && sys.source.factGroundings.length > 0) {
+        lines.push(
+          '- 계산 사실별 근거 유형 및 권위 구분 (Fact Provenance Groundings):',
+          ...sys.source.factGroundings.map((g) => {
+            const typeHeader = g.evidenceType === 'primary_textual_witness'
+              ? '[고전 문헌 참조 · primary_textual_witness]'
+              : g.evidenceType === 'modern_astronomical_method'
+                ? '[현대 천문 계산법 · modern_astronomical_method]'
+                : g.evidenceType === 'implementation_policy'
+                  ? '[현대 구현 정책 · implementation_policy]'
+                  : '[학파 대립 미합의 정책 · conflicting_lineage]'
+            const basisParts = []
+            if (g.classicalWitness) basisParts.push(`문헌 참조: ${g.classicalWitness}`)
+            if (g.modernPolicy) basisParts.push(`현대 계산/정책: ${g.modernPolicy}`)
+            const basisText = basisParts.join(' · ') || '근거 정보 없음'
+            return `  - ${typeHeader} ${g.factLabel} → ${basisText} (authorityScope: ${g.authorityScope}; ${g.distinctionNote})`
+          }),
+        )
+      }
     } else if (key === 'ziwei') {
       lines.push(
         `- RuleSet Profile: ${sys.source.ruleSetProfile}`,
@@ -669,4 +806,3 @@ export function extractContinuationContext(basePackage) {
     synthesisExcluded: basePackage.summary?.synthesisIncluded === false,
   }
 }
-
