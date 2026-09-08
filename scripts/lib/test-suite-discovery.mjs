@@ -73,6 +73,102 @@ export const SOURCE_TEST_FILES = Object.freeze([
   'ziweiZixingTianfuSourceChain.test.js',
 ])
 
+// These are colocated, source-owned node:test suites. They are intentionally
+// outside the test/ source-evidence partition and run through the explicit
+// source-local profile rather than the default application regression set.
+export const SOURCE_LOCAL_TEST_FILES = Object.freeze([
+  'src/interpretationPrep/prepare.test.js',
+  'src/interpretationPrep/sajuValidationRunner.test.js',
+  'src/saju/engine/fourPillars.test.js',
+  'src/scheduler/googleConnectionState.test.js',
+  'src/scheduler/googleOAuthTokens.test.js',
+  'src/scheduler/schedulerLogic.test.js',
+])
+
+// These suites remain executable and are included by `test:all`, but their
+// assertions are historical, research/evidence, fixture-bound, or versioned
+// records rather than the current runtime/contract regression surface.
+export const ALL_ONLY_TEST_FILES = Object.freeze([
+  'astrologyQualityBenchmark.test.js',
+  'astrologyReadinessArtifact.test.js',
+  'astrologyTrueNodeIndependent.test.js',
+  'astrologyV1LocalIntegrationMilestone.test.js',
+  'astrologyV1LocalIntegrationSuccessor.test.js',
+  'chiKnowPoFineTuningTrial.test.js',
+  'chiKnowPoMediumRecPreflight.test.js',
+  'chiKnowPoMediumRecRecipe.test.js',
+  'chiKnowPoSpecialization.test.js',
+  'de405CrossPlatformEvidence.test.js',
+  'de405ExperimentalType2Evaluator.test.js',
+  'de405LegacyNativeEvidence.test.js',
+  'de405LegacyNativeMatrix.test.js',
+  'de405LinuxArchitectureEvidence.test.js',
+  'de405RouteRootCauseAnalysis.test.js',
+  'de405StrategyCBoundaryEvidence.test.js',
+  'de405UnresolvedSelectionAnalysis.test.js',
+  'designReferenceAccessibilityLegacyInteractionCleanupBatch.test.js',
+  'designReferenceAsyncContentEnterPromotion.test.js',
+  'designReferenceAudit.test.js',
+  'designReferenceAuditEmil10Incremental.test.js',
+  'designReferenceFormModalAsyncStateTouchFoundationBatch.test.js',
+  'designReferenceLowRiskInteractionFoundationBatch.test.js',
+  'sajuAcceptanceReview.test.js',
+  'sajuAnuV6V12DirectInspection.test.js',
+  'sajuClaimProvenance.test.js',
+  'sajuFiveClassicsClaimAdjudication.test.js',
+  'sajuFiveClassicsResearchContinuation.test.js',
+  'sajuFiveClassicsTypedReadinessContract.test.js',
+  'sajuGeminiV6ParentAdjudication.test.js',
+  'sajuGeminiV7ParentAdjudication.test.js',
+  'sajuGeminiWitnessDossierAdjudication.test.js',
+  'sajuGeminiWitnessDossierAdjudicationV2.test.js',
+  'sajuGeminiWitnessDossierAdjudicationV3.test.js',
+  'sajuLunaDeepCollationAdjudicationV4.test.js',
+  'sajuLunaP0EvidenceAcquisitionV2.test.js',
+  'sajuLunar2solarKasiMaterialization.test.js',
+  'sajuMingliYueyanDirectWitnessAdjudicationV1.test.js',
+  'sajuMingliYueyanFirstPartyInspection.test.js',
+  'sajuP0CalendarOracle.test.js',
+  'sajuReadinessGrounding.test.js',
+  'sajuSanming1578OfficialViewerAdjudicationV1.test.js',
+  'sajuShenfengNlcWitnessAdjudication.test.js',
+  'sajuShenfengNlcWitnessBackMatterAdjudicationV1.test.js',
+  'sajuSourceClaimObservation.test.js',
+  'sajuSourceDerivedEvidenceAsset.test.js',
+  'sajuTimingAuthorityFrontier.test.js',
+  'sajuV1LocalFrontier.test.js',
+  'sajuVerificationReconciliation.test.js',
+  'triSystemEvidenceAcquisitionFieldKit.test.js',
+  'triSystemP0AcquisitionPriorityAndDossier.test.js',
+  'ziweiCleanRuleCorpusSourceAcquisitionFeasibility.test.js',
+  'ziweiCleanRuleCorpusSourceSelection.test.js',
+  'ziweiFixtureReconciliation.test.js',
+  'ziweiGuardedOccurrenceExactSourceIdentityPilot.test.js',
+  'ziweiGuardedOccurrenceSourceEvidenceHardening.test.js',
+  'ziweiInheritedEvidenceConsumptionFrontier.test.js',
+  'ziweiMajorStarClaimReadinessReconciliation.test.js',
+  'ziweiMajorStarCoordinateProvenance.test.js',
+  'ziweiOccurrenceProvenance.test.js',
+  'ziweiP0ClaimSourceIdentityFrontier.test.js',
+  'ziweiP0EvidenceAcquisitionFieldKit.test.js',
+  'ziweiP0PalaceBranchSlotComposition.test.js',
+  'ziweiP0PalaceBranchSlotCompositionSmoke.test.js',
+  'ziweiP0PalaceSemanticWitnessAcquisitionRoute.test.js',
+  'ziweiP0ToyoVii3157InstitutionalEvidence.test.js',
+  'ziweiP0YouyiLuCadalSemanticWitness.test.js',
+  'ziweiPalaceSourceAcquisitionFieldKit.test.js',
+  'ziweiQualityBenchmark.test.js',
+  'ziweiReadinessAdmissionBlockerAudit.test.js',
+  'ziweiReadinessBaseline.test.js',
+  'ziweiSelectedOccurrencePublicScanEditionLinkageFollowUp.test.js',
+  'ziweiSourceIdentityClaimBoundaryAudit.test.js',
+  'ziweiStructuralAdmissionFrontier.test.js',
+  'ziweiStructuralAdmissionGuardPilot.test.js',
+  'ziweiStructuralAdmissionIndependentAcceptanceReview.test.js',
+  'ziweiSystemEvidenceReadinessCoverageMap.test.js',
+  'ziweiTianfuConventionProvenance.test.js',
+])
+
 export const TEST_PROFILES = Object.freeze(['default', 'source', 'historical', 'artifact', 'all'])
 
 async function walk(directory, rootDirectory, excludedDirectory = null) {
@@ -115,14 +211,27 @@ export async function discoverTestSuites({ rootDirectory = 'test', artifactDirec
   const files = (await walk(rootDirectory, rootDirectory)).sort((a, b) => a.localeCompare(b))
   const source = new Set(SOURCE_TEST_FILES)
   const historical = new Set(HISTORICAL_TEST_FILES)
+  const allOnly = new Set(ALL_ONLY_TEST_FILES)
   const artifactPrefix = `${artifactDirectory}/`
   const profiles = {
-    default: files.filter(file => !source.has(file) && !historical.has(file) && !file.startsWith(artifactPrefix)),
+    default: files.filter(file =>
+      !source.has(file) &&
+      !historical.has(file) &&
+      !allOnly.has(file) &&
+      !file.startsWith(artifactPrefix),
+    ),
     source: files.filter(file => source.has(file)),
     historical: files.filter(file => historical.has(file)),
     artifact: files.filter(file => file.startsWith(artifactPrefix)),
+    allOnly: files.filter(file => allOnly.has(file)),
   }
-  const assigned = [...profiles.default, ...profiles.source, ...profiles.historical, ...profiles.artifact]
+  const assigned = [
+    ...profiles.default,
+    ...profiles.source,
+    ...profiles.historical,
+    ...profiles.artifact,
+    ...profiles.allOnly,
+  ]
   if (new Set(assigned).size !== assigned.length || assigned.length !== files.length) {
     throw new Error('test profile partition is not disjoint and complete')
   }

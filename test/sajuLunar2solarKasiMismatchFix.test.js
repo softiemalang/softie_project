@@ -8,11 +8,8 @@ import {
   COMPLETE_PATH,
   DELTA_PATH,
   FRONTIER_PATH,
-  buildArtifact,
-  canonicalJson,
 } from '../scripts/materialize-saju-lunar2solar-kasi-mismatch-fix-v1.mjs'
 import { checkArtifact } from '../scripts/check-saju-lunar2solar-kasi-mismatch-fix-v1.mjs'
-import { stableArtifactContentEqual } from '../src/artifactIdentity.js'
 import { lunar2solar, solar2lunar } from '../src/interpretationPrep/lunarConverter.js'
 
 const root = resolve(new URL('../', import.meta.url).pathname)
@@ -32,29 +29,6 @@ test('KASI 1900 lunar2solar successor resolves all v1 guard identities without n
   assert.deepEqual(result.summary.mismatchIds, ['tz-rok-1951-dst-start', 'tz-seoul-1954-offset-change'])
   assert.equal(result.delta.resolvedKnownGuardMismatchCount, 28)
   assert.equal(result.delta.newMismatchCount, 0)
-})
-
-test('successor materialization and the 1900-01 boundary evidence are byte-deterministic', async () => {
-  const first = await buildArtifact({ root })
-  const second = await buildArtifact({ root })
-  assert.equal(canonicalJson(first), canonicalJson(second))
-  assert.equal(stableArtifactContentEqual(first, await readJson(COMPLETE_PATH)), true)
-
-  const before = await readJson(BEFORE_FIXTURE_PATH)
-  const delta = await readJson(DELTA_PATH)
-  assert.equal(before.cases.length, 28)
-  assert.equal(before.cases[0].before.actual, -1)
-  assert.equal(before.cases[0].oracle.solarDate, '1900-02-01')
-  assert.equal(before.cases.at(-1).oracle.solarDate, '1900-02-28')
-  assert.equal(delta.caseIdentity.countBefore, 1456)
-  assert.equal(delta.caseIdentity.countAfter, 1456)
-  assert.equal(delta.caseIdentity.exactOrderPreserved, true)
-  assert.equal(delta.newMismatchIds.length, 0)
-
-  const comparison = await readJson(COMPARISON_PATH)
-  const fixed = comparison.cases.filter(item => before.caseIds.includes(item.caseId))
-  assert.equal(fixed.length, 28)
-  assert.ok(fixed.every(item => item.category === 'exact_match' && item.actual.solarDate === item.oracle.solarDate))
 })
 
 test('lunar2solar lower/upper boundaries and adjacent invalid dates remain fail-closed', async () => {

@@ -1,11 +1,14 @@
+import { spawnSync } from 'node:child_process'
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { mkdtemp, mkdir, readFile, readdir, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import {
+  ALL_ONLY_TEST_FILES,
   HISTORICAL_TEST_FILES,
   SAJU_HISTORICAL_TEST_FILES,
+  SOURCE_LOCAL_TEST_FILES,
   SOURCE_TEST_FILES,
   ZIWEI_P0_HISTORICAL_TEST_FILES,
   discoverAllTestFiles,
@@ -46,7 +49,13 @@ test('source discovery includes the explicit source-bound test set', async () =>
 
 test('repository suites are sorted, disjoint, and complete', async () => {
   const suites = await discoverTestSuites()
-  const { default: defaultFiles, source: sourceFiles, historical: historicalFiles, artifact: artifactFiles } = suites
+  const {
+    default: defaultFiles,
+    source: sourceFiles,
+    historical: historicalFiles,
+    artifact: artifactFiles,
+    allOnly: allOnlyFiles,
+  } = suites
   const allFiles = await discoverAllTestFiles()
   const repositoryFiles = (await readdir('test', { recursive: true }))
     .filter(file => file.endsWith('.test.js'))
@@ -54,12 +63,15 @@ test('repository suites are sorted, disjoint, and complete', async () => {
   assert.deepEqual(sourceFiles, sourceFiles.slice().sort((a, b) => a.localeCompare(b)))
   assert.deepEqual(historicalFiles, historicalFiles.slice().sort((a, b) => a.localeCompare(b)))
   assert.deepEqual(artifactFiles, artifactFiles.slice().sort((a, b) => a.localeCompare(b)))
+  assert.deepEqual(allOnlyFiles, allOnlyFiles.slice().sort((a, b) => a.localeCompare(b)))
   assert.deepEqual(suites.all, allFiles)
   assert.deepEqual(await discoverSourceTestFiles(), sourceFiles)
   assert.deepEqual(await discoverHistoricalTestFiles(), historicalFiles)
   assert.deepEqual(historicalFiles, HISTORICAL_TEST_FILES.slice().sort((a, b) => a.localeCompare(b)))
   assert.ok(SAJU_HISTORICAL_TEST_FILES.every(file => historicalFiles.includes(file)))
   assert.ok(SAJU_HISTORICAL_TEST_FILES.every(file => !defaultFiles.includes(file)))
+  assert.deepEqual(allOnlyFiles, ALL_ONLY_TEST_FILES.slice().sort((a, b) => a.localeCompare(b)))
+  assert.ok(ALL_ONLY_TEST_FILES.every(file => !defaultFiles.includes(file)))
   assert.deepEqual(sourceFiles, SOURCE_TEST_FILES.slice().sort((a, b) => a.localeCompare(b)))
   assert.equal(sourceFiles.includes('sajuFiveClassicsSourceIdentityFrontier.test.js'), true)
   assert.equal(sourceFiles.includes('sajuLocalSourceCorpusObservation.test.js'), true)
@@ -71,10 +83,11 @@ test('repository suites are sorted, disjoint, and complete', async () => {
   assert.equal(defaultFiles.includes('sajuFiveClassicsClaimProvenanceClosureHistorical.test.js'), false)
   assert.equal(historicalFiles.includes('sajuFiveClassicsClaimProvenanceClosureHistorical.test.js'), true)
   assert.equal(defaultFiles.includes('pdfSourceResolver.test.js'), true)
-  assert.equal(defaultFiles.includes('ziweiP0PalaceBranchSlotCompositionSmoke.test.js'), true)
+  assert.equal(defaultFiles.includes('ziweiP0PalaceBranchSlotCompositionSmoke.test.js'), false)
+  assert.equal(allOnlyFiles.includes('ziweiP0PalaceBranchSlotCompositionSmoke.test.js'), true)
   assert.equal(sourceFiles.includes('ziweiP0PalaceBranchSlotCompositionSmoke.test.js'), false)
   assert.equal(new Set(allFiles).size, allFiles.length)
-  assert.deepEqual(allFiles, [...defaultFiles, ...sourceFiles, ...historicalFiles, ...artifactFiles].sort((a, b) => a.localeCompare(b)))
+  assert.deepEqual(allFiles, [...defaultFiles, ...sourceFiles, ...historicalFiles, ...artifactFiles, ...allOnlyFiles].sort((a, b) => a.localeCompare(b)))
   assert.deepEqual(suites.entries, allFiles.map(file => ({
     file,
     profile: sourceFiles.includes(file)
@@ -83,7 +96,9 @@ test('repository suites are sorted, disjoint, and complete', async () => {
         ? 'historical'
         : artifactFiles.includes(file)
           ? 'artifact'
-          : 'default',
+          : allOnlyFiles.includes(file)
+            ? 'allOnly'
+            : 'default',
   })))
   assert.deepEqual(allFiles, repositoryFiles.map(file => `test/${file}`).sort((a, b) => a.localeCompare(b)).map(file => file.replace(/^test\//, '')))
 })
@@ -94,6 +109,24 @@ test('repository default discovery excludes reserved historical and artifact pat
   assert.equal(files.some(file => SOURCE_TEST_FILES.includes(file)), false)
   assert.equal(files.some(file => ZIWEI_P0_HISTORICAL_TEST_FILES.includes(file)), false)
   assert.equal(files.some(file => HISTORICAL_TEST_FILES.includes(file)), false)
+})
+
+test('test:all includes every discovered test and the six source-local suites', async () => {
+  const result = spawnSync(process.execPath, ['scripts/run-default-tests.mjs', 'all', '--list'], {
+    encoding: 'utf8',
+  })
+  assert.equal(result.status, 0, result.stderr)
+  const files = result.stdout.trim().split('\n').filter(Boolean)
+  const allFiles = await discoverAllTestFiles()
+  assert.equal(files.length, allFiles.length + SOURCE_LOCAL_TEST_FILES.length)
+  assert.deepEqual(
+    files.filter(file => file.startsWith('src/')),
+    SOURCE_LOCAL_TEST_FILES.slice().sort((a, b) => a.localeCompare(b)),
+  )
+  assert.deepEqual(
+    files.filter(file => file.startsWith('test/')).map(file => file.slice('test/'.length)),
+    allFiles,
+  )
 })
 
 test('DE405 inventory excludes OS metadata and keeps summary counts synchronized with artifact entries', async () => {
