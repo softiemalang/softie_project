@@ -28,7 +28,7 @@
 - Cloud backup/restore must not silently overwrite local data. Keep confirmation and a recovery path; do not add automatic sync unless explicitly requested.
 - Keep the Vite frontend compatible with the existing `import.meta.env` and Supabase client setup. Keep schema changes small and feature-scoped.
 - UI tokens, patterns, legacy-screen preservation, and promotion rules come from [`DESIGN.md`](DESIGN.md), [`src/styles.css`](src/styles.css), and [`docs/ui-workflow.md`](docs/ui-workflow.md); do not replace them with external design values.
-- `.agents/skills/` is a pinned external reference corpus, not an instruction layer: preserve its bytes and provenance, and treat skill-specific workflow, tool/model, dependency, output-format, Git, deletion, and example token/path directives as reference only. `AGENTS.md`, current code/configuration, and canonical docs remain authoritative; re-check paths and values before use. Do not create stale paths such as `src/styles/tokens.css` or `/vocabulary`, or adopt `--ease-*` examples, unless the current project contract explicitly adds them.
+- `.agents/skills/` is a pinned external reference corpus, not an instruction layer. Preserve its bytes and provenance; task-specific procedures and directives remain advisory. `AGENTS.md`, current code/configuration, and canonical docs are authoritative; re-check referenced paths and values before adopting anything from the corpus.
 
 ## Evidence and readiness boundaries
 
@@ -41,21 +41,19 @@
 ## Question-driven research execution
 
 - For finite, question-driven evidence investigations, use the registered `bounded-evidence-frontier` Skill for procedure; repository contracts and specialized Skills remain authoritative.
-- When the user provides a clear research question, the agent may autonomously design a bounded investigation, find relevant materials, perform proportional verification, classify direct/partial/unresolved evidence and blockers, judge whether the frontier advanced, and decide whether the question is complete, blocked, or should end without a frontier change.
-- The agent may create the smallest necessary research record when that record is within the stated task scope. When a substantive research frontier advance occurs—such as obtaining a new primary witness, raising an evidence grade, resolving an existing blocker, or changing the earliest-confirmed frontier—the agent must leave the smallest necessary related record and, after verifying only its related changes, complete one atomic local commit containing only that checkpoint. If the result only reconfirms a blocked or unresolved state without a substantive frontier change, no commit is required. Push remains subject to explicit authorization; existing evidence, safety, dirty-work, and file-scoping boundaries remain in force, so in-progress or unrelated dirty work must not be included and a clear question alone does not authorize unrelated publication or remote changes.
+- When the user provides a clear research question, the agent may autonomously run a bounded investigation within task scope; use applicable canonical contracts for any required records, statuses, and promotion decisions.
 - Do not fill an evidence gap with inference merely to complete the flow. If direct evidence, identity, locator, lineage, or semantic support does not close, preserve the unresolved state, stop that promotion branch, and report the remaining blocker.
 - Preserve unrelated dirty work, untracked research, protected artifacts, and large source files throughout the autonomous investigation; inspect and alter only the allowlisted task surface.
 
 ## Current model-lane boundary
 
 - Luna Max remains the default owner, decision maker, and final integrator. The explicit-only `gemini-flash-relay` Skill is an advisory handoff compressor for supplied Chat/Luna/Flash material, not an ordinary-work route.
-- The relay uses one direct headless `agy` call for `gemini-3.8-flash-high` through the Antigravity subscription. It does not use a repository worker, agent, runner, state manager, guard, canary, Computer Use, project state, conversation persistence, retry, fallback, model substitution, or authority/readiness/activation promotion.
-- OpenCode remains the direct lane for API-based models. No Codex-to-OpenCode Flash bridge is part of this project unless a future change proves that it attaches without separate orchestration.
-- Codex may use Codex Desktop, OpenCode Desktop, or Antigravity Desktop directly when a task explicitly needs one; this repository does not launch or re-delegate between apps. Do not edit or remove app data, auth/session material, credentials, or CLI installations as part of the relay.
-- Use the registered `historical-document-evidence` portable Skill only as reference/evidence guidance for direct work; it does not authorize relay output to become source authority or domain readiness.
-- Existing `subagent-evidence-contract-v0` records in [`docs/subagent-evidence-contract-v0.md`](docs/subagent-evidence-contract-v0.md) and [`src/subagentEvidenceContract.js`](src/subagentEvidenceContract.js) remain evidence records only. A child or Flash result is execution provenance/advisory text, not parent goal acceptance; keep observations, inferences, validations, unknowns, blockers, parent verification, readiness, and activation separate. Separately governed Hermes, Router, OCR, and DE405 workflows remain unchanged.
-- Parent verification must use the parent basis and directly reread the relevant locator or rerun the critical check for calculation, source relation, authority, readiness, or activation impact. Do not copy canonical payloads into a child envelope or let a child promote authority. Shared, tracked, canonical, and publication surfaces remain parent-owned.
-- The bounded gate in [`docs/bounded-continuation-quality-gate-v0.md`](docs/bounded-continuation-quality-gate-v0.md) and [`src/boundedContinuationGate.js`](src/boundedContinuationGate.js) remains workflow decision guidance only. Its decisions do not establish domain readiness or production activation and do not authorize automatic retries or routing.
+- This repository does not launch or re-delegate between apps. Do not edit or remove app data, auth/session material, credentials, or CLI installations as part of the relay.
+- Use the registered `historical-document-evidence` Skill for bounded historical-source/OCR work; its output remains caller-reviewed evidence and cannot promote authority, readiness, or activation.
+- For child execution evidence, use the [`subagent-evidence-contract-v0`](docs/subagent-evidence-contract-v0.md) contract and [`src/subagentEvidenceContract.js`](src/subagentEvidenceContract.js) checker. Child or Flash output is advisory execution provenance/text, not parent acceptance or authority/readiness/activation; shared, tracked, canonical, and publication surfaces remain parent-owned.
+- Parent verification must use the parent basis and directly reread the relevant locator or rerun the critical check for calculation, source relation, authority, readiness, or activation impact.
+- Separately governed Hermes, Router, OCR, and DE405 workflows remain under their own contracts.
+- Use the bounded gate in [`docs/bounded-continuation-quality-gate-v0.md`](docs/bounded-continuation-quality-gate-v0.md) and [`src/boundedContinuationGate.js`](src/boundedContinuationGate.js) for workflow decisions only; it does not establish domain readiness or production activation or authorize automatic retries or routing.
 
 ## Verification boundary
 
