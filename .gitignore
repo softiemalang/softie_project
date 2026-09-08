@@ -9,6 +9,7 @@ dist/
 supabase/.temp/
 .codex/
 /.antigravity-worker-state/
+/.zen-state-manager-state/
 scratch/actualLlmResponseReport.json
 # DE405 canonical v2 native build artifacts
 /tools/de405-cspice-runner/build/
