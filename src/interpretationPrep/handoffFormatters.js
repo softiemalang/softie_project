@@ -32,6 +32,42 @@ export const TOPIC_LABELS = {
   general: '삶의 방향 탐색',
 }
 
+export const GANYEOJIDONG_DAY_PILLARS = new Set([
+  '갑인', '을묘', '병오', '정사', '무진', '무술',
+  '기미', '기축', '경신', '신유', '임자', '계해',
+])
+
+export function formatSajuLiteratureContext(raw = {}, context = {}, isCandidate = false) {
+  const dayPillar =
+    raw.pillars?.day?.referenceValue ||
+    raw.pillars?.day?.value ||
+    (raw.pillars?.day?.stem && raw.pillars?.day?.branch ? `${raw.pillars.day.stem}${raw.pillars.day.branch}` : null) ||
+    context?.candidateSetConsensus?.factual?.dayPillar
+
+  let modernPillarLine = ''
+  if (isCandidate) {
+    modernPillarLine = '- 현대 일주론 관행: 복수 명식 후보 조건으로 일주론 관점 판정 보류'
+  } else if (dayPillar && GANYEOJIDONG_DAY_PILLARS.has(dayPillar)) {
+    modernPillarLine =
+      `- 현대 일주론 관행 (간여지동): 해당 일주(${dayPillar})는 천간과 지지가 같은 오행/기운인 간여지동(干與支同) 일주(출처: 천명선생 사주천궁 공개 자료 insight6348.tistory.com/365). 강한 주관성·집중력·자기 확신의 기질 경향성(때로는 융통성 고려 필요)을 시사하나, 현대 술사 관행으로 historicalAuthority 미수립, personalValidity 미수립이며 고정된 운명/진단이 아님.`
+  } else {
+    modernPillarLine = `- 현대 일주론 관행: 해당 일주(${dayPillar || '미상'})는 간여지동 12개 일주에 해당하지 않으며, 단일 일주만으로 성격/운명을 단정하지 않고 전체 원국 및 계절 맥락과 함께 탐색.`
+  }
+
+  return [
+    '#### 문헌 및 해석 참고 관점',
+    '- 고서 5종 원전 문헌 관점 (Classical Five Classics Context):',
+    '  - 《연해자평(淵海子平)》: 일간 중심(일주론)의 주체 설정, 월령(월지) 중심의 계절 환경 배속, 십성/지장간 구조',
+    '  - 《삼명통회(三命通會)》: 연월일시 4기둥 시간 구조와 오행 생극제화(生剋制化) 상호작용',
+    '  - 《적천수(滴天髓)》: 계절과 음양 오행의 득기(得氣) 및 양강·음순(陽剛·陰順)의 기세 관점',
+    '  - 《자평진전(子平真詮)》: 형·충·회·합의 지지 상호작용 및 격국/용신의 구조적 질서',
+    '  - 《궁통보감(窮通寶鑑)》: 태어난 계절의 조후(한난조습) 균형 관점',
+    '  - 고서 한계: 판본 전승 미확정(unresolved_edition), 고서의 정성적 기술과 수치 알고리즘 간격 존재 (historicalAuthority: insufficient_evidence, historicalFact: false, readiness: blocked, activation: not_activated).',
+    modernPillarLine,
+    '- 한계: personalValidity: not_established, 심리측정 아님, 대화 탐색용 가설일 뿐 단정적 판정 금지.',
+  ].join('\n')
+}
+
 function compactJson(value) {
   return JSON.stringify(value ?? null)
 }
@@ -226,6 +262,8 @@ export function formatSajuFull(system = {}) {
       '- 지지 관계: 후보 확인 필요 (단일 확정 관계 없음)',
       formatEvidenceBoundary(system.evidenceBoundary),
       '',
+      formatSajuLiteratureContext(raw, context, true),
+      '',
       '#### 후보·불확실성',
       formatCandidates(raw, context),
       `- 계산값이 달라지는 조건: ${compactJson(raw.calculationUncertainty || context.uncertainFactors || [])}`,
@@ -255,6 +293,8 @@ export function formatSajuFull(system = {}) {
     formatHiddenStems(raw.hiddenStems),
     formatRelations('천간 관계', raw.stemRelations),
     formatRelations('지지 관계', raw.branchRelations),
+    '',
+    formatSajuLiteratureContext(raw, context, false),
     '',
     '#### 후보·불확실성',
     formatCandidates(raw, context),
@@ -382,6 +422,13 @@ export function formatTopicEvidence({ result, unifiedContext, topic = 'general' 
     sajuFeatureText,
   ]
 
+  const dayPillar =
+    raw.pillars?.day?.referenceValue ||
+    raw.pillars?.day?.value ||
+    (raw.pillars?.day?.stem && raw.pillars?.day?.branch ? `${raw.pillars.day.stem}${raw.pillars.day.branch}` : null) ||
+    sajuSystem.context?.candidateSetConsensus?.factual?.dayPillar
+  const isGanyeojidong = Boolean(dayPillar && GANYEOJIDONG_DAY_PILLARS.has(dayPillar))
+
   if (topic === 'personality') {
     if (isCandidateSaju) {
       sections.push(
@@ -393,13 +440,22 @@ export function formatTopicEvidence({ result, unifiedContext, topic = 'general' 
         formatMap('오행 표면 분포', raw.elements?.counts),
         formatMap('십성 표면 분포', raw.tenGods?.visible),
         formatExperimental(raw.experimental, sajuResult.status),
+        '- 문헌 해석 관점: 《연해자평》의 일간 주체 설정과 《적천수》의 음양 득기(得氣)·양강음순(陽剛陰順) 기세를 바탕으로 성향 가설을 탐색하며, 고정된 성격 진단(personalValidity=not_established)을 피합니다.',
+        isGanyeojidong
+          ? `- 현대 일주론 관점 (간여지동): 해당 일주(${dayPillar})는 간여지동으로 강한 주관성·집중력·자기 확신의 기질 경향성 가설(출처: 천명선생 사주천궁)을 시사하나, 융통성 고려가 필요한 대화 탐색용 관점입니다.`
+          : `- 현대 일주론 관점: 해당 일주(${dayPillar || '미상'})는 간여지동 분류에 해당하지 않으며, 단일 일주에 편중되지 않고 전체 원국 균형으로 탐색합니다.`,
       )
     }
   } else if (topic === 'career') {
     if (isCandidateSaju) {
       sections.push('#### 직업 관련 시기 근거', '- 대운·세운: 후보별 상이함 (단일 확정 불가)')
     } else {
-      sections.push('#### 직업 관련 시기 근거', formatDaYun(raw.timing?.daYun), `- 세운: ${formatPeriod(raw.timing?.periods?.year || {})}`)
+      sections.push(
+        '#### 직업 관련 시기 근거',
+        formatDaYun(raw.timing?.daYun),
+        `- 세운: ${formatPeriod(raw.timing?.periods?.year || {})}`,
+        '- 문헌 해석 관점: 《연해자평》의 월령(월지) 중심 환경 배속과 《자평진전》의 격국 가능성을 사회적 역할 탐색 가설로 참고하되, 실제 직무 경험과 선택을 우선합니다.',
+      )
     }
   } else if (topic === 'relationship') {
     if (isCandidateSaju) {
@@ -417,13 +473,19 @@ export function formatTopicEvidence({ result, unifiedContext, topic = 'general' 
       sections.push(
         `- 일지: ${dayBranch || '후보 확인 필요'}`,
         formatRelations('일지·관계 관련 합충형파해', { items: relationshipRelations }),
+        '- 문헌 해석 관점: 《자평진전》의 지지 형·충·회·합 상호작용 및 일지(배우자궁) 기운을 관계 역학 탐색 가설로 삼으며, 관계의 길흉을 단정하지 않고 상호 적응과 소통의 맥락을 확인합니다.',
       )
     }
   } else if (topic === 'timing') {
     if (isCandidateSaju) {
       sections.push('#### 대운·세운·월운·일진·경계 후보', '- 시기 계산: 후보별 상이함 (단일 확정 불가)', formatCandidates(raw, sajuSystem.context || {}))
     } else {
-      sections.push('#### 대운·세운·월운·일진·경계 후보', formatSajuTiming(raw), formatCandidates(raw, sajuSystem.context || {}))
+      sections.push(
+        '#### 대운·세운·월운·일진·경계 후보',
+        formatSajuTiming(raw),
+        formatCandidates(raw, sajuSystem.context || {}),
+        '- 문헌 해석 관점: 《삼명통회》 및 《적천수》의 시기적 기세 변화를 환경적 도전과 기회의 가설로 삼으며, timing facts 외에 미래 사건을 확정하지 않는 정책 경계를 유지합니다.',
+      )
     }
   }
 

@@ -1,4 +1,4 @@
-const ALLOWED_RETURN_PATHS = ['/scheduler', '/fortune', '/softie-fortune', '/rehearsals', '/']
+const ALLOWED_RETURN_PATHS = ['/scheduler', '/fortune', '/rehearsals', '/']
 const ALLOWED_RETURN_ORIGINS = [
   'https://softieproject.com',
   'https://project-fp5ie.vercel.app',

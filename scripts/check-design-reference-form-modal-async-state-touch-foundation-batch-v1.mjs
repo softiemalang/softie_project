@@ -39,7 +39,7 @@ function lineLocation(text, quote) {
 
 function verifyReference(errors, reference, generationBaseHead) {
   const path = join(ROOT, reference?.path || '')
-  if (!reference?.kind || !reference?.path || !existsSync(path)) {
+  if (!reference?.kind || !reference?.path) {
     errors.push(`invalid_reference:${reference?.path || 'missing'}`)
     return
   }
@@ -48,11 +48,22 @@ function verifyReference(errors, reference, generationBaseHead) {
       generationBaseHead,
       descendantHead: resolveHead(),
     })
+    // A descendant may intentionally remove a file that remains part of a
+    // frozen source ledger. Its generation-base or descendant bytes still
+    // provide the protected evidence for that historical reference.
+    if (!existsSync(path) && !identity.historicalMatches && !identity.descendantMatches) {
+      errors.push(`invalid_reference:${reference.path}`)
+      return
+    }
     const matches = identity.currentMatches || identity.historicalMatches || identity.descendantMatches
     add(errors, matches, `reference_hash:${reference.path}`)
     add(errors, matches, `reference_length:${reference.path}`)
     add(errors, matches, `reference_quote:${reference.path}`)
   } else if (reference.kind === 'historical_artifact_json') {
+    if (!existsSync(path)) {
+      errors.push(`invalid_reference:${reference.path}`)
+      return
+    }
     const bytes = readFileSync(path)
     add(errors, bytes.byteLength === reference.byteLength, `reference_length:${reference.path}`)
     add(errors, sha256(bytes) === reference.byteSha256, `reference_hash:${reference.path}`)

@@ -69,11 +69,6 @@ export default function HomePage() {
       label: 'SCHEDULER',
     },
     {
-      description: '저장된 나의 사주 프로필을 바탕으로 오늘의 흐름을 더 조용하고 깊게 살펴요.',
-      path: '/softie-fortune',
-      label: 'SOFTIE FORTUNE',
-    },
-    {
       description: '세 가지 명리 체계의 계산 근거와 불확실성을 해석 전에 구조화해요.',
       path: '/interpretation-prep',
       label: 'INTERPRETATION PREP',

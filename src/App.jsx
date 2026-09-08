@@ -7,7 +7,6 @@ const SchedulerAuthGate = lazy(() => import('./scheduler/SchedulerAuthGate').the
   default: module.SchedulerAuthGate,
 })))
 const SchedulerKakaoMemoInjector = lazy(() => import('./scheduler/SchedulerKakaoMemoInjector'))
-const SoftieFortunePage = lazy(() => import('./saju/SoftieFortunePage'))
 const ProjectBrainPage = lazy(() => import('./pages/ProjectBrainPage'))
 const BandGoogleCompactPage = lazy(() => import('./pages/BandGoogleCompactPage'))
 const RehearsalCalendarPage = lazy(() => import('./pages/RehearsalCalendarPage'))
@@ -74,11 +73,11 @@ function getRouteMetadata(pathname) {
     }
   }
 
-  if (pathname.startsWith('/softie-fortune') || pathname.startsWith('/fortune')) {
+  if (pathname.startsWith('/fortune')) {
     return {
-      title: 'Softie Fortune | Softie Project',
-      appTitle: 'Softie Fortune',
-      ogTitle: 'Softie Fortune | Softie Project',
+      title: 'Interpretation Prep | Softie Project',
+      appTitle: 'Interpretation Prep',
+      ogTitle: 'Interpretation Prep | Softie Project',
     }
   }
 
@@ -208,18 +207,14 @@ export default function App() {
     return <LazyRoute><SpotifyMusicPage /></LazyRoute>
   }
 
-  if (pathname.startsWith('/softie-fortune')) {
-    return <LazyRoute><SoftieFortunePage /></LazyRoute>
-  }
-
   if (pathname.startsWith('/fortune')) {
     return (
       <DisabledEntryPage
         eyebrow="FORTUNE"
         title="이전 운세 페이지는 현재 사용하지 않아요."
-        description="Softie Fortune에서 오늘의 리포트를 확인해 주세요."
-        buttonLabel="Softie Fortune으로 이동"
-        buttonPath="/softie-fortune"
+        description="사주 계산 근거와 불확실성은 해석 준비에서 확인해 주세요."
+        buttonLabel="해석 준비로 이동"
+        buttonPath="/interpretation-prep"
       />
     )
   }
@@ -229,9 +224,9 @@ export default function App() {
       <DisabledEntryPage
         eyebrow="SAJU QA"
         title="사주 QA/평가 화면은 현재 비활성화되어 있어요."
-        description="현재 운세 진입점은 Softie Fortune 하나로 정리해두었습니다."
-        buttonLabel="Softie Fortune으로 이동"
-        buttonPath="/softie-fortune"
+        description="현재 사주 해석 진입점은 해석 준비 하나로 정리해두었습니다."
+        buttonLabel="해석 준비로 이동"
+        buttonPath="/interpretation-prep"
       />
     )
   }

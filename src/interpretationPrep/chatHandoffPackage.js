@@ -8,6 +8,7 @@
 
 import {
   TOPIC_LABELS,
+  GANYEOJIDONG_DAY_PILLARS,
   formatSajuFull,
   formatSajuPillars,
   formatEvidenceBoundarySummary,
@@ -121,10 +122,22 @@ function sajuQuickFacts(unifiedContext, result) {
     ? '후보 확인 필요 (단일 확정 불가)'
     : (raw.dayMaster?.stem || context.candidateSetConsensus?.factual?.dayMaster || '후보 확인 필요')
 
+  const dayPillar = isCandidate
+    ? null
+    : (raw.pillars?.day?.referenceValue ||
+       raw.pillars?.day?.value ||
+       (raw.pillars?.day?.stem && raw.pillars?.day?.branch ? `${raw.pillars.day.stem}${raw.pillars.day.branch}` : null) ||
+       context.candidateSetConsensus?.factual?.dayPillar)
+
+  const ganyeoText = isCandidate
+    ? '후보 확인 필요'
+    : (dayPillar && GANYEOJIDONG_DAY_PILLARS.has(dayPillar) ? '간여지동 해당' : '간여지동 미해당')
+
   return [
     `- 사주: ${pillarsText}`,
     `- 일간: ${dayMaster}`,
     `- 신뢰도/상태: ${system.confidence || unifiedContext.unifiedConfidence?.sajuConfidence || '미상'} / ${system.status || 'available'}${calculationResult.status === 'experimental' ? ' · Experimental 판정 포함' : ''}`,
+    `- 문헌·해석 관점: 고서 5종 원전(연해자평·삼명통회 등) 배경 및 현대 일주론(${ganyeoText}) · personalValidity=not_established`,
     `- 계산 정책 경계: ${formatSajuPolicyBoundary(policyContract)}`,
   ].join('\n')
 }
@@ -210,6 +223,7 @@ export function buildChatHandoffPackage(configOrUnified = {}, legacyQuestion = '
     '- 후보와 경계 조건은 하나의 값으로 확정하지 마십시오.',
     '- [Experimental] 강약·격국·용신·신살과 자미두수 결과는 검증 수준을 함께 고지하십시오.',
     '- 서양 점성학 값을 추정하거나 Simulation 값을 실제 천문력 계산처럼 생성하지 마십시오.',
+    '- 고서 원전 및 현대 일주론 문헌 내용은 대화 탐색용 중립 가설이며, 고정된 성격·운명 진단(personalValidity=not_established)이 아닙니다.',
     '- 결정론적 성격·운명·미래 판정을 피하고 사용자의 실제 경험을 확인하는 질문을 포함하십시오.',
     '',
     '## 8. 대화 시작 요청',

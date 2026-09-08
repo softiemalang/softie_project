@@ -101,3 +101,56 @@ test('privacy minimal copy removes direct identifiers and question PII', () => {
   assert.doesNotMatch(privacy, /test@example\.com/)
   assert.match(privacy, /질문 요약: 관계에서 반복되는 패턴 탐색/)
 })
+
+test('handoff package integrates classical 5 classics, modern practitioner reference, and uncertainty boundaries', () => {
+  const { pkg } = build('personality')
+  const full = pkg.copies.full
+
+  // Classical literature presence & boundaries
+  assert.match(full, /#### 문헌 및 해석 참고 관점/)
+  assert.match(full, /연해자평/)
+  assert.match(full, /삼명통회/)
+  assert.match(full, /적천수/)
+  assert.match(full, /자평진전/)
+  assert.match(full, /궁통보감/)
+  assert.match(full, /unresolved_edition/)
+  assert.match(full, /personalValidity: not_established/)
+
+  // Modern practitioner reference (계사 is not in GANYEOJIDONG 12 pillars)
+  assert.match(full, /간여지동 12개 일주에 해당하지 않으며/)
+
+  // Quick & privacyMinimal copies include literature summary
+  assert.match(pkg.copies.quick, /문헌·해석 관점/)
+  assert.match(pkg.copies.quick, /personalValidity=not_established/)
+  assert.match(pkg.copies.privacyMinimal, /문헌·해석 관점/)
+  assert.match(pkg.copies.privacyMinimal, /personalValidity=not_established/)
+
+  // Topic focused copy includes literature interpretation lens
+  assert.match(pkg.copies.topicFocused, /문헌 해석 관점/)
+
+  // Guardrail specifies neutral hypothesis
+  assert.match(full, /고서 원전 및 현대 일주론 문헌 내용은 대화 탐색용 중립 가설이며/)
+})
+
+test('handoff package identifies ganyeojidong day pillar when input matches 12 enum pillars', () => {
+  const ganyeoInput = {
+    ...INPUT,
+    birthDate: '1998-02-18', // 1998-02-18 yields 갑인 day
+    birthTime: '12:00',
+  }
+  const prepared = prepareThreeSystemInterpretationData(ganyeoInput)
+  const pkg = buildChatHandoffPackage({
+    result: prepared.result,
+    unifiedContext: prepared.unifiedContext,
+    userQuestion: '성향이 궁금해요.',
+    topicCategory: 'personality',
+  })
+
+  // If day is Ganyeojidong (e.g. 갑인)
+  const dayPillar = prepared.result.systems.saju.raw.pillars.day.value
+  if (dayPillar === '갑인') {
+    assert.match(pkg.copies.full, /간여지동\(干與支同\) 일주/)
+    assert.match(pkg.copies.full, /insight6348\.tistory\.com\/365/)
+    assert.match(pkg.copies.quick, /간여지동 해당/)
+  }
+})

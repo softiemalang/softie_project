@@ -787,8 +787,8 @@ export default function BandPage() {
         <p className="eyebrow">밴드 합주 일정 조율</p>
         <h1>한 방에서 가능 시간을 모으고, 겹치는 합주 시간을 빠르게 찾아보세요.</h1>
         <div className="action-row" style={{ marginTop: '1.2rem' }}>
-          <button type="button" className="soft-button" onClick={() => navigate('/fortune')}>
-            운세 🍀
+          <button type="button" className="soft-button" onClick={() => navigate('/interpretation-prep')}>
+            해석 준비 🍀
           </button>
         </div>
       </header>

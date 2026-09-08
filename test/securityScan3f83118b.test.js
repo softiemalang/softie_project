@@ -36,15 +36,11 @@ test('public Saju and internal test surfaces are bounded or fail closed', () => 
   const generate = read('supabase/functions/generate-fortune-report/index.ts')
   const knowledge = read('supabase/functions/saju-knowledge-test/index.ts')
   const evaluator = read('supabase/functions/saju-evaluator-test/index.ts')
-  const profile = read('supabase/functions/get-softie-saju-profile/index.ts')
   const api = read('src/saju/api.js')
-  const page = read('src/saju/SoftieFortunePage.jsx')
 
   assert.match(knowledge, /requireInternalFunctionSecret[\s\S]*SAJU_INTERNAL_TEST_SECRET/)
   assert.match(evaluator, /requireInternalFunctionSecret[\s\S]*SAJU_INTERNAL_TEST_SECRET/)
   assert.match(rls, /revoke all on table public\.saju_report_evaluations, public\.saju_evaluation_batches from public, anon, authenticated/i)
-  assert.match(profile, /select\('id, name, birth_date, birth_time, gender'\)/)
-  assert.doesNotMatch(profile, /select\('\*'\)/)
   assert.match(rls, /drop policy if exists "Saju profiles public select for public profile"/i)
   assert.match(rls, /revoke select on table public\.saju_profiles from public, anon/i)
   assert.match(rls, /drop policy if exists "Saju daily snapshots public select for public profile"/i)
@@ -71,10 +67,6 @@ test('public Saju and internal test surfaces are bounded or fail closed', () => 
   assert.match(api, /content: normalizeSajuReportForConsumer\(\{ report_content: data\.content \}\)/)
   assert.match(api, /from\('saju_daily_snapshots'\)[\s\S]*select\('id, profile_id, target_date, daily_stem, daily_branch, computed_data, created_at, updated_at'\)/)
   assert.doesNotMatch(api, /from\('saju_daily_snapshots'\)\s*\.select\('\*'\)/)
-  assert.doesNotMatch(page, /getFortuneReport\(/)
-  assert.doesNotMatch(page, /getDailySnapshot\(/)
-  assert.doesNotMatch(page, /getNatalSnapshot\(|createNatalSnapshot\(|createDailySnapshot\(/)
-  assert.match(page, /오늘의 운세 스냅샷이 아직 준비되지 않았어요/)
 })
 
 test('caller-selected identities are bound to authenticated subjects', () => {

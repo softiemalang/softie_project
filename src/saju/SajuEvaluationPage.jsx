@@ -181,8 +181,8 @@ export default function SajuEvaluationPage() {
             <button type="button" className="soft-button" onClick={() => navigate('/')}>
               홈으로 돌아가기
             </button>
-            <button type="button" className="soft-button" onClick={() => navigate('/fortune')}>
-              운세 페이지
+            <button type="button" className="soft-button" onClick={() => navigate('/interpretation-prep')}>
+              해석 준비
             </button>
           </div>
           {hasEvaluations ? (
