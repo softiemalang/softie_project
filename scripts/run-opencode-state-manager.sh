@@ -41,7 +41,7 @@ while [[ $# -gt 0 ]]; do
       shift 2
       ;;
     -h|--help)
-      echo "Usage: run-zen-state-manager.sh [OPTIONS] [\"PROMPT\"]"
+      echo "Usage: run-opencode-state-manager.sh [OPTIONS] [\"PROMPT\"]"
       echo ""
       echo "Options:"
       echo "  --new-session        Start a fresh workstream session (reset persistent session)"
@@ -271,7 +271,7 @@ if [ "${SHOW_USAGE}" = true ]; then
   python3 -c "
 import sys, json
 u = json.loads('''${USAGE_JSON}''')
-print('=== ZEN STATE MANAGER USAGE & METRICS ===', file=sys.stderr)
+print('=== OPENCODE STATE MANAGER USAGE & METRICS ===', file=sys.stderr)
 print('Model:            ${MODEL}', file=sys.stderr)
 print('Variant:          ${VARIANT}', file=sys.stderr)
 print('Session ID:       ${SESSION_ID}', file=sys.stderr)
