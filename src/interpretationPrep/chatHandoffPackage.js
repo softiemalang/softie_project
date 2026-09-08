@@ -17,6 +17,9 @@ import {
 } from './handoffFormatters.js'
 import { normalizeSajuPolicyContractForConsumer } from '../saju/engine/sajuPolicyContract.js'
 import { formatSajuPolicyBoundary } from '../saju/policyDisplay.js'
+import { buildConversationFoundation, buildDeterministicBase } from './conversationFoundation.js'
+
+export { buildConversationFoundation, buildDeterministicBase } from './conversationFoundation.js'
 
 const SYSTEM_LABELS = {
   saju: '사주',
@@ -276,6 +279,13 @@ export function buildChatHandoffPackage(configOrUnified = {}, legacyQuestion = '
     privacyMinimal: privacyMinimalMarkdown,
   }
 
+  const foundation = buildConversationFoundation({
+    result,
+    unifiedContext,
+    userQuestion: question,
+    topicCategory,
+  })
+
   return {
     subjectName,
     userQuestion: question,
@@ -284,5 +294,6 @@ export function buildChatHandoffPackage(configOrUnified = {}, legacyQuestion = '
     characterCounts: Object.fromEntries(
       Object.entries(copies).map(([type, markdown]) => [type, markdown.length]),
     ),
+    foundation,
   }
 }
