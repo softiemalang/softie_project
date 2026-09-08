@@ -209,7 +209,16 @@ test('Astrology Real Fixture: strictly flags inactive research artifact, preserv
   assert.equal(astroFoundation.activation.status, 'blocked')
   assert.equal(astroFoundation.activation.serviceEligibility, 'blocked')
   assert.equal(astroFoundation.activation.usable, false)
-  assert.match(astroFoundation.researchNotice, /오프라인에서 검증된 불변 연구 증적/)
+  assert.equal(astroFoundation.activation.reason, 'interpretation_packet_not_activated')
+  assert.match(astroFoundation.researchNotice, /softie_project 내부 interpretation service\/runtime integration이 아직 연결되지 않았다는 뜻/)
+  assert.match(astroFoundation.researchNotice, /일반 ChatGPT\/Gemini downstream 대화 자체를 금지하지 않습니다/)
+  assert.deepEqual(astroFoundation.unknown.interpretationBoundary, {
+    availableForInterpretation: false,
+    scope: 'softie_project_internal_interpretation_service_runtime_integration',
+    meaning: 'internal_service_runtime_not_connected',
+    generalChatDownstream: 'not_prohibited',
+    userRequestedInterpretation: 'allowed_with_fact_interpretation_boundary',
+  })
 
   // Purity Assertion: SYNTHESIS must be completely absent
   assert.equal(astroFoundation.synthesis, undefined, 'SYNTHESIS must not be present in canonical deterministic base')
@@ -220,7 +229,7 @@ test('Astrology Real Fixture: strictly flags inactive research artifact, preserv
 
   // 2. FACT (offline research verified evidence extracted without ephemeris execution)
   assert.equal(astroFoundation.fact.hasVerifiedData, true)
-  assert.ok(astroFoundation.fact.verifiedBodies.length >= 2, '태양과 달 등 관측 천체 보존')
+  assert.equal(astroFoundation.fact.verifiedBodies.length, 10, '검증된 10개 천체 보존')
 
   const sun = astroFoundation.fact.verifiedBodies.find((b) => b.id === 'sun')
   assert.ok(sun)
@@ -235,18 +244,92 @@ test('Astrology Real Fixture: strictly flags inactive research artifact, preserv
   assert.equal(astroFoundation.fact.angles.ascendant.sign, 'aries')
   assert.ok(Math.abs(astroFoundation.fact.angles.ascendant.degreeInSign - 11.377) < 0.01)
 
+  assert.equal(astroFoundation.fact.aspects.length, 18, '18개 aspect 보존')
+  const sunMoonAspect = astroFoundation.fact.aspects.find((aspect) => aspect.id === 'sun__moon__sextile')
+  assert.ok(sunMoonAspect)
+  assert.ok(Math.abs(sunMoonAspect.calculationPrimitive.angularDistanceDegrees - 57.05072569815809) < 1e-9)
+  assert.equal(sunMoonAspect.derivedClassification.aspectId, 'sextile')
+  assert.equal(sunMoonAspect.derivedClassification.exactAngleDegrees, 60)
+  assert.ok(Math.abs(sunMoonAspect.derivedClassification.orbDegrees - 2.9492743018419105) < 1e-9)
+  assert.equal(sunMoonAspect.derivedClassification.ruleId, 'major_aspect_v0')
+  assert.equal(sunMoonAspect.derivedClassification.ruleSetVersion, 'mallang-astrology-rule-core-v0')
+  assert.ok(sunMoonAspect.sourceRefs.includes('rawChart.bodies.sun.longitudeDegrees'))
+  assert.ok(sunMoonAspect.sourceRefs.includes('rawChart.bodies.moon.longitudeDegrees'))
+  assert.ok(sunMoonAspect.sourceRefs.includes('ruleChart.aspects.sun.moon'))
+  assert.equal(Object.hasOwn(sunMoonAspect.derivedClassification, 'phase'), false)
+
+  assert.equal(astroFoundation.fact.wholeSignHouses.derivedClassification.houseSystem, 'whole_sign')
+  assert.equal(astroFoundation.fact.wholeSignHouses.calculationPrimitive.placements.length, 10)
+  assert.equal(astroFoundation.fact.wholeSignHouses.derivedClassification.ruleId, 'whole_sign_house_v0')
+  assert.equal(astroFoundation.fact.distribution.calculationPrimitive.overall.counts.elements.fire, 3)
+  assert.equal(astroFoundation.fact.distribution.derivedClassification.tie.overall.elements, true)
+  assert.equal(Object.hasOwn(astroFoundation.fact.distribution.derivedClassification, 'leaders'), false)
+  assert.equal(astroFoundation.fact.chartRulers.calculationPrimitive.ascendantSignId, 'aries')
+  assert.equal(astroFoundation.fact.chartRulers.derivedClassification.traditionalChartRuler, 'mars')
+  assert.equal(astroFoundation.fact.chartRulers.derivedClassification.modernChartRuler, 'mars')
+
   // 3. SOURCE
   assert.match(astroFoundation.source.ephemerisKernel, /JPL DE405 SPK/)
   assert.equal(astroFoundation.source.protocolVersion, 'de405-canonical-v2-protocol-v1')
   assert.equal(astroFoundation.source.ruleCoreVersion, 'mallang-astrology-rule-core-v0')
   assert.ok(astroFoundation.source.provenanceLinks.providerBundleSha256)
+  assert.ok(astroFoundation.source.provenanceLinks.packetContentSha256)
+  assert.ok(astroFoundation.source.provenanceLinks.adapterSha256)
+  assert.ok(astroFoundation.source.provenanceLinks.readinessSha256)
+  assert.ok(astroFoundation.source.provenanceLinks.kernelSha256)
+  assert.ok(astroFoundation.source.provenanceLinks.runnerIdentity)
+  assert.equal(astroFoundation.source.provenanceLinks.evaluator, 'de405-canonical-v2')
+  assert.equal(astroFoundation.source.provenanceStatus, 'complete')
+  assert.deepEqual(astroFoundation.source.provenanceMissing, [])
+  assert.ok(astroFoundation.source.provenance.claimSourceRefs.length >= 50)
 
   // 4. UNKNOWN
   assert.equal(astroFoundation.unknown.activationStatus, 'blocked')
   assert.equal(astroFoundation.unknown.serviceEligibility, 'blocked')
   assert.equal(astroFoundation.unknown.systemBoundaries.livedExperience, 'not_supplied')
   assert.equal(astroFoundation.unknown.systemBoundaries.consumerDelivery, 'blocked')
+  assert.deepEqual(astroFoundation.unknown.unsupportedFeatures.map((feature) => feature.feature), ['legacy_simulation_placidus_date_seed'])
+  assert.deepEqual(astroFoundation.unknown.blockedFeatures.map((feature) => feature.feature), ['interpretation_service_activation'])
   assert.equal(astroFoundation.unknown.mustNotAssume, undefined, 'mustNotAssume behavioral directives must be removed')
+})
+
+test('Astrology Base fails closed when provenance or parent-side deterministic checks are incomplete', async () => {
+  const packetRaw = JSON.parse(await readFile(ASTRO_PACKET_PATH, 'utf8'))
+  const groundingRaw = JSON.parse(await readFile(ASTRO_GROUNDING_PATH, 'utf8'))
+  const cases = [
+    ['missing adapter identity', (fixture) => { delete fixture.packet.identities.adapterSha256 }],
+    ['aspect separation mismatch', (fixture) => { fixture.packet.majorAspects[0].value.angularDistanceDegrees += 1 }],
+    ['aspect claim source ref missing', (fixture) => { fixture.packet.majorAspects[0].sourceRefs = [] }],
+    ['invalid blocked feature status', (fixture) => { fixture.packet.blockedFeatures[0].status = 'unsupported' }],
+  ]
+
+  for (const [label, mutate] of cases) {
+    const fixture = structuredClone({ ...packetRaw, bundle: groundingRaw.bundle })
+    mutate(fixture)
+    const foundation = extractAstrologyFoundation(fixture)
+    assert.equal(foundation.fact.hasVerifiedData, false, label)
+    assert.deepEqual(foundation.fact.verifiedBodies, [], label)
+    assert.deepEqual(foundation.fact.aspects, [], label)
+    assert.equal(foundation.source.provenanceStatus, 'incomplete', label)
+    assert.ok(foundation.source.provenanceMissing.length > 0, label)
+    assert.equal(foundation.activation.status, 'blocked', label)
+    assert.equal(foundation.activation.serviceEligibility, 'blocked', label)
+    if (label === 'invalid blocked feature status') {
+      assert.deepEqual(foundation.unknown.unsupportedFeatures, [], label)
+      assert.deepEqual(foundation.unknown.blockedFeatures, [], label)
+    }
+  }
+
+  const nearMismatch = structuredClone({ ...packetRaw, bundle: groundingRaw.bundle })
+  nearMismatch.packet.majorAspects[0].value.angularDistanceDegrees += 5e-10
+  const normalized = extractAstrologyFoundation(nearMismatch)
+  assert.equal(normalized.fact.hasVerifiedData, true)
+  assert.equal(normalized.fact.aspects[0].calculationPrimitive.angularDistanceDegrees, 57.05072569815809)
+
+  const groundingOnly = extractAstrologyFoundation({ bundle: groundingRaw.bundle })
+  assert.equal(groundingOnly.fact.hasVerifiedData, false)
+  assert.equal(groundingOnly.source.provenanceStatus, 'missing')
+  assert.equal(groundingOnly.activation.status, 'blocked')
 })
 
 test('buildDeterministicBase: bundles all three real domains into a single self-contained JSON/Markdown deterministic base', async () => {
@@ -312,6 +395,18 @@ test('buildDeterministicBase: bundles all three real domains into a single self-
   assert.match(md, /「陽男陰女順行，陰男陽女逆行」/)
   assert.match(md, /현대 계산\/정책: source-ratio-rounded-360-30-calendar/)
   assert.match(md, /authorityScope: classical_textual_reference_unverified/)
+  assert.match(md, /Aspect angular separation \(계산 primitive\)/)
+  assert.match(md, /Aspect classification \(RuleSet-derived\)/)
+  assert.match(md, /Whole Sign classification \(RuleSet-derived\)/)
+  assert.match(md, /Distribution tie \(RuleSet-derived\)/)
+  assert.match(md, /Chart ruler mapping \(RuleSet-derived\)/)
+  assert.match(md, /Provenance status: complete/)
+  assert.match(md, /unsupportedFeatures: legacy_simulation_placidus_date_seed/)
+  assert.match(md, /blockedFeatures: interpretation_service_activation/)
+  assert.match(md, /availableForInterpretation=false.*softie_project 내부 interpretation service\/runtime integration 미연결/)
+  assert.match(md, /일반 ChatGPT\/Gemini downstream 대화: 금지하지 않음/)
+  assert.doesNotMatch(md, /소비자 직접 전달이 엄격히 차단/)
+  assert.doesNotMatch(md, /phase=|dominance=|meaning=/)
 
   // Exported JSON must be consumable as the same deterministic base and must
   // regenerate the same Markdown report without losing provenance fields.
@@ -321,6 +416,14 @@ test('buildDeterministicBase: bundles all three real domains into a single self-
   assert.doesNotMatch(md, /authority_supported_classical_text|classical_systematic_authority/)
   assert.deepEqual(parsed.systems.saju.source.factGroundings, base.systems.saju.source.factGroundings)
   assert.equal(formatDeterministicBaseMarkdown(parsed), md)
+  assert.deepEqual(parsed.systems.astrology.fact.aspects, base.systems.astrology.fact.aspects)
+  assert.deepEqual(parsed.systems.astrology.fact.wholeSignHouses, base.systems.astrology.fact.wholeSignHouses)
+  assert.deepEqual(parsed.systems.astrology.fact.distribution, base.systems.astrology.fact.distribution)
+  assert.deepEqual(parsed.systems.astrology.fact.chartRulers, base.systems.astrology.fact.chartRulers)
+  assert.deepEqual(parsed.systems.astrology.source.provenance, base.systems.astrology.source.provenance)
+  assert.deepEqual(parsed.systems.astrology.unknown.unsupportedFeatures, base.systems.astrology.unknown.unsupportedFeatures)
+  assert.deepEqual(parsed.systems.astrology.unknown.blockedFeatures, base.systems.astrology.unknown.blockedFeatures)
+  assert.deepEqual(parsed.systems.astrology.unknown.interpretationBoundary, base.systems.astrology.unknown.interpretationBoundary)
 
   const exportDirectory = await mkdtemp(join(tmpdir(), 'deterministic-base-export-'))
   try {
@@ -332,6 +435,10 @@ test('buildDeterministicBase: bundles all three real domains into a single self-
     const consumedJson = JSON.parse(await readFile(jsonPath, 'utf8'))
     const consumedMarkdown = await readFile(markdownPath, 'utf8')
     assert.deepEqual(consumedJson.systems.saju.source.factGroundings, base.systems.saju.source.factGroundings)
+    assert.deepEqual(consumedJson.systems.astrology.fact.aspects, base.systems.astrology.fact.aspects)
+    assert.deepEqual(consumedJson.systems.astrology.source.provenance, base.systems.astrology.source.provenance)
+    assert.deepEqual(consumedJson.systems.astrology.unknown.blockedFeatures, base.systems.astrology.unknown.blockedFeatures)
+    assert.deepEqual(consumedJson.systems.astrology.unknown.interpretationBoundary, base.systems.astrology.unknown.interpretationBoundary)
     assert.equal(formatDeterministicBaseMarkdown(consumedJson), consumedMarkdown)
   } finally {
     await rm(exportDirectory, { recursive: true, force: true })
@@ -394,6 +501,13 @@ test('Fresh-chat continuation context & prompt: verifies zero recalculation, key
   assert.match(prompt, /\[ATTACHED FILE: deterministic_base\.md\]/)
   assert.match(prompt, /\[END ATTACHED FILE\]/)
   assert.match(prompt, /\[USER\]: "나의 일간과 14주성 배치를 알려줘\."/)
+
+  const interpretationPrompt = createFreshChatContinuationPrompt(base, '이 astrology FACT를 바탕으로 해석해줘.')
+  assert.match(interpretationPrompt, /\[INTERPRETATION BOUNDARY\]/)
+  assert.match(interpretationPrompt, /일반 ChatGPT\/Gemini downstream 대화를 금지하지 않는다/)
+  assert.match(interpretationPrompt, /계산 FACT\/provenance와 해석을 구분해 먼저 밝힌 뒤 대화를 이어간다/)
+  assert.match(interpretationPrompt, /\[USER\]: "이 astrology FACT를 바탕으로 해석해줘\."/)
+  assert.doesNotMatch(interpretationPrompt, /사용자 해석 요청.*금지|사용자 해석 요청.*차단/)
 })
 
 test('chatHandoffPackage backward compatibility: buildChatHandoffPackage seamlessly includes deterministic base without breaking legacy copies', () => {

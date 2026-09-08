@@ -23,6 +23,11 @@ import {
 } from './handoffFormatters.js'
 import { normalizeSajuPolicyContractForConsumer } from '../saju/engine/sajuPolicyContract.js'
 import { formatSajuPolicyBoundary } from '../saju/policyDisplay.js'
+import { angularDistanceDegrees } from '../astrology/astrologyAngles.js'
+import { MAJOR_ASPECTS, ORB_BOUNDARY_THRESHOLD_DEGREES } from '../astrology/astrologyAspects.js'
+import { calculateWholeSignHouse } from '../astrology/astrologyHouses.js'
+import { PERSONAL_DISTRIBUTION_BODIES, SUPPORTED_DISTRIBUTION_BODIES } from '../astrology/astrologyDistribution.js'
+import { SIGN_METADATA } from '../astrology/astrologyRulers.js'
 
 export const FOUNDATION_VERSION = 'deterministic-base-v0'
 export const CANONICAL_SCHEMA_VERSION = 'tri-system-deterministic-base-v0'
@@ -393,6 +398,523 @@ export function extractZiweiFoundation(ziweiInput = {}, options = {}) {
   }
 }
 
+const ASTROLOGY_RULE_SET_VERSION = 'mallang-astrology-rule-core-v0'
+const ASTROLOGY_SHA256_RE = /^[a-f0-9]{64}$/
+const ASTROLOGY_RUNNER_IDENTITY_RE = /^sha256:[a-f0-9]{64}$/
+const ASTROLOGY_BODY_IDS = Object.freeze([...SUPPORTED_DISTRIBUTION_BODIES])
+const ASTROLOGY_SIGN_IDS = Object.freeze(Object.keys(SIGN_METADATA))
+const ASTROLOGY_POINT_IDS = new Set([...ASTROLOGY_BODY_IDS, 'ascendant', 'midheaven'])
+const ASTROLOGY_ASPECT_DEFINITIONS = new Map(MAJOR_ASPECTS.map((definition) => [definition.id, definition]))
+const ASTROLOGY_REQUIRED_PROVENANCE_REFS = Object.freeze([
+  'providerBundle',
+  'rawChart',
+  'ruleChart',
+  'adapter',
+  'readiness',
+  'documents.adapter',
+  'documents.raw',
+  'documents.rule',
+  'ephemeris.bsp',
+  'ephemeris.evaluatorSelection',
+  'runtime.runner',
+])
+const ASTROLOGY_INTERPRETATION_BOUNDARY = Object.freeze({
+  availableForInterpretation: false,
+  scope: 'softie_project_internal_interpretation_service_runtime_integration',
+  meaning: 'internal_service_runtime_not_connected',
+  generalChatDownstream: 'not_prohibited',
+  userRequestedInterpretation: 'allowed_with_fact_interpretation_boundary',
+})
+
+function isFiniteNumber(value) {
+  return typeof value === 'number' && Number.isFinite(value)
+}
+
+function isObject(value) {
+  return Boolean(value) && typeof value === 'object' && !Array.isArray(value)
+}
+
+function uniqueStrings(values = []) {
+  return [...new Set(values.filter((value) => typeof value === 'string' && value.length > 0))].sort()
+}
+
+function hasSha256(value) {
+  return typeof value === 'string' && ASTROLOGY_SHA256_RE.test(value)
+}
+
+function normalizeLongitudeDegrees(value) {
+  const normalized = value % 360
+  return normalized < 0 ? normalized + 360 : normalized
+}
+
+function signIndexFromLongitude(value) {
+  return Math.floor(normalizeLongitudeDegrees(value) / 30)
+}
+
+function claimSourceRefs(claim) {
+  return uniqueStrings([
+    ...(Array.isArray(claim?.sourceRefs) ? claim.sourceRefs : []),
+    ...(Array.isArray(claim?.value?.sourceRefs) ? claim.value.sourceRefs : []),
+  ])
+}
+
+function expectedOrbBoundaryStatus(maxOrbDegrees, orbDegrees) {
+  const distanceToBoundaryDegrees = Math.abs(maxOrbDegrees - orbDegrees)
+  return {
+    distanceToBoundaryDegrees,
+    status: distanceToBoundaryDegrees <= ORB_BOUNDARY_THRESHOLD_DEGREES ? 'near_orb_boundary' : 'normal',
+  }
+}
+
+function featureEntriesValid(entries, expectedStatus, requireReason = false) {
+  if (!Array.isArray(entries)) return false
+  return entries.every((entry) => (
+    isObject(entry)
+    && typeof entry.feature === 'string'
+    && entry.status === expectedStatus
+    && (!requireReason || typeof entry.reason === 'string')
+    && Array.isArray(entry.sourceRefs)
+    && entry.sourceRefs.length > 0
+    && entry.sourceRefs.every((ref) => typeof ref === 'string' && ref.length > 0)
+  ))
+}
+
+function isAstrologyPacketCandidate(value) {
+  return isObject(value)
+    && value.schemaVersion === 'astrology-interpretation-packet-v1'
+    && (
+      typeof value.packetStatus === 'string'
+      || Array.isArray(value.verifiedBodies)
+      || Array.isArray(value.majorAspects)
+      || isObject(value.identities)
+    )
+}
+
+function createAstrologyProvenance(packet) {
+  const missing = []
+  const identities = packet?.identities || {}
+  const sourceDocuments = packet?.provenance?.sourceDocuments || {}
+  const sourceRefs = Array.isArray(packet?.provenance?.sourceRefs) ? packet.provenance.sourceRefs : []
+  const orchestration = packet?.sourceOrchestration || {}
+
+  if (!packet) missing.push('packet')
+  if (packet?.schemaVersion !== 'astrology-interpretation-packet-v1') missing.push('packet.schemaVersion')
+  if (typeof packet?.packetVersion !== 'string' || packet.packetVersion.length === 0) missing.push('packet.packetVersion')
+  if (packet?.packetStatus !== 'complete') missing.push('packet.packetStatus')
+  if (packet?.usable !== false) missing.push('packet.usable')
+  if (packet?.inputCompleteness !== 'complete') missing.push('packet.inputCompleteness')
+  if (!hasSha256(packet?.packetContentSha256)) missing.push('packet.packetContentSha256')
+
+  for (const field of ['providerBundleSha256', 'rawChartSha256', 'ruleChartSha256', 'adapterSha256', 'readinessSha256']) {
+    if (!hasSha256(identities[field])) missing.push(`identities.${field}`)
+  }
+  if (!hasSha256(identities.kernel?.hash) || identities.kernel?.hashStatus !== 'verified') missing.push('identities.kernel')
+  if (!isFiniteNumber(identities.kernel?.coverage?.start) || !isFiniteNumber(identities.kernel?.coverage?.end)) missing.push('identities.kernel.coverage')
+  if (identities.runner?.protocolVersion !== 'de405-canonical-v2-protocol-v1') missing.push('identities.runner.protocolVersion')
+  if (identities.runner?.protocolStatus !== 'verified') missing.push('identities.runner.protocolStatus')
+  if (identities.runner?.identityStatus !== 'verified') missing.push('identities.runner.identityStatus')
+  if (!ASTROLOGY_RUNNER_IDENTITY_RE.test(identities.runner?.runnerIdentity || '')) missing.push('identities.runner.runnerIdentity')
+  if (identities.evaluator?.status !== 'verified' || identities.evaluator?.evaluator !== 'de405-canonical-v2') missing.push('identities.evaluator')
+
+  if (sourceDocuments.rawSchema !== 'astrology-raw-chart-v1') missing.push('provenance.sourceDocuments.rawSchema')
+  if (sourceDocuments.ruleSchema !== 'astrology-rule-chart-v0') missing.push('provenance.sourceDocuments.ruleSchema')
+  if (sourceDocuments.rawChartHash !== identities.rawChartSha256) missing.push('provenance.sourceDocuments.rawChartHash')
+  if (sourceDocuments.ruleChartHash !== identities.ruleChartSha256) missing.push('provenance.sourceDocuments.ruleChartHash')
+  if (orchestration.status !== 'completed') missing.push('sourceOrchestration.status')
+  if (orchestration.providerBundleSha256 !== identities.providerBundleSha256) missing.push('sourceOrchestration.providerBundleSha256')
+  if (orchestration.rawChartSha256 !== identities.rawChartSha256) missing.push('sourceOrchestration.rawChartSha256')
+  if (orchestration.ruleChartSha256 !== identities.ruleChartSha256) missing.push('sourceOrchestration.ruleChartSha256')
+
+  for (const requiredRef of ASTROLOGY_REQUIRED_PROVENANCE_REFS) {
+    if (!sourceRefs.includes(requiredRef)) missing.push(`provenance.sourceRefs:${requiredRef}`)
+  }
+
+  const activation = packet?.activation || {}
+  if (activation.availableForInterpretation !== false) missing.push('activation.availableForInterpretation')
+  if (activation.integrationStatus !== 'not_connected') missing.push('activation.integrationStatus')
+  if (activation.serviceEligibility !== 'blocked') missing.push('activation.serviceEligibility')
+  if (activation.reason !== 'interpretation_packet_not_activated') missing.push('activation.reason')
+
+  const epistemicClassification = packet?.epistemicClassification || {}
+  if (epistemicClassification.observedFacts !== 'observed_or_calculated') missing.push('epistemicClassification.observedFacts')
+  if (epistemicClassification.ruleCoreOutputs !== 'deterministically_derived') missing.push('epistemicClassification.ruleCoreOutputs')
+  if (epistemicClassification.unsupported !== 'unsupported') missing.push('epistemicClassification.unsupported')
+  if (epistemicClassification.activation !== 'blocked') missing.push('epistemicClassification.activation')
+  if (!featureEntriesValid(packet?.unsupportedFeatures, 'unsupported')) missing.push('unsupportedFeatures')
+  if (!featureEntriesValid(packet?.blockedFeatures, 'blocked', true)) missing.push('blockedFeatures')
+
+  return {
+    complete: missing.length === 0,
+    missing: uniqueStrings(missing),
+    packetSchemaVersion: packet?.schemaVersion || null,
+    packetVersion: packet?.packetVersion || null,
+    packetStatus: packet?.packetStatus || null,
+    packetContentSha256: packet?.packetContentSha256 || null,
+    sourceDocuments: {
+      rawSchema: sourceDocuments.rawSchema || null,
+      rawChartHash: sourceDocuments.rawChartHash || null,
+      ruleSchema: sourceDocuments.ruleSchema || null,
+      ruleChartHash: sourceDocuments.ruleChartHash || null,
+    },
+    sourceIdentities: {
+      providerBundleSha256: identities.providerBundleSha256 || null,
+      rawChartSha256: identities.rawChartSha256 || null,
+      ruleChartSha256: identities.ruleChartSha256 || null,
+      adapterSha256: identities.adapterSha256 || null,
+      readinessSha256: identities.readinessSha256 || null,
+      kernel: identities.kernel ? {
+        hash: identities.kernel.hash || null,
+        hashStatus: identities.kernel.hashStatus || null,
+        coverage: identities.kernel.coverage || null,
+      } : null,
+      runner: identities.runner ? {
+        protocolVersion: identities.runner.protocolVersion || null,
+        protocolStatus: identities.runner.protocolStatus || null,
+        identityStatus: identities.runner.identityStatus || null,
+        runnerIdentity: identities.runner.runnerIdentity || null,
+      } : null,
+      evaluator: identities.evaluator ? {
+        status: identities.evaluator.status || null,
+        evaluator: identities.evaluator.evaluator || null,
+      } : null,
+    },
+    sourceRefs: uniqueStrings(sourceRefs),
+  }
+}
+
+function formatAstrologyFeatureEntries(entries, expectedStatus) {
+  if (!Array.isArray(entries)) return []
+  return entries
+    .filter((entry) => entry?.status === expectedStatus)
+    .map((entry) => ({
+      feature: entry.feature,
+      status: entry.status,
+      ...(entry.reason ? { reason: entry.reason } : {}),
+      sourceRefs: uniqueStrings(entry.sourceRefs),
+    }))
+}
+
+function validateAndBuildAstrologyFacts(packet, provenance) {
+  const errors = [...provenance.missing]
+  if (!provenance.complete) return { valid: false, errors: uniqueStrings(errors) }
+
+  const bodies = Array.isArray(packet.verifiedBodies) ? packet.verifiedBodies : []
+  const angles = packet.verifiedAngles || {}
+  const bodyById = new Map()
+  const pointClaims = new Map()
+
+  if (bodies.length !== ASTROLOGY_BODY_IDS.length) errors.push('verifiedBodies.count')
+  for (const body of bodies) {
+    if (!isObject(body) || typeof body.id !== 'string' || bodyById.has(body.id)) {
+      errors.push('verifiedBodies.shape')
+      continue
+    }
+    bodyById.set(body.id, body)
+    if (!ASTROLOGY_BODY_IDS.includes(body.id)) errors.push(`verifiedBodies.${body.id}.unsupported`)
+    if (body.longitudeDegrees?.claimType !== 'body.longitude' || body.longitudeDegrees?.epistemic !== 'observed_or_calculated' || !isFiniteNumber(body.longitudeDegrees?.value)) errors.push(`verifiedBodies.${body.id}.longitudeDegrees`)
+    if (body.movingFrameSpeedDegreesPerDay?.claimType !== 'body.moving_frame_motion' || body.movingFrameSpeedDegreesPerDay?.epistemic !== 'observed_or_calculated' || !isFiniteNumber(body.movingFrameSpeedDegreesPerDay?.value)) errors.push(`verifiedBodies.${body.id}.movingFrameSpeedDegreesPerDay`)
+    if (body.motion?.claimType !== 'body.moving_frame_motion' || body.motion?.epistemic !== 'deterministically_derived' || typeof body.motion?.value !== 'string') errors.push(`verifiedBodies.${body.id}.motion`)
+    if (!body.longitudeDegrees?.sourceRefs?.includes(`rawChart.bodies.${body.id}.longitudeDegrees`)) errors.push(`verifiedBodies.${body.id}.longitudeSourceRef`)
+    if (!body.movingFrameSpeedDegreesPerDay?.sourceRefs?.includes(`rawChart.bodies.${body.id}.longitudeSpeedDegreesPerDay`)) errors.push(`verifiedBodies.${body.id}.speedSourceRef`)
+    if (!body.motion?.sourceRefs?.includes(`ruleChart.bodies.${body.id}.motionState`)) errors.push(`verifiedBodies.${body.id}.motionSourceRef`)
+    pointClaims.set(body.id, {
+      longitude: body.longitudeDegrees?.value,
+      longitudeRefs: uniqueStrings(body.longitudeDegrees?.sourceRefs),
+      sourceRefs: uniqueStrings([
+        ...(body.longitudeDegrees?.sourceRefs || []),
+        ...(body.movingFrameSpeedDegreesPerDay?.sourceRefs || []),
+        ...(body.motion?.sourceRefs || []),
+      ]),
+    })
+  }
+  for (const bodyId of ASTROLOGY_BODY_IDS) {
+    if (!bodyById.has(bodyId)) errors.push(`verifiedBodies.missing:${bodyId}`)
+  }
+
+  for (const pointId of ['ascendant', 'midheaven']) {
+    const claim = angles[pointId]
+    if (!isObject(claim) || claim.claimType !== 'angle.placement' || claim.epistemic !== 'deterministically_derived' || !isObject(claim.value)) {
+      errors.push(`verifiedAngles.${pointId}`)
+      continue
+    }
+    if (!claim.sourceRefs?.includes(`ruleChart.angles.${pointId}`)) errors.push(`verifiedAngles.${pointId}.sourceRef`)
+    if (!claim.value.sourceRefs?.includes(`angles.${pointId}.longitudeDegrees`)) errors.push(`verifiedAngles.${pointId}.dependencyRef`)
+    if (claim.value.availability !== 'available' || typeof claim.value.signId !== 'string' || !isFiniteNumber(claim.value.signIndex) || !isFiniteNumber(claim.value.longitudeDegrees)) errors.push(`verifiedAngles.${pointId}.value`)
+    if (isFiniteNumber(claim.value.longitudeDegrees)) {
+      const expectedSignIndex = signIndexFromLongitude(claim.value.longitudeDegrees)
+      const expectedSignId = ASTROLOGY_SIGN_IDS[expectedSignIndex]
+      if (claim.value.signIndex !== expectedSignIndex || claim.value.signId !== expectedSignId) errors.push(`verifiedAngles.${pointId}.signClassification`)
+    }
+    pointClaims.set(pointId, {
+      longitude: claim.value.longitudeDegrees,
+      longitudeRefs: uniqueStrings(claim.value.sourceRefs),
+      sourceRefs: claimSourceRefs(claim),
+    })
+  }
+
+  const pointValues = Object.fromEntries([...pointClaims.entries()].map(([id, claim]) => [id, claim.longitude]))
+  const aspectClaims = Array.isArray(packet.majorAspects) ? packet.majorAspects : []
+  if (aspectClaims.length !== 18) errors.push('majorAspects.count')
+  const aspects = []
+  const seenAspectIds = new Set()
+
+  for (const claim of aspectClaims) {
+    const value = claim?.value
+    if (!isObject(claim) || claim.claimType !== 'aspect.major' || claim.epistemic !== 'deterministically_derived' || !isObject(value)) {
+      errors.push('majorAspects.shape')
+      continue
+    }
+    const pointA = value.pointA
+    const pointB = value.pointB
+    const aspectId = value.aspectId
+    const definition = ASTROLOGY_ASPECT_DEFINITIONS.get(aspectId)
+    const aspectRef = typeof pointA === 'string' && typeof pointB === 'string' ? `ruleChart.aspects.${pointA}.${pointB}` : null
+    const pointAClaim = pointClaims.get(pointA)
+    const pointBClaim = pointClaims.get(pointB)
+    const dependencyRefs = uniqueStrings([
+      ...(pointAClaim?.longitudeRefs || []),
+      ...(pointBClaim?.longitudeRefs || []),
+    ])
+
+    if (seenAspectIds.has(value.id)) errors.push(`majorAspects.duplicate:${value.id}`)
+    seenAspectIds.add(value.id)
+    if (typeof value.id !== 'string' || (typeof pointA === 'string' && typeof pointB === 'string' && typeof aspectId === 'string' && value.id !== `${pointA}__${pointB}__${aspectId}`)) errors.push(`majorAspects.${value.id || 'unknown'}.id`)
+    if (!ASTROLOGY_POINT_IDS.has(pointA) || !ASTROLOGY_POINT_IDS.has(pointB) || pointA === pointB) errors.push(`majorAspects.${value.id}.points`)
+    if (!definition) errors.push(`majorAspects.${value.id}.aspectId`)
+    if (value.epistemicStatus !== 'derived') errors.push(`majorAspects.${value.id}.epistemicStatus`)
+    if (!aspectRef || !claim.sourceRefs?.includes(aspectRef)) errors.push(`majorAspects.${value.id}.sourceRef`)
+    if (!isFiniteNumber(pointValues[pointA]) || !isFiniteNumber(pointValues[pointB])) errors.push(`majorAspects.${value.id}.dependencies`)
+
+    if (definition && isFiniteNumber(pointValues[pointA]) && isFiniteNumber(pointValues[pointB])) {
+      const expectedDistance = angularDistanceDegrees(pointValues[pointA], pointValues[pointB])
+      const expectedOrb = Math.abs(expectedDistance - definition.exactAngleDegrees)
+      const expectedBoundary = expectedOrb <= definition.maxOrbDegrees
+      const expectedBoundaryInfo = expectedBoundary ? expectedOrbBoundaryStatus(definition.maxOrbDegrees, expectedOrb) : null
+      const expectedDistanceToBoundary = expectedBoundaryInfo?.distanceToBoundaryDegrees ?? null
+      const expectedStatus = expectedBoundaryInfo?.status ?? null
+      if (!isFiniteNumber(value.angularDistanceDegrees) || Math.abs(value.angularDistanceDegrees - expectedDistance) > 1e-9) errors.push(`majorAspects.${value.id}.angularDistanceDegrees`)
+      if (value.exactAngleDegrees !== definition.exactAngleDegrees || value.maxOrbDegrees !== definition.maxOrbDegrees || value.ruleId !== 'major_aspect_v0') errors.push(`majorAspects.${value.id}.ruleClassification`)
+      if (!isFiniteNumber(value.orbDegrees) || !expectedBoundary || Math.abs(value.orbDegrees - expectedOrb) > 1e-9) errors.push(`majorAspects.${value.id}.orbDegrees`)
+      if (value.orbBoundaryStatus !== expectedStatus || !isFiniteNumber(value.distanceToOrbBoundaryDegrees) || Math.abs(value.distanceToOrbBoundaryDegrees - expectedDistanceToBoundary) > 1e-9) errors.push(`majorAspects.${value.id}.orbBoundary`)
+    }
+
+    if (definition && pointAClaim && pointBClaim && aspectRef) {
+      aspects.push({
+        id: value.id,
+        pointA,
+        pointB,
+        calculationPrimitive: {
+          angularDistanceDegrees: angularDistanceDegrees(pointValues[pointA], pointValues[pointB]),
+        },
+        derivedClassification: {
+          aspectId,
+          exactAngleDegrees: definition.exactAngleDegrees,
+          orbDegrees: Math.abs(angularDistanceDegrees(pointValues[pointA], pointValues[pointB]) - definition.exactAngleDegrees),
+          maxOrbDegrees: definition.maxOrbDegrees,
+          orbBoundaryStatus: expectedOrbBoundaryStatus(definition.maxOrbDegrees, Math.abs(angularDistanceDegrees(pointValues[pointA], pointValues[pointB]) - definition.exactAngleDegrees)).status,
+          distanceToOrbBoundaryDegrees: expectedOrbBoundaryStatus(definition.maxOrbDegrees, Math.abs(angularDistanceDegrees(pointValues[pointA], pointValues[pointB]) - definition.exactAngleDegrees)).distanceToBoundaryDegrees,
+          ruleId: 'major_aspect_v0',
+          ruleSetVersion: ASTROLOGY_RULE_SET_VERSION,
+        },
+        epistemic: 'deterministically_derived',
+        sourceRefs: uniqueStrings([aspectRef, ...dependencyRefs]),
+        dependencyRefs,
+      })
+    }
+  }
+
+  const houseClaim = packet.wholeSignHouses
+  const houseValue = houseClaim?.value
+  const ascendantClaim = angles.ascendant
+  const ascendantPoint = pointClaims.get('ascendant')
+  let wholeSignHouses = null
+  if (!isObject(houseClaim) || houseClaim.claimType !== 'house.whole_sign_placement' || houseClaim.epistemic !== 'deterministically_derived' || !isObject(houseValue)) {
+    errors.push('wholeSignHouses.shape')
+  } else {
+    if (!houseClaim.sourceRefs?.includes('ruleChart.houses')) errors.push('wholeSignHouses.sourceRef')
+    if (houseValue.availability !== 'available' || houseValue.houseSystem !== 'whole_sign' || houseValue.ruleId !== 'whole_sign_house_v0') errors.push('wholeSignHouses.ruleClassification')
+    if (!isFiniteNumber(houseValue.ascendantSignIndex) || houseValue.ascendantSignId !== ascendantClaim?.value?.signId) errors.push('wholeSignHouses.ascendantDependency')
+    if (houseValue.ascendantSignIndex !== ascendantClaim?.value?.signIndex) errors.push('wholeSignHouses.ascendantSignIndex')
+    if (!Array.isArray(houseValue.placements) || houseValue.placements.length !== ASTROLOGY_BODY_IDS.length) errors.push('wholeSignHouses.placements')
+    const placements = []
+    const houseRefs = claimSourceRefs(houseClaim)
+    const seenPlacementIds = new Set()
+    for (const placement of houseValue.placements || []) {
+      const body = bodyById.get(placement?.id)
+      const expectedHouse = body && isFiniteNumber(body.longitudeDegrees?.value)
+        ? calculateWholeSignHouse(signIndexFromLongitude(body.longitudeDegrees.value), houseValue.ascendantSignIndex)
+        : null
+      if (seenPlacementIds.has(placement?.id)) errors.push(`wholeSignHouses.duplicate:${placement?.id || 'unknown'}`)
+      seenPlacementIds.add(placement?.id)
+      if (!body || placement.availability !== 'available' || placement.houseSystem !== 'whole_sign' || placement.epistemicStatus !== 'derived' || placement.ruleId !== 'whole_sign_house_v0' || placement.house !== expectedHouse) errors.push(`wholeSignHouses.placement:${placement?.id || 'unknown'}`)
+      const dependencyRefs = uniqueStrings([
+        ...(ascendantPoint?.sourceRefs || []),
+        ...(body?.longitudeDegrees?.sourceRefs || []),
+      ])
+      placements.push({
+        id: placement?.id || null,
+        house: expectedHouse,
+        sourceRefs: uniqueStrings([...houseRefs, ...dependencyRefs]),
+        dependencyRefs,
+      })
+    }
+    for (const bodyId of ASTROLOGY_BODY_IDS) {
+      if (!seenPlacementIds.has(bodyId)) errors.push(`wholeSignHouses.missing:${bodyId}`)
+    }
+    const houseDependencyRefs = uniqueStrings([
+      ...(ascendantPoint?.sourceRefs || []),
+      ...placements.flatMap((placement) => placement.dependencyRefs),
+    ])
+    wholeSignHouses = {
+      calculationPrimitive: {
+        ascendant: {
+          signId: houseValue.ascendantSignId,
+          signIndex: houseValue.ascendantSignIndex,
+          sourceRefs: claimSourceRefs(ascendantClaim),
+        },
+        placements,
+      },
+      derivedClassification: {
+        houseSystem: 'whole_sign',
+        ruleId: houseValue.ruleId,
+        ruleSetVersion: ASTROLOGY_RULE_SET_VERSION,
+        epistemic: 'deterministically_derived',
+        sourceRefs: uniqueStrings([...houseRefs, ...houseDependencyRefs]),
+        dependencyRefs: houseDependencyRefs,
+      },
+    }
+  }
+
+  const distributionClaim = packet.distribution
+  const distributionValue = distributionClaim?.value
+  let distribution = null
+  if (!isObject(distributionClaim) || distributionClaim.claimType !== 'distribution.elements_modalities_polarity' || distributionClaim.epistemic !== 'deterministically_derived' || !isObject(distributionValue)) {
+    errors.push('distribution.shape')
+  } else {
+    const dimensions = [
+      ['elements', ['fire', 'earth', 'air', 'water'], 'element'],
+      ['modalities', ['cardinal', 'fixed', 'mutable'], 'modality'],
+      ['polarities', ['masculine', 'feminine'], 'polarity'],
+    ]
+    const scopes = {
+      overall: ASTROLOGY_BODY_IDS,
+      personal: [...PERSONAL_DISTRIBUTION_BODIES],
+    }
+    const primitive = {}
+    const tie = {}
+    const distributionRefs = [...claimSourceRefs(distributionClaim)]
+    for (const [scope, bodyIds] of Object.entries(scopes)) {
+      const counts = {}
+      const reportedScope = distributionValue[scope]
+      for (const [dimension, keys, metadataKey] of dimensions) {
+        counts[dimension] = Object.fromEntries(keys.map((key) => [key, 0]))
+        for (const bodyId of bodyIds) {
+          const body = bodyById.get(bodyId)
+          const signId = body && isFiniteNumber(body.longitudeDegrees?.value) ? ASTROLOGY_SIGN_IDS[signIndexFromLongitude(body.longitudeDegrees.value)] : null
+          const dimensionValue = signId ? SIGN_METADATA[signId]?.[metadataKey] : null
+          if (dimensionValue && Object.hasOwn(counts[dimension], dimensionValue)) counts[dimension][dimensionValue] += 1
+          distributionRefs.push(...(body?.longitudeDegrees?.sourceRefs || []))
+        }
+        const max = Math.max(...keys.map((key) => counts[dimension][key]))
+        const expectedTie = keys.filter((key) => counts[dimension][key] === max).length > 1
+        if (!reportedScope || reportedScope.totalBodiesCount !== bodyIds.length || reportedScope.ruleId !== 'distribution_from_body_signs_v0' || !keys.every((key) => reportedScope[dimension]?.counts?.[key] === counts[dimension][key]) || reportedScope[dimension]?.tie !== expectedTie) errors.push(`distribution.${scope}.${dimension}`)
+        tie[scope] = { ...(tie[scope] || {}), [dimension]: expectedTie }
+      }
+      primitive[scope] = { bodyIds: [...bodyIds], counts }
+    }
+    if (distributionValue.epistemicStatus !== 'derived' || distributionValue.ruleId !== 'distribution_from_body_signs_v0') errors.push('distribution.ruleClassification')
+    distribution = {
+      calculationPrimitive: primitive,
+      derivedClassification: {
+        tie,
+        ruleId: distributionValue.ruleId,
+        ruleSetVersion: ASTROLOGY_RULE_SET_VERSION,
+        epistemic: 'deterministically_derived',
+        sourceRefs: uniqueStrings(distributionRefs),
+        dependencyRefs: uniqueStrings(distributionRefs.filter((ref) => ref !== 'ruleChart.distribution')),
+      },
+    }
+  }
+
+  const chartRulerClaim = packet.chartRulers
+  const chartRulerValue = chartRulerClaim?.value
+  let chartRulers = null
+  const ascendantMeta = SIGN_METADATA[ascendantClaim?.value?.signId]
+  if (!isObject(chartRulerClaim) || chartRulerClaim.claimType !== 'chart_ruler' || chartRulerClaim.epistemic !== 'deterministically_derived' || !isObject(chartRulerValue)) {
+    errors.push('chartRulers.shape')
+  } else {
+    if (!chartRulerClaim.sourceRefs?.includes('ruleChart.chartRulers')) errors.push('chartRulers.sourceRef')
+    if (!ascendantMeta || chartRulerValue.availability !== 'available' || chartRulerValue.ascendantSignId !== ascendantClaim?.value?.signId || chartRulerValue.traditionalChartRuler !== ascendantMeta.traditionalRuler || chartRulerValue.modernChartRuler !== ascendantMeta.modernRuler || chartRulerValue.ruleId !== 'chart_ruler_from_ascendant_v0') errors.push('chartRulers.ruleClassification')
+    const dependencyRefs = uniqueStrings(ascendantPoint?.sourceRefs || [])
+    chartRulers = {
+      calculationPrimitive: {
+        ascendantSignId: chartRulerValue.ascendantSignId,
+        sourceRefs: claimSourceRefs(ascendantClaim),
+      },
+      derivedClassification: {
+        traditionalChartRuler: ascendantMeta.traditionalRuler,
+        modernChartRuler: ascendantMeta.modernRuler,
+        ruleId: 'chart_ruler_from_ascendant_v0',
+        ruleSetVersion: ASTROLOGY_RULE_SET_VERSION,
+        epistemic: 'deterministically_derived',
+        sourceRefs: uniqueStrings([...claimSourceRefs(chartRulerClaim), ...dependencyRefs]),
+        dependencyRefs,
+      },
+    }
+  }
+
+  if (errors.length > 0) return { valid: false, errors: uniqueStrings(errors) }
+
+  const verifiedBodies = ASTROLOGY_BODY_IDS.map((bodyId) => {
+    const body = bodyById.get(bodyId)
+    return {
+      id: body.id,
+      longitudeDegrees: body.longitudeDegrees.value,
+      movingFrameSpeed: body.movingFrameSpeedDegreesPerDay.value,
+      motionState: body.motion.value,
+      epistemic: body.longitudeDegrees.epistemic,
+      sourceRefs: uniqueStrings([
+        ...(body.longitudeDegrees.sourceRefs || []),
+        ...(body.movingFrameSpeedDegreesPerDay.sourceRefs || []),
+        ...(body.motion.sourceRefs || []),
+      ]),
+    }
+  })
+  const extractedAngles = {
+    ascendant: {
+      sign: angles.ascendant.value.signId,
+      degreeInSign: angles.ascendant.value.degreeInSign,
+      longitudeDegrees: angles.ascendant.value.longitudeDegrees,
+      sourceRefs: claimSourceRefs(angles.ascendant),
+    },
+    midheaven: {
+      sign: angles.midheaven.value.signId,
+      degreeInSign: angles.midheaven.value.degreeInSign,
+      longitudeDegrees: angles.midheaven.value.longitudeDegrees,
+      sourceRefs: claimSourceRefs(angles.midheaven),
+    },
+  }
+  const allClaimSourceRefs = uniqueStrings([
+    ...verifiedBodies.flatMap((body) => body.sourceRefs),
+    ...Object.values(extractedAngles).flatMap((angle) => angle.sourceRefs),
+    ...aspects.flatMap((aspect) => aspect.sourceRefs),
+    ...wholeSignHouses.derivedClassification.sourceRefs,
+    ...distribution.derivedClassification.sourceRefs,
+    ...chartRulers.derivedClassification.sourceRefs,
+  ])
+  return {
+    valid: true,
+    errors: [],
+    verifiedBodies,
+    angles: extractedAngles,
+    aspects,
+    wholeSignHouses,
+    distribution,
+    chartRulers,
+    claimSourceRefs: allClaimSourceRefs,
+  }
+}
+
 /**
  * Extract Western Astrology Deterministic Base
  *
@@ -400,15 +922,12 @@ export function extractZiweiFoundation(ziweiInput = {}, options = {}) {
  * and preserves activation.serviceEligibility: "blocked".
  */
 export function extractAstrologyFoundation(astrologyInput = {}, options = {}) {
-  const packet = astrologyInput.packet
-    || (astrologyInput.schemaVersion?.startsWith('astrology-interpretation-packet') ? astrologyInput : null)
-    || astrologyInput.bundle?.inputs?.packet
-    || astrologyInput.bundle?.components?.packet
-    || null
-
-  const groundingBundle = astrologyInput.claims?.nodes
-    ? astrologyInput
-    : (astrologyInput.bundle?.claims?.nodes ? astrologyInput.bundle : null)
+  const packet = [
+    astrologyInput.packet,
+    astrologyInput.schemaVersion === 'astrology-interpretation-packet-v1' ? astrologyInput : null,
+    astrologyInput.bundle?.inputs?.packet,
+    astrologyInput.bundle?.components?.packet,
+  ].find(isAstrologyPacketCandidate) || null
 
   const isInactiveResearch = true
   const activation = {
@@ -416,10 +935,10 @@ export function extractAstrologyFoundation(astrologyInput = {}, options = {}) {
     status: 'blocked',
     serviceEligibility: 'blocked',
     usable: false,
-    reason: packet?.activation?.reason || groundingBundle?.activation?.reason || 'interpretation_packet_not_activated / simulation_blocked',
+    reason: packet?.activation?.reason || 'interpretation_packet_not_activated / simulation_blocked',
   }
 
-  const researchNotice = '서양 점성학 자료는 오프라인에서 검증된 불변 연구 증적(Inactive Research Artifact) 또는 시뮬레이션 차단 상태로 보존되며, 프로덕션 Chat 활성화(activation) 및 소비자 직접 전달이 엄격히 차단되어 있습니다. 계산된 천체 위치와 구조적 관계는 연구 목적으로만 열람되며 임의로 사실(Fact)로 승격되지 않습니다.'
+  const researchNotice = '서양 점성학 자료는 오프라인에서 검증된 불변 연구 증적(Inactive Research Artifact) 또는 시뮬레이션 차단 상태로 보존됩니다. availableForInterpretation=false 및 serviceEligibility=blocked는 softie_project 내부 interpretation service/runtime integration이 아직 연결되지 않았다는 뜻이며, 일반 ChatGPT/Gemini downstream 대화 자체를 금지하지 않습니다. 사용자가 해석을 요청하면 계산 FACT/provenance와 해석을 구분해 밝힌 뒤 대화를 이어갈 수 있습니다. 계산된 천체 위치와 구조적 관계는 임의로 해석 의미나 사실 권위로 승격되지 않습니다.'
 
   // 1. INPUT (천문력 기준 좌표계)
   const input = {
@@ -428,63 +947,62 @@ export function extractAstrologyFoundation(astrologyInput = {}, options = {}) {
     ephemerisProvider: 'JPL DE405 SPK',
   }
 
-  // 2. FACT (연구 아티팩트 내 결정론적 관측/계산 수치)
-  let verifiedBodies = []
-  let angles = null
-  let aspects = []
-
-  if (packet?.verifiedBodies) {
-    verifiedBodies = packet.verifiedBodies.map((b) => ({
-      id: b.id,
-      longitudeDegrees: b.longitudeDegrees?.value ?? b.state?.longitude ?? null,
-      movingFrameSpeed: b.movingFrameSpeedDegreesPerDay?.value ?? b.state?.speed ?? null,
-      motionState: b.motion?.value ?? 'direct',
-      epistemic: b.longitudeDegrees?.epistemic || 'observed_or_calculated',
-    }))
-  }
-
-  if (packet?.verifiedAngles) {
-    const asc = packet.verifiedAngles.ascendant?.value
-    const mc = packet.verifiedAngles.midheaven?.value
-    if (asc || mc) {
-      angles = {
-        ascendant: asc ? { sign: asc.signId, degreeInSign: asc.degreeInSign, longitudeDegrees: asc.longitudeDegrees } : null,
-        midheaven: mc ? { sign: mc.signId, degreeInSign: mc.degreeInSign, longitudeDegrees: mc.longitudeDegrees } : null,
-      }
-    }
-  }
-
-  if (!angles && groundingBundle?.claims?.nodes) {
-    const ascNode = groundingBundle.claims.nodes.find((n) => n.nodeId?.includes('ascendant'))
-    const mcNode = groundingBundle.claims.nodes.find((n) => n.nodeId?.includes('midheaven'))
-    if (ascNode || mcNode) {
-      angles = {
-        ascendant: ascNode ? { sign: ascNode.value?.signId, degreeInSign: ascNode.value?.degreeInSign, longitudeDegrees: ascNode.value?.longitudeDegrees } : null,
-        midheaven: mcNode ? { sign: mcNode.value?.signId, degreeInSign: mcNode.value?.degreeInSign, longitudeDegrees: mcNode.value?.longitudeDegrees } : null,
-      }
-    }
-  }
+  const provenance = createAstrologyProvenance(packet)
+  const derived = packet
+    ? validateAndBuildAstrologyFacts(packet, provenance)
+    : { valid: false, errors: ['packet'], claimSourceRefs: [] }
+  const verifiedBodies = derived.valid ? derived.verifiedBodies : []
+  const angles = derived.valid ? derived.angles : null
+  const aspects = derived.valid ? derived.aspects : []
 
   const facts = {
-    hasVerifiedData: verifiedBodies.length > 0 || Boolean(angles),
+    hasVerifiedData: derived.valid && (verifiedBodies.length > 0 || Boolean(angles)),
     verifiedBodies,
     angles,
     aspects,
-    simulationBlockedNote: verifiedBodies.length === 0
+    wholeSignHouses: derived.valid ? derived.wholeSignHouses : null,
+    distribution: derived.valid ? derived.distribution : null,
+    chartRulers: derived.valid ? derived.chartRulers : null,
+    simulationBlockedNote: !packet
       ? '검증된 천문력 Adapter가 런타임에 연결되지 않아 date seed 기반 simulation 값은 차단되었습니다.'
+      : !derived.valid
+        ? 'source provenance 또는 parent-side deterministic 검증이 완결되지 않아 계산 결과를 Base FACT로 전달하지 않았습니다.'
       : '오프라인 DE405 커널 기반 관측 수치가 연구 증적으로 고정 보존됨',
   }
 
   // 3. SOURCE (JPL 커널 및 규칙 프로토콜)
+  const sourceIdentities = provenance.sourceIdentities
+  const claimSourceRefs = derived.claimSourceRefs || []
   const source = {
-    ephemerisKernel: packet?.identities?.kernel?.hash ? 'JPL DE405 SPK (Verified)' : 'verified_ephemeris_adapter_required',
-    kernelCoverage: packet?.identities?.kernel?.coverage || null,
-    protocolVersion: packet?.identities?.runner?.protocolVersion || 'de405-canonical-v2-protocol-v1',
-    ruleCoreVersion: 'mallang-astrology-rule-core-v0',
+    ephemerisKernel: derived.valid && sourceIdentities.kernel?.hash ? 'JPL DE405 SPK (Verified)' : 'verified_ephemeris_adapter_required',
+    kernelCoverage: sourceIdentities.kernel?.coverage || null,
+    protocolVersion: sourceIdentities.runner?.protocolVersion || 'de405-canonical-v2-protocol-v1',
+    ruleCoreVersion: ASTROLOGY_RULE_SET_VERSION,
+    ruleIdentity: {
+      ruleSetVersion: ASTROLOGY_RULE_SET_VERSION,
+      aspects: 'major_aspect_v0',
+      wholeSignHouses: 'whole_sign_house_v0',
+      distribution: 'distribution_from_body_signs_v0',
+      chartRulers: 'chart_ruler_from_ascendant_v0',
+    },
     provenanceLinks: {
-      providerBundleSha256: packet?.identities?.providerBundleSha256 || null,
-      rawChartSha256: packet?.identities?.rawChartSha256 || null,
-      ruleChartSha256: packet?.identities?.ruleChartSha256 || null,
+      packetContentSha256: provenance.packetContentSha256,
+      providerBundleSha256: sourceIdentities.providerBundleSha256,
+      rawChartSha256: sourceIdentities.rawChartSha256,
+      ruleChartSha256: sourceIdentities.ruleChartSha256,
+      adapterSha256: sourceIdentities.adapterSha256,
+      readinessSha256: sourceIdentities.readinessSha256,
+      kernelSha256: sourceIdentities.kernel?.hash || null,
+      runnerProtocolVersion: sourceIdentities.runner?.protocolVersion || null,
+      runnerIdentity: sourceIdentities.runner?.runnerIdentity || null,
+      evaluator: sourceIdentities.evaluator?.evaluator || null,
+    },
+    provenanceStatus: derived.valid ? 'complete' : packet ? 'incomplete' : 'missing',
+    provenanceMissing: derived.valid ? [] : uniqueStrings(derived.errors),
+    provenance: {
+      ...provenance,
+      sourceRefs: uniqueStrings([...provenance.sourceRefs, ...claimSourceRefs]),
+      claimSourceRefs,
     },
   }
 
@@ -499,10 +1017,13 @@ export function extractAstrologyFoundation(astrologyInput = {}, options = {}) {
       consumerDelivery: 'blocked',
       runtimeSimulationShield: 'active',
     },
+    interpretationBoundary: { ...ASTROLOGY_INTERPRETATION_BOUNDARY },
     warnings: [
       '서양 점성학 프로덕션 활성화 상태: blocked',
       '천문력 Adapter 미연결 상태 (runtime simulation unavailable)',
     ],
+    unsupportedFeatures: formatAstrologyFeatureEntries(provenance.complete ? packet?.unsupportedFeatures : null, 'unsupported'),
+    blockedFeatures: formatAstrologyFeatureEntries(provenance.complete ? packet?.blockedFeatures : null, 'blocked'),
   }
 
   return {
@@ -511,7 +1032,7 @@ export function extractAstrologyFoundation(astrologyInput = {}, options = {}) {
     isInactiveResearch,
     researchNotice,
     activation,
-    verificationStatus: packet ? 'verified_offline_research' : 'unsupported_for_interpretation',
+    verificationStatus: derived.valid ? 'verified_offline_research' : 'unsupported_for_interpretation',
     confidence: 'not_available',
     input,
     fact: facts,
@@ -656,6 +1177,8 @@ export function formatDeterministicBaseMarkdown(basePackage) {
         '> [!NOTE]',
         `> **비활성 연구 아티팩트 (Inactive Research Artifact)**: 오프라인 검증 연구 증적으로 보존됨`,
         `> - 활성화 상태: ${sys.activation.status} (serviceEligibility: ${sys.activation.serviceEligibility}, usable: ${sys.activation.usable})`,
+        `> - \`availableForInterpretation=false\` 범위: softie_project 내부 interpretation service/runtime integration 미연결`,
+        '> - 일반 ChatGPT/Gemini downstream 대화: 금지하지 않음. 사용자가 해석을 요청하면 FACT/provenance와 해석을 구분해 밝힌 뒤 대화를 이어갈 수 있음',
         '',
       )
     }
@@ -686,6 +1209,38 @@ export function formatDeterministicBaseMarkdown(basePackage) {
           `- 관측 천체 위치 (DE405 SPK): ${sys.fact.verifiedBodies.map((b) => `${b.id}: ${b.longitudeDegrees?.toFixed(2)}° (${b.motionState})`).join(' · ')}`,
           sys.fact.angles ? `- 앵글 (Angles): Ascendant ${sys.fact.angles.ascendant?.sign} ${sys.fact.angles.ascendant?.degreeInSign?.toFixed(2)}° / MC ${sys.fact.angles.midheaven?.sign || '-'}` : '- 앵글: 자료 없음',
         )
+        if (Array.isArray(sys.fact.aspects) && sys.fact.aspects.length > 0) {
+          lines.push(
+            '- Aspect angular separation (계산 primitive):',
+            ...sys.fact.aspects.map((aspect) => `  - ${aspect.pointA}/${aspect.pointB}: ${aspect.calculationPrimitive.angularDistanceDegrees.toFixed(6)}° · refs=${aspect.dependencyRefs.join(',')}`),
+            '- Aspect classification (RuleSet-derived):',
+            ...sys.fact.aspects.map((aspect) => `  - ${aspect.pointA}/${aspect.pointB}: ${aspect.derivedClassification.aspectId} · exact=${aspect.derivedClassification.exactAngleDegrees}° · orb=${aspect.derivedClassification.orbDegrees.toFixed(6)}°/${aspect.derivedClassification.maxOrbDegrees}° · rule=${aspect.derivedClassification.ruleId} · refs=${aspect.sourceRefs.join(',')}`),
+          )
+        }
+        if (sys.fact.wholeSignHouses) {
+          const housePrimitive = sys.fact.wholeSignHouses.calculationPrimitive
+          const houseClassification = sys.fact.wholeSignHouses.derivedClassification
+          lines.push(
+            `- Whole Sign house placement (계산 primitive): ASC ${housePrimitive.ascendant.signId}[${housePrimitive.ascendant.signIndex}] · ${housePrimitive.placements.map((placement) => `${placement.id}=${placement.house}H`).join(' · ')}`,
+            `- Whole Sign classification (RuleSet-derived): houseSystem=${houseClassification.houseSystem} · rule=${houseClassification.ruleId} · refs=${houseClassification.sourceRefs.join(',')}`,
+          )
+        }
+        if (sys.fact.distribution) {
+          const distribution = sys.fact.distribution
+          const formatCounts = (scope) => Object.entries(scope.counts).map(([dimension, counts]) => `${dimension}(${Object.entries(counts).map(([key, value]) => `${key}=${value}`).join(',')})`).join(' · ')
+          lines.push(
+            `- Distribution count (계산 primitive): overall[${distribution.calculationPrimitive.overall.bodyIds.join(',')}] ${formatCounts(distribution.calculationPrimitive.overall)} / personal[${distribution.calculationPrimitive.personal.bodyIds.join(',')}] ${formatCounts(distribution.calculationPrimitive.personal)}`,
+            `- Distribution tie (RuleSet-derived): ${JSON.stringify(distribution.derivedClassification.tie)} · rule=${distribution.derivedClassification.ruleId} · refs=${distribution.derivedClassification.sourceRefs.join(',')}`,
+          )
+        }
+        if (sys.fact.chartRulers) {
+          const rulerPrimitive = sys.fact.chartRulers.calculationPrimitive
+          const rulerClassification = sys.fact.chartRulers.derivedClassification
+          lines.push(
+            `- Chart ruler mapping (계산 primitive): ASC sign=${rulerPrimitive.ascendantSignId}`,
+            `- Chart ruler mapping (RuleSet-derived): traditional=${rulerClassification.traditionalChartRuler} · modern=${rulerClassification.modernChartRuler} · rule=${rulerClassification.ruleId} · refs=${rulerClassification.sourceRefs.join(',')}`,
+          )
+        }
       } else {
         lines.push(`- 상태: ${sys.fact.simulationBlockedNote}`)
       }
@@ -730,6 +1285,10 @@ export function formatDeterministicBaseMarkdown(basePackage) {
         `- 천문력 커널: ${sys.source.ephemerisKernel}`,
         `- 프로토콜: ${sys.source.protocolVersion}`,
         `- 룰 코어: ${sys.source.ruleCoreVersion}`,
+        `- Rule identity: ${JSON.stringify(sys.source.ruleIdentity)}`,
+        `- Provenance status: ${sys.source.provenanceStatus}`,
+        `- Provenance links: ${JSON.stringify(sys.source.provenanceLinks)}`,
+        `- Claim-level sourceRefs: ${sys.source.provenance?.claimSourceRefs?.length || 0}개 보존됨`,
       )
     }
     lines.push('')
@@ -751,6 +1310,9 @@ export function formatDeterministicBaseMarkdown(basePackage) {
       lines.push(
         `- 활성화 상태: ${sys.unknown.activationStatus} (serviceEligibility: ${sys.unknown.serviceEligibility}, usable: ${sys.unknown.usable})`,
         `- 시스템 경계: livedExperience=${sys.unknown.systemBoundaries?.livedExperience || 'not_supplied'}, personalSignificance=${sys.unknown.systemBoundaries?.personalSignificance || 'not_established'}`,
+        `- Interpretation boundary: ${JSON.stringify(sys.unknown.interpretationBoundary || {})}`,
+        `- unsupportedFeatures: ${sys.unknown.unsupportedFeatures?.map((feature) => `${feature.feature} (${feature.status})`).join(' · ') || '없음'}`,
+        `- blockedFeatures: ${sys.unknown.blockedFeatures?.map((feature) => `${feature.feature} (${feature.status}${feature.reason ? `:${feature.reason}` : ''})`).join(' · ') || '없음'}`,
       )
     }
     lines.push('')
@@ -779,12 +1341,21 @@ export function createFreshChatContinuationPrompt(basePackage, optionsOrQuestion
     : (optionsOrQuestion.userQuestion || '')
 
   const md = basePackage.markdown || formatDeterministicBaseMarkdown(basePackage)
+  const astrologyContinuationBoundary = basePackage.systems?.astrology
+    ? [
+      '[INTERPRETATION BOUNDARY]',
+      'availableForInterpretation=false는 softie_project 내부 interpretation service/runtime integration 미연결을 뜻하며, 일반 ChatGPT/Gemini downstream 대화를 금지하지 않는다.',
+      '사용자가 해석을 요청하면 계산 FACT/provenance와 해석을 구분해 먼저 밝힌 뒤 대화를 이어간다.',
+      '[END INTERPRETATION BOUNDARY]',
+    ]
+    : []
 
   return [
     `[ATTACHED FILE: deterministic_base.md]`,
     md,
     `[END ATTACHED FILE]`,
     '',
+    ...astrologyContinuationBoundary,
     `[USER]: "${question.trim() || '첨부된 파일의 결정론적 계산 사실을 확인해줘.'}"`,
   ].join('\n')
 }
