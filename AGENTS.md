@@ -41,6 +41,7 @@
 ## Question-driven research execution
 
 - For finite, question-driven evidence investigations, use the registered `bounded-evidence-frontier` Skill for procedure; repository contracts and specialized Skills remain authoritative.
+- For materialized artifact and consumer-parity verification, use the registered `artifact-provenance-consumer-parity` Skill; domain canonical materializers, schemas, and checkers remain authoritative.
 - When the user provides a clear research question, the agent may autonomously run a bounded investigation within task scope; use applicable canonical contracts for any required records, statuses, and promotion decisions.
 - Do not fill an evidence gap with inference merely to complete the flow. If direct evidence, identity, locator, lineage, or semantic support does not close, preserve the unresolved state, stop that promotion branch, and report the remaining blocker.
 - Preserve unrelated dirty work, untracked research, protected artifacts, and large source files throughout the autonomous investigation; inspect and alter only the allowlisted task surface.
