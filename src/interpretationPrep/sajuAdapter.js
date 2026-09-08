@@ -6,7 +6,7 @@ import {
 } from '../saju/engine/fourPillars.js'
 import { getAdjacentBaziMonthBoundary } from '../saju/engine/solarTerms.js'
 import { ELEMENTS, STEM_YIN_YANG } from '../saju/engine/constants.js'
-import { getKoreaReferenceCity, KOREA_REFERENCE_CITIES, SAJU_ADAPTER_VERSION, resolveStateContract } from './schema.js'
+import { getKoreaReferenceLocation, KOREA_REFERENCE_CITIES, SAJU_ADAPTER_VERSION, resolveStateContract } from './schema.js'
 import { attachValidationMetadata } from './validationMetadata.js'
 import { calculateNatalBranchRelations, calculateNatalStemRelations } from './sajuRelationRules.js'
 import { calculateSajuTiming } from './sajuTimingRules.js'
@@ -705,7 +705,13 @@ export function calculateSajuSystem(input, profile, requestedPolicyContract = nu
     throw new Error('현재 사주 어댑터는 Asia/Seoul 시간대만 검증되었습니다.')
   }
 
-  const referenceCity = getKoreaReferenceCity(input.referenceCity)
+  const hasReferenceCity = Object.prototype.hasOwnProperty.call(input, 'referenceCity')
+  const referenceCity = hasReferenceCity
+    ? getKoreaReferenceLocation(input.referenceCity)
+    : KOREA_REFERENCE_CITIES[0]
+  if (!referenceCity) {
+    throw new Error('확인된 대한민국 시·군·구를 선택해야 사주 계산을 시작할 수 있습니다.')
+  }
   const calculationOptionsBase = {
     ...DEFAULT_SAJU_OPTIONS,
     longitudeDegrees: referenceCity.longitude,

@@ -1,5 +1,9 @@
 import { getSystemCapabilities } from './engineCapabilities.js'
 import { resolveSystemStatus, resolveStateContract } from './statusResolver.js'
+import {
+  getKoreaAdministrativeLocation,
+  KOREA_ADMINISTRATIVE_LOCATIONS,
+} from './koreaAdministrativeLocations.js'
 
 export const INTERPRETATION_PREP_SCHEMA_VERSION = '1.10.0'
 export const SAJU_ADAPTER_VERSION = 'saju-adapter-1.9.0'
@@ -20,8 +24,16 @@ export const KOREA_REFERENCE_CITIES = [
   { id: 'jeju', label: '제주', latitude: 33.51, longitude: 126.53, correctionMinutes: 34 },
 ]
 
+export { KOREA_ADMINISTRATIVE_LOCATIONS }
+
+export function getKoreaReferenceLocation(cityId) {
+  return KOREA_REFERENCE_CITIES.find((city) => city.id === cityId)
+    || getKoreaAdministrativeLocation(cityId)
+    || null
+}
+
 export function getKoreaReferenceCity(cityId) {
-  return KOREA_REFERENCE_CITIES.find((city) => city.id === cityId) || KOREA_REFERENCE_CITIES[0]
+  return getKoreaReferenceLocation(cityId)
 }
 
 export const SYSTEMS = [

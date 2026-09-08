@@ -450,7 +450,7 @@ test('buildDeterministicBase: bundles all three real domains into a single self-
   assert.match(md, /availableForInterpretation=false.*softie_project 내부 interpretation service\/runtime integration 미연결/)
   assert.match(md, /일반 ChatGPT\/Gemini downstream 대화: 금지하지 않음/)
   assert.match(md, /\| 기준일 \| 2026-07-26 \|/)
-  assert.match(md, /\| 출생지\/기준 도시 \| 대한민국 서울 \/ seoul \|/)
+  assert.match(md, /\| 선택 행정구역\/기준 ID \| 대한민국 서울 \/ seoul \|/)
   assert.match(md, /\| 성별 \| male \|/)
   assert.match(md, /지지 관계: 파\(진축\), 충\(미축\), 형\(미축\)/)
   assert.match(md, /대운\/세운: 대운 신축 · 방향 역행 · 기산 5년 5개월 29일 · 첫 시작일 2002-10-20 \/ 세운 병오/)

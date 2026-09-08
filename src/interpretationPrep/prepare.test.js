@@ -455,7 +455,7 @@ test('input validation rejects unsupported reference cities and missing birth da
   assert.match(validatePrepInput({ ...FIXED_INPUT, birthDate: '1900-01-01' }), /1901년부터 2100년/)
   assert.match(validatePrepInput({ ...FIXED_INPUT, targetDate: '' }), /targetDate/)
   assert.match(validatePrepInput({ ...FIXED_INPUT, targetDate: '2026-02-30' }), /기준일은/)
-  assert.match(validatePrepInput({ ...FIXED_INPUT, referenceCity: 'unsupported' }), /기준 도시/)
+  assert.match(validatePrepInput({ ...FIXED_INPUT, referenceCity: 'unsupported' }), /시·군·구/)
   assert.match(validatePrepInput({ ...FIXED_INPUT, gender: 'unspecified' }), /성별을 선택/)
 })
 

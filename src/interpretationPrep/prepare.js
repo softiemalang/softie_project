@@ -2,9 +2,8 @@ import {
   createEmptySystemResult,
   DEFAULT_INPUT,
   DEFAULT_PROFILES,
-  getKoreaReferenceCity,
+  getKoreaReferenceLocation,
   INTERPRETATION_PREP_SCHEMA_VERSION,
-  KOREA_REFERENCE_CITIES,
   TOPICS,
 } from './schema.js'
 import { calculateSajuSystem } from './sajuAdapter.js'
@@ -78,7 +77,7 @@ export function validatePrepInput(input) {
     || parsedTargetDate.getUTCDate() !== targetDay
   ) return '운 흐름 기준일은 1901년부터 2100년 사이의 실제 날짜여야 합니다.'
   if (!birthTimeUnknown && (hour > 23 || minute > 59)) return '출생시각 범위를 확인해 주세요.'
-  if (!KOREA_REFERENCE_CITIES.some((city) => city.id === input.referenceCity)) return '지원하는 국내 기준 도시를 선택해 주세요.'
+  if (!getKoreaReferenceLocation(input.referenceCity)) return '지원하는 대한민국 시·군·구를 선택해 주세요.'
   return ''
 }
 
@@ -176,7 +175,7 @@ export function prepareInterpretationData(input, profiles = DEFAULT_PROFILES) {
   const validationMessage = validatePrepInput(input)
   if (validationMessage) throw new Error(validationMessage)
 
-  const referenceCity = getKoreaReferenceCity(input.referenceCity)
+  const referenceCity = getKoreaReferenceLocation(input.referenceCity)
   const { source: _ignoredSource, ...inputWithoutSource } = input
 
   let birthDateSolar = input.birthDate
@@ -214,6 +213,11 @@ export function prepareInterpretationData(input, profiles = DEFAULT_PROFILES) {
     gender: ['female', 'male'].includes(input.gender) ? input.gender : DEFAULT_INPUT.gender,
     referenceCity: referenceCity.id,
     referenceCityLabel: referenceCity.label,
+    administrativeAreaCode: referenceCity.code || null,
+    administrativeAreaName: referenceCity.code ? referenceCity.label : null,
+    locationResolution: referenceCity.code ? 'administrative_area_representative_point' : null,
+    coordinateMethod: referenceCity.code ? referenceCity.coordinateMethod : null,
+    coordinateProvenance: referenceCity.code ? referenceCity.coordinateProvenance : null,
     latitude: referenceCity.latitude,
     longitude: referenceCity.longitude,
   }
