@@ -48,6 +48,7 @@
 ## Delegated work and bounded continuation
 
 - For delegated execution (bounded implementation, testing, or refactoring), Native Codex prioritizes the registered `antigravity-worker` as the default bounded worker; `zen-worker` serves as a dedicated capacity and alternative lane.
+- Alongside the default capacity lane in `zen-worker`, a manual advanced lane (Luna Max) is available for explicit selection when stronger execution or judgment is needed; it is excluded from automated routing or fallback.
 - Manual deep advisory lanes (e.g. Claude Sonnet Thinking via Antigravity) are strictly manual upon explicit request and must never be included in automated routing or fallback.
 - `zen-state-manager` serves as a read-only state reconstruction lane, explicitly invoked upon conversation start or workstream resumption to emit a compact STATE_PACKET; it is excluded from automated routing or fallback.
 - When follow-ups or fixes are needed, re-delegate within the same worker/workstream session whenever possible. Final judgment, integration review, and all `git commit`/`git push` responsibilities remain exclusively with Native Codex.
