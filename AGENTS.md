@@ -45,19 +45,16 @@
 - Do not fill an evidence gap with inference merely to complete the flow. If direct evidence, identity, locator, lineage, or semantic support does not close, preserve the unresolved state, stop that promotion branch, and report the remaining blocker.
 - Preserve unrelated dirty work, untracked research, protected artifacts, and large source files throughout the autonomous investigation; inspect and alter only the allowlisted task surface.
 
-## Delegated work and bounded continuation
+## Current model-lane boundary
 
-- For delegated execution (bounded implementation, testing, or refactoring), Native Codex prioritizes the registered `antigravity-worker` as the default bounded worker; `opencode-worker` serves as a dedicated capacity and alternative lane.
-- Alongside the default capacity lane in `opencode-worker`, a manual advanced lane (Luna Max) is available for explicit selection when stronger execution or judgment is needed; it is excluded from automated routing or fallback.
-- Manual deep advisory lanes (e.g. Claude Sonnet Thinking via Antigravity) are strictly manual upon explicit request and must never be included in automated routing or fallback.
-- `opencode-state-manager` serves as a read-only state reconstruction lane, explicitly invoked upon conversation start or workstream resumption to emit a compact STATE_PACKET; it is excluded from automated routing or fallback.
-- When follow-ups or fixes are needed, re-delegate within the same worker/workstream session whenever possible. Final judgment, integration review, and all `git commit`/`git push` responsibilities remain exclusively with Native Codex.
-- Use the registered `historical-document-evidence` portable Skill for historical-source identity, OCR evidence, layout/grid, and component evaluation. These role guidelines prescribe no call order, call count, or detailed orchestration and introduce no duplicate workflow infrastructure or new routing layer.
-- Delegated investigation or verification uses the existing `subagent-evidence-contract-v0` contract in [`docs/subagent-evidence-contract-v0.md`](docs/subagent-evidence-contract-v0.md) and [`src/subagentEvidenceContract.js`](src/subagentEvidenceContract.js); validate the exact envelope before using it.
-- A child result is execution provenance only: `child PASS != parent goal PASS`. Keep observations, inferences, validations, unknowns, blockers, parent verification, readiness, and activation separate.
-- Parent verification must use the parent basis and directly reread the relevant locator or rerun the critical check for calculation, source relation, authority, readiness, or activation impact. Do not copy canonical payloads into a child envelope or let a child promote authority.
-- Shared, tracked, canonical, and publication surfaces remain parent-owned; child writes require an explicitly isolated temporary surface.
-- The bounded gate in [`docs/bounded-continuation-quality-gate-v0.md`](docs/bounded-continuation-quality-gate-v0.md) and [`src/boundedContinuationGate.js`](src/boundedContinuationGate.js) is a workflow decision only. Its decisions do not establish domain readiness or production activation, and it does not authorize automatic retries.
+- Luna Max remains the default owner, decision maker, and final integrator. The explicit-only `gemini-flash-relay` Skill is an advisory handoff compressor for supplied Chat/Luna/Flash material, not an ordinary-work route.
+- The relay uses one direct headless `agy` call for `gemini-3.8-flash-high` through the Antigravity subscription. It does not use a repository worker, agent, runner, state manager, guard, canary, Computer Use, project state, conversation persistence, retry, fallback, model substitution, or authority/readiness/activation promotion.
+- OpenCode remains the direct lane for API-based models. No Codex-to-OpenCode Flash bridge is part of this project unless a future change proves that it attaches without separate orchestration.
+- Codex may use Codex Desktop, OpenCode Desktop, or Antigravity Desktop directly when a task explicitly needs one; this repository does not launch or re-delegate between apps. Do not edit or remove app data, auth/session material, credentials, or CLI installations as part of the relay.
+- Use the registered `historical-document-evidence` portable Skill only as reference/evidence guidance for direct work; it does not authorize relay output to become source authority or domain readiness.
+- Existing `subagent-evidence-contract-v0` records in [`docs/subagent-evidence-contract-v0.md`](docs/subagent-evidence-contract-v0.md) and [`src/subagentEvidenceContract.js`](src/subagentEvidenceContract.js) remain evidence records only. A child or Flash result is execution provenance/advisory text, not parent goal acceptance; keep observations, inferences, validations, unknowns, blockers, parent verification, readiness, and activation separate. Separately governed Hermes, Router, OCR, and DE405 workflows remain unchanged.
+- Parent verification must use the parent basis and directly reread the relevant locator or rerun the critical check for calculation, source relation, authority, readiness, or activation impact. Do not copy canonical payloads into a child envelope or let a child promote authority. Shared, tracked, canonical, and publication surfaces remain parent-owned.
+- The bounded gate in [`docs/bounded-continuation-quality-gate-v0.md`](docs/bounded-continuation-quality-gate-v0.md) and [`src/boundedContinuationGate.js`](src/boundedContinuationGate.js) remains workflow decision guidance only. Its decisions do not establish domain readiness or production activation and do not authorize automatic retries or routing.
 
 ## Verification boundary
 
