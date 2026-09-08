@@ -1,0 +1,52 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": [
+    "AGENTS.md"
+  ],
+  "permission": {
+    "external_directory": "deny",
+    "task": "deny",
+    "read": {
+      "*": "allow",
+      "*.env*": "deny",
+      "*.pem": "deny",
+      "*.key": "deny",
+      "*.pkcs*": "deny",
+      "*id_rsa*": "deny",
+      "*id_ed25519*": "deny",
+      "*token*": "deny",
+      "*secret*": "deny",
+      "*credential*": "deny"
+    },
+    "edit": {
+      "*": "allow",
+      "*.env*": "deny",
+      "*.pem": "deny",
+      "*.key": "deny",
+      "*.pkcs*": "deny",
+      "*id_rsa*": "deny",
+      "*id_ed25519*": "deny",
+      "*token*": "deny",
+      "*secret*": "deny",
+      "*credential*": "deny"
+    },
+    "bash": {
+      "*": "allow",
+      "rm -rf *": "deny",
+      "rm -r *": "deny",
+      "rm -R *": "deny",
+      "rm -fr *": "deny",
+      ":(){ :|:& };:": "deny",
+      "git commit*": "deny",
+      "git push*": "deny",
+      "git reset --hard*": "deny",
+      "git clean -f*": "deny",
+      "git clean -df*": "deny",
+      "git clean -x*": "deny",
+      "git rebase*": "deny",
+      "git merge*": "deny",
+      "git branch -D*": "deny",
+      "git tag -d*": "deny"
+    }
+  }
+}
