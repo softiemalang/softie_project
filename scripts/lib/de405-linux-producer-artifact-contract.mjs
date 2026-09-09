@@ -75,7 +75,7 @@ export const ASTROLOGY_REFERENCE = Object.freeze({
   fixturePath: 'test/fixtures/astrology/golden/astrology-ephemeris-golden-v1.json',
   schemaVersion: 'astrology-ephemeris-golden-evidence-v1',
   fixtureId: 'synthetic-de405-golden-2000-01-01T12:00:00Z',
-  packetSha256: 'afabd5542479d761657f461050df649102843b867d6b985be2a274e2b3209aa',
+  packetSha256: 'afabd5542479d761657f461050df649102843b8670d6b985be2a274e2b3209aa',
   rawChartSha256: '0236f31d83a98110dca217a1215378d2de7bd2e502a5eee673ba1877d0304d71',
   ruleCoreSha256: 'dcccdcef89549c6b5374abe8b3a78ba58c7fd2bd99cb3bf70631c599ff9e1e2f',
 })

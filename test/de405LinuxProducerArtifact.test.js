@@ -66,7 +66,7 @@ test('Linux producer contract and workflow are source-pinned and activation-neut
 test('Mac reference fixture is the fixed numerical and packet parity oracle', async () => {
   const evidence = JSON.parse(await readFile(join(root, ASTROLOGY_REFERENCE.fixturePath), 'utf8'))
   assert.equal(evidence.fixture.id, ASTROLOGY_REFERENCE.fixtureId)
-  assert.equal(ASTROLOGY_REFERENCE.packetSha256, 'afabd5542479d761657f461050df649102843b867d6b985be2a274e2b3209aa')
+  assert.equal(ASTROLOGY_REFERENCE.packetSha256, 'afabd5542479d761657f461050df649102843b8670d6b985be2a274e2b3209aa')
   assert.equal(evidence.rawChart.sha256, ASTROLOGY_REFERENCE.rawChartSha256)
   assert.equal(evidence.ruleCore.sha256, ASTROLOGY_REFERENCE.ruleCoreSha256)
   assert.equal(evidence.availableForInterpretation, false)
