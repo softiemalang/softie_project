@@ -63,8 +63,13 @@ jobs:
           tar --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -C "$artifact_root" -cf - . | gzip -n > "$first"
           tar --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -C "$artifact_root" -cf - . | gzip -n > "$second"
           cmp "$first" "$second"
-          sha256sum "$first" > "${first}.sha256"
-          sha256sum --check "${first}.sha256"
+          archive_dir="$(dirname "$first")"
+          archive_name="$(basename "$first")"
+          (
+            cd "$archive_dir"
+            sha256sum "$archive_name" > "${archive_name}.sha256"
+            sha256sum --check "${archive_name}.sha256"
+          )
           rm -rf "${RUNNER_TEMP}/de405-linux-producer-fresh"
           mkdir -p "${RUNNER_TEMP}/de405-linux-producer-fresh"
           tar -xzf "$first" --no-same-owner --no-same-permissions -C "${RUNNER_TEMP}/de405-linux-producer-fresh"

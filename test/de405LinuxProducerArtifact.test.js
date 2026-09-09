@@ -58,6 +58,8 @@ test('Linux producer contract and workflow are source-pinned and activation-neut
   assert.deepEqual(validateManifest(manifest), [])
   const workflow = await readFile(join(root, '.github/workflows/de405-linux-producer-v0.yml'), 'utf8')
   for (const value of ['workflow_dispatch:', 'runs-on: ubuntu-24.04', 'uname -m', 'x86_64-linux-gnu', 'fetch-de405-linux-official-inputs.mjs', 'build-de405-linux-producer-v0.mjs', '--repeat 2', 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02', 'retention-days: 14']) assert.match(workflow, new RegExp(value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')), value)
+  assert.ok(workflow.includes('sha256sum "$archive_name" > "${archive_name}.sha256"'))
+  assert.ok(!workflow.includes('sha256sum "$first" > "${first}.sha256"'))
   assert.doesNotMatch(workflow, /(?:^|\n)\s*(?:push|pull_request):/)
   assert.doesNotMatch(workflow, /vercel|availableForInterpretation:\s*true|activation/i)
   for (const match of workflow.matchAll(/uses:\s*([^\s#]+)/g)) assert.match(match[1], /@[0-9a-f]{40}$/)
