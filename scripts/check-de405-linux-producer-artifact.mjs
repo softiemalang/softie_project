@@ -112,7 +112,7 @@ function readelfIdentity(binary) {
     const fileOutput = execFileSync('file', ['-b', binary], { encoding: 'utf8' }).trim()
     if (!fileOutput.includes('ELF 64-bit') || !fileOutput.includes('x86-64')) return `runner binary format mismatch: ${fileOutput}`
     const header = execFileSync('readelf', ['-h', binary], { encoding: 'utf8' })
-    if (!/Class:\s+ELF64/.test(header) || !/Machine:\s+x86-64/.test(header)) return 'runner ELF header ABI mismatch'
+    if (!/Class:\s+ELF64/.test(header) || !/Machine:\s+.*x86-64/i.test(header)) return 'runner ELF header ABI mismatch'
     return null
   } catch (error) {
     return `runner ABI inspection failed: ${error.message}`
