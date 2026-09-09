@@ -83,7 +83,12 @@ function pushPathErrors(value, errors, path = '$', options = {}) {
 function parseFactRef(factRef) {
   if (!isNonEmptyString(factRef)) return null
   const segments = factRef.split('.')
-  if (segments.length < 4 || segments[0] !== 'systems' || segments[2] !== 'fact') return null
+  // Normalized input is a read-only part of the frozen Base contract and may
+  // be referenced by a precomputed rule without being treated as derived
+  // semantic evidence.
+  const isSystemFact = segments.length >= 4 && segments[0] === 'systems' && segments[2] === 'fact'
+  const isNormalizedInputFact = segments.length >= 2 && segments[0] === 'normalizedInput'
+  if (!isSystemFact && !isNormalizedInputFact) return null
   if (segments.some(segment => segment.length === 0)) return null
   return segments
 }
@@ -111,7 +116,7 @@ function factLookup(base, factRef) {
   return {
     ...result,
     validRef: true,
-    domain: segments[1],
+    domain: segments[0] === 'systems' ? segments[1] : 'input',
   }
 }
 

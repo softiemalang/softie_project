@@ -41,6 +41,8 @@ test('Constitution accepts only the frozen public Base and never recalculates a 
   assert.deepEqual(validateDeterministicBaseForInterpretation(BASE), { valid: true, errors: [] })
   assert.equal(isDeterministicFactRef(BASE, 'systems.saju.fact.fixtureValue'), true)
   assert.equal(isDeterministicFactRef(BASE, 'systems.saju.fact.missingValue'), false)
+  assert.equal(isDeterministicFactRef(BASE, 'normalizedInput.birthTime'), true)
+  assert.equal(isDeterministicFactRef(BASE, 'normalizedInput.missingValue'), false)
 
   const result = evaluateInterpretationConstitution({
     base: BASE,
