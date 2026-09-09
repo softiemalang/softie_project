@@ -167,6 +167,41 @@ export const SAJU_LINEAGE_LOCATORS = Object.freeze([
   loc('saju-source-ziping-zhenquan', 'page.local.ziping.p15-xingyun', 15, '15', '論行運', 'bounded natal-chart/fortune pairing statement', '论运与命无二法'),
   loc('saju-source-ziping-zhenquan', 'ziping-p16-branch-stem-root-scan', 16, '16', '論支中喜忌逢運透清', 'explicit 甲-to-branch root scan and 亥-to-visible-stem role examples', '支为干之生地 · 干为支之发用 · 有一甲字 · 寅亥卯未 · 有一亥字'),
   loc('saju-source-ziping-zhenquan', 'page.local.ziping.p25-timing', 25, '25', '取運 locator', 'timing section locator without repository exact-start contract', '取運'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p3-stem-combination-semantic-context', 3, '3', '論十干配合性情', 'stem-combination examples that change or qualify already named role labels', '用甲辛官 · 透丙作合 · 因合而无用'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p4-stem-combination-nonmerge', 4, '4', '論十干合而不合', 'distance, separation, and合而不化 examples that alter whether a combination acts', '隔有所间 · 两位太远 · 合而不化'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p6-yongshen-success-rescue', 6, '6', '論用神成敗救應', 'named use-role success, failure, and rescue conditions', '官逢财印 · 财逢食生 · 伤官见官'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p8-yongshen-pure-mixed', 8, '8', '論用神純雜', 'pure/mixed use-role conditions based on mutual support or opposition', '何谓纯 · 何谓杂 · 互用而两相得'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p8-yongshen-pattern-level', 8, '8', '論用神格局高低', 'pattern level examples using 有情/有力 and use-role combinations', '格局高低 · 有情有力'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p9-yongshen-success-failure-transition', 9, '9', '論用神因成得敗因敗得成', 'success-to-failure and failure-to-success transitions under explicit use-role cases', '因成得败 · 因败得成'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p9-yongshen-season-result', 9, '9', '論用神配氣候得失', 'season/condition pairing clauses tied to use-role results', '配气候而互参 · 成功不易'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p12-good-symbol-break-pattern', 12, '12', '論四吉神能破格', 'four named favorable role conditions that can break a pattern under further conditions', '财官印食 · 破格'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p12-bad-symbol-make-pattern', 12, '12', '論四凶神能成格', 'four named adverse role conditions that can make a pattern under further conditions', '伤官 · 七杀 · 枭印 · 劫财 · 成格'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p12-generation-control-order', 12, '12', '論生克先後分吉凶', 'ordered generation/control examples whose stated output is 吉凶', '生克先后 · 分吉凶'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p13-external-pattern-use', 13, '13', '論外格用舍', 'external-pattern inclusion/exclusion conditions with use-selection vocabulary', '外格 · 用舍 · 月令无用'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p14-six-relations-use', 14, '14', '論宮分用神配六親', 'palace and six-relation mapping claims beyond the public semantic boundary', '配六亲'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p14-wife-children', 14, '14', '論妻子', 'spouse/children and personal-outcome claims beyond the public semantic boundary', '论妻子 · 论子'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p16-yun-change-pattern', 16, '16', '論行運成格變格', 'fortune-period conditions stated to change or preserve a pattern', '成格变格'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p16-stem-branch-preference', 16, '16', '論喜忌干支有別', 'separate stem/branch preference wording without a closed semantic resolver', '喜忌干支有别'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p17-not-bind-pattern', 17, '17', '論時說拘泥格局', 'anti-rigidity statements about not forcing a pattern label', '拘泥格局'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p17-regular-officer', 17, '17', '論正官', 'regular-officer conditions and source outcomes', '正官 · 用官 · 伤官见官'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p18-seven-killings', 18, '18', '論七殺', 'seven-killing conditions and source outcomes', '七杀 · 制化'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p18-injury-officer', 18, '18', '論傷官', 'injury-officer conditions and source outcomes', '伤官 · 佩印 · 伤官见官'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p19-food-god', 19, '19', '論食神', 'food-god conditions and source outcomes', '食神 · 生财 · 枭神夺食'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p19-seal', 19, '19', '論印綬', 'seal conditions and source outcomes', '印绶 · 佩印 · 财印'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p20-wealth', 20, '20', '論財', 'wealth conditions and source outcomes', '财 · 生官 · 财印'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p21-partial-wealth', 21, '21', '論偏財', 'partial-wealth conditions and source outcomes', '偏财'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p21-rob-wealth', 21, '21', '論劫財', 'rob-wealth conditions and source outcomes', '劫财 · 月劫'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p22-yang-blade', 22, '22', '論陽刃', 'yang-blade conditions and source outcomes', '阳刃'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p22-building-wealth', 22, '22', '論建祿月劫', 'established-lu/month-rob conditions and source outcomes', '建禄月劫'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p23-misc-pattern', 23, '23', '論雜格', 'miscellaneous-pattern conditions and source outcomes', '杂格'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p23-metal-spirit', 23, '23', '論金神', 'metal-spirit conditions and source outcomes', '金神'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p24-injury-timing', 24, '24', '論傷官取運', 'injury-officer fortune-period conditions and source outcomes', '伤官取运'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p24-killing', 24, '24', '論殺', 'killing-star conditions and source outcomes', '论杀'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p25-officer', 25, '25', '論官', 'officer fortune-period conditions and source outcomes', '论官'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p25-building-wealth-timing', 25, '25', '論建祿月劫', 'established-lu/month-rob fortune-period conditions', '建禄月劫取运'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p26-building-wealth-timing', 26, '26', '論建祿月劫取運', '建祿月劫 fortune-period conditions and source outcomes', '建禄月劫取运'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p26-misc-pattern', 26, '26', '論雜格', 'miscellaneous-pattern conditions and source outcomes', '杂格'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p27-misc-pattern-continuation', 27, '27', '論雜格', 'continuation of miscellaneous-pattern examples and outcome language', '杂格例'),
   loc('saju-source-ditian-sui', 'ditian-p4-jia-wood-seasonal-conditions', 4, '4', '天干論 / 甲木', 'qualitative 甲木 seasonal conditions', '甲木参天 · 脱胎要火 · 春不容金 · 秋不容土'),
   loc('saju-source-qiongtong-baojian', 'qiongtong-p2-five-phase-number-and-season', 2, '2', '五行總論', 'element numbers, state labels, and explicit 生旺/死绝 multiplier wording', '其数则水一、火二、木三、金四、土五 · 生旺加倍，死绝减半'),
   loc('saju-source-qiongtong-baojian', 'qiongtong-p4-spring-jia-wood', 4, '4', '三春甲木', 'spring 甲木 conditional sequence', '春月之木 · 初春余寒 · 以火温暖'),
@@ -1254,6 +1289,718 @@ export const SAJU_ZIPING_SOURCE_SEMANTIC_RULES = Object.freeze([
   }),
 ])
 
+export const SAJU_ZIPING_SEMANTIC_INVENTORY_STATUSES = Object.freeze([
+  'adopted_existing_executable',
+  'newly_adopted_executable',
+  'context_bound_candidate',
+  'unresolved',
+  'unsupported',
+])
+
+const zipingSemanticInventoryEntry = value => ({
+  inventorySchema: 'saju-ziping-source-semantic-rule-inventory-v0',
+  work: WORKS.ziping,
+  lineage: 'ziping_local_export',
+  sourceIds: ['saju-source-ziping-zhenquan'],
+  locatorIds: [],
+  applicability: [],
+  requiredStructuralResult: {
+    ruleIds: [],
+    fields: [],
+    closure: 'not_closed',
+  },
+  semanticRoleResult: {
+    sourceDefinedRole: null,
+    outputShape: [],
+    scope: 'source_bounded_only',
+  },
+  exceptions: [],
+  forbiddenExtensions: [...FORBIDDEN_EXTENSIONS],
+  compositionState: 'coexistence_only_until_source_priority_is_closed',
+  sourceObservation: '',
+  ...value,
+})
+
+/**
+ * Full local-work inventory of observed semantic surfaces.  This is a
+ * research inventory, not an executable rule list.  Only the two entries
+ * marked adopted_existing_executable have an existing semantic-result
+ * contract.  Every other entry is deliberately kept outside execution until
+ * its structural prerequisite, source-defined output, and stop conditions
+ * close without importing another lineage or modern practice.
+ */
+export const SAJU_ZIPING_SEMANTIC_RULE_INVENTORY = Object.freeze([
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p7-yin-month-exposure-change.v0',
+    status: 'adopted_existing_executable',
+    contractRuleId: 'rule.ziping.yin-month-exposure-change.v0',
+    locatorIds: ['page.local.ziping.p7-yongshin-continuation'],
+    applicability: ['寅月', 'four supplied visible-stem positions', 'no supplied visible 甲', 'exactly one supplied visible 丙'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.ziping.yin-month-exposure-contrast.v0'],
+      fields: ['sourceCondition', 'absentVisibleStem', 'exposedVisibleStem', 'exposedPositions'],
+      closure: 'closed_in_existing_contract',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '同知得以作主',
+      outputShape: ['source-local selection-change clause'],
+      scope: '寅月 exact contrast only',
+    },
+    exceptions: ['duplicate visible 丙 is not closed', 'no global 用神 priority'],
+    sourceObservation: 'p.7 places 不透甲而透丙 inside the local 用神变化 discussion and supplies the following source clause.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p10-chen-exposure-role.v0',
+    status: 'adopted_existing_executable',
+    contractRuleId: 'rule.ziping.chen-exposure-use-role.v0',
+    locatorIds: ['ziping-p10-chen-exposed-stem-definition'],
+    applicability: ['甲日主', '辰月', 'supplied 辰 hidden-stem list contains 戊、癸、乙', 'exact four-pillar visible-stem frame'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.ziping.chen-exposure-inventory.v0'],
+      fields: ['namedExposureMatches', 'multiplicity'],
+      closure: 'closed_in_existing_contract',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '戊→偏财、癸→正印、乙→月劫',
+      outputShape: ['source role-label inventory', 'single/multiple named exposure'],
+      scope: '甲生辰月 named targets only',
+    },
+    exceptions: ['other stems, day masters, or month branches are not included', 'no 會支/格局 extension'],
+    sourceObservation: 'p.10 asks 何谓透干 and names three 甲生辰月 exposure targets with role labels, then distinguishes one and multiple named exposures.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p3-root-cycle-qualification.v0',
+    status: 'unresolved',
+    locatorIds: ['ziping-p3-yang-yin-root-cycle-and-tomb-exception'],
+    applicability: ['a supplied stem/branch frame', 'source-local life-cycle or tomb vocabulary'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['complete source-local stem-to-branch state map', 'yin/yang exception handling'],
+      closure: 'missing_complete_state_map',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '有根/无用 and life-cycle qualification',
+      outputShape: ['bounded source qualification only'],
+      scope: 'not a strength or weakness result',
+    },
+    exceptions: ['p.3 does not print a complete all-stem/all-branch table', '阴长生/墓例 precedence is not closed'],
+    sourceObservation: 'p.3 defines life-cycle vocabulary and bounded yang/yin and tomb qualifications but does not close a complete input-to-output map.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p3-stem-combination-role-change.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['ziping-p3-stem-combination-semantic-context'],
+    applicability: ['visible stem combination is supplied', 'the source role named as 用 is already bound'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['visible stem pair', 'source role binding', 'combination direction'],
+      closure: 'missing_source_use_role_binder',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '合可使已命名 官/印/财/食 role cease to be the same role',
+      outputShape: ['source role qualification such as 非其官/非其印/非其财'],
+      scope: 'named p.3 examples only',
+    },
+    exceptions: ['role change is conditional on the prior 用 role', '合化 and non-use statements are not a universal stem-pair table'],
+    sourceObservation: 'p.3 gives explicit combination examples in which a previously named role is changed or rendered unavailable by another visible stem.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p4-stem-combination-nonmerge.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['ziping-p4-stem-combination-nonmerge'],
+    applicability: ['a supplied stem pair', 'position/distance information', 'source-defined combination context'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['stem positions', 'pair separation', '合/合化 state'],
+      closure: 'missing_source_precedence_and_distance_contract',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '合而不合/合而不化/合而无伤 qualification',
+      outputShape: ['combination efficacy qualification'],
+      scope: 'p.4 examples only',
+    },
+    exceptions: ['the source gives spacing and distance examples but no complete precedence table', 'do not infer a universal distance threshold'],
+    sourceObservation: 'p.4 distinguishes combinations by separation, distance, and whether they act or transform, with examples rather than a complete predicate.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p5-branch-relation-resolution.v0',
+    status: 'unresolved',
+    locatorIds: ['ziping-p5-branch-relations-definition-and-examples'],
+    applicability: ['supplied branch relation inventory', 'source-defined use/pattern context where the relation is evaluated'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.ziping.branch-relation-inventory.v0'],
+      fields: ['relation name', 'branches', 'positions', 'source relation scope'],
+      closure: 'relation_inventory_exists_but_resolution_priority_is_missing',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '刑冲会合解法 / 可解不可解 case',
+      outputShape: ['source relation-resolution qualification'],
+      scope: 'no relation cancellation or valence ranking',
+    },
+    exceptions: ['simultaneous relations must remain present', 'p.5 examples do not define a complete precedence or cancellation rule'],
+    sourceObservation: 'p.5 defines and exemplifies 刑、冲、会、合 and asks when a relation can or cannot be解; the supplied relation inventory alone does not close that judgment.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p7-use-change-other-cases.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['page.local.ziping.p7-yongshin-continuation'],
+    applicability: ['用神 is source-bound', 'one of the page-specific change conditions is supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['source use role', 'case-specific relation condition'],
+      closure: 'p7_has_multiple_case_clauses_without_global_precedence',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '用神变化 case clause',
+      outputShape: ['source-local change qualification'],
+      scope: 'separate from the adopted 不透甲而透丙 lane',
+    },
+    exceptions: ['do not merge neighboring p.7 cases', 'only the exact single-丙 clause is currently executable'],
+    sourceObservation: 'p.7 continues with multiple 用神变化 examples; the local text does not provide a global selection/change priority.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p6-yongshen-selection.v0',
+    status: 'unresolved',
+    locatorIds: ['page.local.ziping.p6-yongshin'],
+    applicability: ['month-command and day-master facts are supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['source-defined month-command role', 'selection precedence among candidates'],
+      closure: 'missing_use_selection_resolver',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '用神专求月令',
+      outputShape: ['selected source use role'],
+      scope: 'not executable without a complete selection procedure',
+    },
+    exceptions: ['p.6 supplies a governing statement but not a complete all-case selection algorithm'],
+    sourceObservation: 'p.6 makes month-command the starting point for 用神 but immediately relies on case-specific conditions.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p6-use-success-rescue.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['ziping-p6-yongshen-success-rescue'],
+    applicability: ['a selected 用神 is supplied', 'supporting/opposing visible and hidden relations are supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['selected use role', 'support/rescue relation inventory'],
+      closure: 'depends_on_unresolved_use_selection',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '成格/败格/救应 case labels',
+      outputShape: ['source case classification'],
+      scope: 'case clause only; no personal outcome',
+    },
+    exceptions: ['source lists multiple role-specific cases', 'no cross-case precedence is supplied'],
+    sourceObservation: 'p.6 enumerates 官、财、印、食 and related rescue/failure cases after the month-command statement.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p8-pure-mixed-use.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['ziping-p8-yongshen-pure-mixed'],
+    applicability: ['selected 用神 and all mutually acting roles are supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['selected use role set', 'mutual support/opposition graph'],
+      closure: 'depends_on_unresolved_use_selection',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '纯/杂',
+      outputShape: ['source purity/mixedness label'],
+      scope: 'source role-set label only',
+    },
+    exceptions: ['互用而两相得 and 互用而两不相谋 are examples, not a complete graph resolver'],
+    sourceObservation: 'p.8 defines 纯 and 杂 through mutual role support or non-cooperation after 用神变化.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p8-pattern-level.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['ziping-p8-yongshen-pattern-level'],
+    applicability: ['用神 and 格局 are already source-bound', '有情/有力 relation inputs are supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['source pattern identity', '有情/有力 relation inventory'],
+      closure: 'depends_on_unresolved_pattern_and_sentiment_binding',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '格局高低',
+      outputShape: ['source pattern-level qualification'],
+      scope: 'no personal or fortune meaning',
+    },
+    exceptions: ['p.8 uses multiple examples and no total ordering across them'],
+    sourceObservation: 'p.8 ties pattern level to 有情/有力 and named role combinations, but does not provide a closed ranking function.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p9-success-failure-transition.v0',
+    status: 'unresolved',
+    locatorIds: ['ziping-p9-yongshen-success-failure-transition'],
+    applicability: ['用神/格局 state is supplied', 'change relation and temporal/context condition are supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['prior state', 'new relation', 'transition condition'],
+      closure: 'missing_transition_precedence',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '因成得败/因败得成',
+      outputShape: ['source transition label'],
+      scope: 'no general transition automaton',
+    },
+    exceptions: ['the page gives examples but not an exhaustive transition order'],
+    sourceObservation: 'p.9 explicitly discusses success-to-failure and failure-to-success changes, so simultaneous conditions cannot be ranked by inference.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p9-season-use-result.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['ziping-p9-yongshen-season-result'],
+    applicability: ['用神 is source-bound', 'season/context and supporting roles are supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['season context', 'use role', 'support/temperature relation'],
+      closure: 'missing_source_season_precedence',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '配气候得失',
+      outputShape: ['source seasonal qualification'],
+      scope: 'not a general seasonal preference table',
+    },
+    exceptions: ['p.9 conditions are case-specific and include multiple factors'],
+    sourceObservation: 'p.9 requires 用神 and climate/season to be consulted together, but does not close a universal order among those conditions.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p10-assistant-role.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['page.local.ziping.p10-xiangshen'],
+    applicability: ['用神 is already selected', 'a supporting role is explicitly supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['selected use role', 'source support relation'],
+      closure: 'depends_on_unresolved_use_selection',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '相神/辅者',
+      outputShape: ['source assistant-role mapping'],
+      scope: 'not a general support or beneficialness label',
+    },
+    exceptions: ['p.10 gives role examples whose use identity must already be bound'],
+    sourceObservation: 'p.10 describes the assistant as the role that supports the already selected 用神.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p11-exposure-branch-sentiment-composition.v0',
+    status: 'unresolved',
+    locatorIds: ['ziping-p11-exposed-stem-and-branch-context'],
+    applicability: ['透干 and 會支 are source-bound', 'multiple exposure and pattern context are supplied'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.ziping.chen-exposure-inventory.v0', 'rule.ziping.branch-relation-inventory.v0'],
+      fields: ['exposure role inventory', 'source-defined 會支 binding', 'pattern context'],
+      closure: 'missing_source_binding_priority_and_transition_rule',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '有情/無情 and transition examples',
+      outputShape: ['coexisting source relation states'],
+      scope: 'no static sentiment or pattern result',
+    },
+    exceptions: ['p.11 explicitly gives 有情而卒成无情 and 无情而终有情', 'do not choose a winner'],
+    compositionState: 'unresolved_composition_frontier',
+    sourceObservation: 'p.11 defines 有情/無情 and then composes 透干, 會支, and pattern cases with reversible transitions.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p12-good-bad-pattern.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['ziping-p12-good-symbol-break-pattern', 'ziping-p12-bad-symbol-make-pattern'],
+    applicability: ['four named role classes are source-bound', 'pattern state and relation conditions are supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['source role class', 'pattern state', 'break/make relation'],
+      closure: 'depends_on_unresolved_pattern_binding',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '四吉神破格 / 四凶神成格',
+      outputShape: ['source pattern-change qualification'],
+      scope: 'no good/bad personal outcome',
+    },
+    exceptions: ['the two chapters are not a single universal role precedence rule'],
+    sourceObservation: 'p.12 gives separate favorable/adverse role cases that affect pattern state under additional conditions.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p12-generation-control-order.v0',
+    status: 'unresolved',
+    locatorIds: ['ziping-p12-generation-control-order'],
+    applicability: ['ordered generation/control chain is supplied', 'source use/pattern context is supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['ordered relation chain', 'source context'],
+      closure: 'output_is_explicitly_good_bad_and_priority_is_not_closed',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '先后分吉凶',
+      outputShape: ['source 吉凶 classification'],
+      scope: 'outside current semantic boundary',
+    },
+    exceptions: ['do not materialize 吉凶 from a relation inventory'],
+    sourceObservation: 'p.12 states that generation/control order divides 吉凶, but the required source context and full precedence are not closed.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p13-external-pattern-use.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['ziping-p13-external-pattern-use'],
+    applicability: ['month-command and source pattern conditions are supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['month-command role', 'external-pattern condition'],
+      closure: 'depends_on_unresolved_pattern_and_use_selection',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '外格用舍',
+      outputShape: ['source inclusion/exclusion qualification'],
+      scope: 'no general external-pattern resolver',
+    },
+    exceptions: ['p.13 distinguishes when month command has or lacks use; no complete algorithm'],
+    sourceObservation: 'p.13 discusses when an external pattern may be used or abandoned in relation to month-command conditions.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p14-six-relations.v0',
+    status: 'unsupported',
+    locatorIds: ['ziping-p14-six-relations-use'],
+    applicability: ['palace and six-relation mapping would be required'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['palace mapping', 'six-relation mapping'],
+      closure: 'outside_public_semantic_boundary',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '宮分用神配六親',
+      outputShape: ['personal relation mapping'],
+      scope: 'not admitted to the public semantic grammar',
+    },
+    exceptions: ['do not infer personal relations from Base symbols'],
+    sourceObservation: 'p.14 enters palace and six-relation claims, which are outside the current source-bounded public semantic scope.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p14-wife-children.v0',
+    status: 'unsupported',
+    locatorIds: ['ziping-p14-wife-children'],
+    applicability: ['spouse/children semantic mapping would be required'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['personal relation inputs'],
+      closure: 'outside_public_semantic_boundary',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '妻子/子女 claims',
+      outputShape: ['personal-outcome result'],
+      scope: 'not admitted to the public semantic grammar',
+    },
+    exceptions: ['no personal outcome or relationship claim is materialized'],
+    sourceObservation: 'p.14 contains spouse/children discussion; it is deliberately excluded rather than generalized.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p15-timing-pairing.v0',
+    status: 'unresolved',
+    locatorIds: ['page.local.ziping.p15-xingyun'],
+    applicability: ['natal chart and fortune-period facts are exact', '用神/喜忌 context is source-bound'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['natal relation frame', 'fortune-period relation', 'source use/preference context'],
+      closure: 'depends_on_unresolved_timing_and_use_selection',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '命运配合',
+      outputShape: ['source fortune-period qualification'],
+      scope: 'no prediction or 吉凶 output',
+    },
+    exceptions: ['section statement does not close direction/start/conversion or semantic priority'],
+    sourceObservation: 'p.15 states that fortune and natal chart are read together, then gives role-specific examples.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p16-timing-change-pattern.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['ziping-p16-yun-change-pattern'],
+    applicability: ['fortune-period input is exact', 'pattern/use state is source-bound'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['fortune-period relation', 'pattern state before/after'],
+      closure: 'depends_on_unresolved_timing_and_pattern_binding',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '成格/变格 in fortune period',
+      outputShape: ['source pattern transition'],
+      scope: 'no life-event or fortune result',
+    },
+    exceptions: ['examples do not provide a complete transition priority'],
+    sourceObservation: 'p.16 discusses fortune-period changes that may preserve or change a source pattern.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p16-stem-branch-preference.v0',
+    status: 'unresolved',
+    locatorIds: ['ziping-p16-stem-branch-preference'],
+    applicability: ['stem/branch relation and source preference context are supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['stem relation inventory', 'branch relation inventory', 'source preference context'],
+      closure: 'preference_output_is_not_source_closed',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '喜忌干支有别',
+      outputShape: ['source distinction'],
+      scope: 'not a universal preference classifier',
+    },
+    exceptions: ['do not translate 喜忌 into strength, personality, or fortune'],
+    sourceObservation: 'p.16 distinguishes stem and branch roles in preference language without closing a reusable resolver.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p17-anti-rigid-pattern.v0',
+    status: 'unresolved',
+    locatorIds: ['ziping-p17-not-bind-pattern'],
+    applicability: ['a candidate pattern label and counterexample are supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['candidate pattern', 'counter-condition'],
+      closure: 'source_is_cautionary_not_algorithmic',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: 'do not force a pattern label',
+      outputShape: ['stop/deferral instruction'],
+      scope: 'cannot be converted into a positive classifier',
+    },
+    exceptions: ['preserve ambiguity rather than selecting a pattern'],
+    sourceObservation: 'p.17 warns against拘泥格局 and therefore supports a fail-closed stop, not a new positive semantic rule.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p17-regular-officer.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['ziping-p17-regular-officer'],
+    applicability: ['官 role is source-bound', 'support/opposition and pattern context are supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['官 role', 'support/opposition relations', 'source pattern context'],
+      closure: 'depends_on_unresolved_use_selection',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '正官 case qualification',
+      outputShape: ['source officer-pattern condition'],
+      scope: 'no personal or fortune conclusion',
+    },
+    exceptions: ['the chapter uses multiple conditional cases and does not state a total order'],
+    sourceObservation: 'p.17 introduces regular-officer cases through role, support, and obstruction conditions.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p18-seven-killings.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['ziping-p18-seven-killings'],
+    applicability: ['七杀 role is source-bound', '制化/support and pattern context are supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['七杀 role', '制化 relation', 'source pattern context'],
+      closure: 'depends_on_unresolved_use_selection',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '七杀 case qualification',
+      outputShape: ['source killing-role condition'],
+      scope: 'no 吉凶/personal result',
+    },
+    exceptions: ['do not import a modern 七杀 meaning table'],
+    sourceObservation: 'p.18 supplies named 七杀 control/化 cases rather than a complete independent predicate.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p18-injury-officer.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['ziping-p18-injury-officer'],
+    applicability: ['伤官 role is source-bound', '印/财/官 interactions and pattern context are supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['伤官 role', 'relation inventory', 'source pattern context'],
+      closure: 'depends_on_unresolved_use_selection',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '伤官 case qualification',
+      outputShape: ['source injury-officer condition'],
+      scope: 'no personal or fortune result',
+    },
+    exceptions: ['do not collapse multiple cases into one role meaning'],
+    sourceObservation: 'p.18–19 treats 伤官 through several relation-specific cases and exceptions.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p19-food-god.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['ziping-p19-food-god'],
+    applicability: ['食神 role is source-bound', '生财/制化 and pattern context are supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['食神 role', 'relation inventory', 'source pattern context'],
+      closure: 'depends_on_unresolved_use_selection',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '食神 case qualification',
+      outputShape: ['source food-god condition'],
+      scope: 'no personal or fortune result',
+    },
+    exceptions: ['枭神夺食 is a named case, not a general conflict resolver'],
+    sourceObservation: 'p.19 lists 食神 relation cases including生财 and opposing role conditions.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p19-seal.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['ziping-p19-seal'],
+    applicability: ['印绶 role is source-bound', '财/官/support context is supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['印绶 role', 'relation inventory', 'source pattern context'],
+      closure: 'depends_on_unresolved_use_selection',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '印绶 case qualification',
+      outputShape: ['source seal condition'],
+      scope: 'no personal or fortune result',
+    },
+    exceptions: ['named cases do not establish a universal 印 role priority'],
+    sourceObservation: 'p.19–20 gives relation-specific 印绶 cases rather than a closed role-selection procedure.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p20-wealth.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['ziping-p20-wealth'],
+    applicability: ['财 role is source-bound', '生官/制化 and pattern context are supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['财 role', 'relation inventory', 'source pattern context'],
+      closure: 'depends_on_unresolved_use_selection',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '财 case qualification',
+      outputShape: ['source wealth condition'],
+      scope: 'no material or personal outcome',
+    },
+    exceptions: ['do not translate 财 labels into financial prediction'],
+    sourceObservation: 'p.20 treats 财 through source-specific relation and pattern cases.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p21-partial-wealth-rob.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['ziping-p21-partial-wealth', 'ziping-p21-rob-wealth'],
+    applicability: ['偏财 or 劫财 role is source-bound', 'relation and pattern context are supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['role-specific relation inventory', 'source pattern context'],
+      closure: 'depends_on_unresolved_use_selection',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '偏财/劫财 case qualification',
+      outputShape: ['source role-specific condition'],
+      scope: 'no personal or financial outcome',
+    },
+    exceptions: ['separate chapters are not merged into one rule'],
+    sourceObservation: 'p.21 separates 偏财 and 劫财 case discussions with distinct conditions.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p22-yang-blade-building-wealth.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['ziping-p22-yang-blade', 'ziping-p22-building-wealth'],
+    applicability: ['阳刃 or 建禄月劫 role is source-bound', 'source pattern and relation context are supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['role-specific branch/stem relations', 'source pattern context'],
+      closure: 'depends_on_unresolved_pattern_binding',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '阳刃/建禄月劫 case qualification',
+      outputShape: ['source role-specific condition'],
+      scope: 'no strength, fortune, or personal result',
+    },
+    exceptions: ['role-specific chapters remain separate lineage-bounded surfaces'],
+    sourceObservation: 'p.22 treats 阳刃 and 建禄月劫 through separate conditional examples.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p23-misc-metal-spirit.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['ziping-p23-misc-pattern', 'ziping-p23-metal-spirit'],
+    applicability: ['named miscellaneous pattern is source-bound', 'required pattern relations are supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['source pattern condition', 'relation inventory'],
+      closure: 'missing_complete_misc_pattern_predicates',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '杂格/金神 case qualification',
+      outputShape: ['source pattern condition'],
+      scope: 'no general miscellaneous-pattern resolver',
+    },
+    exceptions: ['do not combine separate named pattern chapters'],
+    sourceObservation: 'p.23 gives distinct 杂格 and 金神 examples, each with additional context.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p24-injury-killing-timing.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['ziping-p24-injury-timing', 'ziping-p24-killing'],
+    applicability: ['fortune-period frame is exact', '伤官/杀 context is source-bound'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['fortune-period relation', 'role-specific pattern state'],
+      closure: 'depends_on_unresolved_timing_and_use_selection',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '伤官取运/论杀 case qualification',
+      outputShape: ['source timing condition'],
+      scope: 'no event or fortune prediction',
+    },
+    exceptions: ['do not infer timing semantics from the section heading alone'],
+    sourceObservation: 'p.24 applies role-specific conditions to fortune-period examples but does not close a general timing semantic.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p25-officer-building-wealth-timing.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['ziping-p25-officer', 'ziping-p25-building-wealth-timing'],
+    applicability: ['fortune-period frame is exact', '官 or 建禄月劫 context is source-bound'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['fortune-period relation', 'role-specific pattern state'],
+      closure: 'depends_on_unresolved_timing_and_pattern_binding',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '官/建禄月劫取运 case qualification',
+      outputShape: ['source timing condition'],
+      scope: 'no prediction or 吉凶 output',
+    },
+    exceptions: ['separate role cases must not be merged'],
+    sourceObservation: 'p.25 continues role-specific fortune-period cases for 官 and 建禄月劫.',
+  }),
+  zipingSemanticInventoryEntry({
+    inventoryId: 'inventory.ziping.p26-p27-timing-misc.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['ziping-p26-building-wealth-timing', 'ziping-p26-misc-pattern', 'ziping-p27-misc-pattern-continuation'],
+    applicability: ['fortune-period or miscellaneous-pattern frame is exact', 'source role/pattern context is supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['fortune-period relation', 'source pattern condition'],
+      closure: 'depends_on_unresolved_timing_and_pattern_binding',
+    },
+    semanticRoleResult: {
+      sourceDefinedRole: '建禄月劫取运/杂格 case qualification',
+      outputShape: ['source timing/pattern condition'],
+      scope: 'no personal or predictive result',
+    },
+    exceptions: ['p.26–27 examples do not define a universal miscellaneous rule'],
+    sourceObservation: 'p.26–27 close the local work with 建禄月劫取运 and 杂格 examples whose case context remains necessary.',
+  }),
+])
+
+export const SAJU_ZIPING_SEMANTIC_COMPOSITION_FRONTIER = Object.freeze({
+  status: 'unresolved_composition_frontier',
+  compositionReady: false,
+  simultaneousSurfaceIds: Object.freeze([
+    'inventory.ziping.p3-stem-combination-role-change.v0',
+    'inventory.ziping.p4-stem-combination-nonmerge.v0',
+    'inventory.ziping.p8-pure-mixed-use.v0',
+    'inventory.ziping.p9-success-failure-transition.v0',
+    'inventory.ziping.p11-exposure-branch-sentiment-composition.v0',
+    'inventory.ziping.p12-good-bad-pattern.v0',
+  ]),
+  sourceProvidesPriority: false,
+  sourceProvidesCombinationRule: false,
+  sourceProvidesTransitionRule: false,
+  policy: 'preserve simultaneous source-bounded results and tension; do not select, rank, or synthesize a winner',
+  forbiddenPromotion: ['common semantic rule', 'majority vote across cases', 'modern synthesis', 'personal meaning', 'good/bad or fortune result'],
+})
+
 const sourceSemanticContractSpec = (ruleId, value) => {
   const ruleItem = SAJU_ZIPING_SOURCE_SEMANTIC_RULES.find(item => item.ruleId === ruleId)
   if (!ruleItem) throw new Error(`unknown source semantic rule contract: ${ruleId}`)
@@ -1336,6 +2083,11 @@ export const SAJU_LINEAGE_READING_GRAMMAR = Object.freeze({
     ruleIds: SAJU_ZIPING_SOURCE_SEMANTIC_RULES.map(ruleItem => ruleItem.ruleId),
     contractIds: SAJU_ZIPING_SOURCE_SEMANTIC_CONTRACTS.map(contract => contract.contractId),
     adoptedRuleIds: SAJU_ZIPING_SOURCE_SEMANTIC_RULES.filter(ruleItem => ruleItem.status === 'adopted_lineage_semantic_rule').map(ruleItem => ruleItem.ruleId),
+    semanticRuleInventory: SAJU_ZIPING_SEMANTIC_RULE_INVENTORY,
+    newlyAdoptedRuleIds: SAJU_ZIPING_SEMANTIC_RULE_INVENTORY
+      .filter(item => item.status === 'newly_adopted_executable')
+      .map(item => item.inventoryId),
+    compositionFrontier: SAJU_ZIPING_SEMANTIC_COMPOSITION_FRONTIER,
     commonRulePromotion: false,
     personalMeaning: false,
     crossLineageMerge: false,
@@ -1736,6 +2488,44 @@ export function checkSajuLineageReadingGrammar(grammar = SAJU_LINEAGE_READING_GR
     if (item.status === 'adopted_lineage_rule' && !['bounded_complete_structural_frame', 'bounded_complete_procedure_frame', 'bounded_label_inventory_only', 'bounded_role_scope_not_service_day_table', 'bounded_relation_vocabulary', 'bounded_relation_inventory_not_resolution', 'bounded_explicit_example_predicate', 'bounded_stem_specific_predicate', 'bounded_exact_exposure_example_predicate', 'bounded_exact_source_clause_predicate', 'bounded_condition_clause_for_jia_only', 'bounded_numeric_state_clause', 'bounded_numeric_operation_without_state_resolver', 'bounded_month_specific_condition_clauses'].includes(item.ruleCompleteness)) fail(`adopted_rule_incomplete:${item.ruleId}`)
     if ((item.status === 'unresolved' || item.status === 'unsupported') && (!item.observedRule || item.observedRule.length === 0)) fail(`unresolved_reason_missing:${item.ruleId}`)
   }
+
+  const semanticInventory = grammar.sourceBoundedSemanticGrammar?.semanticRuleInventory
+  if (!Array.isArray(semanticInventory) || semanticInventory.length === 0) fail('semantic_inventory_missing')
+  const inventoryIds = new Set()
+  const semanticRulesById = new Map(SAJU_ZIPING_SOURCE_SEMANTIC_RULES.map(item => [item.ruleId, item]))
+  for (const item of semanticInventory || []) {
+    if (!isObject(item)) {
+      fail('semantic_inventory_item_not_object')
+      continue
+    }
+    if (!item.inventoryId || inventoryIds.has(item.inventoryId)) fail(`semantic_inventory_id_duplicate:${item.inventoryId || 'missing'}`)
+    inventoryIds.add(item.inventoryId)
+    if (!SAJU_ZIPING_SEMANTIC_INVENTORY_STATUSES.includes(item.status)) fail(`semantic_inventory_status:${item.inventoryId}`)
+    if (!Array.isArray(item.sourceIds) || item.sourceIds.length === 0) fail(`semantic_inventory_sources:${item.inventoryId}`)
+    for (const sourceId of item.sourceIds || []) if (!sourceIds.has(sourceId)) fail(`semantic_inventory_source_unknown:${item.inventoryId}:${sourceId}`)
+    if (!Array.isArray(item.locatorIds) || item.locatorIds.length === 0) fail(`semantic_inventory_locators:${item.inventoryId}`)
+    for (const locatorId of item.locatorIds || []) {
+      const locator = locatorsById.get(locatorId)
+      if (!locator) fail(`semantic_inventory_locator_unknown:${item.inventoryId}:${locatorId}`)
+      else if (!item.sourceIds.includes(locator.sourceId)) fail(`semantic_inventory_locator_source:${item.inventoryId}:${locatorId}`)
+    }
+    if (!Array.isArray(item.applicability) || item.applicability.length === 0) fail(`semantic_inventory_applicability:${item.inventoryId}`)
+    if (!isObject(item.requiredStructuralResult) || !Array.isArray(item.requiredStructuralResult.ruleIds) || !Array.isArray(item.requiredStructuralResult.fields) || typeof item.requiredStructuralResult.closure !== 'string') fail(`semantic_inventory_structural:${item.inventoryId}`)
+    if (!isObject(item.semanticRoleResult) || typeof item.semanticRoleResult.sourceDefinedRole !== 'string' || !Array.isArray(item.semanticRoleResult.outputShape) || typeof item.semanticRoleResult.scope !== 'string') fail(`semantic_inventory_role:${item.inventoryId}`)
+    if (!Array.isArray(item.exceptions) || item.exceptions.length === 0 || !Array.isArray(item.forbiddenExtensions) || item.forbiddenExtensions.length === 0) fail(`semantic_inventory_boundary:${item.inventoryId}`)
+    if (!['coexistence_only_until_source_priority_is_closed', 'unresolved_composition_frontier'].includes(item.compositionState)) fail(`semantic_inventory_composition_state:${item.inventoryId}`)
+    if (item.status === 'adopted_existing_executable' || item.status === 'newly_adopted_executable') {
+      const contractRule = semanticRulesById.get(item.contractRuleId)
+      if (!contractRule || contractRule.status !== 'adopted_lineage_semantic_rule') fail(`semantic_inventory_contract:${item.inventoryId}`)
+      if (item.requiredStructuralResult.closure !== 'closed_in_existing_contract' && item.status === 'adopted_existing_executable') fail(`semantic_inventory_adopted_closure:${item.inventoryId}`)
+    } else if (item.contractRuleId !== undefined) {
+      fail(`semantic_inventory_unadopted_contract:${item.inventoryId}`)
+    }
+  }
+  const compositionFrontier = grammar.sourceBoundedSemanticGrammar?.compositionFrontier
+  if (!isObject(compositionFrontier) || compositionFrontier.status !== 'unresolved_composition_frontier' || compositionFrontier.compositionReady !== false || compositionFrontier.sourceProvidesPriority !== false || compositionFrontier.sourceProvidesCombinationRule !== false || compositionFrontier.sourceProvidesTransitionRule !== false) fail('semantic_composition_frontier')
+  const expectedNewlyAdopted = (semanticInventory || []).filter(item => item.status === 'newly_adopted_executable').map(item => item.inventoryId)
+  if (JSON.stringify(grammar.sourceBoundedSemanticGrammar?.newlyAdoptedRuleIds || []) !== JSON.stringify(expectedNewlyAdopted)) fail('semantic_inventory_newly_adopted_mismatch')
 
   for (const candidate of grammar.commonCandidates || []) {
     if (candidate.adoptionStatus !== 'not_adopted') fail(`common_candidate_promoted:${candidate.candidateId}`)

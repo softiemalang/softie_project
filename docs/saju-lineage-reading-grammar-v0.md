@@ -145,6 +145,44 @@ p.10의 `何謂透干` 문답은 `甲生辰月`이라는 월령·일간 조건 �
 3. 네 위치의 supplied visible stem에서 세 target만 scan하여 위치와 source stem을 `chenNamedExposureInventory`로 만든다.
 4. 그 structural result를 semantic rule이 소비하여 `戊→偏财`, `癸→正印`, `乙→月劫`의 source role label만 `chenExposureUseRole`로 기록한다. 복수 match는 모두 보존하고 우선순위를 만들지 않는다.
 
+## 子平真詮 전권 semantic rule inventory v0
+
+이번 inventory는 현재 local PDF 27쪽 전체를 직접 시각 대조한 뒤, `구조 입력 → 원문이 직접 말하는 다음 판단` 표면만 기록한 것이다. 이 PDF는 현대 조판 local export이고 판본·전승 identity는 여전히 unresolved이므로, 아래 locators는 source identity나 semantic authority 승격이 아니다. 원문이 구조 어휘만 제공하고 다음 판단을 닫지 않는 장은 semantic candidate로 만들지 않고 구조 grammar 또는 제외 범위로 남겼다.
+
+기계적으로는 `SAJU_ZIPING_SEMANTIC_RULE_INVENTORY`가 각 항목에 `sourceIds`, `locatorIds`, `applicability`, `requiredStructuralResult`, `semanticRoleResult`, `exceptions`, `forbiddenExtensions`를 모두 보존한다. 현재 신규 executable rule은 0건이다. 이미 채택된 p.7·p.10 두 lane만 기존 contract의 `adopted_existing_executable`로 표시한다.
+
+| source surface / locator | 필요한 구조 입력과 닫힘 상태 | 원문이 직접 말하는 결과 형태 | 판정 |
+|---|---|---|---|
+| p.7 `page.local.ziping.p7-yongshin-continuation` | 寅月, 네 visible stem, 甲 부재, 단일 丙; `yin-month-exposure-contrast` 충족 | `同知得以作主`라는 local selection-change clause | 기존 executable; p.7 범위 밖 우선순위 금지 |
+| p.10 `ziping-p10-chen-exposed-stem-definition` | 甲日主·辰月·공급된 辰 지장간·네 visible stem; `chen-exposure-inventory` 충족 | 戊→偏财, 癸→正印, 乙→月劫 source role-label inventory와 단일/복수 노출 | 기존 executable; named target만 |
+| p.3 `ziping-p3-yang-yin-root-cycle-and-tomb-exception` | 완전한 source-local 상태표와 음양/묘고 예외 | 有根/无用·생사 단계 qualification | unresolved; 완전한 상태표 없음 |
+| p.3–4 `ziping-p3-stem-combination-semantic-context`, `ziping-p4-stem-combination-nonmerge` | stem pair, 위치/거리, 이미 닫힌 用 role, 合/合化 상태 | 非其官/非其印/非其财, 合而不合·合而不化 등 case qualification | context-bound candidate; universal 합/합화 predicate 아님 |
+| p.5 `ziping-p5-branch-relations-definition-and-examples` | 공급된 刑冲會合 relation inventory와 평가 context | 可解/不可解·刑冲会合解法 case qualification | unresolved; 관계 inventory만으로 해소·우선순위 불가 |
+| p.7 `page.local.ziping.p7-yongshin-continuation`의 나머지 사례 | 用神과 page-specific 변화 조건 | 기타 用神变化 case clause | context-bound candidate; 채택된 단일 丙 lane과 병합 금지 |
+| p.6 `page.local.ziping.p6-yongshin`, `ziping-p6-yongshen-success-rescue` | 월령·일간과 source-defined 用神 선택/구제 관계 | 用神 선택 및 成格/败格/救应 case | unresolved/candidate; 선택 resolver 미완결 |
+| p.8 `ziping-p8-yongshen-pure-mixed`, `ziping-p8-yongshen-pattern-level` | 선택된 用神, 상호 작용 role set, 有情/有力·格局 입력 | 纯/杂, 格局高低 | context-bound candidate; 총순위 없음 |
+| p.9 `ziping-p9-yongshen-success-failure-transition`, `ziping-p9-yongshen-season-result` | 이전/이후 用神·格局 상태, 기후 조건과 전이 관계 | 因成得败/因败得成, 配气候得失 | unresolved/candidate; 전이·기후 우선관계 없음 |
+| p.10 `page.local.ziping.p10-xiangshen` | 이미 선택된 用神과 source-defined support relation | 相神/辅者 role mapping | context-bound candidate; 用神 선행 필요 |
+| p.11 `ziping-p11-exposed-stem-and-branch-context` | 透干, source-defined 會支, 복수 노출, 格局 context | 有情/無情 및 전이 사례 | unresolved composition; 정적 valence 금지 |
+| p.12 `ziping-p12-good-symbol-break-pattern`, `ziping-p12-bad-symbol-make-pattern`, `ziping-p12-generation-control-order` | 四吉/四凶 role, 格局 state, 생극제화 순서 | 破格/成格 및 先后分吉凶 | candidate/unresolved; 결과 경계와 우선순위 미완결 |
+| p.13 `ziping-p13-external-pattern-use` | 月令과 source pattern 조건 | 外格用舍 | context-bound candidate; 외격 일반 resolver 없음 |
+| p.14 `ziping-p14-six-relations-use`, `ziping-p14-wife-children` | 궁분·육친·개인 관계 입력 | 육친·배우자·자녀 결과 | unsupported; 공개 semantic grammar 밖 |
+| p.15–16 `page.local.ziping.p15-xingyun`, `ziping-p16-yun-change-pattern`, `ziping-p16-stem-branch-preference` | exact 운 frame, 用神/格局/喜忌 context | 命運配合, 成格/變格, 干支喜忌 distinction | unresolved/candidate; timing·semantic priority 미완결 |
+| p.17 `ziping-p17-not-bind-pattern`, `ziping-p17-regular-officer` | pattern 후보와 반례 또는 正官 role context | 拘泥하지 말라는 중단 지침, 正官 case qualification | unresolved/candidate; 경고를 양성 classifier로 전환 금지 |
+| p.18–20 `ziping-p18-seven-killings`, `ziping-p18-injury-officer`, `ziping-p19-food-god`, `ziping-p19-seal`, `ziping-p20-wealth` | role별 제화·생조·格局 context | 七殺·傷官·食神·印綬·財 case qualification | context-bound candidates; 현대 symbol meaning 금지 |
+| p.21–23 `ziping-p21-partial-wealth`, `ziping-p21-rob-wealth`, `ziping-p22-yang-blade`, `ziping-p22-building-wealth`, `ziping-p23-misc-pattern`, `ziping-p23-metal-spirit` | role/pattern별 추가 조건 | 해당 장의 source case qualification | context-bound candidates; 장 간 병합 금지 |
+| p.24–27 `ziping-p24-injury-timing`, `ziping-p24-killing`, `ziping-p25-officer`, `ziping-p25-building-wealth-timing`, `ziping-p26-building-wealth-timing`, `ziping-p26-misc-pattern`, `ziping-p27-misc-pattern-continuation` | exact 운 또는 잡격 context | 取運·雜格의 source case qualification | context-bound candidates; 운·길흉·예측으로 확장 금지 |
+
+1–2쪽과 p.5의 정의·관계 목록, p.16의 甲 root scan은 semantic result가 아니라 기존 structural inventory로 유지했다. p.17의 `拘泥格局`은 positive classifier가 아니라 fail-closed 중단 지침으로만 기록했다. p.14의 육친/처자 표면은 후보를 억지로 만들지 않고 unsupported로 격리했다.
+
+### composition grammar frontier
+
+p.3–4의 합 관계, p.8–9의 纯/杂·成败 전이, p.11의 透干·會支·有情/無情, p.12의 破格/成格가 동시에 성립할 수 있는 surface다. 그러나 원문은 이 결과들의 전역 우선순위·결합 연산·상태 전이표를 직접 제공하지 않는다. 따라서 `compositionReady=false`로 두고 결과를 병존시키며, winner 선택·다수결·문헌 간 합성·현대적 synthesis를 금지한다. 특히 p.11의 `有情而卒成无情`과 `无情而终有情`은 단일 정적 분류가 아니라는 직접 경계로 보존한다.
+
+### inventory에서 contract로 승격하지 않은 이유
+
+새 executable semantic rule은 없다. candidate/unresolved 항목들은 공통적으로 (a) source가 먼저 선택한 用神·格局을 요구하거나, (b) 여러 결과의 우선/전이를 닫지 않거나, (c) 출력이 吉凶·개인 관계·예측으로 넘어간다. 이 gap을 Base FACT, 현대 통관표, 다른 원전 lineage, 자유 자연어 추론으로 채우지 않았다. 기존 p.7·p.10 결과만 `Base FACT → lineage structural result → source-bounded semantic result → provenance` 순서를 유지한다.
+
 ### source-bounded semantic-result contract
 
 여러 원전의 semantic rule을 같은 형식으로 수용할 때도 결과 descriptor는 자유 자연어 해석이 아니라 다음 필드를 모두 보존한다.

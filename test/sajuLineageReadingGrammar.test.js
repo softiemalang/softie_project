@@ -10,6 +10,9 @@ import {
   SAJU_QIONGTONG_SHENGWANG_JUE_ANALYSIS,
   SAJU_ZIPING_EXPLICIT_STEM_BRANCH_ANALYSIS,
   SAJU_ZIPING_ROOT_EXPOSURE_ANALYSIS,
+  SAJU_ZIPING_SEMANTIC_COMPOSITION_FRONTIER,
+  SAJU_ZIPING_SEMANTIC_RULE_INVENTORY,
+  SAJU_ZIPING_SEMANTIC_INVENTORY_STATUSES,
   SAJU_ZIPING_SOURCE_SEMANTIC_CONTRACTS,
   SAJU_ZIPING_SOURCE_SEMANTIC_RULES,
   checkSajuLineageReadingGrammar,
@@ -80,6 +83,34 @@ test('source-bounded grammar has five identified sources, bounded locators, and 
   assert.equal(SAJU_LINEAGE_READING_GRAMMAR.commonCandidates.length, 0)
   assert.ok(SAJU_LINEAGE_READING_GRAMMAR.commonCandidateReviews.every(review => review.status === 'not_emitted_as_common_candidate'))
   assert.ok(SAJU_LINEAGE_RULES.every(rule => rule.claimPromotion === false && rule.semanticAuthority === 'not_established'))
+})
+
+test('Ziping full-work semantic inventory keeps only p.7 and p.10 as existing executable lanes', () => {
+  assert.ok(SAJU_ZIPING_SEMANTIC_RULE_INVENTORY.length >= 30)
+  assert.ok(SAJU_ZIPING_SEMANTIC_RULE_INVENTORY.every(item => SAJU_ZIPING_SEMANTIC_INVENTORY_STATUSES.includes(item.status)))
+  assert.deepEqual(
+    SAJU_ZIPING_SEMANTIC_RULE_INVENTORY.filter(item => item.status === 'adopted_existing_executable').map(item => item.contractRuleId),
+    ['rule.ziping.yin-month-exposure-change.v0', 'rule.ziping.chen-exposure-use-role.v0'],
+  )
+  assert.deepEqual(SAJU_LINEAGE_READING_GRAMMAR.sourceBoundedSemanticGrammar.newlyAdoptedRuleIds, [])
+  assert.equal(SAJU_ZIPING_SEMANTIC_COMPOSITION_FRONTIER.compositionReady, false)
+  assert.equal(SAJU_ZIPING_SEMANTIC_COMPOSITION_FRONTIER.sourceProvidesPriority, false)
+  assert.equal(SAJU_ZIPING_SEMANTIC_COMPOSITION_FRONTIER.sourceProvidesCombinationRule, false)
+  assert.equal(SAJU_ZIPING_SEMANTIC_COMPOSITION_FRONTIER.sourceProvidesTransitionRule, false)
+
+  const p10Semantic = deriveSajuLineageSourceSemanticResults(buildFrozenBase(ZIPING_P10_BIRTH_INPUT))
+  const p7Semantic = deriveSajuLineageSourceSemanticResults(buildFrozenBase(ZIPING_P7_BIRTH_INPUT))
+  assert.deepEqual(
+    p10Semantic.categories.derivedSourceBoundedSemanticResults.map(result => result.ruleId),
+    ['rule.ziping.chen-exposure-use-role.v0'],
+  )
+  assert.deepEqual(
+    p7Semantic.categories.derivedSourceBoundedSemanticResults.map(result => result.ruleId),
+    ['rule.ziping.yin-month-exposure-change.v0'],
+  )
+  assert.equal(p10Semantic.categories.contextBoundCandidates.length, 0)
+  assert.equal(p10Semantic.categories.unresolvedBoundaries.length, 1)
+  assert.ok(SAJU_ZIPING_SEMANTIC_RULE_INVENTORY.some(item => item.status === 'unsupported' && item.inventoryId.includes('six-relations')))
 })
 
 test('real frozen Base executes only bounded structural rules and preserves lineage blockers', () => {
