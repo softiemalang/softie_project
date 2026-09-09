@@ -1,0 +1,80 @@
+name: DE405 Linux producer artifact v0
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-24.04
+    env:
+      LC_ALL: C.UTF-8
+      LANG: C.UTF-8
+      TZ: UTC
+      CC: gcc
+      DE405_CFLAGS: -std=c11 -O2 -ffp-contract=off -fno-fast-math -Wall -Wextra -Werror
+      DE405_CSPICE_CFLAGS: -std=c89 -O2 -ffp-contract=off -fno-fast-math -fPIC -DNON_UNIX_STDIO
+      DE405_EXPECTED_HEAD: ${{ github.sha }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22.23.1
+      - name: Bind the build to the dispatched main commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = "refs/heads/main" || { echo "producer must run from refs/heads/main; got $GITHUB_REF" >&2; exit 1; }
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA" || { echo "checkout is not bound to GITHUB_SHA" >&2; exit 1; }
+          test "$(uname -s)" = "Linux"
+          test "$(uname -m)" = "x86_64"
+          test "$(gcc -dumpmachine)" = "x86_64-linux-gnu"
+      - name: Acquire and verify official NAIF inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/fetch-de405-linux-official-inputs.mjs --output "${RUNNER_TEMP}/de405-producer-inputs"
+          test -f "${RUNNER_TEMP}/de405-producer-inputs/acquisition-provenance.json"
+          test -f "${RUNNER_TEMP}/de405-producer-inputs/de405.bsp"
+          test -f "${RUNNER_TEMP}/de405-producer-inputs/cspice/N0067/source-manifest.json"
+      - name: Build the immutable Linux x64 producer twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/build-de405-linux-producer-v0.mjs \
+            --inputs "${RUNNER_TEMP}/de405-producer-inputs" \
+            --output "${RUNNER_TEMP}/de405-linux-producer-v0" \
+            --repeat 2
+      - name: Reconsume and verify the unpacked producer
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/check-de405-linux-producer-artifact.mjs \
+            --directory "${RUNNER_TEMP}/de405-linux-producer-v0"
+      - name: Create and byte-compare deterministic archives
+        shell: bash
+        run: |
+          set -euo pipefail
+          artifact_root="${RUNNER_TEMP}/de405-linux-producer-v0"
+          first="${RUNNER_TEMP}/de405-linux-producer-v0.tar.gz"
+          second="${RUNNER_TEMP}/de405-linux-producer-v0-repeat.tar.gz"
+          tar --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -C "$artifact_root" -cf - . | gzip -n > "$first"
+          tar --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -C "$artifact_root" -cf - . | gzip -n > "$second"
+          cmp "$first" "$second"
+          sha256sum "$first" > "${first}.sha256"
+          sha256sum --check "${first}.sha256"
+          rm -rf "${RUNNER_TEMP}/de405-linux-producer-fresh"
+          mkdir -p "${RUNNER_TEMP}/de405-linux-producer-fresh"
+          tar -xzf "$first" --no-same-owner --no-same-permissions -C "${RUNNER_TEMP}/de405-linux-producer-fresh"
+          node scripts/check-de405-linux-producer-artifact.mjs \
+            --directory "${RUNNER_TEMP}/de405-linux-producer-fresh"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: de405-linux-producer-v0-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/de405-linux-producer-v0.tar.gz
+            ${{ runner.temp }}/de405-linux-producer-v0.tar.gz.sha256
+          if-no-files-found: error
+          retention-days: 14
