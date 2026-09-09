@@ -28,9 +28,15 @@
 | `rule.ziping.jia-root-branch-scan.v0` | 子平真詮 p.3 `論陰陽生死`, p.16 `論支中喜忌逢運透清` | 네 위치의 visible stem·branch, exact `timeAccuracy` | visible `甲`가 있을 때 `寅·亥·卯·未` root match와 `亥`–visible `壬/甲` source-named relation inventory | 甲 한정; 전 천간 mapping·p.3 음간/묘고 예외·p.5 순위·透/透干 일반화 금지 |
 | `rule.ziping.chen-exposure-inventory.v0` | 子平真詮 p.10 `論雜氣如何取用` | 일간·월지·월지장간·네 위치 visible stem·exact `timeAccuracy` | 정확히 `甲生辰月`에서 원문에 열거된 `戊·癸·乙`의 위치별 named exposure inventory | 세 대상 밖의 透/透干·다른 월지/일간·會支·用神·格局으로 확장 금지 |
 | `rule.ziping.yin-month-exposure-contrast.v0` | 子平真詮 p.7 `論用神變化`의 `不透甲而透丙` | 월지·네 위치 visible stem·exact `timeAccuracy` | 정확히 寅月에서 visible `甲` 부재와 단일 visible `丙` 노출의 source-local contrast inventory | 중복 丙·다른 월지·hidden-stem membership·일반 透/透干·global 用神 우선순위로 확장 금지 |
-| `rule.ditian.jia-wood-seasonal-condition.v0` | 滴天髓 p.4, `天干論 / 甲木` | 일간과 명시적 계절 FACT 필요 | 甲木 조건문 일치 여부만 | 甲木 외 일간으로 전이하지 않음; 성격·강약 결론 금지 |
-| `rule.qiongtong.five-phase-number-season-state.v0` | 窮通寶鑑 p.2, `五行總論` | 오행 기본 수와 별도 source-specific 상태 resolver 필요 | `生旺`/`死绝`의 조건부 double/half 연산 표면만 기록; resolver가 닫히기 전 실행하지 않음 | Base 분포/지장간 가중치·일반 十二運星과 합치지 않음 |
-| `rule.qiongtong.jia-wood-seasonal-clauses.v0` | 窮通寶鑑 p.4–5·p.7, `三春甲木`·`正月甲木`·`三夏甲木` | 甲 일간과 명시적 월령/계절 필요 | 해당 월별 조건문만 선택 | 월별 문단을 하나의 보편 처방으로 통합하지 않음 |
+| `rule.ditian.heaven-earth-human-frame.v0` | 滴天髓 p.2, `通天論` | 네 위치의 visible stem·branch·hidden-stem FACT, exact time | 天元·地元·人元 frame | 숨은 줄기 가중·進退/順悖·개인 의미 금지 |
+| `rule.ditian.branch-category-inventory.v0` | 滴天髓 p.10, `地支論` | 네 지지 FACT, exact time | 陽支/陰支·四生/四庫/四敗 membership | 沖·合·生旺 선호·결과로 확장하지 않음 |
+| `rule.ditian.shape-example-inventory.v0` | 滴天髓 p.12, `形象論` | 일간·월지, exact time | 네 개 명시 `形全/形缺` example inventory | 열거 밖의 形象 classifier·강약·개인 의미 금지 |
+| `rule.ditian.fang-ju-example-inventory.v0` | 滴天髓 p.13, `方局論` | 네 지지 FACT, exact time | `寅卯辰=東方`, `亥卯未=木局` exact set membership | 方/局 mixing·格局·행운 outcome 금지 |
+| `rule.ditian.jia-wood-seasonal-condition.v0` | 滴天髓 p.4, `天干論 / 甲木` | 일간과 명시적 계절 FACT 필요 | frozen Base에는 실행하지 않는 甲木 condition window | 甲木 외 전이·성격·강약 결론 금지 |
+| `rule.qiongtong.five-phase-number-inventory.v0` | 窮通寶鑑 p.2, `五行總論` | 오행 key envelope | 水一·火二·木三·金四·土五 number inventory | 生旺/死绝 연산·Base 분포 재계산 금지 |
+| `rule.qiongtong.day-stem-section-frame.v0` | 窮通寶鑑 p.3–p.90, ten day-stem sections | 일간·exact time | 해당 일간의 source section page band | 월별 처방·용신·강약·개인 의미 금지 |
+| `rule.qiongtong.five-phase-number-season-state.v0` | 窮通寶鑑 p.2, `五行總論` | 오행과 source-specific 상태 resolver 필요 | resolver 미완결인 double/half operation surface | 일반 十二運星·Base 분포·다른 lineage 상태 금지 |
+| `rule.qiongtong.jia-wood-seasonal-clauses.v0` | 窮通寶鑑 p.4–5·p.7, `三春甲木`·`正月甲木`·`三夏甲木` | 甲 일간과 명시적 월령/계절 필요 | frozen Base에는 실행하지 않는 month clause window | 월별 문단을 보편 처방으로 통합하지 않음 |
 
 ## 병존·미해결·미지원
 
@@ -296,6 +302,49 @@ p.3–4의 합 관계, p.8–9의 纯/杂·成败 전이, p.11의 透干·會支
 
 따라서 `rule.ziping.root-exposure.v0`는 generic all-stem root/exposure와 透干을 계속 `unresolved`로 둔다. exact-example inventory, 甲 root scan, p.7 exact local clause, p.10 named exposure inventory와 그 source role label 결과는 각각의 좁은 계약으로만 보존하고, 여러 match를 ranking하지 않는다. p.11 composition은 unresolved로 남긴다. 淵海의 지장간/십성 label inventory, 三命의 인원·사령 예시, 窮通·滴天髓의 계절 조건은 각각 별도 lineage 입력/출력으로 유지하고 통근·투간으로 합치지 않는다.
 
+## 滴天髓 독립 lineage inventory v0
+
+대상 local witness는 `/Users/hangyukim/Documents/malang_lab/documents/滴天髓.pdf` 158쪽, 8,694,949바이트, SHA-256 `6285805c91b79f1b5bccdfce1cdab1d7ec684731160b4191a25e8f1d23c229dd`다. `通天論`·`地支論`·`形象論`·`方局論`·`格局論`·`體用論`을 직접 render로 대조했지만 edition·전승·독립 authority는 기존 admission boundary대로 `UNRESOLVED`다.
+
+분류는 `SAJU_DITIAN_RULE_INVENTORY`에 10개 surface로 보존된다. adopted structural 4개, context-bound candidate 3개, unresolved 3개, adopted semantic 0개다.
+
+| locator | 관찰된 입력 → 출력 surface | 상태 | 닫힘/경계 |
+|---|---|---|---|
+| p.2 `ditian-p2-heaven-earth-human-frame` | 네 기둥 visible stem/branch/hidden stem → 天元/地元/人元 frame | `adopted_structural_rule` | supplied frame만 보존; 숨은 줄기 가중·계절 세력·개인 의미 없음 |
+| p.3 `ditian-p3-progress-retreat-shunbei` | 氣/勢·進退·順悖 문맥 → 조건/출력 후보 | `unresolved` | `順則吉/悖則凶`가 붙고 source condition procedure가 닫히지 않음 |
+| p.4–7 `ditian-p4-jia-wood-seasonal-conditions` | 일간·계절·根/지원 → 甲木 계절 clause | `context_bound_candidate` | 계절 FACT bridge와 clause boundary가 없고 다른 일간으로 전이 불가 |
+| p.10 `ditian-p10-branch-categories` | 네 지지 → 陽支/陰支·四生/四庫/四敗 membership | `adopted_structural_rule` | 중복 membership은 보존; `生方怕動/庫宜開/沖`의 결과 문장은 적용하지 않음 |
+| p.12 `ditian-p12-shape-examples` | 일간·월지 → 명시된 甲/丙/戊/庚의 形全/形缺 example | `adopted_structural_rule` | 네 개 exact pair만; 일반 形象 classifier 아님 |
+| p.13 `ditian-p13-fang-ju-examples` | 네 지지 → `寅卯辰=東方`·`亥卯未=木局` exact set | `adopted_structural_rule` | 方/局을 동시에 보존하고 winner·mixing을 선택하지 않음 |
+| p.13–14 `ditian-p13-p14-geju-surface` | 月支之神·透干 → 格局/선택 문맥 | `context_bound_candidate` | `透干` 보편 predicate·格局 우선순위·semantic output이 닫히지 않음 |
+| p.15–17 `ditian-p15-p17-conghua-dayun` | 從化·歲運 → 조건/운 결과 | `context_bound_candidate` | 절차·전이·결과 경계가 닫히지 않음 |
+| p.18–20 `ditian-p18-p20-tiyong` | 體/用 여러 축 → composition | `unresolved` | 體用之用과 用神之用을 구분하지만 configuration priority/transition이 없음 |
+| p.24–27 `ditian-p24-p27-yuanliu-qingzhuo` | 源流·清濁·後續形象 → 구조/결과 문맥 | `unresolved` | 단일 재현 predicate와 non-outcome output이 닫히지 않음 |
+
+따라서 Ditian의 executable surface는 p.2/p.10/p.12/p.13의 구조 inventory뿐이다. p.3의 進退·順悖, p.13–14의 格局, p.18–20의 體用은 semantic/composition 후보로만 유지한다. source 문장이 계절·용신·격국·길흉 문맥을 갖는다는 이유로 Base count, 현대 신강/용신표, 다른 lineage 결과를 보충하지 않았다.
+
+## 窮通寶鑑 독립 lineage inventory v0
+
+대상 local witness는 `/Users/hangyukim/Documents/malang_lab/documents/穷通宝鉴.pdf` 92쪽, 1,547,911바이트, SHA-256 `36d54cdc995d203fdceafcb52b2a0d4f57093ab1765c532db5418b46a96c4b19`다. p.2와 p.3–p.90의 열 개 일간 section 및 대표 월별 문단을 직접 대조했지만 edition·전승·독립 authority는 `UNRESOLVED`다.
+
+`SAJU_QIONGTONG_RULE_INVENTORY`는 13개 surface를 보존한다. adopted structural 2개, context-bound candidate 10개, unresolved 2개, adopted semantic 0개다.
+
+| locator 범위 | 입력 → source surface | 상태 | 경계 |
+|---|---|---|---|
+| p.2 `qiongtong-p2-five-phase-number-and-season` | 오행 key envelope → 水一·火二·木三·金四·土五 | `adopted_structural_rule` | number inventory만; 生旺/死绝 double/half 미적용 |
+| p.2 같은 locator | 원소·生旺/死绝 → double/half | `unresolved` | 상태 resolver·입력 shape·우선/예외가 없음. 일반 十二運星을 대입하지 않음 |
+| p.3–p.90 ten section locators | 일간 → 해당 일간 section page band | `adopted_structural_rule` | heading/frame만; 월별 처방을 선택하지 않음 |
+| p.4–p.12 甲, p.13–p.20 乙, p.21–p.31 丙, p.32–p.39 丁, p.40–p.48 戊, p.49–p.54 己, p.55–p.64 庚, p.64–p.73 辛, p.75–p.82 壬, p.83–p.90 癸 | 일간·정확한 월/계절·필수 조건 → month clause | `context_bound_candidate` | 문단은 처방/결과 문맥이며 cross-month priority가 닫히지 않음 |
+| p.2 및 p.3–p.90 | 여러 section 동시 성립 → selection/transition | `unresolved` | source가 전역 우선순위·결합·전이 규칙을 직접 제공하지 않음 |
+
+기존 `rule.qiongtong.five-phase-number-season-state.v0`의 source-specific 生旺/死绝 prerequisite gap은 그대로 보존한다. 새 p.2 number rule은 그 gap을 우회하지 않고 숫자 어휘만 실행한다. 기존 甲木 seasonal clause는 explicit context가 없는 frozen Base에서 semantic result를 만들지 않으며, 새 inventory에서는 month-specific candidate로 분류한다.
+
+## 다섯 source 비교·common/composition 판정
+
+`淵海子平`·`三命通會`·`子平真詮`·`滴天髓`·`窮通寶鑑`의 유사한 일간/월령/계절 언급은 입력 axis와 출력이 실질적으로 동일하지 않다. 예를 들어 Sanming의 旺相休囚死 window, Ditian의 exact 形全/形缺 example, Qiongtong의 day-stem section frame은 모두 다른 predicate와 output이다. 그러므로 `commonCandidates=[]`를 유지하고 `SAJU_FIVE_LINEAGE_COMPOSITION_READINESS.compositionReady=false`로 고정했다.
+
+공통 후보 review는 다섯 source ID와 대표 rule ID를 함께 기록하지만 `not_emitted_as_common_candidate`다. 각 lineage의 결과는 `lineage`, source locator, contract provenance를 보존하며 서로의 빈칸을 채우지 않는다. explicit source priority·combination·transition이 없는 p.11 會支/有情·無情, Ditian 體用/格局, Qiongtong month prescriptions, Sanming relation chapters는 병존 또는 unresolved로만 둔다. 다수 source의 주제 유사성은 상호검증이나 다수결이 아니다.
+
 ## Base 실행 검증
 
 실제 frozen `tri-system-deterministic-base-v0` fixture에서 다음을 확인한다.
@@ -311,7 +360,7 @@ p.3–4의 합 관계, p.8–9의 纯/杂·成败 전이, p.11의 透干·會支
 - 甲木 전용 Ditian/Qiongtong rule은 계 일간 fixture에 적용하지 않는다.
 - `noRecalculation=true`, `noSemanticInterpretation=true`, `commonRulePromotion=false`를 유지한다.
 
-structural result contract를 같은 서울 fixture에 두 번 적용하면 동일한 결과 object가 재현된다. 서울 `계` fixture의 구조 결과 분류는 adopted contract 16개 중 `executable_rule` 11개, `derived_structural_result` 11개, `prerequisite_gap` 1개(窮通의 生旺/死绝 상태 resolver), unresolved 5개, unsupported 2개, not-applicable 4개(p.7/p.10 exact window 포함)다. 새 淵海 p.9 결과도 `lineage=yuanhai_local_export`, locator `yuanhai-p9-dayun-focus-lens`, `noSemanticMeaning=true`로만 materialize된다. p.10 exact fixture와 p.7 exact fixture의 子平 semantic 결과는 각각 adopted semantic rule 1개와 derived source-bounded result 1개이며, p.7 fixture에서는 三命 p.162 role-nomenclature result도 별도 lineage로 materialize된다. p.10 fixture에 `비견`이 섞이면 三命 p.162 결과는 좁은 source vocabulary 밖으로 fail-closed한다. p.11 unresolved composition은 결과를 내보내지 않는다. 상태 문자열과 일반 `twelveStage`를 test-only supplement로 넣어도 같은 prerequisite gap이 유지되고 Base는 변하지 않는다. 시간 미상 fixture에서는 淵海/三命의 완전한 네 기둥 rule과 p.9 timing lens 및 exact-example/甲 root scan/p.7 contrast의 불완전 입력이 prerequisite gap으로 닫힌다. 별도 `갑` fixture에 test-only 계절 context를 공급하면 滴天髓와 窮通의 계절 창이 동시에 적용되지만, 두 결과는 `lineage_conflict`로 보존되고 병합 결과는 생성되지 않는다.
+structural result contract를 같은 서울 fixture에 두 번 적용하면 동일한 결과 object가 재현된다. 현재 adopted contract 22개 중 서울 `계` fixture의 구조 결과 분류는 `executable_rule` 15개, `derived_structural_result` 15개, `prerequisite_gap` 1개(窮通의 生旺/死绝 상태 resolver), unresolved 5개, unsupported 2개, not-applicable 6개다. 새 Ditian p.2/p.10과 Qiongtong p.2/p.3–p.90 frame은 실제 FACT에서 실행되고 p.12/p.13 exact example은 해당 fixture에서 `not_applicable`로 닫힌다. 새 淵海 p.9 결과도 `lineage=yuanhai_local_export`, locator `yuanhai-p9-dayun-focus-lens`, `noSemanticMeaning=true`로만 materialize된다. p.10 exact fixture와 p.7 exact fixture의 子平 semantic 결과는 각각 adopted semantic rule 1개와 derived source-bounded result 1개이며, p.7 fixture에서는 三命 p.162 role-nomenclature result도 별도 lineage로 materialize된다. p.10 fixture에 `비견`이 섞이면 三命 p.162 결과는 좁은 source vocabulary 밖으로 fail-closed한다. p.11 unresolved composition은 결과를 내보내지 않는다. 상태 문자열과 일반 `twelveStage`를 test-only supplement로 넣어도 같은 prerequisite gap이 유지되고 Base는 변하지 않는다. 시간 미상 fixture에서는 淵海/三命의 완전한 네 기둥 rule과 p.9 timing lens 및 exact-example/甲 root scan/p.7 contrast의 불완전 입력이 prerequisite gap으로 닫힌다. 별도 `갑` fixture에 test-only 계절 context를 공급하면 기존 Ditian/Qiongtong seasonal window가 동시에 적용되지만, 두 결과는 `lineage_conflict`로 보존되고 병합 결과는 생성되지 않는다.
 
 최소 fixture와 checker는 `test/sajuLineageReadingGrammar.test.js`에 있다.
 

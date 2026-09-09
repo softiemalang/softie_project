@@ -124,6 +124,25 @@ const commonStructuralRejection = Object.freeze([
     status: 'not_emitted_as_common_candidate',
     reason: '월령을 언급하는 범위는 반복되지만 각 문헌의 적용 대상·우선관계·의미 층이 다르고 독립 교차검증이 없다.',
   },
+  {
+    candidateId: 'common.five-lineage-seasonal-structural-surface',
+    sourceRuleIds: [
+      'rule.yuanhai.day-anchor-month-command-frame.v0',
+      'rule.sanming.seasonal-state-inventory.v0',
+      'rule.ziping.month-command-selection.v0',
+      'rule.ditian.shape-example-inventory.v0',
+      'rule.qiongtong.day-stem-section-frame.v0',
+    ],
+    sourceIds: [
+      'saju-source-yuanhai-ziping',
+      'saju-source-sanming-tonghui',
+      'saju-source-ziping-zhenquan',
+      'saju-source-ditian-sui',
+      'saju-source-qiongtong-baojian',
+    ],
+    status: 'not_emitted_as_common_candidate',
+    reason: '다섯 문헌은 일간·월령·계절을 서로 다른 입력축과 출력층으로 다루며, exact example inventory와 seasonal vocabulary를 동일 predicate로 만들 수 없다. source priority·transition·독립 authority가 닫히지 않아 common candidate로 승격하지 않는다.',
+  },
 ])
 
 const rule = (value) => ({
@@ -248,10 +267,29 @@ export const SAJU_LINEAGE_LOCATORS = Object.freeze([
   loc('saju-source-ziping-zhenquan', 'ziping-p26-misc-pattern', 26, '26', '論雜格', 'miscellaneous-pattern conditions and source outcomes', '杂格'),
   loc('saju-source-ziping-zhenquan', 'ziping-p27-misc-pattern-continuation', 27, '27', '論雜格', 'continuation of miscellaneous-pattern examples and outcome language', '杂格例'),
   loc('saju-source-ditian-sui', 'ditian-p4-jia-wood-seasonal-conditions', 4, '4', '天干論 / 甲木', 'qualitative 甲木 seasonal conditions', '甲木参天 · 脱胎要火 · 春不容金 · 秋不容土'),
+  loc('saju-source-ditian-sui', 'ditian-p2-heaven-earth-human-frame', 2, '2', '通天論', 'day stem, branch, and hidden-stem heaven/earth/human frame', '天元 · 地元 · 人元'),
+  loc('saju-source-ditian-sui', 'ditian-p3-progress-retreat-shunbei', 3, '3', '通天論 / 進退', '進退 and 順悖 vocabulary with adjacent outcome language', '理承氣行 · 進兮退兮 · 順則吉 · 悖則凶'),
+  loc('saju-source-ditian-sui', 'ditian-p10-branch-categories', 10, '10', '地支論', 'source-listed yin/yang, four-birth, four-storehouse, and four-defeat branch groups', '陽支 · 陰支 · 四生 · 四庫 · 四敗'),
+  loc('saju-source-ditian-sui', 'ditian-p12-shape-examples', 12, '12', '形象論', 'exact 形全/形缺 examples for named day stems and seasonal branch windows', '兩氣合而成象 · 五氣聚而成形 · 形全 · 形缺'),
+  loc('saju-source-ditian-sui', 'ditian-p13-fang-ju-examples', 13, '13', '方局論', 'exact 方 and 局 branch-set examples before adjacent 格局 discussion', '寅卯辰東方 · 亥卯未木局 · 方不可混局'),
+  loc('saju-source-ditian-sui', 'ditian-p13-p14-geju-surface', 13, '13–14', '格局論', '格局 and 月支之神透於天干 wording with selection/outcome context', '格之真者 · 月支之神 · 透於天干'),
+  loc('saju-source-ditian-sui', 'ditian-p15-p17-conghua-dayun', 15, '15–17', '從化 / 歲運', '從化 and 歲運 sections with conditional outcome prose', '從化 · 歲運'),
+  loc('saju-source-ditian-sui', 'ditian-p18-p20-tiyong', 18, '18–20', '體用論', 'multiple body/use configurations and distinction from 用神之用', '道有體用 · 體用之用 · 用神之用'),
+  loc('saju-source-ditian-sui', 'ditian-p24-p27-yuanliu-qingzhuo', 24, '24–27', '源流 / 清濁 / 形象', 'source-flow, clarity/turbidity, and later 形象 surfaces with mixed structural and outcome language', '源流 · 清濁 · 形象'),
   loc('saju-source-qiongtong-baojian', 'qiongtong-p2-five-phase-number-and-season', 2, '2', '五行總論', 'element numbers, state labels, and explicit 生旺/死绝 multiplier wording', '其数则水一、火二、木三、金四、土五 · 生旺加倍，死绝减半'),
+  loc('saju-source-qiongtong-baojian', 'qiongtong-p3-jia-section', 3, '3', '十干分論 / 論木 / 甲木', '甲木 section heading and following month-specific clauses', '論甲木 · 三春甲木'),
   loc('saju-source-qiongtong-baojian', 'qiongtong-p4-spring-jia-wood', 4, '4', '三春甲木', 'spring 甲木 conditional sequence', '春月之木 · 初春余寒 · 以火温暖'),
   loc('saju-source-qiongtong-baojian', 'qiongtong-p5-spring-jia-wood-continuation', 5, '5', '正月甲木', 'month-specific 甲木 clauses and combinations', '正月甲木'),
   loc('saju-source-qiongtong-baojian', 'qiongtong-p7-summer-jia-wood', 7, '7', '三夏甲木', 'summer 甲木 conditional sequence', '三夏甲木'),
+  loc('saju-source-qiongtong-baojian', 'qiongtong-p13-yi-section', 13, '13', '論乙木 / 三春乙木', '乙木 section heading and following month-specific clauses', '論乙木 · 三春乙木'),
+  loc('saju-source-qiongtong-baojian', 'qiongtong-p21-bing-section', 21, '21', '論丙火 / 三春丙火', '丙火 section heading and following month-specific clauses', '論丙火 · 三春丙火'),
+  loc('saju-source-qiongtong-baojian', 'qiongtong-p32-ding-section', 32, '32', '論丁火 / 三春丁火', '丁火 section heading and following month-specific clauses', '論丁火 · 三春丁火'),
+  loc('saju-source-qiongtong-baojian', 'qiongtong-p40-wu-section', 40, '40', '論戊土 / 三春戊土', '戊土 section heading and following month-specific clauses', '論戊土 · 三春戊土'),
+  loc('saju-source-qiongtong-baojian', 'qiongtong-p49-ji-section', 49, '49', '論己土 / 三春己土', '己土 section heading and following month-specific clauses', '論己土 · 三春己土'),
+  loc('saju-source-qiongtong-baojian', 'qiongtong-p55-geng-section', 55, '55', '論庚金 / 三春庚金', '庚金 section heading and following month-specific clauses', '論庚金 · 三春庚金'),
+  loc('saju-source-qiongtong-baojian', 'qiongtong-p64-xin-section', 64, '64', '論辛金 / 三春辛金', '辛金 section heading and following month-specific clauses', '論辛金 · 三春辛金'),
+  loc('saju-source-qiongtong-baojian', 'qiongtong-p75-ren-section', 75, '75', '論壬水 / 三春壬水', '壬水 section heading and following month-specific clauses', '論壬水 · 三春壬水'),
+  loc('saju-source-qiongtong-baojian', 'qiongtong-p83-gui-section', 83, '83', '論癸水 / 三春癸水', '癸水 section heading and following month-specific clauses', '論癸水 · 三春癸水'),
 ])
 
 const LOCATOR_BY_ID = new Map(SAJU_LINEAGE_LOCATORS.map(item => [item.observationId, item]))
@@ -345,6 +383,69 @@ export const SAJU_QIONGTONG_SHENGWANG_JUE_ANALYSIS = Object.freeze({
   }),
   applicationScope: 'qiongtong-p2 其数 operation only; no mutation of Base distribution and no strength, balance, yongshin, gyeokguk, or personal conclusion',
   resultScope: 'lineage_derived_structural_result_only',
+})
+
+const SOURCE_STEM_BY_INPUT = Object.freeze({
+  갑: '甲', 甲: '甲',
+  을: '乙', 乙: '乙',
+  병: '丙', 丙: '丙',
+  정: '丁', 丁: '丁',
+  무: '戊', 戊: '戊',
+  기: '己', 己: '己',
+  경: '庚', 庚: '庚',
+  신: '辛', 辛: '辛',
+  임: '壬', 壬: '壬',
+  계: '癸', 癸: '癸',
+})
+
+const SOURCE_BRANCH_BY_INPUT = Object.freeze({
+  자: '子', 子: '子',
+  축: '丑', 丑: '丑',
+  인: '寅', 寅: '寅',
+  묘: '卯', 卯: '卯',
+  진: '辰', 辰: '辰',
+  사: '巳', 巳: '巳',
+  오: '午', 午: '午',
+  미: '未', 未: '未',
+  신: '申', 申: '申',
+  유: '酉', 酉: '酉',
+  술: '戌', 戌: '戌',
+  해: '亥', 亥: '亥',
+})
+
+const DITIAN_BRANCH_GROUPS = Object.freeze({
+  양지: Object.freeze(['子', '寅', '辰', '午', '申', '戌']),
+  음지: Object.freeze(['丑', '卯', '巳', '未', '酉', '亥']),
+  사생: Object.freeze(['寅', '申', '巳', '亥']),
+  사고: Object.freeze(['辰', '戌', '丑', '未']),
+  사패: Object.freeze(['子', '午', '卯', '酉']),
+})
+
+const DITIAN_SHAPE_EXAMPLES = Object.freeze([
+  Object.freeze({ sourceStem: '甲', monthBranches: Object.freeze(['寅', '卯', '辰']), result: '形全', sourceExample: '甲木生於寅卯辰月' }),
+  Object.freeze({ sourceStem: '丙', monthBranches: Object.freeze(['巳', '午', '未']), result: '形全', sourceExample: '丙火生於巳午未月' }),
+  Object.freeze({ sourceStem: '戊', monthBranches: Object.freeze(['寅', '卯', '辰']), result: '形缺', sourceExample: '戊土生於寅卯辰月' }),
+  Object.freeze({ sourceStem: '庚', monthBranches: Object.freeze(['巳', '午', '未']), result: '形缺', sourceExample: '庚金生於巳午未月' }),
+])
+
+const DITIAN_FANG_JU_EXAMPLES = Object.freeze([
+  Object.freeze({ sourceBranchSet: Object.freeze(['寅', '卯', '辰']), relation: '方', label: '東方', sourceExample: '寅卯辰東方' }),
+  Object.freeze({ sourceBranchSet: Object.freeze(['亥', '卯', '未']), relation: '局', label: '木局', sourceExample: '亥卯未木局' }),
+])
+
+const QIONGTONG_ELEMENT_NUMBERS = Object.freeze({ 水: 1, 火: 2, 木: 3, 金: 4, 土: 5 })
+
+const QIONGTONG_DAY_STEM_SECTIONS = Object.freeze({
+  甲: Object.freeze({ locatorId: 'qiongtong-p3-jia-section', pdfPageStart: 3, pdfPageEnd: 12 }),
+  乙: Object.freeze({ locatorId: 'qiongtong-p13-yi-section', pdfPageStart: 13, pdfPageEnd: 20 }),
+  丙: Object.freeze({ locatorId: 'qiongtong-p21-bing-section', pdfPageStart: 21, pdfPageEnd: 31 }),
+  丁: Object.freeze({ locatorId: 'qiongtong-p32-ding-section', pdfPageStart: 32, pdfPageEnd: 39 }),
+  戊: Object.freeze({ locatorId: 'qiongtong-p40-wu-section', pdfPageStart: 40, pdfPageEnd: 48 }),
+  己: Object.freeze({ locatorId: 'qiongtong-p49-ji-section', pdfPageStart: 49, pdfPageEnd: 54 }),
+  庚: Object.freeze({ locatorId: 'qiongtong-p55-geng-section', pdfPageStart: 55, pdfPageEnd: 64 }),
+  辛: Object.freeze({ locatorId: 'qiongtong-p64-xin-section', pdfPageStart: 64, pdfPageEnd: 73 }),
+  壬: Object.freeze({ locatorId: 'qiongtong-p75-ren-section', pdfPageStart: 75, pdfPageEnd: 82 }),
+  癸: Object.freeze({ locatorId: 'qiongtong-p83-gui-section', pdfPageStart: 83, pdfPageEnd: 90 }),
 })
 
 const ZIPING_EXPLICIT_STEM_BRANCH_EXAMPLES = Object.freeze([
@@ -758,6 +859,108 @@ export const SAJU_LINEAGE_RULES = Object.freeze([
     structuralOutput: [],
     exceptions: ['provided timing dates may be displayed as Base FACTs but are not source-derived semantic outputs'],
     conflictPolicy: 'retain timing FACTs and source timing claims in separate lanes',
+  }),
+  rule({
+    ruleId: 'rule.ditian.heaven-earth-human-frame.v0',
+    work: WORKS.ditian,
+    lineage: 'ditian_local_export',
+    status: 'adopted_lineage_rule',
+    ruleCompleteness: 'bounded_heaven_earth_human_frame',
+    executionStatus: 'executable_from_frozen_base',
+    sourceIds: ['saju-source-ditian-sui'],
+    locatorIds: ['ditian-p2-heaven-earth-human-frame'],
+    observedRule: 'p.2 names the visible day stem as 天元, each branch as 地元, and each supplied hidden-stem entry as 人元. The adopted surface records this four-pillar frame only.',
+    preconditions: ['exact time is supplied', 'all four pillarFacts entries contain a visible stem, branch, and hidden-stem array'],
+    inputFacts: [FACT_REFS.dayMaster, FACT_REFS.pillarFacts, FACT_REFS.timeAccuracy],
+    orderedSteps: ['read each supplied pillar position in year/month/day/hour order', 'bind its visible stem to 天元, branch to 地元, and hidden-stem inventory to 人元', 'emit the supplied frame without reconstructing hidden stems or assigning a meaning'],
+    structuralOutput: ['heavenEarthHumanFrame'],
+    exceptions: ['stop on missing or malformed pillar input', 'do not infer a hidden-stem order, seasonal force, 進退/順悖 value, or personal meaning'],
+    conflictPolicy: 'retain the Ditian frame as a lineage-specific input structure; do not merge it with another source role frame',
+  }),
+  rule({
+    ruleId: 'rule.ditian.branch-category-inventory.v0',
+    work: WORKS.ditian,
+    lineage: 'ditian_local_export',
+    status: 'adopted_lineage_rule',
+    ruleCompleteness: 'bounded_branch_category_inventory',
+    executionStatus: 'executable_from_frozen_base',
+    sourceIds: ['saju-source-ditian-sui'],
+    locatorIds: ['ditian-p10-branch-categories'],
+    observedRule: 'p.10 lists the source branch groups 陽支/陰支, 四生, 四庫, and 四敗. The adopted result is membership inventory only; adjacent preference and outcome prose is not applied.',
+    preconditions: ['exact time is supplied', 'all four supplied branch values are present and recognized by the source branch inventory'],
+    inputFacts: [FACT_REFS.pillarFacts, FACT_REFS.timeAccuracy],
+    orderedSteps: ['read each supplied branch by pillar position', 'normalize only Korean/Chinese branch spelling to the source token', 'record every matching source group without ranking or cancellation'],
+    structuralOutput: ['ditianBranchCategoryInventory'],
+    exceptions: ['stop on missing or unrecognized branch input', 'do not apply 生方怕動, 庫宜開, 沖, 合, or any adjacent outcome wording as a result'],
+    conflictPolicy: 'preserve overlapping group membership and do not merge the inventory with a modern branch classification or another lineage',
+  }),
+  rule({
+    ruleId: 'rule.ditian.shape-example-inventory.v0',
+    work: WORKS.ditian,
+    lineage: 'ditian_local_export',
+    status: 'adopted_lineage_rule',
+    ruleCompleteness: 'bounded_exact_shape_example_inventory',
+    executionStatus: 'not_applicable_fixture',
+    sourceIds: ['saju-source-ditian-sui'],
+    locatorIds: ['ditian-p12-shape-examples'],
+    observedRule: 'p.12 gives four explicit day-stem/month-window examples labelled 形全 or 形缺. The adopted surface matches only those named examples and does not create a general 形象 classifier.',
+    preconditions: ['exact time, day-master stem, and month branch are supplied', 'the pair is one of the four explicitly named examples'],
+    inputFacts: [FACT_REFS.dayMaster, FACT_REFS.monthBranch, FACT_REFS.timeAccuracy],
+    orderedSteps: ['normalize the supplied day-master stem and month branch', 'compare the pair with the four exact p.12 example windows', 'emit every exact source example match or not_applicable_fixture'],
+    structuralOutput: ['ditianShapeExampleInventory'],
+    exceptions: ['a non-matching stem/month pair is outside the exact example inventory', 'do not infer 形全/形缺 for an unlisted stem or month, or expand the label into balance, strength, or personal meaning'],
+    conflictPolicy: 'preserve exact example labels only; no generalized shape rule or cross-lineage merge',
+  }),
+  rule({
+    ruleId: 'rule.ditian.fang-ju-example-inventory.v0',
+    work: WORKS.ditian,
+    lineage: 'ditian_local_export',
+    status: 'adopted_lineage_rule',
+    ruleCompleteness: 'bounded_exact_fang_ju_example_inventory',
+    executionStatus: 'not_applicable_fixture',
+    sourceIds: ['saju-source-ditian-sui'],
+    locatorIds: ['ditian-p13-fang-ju-examples'],
+    observedRule: 'p.13 names 寅卯辰 as the 東方 方 and 亥卯未 as the 木局 局. The adopted surface reports exact branch-set membership only.',
+    preconditions: ['exact time and all four supplied branch values are present', 'one of the two exact source branch sets is present'],
+    inputFacts: [FACT_REFS.pillarFacts, FACT_REFS.timeAccuracy],
+    orderedSteps: ['normalize the four supplied branches', 'check each exact source branch set as a subset of the supplied branch positions', 'emit every matched 方/局 inventory without selecting between simultaneous matches'],
+    structuralOutput: ['ditianFangJuExampleInventory'],
+    exceptions: ['a set that is not one of the two named examples is not classified', 'do not apply 方/局 mixing, 行運 transitions, 格局 selection, or outcome prose'],
+    conflictPolicy: 'preserve simultaneous exact memberships and keep 方 and 局 as separate source categories',
+  }),
+  rule({
+    ruleId: 'rule.qiongtong.five-phase-number-inventory.v0',
+    work: WORKS.qiongtong,
+    lineage: 'qiongtong_local_export',
+    status: 'adopted_lineage_rule',
+    ruleCompleteness: 'bounded_element_number_inventory',
+    executionStatus: 'executable_from_frozen_base',
+    sourceIds: ['saju-source-qiongtong-baojian'],
+    locatorIds: ['qiongtong-p2-five-phase-number-and-season'],
+    observedRule: 'p.2 explicitly lists the element numbers 水一、火二、木三、金四、土五. This rule emits that source number inventory and deliberately excludes the unresolved 生旺/死绝 operation.',
+    preconditions: ['the frozen element distribution contains all five element keys'],
+    inputFacts: [FACT_REFS.elements],
+    orderedSteps: ['verify the supplied five-element key envelope', 'emit the p.2 source element-number mapping', 'mark the 生旺/死绝 multiplier as not applied'],
+    structuralOutput: ['qiongtongElementNumberInventory'],
+    exceptions: ['do not apply double/half arithmetic without the unresolved source-specific state resolver', 'do not replace source numbers with Base distribution counts or a modern state table'],
+    conflictPolicy: 'keep the number inventory separate from the existing blocked 生旺/死绝 rule and all other lineage state vocabularies',
+  }),
+  rule({
+    ruleId: 'rule.qiongtong.day-stem-section-frame.v0',
+    work: WORKS.qiongtong,
+    lineage: 'qiongtong_local_export',
+    status: 'adopted_lineage_rule',
+    ruleCompleteness: 'bounded_day_stem_section_frame',
+    executionStatus: 'executable_from_frozen_base',
+    sourceIds: ['saju-source-qiongtong-baojian'],
+    locatorIds: ['qiongtong-p3-jia-section', 'qiongtong-p13-yi-section', 'qiongtong-p21-bing-section', 'qiongtong-p32-ding-section', 'qiongtong-p40-wu-section', 'qiongtong-p49-ji-section', 'qiongtong-p55-geng-section', 'qiongtong-p64-xin-section', 'qiongtong-p75-ren-section', 'qiongtong-p83-gui-section'],
+    observedRule: 'p.3–p.90 are organized into ten day-stem sections. The adopted result selects the section frame by supplied day-master stem but does not select or execute any month-specific prescription.',
+    preconditions: ['exact time and a recognized day-master stem are supplied'],
+    inputFacts: [FACT_REFS.dayMaster, FACT_REFS.timeAccuracy],
+    orderedSteps: ['normalize the supplied day-master stem', 'bind it to the directly observed source section page band', 'emit the section frame and mark monthly clause selection as not applied'],
+    structuralOutput: ['qiongtongDayStemSectionFrame'],
+    exceptions: ['stop on missing or unrecognized day-master stem', 'do not infer a month clause, 用神/strength result, priority, outcome, or personal meaning from the section heading'],
+    conflictPolicy: 'keep each day-stem section as a Qiongtong-only frame; do not merge its monthly clauses with Ditian or another lineage',
   }),
   rule({
     ruleId: 'rule.ditian.jia-wood-seasonal-condition.v0',
@@ -1399,6 +1602,157 @@ export const SAJU_LINEAGE_STRUCTURAL_CONTRACTS = Object.freeze([
       semanticExpansion: false,
     },
     conflictGroup: 'jia-wood-seasonal-condition-window',
+  }),
+  structuralContractSpec('rule.ditian.heaven-earth-human-frame.v0', {
+    commonBaseFacts: [
+      { factRef: FACT_REFS.dayMaster, origin: 'frozen_base_common_fact' },
+      { factRef: FACT_REFS.pillarFacts, origin: 'frozen_base_common_fact' },
+      { factRef: FACT_REFS.timeAccuracy, origin: 'frozen_normalized_input' },
+    ],
+    applicability: [
+      'timeAccuracy must be exact',
+      'all four pillarFacts entries must contain a visible stem, branch, and hidden-stem array',
+    ],
+    procedure: [
+      'read the four supplied positions in year/month/day/hour order',
+      'bind each visible stem to 天元, branch to 地元, and hidden-stem inventory to 人元',
+      'emit the supplied frame without reconstructing or weighting its entries',
+    ],
+    stopConditions: [
+      'stop when timeAccuracy or any pillar frame field is missing or malformed',
+      'do not infer 進退, 順悖, force, or personal meaning',
+    ],
+    output: {
+      origin: 'lineage_derived_structural_result',
+      resultKey: 'ditian.heavenEarthHumanFrame',
+      fields: ['positions', 'sourceLabels', 'factRefs'],
+      semanticExpansion: false,
+    },
+  }),
+  structuralContractSpec('rule.ditian.branch-category-inventory.v0', {
+    commonBaseFacts: [
+      { factRef: FACT_REFS.pillarFacts, origin: 'frozen_base_common_fact' },
+      { factRef: FACT_REFS.timeAccuracy, origin: 'frozen_normalized_input' },
+    ],
+    applicability: [
+      'timeAccuracy must be exact',
+      'all four supplied branch values must be recognized by the Ditian source branch groups',
+    ],
+    procedure: [
+      'normalize each supplied branch to the source token',
+      'record membership in 陽支/陰支/四生/四庫/四敗',
+      'preserve overlapping memberships and set precedence to none',
+    ],
+    stopConditions: [
+      'stop when timeAccuracy or a branch value is missing or unrecognized',
+      'do not apply adjacent 生方怕動, 庫宜開, 沖, 合, or outcome wording',
+    ],
+    output: {
+      origin: 'lineage_derived_structural_result',
+      resultKey: 'ditian.branchCategoryInventory',
+      fields: ['branchCategoriesByPosition', 'sourceGroups', 'precedence'],
+      semanticExpansion: false,
+    },
+  }),
+  structuralContractSpec('rule.ditian.shape-example-inventory.v0', {
+    commonBaseFacts: [
+      { factRef: FACT_REFS.dayMaster, origin: 'frozen_base_common_fact' },
+      { factRef: FACT_REFS.monthBranch, origin: 'frozen_base_common_fact' },
+      { factRef: FACT_REFS.timeAccuracy, origin: 'frozen_normalized_input' },
+    ],
+    applicability: [
+      'timeAccuracy must be exact',
+      'day-master/month branch must match one of the four exact p.12 examples',
+    ],
+    procedure: [
+      'normalize the supplied day-master stem and month branch',
+      'match only the four exact source example windows',
+      'emit the named 形全/形缺 example without generalizing its label',
+    ],
+    stopConditions: [
+      'return not_applicable_fixture when the supplied pair is not one of the named examples',
+      'do not infer an unlisted 形全/形缺 result or a strength/balance meaning',
+    ],
+    output: {
+      origin: 'lineage_derived_structural_result',
+      resultKey: 'ditian.shapeExampleInventory',
+      fields: ['sourceCondition', 'matchedExamples', 'sourceExampleScope'],
+      semanticExpansion: false,
+    },
+  }),
+  structuralContractSpec('rule.ditian.fang-ju-example-inventory.v0', {
+    commonBaseFacts: [
+      { factRef: FACT_REFS.pillarFacts, origin: 'frozen_base_common_fact' },
+      { factRef: FACT_REFS.timeAccuracy, origin: 'frozen_normalized_input' },
+    ],
+    applicability: [
+      'timeAccuracy must be exact',
+      'all four supplied branches are present and one of the two exact source branch sets is present',
+    ],
+    procedure: [
+      'normalize the four supplied branch values',
+      'check the exact 寅卯辰 and 亥卯未 sets independently',
+      'emit all exact matches without choosing between simultaneous 方/局 labels',
+    ],
+    stopConditions: [
+      'return not_applicable_fixture when neither exact source set is present',
+      'do not apply 方/局 mixing, 格局 selection, 行運 transition, or outcome language',
+    ],
+    output: {
+      origin: 'lineage_derived_structural_result',
+      resultKey: 'ditian.fangJuExampleInventory',
+      fields: ['suppliedBranches', 'matchedExamples', 'precedence'],
+      semanticExpansion: false,
+    },
+  }),
+  structuralContractSpec('rule.qiongtong.five-phase-number-inventory.v0', {
+    commonBaseFacts: [
+      { factRef: FACT_REFS.elements, origin: 'frozen_base_common_fact' },
+    ],
+    applicability: [
+      'the frozen element distribution contains all five element keys',
+      'only the p.2 number inventory is applied; 生旺/死绝 state is not supplied',
+    ],
+    procedure: [
+      'verify the five-element key envelope',
+      'emit 水一、火二、木三、金四、土五',
+      'record that the double/half state operation was not applied',
+    ],
+    stopConditions: [
+      'stop when an element key is missing or malformed',
+      'do not substitute Base counts, hidden-stem weights, or a generic stage resolver for 生旺/死绝',
+    ],
+    output: {
+      origin: 'lineage_derived_structural_result',
+      resultKey: 'qiongtong.elementNumberInventory',
+      fields: ['sourceElementNumbers', 'suppliedElementKeys', 'stateOperation'],
+      semanticExpansion: false,
+    },
+  }),
+  structuralContractSpec('rule.qiongtong.day-stem-section-frame.v0', {
+    commonBaseFacts: [
+      { factRef: FACT_REFS.dayMaster, origin: 'frozen_base_common_fact' },
+      { factRef: FACT_REFS.timeAccuracy, origin: 'frozen_normalized_input' },
+    ],
+    applicability: [
+      'timeAccuracy must be exact',
+      'day-master stem must map to one directly reviewed Qiongtong day-stem section',
+    ],
+    procedure: [
+      'normalize the supplied day-master stem',
+      'bind it to the corresponding source section page band',
+      'emit the section frame and leave month-clause selection unapplied',
+    ],
+    stopConditions: [
+      'stop when timeAccuracy or the day-master stem is missing or unrecognized',
+      'do not infer a month prescription, priority, use-selection, outcome, or personal meaning',
+    ],
+    output: {
+      origin: 'lineage_derived_structural_result',
+      resultKey: 'qiongtong.dayStemSectionFrame',
+      fields: ['dayMasterStem', 'sourceSection', 'monthlyClauseSelection'],
+      semanticExpansion: false,
+    },
   }),
 ])
 
@@ -2935,6 +3289,309 @@ export const SAJU_SANMING_RULE_INVENTORY = Object.freeze([
   }),
 ])
 
+export const SAJU_DITIAN_INVENTORY_STATUSES = Object.freeze([
+  'adopted_structural_rule',
+  'context_bound_candidate',
+  'unresolved',
+  'unsupported',
+])
+
+const ditianInventoryEntry = value => ({
+  inventorySchema: 'saju-ditian-source-rule-inventory-v0',
+  work: WORKS.ditian,
+  lineage: 'ditian_local_export',
+  sourceIds: ['saju-source-ditian-sui'],
+  locatorIds: [],
+  requiredStructuralResult: { ruleIds: [], fields: [], closure: 'not_closed' },
+  sourceDefinedOutput: { kind: 'not_materialized', role: 'source-bounded rule surface', outputShape: [], scope: 'ditian-local-only' },
+  applicability: [],
+  exceptions: [],
+  forbiddenExtensions: [...FORBIDDEN_EXTENSIONS],
+  compositionState: 'coexistence_only_until_source_priority_is_closed',
+  sourceObservation: '',
+  ...value,
+})
+
+export const SAJU_DITIAN_RULE_INVENTORY = Object.freeze([
+  ditianInventoryEntry({
+    inventoryId: 'inventory.ditian.p2-heaven-earth-human-frame.v0',
+    status: 'adopted_structural_rule',
+    contractRuleId: 'rule.ditian.heaven-earth-human-frame.v0',
+    locatorIds: ['ditian-p2-heaven-earth-human-frame'],
+    applicability: ['exact time and all four supplied visible stem/branch/hidden-stem entries are present'],
+    requiredStructuralResult: { ruleIds: ['rule.ditian.heaven-earth-human-frame.v0'], fields: ['positions', 'sourceLabels', 'factRefs'], closure: 'closed_in_existing_contract' },
+    sourceDefinedOutput: { kind: 'structural', role: '天元/地元/人元 input frame', outputShape: ['position', 'visible stem', 'branch', 'hidden stems'], scope: 'frame only; no 進退/順悖 or personal result' },
+    exceptions: ['do not derive hidden-stem weights or a force judgment from the frame'],
+    sourceObservation: 'p.2 explicitly names the day stem, branch, and hidden-stem layers as 天元、地元、人元.',
+  }),
+  ditianInventoryEntry({
+    inventoryId: 'inventory.ditian.p3-progress-retreat-shunbei.v0',
+    status: 'unresolved',
+    locatorIds: ['ditian-p3-progress-retreat-shunbei'],
+    applicability: ['source-defined 氣/勢 input, 進退 condition, and non-outcome output must be closed'],
+    requiredStructuralResult: { ruleIds: [], fields: ['氣/勢 input', '進退 condition', '順悖 condition'], closure: 'semantic_condition_and_output_not_closed' },
+    sourceDefinedOutput: { kind: 'not_materialized', role: '進退/順悖 condition surface', outputShape: [], scope: 'adjacent 吉凶 prose excluded' },
+    exceptions: ['do not infer 進退/順悖 from Base element counts or modern strength rules'],
+    sourceObservation: 'p.3 places 進退 and 順悖 beside outcome wording; the direct locator does not close a semantic-free condition procedure.',
+    compositionState: 'unresolved_composition_frontier',
+  }),
+  ditianInventoryEntry({
+    inventoryId: 'inventory.ditian.p4-p7-stem-seasonal-conditions.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['ditian-p4-jia-wood-seasonal-conditions'],
+    applicability: ['day-stem, season/month, support condition, and exact clause scope are source-bound'],
+    requiredStructuralResult: { ruleIds: [], fields: ['day-stem', 'season/month', 'condition clause', 'exception'], closure: 'condition_clause_requires_explicit_source_context' },
+    sourceDefinedOutput: { kind: 'semantic_candidate', role: 'day-stem seasonal condition clause', outputShape: ['matched source clause'], scope: 'no strength, use-selection, or personal result' },
+    exceptions: ['do not generalize the 甲木 clauses to other stems or turn them into an element preference table'],
+    sourceObservation: 'p.4–p.7 contain stem-specific seasonal/support sentences, including 甲木, but the frozen Base has no source-specific season context and the sentences carry interpretive conditions.',
+  }),
+  ditianInventoryEntry({
+    inventoryId: 'inventory.ditian.p10-branch-categories.v0',
+    status: 'adopted_structural_rule',
+    contractRuleId: 'rule.ditian.branch-category-inventory.v0',
+    locatorIds: ['ditian-p10-branch-categories'],
+    applicability: ['exact time and all four recognizable branch values are present'],
+    requiredStructuralResult: { ruleIds: ['rule.ditian.branch-category-inventory.v0'], fields: ['branchCategoriesByPosition', 'sourceGroups', 'precedence'], closure: 'closed_in_existing_contract' },
+    sourceDefinedOutput: { kind: 'structural', role: 'source branch-group membership inventory', outputShape: ['branch by position', 'overlapping category labels'], scope: 'membership only; no relation outcome' },
+    exceptions: ['preserve overlap among 四生/四庫/四敗 and 陽支/陰支; do not rank groups'],
+    sourceObservation: 'p.10 visibly lists 陽支/陰支 and the 四生/四庫/四敗 group names; only their membership inventory is materialized.',
+  }),
+  ditianInventoryEntry({
+    inventoryId: 'inventory.ditian.p12-shape-examples.v0',
+    status: 'adopted_structural_rule',
+    contractRuleId: 'rule.ditian.shape-example-inventory.v0',
+    locatorIds: ['ditian-p12-shape-examples'],
+    applicability: ['exact time, day-master, and month branch are present and match a named p.12 pair'],
+    requiredStructuralResult: { ruleIds: ['rule.ditian.shape-example-inventory.v0'], fields: ['sourceCondition', 'matchedExamples', 'sourceExampleScope'], closure: 'closed_in_existing_contract' },
+    sourceDefinedOutput: { kind: 'structural_example_inventory', role: 'exact 形全/形缺 example label', outputShape: ['day-stem', 'month window', 'source label'], scope: 'named examples only; no general 形象 classifier' },
+    exceptions: ['unlisted stem/month pairs remain not applicable'],
+    sourceObservation: 'p.12 provides four exact 形全/形缺 examples; the rule preserves those examples without expanding their label.',
+  }),
+  ditianInventoryEntry({
+    inventoryId: 'inventory.ditian.p13-fang-ju-examples.v0',
+    status: 'adopted_structural_rule',
+    contractRuleId: 'rule.ditian.fang-ju-example-inventory.v0',
+    locatorIds: ['ditian-p13-fang-ju-examples'],
+    applicability: ['exact time and all four branch values are present with 寅卯辰 or 亥卯未 membership'],
+    requiredStructuralResult: { ruleIds: ['rule.ditian.fang-ju-example-inventory.v0'], fields: ['suppliedBranches', 'matchedExamples', 'precedence'], closure: 'closed_in_existing_contract' },
+    sourceDefinedOutput: { kind: 'structural_relation_inventory', role: 'exact 方/局 branch-set example', outputShape: ['relation', 'label', 'required branch set', 'positions'], scope: 'example membership only; no 方/局 precedence' },
+    exceptions: ['simultaneous exact memberships are preserved; no mixing or outcome rule is applied'],
+    sourceObservation: 'p.13 names 寅卯辰 as 東方 and 亥卯未 as 木局 before the broader 格局 surface.',
+  }),
+  ditianInventoryEntry({
+    inventoryId: 'inventory.ditian.p13-p14-geju.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['ditian-p13-p14-geju-surface'],
+    applicability: ['month-branch source axis, exposed-stem condition, pattern identity, and selection priority are all explicit'],
+    requiredStructuralResult: { ruleIds: [], fields: ['month branch', 'visible stem', '格局 identity', 'priority'], closure: 'pattern_selection_context_not_closed' },
+    sourceDefinedOutput: { kind: 'semantic_candidate', role: '格局/透干 condition surface', outputShape: ['source-local pattern condition'], scope: 'no generalized pattern or personal result' },
+    exceptions: ['do not use “月支之神透於天干” as a universal 透干 classifier'],
+    sourceObservation: 'p.13–p.14 contain 格局 and 透干 wording but also selection/outcome context that is not a closed independent predicate.',
+  }),
+  ditianInventoryEntry({
+    inventoryId: 'inventory.ditian.p15-p17-conghua-dayun.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['ditian-p15-p17-conghua-dayun'],
+    applicability: ['從化/歲運 inputs, source priority, and output boundary are independently closed'],
+    requiredStructuralResult: { ruleIds: [], fields: ['從化 condition', '歲運 input', 'transition/priority'], closure: 'timing_and_outcome_context_not_closed' },
+    sourceDefinedOutput: { kind: 'semantic_candidate', role: '從化/歲運 condition surface', outputShape: ['source-local condition'], scope: 'no prediction or 吉凶 result' },
+    exceptions: ['do not derive timing or outcome from section headings or modern rules'],
+    sourceObservation: 'p.15–p.17 combine conditional 從化 and 歲運 language with outcome prose; no executable non-outcome composition is closed.',
+  }),
+  ditianInventoryEntry({
+    inventoryId: 'inventory.ditian.p18-p20-tiyong.v0',
+    status: 'unresolved',
+    locatorIds: ['ditian-p18-p20-tiyong'],
+    applicability: ['source-defined body/use axis, multiple configuration selection, and transition priority must be explicit'],
+    requiredStructuralResult: { ruleIds: [], fields: ['體', '用', 'configuration axis', 'priority/transition'], closure: 'composition_and_priority_not_closed' },
+    sourceDefinedOutput: { kind: 'not_materialized', role: '體用 configuration surface', outputShape: [], scope: 'no use-selection or personal result' },
+    exceptions: ['do not equate 體用之用 with 用神之用 or choose a single configuration'],
+    sourceObservation: 'p.18–p.20 explicitly distinguish several 體用 axes and state that one endpoint is not sufficient; the composition grammar remains unresolved.',
+    compositionState: 'unresolved_composition_frontier',
+  }),
+  ditianInventoryEntry({
+    inventoryId: 'inventory.ditian.p24-p27-yuanliu-qingzhuo.v0',
+    status: 'unresolved',
+    locatorIds: ['ditian-p24-p27-yuanliu-qingzhuo'],
+    applicability: ['source-flow/clarity conditions and non-outcome structural outputs are closed'],
+    requiredStructuralResult: { ruleIds: [], fields: ['源流', '清濁', '形象 condition', 'exception'], closure: 'source_surface_not_closed' },
+    sourceDefinedOutput: { kind: 'not_materialized', role: '源流/清濁/後續形象 surface', outputShape: [], scope: 'no 吉凶 or personal result' },
+    exceptions: ['do not generalize later verses or case language into a universal rule'],
+    sourceObservation: 'p.24–p.27 contain later structural vocabulary mixed with semantic/outcome sentences; the current locator set does not close a reusable predicate.',
+    compositionState: 'unresolved_composition_frontier',
+  }),
+])
+
+export const SAJU_QIONGTONG_INVENTORY_STATUSES = Object.freeze([
+  'adopted_structural_rule',
+  'context_bound_candidate',
+  'unresolved',
+  'unsupported',
+])
+
+const qiongtongInventoryEntry = value => ({
+  inventorySchema: 'saju-qiongtong-source-rule-inventory-v0',
+  work: WORKS.qiongtong,
+  lineage: 'qiongtong_local_export',
+  sourceIds: ['saju-source-qiongtong-baojian'],
+  locatorIds: [],
+  requiredStructuralResult: { ruleIds: [], fields: [], closure: 'not_closed' },
+  sourceDefinedOutput: { kind: 'not_materialized', role: 'source-bounded rule surface', outputShape: [], scope: 'qiongtong-local-only' },
+  applicability: [],
+  exceptions: [],
+  forbiddenExtensions: [...FORBIDDEN_EXTENSIONS],
+  compositionState: 'coexistence_only_until_source_priority_is_closed',
+  sourceObservation: '',
+  ...value,
+})
+
+export const SAJU_QIONGTONG_RULE_INVENTORY = Object.freeze([
+  qiongtongInventoryEntry({
+    inventoryId: 'inventory.qiongtong.p2-element-number.v0',
+    status: 'adopted_structural_rule',
+    contractRuleId: 'rule.qiongtong.five-phase-number-inventory.v0',
+    locatorIds: ['qiongtong-p2-five-phase-number-and-season'],
+    applicability: ['the frozen five-element key envelope is present'],
+    requiredStructuralResult: { ruleIds: ['rule.qiongtong.five-phase-number-inventory.v0'], fields: ['sourceElementNumbers', 'suppliedElementKeys', 'stateOperation'], closure: 'closed_in_existing_contract' },
+    sourceDefinedOutput: { kind: 'structural', role: 'source element-number inventory', outputShape: ['水/火/木/金/土 number'], scope: 'number mapping only; no state arithmetic' },
+    exceptions: ['生旺/死绝 operation remains a separate unresolved prerequisite'],
+    sourceObservation: 'p.2 directly lists 水一、火二、木三、金四、土五; the adjacent double/half operation is not applied here.',
+  }),
+  qiongtongInventoryEntry({
+    inventoryId: 'inventory.qiongtong.p2-shengwang-jue-state.v0',
+    status: 'unresolved',
+    locatorIds: ['qiongtong-p2-five-phase-number-and-season'],
+    applicability: ['source-specific 生旺/死绝 state input, resolver, precedence, and exception procedure are closed'],
+    requiredStructuralResult: { ruleIds: [], fields: ['element', 'state label', 'state resolver', 'operation'], closure: 'source_specific_state_resolver_unresolved' },
+    sourceDefinedOutput: { kind: 'not_materialized', role: '生旺/死绝 double/half surface', outputShape: [], scope: 'existing blocked prerequisite remains unresolved' },
+    exceptions: ['do not use generic 十二運星, Base distribution, hidden-stem weights, or another lineage to fill the state'],
+    sourceObservation: 'p.2 gives the operation but not the state derivation/input shape/priority; this is the previously unresolved lineage-only gap.',
+    compositionState: 'unresolved_composition_frontier',
+  }),
+  qiongtongInventoryEntry({
+    inventoryId: 'inventory.qiongtong.p3-p90-day-stem-section-frame.v0',
+    status: 'adopted_structural_rule',
+    contractRuleId: 'rule.qiongtong.day-stem-section-frame.v0',
+    locatorIds: ['qiongtong-p3-jia-section', 'qiongtong-p13-yi-section', 'qiongtong-p21-bing-section', 'qiongtong-p32-ding-section', 'qiongtong-p40-wu-section', 'qiongtong-p49-ji-section', 'qiongtong-p55-geng-section', 'qiongtong-p64-xin-section', 'qiongtong-p75-ren-section', 'qiongtong-p83-gui-section'],
+    applicability: ['exact time and recognized day-master stem are present'],
+    requiredStructuralResult: { ruleIds: ['rule.qiongtong.day-stem-section-frame.v0'], fields: ['dayMasterStem', 'sourceSection', 'monthlyClauseSelection'], closure: 'closed_in_existing_contract' },
+    sourceDefinedOutput: { kind: 'structural', role: 'day-stem section frame', outputShape: ['day stem', 'source page band'], scope: 'section selection only; no monthly prescription' },
+    exceptions: ['a section heading does not select a month clause or semantic result'],
+    sourceObservation: 'p.3–p.90 visibly organize the work by ten day-stem sections; the frame is separate from every month-specific prescription.',
+  }),
+  qiongtongInventoryEntry({
+    inventoryId: 'inventory.qiongtong.p4-p12-jia-month-clauses.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['qiongtong-p3-jia-section', 'qiongtong-p4-spring-jia-wood', 'qiongtong-p5-spring-jia-wood-continuation', 'qiongtong-p7-summer-jia-wood'],
+    applicability: ['甲 day stem, exact month/season, mandatory conditions, and source clause boundary are supplied'],
+    requiredStructuralResult: { ruleIds: [], fields: ['甲', 'month/season', 'condition sequence', 'exception'], closure: 'month_prescription_and_priority_not_closed' },
+    sourceDefinedOutput: { kind: 'semantic_candidate', role: '甲月별 condition surface', outputShape: ['source-local clause'], scope: 'no generalized prescription or personal result' },
+    exceptions: ['do not collapse spring/summer clauses or extend them to another stem'],
+    sourceObservation: 'p.4–p.12 contain separate 三春/三夏 and month-specific 甲 clauses with prescription/outcome language.',
+  }),
+  qiongtongInventoryEntry({
+    inventoryId: 'inventory.qiongtong.p13-p20-yi-month-clauses.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['qiongtong-p13-yi-section'],
+    applicability: ['乙 day stem, exact month/season, mandatory conditions, and source clause boundary are supplied'],
+    requiredStructuralResult: { ruleIds: [], fields: ['乙', 'month/season', 'condition sequence', 'exception'], closure: 'month_prescription_and_priority_not_closed' },
+    sourceDefinedOutput: { kind: 'semantic_candidate', role: '乙 month condition surface', outputShape: ['source-local clause'], scope: 'no generalized prescription or personal result' },
+    exceptions: ['do not use 甲 clauses or modern seasonal rules to complete this section'],
+    sourceObservation: 'p.13–p.20 open the 乙木 section and its month-specific condition clauses; the current Base has no source-month bridge.',
+  }),
+  qiongtongInventoryEntry({
+    inventoryId: 'inventory.qiongtong.p21-p31-bing-month-clauses.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['qiongtong-p21-bing-section'],
+    applicability: ['丙 day stem, exact month/season, mandatory conditions, and source clause boundary are supplied'],
+    requiredStructuralResult: { ruleIds: [], fields: ['丙', 'month/season', 'condition sequence', 'exception'], closure: 'month_prescription_and_priority_not_closed' },
+    sourceDefinedOutput: { kind: 'semantic_candidate', role: '丙 month condition surface', outputShape: ['source-local clause'], scope: 'no generalized prescription or personal result' },
+    exceptions: ['do not generalize fire prescriptions or infer strength'],
+    sourceObservation: 'p.21–p.31 provide a separate 丙火 section with seasonal/month conditions and source outcome language.',
+  }),
+  qiongtongInventoryEntry({
+    inventoryId: 'inventory.qiongtong.p32-p39-ding-month-clauses.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['qiongtong-p32-ding-section'],
+    applicability: ['丁 day stem, exact month/season, mandatory conditions, and source clause boundary are supplied'],
+    requiredStructuralResult: { ruleIds: [], fields: ['丁', 'month/season', 'condition sequence', 'exception'], closure: 'month_prescription_and_priority_not_closed' },
+    sourceDefinedOutput: { kind: 'semantic_candidate', role: '丁 month condition surface', outputShape: ['source-local clause'], scope: 'no generalized prescription or personal result' },
+    exceptions: ['do not transfer 丙 or modern fire rules'],
+    sourceObservation: 'p.32–p.39 provide the separate 丁火 month surface; no single cross-month priority is extracted.',
+  }),
+  qiongtongInventoryEntry({
+    inventoryId: 'inventory.qiongtong.p40-p48-wu-month-clauses.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['qiongtong-p40-wu-section'],
+    applicability: ['戊 day stem, exact month/season, mandatory conditions, and source clause boundary are supplied'],
+    requiredStructuralResult: { ruleIds: [], fields: ['戊', 'month/season', 'condition sequence', 'exception'], closure: 'month_prescription_and_priority_not_closed' },
+    sourceDefinedOutput: { kind: 'semantic_candidate', role: '戊 month condition surface', outputShape: ['source-local clause'], scope: 'no generalized prescription or personal result' },
+    exceptions: ['do not translate earth clauses into strength or balance'],
+    sourceObservation: 'p.40–p.48 provide the separate 戊土 section with month conditions and prescription language.',
+  }),
+  qiongtongInventoryEntry({
+    inventoryId: 'inventory.qiongtong.p49-p54-ji-month-clauses.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['qiongtong-p49-ji-section'],
+    applicability: ['己 day stem, exact month/season, mandatory conditions, and source clause boundary are supplied'],
+    requiredStructuralResult: { ruleIds: [], fields: ['己', 'month/season', 'condition sequence', 'exception'], closure: 'month_prescription_and_priority_not_closed' },
+    sourceDefinedOutput: { kind: 'semantic_candidate', role: '己 month condition surface', outputShape: ['source-local clause'], scope: 'no generalized prescription or personal result' },
+    exceptions: ['do not transfer 戊 or modern earth rules'],
+    sourceObservation: 'p.49–p.54 provide the separate 己土 section; conditions are not normalized into a general procedure.',
+  }),
+  qiongtongInventoryEntry({
+    inventoryId: 'inventory.qiongtong.p55-p64-geng-month-clauses.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['qiongtong-p55-geng-section'],
+    applicability: ['庚 day stem, exact month/season, mandatory conditions, and source clause boundary are supplied'],
+    requiredStructuralResult: { ruleIds: [], fields: ['庚', 'month/season', 'condition sequence', 'exception'], closure: 'month_prescription_and_priority_not_closed' },
+    sourceDefinedOutput: { kind: 'semantic_candidate', role: '庚 month condition surface', outputShape: ['source-local clause'], scope: 'no generalized prescription or personal result' },
+    exceptions: ['do not infer metal strength or use selection'],
+    sourceObservation: 'p.55–p.64 provide the 庚金 section with month-specific clauses; no source-complete priority is adopted.',
+  }),
+  qiongtongInventoryEntry({
+    inventoryId: 'inventory.qiongtong.p64-p73-xin-month-clauses.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['qiongtong-p64-xin-section'],
+    applicability: ['辛 day stem, exact month/season, mandatory conditions, and source clause boundary are supplied'],
+    requiredStructuralResult: { ruleIds: [], fields: ['辛', 'month/season', 'condition sequence', 'exception'], closure: 'month_prescription_and_priority_not_closed' },
+    sourceDefinedOutput: { kind: 'semantic_candidate', role: '辛 month condition surface', outputShape: ['source-local clause'], scope: 'no generalized prescription or personal result' },
+    exceptions: ['do not use 庚 or modern metal prescriptions to complete this section'],
+    sourceObservation: 'p.64–p.73 provide the 辛金 section; the month-specific prescriptions remain context-bound.',
+  }),
+  qiongtongInventoryEntry({
+    inventoryId: 'inventory.qiongtong.p75-p82-ren-month-clauses.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['qiongtong-p75-ren-section'],
+    applicability: ['壬 day stem, exact month/season, mandatory conditions, and source clause boundary are supplied'],
+    requiredStructuralResult: { ruleIds: [], fields: ['壬', 'month/season', 'condition sequence', 'exception'], closure: 'month_prescription_and_priority_not_closed' },
+    sourceDefinedOutput: { kind: 'semantic_candidate', role: '壬 month condition surface', outputShape: ['source-local clause'], scope: 'no generalized prescription or personal result' },
+    exceptions: ['do not infer water strength or personal meaning'],
+    sourceObservation: 'p.75–p.82 provide the 壬水 section; the direct locator does not close a month-selection grammar.',
+  }),
+  qiongtongInventoryEntry({
+    inventoryId: 'inventory.qiongtong.p83-p90-gui-month-clauses.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['qiongtong-p83-gui-section'],
+    applicability: ['癸 day stem, exact month/season, mandatory conditions, and source clause boundary are supplied'],
+    requiredStructuralResult: { ruleIds: [], fields: ['癸', 'month/season', 'condition sequence', 'exception'], closure: 'month_prescription_and_priority_not_closed' },
+    sourceDefinedOutput: { kind: 'semantic_candidate', role: '癸 month condition surface', outputShape: ['source-local clause'], scope: 'no generalized prescription or personal result' },
+    exceptions: ['do not use 壬 or modern water prescriptions to complete this section'],
+    sourceObservation: 'p.83–p.90 provide the 癸水 section; no general prescription or cross-section priority is adopted.',
+  }),
+  qiongtongInventoryEntry({
+    inventoryId: 'inventory.qiongtong.cross-month-precedence.v0',
+    status: 'unresolved',
+    locatorIds: ['qiongtong-p2-five-phase-number-and-season', 'qiongtong-p3-jia-section', 'qiongtong-p13-yi-section', 'qiongtong-p21-bing-section', 'qiongtong-p32-ding-section', 'qiongtong-p40-wu-section', 'qiongtong-p49-ji-section', 'qiongtong-p55-geng-section', 'qiongtong-p64-xin-section', 'qiongtong-p75-ren-section', 'qiongtong-p83-gui-section'],
+    applicability: ['a source-defined priority/transition rule across the ten day-stem sections is directly available'],
+    requiredStructuralResult: { ruleIds: [], fields: ['section match', 'month match', 'condition priority', 'transition'], closure: 'cross_section_priority_not_closed' },
+    sourceDefinedOutput: { kind: 'not_materialized', role: 'cross-month composition frontier', outputShape: [], scope: 'no selection, strength, or personal result' },
+    exceptions: ['preserve each section and month clause separately; do not use modern practice or another lineage to rank them'],
+    sourceObservation: 'the work is divided into day-stem/month paragraphs, but the inspected surface does not provide a single cross-section priority or transition grammar.',
+    compositionState: 'unresolved_composition_frontier',
+  }),
+])
+
 export const SAJU_ZIPING_SEMANTIC_COMPOSITION_FRONTIER = Object.freeze({
   status: 'unresolved_composition_frontier',
   compositionReady: false,
@@ -3004,6 +3661,18 @@ export const SAJU_SANMING_SOURCE_SEMANTIC_CONTRACTS = Object.freeze([
 
 const ADOPTED_LINEAGE_RULE_IDS = new Set(SAJU_LINEAGE_RULES.filter(ruleItem => ruleItem.status === 'adopted_lineage_rule').map(ruleItem => ruleItem.ruleId))
 
+export const SAJU_FIVE_LINEAGE_COMPOSITION_READINESS = Object.freeze({
+  schema: 'saju-five-lineage-composition-readiness-v0',
+  lineageOrder: Object.freeze(['yuanhai', 'sanming', 'ziping', 'ditian', 'qiongtong']),
+  commonCandidates: Object.freeze([]),
+  compositionReady: false,
+  sourceProvidesCrossLineagePriority: false,
+  sourceProvidesTransitionRule: false,
+  sourceProvidesCombinationRule: false,
+  policy: 'preserve each lineage rule and simultaneous result separately; no cross-lineage majority, merge, or winner selection',
+  reason: 'the five reviewed surfaces do not provide materially identical input/condition/output contracts with an explicit common priority or transition rule',
+})
+
 export const SAJU_LINEAGE_READING_GRAMMAR = Object.freeze({
   schemaVersion: SAJU_LINEAGE_READING_GRAMMAR_SCHEMA,
   version: SAJU_LINEAGE_READING_GRAMMAR_VERSION,
@@ -3047,17 +3716,24 @@ export const SAJU_LINEAGE_READING_GRAMMAR = Object.freeze({
     lineageRuleInventories: {
       yuanhai: SAJU_YUANHAI_RULE_INVENTORY,
       sanming: SAJU_SANMING_RULE_INVENTORY,
+      ditian: SAJU_DITIAN_RULE_INVENTORY,
+      qiongtong: SAJU_QIONGTONG_RULE_INVENTORY,
     },
     lineageSemanticRules: {
       sanming: SAJU_SANMING_SOURCE_SEMANTIC_RULES,
+      ditian: [],
+      qiongtong: [],
     },
     lineageSemanticContracts: {
       sanming: SAJU_SANMING_SOURCE_SEMANTIC_CONTRACTS,
+      ditian: [],
+      qiongtong: [],
     },
     newlyAdoptedRuleIds: SAJU_ZIPING_SEMANTIC_RULE_INVENTORY
       .filter(item => item.status === 'newly_adopted_executable')
       .map(item => item.inventoryId),
     compositionFrontier: SAJU_ZIPING_SEMANTIC_COMPOSITION_FRONTIER,
+    fiveLineageComparison: SAJU_FIVE_LINEAGE_COMPOSITION_READINESS,
     commonRulePromotion: false,
     personalMeaning: false,
     crossLineageMerge: false,
@@ -3166,6 +3842,158 @@ function hasCompleteZipingYinMonthExposureInput(base) {
     const pillar = readPath(base, `systems.saju.fact.pillarFacts.${position}`).value
     return isObject(pillar) && typeof pillar.stem === 'string'
   })
+}
+
+function sourceStemForInput(value) {
+  return typeof value === 'string' ? SOURCE_STEM_BY_INPUT[value] || null : null
+}
+
+function sourceBranchForInput(value) {
+  return typeof value === 'string' ? SOURCE_BRANCH_BY_INPUT[value] || null : null
+}
+
+function hasCompleteDitianHeavenEarthHumanFrameInput(base) {
+  if (!hasExactTime(base) || !hasAllFacts(base, [FACT_REFS.dayMaster, FACT_REFS.pillarFacts])) return false
+  return PILLAR_POSITIONS.every(position => {
+    const pillar = readPath(base, `systems.saju.fact.pillarFacts.${position}`).value
+    return isObject(pillar)
+      && sourceStemForInput(pillar.stem)
+      && sourceBranchForInput(pillar.branch)
+      && Array.isArray(pillar.hiddenStems)
+      && pillar.hiddenStems.every(entry => isObject(entry) && sourceStemForInput(entry.stem))
+  })
+}
+
+function ditianHeavenEarthHumanFrame(base) {
+  const pillarFacts = base.systems.saju.fact.pillarFacts
+  return {
+    positions: PILLAR_POSITIONS.map(position => {
+      const pillar = pillarFacts[position]
+      return {
+        position,
+        sourceLabels: { visibleStem: '天元', branch: '地元', hiddenStems: '人元' },
+        supplied: {
+          visibleStem: sourceStemForInput(pillar.stem),
+          branch: sourceBranchForInput(pillar.branch),
+          hiddenStems: pillar.hiddenStems.map(entry => sourceStemForInput(entry.stem)),
+        },
+      }
+    }),
+    sourceScope: 'ditian-p2-heaven-earth-human-frame-only',
+  }
+}
+
+function hasCompleteDitianBranchCategoryInput(base) {
+  if (!hasExactTime(base) || !hasAllFacts(base, [FACT_REFS.pillarFacts])) return false
+  return PILLAR_POSITIONS.every(position => {
+    const branch = readPath(base, `systems.saju.fact.pillarFacts.${position}.branch`).value
+    return Boolean(sourceBranchForInput(branch))
+  })
+}
+
+function ditianBranchCategoryInventory(base) {
+  const pillarFacts = base.systems.saju.fact.pillarFacts
+  const sourceGroups = {
+    陽支: [...DITIAN_BRANCH_GROUPS.양지],
+    陰支: [...DITIAN_BRANCH_GROUPS.음지],
+    四生: [...DITIAN_BRANCH_GROUPS.사생],
+    四庫: [...DITIAN_BRANCH_GROUPS.사고],
+    四敗: [...DITIAN_BRANCH_GROUPS.사패],
+  }
+  const groupEntries = Object.entries(sourceGroups)
+  const branchCategoriesByPosition = PILLAR_POSITIONS.map(position => {
+    const sourceBranch = sourceBranchForInput(pillarFacts[position].branch)
+    return {
+      position,
+      sourceBranch,
+      categories: groupEntries.filter(([, branches]) => branches.includes(sourceBranch)).map(([category]) => category),
+    }
+  })
+  return {
+    sourceGroups,
+    branchCategoriesByPosition,
+    precedence: 'none',
+    sourceScope: 'ditian-p10-branch-category-membership-only',
+  }
+}
+
+function hasCompleteDitianShapeExampleInput(base) {
+  if (!hasExactTime(base) || !hasAllFacts(base, [FACT_REFS.dayMaster, FACT_REFS.monthBranch])) return false
+  return Boolean(sourceStemForInput(readPath(base, FACT_REFS.dayMaster).value) && sourceBranchForInput(readPath(base, FACT_REFS.monthBranch).value))
+}
+
+function ditianShapeExampleInventory(base) {
+  const sourceStem = sourceStemForInput(readPath(base, FACT_REFS.dayMaster).value)
+  const sourceMonthBranch = sourceBranchForInput(readPath(base, FACT_REFS.monthBranch).value)
+  return {
+    sourceCondition: { dayMasterStem: sourceStem, monthBranch: sourceMonthBranch },
+    matchedExamples: DITIAN_SHAPE_EXAMPLES
+      .filter(example => example.sourceStem === sourceStem && example.monthBranches.includes(sourceMonthBranch))
+      .map(example => ({ ...example, monthBranches: [...example.monthBranches] })),
+    sourceExampleScope: 'ditian-p12-exact-shape-examples-only',
+  }
+}
+
+function hasCompleteDitianFangJuExampleInput(base) {
+  if (!hasExactTime(base) || !hasAllFacts(base, [FACT_REFS.pillarFacts])) return false
+  return PILLAR_POSITIONS.every(position => Boolean(sourceBranchForInput(readPath(base, `systems.saju.fact.pillarFacts.${position}.branch`).value)))
+}
+
+function ditianFangJuExampleInventory(base) {
+  const suppliedBranches = PILLAR_POSITIONS.map(position => ({
+    position,
+    sourceBranch: sourceBranchForInput(base.systems.saju.fact.pillarFacts[position].branch),
+  }))
+  const branchValues = suppliedBranches.map(item => item.sourceBranch)
+  return {
+    suppliedBranches,
+    matchedExamples: DITIAN_FANG_JU_EXAMPLES
+      .filter(example => example.sourceBranchSet.every(branch => branchValues.includes(branch)))
+      .map(example => ({
+        relation: example.relation,
+        label: example.label,
+        sourceExample: example.sourceExample,
+        requiredBranchSet: [...example.sourceBranchSet],
+        positions: example.sourceBranchSet.map(branch => suppliedBranches.filter(item => item.sourceBranch === branch).map(item => item.position)),
+      })),
+    precedence: 'none',
+    sourceScope: 'ditian-p13-exact-fang-ju-examples-only',
+  }
+}
+
+function hasCompleteQiongtongElementNumberInput(base) {
+  const elements = readPath(base, FACT_REFS.elements).value
+  return isObject(elements) && ['목', '화', '토', '금', '수'].every(element => typeof elements[element] === 'number' && Number.isFinite(elements[element]))
+}
+
+function qiongtongElementNumberInventory(base) {
+  const elements = base.systems.saju.fact.elementsDistribution
+  return {
+    sourceElementNumbers: { ...QIONGTONG_ELEMENT_NUMBERS },
+    suppliedElementKeys: ['목', '화', '토', '금', '수'].filter(element => Object.hasOwn(elements, element)),
+    stateOperation: { 生旺: 'not_applied', '死绝': 'not_applied' },
+    sourceScope: 'qiongtong-p2-element-number-inventory-only',
+  }
+}
+
+function hasCompleteQiongtongDayStemSectionInput(base) {
+  if (!hasExactTime(base) || !hasAllFacts(base, [FACT_REFS.dayMaster])) return false
+  return Boolean(QIONGTONG_DAY_STEM_SECTIONS[sourceStemForInput(readPath(base, FACT_REFS.dayMaster).value)])
+}
+
+function qiongtongDayStemSectionFrame(base) {
+  const dayMasterStem = sourceStemForInput(readPath(base, FACT_REFS.dayMaster).value)
+  const section = QIONGTONG_DAY_STEM_SECTIONS[dayMasterStem]
+  return {
+    dayMasterStem,
+    sourceSection: {
+      locatorId: section.locatorId,
+      pdfPageStart: section.pdfPageStart,
+      pdfPageEnd: section.pdfPageEnd,
+    },
+    monthlyClauseSelection: 'not_applied',
+    sourceScope: 'qiongtong-day-stem-section-frame-only',
+  }
 }
 
 function hasCompleteYuanhaiDayunFocusLensInput(base) {
@@ -3476,6 +4304,34 @@ function executeRule(ruleItem, base) {
       if (bingMatches.length > 1) return ruleResult(ruleItem, 'not_executable_by_contract', {}, 'p.7 does not close duplicate visible 丙 handling')
       return ruleResult(ruleItem, 'executable_from_frozen_base', zipingYinMonthExposureContrast(pillarFacts))
     }
+    case 'rule.ditian.heaven-earth-human-frame.v0': {
+      if (!hasCompleteDitianHeavenEarthHumanFrameInput(base)) return ruleResult(ruleItem, 'blocked_missing_base_fact', {}, 'exact time or complete heaven/earth/human pillar FACT is missing or malformed')
+      return ruleResult(ruleItem, 'executable_from_frozen_base', ditianHeavenEarthHumanFrame(base))
+    }
+    case 'rule.ditian.branch-category-inventory.v0': {
+      if (!hasCompleteDitianBranchCategoryInput(base)) return ruleResult(ruleItem, 'blocked_missing_base_fact', {}, 'exact time or recognized Ditian branch-category input is missing or malformed')
+      return ruleResult(ruleItem, 'executable_from_frozen_base', ditianBranchCategoryInventory(base))
+    }
+    case 'rule.ditian.shape-example-inventory.v0': {
+      if (!hasCompleteDitianShapeExampleInput(base)) return ruleResult(ruleItem, 'blocked_missing_base_fact', {}, 'exact time, day-master, or month-branch FACT is missing or malformed')
+      const output = ditianShapeExampleInventory(base)
+      if (output.matchedExamples.length === 0) return ruleResult(ruleItem, 'not_applicable_fixture', output, 'fixture is outside the four exact p.12 shape examples')
+      return ruleResult(ruleItem, 'executable_from_frozen_base', output)
+    }
+    case 'rule.ditian.fang-ju-example-inventory.v0': {
+      if (!hasCompleteDitianFangJuExampleInput(base)) return ruleResult(ruleItem, 'blocked_missing_base_fact', {}, 'exact time or complete Ditian branch-set input is missing or malformed')
+      const output = ditianFangJuExampleInventory(base)
+      if (output.matchedExamples.length === 0) return ruleResult(ruleItem, 'not_applicable_fixture', output, 'fixture is outside the exact p.13 方/局 example sets')
+      return ruleResult(ruleItem, 'executable_from_frozen_base', output)
+    }
+    case 'rule.qiongtong.five-phase-number-inventory.v0': {
+      if (!hasCompleteQiongtongElementNumberInput(base)) return ruleResult(ruleItem, 'blocked_missing_base_fact', {}, 'complete five-element distribution FACT is missing or malformed')
+      return ruleResult(ruleItem, 'executable_from_frozen_base', qiongtongElementNumberInventory(base))
+    }
+    case 'rule.qiongtong.day-stem-section-frame.v0': {
+      if (!hasCompleteQiongtongDayStemSectionInput(base)) return ruleResult(ruleItem, 'blocked_missing_base_fact', {}, 'exact time or recognized Qiongtong day-stem section input is missing or malformed')
+      return ruleResult(ruleItem, 'executable_from_frozen_base', qiongtongDayStemSectionFrame(base))
+    }
     case 'rule.ditian.jia-wood-seasonal-condition.v0':
     case 'rule.qiongtong.jia-wood-seasonal-clauses.v0':
       if (!isJiaStem(fact.dayMaster) && !isJiaStem(fact.dayMasterDetails?.stem)) return ruleResult(ruleItem, 'not_applicable_fixture', {}, 'fixture day-master is not 甲/갑; no transfer to another stem')
@@ -3541,7 +4397,7 @@ export function checkSajuLineageReadingGrammar(grammar = SAJU_LINEAGE_READING_GR
       if (!locator) fail(`rule_locator:${item.ruleId}:${locatorId}`)
       else if (!(item.sourceIds || []).includes(locator.sourceId)) fail(`rule_locator_source:${item.ruleId}:${locatorId}`)
     }
-    if (item.status === 'adopted_lineage_rule' && !['bounded_complete_structural_frame', 'bounded_complete_procedure_frame', 'bounded_label_inventory_only', 'bounded_role_scope_not_service_day_table', 'bounded_relation_vocabulary', 'bounded_relation_inventory_not_resolution', 'bounded_explicit_example_predicate', 'bounded_stem_specific_predicate', 'bounded_exact_exposure_example_predicate', 'bounded_exact_source_clause_predicate', 'bounded_condition_clause_for_jia_only', 'bounded_numeric_state_clause', 'bounded_numeric_operation_without_state_resolver', 'bounded_month_specific_condition_clauses', 'bounded_timing_lens_frame', 'bounded_seasonal_state_inventory', 'bounded_visible_stem_frame'].includes(item.ruleCompleteness)) fail(`adopted_rule_incomplete:${item.ruleId}`)
+    if (item.status === 'adopted_lineage_rule' && !['bounded_complete_structural_frame', 'bounded_complete_procedure_frame', 'bounded_label_inventory_only', 'bounded_role_scope_not_service_day_table', 'bounded_relation_vocabulary', 'bounded_relation_inventory_not_resolution', 'bounded_explicit_example_predicate', 'bounded_stem_specific_predicate', 'bounded_exact_exposure_example_predicate', 'bounded_exact_source_clause_predicate', 'bounded_condition_clause_for_jia_only', 'bounded_numeric_state_clause', 'bounded_numeric_operation_without_state_resolver', 'bounded_month_specific_condition_clauses', 'bounded_timing_lens_frame', 'bounded_seasonal_state_inventory', 'bounded_visible_stem_frame', 'bounded_heaven_earth_human_frame', 'bounded_branch_category_inventory', 'bounded_exact_shape_example_inventory', 'bounded_exact_fang_ju_example_inventory', 'bounded_element_number_inventory', 'bounded_day_stem_section_frame'].includes(item.ruleCompleteness)) fail(`adopted_rule_incomplete:${item.ruleId}`)
     if ((item.status === 'unresolved' || item.status === 'unsupported') && (!item.observedRule || item.observedRule.length === 0)) fail(`unresolved_reason_missing:${item.ruleId}`)
   }
 
@@ -3671,8 +4527,50 @@ export function checkSajuLineageReadingGrammar(grammar = SAJU_LINEAGE_READING_GR
       }
     }
   }
+  const structuralContractsByRuleId = new Map(SAJU_LINEAGE_STRUCTURAL_CONTRACTS.map(contract => [contract.ruleId, contract]))
+  for (const [lineageKey, expectedStatuses, expectedWork, expectedSourceId] of [
+    ['ditian', SAJU_DITIAN_INVENTORY_STATUSES, WORKS.ditian, 'saju-source-ditian-sui'],
+    ['qiongtong', SAJU_QIONGTONG_INVENTORY_STATUSES, WORKS.qiongtong, 'saju-source-qiongtong-baojian'],
+  ]) {
+    const inventory = grammar.sourceBoundedSemanticGrammar?.lineageRuleInventories?.[lineageKey]
+    if (!Array.isArray(inventory) || inventory.length === 0) {
+      fail(`${lineageKey}_inventory_missing`)
+      continue
+    }
+    const inventoryIdsForLineage = new Set()
+    for (const item of inventory) {
+      if (!isObject(item)) {
+        fail(`${lineageKey}_inventory_item_not_object`)
+        continue
+      }
+      if (!item.inventoryId || inventoryIdsForLineage.has(item.inventoryId)) fail(`${lineageKey}_inventory_id_duplicate:${item.inventoryId || 'missing'}`)
+      inventoryIdsForLineage.add(item.inventoryId)
+      if (!expectedStatuses.includes(item.status)) fail(`${lineageKey}_inventory_status:${item.inventoryId}`)
+      if (item.work !== expectedWork || item.lineage !== `${lineageKey}_local_export`) fail(`${lineageKey}_inventory_identity:${item.inventoryId}`)
+      if (JSON.stringify(item.sourceIds) !== JSON.stringify([expectedSourceId])) fail(`${lineageKey}_inventory_source:${item.inventoryId}`)
+      if (!Array.isArray(item.locatorIds) || item.locatorIds.length === 0) fail(`${lineageKey}_inventory_locators:${item.inventoryId}`)
+      for (const locatorId of item.locatorIds || []) {
+        const locator = locatorsById.get(locatorId)
+        if (!locator) fail(`${lineageKey}_inventory_locator_unknown:${item.inventoryId}:${locatorId}`)
+        else if (locator.sourceId !== expectedSourceId) fail(`${lineageKey}_inventory_locator_source:${item.inventoryId}:${locatorId}`)
+      }
+      if (!Array.isArray(item.applicability) || item.applicability.length === 0 || !Array.isArray(item.exceptions) || item.exceptions.length === 0 || !Array.isArray(item.forbiddenExtensions) || item.forbiddenExtensions.length === 0) fail(`${lineageKey}_inventory_boundary:${item.inventoryId}`)
+      if (!isObject(item.requiredStructuralResult) || !Array.isArray(item.requiredStructuralResult.ruleIds) || !Array.isArray(item.requiredStructuralResult.fields) || typeof item.requiredStructuralResult.closure !== 'string') fail(`${lineageKey}_inventory_structural:${item.inventoryId}`)
+      if (!isObject(item.sourceDefinedOutput) || typeof item.sourceDefinedOutput.kind !== 'string' || typeof item.sourceDefinedOutput.role !== 'string' || !Array.isArray(item.sourceDefinedOutput.outputShape) || typeof item.sourceDefinedOutput.scope !== 'string') fail(`${lineageKey}_inventory_output:${item.inventoryId}`)
+      if (!['coexistence_only_until_source_priority_is_closed', 'unresolved_composition_frontier'].includes(item.compositionState)) fail(`${lineageKey}_inventory_composition:${item.inventoryId}`)
+      if (item.status === 'adopted_structural_rule') {
+        const contract = structuralContractsByRuleId.get(item.contractRuleId)
+        if (!contract || contract.work !== expectedWork || contract.ruleStatus !== 'adopted_lineage_rule') fail(`${lineageKey}_inventory_contract:${item.inventoryId}`)
+        if (item.requiredStructuralResult.closure !== 'closed_in_existing_contract') fail(`${lineageKey}_inventory_adopted_closure:${item.inventoryId}`)
+      } else if (item.contractRuleId !== undefined) {
+        fail(`${lineageKey}_inventory_unadopted_contract:${item.inventoryId}`)
+      }
+    }
+  }
   const compositionFrontier = grammar.sourceBoundedSemanticGrammar?.compositionFrontier
   if (!isObject(compositionFrontier) || compositionFrontier.status !== 'unresolved_composition_frontier' || compositionFrontier.compositionReady !== false || compositionFrontier.sourceProvidesPriority !== false || compositionFrontier.sourceProvidesCombinationRule !== false || compositionFrontier.sourceProvidesTransitionRule !== false) fail('semantic_composition_frontier')
+  const fiveLineageComparison = grammar.sourceBoundedSemanticGrammar?.fiveLineageComparison
+  if (!isObject(fiveLineageComparison) || fiveLineageComparison.schema !== SAJU_FIVE_LINEAGE_COMPOSITION_READINESS.schema || JSON.stringify(fiveLineageComparison.lineageOrder) !== JSON.stringify(SAJU_FIVE_LINEAGE_COMPOSITION_READINESS.lineageOrder) || fiveLineageComparison.compositionReady !== false || fiveLineageComparison.sourceProvidesCrossLineagePriority !== false || fiveLineageComparison.sourceProvidesTransitionRule !== false || fiveLineageComparison.sourceProvidesCombinationRule !== false || !Array.isArray(fiveLineageComparison.commonCandidates) || fiveLineageComparison.commonCandidates.length !== 0) fail('five_lineage_composition_readiness')
   const expectedNewlyAdopted = (semanticInventory || []).filter(item => item.status === 'newly_adopted_executable').map(item => item.inventoryId)
   if (JSON.stringify(grammar.sourceBoundedSemanticGrammar?.newlyAdoptedRuleIds || []) !== JSON.stringify(expectedNewlyAdopted)) fail('semantic_inventory_newly_adopted_mismatch')
 
@@ -3782,6 +4680,12 @@ function unsatisfiedStructuralConditions(contract, base) {
   if (contract.ruleId === 'rule.ziping.jia-root-branch-scan.v0' && !hasCompleteZipingJiaRootScanInput(base)) conditions.push('complete_jia_root_scan_input_missing')
   if (contract.ruleId === 'rule.ziping.chen-exposure-inventory.v0' && !hasCompleteZipingChenExposureInput(base)) conditions.push('complete_chen_exposure_input_missing')
   if (contract.ruleId === 'rule.ziping.yin-month-exposure-contrast.v0' && !hasCompleteZipingYinMonthExposureInput(base)) conditions.push('complete_yin_month_exposure_contrast_input_missing')
+  if (contract.ruleId === 'rule.ditian.heaven-earth-human-frame.v0' && !hasCompleteDitianHeavenEarthHumanFrameInput(base)) conditions.push('complete_heaven_earth_human_frame_input_missing')
+  if (contract.ruleId === 'rule.ditian.branch-category-inventory.v0' && !hasCompleteDitianBranchCategoryInput(base)) conditions.push('complete_ditian_branch_category_input_missing')
+  if (contract.ruleId === 'rule.ditian.shape-example-inventory.v0' && !hasCompleteDitianShapeExampleInput(base)) conditions.push('complete_ditian_shape_example_input_missing')
+  if (contract.ruleId === 'rule.ditian.fang-ju-example-inventory.v0' && !hasCompleteDitianFangJuExampleInput(base)) conditions.push('complete_ditian_fang_ju_input_missing')
+  if (contract.ruleId === 'rule.qiongtong.five-phase-number-inventory.v0' && !hasCompleteQiongtongElementNumberInput(base)) conditions.push('complete_qiongtong_element_number_input_missing')
+  if (contract.ruleId === 'rule.qiongtong.day-stem-section-frame.v0' && !hasCompleteQiongtongDayStemSectionInput(base)) conditions.push('complete_qiongtong_day_stem_section_input_missing')
   if (contract.ruleId === 'rule.ditian.jia-wood-seasonal-condition.v0' || contract.ruleId === 'rule.qiongtong.jia-wood-seasonal-clauses.v0') {
     if (isJiaStem(readPath(base, FACT_REFS.dayMaster).value) && !sourceSeasonContext(base)) conditions.push('explicit_season_or_solar_term_context_missing')
   }

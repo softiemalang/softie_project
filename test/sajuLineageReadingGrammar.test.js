@@ -7,6 +7,11 @@ import {
   SAJU_LINEAGE_READING_GRAMMAR,
   SAJU_LINEAGE_RULES,
   SAJU_LINEAGE_STRUCTURAL_CONTRACTS,
+  SAJU_DITIAN_INVENTORY_STATUSES,
+  SAJU_DITIAN_RULE_INVENTORY,
+  SAJU_FIVE_LINEAGE_COMPOSITION_READINESS,
+  SAJU_QIONGTONG_INVENTORY_STATUSES,
+  SAJU_QIONGTONG_RULE_INVENTORY,
   SAJU_SANMING_INVENTORY_STATUSES,
   SAJU_SANMING_RULE_INVENTORY,
   SAJU_SANMING_SOURCE_SEMANTIC_CONTRACTS,
@@ -73,6 +78,20 @@ const ZIPING_P7_BIRTH_INPUT = {
   subjectName: 'lineage-grammar-ziping-p7-fixture',
   birthDate: '1990-02-07',
   birthTime: '08:30',
+}
+
+const DITIAN_FANG_BIRTH_INPUT = {
+  ...REAL_BIRTH_INPUT,
+  subjectName: 'lineage-grammar-ditian-fang-fixture',
+  birthDate: '1986-03-13',
+  birthTime: '12:00',
+}
+
+const DITIAN_JU_BIRTH_INPUT = {
+  ...REAL_BIRTH_INPUT,
+  subjectName: 'lineage-grammar-ditian-ju-fixture',
+  birthDate: '1983-03-08',
+  birthTime: '12:00',
 }
 
 function buildFrozenBase(input = REAL_BIRTH_INPUT) {
@@ -179,6 +198,36 @@ test('Sanming whole-work inventory keeps direct structural windows and one narro
   assert.deepEqual(SAJU_LINEAGE_READING_GRAMMAR.commonCandidates, [])
 })
 
+test('Ditian and Qiongtong inventories separate closed structural frames from semantic and composition frontiers', () => {
+  assert.ok(SAJU_DITIAN_RULE_INVENTORY.length >= 10)
+  assert.ok(SAJU_DITIAN_RULE_INVENTORY.every(item => SAJU_DITIAN_INVENTORY_STATUSES.includes(item.status)))
+  assert.deepEqual(
+    SAJU_DITIAN_RULE_INVENTORY.filter(item => item.status === 'adopted_structural_rule').map(item => item.contractRuleId),
+    [
+      'rule.ditian.heaven-earth-human-frame.v0',
+      'rule.ditian.branch-category-inventory.v0',
+      'rule.ditian.shape-example-inventory.v0',
+      'rule.ditian.fang-ju-example-inventory.v0',
+    ],
+  )
+  assert.equal(SAJU_DITIAN_RULE_INVENTORY.filter(item => item.status === 'context_bound_candidate').length, 3)
+  assert.ok(SAJU_DITIAN_RULE_INVENTORY.some(item => item.status === 'unresolved' && item.inventoryId.includes('tiyong')))
+  assert.ok(SAJU_DITIAN_RULE_INVENTORY.every(item => item.status !== 'adopted_semantic_rule'))
+
+  assert.ok(SAJU_QIONGTONG_RULE_INVENTORY.length >= 13)
+  assert.ok(SAJU_QIONGTONG_RULE_INVENTORY.every(item => SAJU_QIONGTONG_INVENTORY_STATUSES.includes(item.status)))
+  assert.deepEqual(
+    SAJU_QIONGTONG_RULE_INVENTORY.filter(item => item.status === 'adopted_structural_rule').map(item => item.contractRuleId),
+    ['rule.qiongtong.five-phase-number-inventory.v0', 'rule.qiongtong.day-stem-section-frame.v0'],
+  )
+  assert.equal(SAJU_QIONGTONG_RULE_INVENTORY.filter(item => item.status === 'context_bound_candidate').length, 10)
+  assert.ok(SAJU_QIONGTONG_RULE_INVENTORY.some(item => item.status === 'unresolved' && item.inventoryId.includes('shengwang-jue')))
+  assert.equal(SAJU_LINEAGE_READING_GRAMMAR.sourceBoundedSemanticGrammar.lineageSemanticRules.ditian.length, 0)
+  assert.equal(SAJU_LINEAGE_READING_GRAMMAR.sourceBoundedSemanticGrammar.lineageSemanticRules.qiongtong.length, 0)
+  assert.deepEqual(SAJU_FIVE_LINEAGE_COMPOSITION_READINESS.commonCandidates, [])
+  assert.equal(SAJU_FIVE_LINEAGE_COMPOSITION_READINESS.compositionReady, false)
+})
+
 test('real frozen Base executes only bounded structural rules and preserves lineage blockers', () => {
   const base = buildFrozenBase()
   const result = evaluateSajuLineageReadingGrammar(base)
@@ -234,6 +283,67 @@ test('real frozen Base executes only bounded structural rules and preserves line
   assert.equal(byId['rule.qiongtong.jia-wood-seasonal-clauses.v0'].executionStatus, 'not_applicable_fixture')
   assert.equal(byId['feature.shinsal-source-rule.v0'].executionStatus, 'unsupported')
   assert.deepEqual(result.commonCandidates, [])
+})
+
+test('Ditian exact structural examples and Qiongtong section/number frames are deterministic and lineage-separated', () => {
+  const jiaBase = buildFrozenBase(JIA_BIRTH_INPUT)
+  const firstJia = deriveSajuLineageStructuralResults(jiaBase)
+  const secondJia = deriveSajuLineageStructuralResults(jiaBase)
+  assert.deepEqual(firstJia, secondJia)
+
+  const jiaById = Object.fromEntries(firstJia.categories.derivedStructuralResults.map(item => [item.ruleId, item]))
+  assert.equal(jiaById['rule.ditian.heaven-earth-human-frame.v0'].work, '滴天髓')
+  assert.equal(jiaById['rule.ditian.heaven-earth-human-frame.v0'].output.positions[0].sourceLabels.visibleStem, '天元')
+  assert.equal(jiaById['rule.ditian.branch-category-inventory.v0'].output.precedence, 'none')
+  assert.deepEqual(jiaById['rule.ditian.shape-example-inventory.v0'].output.matchedExamples.map(item => item.result), ['形全'])
+  assert.equal(jiaById['rule.qiongtong.five-phase-number-inventory.v0'].output.sourceElementNumbers['水'], 1)
+  assert.deepEqual(jiaById['rule.qiongtong.five-phase-number-inventory.v0'].output.stateOperation, { 生旺: 'not_applied', '死绝': 'not_applied' })
+  assert.deepEqual(jiaById['rule.qiongtong.day-stem-section-frame.v0'].output.sourceSection, {
+    locatorId: 'qiongtong-p3-jia-section',
+    pdfPageStart: 3,
+    pdfPageEnd: 12,
+  })
+  assert.ok(firstJia.categories.notApplicableRules.some(item => item.ruleId === 'rule.ditian.fang-ju-example-inventory.v0'))
+  assert.ok(firstJia.categories.derivedStructuralResults.every(item => item.noSemanticMeaning === true && item.lineage))
+
+  const fang = deriveSajuLineageStructuralResults(buildFrozenBase(DITIAN_FANG_BIRTH_INPUT))
+  const fangResult = fang.categories.derivedStructuralResults.find(item => item.ruleId === 'rule.ditian.fang-ju-example-inventory.v0')
+  assert.deepEqual(fangResult.output.matchedExamples.map(item => ({ relation: item.relation, label: item.label })), [{ relation: '方', label: '東方' }])
+
+  const ju = deriveSajuLineageStructuralResults(buildFrozenBase(DITIAN_JU_BIRTH_INPUT))
+  const juResult = ju.categories.derivedStructuralResults.find(item => item.ruleId === 'rule.ditian.fang-ju-example-inventory.v0')
+  assert.deepEqual(juResult.output.matchedExamples.map(item => ({ relation: item.relation, label: item.label })), [{ relation: '局', label: '木局' }])
+})
+
+test('new Ditian/Qiongtong structural prerequisites fail closed without recalculation or cross-lineage completion', () => {
+  const base = buildFrozenBase(JIA_BIRTH_INPUT)
+  base.systems.saju.fact.pillarFacts.hour.branch = null
+  base.systems.saju.fact.elementsDistribution.목 = null
+  const before = JSON.stringify(base)
+  const result = deriveSajuLineageStructuralResults(base)
+
+  for (const ruleId of [
+    'rule.ditian.heaven-earth-human-frame.v0',
+    'rule.ditian.branch-category-inventory.v0',
+    'rule.ditian.fang-ju-example-inventory.v0',
+    'rule.qiongtong.five-phase-number-inventory.v0',
+  ]) {
+    const gap = result.categories.prerequisiteGaps.find(item => item.ruleId === ruleId)
+    assert.ok(gap, ruleId)
+    assert.equal(gap.output, null, ruleId)
+  }
+  assert.equal(result.categories.derivedStructuralResults.some(item => item.ruleId === 'rule.ditian.branch-category-inventory.v0'), false)
+  assert.equal(result.categories.derivedStructuralResults.some(item => item.ruleId === 'rule.qiongtong.five-phase-number-inventory.v0'), false)
+  assert.equal(result.boundary.lineageMerge, true)
+  assert.equal(JSON.stringify(base), before)
+
+  const conflictBase = buildFrozenBase(JIA_BIRTH_INPUT)
+  conflictBase.systems.saju.fact.seasonContext = { season: 'spring', solarTerm: 'explicit-test-context' }
+  const conflict = deriveSajuLineageStructuralResults(conflictBase)
+  assert.ok(conflict.categories.lineageConflicts.some(item => item.conflictGroup === 'jia-wood-seasonal-condition-window'))
+  assert.equal(conflict.categories.derivedStructuralResults.some(item => item.ruleId === 'rule.ditian.jia-wood-seasonal-condition.v0'), false)
+  assert.equal(conflict.categories.derivedStructuralResults.some(item => item.ruleId === 'rule.qiongtong.jia-wood-seasonal-clauses.v0'), false)
+  assert.equal(conflict.boundary.lineageMerge, false)
 })
 
 test('missing hour, timing, and relation facts fail closed without source-rule inference', () => {
@@ -366,10 +476,10 @@ test('Sanming p.67 seasonal state and p.162 role nomenclature are deterministic,
 
 test('adopted rules have complete structural result contracts and keep common facts separate from lineage outputs', () => {
   assert.deepEqual(checkSajuLineageStructuralResultContract(), [])
-  assert.equal(SAJU_LINEAGE_STRUCTURAL_CONTRACTS.length, 16)
+  assert.equal(SAJU_LINEAGE_STRUCTURAL_CONTRACTS.length, 22)
   assert.deepEqual(
-    SAJU_LINEAGE_STRUCTURAL_CONTRACTS.map(contract => contract.ruleId),
-    SAJU_LINEAGE_RULES.filter(rule => rule.status === 'adopted_lineage_rule').map(rule => rule.ruleId),
+    SAJU_LINEAGE_STRUCTURAL_CONTRACTS.map(contract => contract.ruleId).sort(),
+    SAJU_LINEAGE_RULES.filter(rule => rule.status === 'adopted_lineage_rule').map(rule => rule.ruleId).sort(),
   )
   for (const contract of SAJU_LINEAGE_STRUCTURAL_CONTRACTS) {
     assert.ok(contract.commonBaseFacts.length > 0, contract.ruleId)
@@ -796,12 +906,12 @@ test('real frozen Base yields deterministic structural results with explicit pre
   assert.deepEqual(first, second)
   assert.equal(first.contractValidation.valid, true)
   assert.equal(first.baseValidation.valid, true)
-  assert.equal(first.categories.executableRules.length, 11)
-  assert.equal(first.categories.derivedStructuralResults.length, 11)
+  assert.equal(first.categories.executableRules.length, 15)
+  assert.equal(first.categories.derivedStructuralResults.length, 15)
   assert.equal(first.categories.prerequisiteGaps.length, 1)
   assert.equal(first.categories.unresolvedRules.length, 5)
   assert.equal(first.categories.unsupportedRules.length, 2)
-  assert.equal(first.categories.notApplicableRules.length, 4)
+  assert.equal(first.categories.notApplicableRules.length, 6)
   assert.deepEqual(first.categories.lineageConflicts, [])
   const qiongtongGap = first.categories.prerequisiteGaps.find(item => item.ruleId === 'rule.qiongtong.five-phase-number-season-state.v0')
   assert.deepEqual(qiongtongGap.missingLineagePrerequisiteIds, ['source-specific-shengwang-jue-state'])
