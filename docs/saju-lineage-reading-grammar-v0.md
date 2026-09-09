@@ -119,6 +119,20 @@ p.10의 `何謂透干` 문답은 `甲生辰月`이라는 월령·일간 조건 �
 3. 네 위치의 supplied visible stem에서 세 target만 scan하여 위치와 source stem을 `chenNamedExposureInventory`로 만든다.
 4. 그 structural result를 semantic rule이 소비하여 `戊→偏财`, `癸→正印`, `乙→月劫`의 source role label만 `chenExposureUseRole`로 기록한다. 복수 match는 모두 보존하고 우선순위를 만들지 않는다.
 
+### source-bounded semantic-result contract
+
+여러 원전의 semantic rule을 같은 형식으로 수용할 때도 결과 descriptor는 자유 자연어 해석이 아니라 다음 필드를 모두 보존한다.
+
+- `sourceIds`·`lineage`·`locatorIds`: 어떤 source/전승 범위와 locator를 사용했는지
+- `requiredStructuralResult`: 필요한 lineage structural rule ID, 실제 result ID, `satisfied`·`blocked_missing`·`conflict_preserved`·`not_required` 상태
+- `applicability`·`procedure`·`stopConditions`: 적용 전제·순서·중단 조건
+- `semanticRoleResult`: source가 명시한 result key/field와 materialization 여부. 실제 값은 `output`에만 둔다.
+- `conflictState`: 보존된 충돌 ID, conflict policy, winner 미선정 및 fail-closed 상태
+- `forbiddenExtensions`: 개인 의미·강약·용신·격국·길흉·예측·cross-lineage merge 등 금지 확장 목록
+- `provenance`: contract/rule/schema identity, source·lineage·locator와 source byte SHA-256
+
+이 contract는 structural prerequisite를 충족한 경우에만 source-bounded result를 materialize한다. 입력 부족·문맥 미완결·충돌이면 상태와 provenance를 남기되 결과를 만들지 않으며, 서로 다른 원전의 유사성이나 자연어 추론으로 공통 semantic을 생성하지 않는다. `commonRulePromotion=false`, `crossLineageMerge=false`, `personalMeaning=false` 경계는 유지된다.
+
 이 규칙은 `用神` 문맥 안의 원문 label을 source-bounded result로 보존하는 것이며, 현재 사용자의 신강·성격·길흉·개인 의미를 판정하는 규칙이 아니다. `會支`를 함께 해석하거나 `有情/無情`을 평가하는 것은 p.11의 별도 unresolved frontier다. p.7의 `不透甲而透丙`은 `用神变化` 문맥의 context-bound candidate로 남아 별도 structural prerequisite가 닫히기 전에는 실행하지 않는다.
 
 淵海子平 p.4의 지장간·월별 사령 문구, 三命通會 p.65–66의 `人元`·`司事`와 월별 service-day 예시, 滴天髓 p.4의 甲木 계절/根 조건은 각각 직접 관찰된 별도 source surface다. 이들은 지장간 inventory·월령 frame·甲木 조건문을 지지하지만, 子平의 exact-example predicate를 채우거나 generic 통근/투간 표를 제공하는 것으로 합치지 않았다. 子平 p.7의 `寅月`에서 `不透甲而透丙`을 대비하는 문장은 用神变化 문맥의 local example로만 남겨 일반적인 투간 resolver로 승격하지 않았다.

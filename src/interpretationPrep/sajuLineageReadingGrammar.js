@@ -1078,6 +1078,17 @@ export const SAJU_LINEAGE_STRUCTURAL_CONTRACTS = Object.freeze([
 
 export const SAJU_LINEAGE_SOURCE_SEMANTIC_RESULT_SCHEMA = 'saju-lineage-source-bounded-semantic-result-v0'
 export const SAJU_LINEAGE_SOURCE_SEMANTIC_RESULT_VERSION = '0.1.0'
+export const SAJU_LINEAGE_SOURCE_SEMANTIC_RESULT_REQUIRED_FIELDS = Object.freeze([
+  'sourceIds',
+  'lineage',
+  'locatorIds',
+  'requiredStructuralResult',
+  'applicability',
+  'semanticRoleResult',
+  'conflictState',
+  'forbiddenExtensions',
+  'provenance',
+])
 
 export const SAJU_LINEAGE_SOURCE_SEMANTIC_RULE_STATUSES = Object.freeze([
   'adopted_lineage_semantic_rule',
@@ -1193,11 +1204,13 @@ const sourceSemanticContractSpec = (ruleId, value) => {
       status: 'adopted_lineage_structural_result',
       resultOrigin: 'lineage_derived_structural_result',
     })),
+    requiredResultFields: [...SAJU_LINEAGE_SOURCE_SEMANTIC_RESULT_REQUIRED_FIELDS],
     applicability: [...ruleItem.preconditions],
     procedure: [...ruleItem.orderedSteps],
     stopConditions: [...ruleItem.exceptions],
     output: { ...ruleItem.output },
     conflictPolicy: ruleItem.conflictPolicy,
+    forbiddenExtensions: [...ruleItem.forbiddenExtensions],
     ...value,
   }
 }
@@ -2008,6 +2021,44 @@ function sourceSemanticResultDescriptor(contract, ruleEvaluation, classification
     const source = SAJU_LINEAGE_SOURCE_PROFILES.find(item => item.sourceId === sourceId)
     return [sourceId, source?.byteSha256 || null]
   }))
+  const structuralPrerequisiteRuleIds = contract.structuralPrerequisites.map(prerequisite => prerequisite.prerequisiteRuleId)
+  const structuralPrerequisiteResultIds = [...(ruleEvaluation.structuralPrerequisiteResultIds || [])]
+  const requiredStructuralResult = {
+    ruleIds: structuralPrerequisiteRuleIds,
+    resultIds: structuralPrerequisiteResultIds,
+    state: ruleEvaluation.structuralConflictId
+      ? 'conflict_preserved'
+      : ruleEvaluation.structuralGapResultId
+        ? 'blocked_missing'
+        : structuralPrerequisiteRuleIds.length === 0
+          ? 'not_required'
+          : structuralPrerequisiteResultIds.length === structuralPrerequisiteRuleIds.length
+            ? 'satisfied'
+            : 'not_satisfied',
+  }
+  const conflictState = {
+    status: ruleEvaluation.structuralConflictId ? 'preserved_tension_fail_closed' : 'not_observed',
+    conflictId: ruleEvaluation.structuralConflictId || null,
+    policy: contract.conflictPolicy,
+    winnerSelected: false,
+    failClosed: true,
+  }
+  const semanticRoleResult = {
+    resultKey: contract.output.resultKey,
+    fields: [...contract.output.fields],
+    origin: contract.output.origin,
+    materialized: classification === 'derived_source_bounded_semantic_result',
+  }
+  const provenance = {
+    schema: SAJU_LINEAGE_SOURCE_SEMANTIC_RESULT_SCHEMA,
+    version: SAJU_LINEAGE_SOURCE_SEMANTIC_RESULT_VERSION,
+    contractId: contract.contractId,
+    ruleId: contract.ruleId,
+    sourceIds: [...contract.sourceIds],
+    lineage: contract.lineage,
+    locatorIds: [...contract.locatorIds],
+    sourceByteSha256: { ...sourceProvenance },
+  }
   return {
     resultId: `semantic-result.${contract.ruleId}`,
     classification,
@@ -2017,17 +2068,22 @@ function sourceSemanticResultDescriptor(contract, ruleEvaluation, classification
     sourceIds: [...contract.sourceIds],
     locatorIds: [...contract.locatorIds],
     sourceProvenance,
+    provenance,
     commonBaseFacts: contract.commonBaseFacts.map(binding => ({ ...binding })),
     structuralPrerequisites: contract.structuralPrerequisites.map(prerequisite => ({ ...prerequisite })),
+    requiredStructuralResult,
     applicability: [...contract.applicability],
     procedure: [...contract.procedure],
     stopConditions: [...contract.stopConditions],
     outputContract: { ...contract.output, fields: [...contract.output.fields] },
+    semanticRoleResult,
+    conflictState,
+    forbiddenExtensions: [...contract.forbiddenExtensions],
     executionStatus: ruleEvaluation.executionStatus,
     ruleStatus: ruleEvaluation.ruleStatus,
     output: classification === 'derived_source_bounded_semantic_result' ? ruleEvaluation.output : null,
     reason: ruleEvaluation.reason,
-    structuralPrerequisiteResultIds: [...(ruleEvaluation.structuralPrerequisiteResultIds || [])],
+    structuralPrerequisiteResultIds,
     structuralGapResultId: ruleEvaluation.structuralGapResultId || null,
     structuralConflictId: ruleEvaluation.structuralConflictId || null,
     deterministic: true,
@@ -2076,6 +2132,9 @@ export function checkSajuLineageSourceSemanticResultContract(contracts = SAJU_ZI
     }
     for (const key of ['applicability', 'procedure', 'stopConditions']) if (!Array.isArray(contract[key]) || contract[key].length === 0) fail(`contract_${key}:${contract.ruleId}`)
     if (!isObject(contract.output) || contract.output.origin !== 'lineage_derived_source_bounded_semantic_result' || contract.output.semanticExpansion !== false || contract.output.personalMeaning !== false || !contract.output.resultKey || !Array.isArray(contract.output.fields) || contract.output.fields.length === 0) fail(`contract_output:${contract.ruleId}`)
+    if (JSON.stringify(contract.requiredResultFields) !== JSON.stringify(SAJU_LINEAGE_SOURCE_SEMANTIC_RESULT_REQUIRED_FIELDS)) fail(`contract_required_result_fields:${contract.ruleId}`)
+    if (!Array.isArray(contract.forbiddenExtensions) || contract.forbiddenExtensions.length === 0) fail(`contract_forbidden_extensions:${contract.ruleId}`)
+    if (typeof contract.conflictPolicy !== 'string' || contract.conflictPolicy.length === 0) fail(`contract_conflict_policy:${contract.ruleId}`)
     if (ruleItem.status === 'adopted_lineage_semantic_rule' && contract.structuralPrerequisites.length === 0) fail(`adopted_semantic_prerequisite_missing:${contract.ruleId}`)
     if (ruleItem.semanticBoundary?.personalMeaning !== false || ruleItem.semanticBoundary?.crossLineageMerge !== false || ruleItem.semanticBoundary?.commonRulePromotion !== false) fail(`semantic_boundary:${contract.ruleId}`)
   }

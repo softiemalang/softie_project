@@ -300,6 +300,37 @@ test('Ziping p.10 exact 甲生辰月 inventory feeds only its source-bounded rol
     sourceRole: '偏财',
   }])
   assert.deepEqual(semantic.structuralPrerequisiteResultIds, [structuralResult.resultId])
+  assert.deepEqual(semantic.requiredStructuralResult, {
+    ruleIds: ['rule.ziping.chen-exposure-inventory.v0'],
+    resultIds: [structuralResult.resultId],
+    state: 'satisfied',
+  })
+  assert.deepEqual(semantic.semanticRoleResult, {
+    resultKey: 'ziping.chenExposureUseRole',
+    fields: ['sourceCondition', 'matchedSourceRoleLabels', 'multiplicityPolicy', 'sourceSemanticScope'],
+    origin: 'lineage_derived_source_bounded_semantic_result',
+    materialized: true,
+  })
+  assert.deepEqual(semantic.conflictState, {
+    status: 'not_observed',
+    conflictId: null,
+    policy: 'preserve every source role label and fail closed if another lineage or an unresolved p.11 interaction would be needed',
+    winnerSelected: false,
+    failClosed: true,
+  })
+  assert.ok(semantic.forbiddenExtensions.includes('single_symbol_personal_meaning'))
+  assert.deepEqual(semantic.provenance, {
+    schema: 'saju-lineage-source-bounded-semantic-result-v0',
+    version: '0.1.0',
+    contractId: 'contract.rule.ziping.chen-exposure-use-role.v0',
+    ruleId: 'rule.ziping.chen-exposure-use-role.v0',
+    sourceIds: ['saju-source-ziping-zhenquan'],
+    lineage: 'ziping_local_export',
+    locatorIds: ['ziping-p10-chen-exposed-stem-definition'],
+    sourceByteSha256: {
+      'saju-source-ziping-zhenquan': '449336b5e35aa6811b0462093d0175c45a0add44065bf2d3845cff75981db692',
+    },
+  })
   assert.equal(semantic.sourceProvenance['saju-source-ziping-zhenquan'], '449336b5e35aa6811b0462093d0175c45a0add44065bf2d3845cff75981db692')
   assert.equal(semantic.noPersonalMeaning, true)
   assert.equal(semantic.semanticExpansion, false)
@@ -331,6 +362,12 @@ test('Ziping p.10 semantic result fails closed when its structural exposure prer
   const semanticGap = semantic.categories.prerequisiteGaps.find(item => item.ruleId === 'rule.ziping.chen-exposure-use-role.v0')
   assert.ok(semanticGap)
   assert.equal(semanticGap.structuralGapResultId, gap.resultId)
+  assert.deepEqual(semanticGap.requiredStructuralResult, {
+    ruleIds: ['rule.ziping.chen-exposure-inventory.v0'],
+    resultIds: [],
+    state: 'blocked_missing',
+  })
+  assert.equal(semanticGap.conflictState.status, 'not_observed')
   assert.equal(semantic.boundary.personalMeaning, true)
   assert.equal(semantic.boundary.publicBaseMutation, false)
 })
@@ -360,6 +397,11 @@ test('Ziping p.10 semantic result preserves a structural lineage conflict instea
     deterministic: true,
     noPersonalMeaning: true,
   }])
+  const adopted = semantic.categories.adoptedSemanticRules.find(item => item.ruleId === 'rule.ziping.chen-exposure-use-role.v0')
+  assert.equal(adopted.conflictState.status, 'preserved_tension_fail_closed')
+  assert.equal(adopted.conflictState.conflictId, 'conflict.test-chen-exposure')
+  assert.equal(adopted.requiredStructuralResult.state, 'conflict_preserved')
+  assert.equal(adopted.conflictState.winnerSelected, false)
   assert.equal(semantic.boundary.crossLineageMerge, false)
 })
 
