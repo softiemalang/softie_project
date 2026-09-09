@@ -5,16 +5,16 @@
  * and Western Astrology designed for single-file attachment in ChatGPT/Gemini.
  *
  * Core Invariants:
- * 1. Canonical source of truth is structured JSON.
- * 2. Strictly limited to:
+ * 1. The internal runtime package is structured JSON and keeps validation
+ *    metadata separate from calculation facts.
+ * 2. The user-facing attachment projection is limited to:
  *    - Normalized calculation inputs (input)
- *    - Deterministic calculation outputs (fact)
- *    - RuleSet / source provenance (source)
- *    - Machine-readable support & unknown boundaries (unknown)
+ *    - Verified deterministic calculation outputs (fact)
+ *    - A minimal fact/interpretation boundary for AI consumers
  * 3. 0% SYNTHESIS, 0% trait/personality connections, 0% chat coaching/seeds,
  *    0% question-dependent filtering.
- * 4. Western Astrology strictly preserved as inactive research artifact
- *    (isInactiveResearch: true, activation.serviceEligibility: "blocked", usable: false).
+ * 4. Western Astrology remains internally blocked for service activation;
+ *    that runtime state is not emitted in the user-facing attachment.
  */
 
 import {
@@ -28,6 +28,8 @@ import { MAJOR_ASPECTS, ORB_BOUNDARY_THRESHOLD_DEGREES } from '../astrology/astr
 import { calculateWholeSignHouse } from '../astrology/astrologyHouses.js'
 import { PERSONAL_DISTRIBUTION_BODIES, SUPPORTED_DISTRIBUTION_BODIES } from '../astrology/astrologyDistribution.js'
 import { SIGN_METADATA } from '../astrology/astrologyRulers.js'
+import { getTenGod } from '../saju/engine/core.js'
+import { HIDDEN_STEMS } from '../saju/engine/constants.js'
 
 export const FOUNDATION_VERSION = 'deterministic-base-v0'
 export const CANONICAL_SCHEMA_VERSION = 'tri-system-deterministic-base-v0'
@@ -101,6 +103,8 @@ const SAJU_TIMING_CALCULATION_OPTION_KEYS = [
   'ziHourStart',
   'rollDayAtZiHour',
 ]
+
+const SAJU_PILLAR_POSITIONS = Object.freeze(['year', 'month', 'day', 'hour'])
 
 function pickFields(value, keys) {
   if (value === null || value === undefined) return value ?? null
@@ -211,6 +215,34 @@ function projectSajuRelation(item, collection) {
   if (item.element !== undefined) projected.element = item.element
   if (item.ruleType !== undefined) projected.ruleType = item.ruleType
   return projected
+}
+
+function buildSajuPillarFacts(rawPillars = {}, rawDayMaster = {}, isCandidate = false) {
+  if (isCandidate || !rawDayMaster?.stem) return null
+
+  return Object.fromEntries(SAJU_PILLAR_POSITIONS.map((position) => {
+    const rawPillar = rawPillars?.[position] || {}
+    const stem = rawPillar.stem || null
+    const branch = rawPillar.branch || null
+    const hiddenStems = (HIDDEN_STEMS[branch] || []).map(({ stem: hiddenStem, weight }) => ({
+      stem: hiddenStem,
+      weight,
+      tenGod: getTenGod(rawDayMaster.stem, hiddenStem),
+    }))
+    const branchMainStem = hiddenStems[0]?.stem || null
+
+    return [position, {
+      value: rawPillar.value || (stem && branch ? `${stem}${branch}` : null),
+      stem,
+      branch,
+      stemElement: rawPillar.stemElement || null,
+      branchElement: rawPillar.branchElement || null,
+      stemTenGod: position === 'day' ? null : getTenGod(rawDayMaster.stem, stem),
+      branchMainStem,
+      branchMainStemTenGod: getTenGod(rawDayMaster.stem, branchMainStem),
+      hiddenStems,
+    }]
+  }))
 }
 
 /**
@@ -381,6 +413,10 @@ export function extractSajuFoundation(sajuInput = {}, options = {}) {
   const dayMaster = isCandidate
     ? '후보 확인 필요 (단일 확정 불가)'
     : (raw.dayMaster?.stem || context.candidateSetConsensus?.factual?.dayMaster || '후보 확인 필요')
+  const dayMasterDetails = isCandidate || !raw.dayMaster?.stem
+    ? null
+    : pickFields(raw.dayMaster, ['stem', 'yinYang', 'element'])
+  const pillarFacts = buildSajuPillarFacts(raw.pillars, raw.dayMaster, isCandidate)
 
   const dayPillar = pillars.day
   const isGanyeojidong = Boolean(dayPillar && GANYEOJIDONG_DAY_PILLARS.has(dayPillar))
@@ -389,6 +425,8 @@ export function extractSajuFoundation(sajuInput = {}, options = {}) {
     pillarsFormatted: isCandidate ? '후보 확인 필요 (단일 확정 명식 없음)' : formatSajuPillars(raw, context),
     pillars,
     dayMaster,
+    dayMasterDetails,
+    pillarFacts,
     elementsDistribution: raw.elements?.counts || {},
     tenGodsVisible: raw.tenGods?.visible || {},
     branchRelations: (raw.branchRelations?.items || []).map((item) => ({
@@ -615,6 +653,16 @@ function normalizeLongitudeDegrees(value) {
 
 function signIndexFromLongitude(value) {
   return Math.floor(normalizeLongitudeDegrees(value) / 30)
+}
+
+function signPlacementFromLongitude(value) {
+  const normalizedLongitude = normalizeLongitudeDegrees(value)
+  const signIndex = signIndexFromLongitude(normalizedLongitude)
+  return {
+    sign: ASTROLOGY_SIGN_IDS[signIndex] || null,
+    signIndex,
+    degreeInSign: normalizedLongitude - signIndex * 30,
+  }
 }
 
 function claimSourceRefs(claim) {
@@ -1052,9 +1100,11 @@ function validateAndBuildAstrologyFacts(packet, provenance) {
 
   const verifiedBodies = ASTROLOGY_BODY_IDS.map((bodyId) => {
     const body = bodyById.get(bodyId)
+    const signPlacement = signPlacementFromLongitude(body.longitudeDegrees.value)
     return {
       id: body.id,
       longitudeDegrees: body.longitudeDegrees.value,
+      ...signPlacement,
       movingFrameSpeed: body.movingFrameSpeedDegreesPerDay.value,
       motionState: body.motion.value,
       epistemic: body.longitudeDegrees.epistemic,
@@ -1236,11 +1286,9 @@ export function extractAstrologyFoundation(astrologyInput = {}, options = {}) {
 /**
  * Common Deterministic Base Builder
  *
- * Emits canonical JSON source of truth containing ONLY:
- * - input: normalized calculation inputs
- * - fact: deterministic calculation outputs
- * - source: ruleset / provenance metadata
- * - unknown: boundaries, unsupported scopes, blocked activation
+ * Emits the internal runtime package. Its source/unknown/activation fields
+ * remain available to validation and runtime checks; the user-facing JSON
+ * export is produced by projectDeterministicBaseForConsumer().
  */
 export function buildDeterministicBase(input = {}, options = {}) {
   const rootInput = input.result?.input?.normalized
@@ -1348,35 +1396,309 @@ function createDeterministicBasePackage({ subjectName, systems, rootInput = {}, 
   return basePackage
 }
 
+const CONSUMER_BOUNDARY = Object.freeze({
+  factScope: 'verified_claims_only',
+  omittedClaims: 'not_provided_as_facts',
+  interpretation: 'separate_fact_from_interpretation_and_confirm_personal_context',
+})
+
+// Public Ziwei output is deliberately limited to the claim-level frontier that
+// is closed for coordinate-only consumption.  Palace identity, the root
+// Ziwei baseline, the Tianfu series, and all other chart semantics remain in
+// the internal validation package.
+const ZIWEI_PUBLIC_MAJOR_STAR_IDS = Object.freeze([
+  'tianji',
+  'taiyang',
+  'wugu',
+  'tiandong',
+  'lianzhen',
+])
+const ZIWEI_PUBLIC_MINOR_STAR_IDS = Object.freeze([
+  'zuobo',
+  'youbi',
+  'wenchang',
+  'wengu',
+  'tiankui',
+  'tianyue',
+])
+
+function projectConsumerTimingPeriod(period) {
+  if (period === null || period === undefined) return period ?? null
+  return pickFields(period, [
+    'index',
+    'stem',
+    'branch',
+    'value',
+    'stemElement',
+    'branchElement',
+    'twelveStage',
+    'dayMaster',
+    'startDate',
+    'nextStartDate',
+    'startAgeYears',
+    'isActive',
+  ])
+}
+
+function projectConsumerTimingCycle(cycle) {
+  if (cycle === null || cycle === undefined) return cycle ?? null
+  return pickFields(cycle, [
+    'index',
+    'stem',
+    'branch',
+    'value',
+    'stemElement',
+    'branchElement',
+    'twelveStage',
+    'dayMaster',
+    'startDate',
+    'nextStartDate',
+    'startAgeYears',
+    'isActive',
+  ])
+}
+
+function projectConsumerSajuTiming(timing = {}) {
+  if (!timing || typeof timing !== 'object') {
+    return { daYun: null, seUn: null, wolUn: null, ilJin: null }
+  }
+
+  const projected = pickFields(timing, ['targetDate'])
+  if (timing.daYun) {
+    projected.daYun = pickFields(timing.daYun, [
+      'direction',
+      'directionLabel',
+      'firstStartDate',
+      'activeCycleIndex',
+    ])
+    if (timing.daYun.startAge) {
+      projected.daYun.startAge = pickFields(timing.daYun.startAge, [
+        'years',
+        'months',
+        'days',
+        'decimalYears',
+      ])
+    }
+    if (Array.isArray(timing.daYun.cycles)) {
+      projected.daYun.cycles = timing.daYun.cycles.map(projectConsumerTimingCycle)
+    }
+  } else {
+    projected.daYun = null
+  }
+
+  for (const key of ['seUn', 'wolUn', 'ilJin']) {
+    const periodKey = key === 'seUn' ? 'year' : key === 'wolUn' ? 'month' : 'day'
+    const period = timing.periods?.[periodKey] || timing[key]
+    projected[key] = period ? projectConsumerTimingPeriod(period) : null
+  }
+
+  return projected
+}
+
+function projectConsumerRelationList(items, collectionKey) {
+  if (!Array.isArray(items)) return []
+  return items.map((item) => pickFields(item, [
+    'name',
+    collectionKey,
+    'positions',
+    'label',
+    'element',
+  ]))
+}
+
+function projectConsumerSajuFact(fact = {}) {
+  const projected = pickFields(fact, [
+    'pillarsFormatted',
+    'pillars',
+    'dayMaster',
+    'dayMasterDetails',
+    'pillarFacts',
+    'elementsDistribution',
+    'tenGodsVisible',
+    'isGanyeojidong',
+  ])
+  projected.branchRelations = projectConsumerRelationList(fact.branchRelations, 'branches')
+  projected.stemRelations = projectConsumerRelationList(fact.stemRelations, 'stems')
+  projected.timing = projectConsumerSajuTiming(fact.timing)
+  return projected
+}
+
+function projectConsumerAstrologyFact(fact = {}) {
+  const projected = {}
+  if (Array.isArray(fact.verifiedBodies)) {
+    projected.verifiedBodies = fact.verifiedBodies.map((body) => pickFields(body, [
+      'id',
+      'longitudeDegrees',
+      'sign',
+      'signIndex',
+      'degreeInSign',
+      'movingFrameSpeed',
+      'motionState',
+    ]))
+  }
+  if (fact.angles && typeof fact.angles === 'object') {
+    projected.angles = Object.fromEntries(
+      Object.entries(fact.angles).map(([pointId, point]) => [pointId, pickFields(point, [
+        'sign',
+        'degreeInSign',
+        'longitudeDegrees',
+      ])]),
+    )
+  }
+  if (Array.isArray(fact.aspects)) {
+    projected.aspects = fact.aspects.map((aspect) => ({
+      ...pickFields(aspect, ['id', 'pointA', 'pointB']),
+      calculationPrimitive: pickFields(aspect.calculationPrimitive, ['angularDistanceDegrees']),
+      derivedClassification: pickFields(aspect.derivedClassification, [
+        'aspectId',
+        'exactAngleDegrees',
+        'orbDegrees',
+        'maxOrbDegrees',
+      ]),
+    }))
+  }
+  if (fact.wholeSignHouses && typeof fact.wholeSignHouses === 'object') {
+    const primitive = fact.wholeSignHouses.calculationPrimitive || {}
+    const classification = fact.wholeSignHouses.derivedClassification || {}
+    projected.wholeSignHouses = {
+      calculationPrimitive: {
+        ascendant: pickFields(primitive.ascendant, ['signId', 'signIndex']),
+        placements: Array.isArray(primitive.placements)
+          ? primitive.placements.map((placement) => pickFields(placement, ['id', 'house']))
+          : [],
+      },
+      derivedClassification: pickFields(classification, ['houseSystem']),
+    }
+  }
+  if (fact.distribution && typeof fact.distribution === 'object') {
+    const primitive = fact.distribution.calculationPrimitive || {}
+    const classification = fact.distribution.derivedClassification || {}
+    projected.distribution = {
+      calculationPrimitive: Object.fromEntries(
+        ['overall', 'personal']
+          .filter((scope) => primitive[scope])
+          .map((scope) => [scope, pickFields(primitive[scope], ['bodyIds', 'counts'])]),
+      ),
+      derivedClassification: pickFields(classification, ['tie']),
+    }
+  }
+  if (fact.chartRulers && typeof fact.chartRulers === 'object') {
+    const primitive = fact.chartRulers.calculationPrimitive || {}
+    const classification = fact.chartRulers.derivedClassification || {}
+    projected.chartRulers = {
+      calculationPrimitive: pickFields(primitive, ['ascendantSignId']),
+      derivedClassification: pickFields(classification, [
+        'traditionalChartRuler',
+        'modernChartRuler',
+      ]),
+    }
+  }
+  return projected
+}
+
+function projectConsumerZiweiFact(fact = {}) {
+  const majorStars = Array.isArray(fact.majorStarCoordinates) ? fact.majorStarCoordinates : fact.majorStars
+  const minorStars = Array.isArray(fact.luckyStarCoordinates) ? fact.luckyStarCoordinates : fact.minorStars
+  const majorStarCoordinates = Array.isArray(majorStars)
+    ? majorStars
+      .filter((star) => ZIWEI_PUBLIC_MAJOR_STAR_IDS.includes(star.id))
+      .sort((left, right) => ZIWEI_PUBLIC_MAJOR_STAR_IDS.indexOf(left.id) - ZIWEI_PUBLIC_MAJOR_STAR_IDS.indexOf(right.id))
+      .map((star) => pickFields({
+        id: star.id,
+        name: star.name,
+        branchCoordinate: star.branchCoordinate ?? star.palaceBranch,
+      }, ['id', 'name', 'branchCoordinate']))
+    : []
+  const luckyStarCoordinates = Array.isArray(minorStars)
+    ? minorStars
+      .filter((star) => ZIWEI_PUBLIC_MINOR_STAR_IDS.includes(star.id))
+      .sort((left, right) => ZIWEI_PUBLIC_MINOR_STAR_IDS.indexOf(left.id) - ZIWEI_PUBLIC_MINOR_STAR_IDS.indexOf(right.id))
+      .map((star) => pickFields({
+        id: star.id,
+        name: star.name,
+        branchCoordinate: star.branchCoordinate ?? star.palaceBranch,
+      }, ['id', 'name', 'branchCoordinate']))
+    : []
+
+  const projected = {}
+  if (majorStarCoordinates.length > 0) projected.majorStarCoordinates = majorStarCoordinates
+  if (luckyStarCoordinates.length > 0) projected.luckyStarCoordinates = luckyStarCoordinates
+  return projected
+}
+
+function projectConsumerFact(domain, fact) {
+  if (!fact || typeof fact !== 'object') return null
+  if (domain === 'saju') return projectConsumerSajuFact(fact)
+  if (domain === 'ziwei') return projectConsumerZiweiFact(fact)
+  if (domain === 'astrology') return projectConsumerAstrologyFact(fact)
+  return null
+}
+
+function projectConsumerNormalizedInput(normalizedInput = {}) {
+  const projected = { ...normalizedInput }
+  delete projected.coordinateMethod
+  delete projected.coordinateProvenance
+  return projected
+}
+
+function isVerifiedConsumerSystem(domain, system) {
+  if (!system?.fact) return false
+  if (domain === 'ziwei') return Object.keys(projectConsumerZiweiFact(system.fact)).length > 0
+  if (domain === 'astrology') {
+    return system.fact.hasVerifiedData === true && system.source?.provenanceStatus === 'complete'
+  }
+  return ['verified', 'complete'].includes(system.verificationStatus)
+}
+
+function isConsumerProjection(basePackage) {
+  return basePackage?.consumerBoundary?.factScope === CONSUMER_BOUNDARY.factScope
+}
+
+/**
+ * Remove internal validation/runtime metadata from the single-file consumer
+ * attachment while retaining only verified calculation claims.
+ */
+export function projectDeterministicBaseForConsumer(basePackage = {}) {
+  const systems = {}
+  for (const [domain, system] of Object.entries(basePackage.systems || {})) {
+    if (!isConsumerProjection(basePackage) && !isVerifiedConsumerSystem(domain, system)) continue
+    const fact = projectConsumerFact(domain, system?.fact)
+    if (!fact || Object.keys(fact).length === 0) continue
+    systems[domain] = {
+      domain,
+      displayName: system.displayName || SYSTEM_DISPLAY_NAMES[domain] || domain,
+      fact,
+    }
+  }
+
+  return {
+    schemaVersion: basePackage.schemaVersion || CANONICAL_SCHEMA_VERSION,
+    foundationVersion: basePackage.foundationVersion || FOUNDATION_VERSION,
+    normalizedInput: projectConsumerNormalizedInput(basePackage.normalizedInput || {}),
+    systems,
+    consumerBoundary: { ...CONSUMER_BOUNDARY },
+  }
+}
+
 /**
  * Format Deterministic Base into Clean, Neutral Markdown Manifest
  * Designed for single-file attachment in ChatGPT/Gemini
  */
 export function formatDeterministicBaseMarkdown(basePackage) {
-  const { normalizedInput, systems, generatedAt } = basePackage
-  const technicalProvenanceSections = [
-    '### 0. INPUT PROVENANCE (좌표 매핑 상세)',
-    `- coordinateProvenance: ${normalizedInput.coordinateProvenance ? JSON.stringify(normalizedInput.coordinateProvenance) : '미상'}`,
-    '',
-  ]
+  const consumerBase = projectDeterministicBaseForConsumer(basePackage)
+  const { normalizedInput, systems } = consumerBase
   const lines = [
-    `# DETERMINISTIC BASE MANIFEST · ${normalizedInput.subjectName || '내담자'}`,
-    `- 생성 일시: ${generatedAt}`,
-    `- 규격 버전: ${basePackage.schemaVersion || CANONICAL_SCHEMA_VERSION}`,
-    `- 기준 성격: 계산 재현성 보증 (Computational Reproducibility Base · 동일 입력/규칙에 따른 계산 산출값·출처·엔진 상태만 기록하며 운명 결정론이나 다운스트림 대화 통제 지침을 포함하지 않음)`,
+    `# DETERMINISTIC BASE · ${normalizedInput.subjectName || '내담자'}`,
     '',
     '## AI CONSUMER GUIDE (사람·AI 공용 읽기 안내)',
     '| 항목 | 읽기 규칙 |',
     '| :--- | :--- |',
-    '| READ_ORDER | `0.INPUT` → 각 도메인 `1.FACT` → `3.STATUS` → `TECHNICAL PROVENANCE` |',
+    '| READ_ORDER | `0.INPUT` → 각 도메인 `1.FACT` |',
     '| CONSUME | 사용자 질문 → 관련 FACT 확인 → FACT와 해석 분리 → 필요한 개인 맥락은 대화에서 확인 |',
-    '| FACT | 제공된 결정값을 우선 사용하고 임의 재계산하지 않음 |',
-    '| STATUS | `complete`, `missing`, `incomplete`, `blocked`, `unsupported`를 그대로 유지 |',
-    '| BOUNDARY | FACT·provenance·해석을 분리하고 FACT를 개인 경험·의미·권위로 단정하지 않음 |',
-    '| ACCESS | `availableForInterpretation=false`는 내부 interpretation service/runtime 미연결이며 일반 ChatGPT/Gemini 대화를 금지하지 않음 |',
-    '| EXAMPLES | 구체적 해석 예시나 개인화 결론 없음 |',
+    '| FACT | 이 Base에 포함된 FACT를 우선 사용하고, 포함되지 않은 값은 추정·재계산하여 확정 FACT로 취급하지 않음 |',
+    '| BOUNDARY | FACT와 해석·개인 경험·의미·권위를 분리하고 필요한 맥락은 대화에서 확인 |',
     '',
-    '## 0. 정규화된 계산 입력 (Calculation Basis)',
+    '## 0. 입력',
     `| 항목 | 값 |`,
     `| :--- | :--- |`,
     `| 대상자명 | ${normalizedInput.subjectName || '미상'} |`,
@@ -1384,30 +1706,18 @@ export function formatDeterministicBaseMarkdown(basePackage) {
     `| 기준일 | ${normalizedInput.targetDate || '미상'} |`,
     `| 선택 행정구역/기준 ID | ${normalizedInput.placeName || '미상'} / ${normalizedInput.referenceCity || '미상'} |`,
     `| 행정구역 코드/명칭 | ${normalizedInput.administrativeAreaCode || '미상'} / ${normalizedInput.administrativeAreaName || '미상'} |`,
-    `| 계산용 대표좌표 | 위도 ${normalizedInput.latitude || '-'}, 경도 ${normalizedInput.longitude || '-'} (${normalizedInput.timezone}) |`,
-    `| 좌표 성격/방법 | ${normalizedInput.locationResolution === 'administrative_area_representative_point' ? '행정구역 대표점 (administrative_area_representative_point) · 주소 단위 좌표 아님' : (normalizedInput.locationResolution || '미상')} / ${normalizedInput.coordinateMethod || '미상'} |`,
-    `| 좌표 provenance | ${normalizedInput.coordinateProvenance ? '보존됨 (상세: Technical Provenance)' : '미상'} |`,
+    `| 계산용 대표좌표 | 위도 ${normalizedInput.latitude || '-'}, 경도 ${normalizedInput.longitude || '-'} (${normalizedInput.timezone || '미상'}) |`,
+    `| 좌표 성격 | ${normalizedInput.locationResolution === 'administrative_area_representative_point' ? '행정구역 대표점 (administrative_area_representative_point) · 주소 단위 좌표 아님' : (normalizedInput.locationResolution || '미상')} |`,
     `| 성별 | ${normalizedInput.gender || '미상'} |`,
-    `| 시간 정확도 | ${normalizedInput.timeAccuracy} |`,
+    `| 시간 정확도 | ${normalizedInput.timeAccuracy || '미상'} |`,
     '',
   ]
 
   for (const [key, sys] of Object.entries(systems)) {
     lines.push(`---`, `## [${sys.displayName}]`)
 
-    if (sys.isInactiveResearch) {
-      lines.push(
-        '> [!NOTE]',
-        `> **비활성 연구 아티팩트 (Inactive Research Artifact)**: 오프라인 검증 연구 증적으로 보존됨`,
-        `> - 활성화 상태: ${sys.activation.status} (serviceEligibility: ${sys.activation.serviceEligibility}, usable: ${sys.activation.usable})`,
-        `> - \`availableForInterpretation=false\` 범위: softie_project 내부 interpretation service/runtime integration 미연결`,
-        '> - 일반 ChatGPT/Gemini downstream 대화: 금지하지 않음. 사용자가 해석을 요청하면 FACT/provenance와 해석을 구분해 밝힌 뒤 대화를 이어갈 수 있음',
-        '',
-      )
-    }
-
     // 1. FACT
-    lines.push('### 1. FACT (결정론적 계산/관측 사실)')
+    lines.push('### 1. FACT')
     if (key === 'saju') {
       const timing = sys.fact.timing || {}
       const daYun = timing.daYun || null
@@ -1425,145 +1735,87 @@ export function formatDeterministicBaseMarkdown(basePackage) {
       const wolUnValue = wolUn?.value || (wolUn?.stem && wolUn?.branch ? `${wolUn.stem}${wolUn.branch}` : '월운 없음')
       const ilJin = timing.ilJin || null
       const ilJinValue = ilJin?.value || (ilJin?.stem && ilJin?.branch ? `${ilJin.stem}${ilJin.branch}` : '일진 없음')
+      const pillarLabels = { year: '연주', month: '월주', day: '일주', hour: '시주' }
+      const pillarFacts = sys.fact.pillarFacts || {}
+      const pillarTenGodText = SAJU_PILLAR_POSITIONS.map((position) => {
+        const pillar = pillarFacts[position]
+        if (!pillar) return null
+        const stemTenGod = pillar.stemTenGod || (position === 'day' ? '일간' : '미상')
+        const branchMainStemTenGod = pillar.branchMainStemTenGod || '미상'
+        return `${pillarLabels[position]} 천간 ${stemTenGod} · 지지 본기 ${branchMainStemTenGod}`
+      }).filter(Boolean).join(' / ')
+      const hiddenStemText = SAJU_PILLAR_POSITIONS.map((position) => {
+        const pillar = pillarFacts[position]
+        if (!pillar) return null
+        const hiddenStems = (pillar.hiddenStems || []).map((hidden) => `${hidden.stem}(${hidden.tenGod || '미상'}, ${hidden.weight})`).join(' · ')
+        return `${pillarLabels[position]} ${pillar.branch || '미상'}: ${hiddenStems || '자료 없음'}`
+      }).filter(Boolean).join(' / ')
       lines.push(
         `- 사주 명식: ${sys.fact.pillarsFormatted}`,
         `- 일간(일주): ${sys.fact.dayMaster} (간여지동 여부: ${sys.fact.isGanyeojidong ? '해당' : '비해당'})`,
+        `- 일간 기준: ${sys.fact.dayMasterDetails?.stem || sys.fact.dayMaster} · ${sys.fact.dayMasterDetails?.yinYang || '미상'} · ${sys.fact.dayMasterDetails?.element || '미상'}`,
         `- 오행 분포: ${Object.entries(sys.fact.elementsDistribution).map(([k, v]) => `${k} ${v}`).join(' · ') || '없음'}`,
         `- 십성 표출: ${Object.entries(sys.fact.tenGodsVisible).map(([k, v]) => `${k} ${v}`).join(' · ') || '없음'}`,
+        `- 위치별 십성: ${pillarTenGodText || '자료 없음'}`,
+        `- 지장간 (위치별): ${hiddenStemText || '자료 없음'}`,
         `- 지지 관계: ${sys.fact.branchRelations.map((r) => `${r.name || '미상'}(${r.branches.join('')})`).join(', ') || '특이 관계 없음'}`,
         `- 대운/세운: ${daYunText} / 세운 ${seUnValue} · 월운 ${wolUnValue} · 일진 ${ilJinValue}`,
       )
     } else if (key === 'ziwei') {
+      const majorStarText = (sys.fact.majorStarCoordinates || [])
+        .map((star) => `${star.name}(${star.branchCoordinate || '미상'})`)
+        .join(' · ')
+      const luckyStarText = (sys.fact.luckyStarCoordinates || [])
+        .map((star) => `${star.name}(${star.branchCoordinate || '미상'})`)
+        .join(' · ')
       lines.push(
-        `- 음력 기준: ${sys.fact.lunarBasis.lunarYear}년 ${sys.fact.lunarBasis.lunarMonth}월 ${sys.fact.lunarBasis.lunarDay}일 ${sys.fact.stemsBranches.hourBranch}시 (${sys.fact.stemsBranches.birthYearStem}${sys.fact.stemsBranches.birthYearBranch}년)`,
-        `- 명궁·신궁: 명궁 ${sys.fact.mingShenGong.mingGongBranch}宮 / 신궁 ${sys.fact.mingShenGong.shenGongBranch}宮 · 오행국: ${sys.fact.bureau.name} (${sys.fact.bureau.number}국)`,
-        `- 14주성: ${sys.fact.majorStars.map((s) => `${s.name}(${s.palaceName})`).join(' · ') || '자료 없음'}`,
-        `- 사화: ${sys.fact.transformations.map((t) => `${t.name}:${t.starId}`).join(' · ') || '자료 없음'}`,
-        `- 보조 6길성: ${sys.fact.minorStars.map((s) => `${s.name}(${s.palaceName})`).join(' · ') || '없음'}`,
+        `- 자미계 지지 좌표: ${majorStarText || '자료 없음'}`,
+        `- 보조성 지지 좌표: ${luckyStarText || '자료 없음'}`,
       )
     } else if (key === 'astrology') {
-      if (sys.fact.hasVerifiedData) {
+      if (Array.isArray(sys.fact.verifiedBodies) && sys.fact.verifiedBodies.length > 0) {
         lines.push(
-          `- 관측 천체 위치 (DE405 SPK): ${sys.fact.verifiedBodies.map((b) => `${b.id}: ${b.longitudeDegrees?.toFixed(2)}° (${b.motionState})`).join(' · ')}`,
-          sys.fact.angles ? `- 앵글 (Angles): Ascendant ${sys.fact.angles.ascendant?.sign} ${sys.fact.angles.ascendant?.degreeInSign?.toFixed(2)}° / MC ${sys.fact.angles.midheaven?.sign || '-'}` : '- 앵글: 자료 없음',
+          `- 천체 위치: ${sys.fact.verifiedBodies.map((b) => `${b.id}: ${b.sign || '-'} ${b.degreeInSign?.toFixed(2) || '-'}° · 경도 ${b.longitudeDegrees?.toFixed(2) || '-'}° (${b.motionState})`).join(' · ')}`,
+          sys.fact.angles ? `- 주요 각도: 상승점 ${sys.fact.angles.ascendant?.sign} ${sys.fact.angles.ascendant?.degreeInSign?.toFixed(2)}° / 중천 ${sys.fact.angles.midheaven?.sign || '-'}` : '- 주요 각도: 자료 없음',
         )
         if (Array.isArray(sys.fact.aspects) && sys.fact.aspects.length > 0) {
           lines.push(
-            '- Aspect angular separation (계산 primitive):',
+            '- 각도 간격:',
             ...sys.fact.aspects.map((aspect) => `  - ${aspect.pointA}/${aspect.pointB}: ${aspect.calculationPrimitive.angularDistanceDegrees.toFixed(6)}°`),
-            '- Aspect classification (RuleSet-derived):',
-            ...sys.fact.aspects.map((aspect) => `  - ${aspect.pointA}/${aspect.pointB}: ${aspect.derivedClassification.aspectId} · exact=${aspect.derivedClassification.exactAngleDegrees}° · orb=${aspect.derivedClassification.orbDegrees.toFixed(6)}°/${aspect.derivedClassification.maxOrbDegrees}° · rule=${aspect.derivedClassification.ruleId}`),
+            '- 주요 관계:',
+            ...sys.fact.aspects.map((aspect) => `  - ${aspect.pointA}/${aspect.pointB}: ${aspect.derivedClassification.aspectId} · 기준 각도 ${aspect.derivedClassification.exactAngleDegrees}° · 편차 ${aspect.derivedClassification.orbDegrees.toFixed(6)}° (허용 ${aspect.derivedClassification.maxOrbDegrees}°)`),
           )
         }
         if (sys.fact.wholeSignHouses) {
           const housePrimitive = sys.fact.wholeSignHouses.calculationPrimitive
           const houseClassification = sys.fact.wholeSignHouses.derivedClassification
           lines.push(
-            `- Whole Sign house placement (계산 primitive): ASC ${housePrimitive.ascendant.signId}[${housePrimitive.ascendant.signIndex}] · ${housePrimitive.placements.map((placement) => `${placement.id}=${placement.house}H`).join(' · ')}`,
-            `- Whole Sign classification (RuleSet-derived): houseSystem=${houseClassification.houseSystem} · rule=${houseClassification.ruleId}`,
+            `- 하우스 배치: 상승점 ${housePrimitive.ascendant.signId} (번호 ${housePrimitive.ascendant.signIndex}) · ${housePrimitive.placements.map((placement) => `${placement.id}=${placement.house}하우스 (${placement.house}H)`).join(' · ')}`,
+            `- 하우스 체계: ${houseClassification.houseSystem}`,
           )
         }
         if (sys.fact.distribution) {
           const distribution = sys.fact.distribution
-          const formatCounts = (scope) => Object.entries(scope.counts).map(([dimension, counts]) => `${dimension}(${Object.entries(counts).map(([key, value]) => `${key}=${value}`).join(',')})`).join(' · ')
+          const formatCounts = (scope) => Object.entries(scope.counts).map(([dimension, counts]) => `${dimension}: ${Object.entries(counts).map(([key, value]) => `${key} ${value}`).join(' · ')}`).join(' / ')
+          const formatTie = (tie) => Object.entries(tie).flatMap(([scope, dimensions]) => Object.entries(dimensions).map(([dimension, value]) => `${scope === 'overall' ? '전체' : '개인'} ${dimension} ${value ? '있음(true)' : '없음(false)'}`)).join(' · ')
           lines.push(
-            `- Distribution count (계산 primitive): overall[${distribution.calculationPrimitive.overall.bodyIds.join(',')}] ${formatCounts(distribution.calculationPrimitive.overall)} / personal[${distribution.calculationPrimitive.personal.bodyIds.join(',')}] ${formatCounts(distribution.calculationPrimitive.personal)}`,
-            `- Distribution tie (RuleSet-derived): ${JSON.stringify(distribution.derivedClassification.tie)} · rule=${distribution.derivedClassification.ruleId}`,
+            `- 분포 수 (전체): 대상 ${distribution.calculationPrimitive.overall.bodyIds.join(', ')} · ${formatCounts(distribution.calculationPrimitive.overall)}`,
+            `- 분포 수 (개인): 대상 ${distribution.calculationPrimitive.personal.bodyIds.join(', ')} · ${formatCounts(distribution.calculationPrimitive.personal)}`,
+            `- 분포 동률: ${formatTie(distribution.derivedClassification.tie)}`,
           )
         }
         if (sys.fact.chartRulers) {
           const rulerPrimitive = sys.fact.chartRulers.calculationPrimitive
           const rulerClassification = sys.fact.chartRulers.derivedClassification
           lines.push(
-            `- Chart ruler mapping (계산 primitive): ASC sign=${rulerPrimitive.ascendantSignId}`,
-            `- Chart ruler mapping (RuleSet-derived): traditional=${rulerClassification.traditionalChartRuler} · modern=${rulerClassification.modernChartRuler} · rule=${rulerClassification.ruleId}`,
+            `- 차트 룰러 기준: 상승점 ${rulerPrimitive.ascendantSignId}`,
+            `- 차트 룰러: 전통 ${rulerClassification.traditionalChartRuler} · 현대 ${rulerClassification.modernChartRuler}`,
           )
         }
-      } else {
-        lines.push(`- 상태: ${sys.fact.simulationBlockedNote}`)
       }
-    }
-    lines.push('')
-
-    // 2. SOURCE is rendered after the front readout so long provenance does
-    // not interrupt the user-facing FACT/STATUS flow.
-    const sourceLines = [`### 2. SOURCE (문헌 전승·규칙 버전 및 출처 한계) · [${sys.displayName}]`]
-    if (key === 'saju') {
-      sourceLines.push(
-        '- 고서 5종 원전 문헌 서지 목록:',
-        ...sys.source.lineageTexts.map((t) => `  - 《${t.title}》: ${t.focus}`),
-        `- 구조적 분류 출처: ${sys.source.structuralReference?.citation || '자평명리 분류'}`,
-        `- 전승 한계: unresolved_edition=${sys.source.historicalLimitations.unresolvedEdition}, authority=${sys.source.historicalLimitations.historicalAuthority}, fact=${sys.source.historicalLimitations.historicalFact}`,
-        `- 계산 정책 경계: ${sys.fact.policyBoundary}`,
-      )
-      if (Array.isArray(sys.source.factGroundings) && sys.source.factGroundings.length > 0) {
-        sourceLines.push(
-          '- 계산 사실별 근거 유형 및 권위 구분 (Fact Provenance Groundings):',
-          ...sys.source.factGroundings.map((g) => {
-            const typeHeader = g.evidenceType === 'primary_textual_witness'
-              ? '[고전 문헌 참조 · primary_textual_witness]'
-              : g.evidenceType === 'modern_astronomical_method'
-                ? '[현대 천문 계산법 · modern_astronomical_method]'
-                : g.evidenceType === 'implementation_policy'
-                  ? '[현대 구현 정책 · implementation_policy]'
-                  : '[학파 대립 미합의 정책 · conflicting_lineage]'
-            const basisParts = []
-            if (g.classicalWitness) basisParts.push(`문헌 참조: ${g.classicalWitness}`)
-            if (g.modernPolicy) basisParts.push(`현대 계산/정책: ${g.modernPolicy}`)
-            const basisText = basisParts.join(' · ') || '근거 정보 없음'
-            return `  - ${typeHeader} ${g.factLabel} → ${basisText} (authorityScope: ${g.authorityScope}; ${g.distinctionNote})`
-          }),
-        )
-      }
-    } else if (key === 'ziwei') {
-      sourceLines.push(
-        `- RuleSet Profile: ${sys.source.ruleSetProfile}`,
-        `- 파생 근거: ${sys.source.sourceDerivation}`,
-      )
-    } else if (key === 'astrology') {
-      sourceLines.push(
-        `- 천문력 커널: ${sys.source.ephemerisKernel}`,
-        `- 프로토콜: ${sys.source.protocolVersion}`,
-        `- 룰 코어: ${sys.source.ruleCoreVersion}`,
-        `- Rule identity: ${JSON.stringify(sys.source.ruleIdentity)}`,
-        `- Provenance status: ${sys.source.provenanceStatus}`,
-        `- Provenance links: ${formatAstrologyProvenanceLinks(sys.source)}`,
-        `- Claim-level sourceRefs: ${sys.source.provenance?.claimSourceRefs?.length || 0}개 보존됨`,
-        `- Claim-level sourceRefs (full): ${JSON.stringify(sys.source.provenance?.claimSourceRefs || [])}`,
-      )
-    }
-    technicalProvenanceSections.push(...sourceLines, '')
-
-    // 3. STATUS & SUPPORT SCOPE
-    lines.push('### 3. STATUS & SUPPORT SCOPE (지원 범위 및 상태)')
-    if (key === 'saju') {
-      lines.push(
-        `- 개인 유효성: personalValidity=${sys.unknown.personalValidity}`,
-      )
-    } else if (key === 'ziwei') {
-      lines.push(
-        `- 검증 상태: ${sys.unknown.verificationStatus}`,
-        `- 미지원 범위: 시기(${sys.unknown.supportScope.timingStatus}) · 묘왕리함(${sys.unknown.supportScope.brightnessStatus}) · 확장성요(${sys.unknown.supportScope.extendedMinorStarsStatus})`,
-        `- 지원 대상: ${sys.unknown.supportScope.supported?.join(', ') || '기본 주성/사화'}`,
-      )
-    } else if (key === 'astrology') {
-      lines.push(
-        `- 활성화 상태: ${sys.unknown.activationStatus} (serviceEligibility: ${sys.unknown.serviceEligibility}, usable: ${sys.unknown.usable})`,
-        `- 시스템 경계: livedExperience=${sys.unknown.systemBoundaries?.livedExperience || 'not_supplied'}, personalSignificance=${sys.unknown.systemBoundaries?.personalSignificance || 'not_established'}`,
-        `- Interpretation boundary: ${JSON.stringify(sys.unknown.interpretationBoundary || {})}`,
-        `- unsupportedFeatures: ${sys.unknown.unsupportedFeatures?.map((feature) => `${feature.feature} (${feature.status})`).join(' · ') || '없음'}`,
-        `- blockedFeatures: ${sys.unknown.blockedFeatures?.map((feature) => `${feature.feature} (${feature.status}${feature.reason ? `:${feature.reason}` : ''})`).join(' · ') || '없음'}`,
-      )
     }
     lines.push('')
   }
-
-  lines.push(
-    '---',
-    '## TECHNICAL PROVENANCE (상세 source·SHA·locator·계산 정책)',
-    '> 긴 source, SHA, locator, rule identity, 계산 정책은 이 절에서 확인합니다.',
-    ...technicalProvenanceSections,
-  )
 
   return lines.join('\n')
 }
@@ -1572,13 +1824,22 @@ export function formatDeterministicBaseMarkdown(basePackage) {
 export const formatConversationFoundationMarkdown = formatDeterministicBaseMarkdown
 
 /**
- * Export Deterministic Base as Canonical JSON String
+ * Export the user-facing Deterministic Base attachment as JSON.
+ * Internal validation/runtime metadata is intentionally excluded.
  */
 export function exportDeterministicBaseJson(basePackage, indent = 2) {
-  const canonicalPackage = { ...basePackage }
-  delete canonicalPackage.markdown
-  delete canonicalPackage.formattedMarkdown
-  return JSON.stringify(canonicalPackage, null, indent)
+  return JSON.stringify(projectDeterministicBaseForConsumer(basePackage), null, indent)
+}
+
+/**
+ * Export the internal validation/runtime package for regression and runtime
+ * checks. This is not a user-facing attachment and never includes Markdown.
+ */
+export function exportDeterministicBaseValidationJson(basePackage, indent = 2) {
+  const validationPackage = { ...basePackage }
+  delete validationPackage.markdown
+  delete validationPackage.formattedMarkdown
+  return JSON.stringify(validationPackage, null, indent)
 }
 
 /**
@@ -1594,8 +1855,8 @@ export function createFreshChatContinuationPrompt(basePackage, optionsOrQuestion
   const astrologyContinuationBoundary = basePackage.systems?.astrology
     ? [
       '[INTERPRETATION BOUNDARY]',
-      'availableForInterpretation=false는 softie_project 내부 interpretation service/runtime integration 미연결을 뜻하며, 일반 ChatGPT/Gemini downstream 대화를 금지하지 않는다.',
-      '사용자가 해석을 요청하면 계산 FACT/provenance와 해석을 구분해 먼저 밝힌 뒤 대화를 이어간다.',
+      '첨부 파일은 INPUT과 이 Base에 포함된 FACT를 제공하며, 포함되지 않은 값은 추정·재계산하여 확정 FACT로 취급하지 않는다.',
+      '사용자가 해석을 요청하면 FACT와 해석을 구분해 밝히고 필요한 개인 맥락은 대화에서 확인한다.',
       '[END INTERPRETATION BOUNDARY]',
     ]
     : []

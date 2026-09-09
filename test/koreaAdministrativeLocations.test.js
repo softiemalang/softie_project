@@ -11,6 +11,7 @@ import { prepareThreeSystemInterpretationData } from '../src/interpretationPrep/
 import {
   buildDeterministicBase,
   exportDeterministicBaseJson,
+  exportDeterministicBaseValidationJson,
   formatDeterministicBaseMarkdown,
 } from '../src/interpretationPrep/conversationFoundation.js'
 
@@ -82,6 +83,7 @@ test('selected Seoul and non-Seoul locations propagate exact coordinates into Sa
     const normalized = prepared.result.input.normalized
     const canonicalJson = exportDeterministicBaseJson(base)
     const canonical = JSON.parse(canonicalJson)
+    const validation = JSON.parse(exportDeterministicBaseValidationJson(base))
 
     assert.equal(normalized.referenceCity, location.id)
     assert.equal(normalized.placeName, location.label)
@@ -106,18 +108,20 @@ test('selected Seoul and non-Seoul locations propagate exact coordinates into Sa
     assert.equal(canonical.normalizedInput.administrativeAreaCode, location.code)
     assert.equal(canonical.normalizedInput.administrativeAreaName, location.label)
     assert.equal(canonical.normalizedInput.locationResolution, 'administrative_area_representative_point')
-    assert.equal(canonical.normalizedInput.coordinateMethod, location.coordinateMethod)
-    assert.deepEqual(canonical.normalizedInput.coordinateProvenance, location.coordinateProvenance)
+    assert.equal(Object.hasOwn(canonical.normalizedInput, 'coordinateMethod'), false)
+    assert.equal(Object.hasOwn(canonical.normalizedInput, 'coordinateProvenance'), false)
     assert.equal(canonical.normalizedInput.timeAccuracy, 'exact')
     assert.notEqual(canonical.normalizedInput.locationResolution, 'exact')
     assert.match(base.markdown, /행정구역 대표점 \(administrative_area_representative_point\) · 주소 단위 좌표 아님/u)
-    assert.match(base.markdown, new RegExp(location.coordinateProvenance.sha256, 'u'))
+    assert.match(JSON.stringify(validation), new RegExp(location.coordinateProvenance.sha256, 'u'))
+    assert.doesNotMatch(canonicalJson, new RegExp(location.coordinateProvenance.sha256, 'u'))
+    assert.doesNotMatch(base.markdown, new RegExp(location.coordinateProvenance.sha256, 'u'))
     assert.equal(Object.hasOwn(canonical, 'markdown'), false)
     assert.equal(Object.hasOwn(canonical, 'formattedMarkdown'), false)
     assert.doesNotMatch(canonicalJson, /undefined/u)
     assert.doesNotMatch(canonicalJson, /서울\(126\.97°E\)|126\.97°E|-32\.12분/u)
     assert.doesNotMatch(base.markdown, /서울\(126\.97°E\)|126\.97°E|-32\.12분/u)
-    assert.match(canonicalJson, /선택된 행정구역 대표경도에 4분\/도 보정 \+ NOAA 균시차 EoT/u)
+    assert.match(JSON.stringify(validation), /선택된 행정구역 대표경도에 4분\/도 보정 \+ NOAA 균시차 EoT/u)
     assert.equal(formatDeterministicBaseMarkdown(base), base.markdown)
   }
 })
@@ -152,10 +156,10 @@ test('unknown birth time remains separate from administrative representative-poi
   assert.equal(prepared.result.input.normalized.timeAccuracy, 'unknown')
   assert.equal(canonical.normalizedInput.timeAccuracy, 'unknown')
   assert.equal(canonical.normalizedInput.locationResolution, 'administrative_area_representative_point')
-  assert.equal(canonical.normalizedInput.coordinateMethod, location.coordinateMethod)
-  assert.deepEqual(canonical.normalizedInput.coordinateProvenance, location.coordinateProvenance)
+  assert.equal(Object.hasOwn(canonical.normalizedInput, 'coordinateMethod'), false)
+  assert.equal(Object.hasOwn(canonical.normalizedInput, 'coordinateProvenance'), false)
   assert.match(base.markdown, /시간 정확도 \| unknown/u)
-  assert.match(base.markdown, /좌표 성격\/방법 \| 행정구역 대표점 \(administrative_area_representative_point\)/u)
+  assert.match(base.markdown, /좌표 성격 \| 행정구역 대표점 \(administrative_area_representative_point\)/u)
 })
 
 test('unknown administrative location fails closed before calculation', () => {

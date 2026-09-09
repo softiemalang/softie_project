@@ -11,6 +11,7 @@ import {
   extractAstrologyFoundation,
   formatDeterministicBaseMarkdown,
   exportDeterministicBaseJson,
+  exportDeterministicBaseValidationJson,
   createFreshChatContinuationPrompt,
   extractContinuationContext,
   FOUNDATION_VERSION,
@@ -52,6 +53,19 @@ const ATTACHMENT_FORBIDDEN_KEYS = new Set([
   'yongShin',
   'strength',
   'shinsal',
+  'tongGeunPillars',
+  'tuGanStems',
+  'lunarBasis',
+  'stemsBranches',
+  'mingShenGong',
+  'bureau',
+  'majorStars',
+  'transformations',
+  'minorStars',
+  'palaces',
+  'palaceId',
+  'palaceName',
+  'palaceBranch',
 ])
 
 function findForbiddenKeyPaths(value, path = '$') {
@@ -96,6 +110,17 @@ test('Saju Real Fixture: extracts normalized INPUT, FACT, SOURCE, UNKNOWN with z
   assert.equal(sajuFoundation.fact.pillars.day, '계사')
   assert.equal(sajuFoundation.fact.pillars.hour, '기미')
   assert.equal(sajuFoundation.fact.dayMaster, '계')
+  assert.deepEqual(sajuFoundation.fact.dayMasterDetails, { stem: '계', yinYang: '음', element: '수' })
+  assert.deepEqual(sajuFoundation.fact.pillarFacts.year.hiddenStems, [
+    { stem: '기', weight: 0.6, tenGod: '편관' },
+    { stem: '계', weight: 0.3, tenGod: '비견' },
+    { stem: '신', weight: 0.1, tenGod: '편인' },
+  ])
+  assert.equal(sajuFoundation.fact.pillarFacts.month.stemTenGod, '상관')
+  assert.equal(sajuFoundation.fact.pillarFacts.month.branchMainStem, '무')
+  assert.equal(sajuFoundation.fact.pillarFacts.month.branchMainStemTenGod, '정관')
+  assert.equal(sajuFoundation.fact.pillarFacts.day.stemTenGod, null)
+  assert.equal(sajuFoundation.fact.pillarFacts.hour.hiddenStems[0].tenGod, '편관')
   assert.equal(sajuFoundation.fact.isGanyeojidong, false)
   assert.equal(sajuFoundation.fact.elementsDistribution.토, 4)
   assert.equal(sajuFoundation.fact.elementsDistribution.수, 1)
@@ -272,11 +297,17 @@ test('Astrology Real Fixture: strictly flags inactive research artifact, preserv
   const sun = astroFoundation.fact.verifiedBodies.find((b) => b.id === 'sun')
   assert.ok(sun)
   assert.ok(Math.abs(sun.longitudeDegrees - 280.378) < 0.01, 'Sun longitude 280.38° (Capricorn) preserved exactly')
+  assert.equal(sun.sign, 'capricorn')
+  assert.equal(sun.signIndex, 9)
+  assert.ok(Math.abs(sun.degreeInSign - 10.3785821768816) < 1e-9)
   assert.equal(sun.motionState, 'direct')
 
   const moon = astroFoundation.fact.verifiedBodies.find((b) => b.id === 'moon')
   assert.ok(moon)
   assert.ok(Math.abs(moon.longitudeDegrees - 223.327) < 0.01, 'Moon longitude 223.33° (Scorpio) preserved exactly')
+  assert.equal(moon.sign, 'scorpio')
+  assert.equal(moon.signIndex, 7)
+  assert.ok(Math.abs(moon.degreeInSign - 13.327) < 0.01)
 
   assert.ok(astroFoundation.fact.angles?.ascendant, 'Ascendant angle preserved')
   assert.equal(astroFoundation.fact.angles.ascendant.sign, 'aries')
@@ -400,7 +431,8 @@ test('Astrology packet absent, incomplete, and complete states keep blocked feat
       data: artifact,
     })
     const canonical = JSON.parse(exportDeterministicBaseJson(base))
-    const astrology = canonical.systems.astrology
+    const validation = JSON.parse(exportDeterministicBaseValidationJson(base))
+    const astrology = validation.systems.astrology
 
     assert.equal(astrology.source.provenanceStatus, expectedProvenanceStatus, label)
     assert.deepEqual(astrology.unknown.blockedFeatures, [{
@@ -409,16 +441,16 @@ test('Astrology packet absent, incomplete, and complete states keep blocked feat
       reason: 'interpretation_packet_not_activated',
       sourceRefs: ['activation'],
     }], label)
+    if (label === 'complete') {
+      assert.equal(canonical.systems.astrology.domain, 'astrology', label)
+      assert.equal(canonical.systems.astrology.fact.aspects.length, 18, label)
+    } else {
+      assert.equal(Object.hasOwn(canonical.systems, 'astrology'), false, label)
+    }
     assert.equal(formatDeterministicBaseMarkdown(canonical), base.markdown, label)
     assert.doesNotMatch(base.markdown, /undefined|null/, label)
-
-    if (label === 'complete') {
-      assert.match(base.markdown, /Provenance links: \{/)
-      assert.doesNotMatch(base.markdown, /미확인 \(provenanceStatus=/)
-    } else {
-      assert.match(base.markdown, new RegExp(`Provenance links: 미확인 \\(provenanceStatus=${expectedProvenanceStatus};`))
-      assert.doesNotMatch(base.markdown, /Provenance links: \{.*null/s)
-    }
+    assert.doesNotMatch(base.markdown, /STATUS & SUPPORT SCOPE|blockedFeatures|unsupportedFeatures|availableForInterpretation|provenance|sourceRefs|SHA|runner|evaluator/i, label)
+    assert.doesNotMatch(JSON.stringify(canonical), /activation|serviceEligibility|verificationStatus|unsupportedFeatures|blockedFeatures|sourceRefs|provenance|personalValidity/i, label)
   }
 })
 
@@ -456,73 +488,91 @@ test('buildDeterministicBase: bundles all three real domains into a single self-
   assert.equal(base.systems.ziwei.isInactiveResearch, false)
   assert.equal(base.systems.astrology.isInactiveResearch, true)
 
-  // JSON serialization test (single-file export)
+  // User-facing JSON serialization contains only INPUT, verified FACT, and a
+  // minimal consumer boundary. Internal validation metadata is exported
+  // separately for runtime/regression checks.
   const jsonStr = exportDeterministicBaseJson(base)
   assert.ok(jsonStr.length > 500)
   const parsed = JSON.parse(jsonStr)
+  const validation = JSON.parse(exportDeterministicBaseValidationJson(base))
   assert.equal(parsed.schemaVersion, CANONICAL_SCHEMA_VERSION)
   assert.equal(parsed.normalizedInput.subjectName, '한규')
+  assert.deepEqual(Object.keys(parsed.systems).sort(), ['astrology', 'saju', 'ziwei'])
+  assert.deepEqual(parsed.systems.ziwei.fact.majorStarCoordinates.map((star) => star.id), [
+    'tianji', 'taiyang', 'wugu', 'tiandong', 'lianzhen',
+  ])
+  assert.deepEqual(parsed.systems.ziwei.fact.luckyStarCoordinates.map((star) => star.id), [
+    'zuobo', 'youbi', 'wenchang', 'wengu', 'tiankui', 'tianyue',
+  ])
+  for (const star of [
+    ...parsed.systems.ziwei.fact.majorStarCoordinates,
+    ...parsed.systems.ziwei.fact.luckyStarCoordinates,
+  ]) {
+    assert.ok(star.name)
+    assert.match(star.branchCoordinate, /^[子丑寅卯辰巳午未申酉戌亥]$/)
+    assert.equal(Object.hasOwn(star, 'palaceBranch'), false)
+    assert.equal(Object.hasOwn(star, 'palaceName'), false)
+    assert.equal(Object.hasOwn(star, 'palaceId'), false)
+  }
+  assert.equal(Object.hasOwn(parsed.systems.ziwei.fact, 'lunarBasis'), false)
+  assert.equal(Object.hasOwn(parsed.systems.ziwei.fact, 'mingShenGong'), false)
+  assert.equal(Object.hasOwn(parsed.systems.ziwei.fact, 'bureau'), false)
+  assert.equal(Object.hasOwn(parsed.systems.ziwei.fact, 'transformations'), false)
+  assert.equal(Object.hasOwn(parsed.systems.ziwei.fact, 'palaces'), false)
+  assert.deepEqual(parsed.consumerBoundary, {
+    factScope: 'verified_claims_only',
+    omittedClaims: 'not_provided_as_facts',
+    interpretation: 'separate_fact_from_interpretation_and_confirm_personal_context',
+  })
+  assert.equal(Object.hasOwn(parsed, 'summary'), false)
+  assert.equal(Object.hasOwn(parsed, 'generatedAt'), false)
   assert.equal(Object.hasOwn(parsed, 'markdown'), false)
   assert.equal(Object.hasOwn(parsed, 'formattedMarkdown'), false)
+  assert.equal(Object.hasOwn(parsed.normalizedInput, 'coordinateMethod'), false)
+  assert.equal(Object.hasOwn(parsed.normalizedInput, 'coordinateProvenance'), false)
   assert.equal(base.formattedMarkdown, base.markdown)
 
-  // Check markdown output contains calculation basis table and 3 blocks per domain
+  // Check markdown output contains calculation basis and only verified FACT blocks.
   const md = base.markdown
-  assert.match(md, /# DETERMINISTIC BASE MANIFEST · 한규/)
+  assert.match(md, /# DETERMINISTIC BASE · 한규/)
   assert.match(md, /## AI CONSUMER GUIDE \(사람·AI 공용 읽기 안내\)/)
-  assert.match(md, /READ_ORDER.*`0\.INPUT`.*`1\.FACT`.*`3\.STATUS`.*TECHNICAL PROVENANCE/)
+  assert.match(md, /READ_ORDER.*`0\.INPUT`.*`1\.FACT`/)
   assert.match(md, /CONSUME.*사용자 질문.*관련 FACT 확인.*FACT와 해석 분리.*필요한 개인 맥락은 대화에서 확인/)
-  assert.match(md, /BOUNDARY.*FACT·provenance·해석을 분리/)
-  assert.match(md, /ACCESS.*availableForInterpretation=false.*일반 ChatGPT\/Gemini 대화를 금지하지 않음/)
-  assert.match(md, /EXAMPLES.*구체적 해석 예시나 개인화 결론 없음/)
-  assert.match(md, /## 0\. 정규화된 계산 입력 \(Calculation Basis\)/)
+  assert.match(md, /FACT.*이 Base에 포함된 FACT를 우선 사용하고.*추정·재계산하여 확정 FACT로 취급하지 않음/)
+  assert.match(md, /BOUNDARY.*FACT와 해석.*개인 경험.*의미.*권위/)
+  assert.match(md, /## 0\. 입력/)
   assert.match(md, /## \[사주 \(Four Pillars\)\]/)
   assert.match(md, /## \[자미두수 \(Ziwei Dou Shu\)\]/)
   assert.match(md, /## \[서양 점성학 \(Western Astrology\)\]/)
+  assert.match(md, /- 자미계 지지 좌표:/)
+  assert.match(md, /천기\(卯\)/)
+  assert.match(md, /- 보조성 지지 좌표:/)
+  assert.doesNotMatch(md, /음력 기준|명궁|신궁|오행국|14주성|사화|궁\)|palace|palaceName|palaceId|palaceBranch/i)
 
-  // Check Inactive Research Alert in markdown
-  assert.match(md, /비활성 연구 아티팩트 \(Inactive Research Artifact\)/)
-  assert.match(md, /serviceEligibility: blocked/)
-
-  // Check 3 deterministic blocks present in markdown
-  assert.match(md, /### 1\. FACT \(결정론적 계산\/관측 사실\)/)
-  assert.match(md, /### 2\. SOURCE \(문헌 전승·규칙 버전 및 출처 한계\)/)
-  assert.match(md, /## TECHNICAL PROVENANCE \(상세 source·SHA·locator·계산 정책\)/)
-  assert.match(md, /좌표 provenance \| 미상/)
-  assert.match(md, /### 3\. STATUS & SUPPORT SCOPE \(지원 범위 및 상태\)/)
-  assert.ok(
-    md.indexOf('### 3. STATUS & SUPPORT SCOPE') < md.indexOf('## TECHNICAL PROVENANCE'),
-    'Technical Provenance must follow the compact domain status blocks',
-  )
-  assert.ok(
-    md.indexOf('## TECHNICAL PROVENANCE') < md.indexOf('### 2. SOURCE'),
-    'Long source blocks must remain inside Technical Provenance',
-  )
-
-  // Verify Fact Provenance Groundings in markdown
-  assert.match(md, /계산 사실별 근거 유형 및 권위 구분 \(Fact Provenance Groundings\)/)
-  assert.match(md, /\[고전 문헌 참조 · primary_textual_witness\]/)
-  assert.match(md, /\[현대 천문 계산법 · modern_astronomical_method\]/)
-  assert.match(md, /\[현대 구현 정책 · implementation_policy\]/)
-  assert.match(md, /\[학파 대립 미합의 정책 · conflicting_lineage\]/)
-  assert.match(md, /「陽男陰女順行，陰男陽女逆行」/)
-  assert.match(md, /현대 계산\/정책: source-ratio-rounded-360-30-calendar/)
-  assert.match(md, /authorityScope: classical_textual_reference_unverified/)
-  assert.match(md, /Aspect angular separation \(계산 primitive\)/)
-  assert.match(md, /Aspect classification \(RuleSet-derived\)/)
-  assert.match(md, /Whole Sign classification \(RuleSet-derived\)/)
-  assert.match(md, /Distribution tie \(RuleSet-derived\)/)
-  assert.match(md, /Chart ruler mapping \(RuleSet-derived\)/)
-  assert.match(md, /Provenance status: complete/)
-  assert.match(md, /선택된 행정구역 대표경도에 4분\/도 보정 \+ NOAA 균시차 EoT/)
-  assert.doesNotMatch(md, /서울\(126\.97°E\)|126\.97°E|-32\.12분/)
-  assert.match(md, /unsupportedFeatures: legacy_simulation_placidus_date_seed/)
-  assert.match(md, /blockedFeatures: interpretation_service_activation/)
-  assert.match(md, /availableForInterpretation=false.*softie_project 내부 interpretation service\/runtime integration 미연결/)
-  assert.match(md, /일반 ChatGPT\/Gemini downstream 대화: 금지하지 않음/)
+  // Check the compact deterministic blocks present in markdown
+  assert.match(md, /### 1\. FACT/)
+  assert.doesNotMatch(md, /STATUS & SUPPORT SCOPE|TECHNICAL PROVENANCE|### 2\. SOURCE|Fact Provenance Groundings|sourceRefs|SHA|runner|evaluator|Rule identity|authorityScope|coordinate provenance|Provenance links|verified_offline_research|needs_external_verification|personalValidity|activation|serviceEligibility|unsupportedFeatures|blockedFeatures/)
+  assert.doesNotMatch(md, /검증 FACT|계산 primitive|RuleSet-derived|exact=|orb=|houseSystem=|ASC sign=|overall.*\{/)
+  assert.match(md, /- 각도 간격:/)
+  assert.match(md, /- 주요 관계:/)
+  assert.match(md, /- 하우스 체계: whole_sign/)
+  assert.match(md, /- 분포 동률: 전체 elements 있음\(true\)/)
+  assert.match(md, /- 차트 룰러: 전통 mars · 현대 mars/)
+  assert.match(md, /- 천체 위치:/)
+  assert.match(md, /sun: capricorn 10\.38° · 경도 280\.38°/)
+  assert.match(md, /moon: scorpio 13\.33° · 경도 223\.33°/)
+  assert.match(md, /sun\/moon: 57\.050726°/)
+  assert.match(md, /sun\/moon: sextile · 기준 각도 60° · 편차 2\.949274° \(허용 5°\)/)
+  assert.match(md, /- 하우스 배치: 상승점 aries \(번호 0\).*sun=10하우스 \(10H\)/)
+  assert.match(md, /- 분포 수 \(전체\): 대상 sun, moon, mercury/)
+  assert.match(md, /- 차트 룰러 기준: 상승점 aries/)
+  assert.doesNotMatch(md, /rule=major_aspect_v0|rule=whole_sign_house_v0|rule=distribution_from_body_signs_v0|rule=chart_ruler_from_ascendant_v0/)
   assert.match(md, /\| 기준일 \| 2026-07-26 \|/)
   assert.match(md, /\| 선택 행정구역\/기준 ID \| 대한민국 서울 \/ seoul \|/)
   assert.match(md, /\| 성별 \| male \|/)
+  assert.match(md, /- 일간 기준: 계 · 음 · 수/)
+  assert.match(md, /- 위치별 십성: 연주 천간/)
+  assert.match(md, /- 지장간 \(위치별\): 연주 축:/)
   assert.match(md, /지지 관계: 파\(진축\), 충\(미축\), 형\(미축\)/)
   assert.match(md, /대운\/세운: 대운 신축 · 방향 역행 · 기산 5년 5개월 29일 · 첫 시작일 2002-10-20 \/ 세운 병오/)
   assert.match(md, /월운 을미/)
@@ -532,33 +582,63 @@ test('buildDeterministicBase: bundles all three real domains into a single self-
   assert.doesNotMatch(md, /undefined|null/)
   assert.doesNotMatch(md, /프로파일링|gyeokguk|yongShin|strength|shinsal/)
 
-  // Exported JSON must be consumable as the same deterministic base and must
-  // regenerate the same Markdown report without losing provenance fields.
+  // Public JSON must be consumable as the same user-facing base. Internal
+  // validation JSON must retain source/unknown/activation metadata.
   assert.doesNotMatch(jsonStr, /による/)
   assert.doesNotMatch(jsonStr, /authority_supported_classical_text|classical_systematic_authority/)
   assert.doesNotMatch(jsonStr, /AI CONSUMER GUIDE|READ_ORDER|RESPONSE_BOUNDARY/)
   assert.doesNotMatch(md, /による/)
   assert.doesNotMatch(md, /authority_supported_classical_text|classical_systematic_authority/)
-  assert.deepEqual(parsed.systems.saju.source.factGroundings, base.systems.saju.source.factGroundings)
+  assert.deepEqual(validation.systems.saju.source.factGroundings, base.systems.saju.source.factGroundings)
+  assert.deepEqual(validation.systems.astrology.source.provenance, base.systems.astrology.source.provenance)
+  assert.deepEqual(validation.systems.astrology.unknown.blockedFeatures, base.systems.astrology.unknown.blockedFeatures)
+  assert.deepEqual(validation.systems.astrology.unknown.unsupportedFeatures, base.systems.astrology.unknown.unsupportedFeatures)
+  assert.equal(Object.hasOwn(parsed.systems.saju, 'source'), false)
+  assert.equal(Object.hasOwn(parsed.systems.saju, 'unknown'), false)
+  assert.equal(Object.hasOwn(parsed.systems.saju, 'activation'), false)
+  assert.equal(Object.hasOwn(parsed.systems.astrology, 'source'), false)
+  assert.equal(Object.hasOwn(parsed.systems.astrology, 'unknown'), false)
+  assert.equal(Object.hasOwn(parsed.systems.astrology, 'activation'), false)
+  assert.equal(Object.hasOwn(parsed.systems.ziwei, 'source'), false)
+  assert.equal(Object.hasOwn(parsed.systems.ziwei, 'unknown'), false)
+  assert.equal(Object.hasOwn(parsed.systems.ziwei, 'activation'), false)
   assert.equal(formatDeterministicBaseMarkdown(parsed), md)
-  assert.deepEqual(parsed.systems.astrology.fact.aspects, base.systems.astrology.fact.aspects)
-  assert.deepEqual(parsed.systems.astrology.fact.wholeSignHouses, base.systems.astrology.fact.wholeSignHouses)
-  assert.deepEqual(parsed.systems.astrology.fact.distribution, base.systems.astrology.fact.distribution)
-  assert.deepEqual(parsed.systems.astrology.fact.chartRulers, base.systems.astrology.fact.chartRulers)
-  assert.deepEqual(parsed.systems.astrology.source.provenance, base.systems.astrology.source.provenance)
-  assert.deepEqual(parsed.systems.astrology.unknown.unsupportedFeatures, base.systems.astrology.unknown.unsupportedFeatures)
-  assert.deepEqual(parsed.systems.astrology.unknown.blockedFeatures, base.systems.astrology.unknown.blockedFeatures)
-  assert.deepEqual(parsed.systems.astrology.unknown.interpretationBoundary, base.systems.astrology.unknown.interpretationBoundary)
+  assert.equal(parsed.systems.astrology.fact.verifiedBodies.length, 10)
+  const parsedSun = parsed.systems.astrology.fact.verifiedBodies.find((body) => body.id === 'sun')
+  assert.equal(parsedSun.sign, 'capricorn')
+  assert.equal(parsedSun.signIndex, 9)
+  assert.ok(Math.abs(parsedSun.degreeInSign - 10.3785821768816) < 1e-9)
+  assert.deepEqual(parsed.systems.saju.fact.dayMasterDetails, { stem: '계', yinYang: '음', element: '수' })
+  assert.equal(parsed.systems.saju.fact.pillarFacts.month.branchMainStem, '무')
+  assert.deepEqual(parsed.systems.saju.fact.pillarFacts.year.hiddenStems, [
+    { stem: '기', weight: 0.6, tenGod: '편관' },
+    { stem: '계', weight: 0.3, tenGod: '비견' },
+    { stem: '신', weight: 0.1, tenGod: '편인' },
+  ])
+  assert.equal(parsed.systems.astrology.fact.aspects.length, 18)
+  assert.deepEqual(parsed.systems.astrology.fact.aspects[0].calculationPrimitive, {
+    angularDistanceDegrees: 57.05072569815809,
+  })
+  assert.deepEqual(parsed.systems.astrology.fact.aspects[0].derivedClassification, {
+    aspectId: 'sextile',
+    exactAngleDegrees: 60,
+    orbDegrees: 2.9492743018419105,
+    maxOrbDegrees: 5,
+  })
+  assert.equal(Object.hasOwn(parsed.systems.astrology.fact.aspects[0].derivedClassification, 'ruleId'), false)
+  assert.equal(Object.hasOwn(parsed.systems.astrology.fact.wholeSignHouses.derivedClassification, 'ruleId'), false)
+  assert.equal(Object.hasOwn(parsed.systems.astrology.fact.distribution.derivedClassification, 'ruleId'), false)
+  assert.equal(Object.hasOwn(parsed.systems.astrology.fact.chartRulers.derivedClassification, 'ruleId'), false)
   assert.deepEqual(findForbiddenKeyPaths(parsed), [])
   assert.doesNotMatch(jsonStr, /\bundefined\b/)
-  assert.equal(new Set(parsed.systems.saju.unknown.warnings).size, parsed.systems.saju.unknown.warnings.length)
-  for (const relation of parsed.systems.saju.fact.branchRelations) {
+  assert.equal(new Set(validation.systems.saju.unknown.warnings).size, validation.systems.saju.unknown.warnings.length)
+  for (const relation of validation.systems.saju.fact.branchRelations) {
     assert.match(md, new RegExp(`${relation.name}\\(${relation.branches.join('')}\\)`))
   }
   const activeDaYun = parsed.systems.saju.fact.timing.daYun.cycles.find((cycle) => cycle.isActive)
   assert.match(md, new RegExp(`대운 ${activeDaYun.value}`))
   assert.match(md, new RegExp(`세운 ${parsed.systems.saju.fact.timing.seUn.value}`))
-  assert.match(md, new RegExp(`기산 ${parsed.systems.saju.fact.timing.daYun.startAge.years}년 ${parsed.systems.saju.fact.timing.daYun.startAge.months}개월 ${parsed.systems.saju.fact.timing.daYun.startAge.days}일`))
+  assert.match(md, new RegExp(`기산 ${validation.systems.saju.fact.timing.daYun.startAge.years}년 ${validation.systems.saju.fact.timing.daYun.startAge.months}개월 ${validation.systems.saju.fact.timing.daYun.startAge.days}일`))
 
   const exportDirectory = await mkdtemp(join(tmpdir(), 'deterministic-base-export-'))
   try {
@@ -571,22 +651,23 @@ test('buildDeterministicBase: bundles all three real domains into a single self-
     const consumedMarkdown = await readFile(markdownPath, 'utf8')
     assert.equal(Object.hasOwn(consumedJson, 'markdown'), false)
     assert.equal(Object.hasOwn(consumedJson, 'formattedMarkdown'), false)
-    assert.deepEqual(consumedJson.systems.saju.source.factGroundings, base.systems.saju.source.factGroundings)
-    assert.deepEqual(consumedJson.systems.astrology.fact.aspects, base.systems.astrology.fact.aspects)
-    assert.deepEqual(consumedJson.systems.astrology.source.provenance, base.systems.astrology.source.provenance)
-    assert.deepEqual(consumedJson.systems.astrology.unknown.blockedFeatures, base.systems.astrology.unknown.blockedFeatures)
-    assert.deepEqual(consumedJson.systems.astrology.unknown.interpretationBoundary, base.systems.astrology.unknown.interpretationBoundary)
+    assert.equal(Object.hasOwn(consumedJson.systems.saju, 'source'), false)
+    assert.equal(Object.hasOwn(consumedJson.systems.astrology, 'unknown'), false)
+    assert.deepEqual(consumedJson.systems.ziwei.fact, parsed.systems.ziwei.fact)
+    assert.deepEqual(consumedJson.systems.astrology.fact.aspects, parsed.systems.astrology.fact.aspects)
     assert.deepEqual(findForbiddenKeyPaths(consumedJson), [])
     assert.doesNotMatch(await readFile(jsonPath, 'utf8'), /\bundefined\b/)
     assert.doesNotMatch(consumedMarkdown, /undefined|null/)
     assert.match(consumedMarkdown, /## AI CONSUMER GUIDE \(사람·AI 공용 읽기 안내\)/)
-    assert.match(consumedMarkdown, /READ_ORDER.*`0\.INPUT`.*`1\.FACT`.*`3\.STATUS`.*TECHNICAL PROVENANCE/)
+    assert.match(consumedMarkdown, /READ_ORDER.*`0\.INPUT`.*`1\.FACT`/)
+    assert.doesNotMatch(consumedMarkdown, /STATUS & SUPPORT SCOPE|TECHNICAL PROVENANCE|### 2\. SOURCE|sourceRefs|SHA|runner|evaluator|Rule identity|Provenance links|activation|unsupported|provenance/i)
     assert.equal(formatDeterministicBaseMarkdown(consumedJson), consumedMarkdown)
     const freshAttachmentPrompt = createFreshChatContinuationPrompt(consumedJson, '이 astrology FACT를 바탕으로 해석해줘.')
     assert.match(freshAttachmentPrompt, /\[ATTACHED FILE: deterministic_base\.md\]/)
     assert.match(freshAttachmentPrompt, /## AI CONSUMER GUIDE \(사람·AI 공용 읽기 안내\)/)
-    assert.match(freshAttachmentPrompt, /availableForInterpretation=false는 softie_project 내부 interpretation service\/runtime integration 미연결/)
-    assert.match(freshAttachmentPrompt, /일반 ChatGPT\/Gemini downstream 대화를 금지하지 않는다/)
+    assert.match(freshAttachmentPrompt, /첨부 파일은 INPUT과 이 Base에 포함된 FACT를 제공하며, 포함되지 않은 값은 추정·재계산하여 확정 FACT로 취급하지 않는다/)
+    assert.match(freshAttachmentPrompt, /FACT와 해석을 구분해 밝히고 필요한 개인 맥락은 대화에서 확인한다/)
+    assert.doesNotMatch(freshAttachmentPrompt, /availableForInterpretation|service\/runtime|provenance|blocked|unsupported/i)
   } finally {
     await rm(exportDirectory, { recursive: true, force: true })
   }
@@ -635,13 +716,11 @@ test('Fresh-chat continuation context & prompt: verifies zero recalculation, key
   assert.equal(ctx.unknownsPresentMap.astrology, true)
   assert.equal(ctx.synthesisExcluded, true)
 
-  // Verify false promotion prevention in markdown:
-  // 1. Ziwei timing must remain unsupported
-  assert.match(base.markdown, /timingStatus: unsupported|시기\(unsupported\)/)
-  // 2. Astrology must remain blocked
-  assert.match(base.markdown, /serviceEligibility: blocked/)
-  // 3. Saju literature must remain personalValidity=not_established
-  assert.match(base.markdown, /personalValidity=not_established/)
+  // Only the bounded coordinate subset is public; excluded Ziwei claims and
+  // internal runtime state are not presented as confirmed facts.
+  assert.match(base.markdown, /자미두수 \(Ziwei Dou Shu\)/)
+  assert.doesNotMatch(base.markdown, /음력 기준|명궁|신궁|오행국|14주성|사화|궁\)|timingStatus|unsupported|serviceEligibility|personalValidity|activation/i)
+  assert.doesNotMatch(exportDeterministicBaseJson(base), /lunarBasis|mingShenGong|bureau|transformations|palaces|palaceName|palaceId|palaceBranch|timingStatus|unsupported|serviceEligibility|personalValidity|activation/i)
 
   // Verify fresh-chat continuation prompt encapsulates base as an attached file
   const prompt = createFreshChatContinuationPrompt(base, '나의 일간과 14주성 배치를 알려줘.')
@@ -651,8 +730,9 @@ test('Fresh-chat continuation context & prompt: verifies zero recalculation, key
 
   const interpretationPrompt = createFreshChatContinuationPrompt(base, '이 astrology FACT를 바탕으로 해석해줘.')
   assert.match(interpretationPrompt, /\[INTERPRETATION BOUNDARY\]/)
-  assert.match(interpretationPrompt, /일반 ChatGPT\/Gemini downstream 대화를 금지하지 않는다/)
-  assert.match(interpretationPrompt, /계산 FACT\/provenance와 해석을 구분해 먼저 밝힌 뒤 대화를 이어간다/)
+  assert.match(interpretationPrompt, /첨부 파일은 INPUT과 이 Base에 포함된 FACT를 제공하며, 포함되지 않은 값은 추정·재계산하여 확정 FACT로 취급하지 않는다/)
+  assert.match(interpretationPrompt, /FACT와 해석을 구분해 밝히고 필요한 개인 맥락은 대화에서 확인한다/)
+  assert.doesNotMatch(interpretationPrompt, /availableForInterpretation|service\/runtime|provenance|blocked|unsupported/i)
   assert.match(interpretationPrompt, /\[USER\]: "이 astrology FACT를 바탕으로 해석해줘\."/)
   assert.doesNotMatch(interpretationPrompt, /사용자 해석 요청.*금지|사용자 해석 요청.*차단/)
 })
