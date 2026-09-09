@@ -4,7 +4,7 @@ import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 import test from 'node:test'
-import { ASTROLOGY_REFERENCE, CSPICE_FLAGS, NODE_VERSION, PAYLOAD_FILES, RUNNER, RUNNER_FLAGS, TARGET, manifestIntegritySha256, payloadFilesSha256, sha256Text, sourceIdentity, stableJson } from '../scripts/lib/de405-linux-producer-artifact-contract.mjs'
+import { ASTROLOGY_REFERENCE, COVERAGE, CSPICE_FLAGS, NODE_VERSION, PAYLOAD_FILES, RUNNER, RUNNER_FLAGS, TARGET, manifestIntegritySha256, payloadFilesSha256, sha256Text, sourceIdentity, stableJson } from '../scripts/lib/de405-linux-producer-artifact-contract.mjs'
 import { checkProducerDirectory, validateManifest } from '../scripts/check-de405-linux-producer-artifact.mjs'
 
 const root = resolve('.')
@@ -19,7 +19,7 @@ function fixtureManifest() {
     artifactId: 'de405-linux-producer-v0',
     artifactVersion: '0.1.0',
     target: TARGET,
-    runner: { ...RUNNER, binarySha256: files['bin/de405-canonical-v2-runner'].sha256, coverage: { coverageStartEt: '-1.5778799588160586e+09', coverageEndEt: '1.5778800641839132e+09', coverageTool: 'spkobj_c+spkcov_c', coverageToolVersion: 'N0067', objectCount: 10 } },
+    runner: { ...RUNNER, binarySha256: files['bin/de405-canonical-v2-runner'].sha256, coverage: { coverageStartEt: COVERAGE.startEt, coverageEndEt: COVERAGE.endEt, coverageTool: COVERAGE.tool, coverageToolVersion: COVERAGE.toolVersion, objectCount: COVERAGE.objectCount } },
     source: sourceIdentity(),
     build: {
       sourceCommit: 'a'.repeat(40),

@@ -24,6 +24,7 @@ export const OFFICIAL_SOURCE = Object.freeze({
 export const COVERAGE = Object.freeze({
   startEt: '-1.5778799588160586e+09',
   endEt: '1.5778800641839132e+09',
+  objectCount: 15,
   startReadable: '1950-01-01 00:00:41.183 ET',
   endReadable: '2050-01-01 00:01:04.183 ET',
   tool: 'spkobj_c+spkcov_c',

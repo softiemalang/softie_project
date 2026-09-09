@@ -40,7 +40,7 @@ function runnerCoverage() {
     coverageEndEt: COVERAGE.endEt,
     coverageTool: COVERAGE.tool,
     coverageToolVersion: COVERAGE.toolVersion,
-    objectCount: 10,
+    objectCount: COVERAGE.objectCount,
   }
 }
 
@@ -140,7 +140,7 @@ async function verifyRuntime(root, manifest, errors) {
     const version = runJson(runner, ['--version'])
     if (version.runnerVersion !== RUNNER.version || version.cspiceToolkitVersion !== OFFICIAL_SOURCE.cspiceToolkitVersion || version.testOnly !== false) errors.push('runner version ABI mismatch')
     const coverage = runJson(runner, ['--coverage', '--spk', join(root, 'provider/de405.bsp')])
-    if (coverage.coverageStartEt !== COVERAGE.startEt || coverage.coverageEndEt !== COVERAGE.endEt || coverage.coverageTool !== COVERAGE.tool || coverage.coverageToolVersion !== COVERAGE.toolVersion || coverage.objectCount !== 10) errors.push('DE405 coverage identity mismatch')
+    if (coverage.coverageStartEt !== COVERAGE.startEt || coverage.coverageEndEt !== COVERAGE.endEt || coverage.coverageTool !== COVERAGE.tool || coverage.coverageToolVersion !== COVERAGE.toolVersion || coverage.objectCount !== COVERAGE.objectCount) errors.push('DE405 coverage identity mismatch')
   } catch (error) { errors.push(`runner/provider smoke check failed: ${error.message}`) }
   if (manifest.build?.toolchain?.compilerTarget !== TARGET.compilerTarget) errors.push('compiler target ABI mismatch')
 }

@@ -114,7 +114,7 @@ async function buildOnce({ inputs, packageRoot, sourceCommit, inputIdentity }) {
   const runnerVersion = JSON.parse(run(runner, ['--version']))
   if (runnerVersion.runnerVersion !== RUNNER.version || runnerVersion.cspiceToolkitVersion !== OFFICIAL_SOURCE.cspiceToolkitVersion || runnerVersion.testOnly !== false) fail('Linux runner ABI/version check failed')
   const coverage = JSON.parse(run(runner, ['--coverage', '--spk', inputIdentity.spk]).trim())
-  if (coverage.coverageStartEt !== COVERAGE.startEt || coverage.coverageEndEt !== COVERAGE.endEt || coverage.coverageTool !== COVERAGE.tool || coverage.coverageToolVersion !== COVERAGE.toolVersion || coverage.objectCount !== 10) fail('DE405 coverage/source identity check failed')
+  if (coverage.coverageStartEt !== COVERAGE.startEt || coverage.coverageEndEt !== COVERAGE.endEt || coverage.coverageTool !== COVERAGE.tool || coverage.coverageToolVersion !== COVERAGE.toolVersion || coverage.objectCount !== COVERAGE.objectCount) fail('DE405 coverage/source identity check failed')
 
   await mkdir(join(packageRoot, 'provider'), { recursive: true })
   await mkdir(join(packageRoot, 'cspice/lib'), { recursive: true })
