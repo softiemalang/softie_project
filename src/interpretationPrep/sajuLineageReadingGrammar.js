@@ -156,12 +156,16 @@ export const SAJU_LINEAGE_LOCATORS = Object.freeze([
   loc('saju-source-sanming-tonghui', 'sanming-p66-seasonal-hidden-stem-service', 66, '66', '論四時節氣', 'one explicit hidden-stem service-day example and seasonal cycle framing', '寅中有艮土用事五日 · 丙火五日 · 甲木二十日'),
   loc('saju-source-sanming-tonghui', 'sanming-p69-month-hour-method', 69, '69', '論遁月時', 'month-from-year and hour-from-day procedure surface', '遁月从年 · 遁时从日'),
   loc('saju-source-sanming-tonghui', 'sanming-p70-year-month-day-hour', 70, '70', '論年月日時', 'four-pillar framing and day-as-host comparison', '年月日時排成四柱 · 子平以日看'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p3-yang-yin-root-cycle-and-tomb-exception', 3, '3', '論陰陽生死', 'source-local life-cycle vocabulary and yang-rooted versus yin/tomb qualification', '長生循環 · 得長生祿旺 · 逢庫 · 陽為有根 · 陰為無用'),
   loc('saju-source-ziping-zhenquan', 'ziping-p5-branch-relations-definition-and-examples', 5, '5', '論刑沖會合解法', 'explicit stem/branch examples, exceptions, and adjacent branch-relation definitions', '长生禄旺 · 根之重者也 · 甲逢未 · 乙逢戌 · 通根'),
   loc('saju-source-ziping-zhenquan', 'page.local.ziping.p6-yongshin', 6, '6', '論用神', 'month-command-first use-selection wording', '用神专求月令'),
   loc('saju-source-ziping-zhenquan', 'page.local.ziping.p7-yongshin-continuation', 7, '7', '論用神成敗救應 / 論用神變化', 'success/rescue/change examples including a local 透/不透 contrast; semantic precedence not normalized', '成败救应 · 用神变化 · 不透甲而透丙'),
   loc('saju-source-ziping-zhenquan', 'page.local.ziping.p10-xiangshen', 10, '10', '論相神緊要', 'assistant/use-selection role wording', '辅者是也'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p10-chen-exposed-stem-definition', 10, '10', '論雜氣如何取用', 'local 透干 definition and one/dual exposure examples for 甲生辰月', '何謂透干 · 甲生辰月 · 一透一用 · 兼透兼用'),
   loc('saju-source-ziping-zhenquan', 'page.local.ziping.p11-xiangshen-continuation', 11, '11', '論墓庫刑沖之說', 'continuation with interaction conditions', '刑冲会合 conditions'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p11-exposed-stem-and-branch-context', 11, '11', '論墓庫刑沖之說', '透干/會支 examples remain tied to use-selection and anti冲 arguments', '透干會支 · 干頭透出 · 身坐庫根'),
   loc('saju-source-ziping-zhenquan', 'page.local.ziping.p15-xingyun', 15, '15', '論行運', 'bounded natal-chart/fortune pairing statement', '论运与命无二法'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p16-branch-stem-root-scan', 16, '16', '論支中喜忌逢運透清', 'explicit 甲-to-branch root scan and 亥-to-visible-stem role examples', '支为干之生地 · 干为支之发用 · 有一甲字 · 寅亥卯未 · 有一亥字'),
   loc('saju-source-ziping-zhenquan', 'page.local.ziping.p25-timing', 25, '25', '取運 locator', 'timing section locator without repository exact-start contract', '取運'),
   loc('saju-source-ditian-sui', 'ditian-p4-jia-wood-seasonal-conditions', 4, '4', '天干論 / 甲木', 'qualitative 甲木 seasonal conditions', '甲木参天 · 脱胎要火 · 春不容金 · 秋不容土'),
   loc('saju-source-qiongtong-baojian', 'qiongtong-p2-five-phase-number-and-season', 2, '2', '五行總論', 'element numbers, state labels, and explicit 生旺/死绝 multiplier wording', '其数则水一、火二、木三、金四、土五 · 生旺加倍，死绝减半'),
@@ -229,6 +233,59 @@ export const SAJU_ZIPING_EXPLICIT_STEM_BRANCH_ANALYSIS = Object.freeze({
     'generic modern 通根/十二运星 tables',
     'a source rule from another lineage used to fill an unlisted pair',
     'strength, weakness, yongshin, gyeokguk, or personal meaning',
+  ]),
+})
+
+export const SAJU_ZIPING_ROOT_EXPOSURE_ANALYSIS = Object.freeze({
+  sourceId: 'saju-source-ziping-zhenquan',
+  sourceByteSha256: '449336b5e35aa6811b0462093d0175c45a0add44065bf2d3845cff75981db692',
+  directObservations: Object.freeze([
+    Object.freeze({
+      locatorId: 'ziping-p3-yang-yin-root-cycle-and-tomb-exception',
+      classification: 'FACT',
+      statement: 'p.3 defines source-local life-cycle vocabulary and states bounded qualifications for yang-rooted and yin/tomb cases; it does not print a complete stem-to-branch table.',
+    }),
+    Object.freeze({
+      locatorId: 'ziping-p16-branch-stem-root-scan',
+      classification: 'FACT',
+      statement: 'p.16 directs the reader to scan all four branches for 寅亥卯未 when a visible 甲 is present, and to scan all four visible stems for 壬/甲 when 亥 is present.',
+    }),
+    Object.freeze({
+      locatorId: 'ziping-p10-chen-exposed-stem-definition',
+      classification: 'FACT',
+      statement: 'p.10 asks 何谓透干 and gives only the 甲生辰月 examples 透戊/透癸/透乙, followed by one/dual exposure use-selection wording.',
+    }),
+    Object.freeze({
+      locatorId: 'ziping-p11-exposed-stem-and-branch-context',
+      classification: 'FACT',
+      statement: 'p.11 continues 透干/會支 examples inside use-selection and conflict-resolution clauses rather than stating a semantic-free all-chart exposure predicate.',
+    }),
+  ]),
+  adoptedPredicate: Object.freeze({
+    predicateId: 'ziping.jia-root-branch-scan.v0',
+    status: 'resolved_bounded_stem_specific_predicate',
+    locatorId: 'ziping-p16-branch-stem-root-scan',
+    anchor: 'any supplied visible 甲 in the four pillar frame',
+    rootBranchSet: Object.freeze(['寅', '亥', '卯', '未']),
+    haiVisibleStemRelations: Object.freeze({ 壬: '禄', 甲: '長生' }),
+    outputScope: 'source-named structural relation inventory only',
+  }),
+  exposurePredicate: Object.freeze({
+    status: 'unresolved_general_predicate',
+    exactLocalSurface: '甲生辰月 with 透戊/透癸/透乙 and one/dual exposure wording',
+    reason: 'the inspected p.10-p.11 examples bind 透干 to a 辰月/use-selection context and do not close a universal visible-stem-to-hidden-stem predicate, target scope, or precedence rule',
+  }),
+  unresolved: Object.freeze([
+    'complete source-defined mapping for every visible stem and every branch',
+    'whether the p.16 scan is intended to emit duplicate anchor positions or only stem presence when multiple 甲 values occur',
+    'general 透/透干 identity and priority outside the 甲生辰月 examples',
+    'interaction with month-command selection, 会支, 刑沖, luck periods, and semantic conclusions',
+    'the p.3 yin/tomb qualification and p.5 category ordering beyond the adopted 甲 scan',
+  ]),
+  forbiddenSubstitutions: Object.freeze([
+    'modern universal 通根 or 十二運星 tables',
+    'another lineage used to complete the stem-to-branch map',
+    'use-selection, strength, yongshin, gyeokguk, fortune, or personal meaning',
   ]),
 })
 
@@ -353,6 +410,23 @@ export const SAJU_LINEAGE_RULES = Object.freeze([
     conflictPolicy: 'preserve every exact example match and any negative example; no merge with other lineages or source-wide root/exposure conclusions',
   }),
   rule({
+    ruleId: 'rule.ziping.jia-root-branch-scan.v0',
+    work: WORKS.ziping,
+    lineage: 'ziping_local_export',
+    status: 'adopted_lineage_rule',
+    ruleCompleteness: 'bounded_stem_specific_predicate',
+    executionStatus: 'executable_from_frozen_base',
+    sourceIds: ['saju-source-ziping-zhenquan'],
+    locatorIds: ['ziping-p3-yang-yin-root-cycle-and-tomb-exception', 'ziping-p16-branch-stem-root-scan'],
+    observedRule: 'p.16 gives a bounded scan predicate: when visible 甲 is present, inspect all four branches for 寅亥卯未 as 甲木之根; when 亥 is present, inspect all four visible stems for 壬/甲 and retain the source-named 禄/長生 relations.',
+    preconditions: ['exact time and all four supplied visible stem/branch entries are present'],
+    inputFacts: [FACT_REFS.pillarFacts, FACT_REFS.timeAccuracy],
+    orderedSteps: ['enumerate visible stem/branch entries by pillar position', 'retain every visible 甲 anchor position', 'scan all four branches for the source-listed 寅亥卯未 set', 'when a supplied branch is 亥, scan all four visible stems for 壬 and 甲 and emit their source-named relations', 'emit the bounded inventories without ranking or semantic expansion'],
+    structuralOutput: ['jiaRootBranchMatches', 'haiVisibleStemRelations', 'visibleStemAnchors'],
+    exceptions: ['the predicate is only for source-listed 甲/亥 relations', 'p.3 yin/tomb qualifications and p.5 category comparisons are not generalized to other stems', 'duplicate visible 甲 positions are preserved as anchors but do not create a new weighting rule', '透/透干 examples from p.10–11 remain outside this rule'],
+    conflictPolicy: 'preserve every source-listed match and visible position; no merge with another lineage or with the unresolved generic root/exposure rule',
+  }),
+  rule({
     ruleId: 'rule.ziping.month-command-selection.v0',
     work: WORKS.ziping,
     lineage: 'ziping_local_export',
@@ -377,14 +451,14 @@ export const SAJU_LINEAGE_RULES = Object.freeze([
     ruleCompleteness: 'partial_rooting_exposure_clause',
     executionStatus: 'not_executable_by_contract',
     sourceIds: ['saju-source-ziping-zhenquan'],
-    locatorIds: ['ziping-p5-branch-relations-definition-and-examples', 'page.local.ziping.p6-yongshin', 'page.local.ziping.p7-yongshin-continuation'],
-    observedRule: 'rooting and exposed-stem language is visible in bounded examples, but a complete all-branch classification and precedence rule is not closed.',
-    preconditions: ['a source-specific rooting/exposure definition would be required'],
+    locatorIds: ['ziping-p3-yang-yin-root-cycle-and-tomb-exception', 'ziping-p5-branch-relations-definition-and-examples', 'page.local.ziping.p6-yongshin', 'page.local.ziping.p7-yongshin-continuation', 'ziping-p10-chen-exposed-stem-definition', 'ziping-p11-exposed-stem-and-branch-context', 'ziping-p16-branch-stem-root-scan'],
+    observedRule: 'p.3/p.5/p.16 close a bounded 甲 root-scan surface, while p.7/p.10/p.11 show 透/透干 in local use-selection and combination examples; a complete all-stem root/exposure predicate and precedence rule is not closed.',
+    preconditions: ['a complete all-stem root/exposure definition and precedence procedure would be required'],
     inputFacts: [FACT_REFS.pillarFacts, FACT_REFS.dayMaster],
     orderedSteps: ['not executed'],
     structuralOutput: [],
-    exceptions: ['raw stem and hidden-stem presence is not emitted as a semantic 通根/透干 conclusion'],
-    conflictPolicy: 'keep raw presence available without naming a rooted/exposed outcome',
+    exceptions: ['the adopted 甲 root-scan is emitted by its separate rule; raw stem/hidden-stem presence outside that scope is not emitted as a generic 通根/透干 conclusion'],
+    conflictPolicy: 'keep the bounded 甲 rule separate and preserve the generic root/exposure frontier unresolved',
   }),
   rule({
     ruleId: 'rule.ziping.timing.v0',
@@ -764,6 +838,37 @@ export const SAJU_LINEAGE_STRUCTURAL_CONTRACTS = Object.freeze([
       semanticExpansion: false,
     },
   }),
+  structuralContractSpec('rule.ziping.jia-root-branch-scan.v0', {
+    commonBaseFacts: [
+      { factRef: FACT_REFS.pillarFacts, origin: 'frozen_base_common_fact' },
+      { factRef: FACT_REFS.timeAccuracy, origin: 'frozen_normalized_input' },
+    ],
+    applicability: [
+      'timeAccuracy must be exact',
+      'all four supplied pillarFacts entries must contain a visible stem and branch',
+      'the predicate is limited to source-listed 甲/寅亥卯未 and 亥/壬甲 relations',
+    ],
+    procedure: [
+      'enumerate visible stem and branch values by pillar position',
+      'record every visible 甲 anchor position',
+      'scan all four branches for 寅亥卯未 and emit the source-named 甲 root matches',
+      'for every supplied 亥 branch, scan visible stems for 壬 and 甲 and emit 禄/長生 relation records',
+      'preserve positions and matches without weighting, ranking, or semantic expansion',
+    ],
+    stopConditions: [
+      'stop when timeAccuracy is not exact or any visible stem/branch entry is missing or malformed',
+      'do not infer a stem-to-branch mapping for stems other than 甲 or relations other than the p.16 examples',
+      'do not apply p.3 yin/tomb or p.5 category ordering to unlisted stems',
+      'do not convert p.10–11 透/透干 use-selection examples into this root scan',
+      'do not output strength, balance, use selection, or personal meaning',
+    ],
+    output: {
+      origin: 'lineage_derived_structural_result',
+      resultKey: 'ziping.jiaRootBranchScan',
+      fields: ['visibleStemAnchors', 'jiaRootBranchMatches', 'haiVisibleStemRelations', 'sourcePredicateScope'],
+      semanticExpansion: false,
+    },
+  }),
   structuralContractSpec('rule.ditian.jia-wood-seasonal-condition.v0', {
     commonBaseFacts: [
       { factRef: FACT_REFS.dayMaster, origin: 'frozen_base_common_fact' },
@@ -914,7 +1019,7 @@ export const SAJU_LINEAGE_READING_GRAMMAR = Object.freeze({
     unsupportedRuleIds: SAJU_LINEAGE_RULES.filter(ruleItem => ruleItem.status === 'unsupported').map(ruleItem => ruleItem.ruleId),
     nextChecks: [
       'source-specific season/solar-term state must be added as a frozen FACT before Ditian/Qiongtong conditional clauses can execute',
-      'a complete source-specific rooting/exposure definition is required before 通根/透干 can be classified',
+      'the bounded 甲 root scan is executable, but a complete all-stem root/exposure and 透干 definition is still required before generic classification',
       'exact timing rules require the existing timing authority frontier to close; do not infer them from a section heading',
       'an independent, lineage-identified witness is required before any common candidate is emitted',
     ],
@@ -973,6 +1078,14 @@ function hasCompleteZipingStemBranchExampleInput(base) {
   })
 }
 
+function hasCompleteZipingJiaRootScanInput(base) {
+  if (!hasExactTime(base)) return false
+  return PILLAR_POSITIONS.every(position => {
+    const pillar = readPath(base, `systems.saju.fact.pillarFacts.${position}`).value
+    return isObject(pillar) && typeof pillar.stem === 'string' && typeof pillar.branch === 'string'
+  })
+}
+
 function explicitZipingStemBranchExamples(pillarFacts, dayMasterStem) {
   const matches = []
   for (const position of PILLAR_POSITIONS) {
@@ -993,6 +1106,35 @@ function explicitZipingStemBranchExamples(pillarFacts, dayMasterStem) {
     })
   }
   return matches
+}
+
+function zipingJiaRootBranchScan(pillarFacts) {
+  const visibleStemAnchors = PILLAR_POSITIONS
+    .filter(position => pillarFacts[position]?.stem === '갑')
+    .map(position => ({ position, stem: '갑' }))
+  const jiaRootBranchMatches = visibleStemAnchors.length > 0
+    ? PILLAR_POSITIONS
+      .filter(position => ['인', '해', '묘', '미'].includes(pillarFacts[position]?.branch))
+      .map(position => ({
+        position,
+        branch: pillarFacts[position].branch,
+        anchorStem: '갑',
+        sourceRelation: '甲木之根',
+      }))
+    : []
+  const haiVisibleStemRelations = PILLAR_POSITIONS.flatMap(branchPosition => {
+    if (pillarFacts[branchPosition]?.branch !== '해') return []
+    return PILLAR_POSITIONS
+      .filter(stemPosition => ['임', '갑'].includes(pillarFacts[stemPosition]?.stem))
+      .map(stemPosition => ({
+        branchPosition,
+        branch: '해',
+        stemPosition,
+        stem: pillarFacts[stemPosition].stem,
+        sourceRelation: pillarFacts[stemPosition].stem === '임' ? '禄' : '長生',
+      }))
+  })
+  return { visibleStemAnchors, jiaRootBranchMatches, haiVisibleStemRelations }
 }
 
 function sourceSeasonContext(base) {
@@ -1086,6 +1228,13 @@ function executeRule(ruleItem, base) {
         sourceExampleScope: 'ziping-p5-exact-stem-branch-examples-only',
       })
     }
+    case 'rule.ziping.jia-root-branch-scan.v0': {
+      if (!hasCompleteZipingJiaRootScanInput(base)) return ruleResult(ruleItem, 'blocked_missing_base_fact', {}, 'exact time or visible stem/branch FACT is missing or malformed')
+      return ruleResult(ruleItem, 'executable_from_frozen_base', {
+        ...zipingJiaRootBranchScan(pillarFacts),
+        sourcePredicateScope: 'ziping-p16-jia-and-hai-examples-only',
+      })
+    }
     case 'rule.ditian.jia-wood-seasonal-condition.v0':
     case 'rule.qiongtong.jia-wood-seasonal-clauses.v0':
       if (!isJiaStem(fact.dayMaster) && !isJiaStem(fact.dayMasterDetails?.stem)) return ruleResult(ruleItem, 'not_applicable_fixture', {}, 'fixture day-master is not 甲/갑; no transfer to another stem')
@@ -1151,7 +1300,7 @@ export function checkSajuLineageReadingGrammar(grammar = SAJU_LINEAGE_READING_GR
       if (!locator) fail(`rule_locator:${item.ruleId}:${locatorId}`)
       else if (!(item.sourceIds || []).includes(locator.sourceId)) fail(`rule_locator_source:${item.ruleId}:${locatorId}`)
     }
-    if (item.status === 'adopted_lineage_rule' && !['bounded_complete_structural_frame', 'bounded_complete_procedure_frame', 'bounded_label_inventory_only', 'bounded_role_scope_not_service_day_table', 'bounded_relation_vocabulary', 'bounded_relation_inventory_not_resolution', 'bounded_explicit_example_predicate', 'bounded_condition_clause_for_jia_only', 'bounded_numeric_state_clause', 'bounded_numeric_operation_without_state_resolver', 'bounded_month_specific_condition_clauses'].includes(item.ruleCompleteness)) fail(`adopted_rule_incomplete:${item.ruleId}`)
+    if (item.status === 'adopted_lineage_rule' && !['bounded_complete_structural_frame', 'bounded_complete_procedure_frame', 'bounded_label_inventory_only', 'bounded_role_scope_not_service_day_table', 'bounded_relation_vocabulary', 'bounded_relation_inventory_not_resolution', 'bounded_explicit_example_predicate', 'bounded_stem_specific_predicate', 'bounded_condition_clause_for_jia_only', 'bounded_numeric_state_clause', 'bounded_numeric_operation_without_state_resolver', 'bounded_month_specific_condition_clauses'].includes(item.ruleCompleteness)) fail(`adopted_rule_incomplete:${item.ruleId}`)
     if ((item.status === 'unresolved' || item.status === 'unsupported') && (!item.observedRule || item.observedRule.length === 0)) fail(`unresolved_reason_missing:${item.ruleId}`)
   }
 
@@ -1257,6 +1406,7 @@ function unsatisfiedStructuralConditions(contract, base) {
   if (contract.ruleId === 'rule.sanming.human-element-month-command.v0' && !Array.isArray(readPath(base, FACT_REFS.monthHiddenStems).value)) conditions.push('month_hidden_stem_list_missing')
   if (contract.ruleId === 'rule.ziping.branch-relation-inventory.v0' && !Array.isArray(readPath(base, FACT_REFS.branchRelations).value)) conditions.push('branch_relation_list_missing')
   if (contract.ruleId === 'rule.ziping.explicit-stem-branch-example-match.v0' && !hasCompleteZipingStemBranchExampleInput(base)) conditions.push('complete_stem_branch_example_input_missing')
+  if (contract.ruleId === 'rule.ziping.jia-root-branch-scan.v0' && !hasCompleteZipingJiaRootScanInput(base)) conditions.push('complete_jia_root_scan_input_missing')
   if (contract.ruleId === 'rule.ditian.jia-wood-seasonal-condition.v0' || contract.ruleId === 'rule.qiongtong.jia-wood-seasonal-clauses.v0') {
     if (isJiaStem(readPath(base, FACT_REFS.dayMaster).value) && !sourceSeasonContext(base)) conditions.push('explicit_season_or_solar_term_context_missing')
   }
