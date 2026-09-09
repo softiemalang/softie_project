@@ -21,13 +21,14 @@
 | `rule.sanming.human-element-month-command.v0` | 三命通會 p.65–66, `論人元司事`·`論四時節氣` | 월지·월지장간 | 월령/인원 구조와 지장간 목록 | 한 사령 일수 예시를 전체 가중표로 일반화하지 않음 |
 | `rule.sanming.element-generation-control.v0` | 三命通會 p.4–6 | 오행·기존 관계 FACT | 오행 목록·기존 천간관계 확인 | 균형·세력·개인 의미 도출 금지 |
 | `rule.ziping.branch-relation-inventory.v0` | 子平真詮 p.5, `論刑沖會合解法` | 지지 관계 목록 | 관계·지지·위치 목록, 동시 관계 보존 | 관계 우선순위·해소·변화·길흉 금지; `破/害/半合`은 이 locator의 증거로 확장하지 않음 |
+| `rule.ziping.explicit-stem-branch-example-match.v0` | 子平真詮 p.5, `論刑沖會合解法` | 일간·네 지지·위치별 기존 지장간 목록 | p.5에 실제 열거된 stem–branch 예시의 일치 inventory만 산출 | 열거되지 않은 조합, 본기/중기/여기 전체표, 순위·강도·통근/투간 일반화 금지; `乙逢午`·`丁逢酉` 예외는 unresolved로 유지 |
 | `rule.ditian.jia-wood-seasonal-condition.v0` | 滴天髓 p.4, `天干論 / 甲木` | 일간과 명시적 계절 FACT 필요 | 甲木 조건문 일치 여부만 | 甲木 외 일간으로 전이하지 않음; 성격·강약 결론 금지 |
 | `rule.qiongtong.five-phase-number-season-state.v0` | 窮通寶鑑 p.2, `五行總論` | 오행 기본 수와 별도 source-specific 상태 resolver 필요 | `生旺`/`死绝`의 조건부 double/half 연산 표면만 기록; resolver가 닫히기 전 실행하지 않음 | Base 분포/지장간 가중치·일반 十二運星과 합치지 않음 |
 | `rule.qiongtong.jia-wood-seasonal-clauses.v0` | 窮通寶鑑 p.4–5·p.7, `三春甲木`·`正月甲木`·`三夏甲木` | 甲 일간과 명시적 월령/계절 필요 | 해당 월별 조건문만 선택 | 월별 문단을 하나의 보편 처방으로 통합하지 않음 |
 
 ## 병존·미해결·미지원
 
-- 子平真詮의 `用神`·`相神`·`用神變化`, 통근·투간의 완전한 우선순위는 원문 구간은 있으나 현재 Base 입력과 규칙 완결성이 부족해 `unresolved`다.
+- 子平真詮의 `用神`·`相神`·`用神變化`, 통근·투간의 완전한 우선순위는 원문 구간은 있으나 현재 Base 입력과 규칙 완결성이 부족해 `unresolved`다. 다만 p.5에 직접 열거된 일부 stem–branch 예시는 별도의 exact-example inventory로만 채택했다.
 - 子平真詮 p.15·p.25와 淵海子平 p.9의 운 locator는 운과 원국을 함께 보는 범위만 남기고, 방향·절기 거리·환산·정확한 기산일은 `unresolved`다.
 - 窮通寶鑑의 월별 조건은 source-bounded rule로 병존시키되, 현재 Base에는 명시적 계절/절기 상태가 없어 fixture에서 실행하지 않는다.
 - 신살의 reference axis/mapping, 단일 상징의 성격·개인 특성·사건 예측은 `unsupported`다.
@@ -69,6 +70,7 @@
 | 三命 `human-element-month-command` | 월지·월지장간 | 없음 | 월령 위치와 지장간 inventory만 산출 | 월지/지장간 누락; 사령 일수 일반화 금지 |
 | 三命 `element-generation-control` | 오행 분포·pillarFacts·기존 천간관계 | 없음 | 기존 오행/관계 inventory만 읽음 | 입력 envelope 누락; 균형·세력·선호 도출 금지 |
 | 子平 `branch-relation-inventory` | 지지 관계 array | 없음; 빈 array는 빈 inventory로 허용 | 관계명·지지·위치와 locator 범위 안/밖 이름, precedence=`none` | array 누락/비배열; 충돌 관계 삭제·순위화 금지 |
+| 子平 `explicit-stem-branch-example-match` | 일간·네 지지·네 위치의 기존 지장간 array | 없음; 네 위치의 branch/hidden-stem 입력이 모두 있어야 함 | 일간을 anchor로 삼아 p.5 exact example pair만 `matchedExamples`로 보존하고 기존 지장간 목록을 함께 표시 | 입력 누락/형식 오류; 미열거 조합·본기/중기/여기 전체표·월령 우선·투간/통근 일반화 금지 |
 | 滴天髓 `jia-wood-seasonal-condition` | 일간·월지 | `seasonContext`가 frozen public Base에 없음 | 甲/갑 조건과 명시 계절 창만 기록 | 甲/갑 이외는 비적용; 계절 context 없으면 gap |
 | 窮通 `five-phase-number-season-state` | 오행 기본 수 | p.2의 상태 resolver와 입력 shape가 frozen public Base에 없음 | 조건부 `生旺` double / `死绝` half 연산 어휘만 기록 | resolver 미완결이면 gap; 문자열·十二運星·Base count로 추정 금지 |
 | 窮通 `jia-wood-seasonal-clauses` | 일간·월지 | 명시 month/season `seasonContext`가 frozen public Base에 없음 | 일치하는 source section window와 clause sequence만 보존 | 甲/갑 이외는 비적용; context 없으면 gap; lineage 병합 금지 |
@@ -77,33 +79,46 @@
 
 ## 통근·투간 구조 판단의 좁은 frontier
 
-`子平真詮` p.5·p.6–7 locator에는 통근/투간과 월령·용신 관련 표현이 보이지만, 현재 확보 범위만으로는 다음이 닫히지 않는다.
+`子平真詮` p.5·p.6–7 locator에는 통근/투간과 월령·용신 관련 표현이 보이지만, 현재 확보 범위만으로 일반 규칙을 만들 수 있는 범위는 매우 좁다. p.5의 다음 exact examples만 source-bounded predicate로 채택했다.
 
-- 어떤 천간/지장간 존재를 통근으로 판정하는지에 대한 전 위치 정의
+- `甲逢未`, `丙逢戌`을 source가 `墓庫` 예시로 열거한 경우
+- `乙逢辰`, `丁逢未`를 `余氣` 예시로 열거한 경우
+- `甲逢亥/寅/卯`를 `長生祿刃` 예시로 열거한 경우
+- `乙逢戌`, `丁逢丑`에 대해서는 source가 해당 지지에 각각 木·火가 없다고 명시한 negative example
+
+이 predicate는 supplied day-master stem과 각 supplied branch를 위 exact list와 대조하고, 독립적인 기존 hidden-stem inventory를 함께 출력할 뿐이다. 따라서 결과 key는 `ziping.explicitStemBranchExampleInventory`이며, `通根`, `透干`, 강약 또는 우선순위 결과라는 이름으로 재해석하지 않는다. `甲`/`갑`은 fixture 표기 대응일 뿐 source 의미의 변환이 아니다.
+
+淵海子平 p.4의 지장간·월별 사령 문구, 三命通會 p.65–66의 `人元`·`司事`와 월별 service-day 예시, 滴天髓 p.4의 甲木 계절/根 조건은 각각 직접 관찰된 별도 source surface다. 이들은 지장간 inventory·월령 frame·甲木 조건문을 지지하지만, 子平의 exact-example predicate를 채우거나 generic 통근/투간 표를 제공하는 것으로 합치지 않았다. 子平 p.7의 `寅月`에서 `不透甲而透丙`을 대비하는 문장은 用神变化 문맥의 local example로만 남겨 일반적인 투간 resolver로 승격하지 않았다.
+
+다음은 여전히 닫히지 않는다.
+
+- 어떤 천간/지장간 존재를 일반 통근으로 판정하는지에 대한 전 위치 정의(위 exact examples 밖)
 - 여기·중기·본기와 투간이 동시에 있을 때의 우선순위
 - 월지 외 지지, 일간 제외 여부, 충·합 등 상호작용의 예외
 - 통근/투간 판정이 用神·格局으로 이어지는 경계
+- p.5의 `乙逢午`·`丁逢酉` 음간 장생 예외를 어떤 입력관계로 재현할지
 
-따라서 `rule.ziping.root-exposure.v0`는 `unresolved`이며, 현재 `pillarFacts`의 raw stem/hidden-stem 존재를 통근·투간 결과로 재명명하지 않는다. 淵海의 지장간/십성 label inventory, 三命의 인원·사령 예시, 窮通·滴天髓의 계절 조건은 각각 별도 lineage 입력/출력으로 유지하고 통근·투간으로 합치지 않는다.
+따라서 `rule.ziping.root-exposure.v0`는 여전히 `unresolved`이며, exact-example inventory 외에는 현재 `pillarFacts`의 raw stem/hidden-stem 존재를 통근·투간 결과로 재명명하지 않는다. 여러 exact example이 동시에 맞을 때도 모두 보존하고 ranking하지 않는다. 淵海의 지장간/십성 label inventory, 三命의 인원·사령 예시, 窮通·滴天髓의 계절 조건은 각각 별도 lineage 입력/출력으로 유지하고 통근·투간으로 합치지 않는다.
 
 ## Base 실행 검증
 
 실제 frozen `tri-system-deterministic-base-v0` fixture에서 다음을 확인한다.
 
-- Yuanhai·Sanming의 구조 frame, Sanming의 인원/오행 목록, Ziping의 지지 관계 목록은 재계산 없이 실행된다.
+- Yuanhai·Sanming의 구조 frame, Sanming의 인원/오행 목록, Ziping의 지지 관계 목록과 p.5 exact-example inventory는 재계산 없이 실행된다.
+- `갑` fixture에서는 hour branch `未`가 p.5의 `甲逢未`와 일치하여 해당 위치·기존 hidden-stem 목록·source category가 deterministic result로 남고, 일반 통근/투간 result는 생성되지 않는다. 기존 서울 `계` fixture에서는 exact-example match가 빈 inventory로 결정된다.
 - 동일 지지쌍의 `충`·`형`은 동시에 유지되고 우선순위를 부여하지 않는다.
 - 시간 미상·시주 누락·운 누락은 해당 rule을 `blocked_missing_base_fact` 또는 `not_executable_by_contract`로 닫는다.
 - 甲木 전용 Ditian/Qiongtong rule은 계 일간 fixture에 적용하지 않는다.
 - `noRecalculation=true`, `noSemanticInterpretation=true`, `commonRulePromotion=false`를 유지한다.
 
-structural result contract를 같은 서울 fixture에 두 번 적용하면 동일한 결과 object가 재현된다. 결과 분류는 `executable_rule` 6개, `derived_structural_result` 6개, `prerequisite_gap` 1개(窮通의 生旺/死绝 상태 resolver), unresolved 5개, unsupported 2개, not-applicable 2개다. 상태 문자열과 일반 `twelveStage`를 test-only supplement로 넣어도 같은 prerequisite gap이 유지되고 Base는 변하지 않는다. 시간 미상 fixture에서는 淵海/三命의 완전한 네 기둥 rule이 prerequisite gap으로 닫힌다. 별도 `갑` fixture에 test-only 계절 context를 공급하면 滴天髓와 窮通의 계절 창이 동시에 적용되지만, 두 결과는 `lineage_conflict`로 보존되고 병합 결과는 생성되지 않는다.
+structural result contract를 같은 서울 fixture에 두 번 적용하면 동일한 결과 object가 재현된다. 결과 분류는 `executable_rule` 7개, `derived_structural_result` 7개, `prerequisite_gap` 1개(窮通의 生旺/死绝 상태 resolver), unresolved 5개, unsupported 2개, not-applicable 2개다. 상태 문자열과 일반 `twelveStage`를 test-only supplement로 넣어도 같은 prerequisite gap이 유지되고 Base는 변하지 않는다. 시간 미상 fixture에서는 淵海/三命의 완전한 네 기둥 rule과 exact-example rule의 불완전 입력이 prerequisite gap으로 닫힌다. 별도 `갑` fixture에 test-only 계절 context를 공급하면 滴天髓와 窮通의 계절 창이 동시에 적용되지만, 두 결과는 `lineage_conflict`로 보존되고 병합 결과는 생성되지 않는다.
 
 최소 fixture와 checker는 `test/sajuLineageReadingGrammar.test.js`에 있다.
 
 ## 다음 frontier
 
 1. 窮通 p.2의 상태 resolver가 실제 source locator와 입력 shape까지 닫히는지 별도 확인한다. 일반 十二運星을 대입하지 않으며, 현재 Base에는 추가하지 않는다.
-2. 통근·투간을 판정하려면 문헌별 완전한 정의·대상·우선순위·예외를 별도로 닫는다.
+2. exact-example surface 밖의 통근·투간을 판정하려면 문헌별 완전한 정의·대상·우선순위·예외를 별도로 닫는다.
 3. 운은 기존 timing authority frontier의 exact start-time·direction·conversion blocker를 먼저 닫는다.
 4. 독립 textual witness와 판본/전승 관계가 확인되기 전까지 common rule을 생성하지 않는다.
 

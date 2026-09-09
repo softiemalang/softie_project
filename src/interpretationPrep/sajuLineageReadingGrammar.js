@@ -156,9 +156,9 @@ export const SAJU_LINEAGE_LOCATORS = Object.freeze([
   loc('saju-source-sanming-tonghui', 'sanming-p66-seasonal-hidden-stem-service', 66, '66', '論四時節氣', 'one explicit hidden-stem service-day example and seasonal cycle framing', '寅中有艮土用事五日 · 丙火五日 · 甲木二十日'),
   loc('saju-source-sanming-tonghui', 'sanming-p69-month-hour-method', 69, '69', '論遁月時', 'month-from-year and hour-from-day procedure surface', '遁月从年 · 遁时从日'),
   loc('saju-source-sanming-tonghui', 'sanming-p70-year-month-day-hour', 70, '70', '論年月日時', 'four-pillar framing and day-as-host comparison', '年月日時排成四柱 · 子平以日看'),
-  loc('saju-source-ziping-zhenquan', 'ziping-p5-branch-relations-definition-and-examples', 5, '5', '論刑沖會合解法', 'bounded definitions and examples for 刑/沖/會/合 plus adjacent root wording', '刑 · 冲 · 会 · 合 · 通根'),
+  loc('saju-source-ziping-zhenquan', 'ziping-p5-branch-relations-definition-and-examples', 5, '5', '論刑沖會合解法', 'explicit stem/branch examples, exceptions, and adjacent branch-relation definitions', '长生禄旺 · 根之重者也 · 甲逢未 · 乙逢戌 · 通根'),
   loc('saju-source-ziping-zhenquan', 'page.local.ziping.p6-yongshin', 6, '6', '論用神', 'month-command-first use-selection wording', '用神专求月令'),
-  loc('saju-source-ziping-zhenquan', 'page.local.ziping.p7-yongshin-continuation', 7, '7', '論用神成敗救應 / 論用神變化', 'success/rescue/change examples; semantic precedence not normalized', '成败救应 · 用神变化'),
+  loc('saju-source-ziping-zhenquan', 'page.local.ziping.p7-yongshin-continuation', 7, '7', '論用神成敗救應 / 論用神變化', 'success/rescue/change examples including a local 透/不透 contrast; semantic precedence not normalized', '成败救应 · 用神变化 · 不透甲而透丙'),
   loc('saju-source-ziping-zhenquan', 'page.local.ziping.p10-xiangshen', 10, '10', '論相神緊要', 'assistant/use-selection role wording', '辅者是也'),
   loc('saju-source-ziping-zhenquan', 'page.local.ziping.p11-xiangshen-continuation', 11, '11', '論墓庫刑沖之說', 'continuation with interaction conditions', '刑冲会合 conditions'),
   loc('saju-source-ziping-zhenquan', 'page.local.ziping.p15-xingyun', 15, '15', '論行運', 'bounded natal-chart/fortune pairing statement', '论运与命无二法'),
@@ -198,6 +198,38 @@ export const SAJU_QIONGTONG_SHENGWANG_JUE_ANALYSIS = Object.freeze({
   }),
   applicationScope: 'qiongtong-p2 其数 operation only; no mutation of Base distribution and no strength, balance, yongshin, gyeokguk, or personal conclusion',
   resultScope: 'lineage_derived_structural_result_only',
+})
+
+const ZIPING_EXPLICIT_STEM_BRANCH_EXAMPLES = Object.freeze([
+  { stem: '갑', branch: '미', sourceStem: '甲', sourceBranch: '未', sourceClass: 'explicit_support_example', sourceCategory: '墓库' },
+  { stem: '병', branch: '술', sourceStem: '丙', sourceBranch: '戌', sourceClass: 'explicit_support_example', sourceCategory: '墓库' },
+  { stem: '을', branch: '술', sourceStem: '乙', sourceBranch: '戌', sourceClass: 'explicit_negative_example', sourceCategory: 'source_states_branch_lacks_wood' },
+  { stem: '정', branch: '축', sourceStem: '丁', sourceBranch: '丑', sourceClass: 'explicit_negative_example', sourceCategory: 'source_states_branch_lacks_fire' },
+  { stem: '을', branch: '진', sourceStem: '乙', sourceBranch: '辰', sourceClass: 'explicit_support_example', sourceCategory: '余气' },
+  { stem: '정', branch: '미', sourceStem: '丁', sourceBranch: '未', sourceClass: 'explicit_support_example', sourceCategory: '余气' },
+  { stem: '갑', branch: '해', sourceStem: '甲', sourceBranch: '亥', sourceClass: 'explicit_support_example', sourceCategory: '长生禄刃' },
+  { stem: '갑', branch: '인', sourceStem: '甲', sourceBranch: '寅', sourceClass: 'explicit_support_example', sourceCategory: '长生禄刃' },
+  { stem: '갑', branch: '묘', sourceStem: '甲', sourceBranch: '卯', sourceClass: 'explicit_support_example', sourceCategory: '长生禄刃' },
+])
+
+export const SAJU_ZIPING_EXPLICIT_STEM_BRANCH_ANALYSIS = Object.freeze({
+  sourceId: 'saju-source-ziping-zhenquan',
+  locatorId: 'ziping-p5-branch-relations-definition-and-examples',
+  sourceByteSha256: '449336b5e35aa6811b0462093d0175c45a0add44065bf2d3845cff75981db692',
+  observedDefinition: 'p.5 contrasts branch examples such as 甲逢未/丙逢戌 with 乙逢戌/丁逢丑 and names 余气 and 长生禄刃 examples.',
+  adoptedSurface: 'exact source-listed stem/branch example matching with supplied hidden-stem inventory; no all-branch classification or strength ordering',
+  examples: ZIPING_EXPLICIT_STEM_BRANCH_EXAMPLES,
+  unresolved: Object.freeze([
+    'complete 本气/中气/余气 mapping for every branch',
+    'priority when multiple branch examples or categories coexist',
+    'the p.5 阴长生 exception (乙逢午/丁逢酉) beyond its stated comparison',
+    'interaction with month-command, other branches, 刑冲会合, and any semantic conclusion',
+  ]),
+  forbiddenSubstitutions: Object.freeze([
+    'generic modern 通根/十二运星 tables',
+    'a source rule from another lineage used to fill an unlisted pair',
+    'strength, weakness, yongshin, gyeokguk, or personal meaning',
+  ]),
 })
 
 export const SAJU_LINEAGE_RULES = Object.freeze([
@@ -302,6 +334,23 @@ export const SAJU_LINEAGE_RULES = Object.freeze([
     structuralOutput: ['branchRelationInventory', 'parallelRelationLedger'],
     exceptions: ['repository 破/害/半合 labels are retained as raw FACTs but are not claimed to be established by this page'],
     conflictPolicy: 'no relation precedence; no silent cancellation or winner selection',
+  }),
+  rule({
+    ruleId: 'rule.ziping.explicit-stem-branch-example-match.v0',
+    work: WORKS.ziping,
+    lineage: 'ziping_local_export',
+    status: 'adopted_lineage_rule',
+    ruleCompleteness: 'bounded_explicit_example_predicate',
+    executionStatus: 'executable_from_frozen_base',
+    sourceIds: ['saju-source-ziping-zhenquan'],
+    locatorIds: ['ziping-p5-branch-relations-definition-and-examples'],
+    observedRule: 'p.5 gives exact stem/branch examples for support and non-support and names the bounded categories 墓库、余气、长生禄刃; it does not provide a complete all-branch rule.',
+    preconditions: ['day-master stem is present', 'all four supplied branch and hidden-stem entries are present'],
+    inputFacts: [FACT_REFS.dayMaster, FACT_REFS.pillarFacts],
+    orderedSteps: ['read the supplied day-master stem as the bounded anchor', 'inspect each supplied branch value with its hidden-stem inventory', 'match only the exact p.5 example pairs', 'emit all matches without weighting, ranking, or semantic expansion'],
+    structuralOutput: ['explicitStemBranchExampleInventory'],
+    exceptions: ['p.5 阴长生 examples 乙逢午/丁逢酉 remain outside the executable pair set because the stated comparison does not close their input relation', 'unlisted stems/branches, 本气/中气/余气 tables, month-command priority, and 刑冲会合 interactions are not inferred'],
+    conflictPolicy: 'preserve every exact example match and any negative example; no merge with other lineages or source-wide root/exposure conclusions',
   }),
   rule({
     ruleId: 'rule.ziping.month-command-selection.v0',
@@ -687,6 +736,34 @@ export const SAJU_LINEAGE_STRUCTURAL_CONTRACTS = Object.freeze([
       semanticExpansion: false,
     },
   }),
+  structuralContractSpec('rule.ziping.explicit-stem-branch-example-match.v0', {
+    commonBaseFacts: [
+      { factRef: FACT_REFS.dayMaster, origin: 'frozen_base_common_fact' },
+      { factRef: FACT_REFS.pillarFacts, origin: 'frozen_base_common_fact' },
+    ],
+    applicability: [
+      'day-master stem, all four branch values, and all four supplied hidden-stem arrays must be present',
+      'the result is limited to the exact p.5 stem/branch examples listed by the source',
+    ],
+    procedure: [
+      'bind the supplied day-master stem as the bounded source anchor',
+      'read each supplied branch together with its supplied hidden-stem inventory',
+      'match only the exact source-listed stem/branch examples',
+      'emit every match without weighting, ranking, or semantic expansion',
+    ],
+    stopConditions: [
+      'stop when the day-master, a branch value, or a hidden-stem inventory is missing or malformed',
+      'do not infer an unlisted stem/branch pair or complete 本氣/中氣/餘氣 mapping',
+      'do not apply month-command, other-branch, or 刑沖會合 priority',
+      'do not output strength, balance, use selection, or personal meaning',
+    ],
+    output: {
+      origin: 'lineage_derived_structural_result',
+      resultKey: 'ziping.explicitStemBranchExampleInventory',
+      fields: ['anchorStem', 'matchedExamples', 'sourceExampleScope'],
+      semanticExpansion: false,
+    },
+  }),
   structuralContractSpec('rule.ditian.jia-wood-seasonal-condition.v0', {
     commonBaseFacts: [
       { factRef: FACT_REFS.dayMaster, origin: 'frozen_base_common_fact' },
@@ -884,6 +961,40 @@ function hasCompleteHiddenStemInventory(base) {
   })
 }
 
+function hasCompleteZipingStemBranchExampleInput(base) {
+  const dayMaster = readPath(base, FACT_REFS.dayMaster)
+  if (!dayMaster.present || typeof dayMaster.value !== 'string') return false
+  return PILLAR_POSITIONS.every(position => {
+    const pillar = readPath(base, `systems.saju.fact.pillarFacts.${position}`).value
+    return isObject(pillar)
+      && typeof pillar.branch === 'string'
+      && Array.isArray(pillar.hiddenStems)
+      && pillar.hiddenStems.every(entry => isObject(entry) && typeof entry.stem === 'string')
+  })
+}
+
+function explicitZipingStemBranchExamples(pillarFacts, dayMasterStem) {
+  const matches = []
+  for (const position of PILLAR_POSITIONS) {
+    const pillar = pillarFacts[position]
+    const candidate = ZIPING_EXPLICIT_STEM_BRANCH_EXAMPLES.find(item => item.stem === dayMasterStem && item.branch === pillar?.branch)
+    if (!candidate) continue
+    matches.push({
+      position,
+      anchorStem: dayMasterStem,
+      branch: pillar.branch,
+      hiddenStems: pillar.hiddenStems.map(entry => entry.stem),
+      sourceExample: {
+        sourceStem: candidate.sourceStem,
+        sourceBranch: candidate.sourceBranch,
+        sourceClass: candidate.sourceClass,
+        sourceCategory: candidate.sourceCategory,
+      },
+    })
+  }
+  return matches
+}
+
 function sourceSeasonContext(base) {
   const result = readPath(base, 'systems.saju.fact.seasonContext')
   if (!result.present || !isObject(result.value)) return null
@@ -966,6 +1077,15 @@ function executeRule(ruleItem, base) {
         precedence: 'none',
       })
     }
+    case 'rule.ziping.explicit-stem-branch-example-match.v0': {
+      if (!hasCompleteZipingStemBranchExampleInput(base)) return ruleResult(ruleItem, 'blocked_missing_base_fact', {}, 'day-master, branch, or hidden-stem FACT is missing or malformed')
+      const dayMasterStem = fact.dayMaster || fact.dayMasterDetails?.stem
+      return ruleResult(ruleItem, 'executable_from_frozen_base', {
+        anchorStem: dayMasterStem,
+        matchedExamples: explicitZipingStemBranchExamples(pillarFacts, dayMasterStem),
+        sourceExampleScope: 'ziping-p5-exact-stem-branch-examples-only',
+      })
+    }
     case 'rule.ditian.jia-wood-seasonal-condition.v0':
     case 'rule.qiongtong.jia-wood-seasonal-clauses.v0':
       if (!isJiaStem(fact.dayMaster) && !isJiaStem(fact.dayMasterDetails?.stem)) return ruleResult(ruleItem, 'not_applicable_fixture', {}, 'fixture day-master is not 甲/갑; no transfer to another stem')
@@ -1031,7 +1151,7 @@ export function checkSajuLineageReadingGrammar(grammar = SAJU_LINEAGE_READING_GR
       if (!locator) fail(`rule_locator:${item.ruleId}:${locatorId}`)
       else if (!(item.sourceIds || []).includes(locator.sourceId)) fail(`rule_locator_source:${item.ruleId}:${locatorId}`)
     }
-    if (item.status === 'adopted_lineage_rule' && !['bounded_complete_structural_frame', 'bounded_complete_procedure_frame', 'bounded_label_inventory_only', 'bounded_role_scope_not_service_day_table', 'bounded_relation_vocabulary', 'bounded_relation_inventory_not_resolution', 'bounded_condition_clause_for_jia_only', 'bounded_numeric_state_clause', 'bounded_numeric_operation_without_state_resolver', 'bounded_month_specific_condition_clauses'].includes(item.ruleCompleteness)) fail(`adopted_rule_incomplete:${item.ruleId}`)
+    if (item.status === 'adopted_lineage_rule' && !['bounded_complete_structural_frame', 'bounded_complete_procedure_frame', 'bounded_label_inventory_only', 'bounded_role_scope_not_service_day_table', 'bounded_relation_vocabulary', 'bounded_relation_inventory_not_resolution', 'bounded_explicit_example_predicate', 'bounded_condition_clause_for_jia_only', 'bounded_numeric_state_clause', 'bounded_numeric_operation_without_state_resolver', 'bounded_month_specific_condition_clauses'].includes(item.ruleCompleteness)) fail(`adopted_rule_incomplete:${item.ruleId}`)
     if ((item.status === 'unresolved' || item.status === 'unsupported') && (!item.observedRule || item.observedRule.length === 0)) fail(`unresolved_reason_missing:${item.ruleId}`)
   }
 
@@ -1136,6 +1256,7 @@ function unsatisfiedStructuralConditions(contract, base) {
   if (contract.ruleId === 'rule.yuanhai.hidden-stem-ten-god-label-inventory.v0' && !hasCompleteHiddenStemInventory(base)) conditions.push('complete_hidden_stem_inventory_missing')
   if (contract.ruleId === 'rule.sanming.human-element-month-command.v0' && !Array.isArray(readPath(base, FACT_REFS.monthHiddenStems).value)) conditions.push('month_hidden_stem_list_missing')
   if (contract.ruleId === 'rule.ziping.branch-relation-inventory.v0' && !Array.isArray(readPath(base, FACT_REFS.branchRelations).value)) conditions.push('branch_relation_list_missing')
+  if (contract.ruleId === 'rule.ziping.explicit-stem-branch-example-match.v0' && !hasCompleteZipingStemBranchExampleInput(base)) conditions.push('complete_stem_branch_example_input_missing')
   if (contract.ruleId === 'rule.ditian.jia-wood-seasonal-condition.v0' || contract.ruleId === 'rule.qiongtong.jia-wood-seasonal-clauses.v0') {
     if (isJiaStem(readPath(base, FACT_REFS.dayMaster).value) && !sourceSeasonContext(base)) conditions.push('explicit_season_or_solar_term_context_missing')
   }

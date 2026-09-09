@@ -8,6 +8,7 @@ import {
   SAJU_LINEAGE_RULES,
   SAJU_LINEAGE_STRUCTURAL_CONTRACTS,
   SAJU_QIONGTONG_SHENGWANG_JUE_ANALYSIS,
+  SAJU_ZIPING_EXPLICIT_STEM_BRANCH_ANALYSIS,
   checkSajuLineageReadingGrammar,
   checkSajuLineageStructuralResultContract,
   deriveSajuLineageStructuralResults,
@@ -73,11 +74,14 @@ test('real frozen Base executes only bounded structural rules and preserves line
     'rule.sanming.human-element-month-command.v0',
     'rule.sanming.element-generation-control-v0',
     'rule.ziping.branch-relation-inventory.v0',
+    'rule.ziping.explicit-stem-branch-example-match.v0',
   ]) assert.equal(byId[ruleId].executionStatus, 'executable_from_frozen_base', ruleId)
 
   assert.equal(byId['rule.ziping.branch-relation-inventory.v0'].output.precedence, 'none')
   assert.ok(byId['rule.ziping.branch-relation-inventory.v0'].output.relations.some(item => item.name === '충'))
   assert.ok(byId['rule.ziping.branch-relation-inventory.v0'].output.relations.some(item => item.name === '형'))
+  assert.equal(byId['rule.ziping.explicit-stem-branch-example-match.v0'].output.anchorStem, '계')
+  assert.deepEqual(byId['rule.ziping.explicit-stem-branch-example-match.v0'].output.matchedExamples, [])
   assert.equal(byId['rule.qiongtong.five-phase-number-season-state.v0'].executionStatus, 'blocked_missing_base_fact')
   assert.equal(byId['rule.ditian.jia-wood-seasonal-condition.v0'].executionStatus, 'not_applicable_fixture')
   assert.equal(byId['rule.qiongtong.jia-wood-seasonal-clauses.v0'].executionStatus, 'not_applicable_fixture')
@@ -106,7 +110,7 @@ test('missing hour, timing, and relation facts fail closed without source-rule i
 
 test('adopted rules have complete structural result contracts and keep common facts separate from lineage outputs', () => {
   assert.deepEqual(checkSajuLineageStructuralResultContract(), [])
-  assert.equal(SAJU_LINEAGE_STRUCTURAL_CONTRACTS.length, 9)
+  assert.equal(SAJU_LINEAGE_STRUCTURAL_CONTRACTS.length, 10)
   assert.deepEqual(
     SAJU_LINEAGE_STRUCTURAL_CONTRACTS.map(contract => contract.ruleId),
     SAJU_LINEAGE_RULES.filter(rule => rule.status === 'adopted_lineage_rule').map(rule => rule.ruleId),
@@ -123,6 +127,45 @@ test('adopted rules have complete structural result contracts and keep common fa
   assert.equal(SAJU_LINEAGE_RULES.find(rule => rule.ruleId === 'rule.ziping.root-exposure.v0').status, 'unresolved')
 })
 
+test('Ziping exact stem/branch examples are deterministic without promoting generic rooting or exposure', () => {
+  assert.equal(SAJU_ZIPING_EXPLICIT_STEM_BRANCH_ANALYSIS.locatorId, 'ziping-p5-branch-relations-definition-and-examples')
+  assert.ok(SAJU_ZIPING_EXPLICIT_STEM_BRANCH_ANALYSIS.unresolved.includes('complete 本气/中气/余气 mapping for every branch'))
+
+  const first = deriveSajuLineageStructuralResults(buildFrozenBase(JIA_BIRTH_INPUT))
+  const second = deriveSajuLineageStructuralResults(buildFrozenBase(JIA_BIRTH_INPUT))
+  assert.deepEqual(first, second)
+
+  const result = first.categories.derivedStructuralResults.find(item => item.ruleId === 'rule.ziping.explicit-stem-branch-example-match.v0')
+  assert.ok(result)
+  assert.equal(result.output.anchorStem, '갑')
+  assert.deepEqual(result.output.matchedExamples, [{
+    position: 'hour',
+    anchorStem: '갑',
+    branch: '미',
+    hiddenStems: ['기', '정', '을'],
+    sourceExample: {
+      sourceStem: '甲',
+      sourceBranch: '未',
+      sourceClass: 'explicit_support_example',
+      sourceCategory: '墓库',
+    },
+  }])
+  assert.equal(SAJU_LINEAGE_RULES.find(rule => rule.ruleId === 'rule.ziping.root-exposure.v0').status, 'unresolved')
+  assert.equal(first.boundary.noSemanticInterpretation, true)
+})
+
+test('Ziping exact stem/branch examples fail closed when hidden-stem input is incomplete', () => {
+  const base = buildFrozenBase(JIA_BIRTH_INPUT)
+  base.systems.saju.fact.pillarFacts.hour.hiddenStems = null
+  const result = deriveSajuLineageStructuralResults(base)
+  const gap = result.categories.prerequisiteGaps.find(item => item.ruleId === 'rule.ziping.explicit-stem-branch-example-match.v0')
+
+  assert.ok(gap)
+  assert.ok(gap.unsatisfiedConditions.includes('complete_stem_branch_example_input_missing'))
+  assert.equal(result.categories.derivedStructuralResults.some(item => item.ruleId === 'rule.ziping.explicit-stem-branch-example-match.v0'), false)
+  assert.equal(result.boundary.noSemanticInterpretation, true)
+})
+
 test('real frozen Base yields deterministic structural results with explicit prerequisite gaps and unresolved lanes', () => {
   const base = buildFrozenBase()
   const first = deriveSajuLineageStructuralResults(base)
@@ -131,8 +174,8 @@ test('real frozen Base yields deterministic structural results with explicit pre
   assert.deepEqual(first, second)
   assert.equal(first.contractValidation.valid, true)
   assert.equal(first.baseValidation.valid, true)
-  assert.equal(first.categories.executableRules.length, 6)
-  assert.equal(first.categories.derivedStructuralResults.length, 6)
+  assert.equal(first.categories.executableRules.length, 7)
+  assert.equal(first.categories.derivedStructuralResults.length, 7)
   assert.equal(first.categories.prerequisiteGaps.length, 1)
   assert.equal(first.categories.unresolvedRules.length, 5)
   assert.equal(first.categories.unsupportedRules.length, 2)
