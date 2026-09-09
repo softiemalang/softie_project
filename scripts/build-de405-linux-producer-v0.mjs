@@ -21,6 +21,7 @@ import {
   payloadFilesSha256,
   readJson,
   sha256File,
+  sha256Text,
   stableJson,
   sourceIdentity,
 } from './lib/de405-linux-producer-artifact-contract.mjs'
@@ -64,6 +65,31 @@ function run(command, args, options = {}) {
     const detail = `${error.stdout || ''}${error.stderr || ''}`.trim()
     throw new Error(`${command} ${args.join(' ')} failed${detail ? `: ${detail}` : ''}`)
   }
+}
+
+function packetSectionDigest(value) {
+  const serialized = stableJson(value)
+  return { bytes: Buffer.byteLength(serialized), sha256: sha256Text(serialized) }
+}
+
+function packetParityDiagnostic(linux, reference) {
+  const keys = [...new Set([...Object.keys(linux), ...Object.keys(reference)])].sort()
+  const sections = Object.fromEntries(keys.map((key) => {
+    const linuxDigest = packetSectionDigest(linux[key])
+    const referenceDigest = packetSectionDigest(reference[key])
+    return [key, { equal: linuxDigest.sha256 === referenceDigest.sha256, linux: linuxDigest, reference: referenceDigest }]
+  }))
+  const oracleIds = [...new Set([...Object.keys(linux.oracle || {}), ...Object.keys(reference.oracle || {})])].sort()
+  const oracle = Object.fromEntries(oracleIds.map((id) => {
+    const left = linux.oracle?.[id]
+    const right = reference.oracle?.[id]
+    return [id, {
+      equal: packetSectionDigest(left).sha256 === packetSectionDigest(right).sha256,
+      linux: left ? { selectedStep: left.selectedStep, worstCaseAcrossStepSweep: left.worstCaseAcrossStepSweep } : null,
+      reference: right ? { selectedStep: right.selectedStep, worstCaseAcrossStepSweep: right.worstCaseAcrossStepSweep } : null,
+    }]
+  }))
+  return { sections, oracle }
 }
 
 async function assertOfficialInputs(inputs) {
@@ -132,7 +158,18 @@ async function buildOnce({ inputs, packageRoot, sourceCommit, inputIdentity }) {
   const reference = await readJson(resolve(ROOT, ASTROLOGY_REFERENCE.fixturePath))
   const golden = await readJson(goldenPath)
   const referencePath = resolve(ROOT, ASTROLOGY_REFERENCE.fixturePath)
-  if (await sha256File(goldenPath) !== ASTROLOGY_REFERENCE.packetSha256 || (await readFile(goldenPath)).compare(await readFile(referencePath)) !== 0 || golden.rawChart?.sha256 !== ASTROLOGY_REFERENCE.rawChartSha256 || golden.ruleCore?.sha256 !== ASTROLOGY_REFERENCE.ruleCoreSha256 || JSON.stringify(golden.rawChart?.value) !== JSON.stringify(reference.rawChart?.value) || JSON.stringify(golden.ruleCore?.value) !== JSON.stringify(reference.ruleCore?.value)) fail('Linux/Mac Astrology canonical packet parity mismatch')
+  const linuxPacketBytes = await readFile(goldenPath)
+  const referencePacketBytes = await readFile(referencePath)
+  const packetParityFailed = await sha256File(goldenPath) !== ASTROLOGY_REFERENCE.packetSha256 || !linuxPacketBytes.equals(referencePacketBytes) || golden.rawChart?.sha256 !== ASTROLOGY_REFERENCE.rawChartSha256 || golden.ruleCore?.sha256 !== ASTROLOGY_REFERENCE.ruleCoreSha256 || JSON.stringify(golden.rawChart?.value) !== JSON.stringify(reference.rawChart?.value) || JSON.stringify(golden.ruleCore?.value) !== JSON.stringify(reference.ruleCore?.value)
+  if (packetParityFailed) {
+    console.error(JSON.stringify({
+      error: 'Linux/Mac Astrology canonical packet parity mismatch',
+      linuxPacket: { bytes: linuxPacketBytes.length, sha256: sha256Text(linuxPacketBytes) },
+      referencePacket: { bytes: referencePacketBytes.length, sha256: sha256Text(referencePacketBytes), expectedSha256: ASTROLOGY_REFERENCE.packetSha256 },
+      diagnostic: packetParityDiagnostic(golden, reference),
+    }, null, 2))
+    fail('Linux/Mac Astrology canonical packet parity mismatch')
+  }
   if (golden.availableForInterpretation !== false || golden.integrationStatus !== 'not_connected') fail('Astrology activation boundary changed')
 
   const files = {}
