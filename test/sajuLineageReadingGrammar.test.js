@@ -17,6 +17,9 @@ import {
   SAJU_SANMING_SOURCE_SEMANTIC_CONTRACTS,
   SAJU_SANMING_SOURCE_SEMANTIC_RULES,
   SAJU_QIONGTONG_SHENGWANG_JUE_ANALYSIS,
+  SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON,
+  SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON_STATUSES,
+  SAJU_SOURCE_SEMANTIC_LEXICON_COMPOSITION_READINESS,
   SAJU_ZIPING_CANDIDATE_CLOSABILITY,
   SAJU_ZIPING_EXPLICIT_STEM_BRANCH_ANALYSIS,
   SAJU_ZIPING_ROOT_EXPOSURE_ANALYSIS,
@@ -28,12 +31,14 @@ import {
   SAJU_YUANHAI_INVENTORY_STATUSES,
   SAJU_YUANHAI_RULE_INVENTORY,
   checkSajuLineageReadingGrammar,
+  checkSajuSourceBoundedSemanticLexicon,
   checkSajuSanmingSourceSemanticResultContract,
   checkSajuLineageSourceSemanticResultContract,
   checkSajuLineageStructuralResultContract,
   deriveSajuLineageSourceSemanticResults,
   deriveSajuSanmingSourceSemanticResults,
   deriveSajuLineageStructuralResults,
+  deriveSajuSourceBoundedSemanticLexiconEntries,
   evaluateSajuLineageReadingGrammar,
 } from '../src/interpretationPrep/sajuLineageReadingGrammar.js'
 
@@ -986,4 +991,112 @@ test('distinct applicable seasonal lineages preserve conflict and emit no merged
   assert.equal(result.categories.derivedStructuralResults.some(item => item.ruleId === 'rule.qiongtong.jia-wood-seasonal-clauses.v0'), false)
   assert.equal(result.boundary.lineageMerge, false)
   assert.equal(result.boundary.noSemanticInterpretation, true)
+})
+
+test('source-bounded semantic lexicon preserves five independent vocabularies and common semantic remains empty', () => {
+  assert.deepEqual(checkSajuSourceBoundedSemanticLexicon(), [])
+  assert.equal(SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON.length, 43)
+  assert.ok(SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON.every(entry => SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON_STATUSES.includes(entry.status)))
+  assert.deepEqual(
+    Object.fromEntries(
+      ['ziping_local_export', 'yuanhai_local_export', 'sanming_local_export', 'ditian_local_export', 'qiongtong_local_export']
+        .map(lineage => [lineage, Object.fromEntries(
+          [...new Set(SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON.filter(entry => entry.lineage === lineage).map(entry => entry.status))]
+            .map(status => [status, SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON.filter(entry => entry.lineage === lineage && entry.status === status).length]),
+        )]),
+    ),
+    {
+      ziping_local_export: { adopted_semantic_entry: 3, context_bound_entry: 3, unresolved: 1, unsupported: 1 },
+      yuanhai_local_export: { context_bound_entry: 1, adopted_semantic_entry: 2, unresolved: 1, unsupported: 2 },
+      sanming_local_export: { adopted_semantic_entry: 5, unresolved: 1, unsupported: 1 },
+      ditian_local_export: { adopted_semantic_entry: 4, context_bound_entry: 2, unresolved: 2 },
+      qiongtong_local_export: { adopted_semantic_entry: 1, unresolved: 1, context_bound_entry: 11, unsupported: 1 },
+    },
+  )
+  assert.deepEqual(SAJU_SOURCE_SEMANTIC_LEXICON_COMPOSITION_READINESS.commonSemanticCandidates, [])
+  assert.equal(SAJU_SOURCE_SEMANTIC_LEXICON_COMPOSITION_READINESS.compositionReady, false)
+  assert.equal(SAJU_LINEAGE_READING_GRAMMAR.sourceBoundedSemanticLexicon.commonSemanticCandidates.length, 0)
+  assert.ok(SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON.every(entry => entry.sourceIds.length === 1 && entry.provenance.sourceIds.length === 1))
+})
+
+test('semantic lexicon lookup preserves Base -> lineage result -> source term provenance without personal synthesis', () => {
+  const base = buildFrozenBase(ZIPING_P10_BIRTH_INPUT)
+  const structural = deriveSajuLineageStructuralResults(base)
+  const first = deriveSajuSourceBoundedSemanticLexiconEntries(base, structural)
+  const second = deriveSajuSourceBoundedSemanticLexiconEntries(base, structural)
+
+  assert.deepEqual(first, second)
+  assert.equal(first.lexiconValidation.valid, true)
+  assert.equal(first.boundary.noRecalculation, true)
+  assert.equal(first.boundary.noPersonalMeaning, true)
+  assert.equal(first.boundary.interpretationHypothesis, false)
+  assert.equal(first.boundary.crossLineageMerge, false)
+  const p10 = first.categories.resolvedSemanticEntries.find(entry => entry.entryId === 'lexicon.ziping.p10-role-labels.v0')
+  assert.ok(p10)
+  assert.deepEqual(p10.linkedStructuralRuleIds, ['rule.ziping.chen-exposure-inventory.v0'])
+  assert.deepEqual(p10.linkedSemanticRuleIds, ['rule.ziping.chen-exposure-use-role.v0'])
+  assert.equal(p10.provenance.chain.structuralRuleIds[0], 'rule.ziping.chen-exposure-inventory.v0')
+  assert.equal(p10.provenance.chain.semanticRuleIds[0], 'rule.ziping.chen-exposure-use-role.v0')
+  assert.equal(p10.provenance.chain.structuralResultIds.length, 1)
+  assert.equal(p10.provenance.chain.semanticResultIds.length, 1)
+  assert.equal(p10.sourceTerm, '偏財 · 正印 · 月劫')
+  assert.equal(p10.noPersonalMeaning, true)
+  assert.equal(p10.interpretationHypothesis, false)
+  assert.ok(first.categories.catalogSemanticEntries.some(entry => entry.entryId === 'lexicon.ziping.p3-life-cycle-terms.v0'))
+  assert.ok(first.categories.unsupportedEntries.some(entry => entry.entryId === 'lexicon.qiongtong-five-phase-nature.v0'))
+  assert.deepEqual(first.categories.commonSemanticCandidates, [])
+})
+
+test('semantic lexicon lookup fails closed on missing result and preserved cross-lineage ambiguity', () => {
+  const missingBase = buildFrozenBase(ZIPING_P10_BIRTH_INPUT)
+  missingBase.systems.saju.fact.pillarFacts.hour.stem = null
+  const missingStructural = deriveSajuLineageStructuralResults(missingBase)
+  const missing = deriveSajuSourceBoundedSemanticLexiconEntries(missingBase, missingStructural)
+  assert.equal(missing.categories.resolvedSemanticEntries.some(entry => entry.entryId === 'lexicon.ziping.p10-role-labels.v0'), false)
+  assert.ok(missing.categories.blockedEntries.some(entry => entry.entryId === 'lexicon.ziping.p10-role-labels.v0'))
+  assert.equal(missing.boundary.crossLineageMerge, false)
+
+  const base = buildFrozenBase(ZIPING_P10_BIRTH_INPUT)
+  const structural = deriveSajuLineageStructuralResults(base)
+  const conflictedStructural = {
+    ...structural,
+    categories: {
+      ...structural.categories,
+      lineageConflicts: [{
+        conflictId: 'conflict.test-semantic-lexicon',
+        ruleIds: ['rule.ziping.chen-exposure-inventory.v0', 'rule.ditian.shape-example-inventory.v0'],
+        sourceIds: ['saju-source-ziping-zhenquan', 'saju-source-ditian-sui'],
+        status: 'preserved_tension_fail_closed',
+      }],
+    },
+  }
+  const conflicted = deriveSajuSourceBoundedSemanticLexiconEntries(base, conflictedStructural)
+  assert.equal(conflicted.categories.resolvedSemanticEntries.some(entry => entry.entryId === 'lexicon.ziping.p10-role-labels.v0'), false)
+  const ambiguous = conflicted.categories.ambiguousEntries.find(entry => entry.entryId === 'lexicon.ziping.p10-role-labels.v0')
+  assert.ok(ambiguous)
+  assert.equal(ambiguous.conflictState.status, 'preserved_tension_fail_closed')
+  assert.equal(ambiguous.conflictState.winnerSelected, false)
+  assert.equal(conflicted.boundary.crossLineageMerge, false)
+  assert.ok(conflicted.categories.lineageConflicts.some(item => item.entryId === 'lexicon.ziping.p10-role-labels.v0'))
+})
+
+test('semantic lexicon rejects a cross-lineage result even when a named rule id is present', () => {
+  const base = buildFrozenBase(ZIPING_P10_BIRTH_INPUT)
+  const structural = deriveSajuLineageStructuralResults(base)
+  const mismatchedStructural = {
+    ...structural,
+    categories: {
+      ...structural.categories,
+      derivedStructuralResults: structural.categories.derivedStructuralResults.map(result => result.ruleId === 'rule.ziping.chen-exposure-inventory.v0'
+        ? { ...result, lineage: 'ditian_local_export', sourceIds: ['saju-source-ditian-sui'] }
+        : result),
+    },
+  }
+  const result = deriveSajuSourceBoundedSemanticLexiconEntries(base, mismatchedStructural)
+  assert.equal(result.categories.resolvedSemanticEntries.some(entry => entry.entryId === 'lexicon.ziping.p10-role-labels.v0'), false)
+  const ambiguous = result.categories.ambiguousEntries.find(entry => entry.entryId === 'lexicon.ziping.p10-role-labels.v0')
+  assert.ok(ambiguous)
+  assert.equal(ambiguous.lookupStatus, 'conflict_preserved')
+  assert.equal(ambiguous.conflictState.sourceMismatch, true)
+  assert.equal(result.boundary.crossLineageMerge, false)
 })

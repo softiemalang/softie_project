@@ -3659,6 +3659,976 @@ export const SAJU_SANMING_SOURCE_SEMANTIC_CONTRACTS = Object.freeze([
   sanmingSourceSemanticContractSpec('rule.sanming.role-nomenclature.v0'),
 ])
 
+export const SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON_SCHEMA = 'saju-source-bounded-semantic-lexicon-v0'
+export const SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON_VERSION = '0.1.0'
+export const SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON_STATUSES = Object.freeze([
+  'adopted_semantic_entry',
+  'context_bound_entry',
+  'unresolved',
+  'unsupported',
+])
+
+const SOURCE_SEMANTIC_LEXICON_COMPOSITION_STATES = Object.freeze([
+  'coexistence_only_until_source_priority_is_closed',
+  'unresolved_composition_frontier',
+])
+
+const sourceByteSha256ForIds = sourceIds => Object.fromEntries(
+  sourceIds.map(sourceId => [
+    sourceId,
+    SAJU_LINEAGE_SOURCE_PROFILES.find(source => source.sourceId === sourceId)?.byteSha256 || null,
+  ]),
+)
+
+const sourceSemanticLexiconEntry = value => {
+  const sourceIds = [...(value.sourceIds || [])]
+  const locatorIds = [...(value.locatorIds || [])]
+  return {
+    inventorySchema: SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON_SCHEMA,
+    version: SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON_VERSION,
+    claimPromotion: false,
+    semanticAuthority: 'not_established',
+    sourceIds,
+    locatorIds,
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: [],
+      closure: 'catalog_only_no_personal_application',
+    },
+    linkedStructuralRuleIds: [],
+    linkedSemanticRuleIds: [],
+    materializationMode: 'catalog_only_source_vocabulary',
+    target: {
+      symbolOrStructure: null,
+      kind: 'source_term',
+    },
+    sourceTerm: '',
+    directMeaningRange: {
+      kind: 'source_wording_only',
+      supportedClaims: [],
+      scope: 'source-bounded wording only',
+    },
+    applicability: [],
+    exceptions: [],
+    forbiddenExtensions: [...FORBIDDEN_EXTENSIONS],
+    compositionState: 'coexistence_only_until_source_priority_is_closed',
+    sourceObservation: '',
+    provenance: {
+      schema: SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON_SCHEMA,
+      version: SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON_VERSION,
+      sourceIds,
+      locatorIds,
+      sourceByteSha256: sourceByteSha256ForIds(sourceIds),
+    },
+    ...value,
+    sourceIds,
+    locatorIds,
+    provenance: value.provenance || {
+      schema: SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON_SCHEMA,
+      version: SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON_VERSION,
+      sourceIds,
+      locatorIds,
+      sourceByteSha256: sourceByteSha256ForIds(sourceIds),
+    },
+  }
+}
+
+/**
+ * Source vocabulary inventory.  This is deliberately not a modern meaning
+ * table: source terms remain in their local wording, and a resolved entry is
+ * only materialized when its named lineage rule/result chain is present.
+ */
+export const SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON = Object.freeze([
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.ziping.p3-life-cycle-terms.v0',
+    work: WORKS.ziping,
+    lineage: 'ziping_local_export',
+    sourceIds: ['saju-source-ziping-zhenquan'],
+    locatorIds: ['ziping-p3-yang-yin-root-cycle-and-tomb-exception'],
+    status: 'adopted_semantic_entry',
+    target: { symbolOrStructure: 'stem-life-cycle-and-root-qualification', kind: 'source_state_vocabulary' },
+    sourceTerm: '長生 · 沐浴 · 冠帶 · 臨官 · 帝旺 · 衰 · 病 · 死 · 墓 · 絕 · 胎 · 養',
+    directMeaningRange: {
+      kind: 'source_stage_definition',
+      supportedClaims: ['p.3 gives local definitions for the twelve stage terms and relates the cycle to source-local stem/branch qualification'],
+      scope: 'source vocabulary and stated definitions only; no complete resolver or strength conclusion',
+    },
+    applicability: ['the term is read only as the p.3 source vocabulary', 'the source-local yin/yang and tomb qualifications remain attached to the same locator'],
+    exceptions: ['no all-stem/all-branch lookup table is inferred', 'no modern 十二運星 table is imported'],
+    sourceObservation: 'p.3 directly defines the twelve stage terms and then qualifies the source-local root/tomb discussion.',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.ziping.p3-root-qualification.v0',
+    work: WORKS.ziping,
+    lineage: 'ziping_local_export',
+    sourceIds: ['saju-source-ziping-zhenquan'],
+    locatorIds: ['ziping-p3-yang-yin-root-cycle-and-tomb-exception'],
+    status: 'context_bound_entry',
+    target: { symbolOrStructure: 'stem-branch-root-qualification', kind: 'source_qualification' },
+    sourceTerm: '有根 · 無根 · 逢庫',
+    directMeaningRange: {
+      kind: 'source_qualification',
+      supportedClaims: ['p.3 uses 有根/無根 and 逢庫 in a local qualification passage'],
+      scope: 'source-local qualification only; no strength/weakness or personal meaning',
+    },
+    applicability: ['source-local stem/branch and tomb context would have to be bound'],
+    exceptions: ['yin/yang exception and complete state precedence are not closed'],
+    sourceObservation: 'p.3 places 有根/無根 beside the life-cycle and tomb examples; it is not a complete generic predicate.',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.ziping.p5-relation-action-terms.v0',
+    work: WORKS.ziping,
+    lineage: 'ziping_local_export',
+    sourceIds: ['saju-source-ziping-zhenquan'],
+    locatorIds: ['ziping-p5-branch-relations-definition-and-examples'],
+    status: 'context_bound_entry',
+    linkedStructuralRuleIds: ['rule.ziping.branch-relation-inventory.v0'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.ziping.branch-relation-inventory.v0'],
+      fields: ['relations', 'sourceListedRelationNames'],
+      closure: 'inventory_closed_resolution_not_closed',
+    },
+    materializationMode: 'linked_result_only',
+    target: { symbolOrStructure: 'branch-relation-inventory', kind: 'source_action_vocabulary' },
+    sourceTerm: '刑 · 沖 · 會 · 合 · 解',
+    directMeaningRange: {
+      kind: 'source_relation_action_vocabulary',
+      supportedClaims: ['p.5 names 刑/沖/會/合 and discusses whether a relation can be 解'],
+      scope: 'relation/action labels only; no cancellation, valence, or winner selection',
+    },
+    applicability: ['the supplied branch relation inventory is present', 'the source-local relation context remains separate from other lineages'],
+    exceptions: ['simultaneous relation labels remain present', 'the source does not close a complete precedence resolver in this lane'],
+    sourceObservation: 'p.5 directly presents the relation names and examples while leaving relation resolution case-bound.',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.ziping.p6-yongshen-term.v0',
+    work: WORKS.ziping,
+    lineage: 'ziping_local_export',
+    sourceIds: ['saju-source-ziping-zhenquan'],
+    locatorIds: ['page.local.ziping.p6-yongshin'],
+    status: 'unresolved',
+    target: { symbolOrStructure: '用神', kind: 'source_selection_term' },
+    sourceTerm: '用神',
+    directMeaningRange: {
+      kind: 'source_selection_term',
+      supportedClaims: ['p.6 states 用神 is sought from the month command'],
+      scope: 'source statement only; no selection result or priority algorithm',
+    },
+    applicability: ['a complete source-defined selection procedure would be required'],
+    exceptions: ['do not choose 用神 from a heading or from modern practice'],
+    sourceObservation: 'p.6 gives the governing phrase but continues into case-specific conditions without a complete universal selector.',
+    compositionState: 'unresolved_composition_frontier',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.ziping.p7-selection-clause.v0',
+    work: WORKS.ziping,
+    lineage: 'ziping_local_export',
+    sourceIds: ['saju-source-ziping-zhenquan'],
+    locatorIds: ['page.local.ziping.p7-yongshin-continuation'],
+    status: 'adopted_semantic_entry',
+    linkedStructuralRuleIds: ['rule.ziping.yin-month-exposure-contrast.v0'],
+    linkedSemanticRuleIds: ['rule.ziping.yin-month-exposure-change.v0'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.ziping.yin-month-exposure-contrast.v0'],
+      fields: ['sourceCondition', 'absentVisibleStem', 'exposedVisibleStem', 'exposedPositions'],
+      closure: 'closed_in_existing_contract',
+    },
+    materializationMode: 'linked_result_only',
+    target: { symbolOrStructure: '寅月-不透甲而透丙', kind: 'source_clause' },
+    sourceTerm: '同知得以作主',
+    directMeaningRange: {
+      kind: 'source_local_selection_change_clause',
+      supportedClaims: ['p.7 attaches 同知得以作主 to the exact 不透甲而透丙 case'],
+      scope: 'exact p.7 clause only; not a global 用神 priority or personal conclusion',
+    },
+    applicability: ['the p.7 structural contrast and semantic rule result are both materialized'],
+    exceptions: ['duplicate visible 丙, another month, or another lineage blocks the entry'],
+    sourceObservation: 'p.7 places the phrase inside the local 用神变化 discussion and the existing executable rule preserves that scope.',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.ziping.p10-role-labels.v0',
+    work: WORKS.ziping,
+    lineage: 'ziping_local_export',
+    sourceIds: ['saju-source-ziping-zhenquan'],
+    locatorIds: ['ziping-p10-chen-exposed-stem-definition'],
+    status: 'adopted_semantic_entry',
+    linkedStructuralRuleIds: ['rule.ziping.chen-exposure-inventory.v0'],
+    linkedSemanticRuleIds: ['rule.ziping.chen-exposure-use-role.v0'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.ziping.chen-exposure-inventory.v0'],
+      fields: ['namedExposureMatches', 'multiplicity'],
+      closure: 'closed_in_existing_contract',
+    },
+    materializationMode: 'linked_result_only',
+    target: { symbolOrStructure: '甲生辰月-named-exposure', kind: 'source_role_label' },
+    sourceTerm: '偏財 · 正印 · 月劫',
+    directMeaningRange: {
+      kind: 'source_role_label_inventory',
+      supportedClaims: ['p.10 names 戊/癸/乙 exposure as 偏財/正印/月劫 in the exact 甲生辰月 passage'],
+      scope: 'source role labels attached to named exposures only; no modern ten-god meaning table',
+    },
+    applicability: ['the exact p.10 structural and semantic results are materialized'],
+    exceptions: ['other stems, month branches, or role chapters are not included'],
+    sourceObservation: 'p.10 defines 透干 in the local 甲生辰月 case and names the three role labels.',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.ziping.p11-sentiment-terms.v0',
+    work: WORKS.ziping,
+    lineage: 'ziping_local_export',
+    sourceIds: ['saju-source-ziping-zhenquan'],
+    locatorIds: ['ziping-p11-exposed-stem-and-branch-context'],
+    status: 'context_bound_entry',
+    target: { symbolOrStructure: 'exposure-and-branch-composition', kind: 'source_composition_vocabulary' },
+    sourceTerm: '有情 · 無情',
+    directMeaningRange: {
+      kind: 'source_composition_vocabulary',
+      supportedClaims: ['p.11 defines 有情 as 順而相成 and 無情 as 逆而相背'],
+      scope: 'source definitions and examples only; no static valence or personal meaning',
+    },
+    applicability: ['透干, 會支, and the source case conditions must be bound together'],
+    exceptions: ['transition examples 有情而卒成無情 and 無情而終有情 remain separate'],
+    sourceObservation: 'p.11 gives both definitions and transition examples, so the terms are not a single static classifier.',
+    compositionState: 'unresolved_composition_frontier',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.ziping.p14-personal-surface.v0',
+    work: WORKS.ziping,
+    lineage: 'ziping_local_export',
+    sourceIds: ['saju-source-ziping-zhenquan'],
+    locatorIds: ['ziping-p14-six-relations-use'],
+    status: 'unsupported',
+    target: { symbolOrStructure: '六親/宮分', kind: 'personal_semantic_surface' },
+    sourceTerm: '配六親',
+    directMeaningRange: {
+      kind: 'out_of_public_scope',
+      supportedClaims: ['p.14 enters palace and six-relation mapping language'],
+      scope: 'not materialized in the source-bounded public lexicon',
+    },
+    applicability: ['personal/family semantic mapping would be required'],
+    exceptions: ['no family, spouse, child, or personal result is exposed'],
+    sourceObservation: 'p.14 directly moves into a personal/family semantic surface outside this v0 boundary.',
+  }),
+
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.yuanhai.role-label-opening.v0',
+    work: WORKS.yuanhai,
+    lineage: 'yuanhai_local_export',
+    sourceIds: ['saju-source-yuanhai-ziping'],
+    locatorIds: ['yuanhai-p2-foundation'],
+    status: 'context_bound_entry',
+    target: { symbolOrStructure: 'stem-polarity-and-role-labels', kind: 'source_role_vocabulary' },
+    sourceTerm: '五干屬陽 · 喜合 · 五干屬陰 · 喜沖',
+    directMeaningRange: {
+      kind: 'source_role_vocabulary',
+      supportedClaims: ['p.2 places stem polarity and 喜合/喜沖 wording in the opening role-label surface'],
+      scope: 'source wording only; no polarity-to-personality or fortune translation',
+    },
+    applicability: ['the local stem relation and surrounding clause context must be supplied'],
+    exceptions: ['do not normalize these phrases into a universal polarity rule'],
+    sourceObservation: 'p.2 directly displays the polarity/combination wording beside role-label examples.',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.yuanhai.day-anchor-role-frame.v0',
+    work: WORKS.yuanhai,
+    lineage: 'yuanhai_local_export',
+    sourceIds: ['saju-source-yuanhai-ziping'],
+    locatorIds: ['yuanhai-p6-day-as-host', 'yuanhai-p7-month-command'],
+    status: 'adopted_semantic_entry',
+    linkedStructuralRuleIds: ['rule.yuanhai.day-anchor-month-command-frame.v0'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.yuanhai.day-anchor-month-command-frame.v0'],
+      fields: ['sourceRoleFrame', 'factRefs'],
+      closure: 'closed_in_existing_contract',
+    },
+    materializationMode: 'linked_result_only',
+    target: { symbolOrStructure: '年/月/日/時 role frame', kind: 'source_role_frame' },
+    sourceTerm: '日為主 · 年為根 · 月為提綱/苗 · 日為花 · 時為輔佐/果',
+    directMeaningRange: {
+      kind: 'source_role_frame',
+      supportedClaims: ['p.6–p.7 assigns the supplied year/month/day/hour positions the displayed source roles'],
+      scope: 'position-role frame only; no strength, pattern, or personal result',
+    },
+    applicability: ['the exact four-pillar Yuanhai structural frame is materialized'],
+    exceptions: ['missing hour or non-exact time blocks the frame'],
+    sourceObservation: 'p.6–p.7 directly state the day anchor and the year/month/day/hour role order.',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.yuanhai.dayun-seun-focus.v0',
+    work: WORKS.yuanhai,
+    lineage: 'yuanhai_local_export',
+    sourceIds: ['saju-source-yuanhai-ziping'],
+    locatorIds: ['yuanhai-p9-dayun-focus-lens'],
+    status: 'adopted_semantic_entry',
+    linkedStructuralRuleIds: ['rule.yuanhai.dayun-branch-seun-stem-lens.v0'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.yuanhai.dayun-branch-seun-stem-lens.v0'],
+      fields: ['focusFrame', 'activeDayun', 'seUn'],
+      closure: 'closed_in_existing_contract',
+    },
+    materializationMode: 'linked_result_only',
+    target: { symbolOrStructure: '大運/歲君 focus frame', kind: 'source_timing_lens' },
+    sourceTerm: '大運看支 · 歲君看干',
+    directMeaningRange: {
+      kind: 'source_focus_lens',
+      supportedClaims: ['p.9 assigns supplied 大運 attention to the branch and supplied 歲君 attention to the stem'],
+      scope: 'focus lens only; no timing recomputation or outcome',
+    },
+    applicability: ['the supplied active 大運 and 歲君/stem facts are present'],
+    exceptions: ['direction, start age, transition, and fortune wording remain outside the entry'],
+    sourceObservation: 'p.9 directly states 大運看支、歲君看干 and the existing structural rule preserves it as a lens.',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.yuanhai-life-cycle-action-terms.v0',
+    work: WORKS.yuanhai,
+    lineage: 'yuanhai_local_export',
+    sourceIds: ['saju-source-yuanhai-ziping'],
+    locatorIds: ['yuanhai-p6-day-as-host'],
+    status: 'unresolved',
+    target: { symbolOrStructure: '生旺死絕休囚制化', kind: 'source_state_action_vocabulary' },
+    sourceTerm: '生旺死絕休囚制化',
+    directMeaningRange: {
+      kind: 'source_state_action_vocabulary',
+      supportedClaims: ['p.6 places 生旺死絕休囚制化 inside the day-as-host discussion'],
+      scope: 'vocabulary only; no complete state resolver or priority',
+    },
+    applicability: ['a source-complete state/action procedure is required'],
+    exceptions: ['do not import the Sanming or Qiongtong state tables'],
+    sourceObservation: 'p.6 names the state/action vocabulary but does not close the full source-specific application procedure.',
+    compositionState: 'unresolved_composition_frontier',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.yuanhai-personal-surfaces.v0',
+    work: WORKS.yuanhai,
+    lineage: 'yuanhai_local_export',
+    sourceIds: ['saju-source-yuanhai-ziping'],
+    locatorIds: ['yuanhai-p11-disease', 'yuanhai-p13-temperament', 'yuanhai-p14-stem-body-poems'],
+    status: 'unsupported',
+    target: { symbolOrStructure: '疾病/性情/干體', kind: 'personal_semantic_surface' },
+    sourceTerm: '論疾病 · 性情 · 干體詩',
+    directMeaningRange: {
+      kind: 'out_of_public_scope',
+      supportedClaims: ['p.11–p.14 contain explicit disease, temperament, and stem-body descriptions'],
+      scope: 'not materialized; no trait or health translation',
+    },
+    applicability: ['personal or health semantic context would be required'],
+    exceptions: ['do not translate element/stem terms into traits or health claims'],
+    sourceObservation: 'the locators directly enter personal-description surfaces outside the v0 lexicon boundary.',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.yuanhai-family-gender-surfaces.v0',
+    work: WORKS.yuanhai,
+    lineage: 'yuanhai_local_export',
+    sourceIds: ['saju-source-yuanhai-ziping'],
+    locatorIds: ['yuanhai-p48-six-relations', 'yuanhai-p56-womens-fate'],
+    status: 'unsupported',
+    target: { symbolOrStructure: '六親/女命', kind: 'personal_family_surface' },
+    sourceTerm: '六親總篇 · 女命總訣',
+    directMeaningRange: {
+      kind: 'out_of_public_scope',
+      supportedClaims: ['p.48 and p.56 directly frame family/gender meanings'],
+      scope: 'not materialized in the public lexicon',
+    },
+    applicability: ['family/gender semantic mapping would be required'],
+    exceptions: ['no spouse, child, or gender conclusion is produced'],
+    sourceObservation: 'the source headings and adjacent prose are explicit, but the surface is outside the requested non-personal lexicon.',
+  }),
+
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.sanming.generation-control.v0',
+    work: WORKS.sanming,
+    lineage: 'sanming_local_export',
+    sourceIds: ['saju-source-sanming-tonghui'],
+    locatorIds: ['sanming-p4-element-generation', 'sanming-p5-element-generation-control', 'sanming-p6-stem-branch-origin'],
+    status: 'adopted_semantic_entry',
+    linkedStructuralRuleIds: ['rule.sanming.element-generation-control-v0'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.sanming.element-generation-control-v0'],
+      fields: ['elementInventory', 'existingStemRelations'],
+      closure: 'closed_in_existing_contract',
+    },
+    materializationMode: 'linked_result_only',
+    target: { symbolOrStructure: '五行 relation graph', kind: 'source_action_vocabulary' },
+    sourceTerm: '生 · 克 · 制化',
+    directMeaningRange: {
+      kind: 'source_relation_action_vocabulary',
+      supportedClaims: ['p.4–p.6 present the source generation/control vocabulary and supplied relation frame'],
+      scope: 'relation/action vocabulary only; no force, balance, or personal result',
+    },
+    applicability: ['the Sanming element/relation structural result is materialized'],
+    exceptions: ['do not recalculate the frozen element distribution or merge another lineage relation table'],
+    sourceObservation: 'p.4–p.6 directly present 五行生成/生克 and stem-branch origin language.',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.sanming.human-element-service.v0',
+    work: WORKS.sanming,
+    lineage: 'sanming_local_export',
+    sourceIds: ['saju-source-sanming-tonghui'],
+    locatorIds: ['sanming-p65-human-element-and-month-command', 'sanming-p66-seasonal-hidden-stem-service'],
+    status: 'adopted_semantic_entry',
+    linkedStructuralRuleIds: ['rule.sanming.human-element-month-command.v0'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.sanming.human-element-month-command.v0'],
+      fields: ['monthCommandBranch', 'hiddenStems'],
+      closure: 'closed_in_existing_contract',
+    },
+    materializationMode: 'linked_result_only',
+    target: { symbolOrStructure: '月令 hidden-stem role', kind: 'source_role_state_vocabulary' },
+    sourceTerm: '人元 · 司事之神',
+    directMeaningRange: {
+      kind: 'source_role_state_vocabulary',
+      supportedClaims: ['p.65–p.66 names 人元 and 司事之神 in the month-command/hidden-stem surface'],
+      scope: 'source role and supplied hidden-stem inventory only; no service-day weight table',
+    },
+    applicability: ['the supplied month branch and hidden-stem inventory are present'],
+    exceptions: ['the single p.66 service-day example is not generalized'],
+    sourceObservation: 'p.65–p.66 directly identify the human element/service role while the existing structural rule stops at the supplied inventory.',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.sanming.season-state-vocabulary.v0',
+    work: WORKS.sanming,
+    lineage: 'sanming_local_export',
+    sourceIds: ['saju-source-sanming-tonghui'],
+    locatorIds: ['sanming-p67-seasonal-state', 'sanming-p68-twelve-palace-vocabulary'],
+    status: 'adopted_semantic_entry',
+    linkedStructuralRuleIds: ['rule.sanming.seasonal-state-inventory.v0'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.sanming.seasonal-state-inventory.v0'],
+      fields: ['seasonWindow', 'elementStateBySeason', 'twelvePalaceVocabulary'],
+      closure: 'closed_in_existing_contract',
+    },
+    materializationMode: 'linked_result_only',
+    target: { symbolOrStructure: 'seasonal element state', kind: 'source_state_vocabulary' },
+    sourceTerm: '旺 · 相 · 休 · 囚 · 死',
+    directMeaningRange: {
+      kind: 'source_seasonal_state_vocabulary',
+      supportedClaims: ['p.67 assigns the displayed 旺相休囚死 labels to the source seasonal windows'],
+      scope: 'source seasonal state labels only; no balance or personal conclusion',
+    },
+    applicability: ['the supplied month branch matches the source seasonal window'],
+    exceptions: ['the source sixth-month 土旺 window remains source-local', 'no state ranking beyond the supplied source output'],
+    sourceObservation: 'p.67 directly displays the seasonal state vocabulary and p.68 continues with source stage labels.',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.sanming.twelve-palace-vocabulary.v0',
+    work: WORKS.sanming,
+    lineage: 'sanming_local_export',
+    sourceIds: ['saju-source-sanming-tonghui'],
+    locatorIds: ['sanming-p68-twelve-palace-vocabulary'],
+    status: 'adopted_semantic_entry',
+    linkedStructuralRuleIds: ['rule.sanming.seasonal-state-inventory.v0'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.sanming.seasonal-state-inventory.v0'],
+      fields: ['twelvePalaceVocabulary'],
+      closure: 'closed_in_existing_contract',
+    },
+    materializationMode: 'linked_result_only',
+    target: { symbolOrStructure: '五行寄生十二宮 labels', kind: 'source_state_vocabulary' },
+    sourceTerm: '長生 · 沐浴 · 冠帶 · 臨官 · 帝旺 · 衰 · 病 · 死 · 墓 · 絕 · 胎 · 養',
+    directMeaningRange: {
+      kind: 'source_stage_vocabulary',
+      supportedClaims: ['p.68 lists the twelve source stage labels under the titled seasonal-state discussion'],
+      scope: 'label inventory only; no modern stage resolver',
+    },
+    applicability: ['the Sanming seasonal-state structural result is materialized'],
+    exceptions: ['do not merge these labels with Ziping or Qiongtong state procedures'],
+    sourceObservation: 'p.68 directly lists the stage vocabulary; the existing structural rule preserves the list without applying it.',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.sanming.role-nomenclature.v0',
+    work: WORKS.sanming,
+    lineage: 'sanming_local_export',
+    sourceIds: ['saju-source-sanming-tonghui'],
+    locatorIds: ['sanming-p162-role-nomenclature'],
+    status: 'adopted_semantic_entry',
+    linkedStructuralRuleIds: ['rule.sanming.visible-stem-frame.v0'],
+    linkedSemanticRuleIds: ['rule.sanming.role-nomenclature.v0'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.sanming.visible-stem-frame.v0'],
+      fields: ['dayMasterStem', 'visibleStemInventory'],
+      closure: 'closed_in_existing_contract',
+    },
+    materializationMode: 'linked_result_only',
+    target: { symbolOrStructure: 'visible stem relation labels', kind: 'source_role_label' },
+    sourceTerm: '印綬 · 食神 · 官煞 · 妻財 · 正/偏',
+    directMeaningRange: {
+      kind: 'source_role_nomenclature',
+      supportedClaims: ['p.162 names the bounded 正/偏 role labels and the source nomenclature 印綬/食神/官煞/妻財'],
+      scope: 'role names only; adjacent family analogy and outcomes are excluded',
+    },
+    applicability: ['the Sanming visible-stem and role-nomenclature results are materialized'],
+    exceptions: ['unknown or same-element labels remain fail-closed', 'no family analogy is emitted'],
+    sourceObservation: 'p.162 directly defines the role nomenclature and then continues into family analogy; only the nomenclature lane is retained.',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.sanming.composition-terms.v0',
+    work: WORKS.sanming,
+    lineage: 'sanming_local_export',
+    sourceIds: ['saju-source-sanming-tonghui'],
+    locatorIds: ['sanming-p78-stem-combination', 'sanming-p81-stem-transformation', 'sanming-p85-branch-combinations', 'sanming-p90-three-punishments', 'sanming-p93-branch-conflict'],
+    status: 'unresolved',
+    target: { symbolOrStructure: 'stem/branch composition', kind: 'source_composition_vocabulary' },
+    sourceTerm: '合 · 化 · 刑 · 沖',
+    directMeaningRange: {
+      kind: 'source_composition_vocabulary',
+      supportedClaims: ['p.78–p.93 contain source sections for combinations, transformation, punishment, and conflict'],
+      scope: 'term inventory only; no precedence, transformation winner, or outcome',
+    },
+    applicability: ['source-specific composition definitions and exceptions must be closed'],
+    exceptions: ['do not use Ziping or modern combination tables'],
+    sourceObservation: 'the source has direct headings and examples, but the current contract does not close a single source priority grammar.',
+    compositionState: 'unresolved_composition_frontier',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.sanming.shensha-surface.v0',
+    work: WORKS.sanming,
+    lineage: 'sanming_local_export',
+    sourceIds: ['saju-source-sanming-tonghui'],
+    locatorIds: ['sanming-p106-shensha', 'sanming-p130-shensha-summary'],
+    status: 'unsupported',
+    target: { symbolOrStructure: '神煞', kind: 'unsupported_semantic_surface' },
+    sourceTerm: '天乙貴人 · 總論諸神煞',
+    directMeaningRange: {
+      kind: 'out_of_public_scope',
+      supportedClaims: ['p.106 and p.130 directly present shensha sections and outcome clauses'],
+      scope: 'not materialized as a public semantic entry',
+    },
+    applicability: ['a source-complete non-outcome mapping would be required'],
+    exceptions: ['do not expose shensha as personal or fortune meaning'],
+    sourceObservation: 'the locators are direct shensha surfaces, but their public non-outcome contract remains unsupported.',
+  }),
+
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.ditian.heaven-earth-human.v0',
+    work: WORKS.ditian,
+    lineage: 'ditian_local_export',
+    sourceIds: ['saju-source-ditian-sui'],
+    locatorIds: ['ditian-p2-heaven-earth-human-frame'],
+    status: 'adopted_semantic_entry',
+    linkedStructuralRuleIds: ['rule.ditian.heaven-earth-human-frame.v0'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.ditian.heaven-earth-human-frame.v0'],
+      fields: ['positions', 'sourceLabels'],
+      closure: 'closed_in_existing_contract',
+    },
+    materializationMode: 'linked_result_only',
+    target: { symbolOrStructure: 'stem/branch/hidden-stem frame', kind: 'source_role_frame' },
+    sourceTerm: '天元 · 地元 · 人元',
+    directMeaningRange: {
+      kind: 'source_role_frame',
+      supportedClaims: ['p.2 assigns the supplied visible stem, visible branch, and hidden-stem layer the displayed source labels'],
+      scope: 'role frame only; no 順悖, 吉凶, or personal meaning',
+    },
+    applicability: ['the exact Ditian heaven/earth/human structural result is materialized'],
+    exceptions: ['do not attach p.2 outcome wording to the frame'],
+    sourceObservation: 'p.2 directly states 日干为天元, 地支为地元, and 支中所藏为人元.',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.ditian-branch-categories.v0',
+    work: WORKS.ditian,
+    lineage: 'ditian_local_export',
+    sourceIds: ['saju-source-ditian-sui'],
+    locatorIds: ['ditian-p10-branch-categories'],
+    status: 'adopted_semantic_entry',
+    linkedStructuralRuleIds: ['rule.ditian.branch-category-inventory.v0'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.ditian.branch-category-inventory.v0'],
+      fields: ['branchCategories'],
+      closure: 'closed_in_existing_contract',
+    },
+    materializationMode: 'linked_result_only',
+    target: { symbolOrStructure: 'branch category inventory', kind: 'source_category_vocabulary' },
+    sourceTerm: '陽支 · 陰支 · 四生 · 四庫 · 四敗',
+    directMeaningRange: {
+      kind: 'source_category_vocabulary',
+      supportedClaims: ['p.10 lists the five named branch groups and their member sets'],
+      scope: 'category labels and memberships only; no preference/outcome rule',
+    },
+    applicability: ['the exact source branch-category inventory is materialized'],
+    exceptions: ['p.10 preference and conflict prose is not attached to the category entry'],
+    sourceObservation: 'p.10 directly lists the yang/yin, four-birth, four-storehouse, and four-defeat groups.',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.ditian-shape-labels.v0',
+    work: WORKS.ditian,
+    lineage: 'ditian_local_export',
+    sourceIds: ['saju-source-ditian-sui'],
+    locatorIds: ['ditian-p12-shape-examples'],
+    status: 'adopted_semantic_entry',
+    linkedStructuralRuleIds: ['rule.ditian.shape-example-inventory.v0'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.ditian.shape-example-inventory.v0'],
+      fields: ['matchedExamples'],
+      closure: 'closed_in_existing_contract',
+    },
+    materializationMode: 'linked_result_only',
+    target: { symbolOrStructure: 'exact p.12 形 examples', kind: 'source_shape_label' },
+    sourceTerm: '形全 · 形缺',
+    directMeaningRange: {
+      kind: 'source_exact_example_label',
+      supportedClaims: ['p.12 labels the four retained examples as 形全 or 形缺'],
+      scope: 'exact named examples only; no generalized shape classifier or personal meaning',
+    },
+    applicability: ['the supplied day-master/month pair matches one of the exact p.12 examples'],
+    exceptions: ['do not extend the four examples to other stems or months'],
+    sourceObservation: 'p.12 gives exact 甲/丙 形全 and 戊/庚 形缺 examples in named seasonal windows.',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.ditian-fang-ju-labels.v0',
+    work: WORKS.ditian,
+    lineage: 'ditian_local_export',
+    sourceIds: ['saju-source-ditian-sui'],
+    locatorIds: ['ditian-p13-fang-ju-examples'],
+    status: 'adopted_semantic_entry',
+    linkedStructuralRuleIds: ['rule.ditian.fang-ju-example-inventory.v0'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.ditian.fang-ju-example-inventory.v0'],
+      fields: ['matchedExamples'],
+      closure: 'closed_in_existing_contract',
+    },
+    materializationMode: 'linked_result_only',
+    target: { symbolOrStructure: 'exact branch-set 方/局 examples', kind: 'source_relation_label' },
+    sourceTerm: '方 · 局 · 東方 · 木局',
+    directMeaningRange: {
+      kind: 'source_exact_relation_label',
+      supportedClaims: ['p.13 labels 寅卯辰 as 東方 and 亥卯未 as 木局 in the retained examples'],
+      scope: 'exact branch sets and source labels only; no strength, preference, or outcome',
+    },
+    applicability: ['the supplied branches match one of the exact p.13 sets'],
+    exceptions: ['方/局 mixture and subsequent 格局/outcome language remain outside the entry'],
+    sourceObservation: 'p.13 directly distinguishes 方 and 局 with the two retained branch-set examples.',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.ditian-progress-shunbei.v0',
+    work: WORKS.ditian,
+    lineage: 'ditian_local_export',
+    sourceIds: ['saju-source-ditian-sui'],
+    locatorIds: ['ditian-p3-progress-retreat-shunbei'],
+    status: 'context_bound_entry',
+    target: { symbolOrStructure: '氣行 and 配合 conditions', kind: 'source_state_action_vocabulary' },
+    sourceTerm: '進 · 退 · 順 · 悖',
+    directMeaningRange: {
+      kind: 'source_state_action_vocabulary',
+      supportedClaims: ['p.3 places 進退 and 順悖 in the source discussion of 氣行 and 配合'],
+      scope: 'source vocabulary only; adjacent 吉凶 wording is not materialized',
+    },
+    applicability: ['source氣/勢 and 配合 conditions would need to be bound'],
+    exceptions: ['do not infer a generic progress/retreat classifier or fortune result'],
+    sourceObservation: 'p.3 directly uses the terms beside the source sentence 順則吉/悖則凶, so the non-outcome entry remains context-bound.',
+    compositionState: 'unresolved_composition_frontier',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.ditian-geju-exposure.v0',
+    work: WORKS.ditian,
+    lineage: 'ditian_local_export',
+    sourceIds: ['saju-source-ditian-sui'],
+    locatorIds: ['ditian-p13-p14-geju-surface'],
+    status: 'context_bound_entry',
+    target: { symbolOrStructure: '月支之神透於天干', kind: 'source_pattern_vocabulary' },
+    sourceTerm: '格局 · 月支之神 · 透於天干',
+    directMeaningRange: {
+      kind: 'source_pattern_vocabulary',
+      supportedClaims: ['p.13–p.14 use the displayed pattern/exposure terms in local selection and outcome passages'],
+      scope: 'terminology only; no pattern conclusion or global exposure rule',
+    },
+    applicability: ['source-local pattern context and any stated selection condition must be closed'],
+    exceptions: ['do not derive a generalized 格局 or personal result'],
+    sourceObservation: 'the locator directly combines 格局, 月支之神, and 透於天干 with context-bound outcome prose.',
+    compositionState: 'unresolved_composition_frontier',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.ditian-tiyong.v0',
+    work: WORKS.ditian,
+    lineage: 'ditian_local_export',
+    sourceIds: ['saju-source-ditian-sui'],
+    locatorIds: ['ditian-p18-p20-tiyong'],
+    status: 'unresolved',
+    target: { symbolOrStructure: '體用 configurations', kind: 'source_composition_vocabulary' },
+    sourceTerm: '體 · 用 · 體用之用 · 用神之用',
+    directMeaningRange: {
+      kind: 'source_composition_vocabulary',
+      supportedClaims: ['p.18–p.20 distinguishes 體用之用 from 用神之用 and gives multiple configurations'],
+      scope: 'term distinction only; no single body/use priority or conclusion',
+    },
+    applicability: ['configuration axis, priority, and transition conditions must be source-complete'],
+    exceptions: ['do not choose one configuration or equate the two uses'],
+    sourceObservation: 'p.18–p.20 explicitly presents multiple 體用 configurations and warns against one-endpoint reasoning.',
+    compositionState: 'unresolved_composition_frontier',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.ditian-yuanliu-qingzhuo.v0',
+    work: WORKS.ditian,
+    lineage: 'ditian_local_export',
+    sourceIds: ['saju-source-ditian-sui'],
+    locatorIds: ['ditian-p24-p27-yuanliu-qingzhuo'],
+    status: 'unresolved',
+    target: { symbolOrStructure: '源流/清濁 surface', kind: 'source_state_vocabulary' },
+    sourceTerm: '源流 · 清 · 濁',
+    directMeaningRange: {
+      kind: 'source_state_vocabulary',
+      supportedClaims: ['p.24–p.27 use 源流 and 清濁 vocabulary in later structural/outcome passages'],
+      scope: 'term inventory only; no flow/clarity classifier',
+    },
+    applicability: ['source flow/clarity conditions and exceptions must be closed'],
+    exceptions: ['do not generalize later verses or case language'],
+    sourceObservation: 'the locator contains mixed structural and outcome prose without a reusable source-complete predicate.',
+    compositionState: 'unresolved_composition_frontier',
+  }),
+
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.qiongtong-element-numbers.v0',
+    work: WORKS.qiongtong,
+    lineage: 'qiongtong_local_export',
+    sourceIds: ['saju-source-qiongtong-baojian'],
+    locatorIds: ['qiongtong-p2-five-phase-number-and-season'],
+    status: 'adopted_semantic_entry',
+    linkedStructuralRuleIds: ['rule.qiongtong.five-phase-number-inventory.v0'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.qiongtong.five-phase-number-inventory.v0'],
+      fields: ['sourceElementNumbers'],
+      closure: 'closed_in_existing_contract',
+    },
+    materializationMode: 'linked_result_only',
+    target: { symbolOrStructure: '五行 source numbers', kind: 'source_numeric_vocabulary' },
+    sourceTerm: '水一 · 火二 · 木三 · 金四 · 土五',
+    directMeaningRange: {
+      kind: 'source_numeric_mapping',
+      supportedClaims: ['p.2 directly assigns the displayed numbers to the five elements'],
+      scope: 'number mapping only; no 生旺/死絕 arithmetic',
+    },
+    applicability: ['the frozen five-element key envelope is present'],
+    exceptions: ['生旺加倍/死絕減半 remains a separate unresolved prerequisite'],
+    sourceObservation: 'p.2 directly lists the five element numbers and separately states the conditional double/half operation.',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.qiongtong-shengwang-jue-operation.v0',
+    work: WORKS.qiongtong,
+    lineage: 'qiongtong_local_export',
+    sourceIds: ['saju-source-qiongtong-baojian'],
+    locatorIds: ['qiongtong-p2-five-phase-number-and-season'],
+    status: 'unresolved',
+    target: { symbolOrStructure: 'element state operation', kind: 'source_state_action_vocabulary' },
+    sourceTerm: '生旺加倍 · 死絕減半',
+    directMeaningRange: {
+      kind: 'source_conditional_operation',
+      supportedClaims: ['p.2 states that 生旺 doubles and 死絕 halves the displayed number'],
+      scope: 'operation wording only; state input and resolver remain unresolved',
+    },
+    applicability: ['source-specific 生旺/死絕 state input, resolver, and priority must be closed'],
+    exceptions: ['do not substitute generic 十二運星, Base distribution, or another lineage state'],
+    sourceObservation: 'p.2 directly states the operation but does not close how the state is selected for a supplied chart.',
+    compositionState: 'unresolved_composition_frontier',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.qiongtong-ten-stem-section.v0',
+    work: WORKS.qiongtong,
+    lineage: 'qiongtong_local_export',
+    sourceIds: ['saju-source-qiongtong-baojian'],
+    locatorIds: ['qiongtong-p3-jia-section', 'qiongtong-p13-yi-section', 'qiongtong-p21-bing-section', 'qiongtong-p32-ding-section', 'qiongtong-p40-wu-section', 'qiongtong-p49-ji-section', 'qiongtong-p55-geng-section', 'qiongtong-p64-xin-section', 'qiongtong-p75-ren-section', 'qiongtong-p83-gui-section'],
+    status: 'context_bound_entry',
+    linkedStructuralRuleIds: ['rule.qiongtong.day-stem-section-frame.v0'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.qiongtong.day-stem-section-frame.v0'],
+      fields: ['dayMasterStem', 'sourceSection'],
+      closure: 'section_frame_closed_month_clause_not_closed',
+    },
+    materializationMode: 'linked_result_only',
+    target: { symbolOrStructure: 'ten day-stem sections', kind: 'source_section_vocabulary' },
+    sourceTerm: '論甲木 · 論乙木 · 論丙火 · 論丁火 · 論戊土 · 論己土 · 論庚金 · 論辛金 · 論壬水 · 論癸水',
+    directMeaningRange: {
+      kind: 'source_section_vocabulary',
+      supportedClaims: ['p.3–p.90 organize the work into ten day-stem sections'],
+      scope: 'section identity only; no month prescription or personal meaning',
+    },
+    applicability: ['the day-stem section frame is materialized'],
+    exceptions: ['a section heading does not select a month clause'],
+    sourceObservation: 'the ten section locators directly show the work organization; the existing structural rule stops before prescription selection.',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.qiongtong.jia-month-clauses.v0',
+    work: WORKS.qiongtong,
+    lineage: 'qiongtong_local_export',
+    sourceIds: ['saju-source-qiongtong-baojian'],
+    locatorIds: ['qiongtong-p3-jia-section', 'qiongtong-p4-spring-jia-wood', 'qiongtong-p5-spring-jia-wood-continuation', 'qiongtong-p7-summer-jia-wood'],
+    status: 'context_bound_entry',
+    target: { symbolOrStructure: '甲木 month clauses', kind: 'source_prescription_vocabulary' },
+    sourceTerm: '三春甲木 · 正月甲木 · 正二月甲木 · 三夏甲木',
+    directMeaningRange: {
+      kind: 'source_month_condition_surface',
+      supportedClaims: ['p.4–p.7 attach separate month/season clauses to 甲木'],
+      scope: 'source-local clause surface only; no universal prescription or personal meaning',
+    },
+    applicability: ['甲 day stem, exact month/season, mandatory conditions, and clause boundary must be bound'],
+    exceptions: ['do not collapse spring/summer clauses or transfer them to another stem'],
+    sourceObservation: 'the 甲 section visibly separates seasonal and month-specific condition prose.',
+    compositionState: 'unresolved_composition_frontier',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.qiongtong.yi-month-clauses.v0',
+    work: WORKS.qiongtong,
+    lineage: 'qiongtong_local_export',
+    sourceIds: ['saju-source-qiongtong-baojian'],
+    locatorIds: ['qiongtong-p13-yi-section'],
+    status: 'context_bound_entry',
+    target: { symbolOrStructure: '乙木 month clauses', kind: 'source_prescription_vocabulary' },
+    sourceTerm: '論乙木 · 三春乙木',
+    directMeaningRange: { kind: 'source_month_condition_surface', supportedClaims: ['p.13–p.20 open a separate 乙木 seasonal/month surface'], scope: 'source-local clause surface only' },
+    applicability: ['乙 day stem, exact month/season, conditions, and clause boundary must be bound'],
+    exceptions: ['do not import 甲 clauses or modern seasonal rules'],
+    sourceObservation: 'p.13–p.20 directly open the separate 乙木 section.',
+    compositionState: 'unresolved_composition_frontier',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.qiongtong.bing-month-clauses.v0',
+    work: WORKS.qiongtong,
+    lineage: 'qiongtong_local_export',
+    sourceIds: ['saju-source-qiongtong-baojian'],
+    locatorIds: ['qiongtong-p21-bing-section'],
+    status: 'context_bound_entry',
+    target: { symbolOrStructure: '丙火 month clauses', kind: 'source_prescription_vocabulary' },
+    sourceTerm: '論丙火 · 三春丙火',
+    directMeaningRange: { kind: 'source_month_condition_surface', supportedClaims: ['p.21–p.31 provide a separate 丙火 seasonal/month surface'], scope: 'source-local clause surface only' },
+    applicability: ['丙 day stem, exact month/season, conditions, and clause boundary must be bound'],
+    exceptions: ['do not generalize fire prescriptions'],
+    sourceObservation: 'p.21–p.31 directly provide the separate 丙火 section.',
+    compositionState: 'unresolved_composition_frontier',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.qiongtong.ding-month-clauses.v0',
+    work: WORKS.qiongtong,
+    lineage: 'qiongtong_local_export',
+    sourceIds: ['saju-source-qiongtong-baojian'],
+    locatorIds: ['qiongtong-p32-ding-section'],
+    status: 'context_bound_entry',
+    target: { symbolOrStructure: '丁火 month clauses', kind: 'source_prescription_vocabulary' },
+    sourceTerm: '論丁火 · 三春丁火',
+    directMeaningRange: { kind: 'source_month_condition_surface', supportedClaims: ['p.32–p.39 provide a separate 丁火 seasonal/month surface'], scope: 'source-local clause surface only' },
+    applicability: ['丁 day stem, exact month/season, conditions, and clause boundary must be bound'],
+    exceptions: ['do not transfer 丙 or modern fire rules'],
+    sourceObservation: 'p.32–p.39 directly provide the separate 丁火 section.',
+    compositionState: 'unresolved_composition_frontier',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.qiongtong.wu-month-clauses.v0',
+    work: WORKS.qiongtong,
+    lineage: 'qiongtong_local_export',
+    sourceIds: ['saju-source-qiongtong-baojian'],
+    locatorIds: ['qiongtong-p40-wu-section'],
+    status: 'context_bound_entry',
+    target: { symbolOrStructure: '戊土 month clauses', kind: 'source_prescription_vocabulary' },
+    sourceTerm: '論戊土 · 三春戊土',
+    directMeaningRange: { kind: 'source_month_condition_surface', supportedClaims: ['p.40–p.48 provide a separate 戊土 seasonal/month surface'], scope: 'source-local clause surface only' },
+    applicability: ['戊 day stem, exact month/season, conditions, and clause boundary must be bound'],
+    exceptions: ['do not translate earth clauses into strength or balance'],
+    sourceObservation: 'p.40–p.48 directly provide the separate 戊土 section.',
+    compositionState: 'unresolved_composition_frontier',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.qiongtong.ji-month-clauses.v0',
+    work: WORKS.qiongtong,
+    lineage: 'qiongtong_local_export',
+    sourceIds: ['saju-source-qiongtong-baojian'],
+    locatorIds: ['qiongtong-p49-ji-section'],
+    status: 'context_bound_entry',
+    target: { symbolOrStructure: '己土 month clauses', kind: 'source_prescription_vocabulary' },
+    sourceTerm: '論己土 · 三春己土',
+    directMeaningRange: { kind: 'source_month_condition_surface', supportedClaims: ['p.49–p.54 provide a separate 己土 seasonal/month surface'], scope: 'source-local clause surface only' },
+    applicability: ['己 day stem, exact month/season, conditions, and clause boundary must be bound'],
+    exceptions: ['do not transfer 戊 or modern earth rules'],
+    sourceObservation: 'p.49–p.54 directly provide the separate 己土 section.',
+    compositionState: 'unresolved_composition_frontier',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.qiongtong-geng-month-clauses.v0',
+    work: WORKS.qiongtong,
+    lineage: 'qiongtong_local_export',
+    sourceIds: ['saju-source-qiongtong-baojian'],
+    locatorIds: ['qiongtong-p55-geng-section'],
+    status: 'context_bound_entry',
+    target: { symbolOrStructure: '庚金 month clauses', kind: 'source_prescription_vocabulary' },
+    sourceTerm: '論庚金 · 三春庚金',
+    directMeaningRange: { kind: 'source_month_condition_surface', supportedClaims: ['p.55–p.64 provide a separate 庚金 seasonal/month surface'], scope: 'source-local clause surface only' },
+    applicability: ['庚 day stem, exact month/season, conditions, and clause boundary must be bound'],
+    exceptions: ['do not infer metal strength or use selection'],
+    sourceObservation: 'p.55–p.64 directly provide the separate 庚金 section.',
+    compositionState: 'unresolved_composition_frontier',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.qiongtong-xin-month-clauses.v0',
+    work: WORKS.qiongtong,
+    lineage: 'qiongtong_local_export',
+    sourceIds: ['saju-source-qiongtong-baojian'],
+    locatorIds: ['qiongtong-p64-xin-section'],
+    status: 'context_bound_entry',
+    target: { symbolOrStructure: '辛金 month clauses', kind: 'source_prescription_vocabulary' },
+    sourceTerm: '論辛金 · 三春辛金',
+    directMeaningRange: { kind: 'source_month_condition_surface', supportedClaims: ['p.64–p.73 provide a separate 辛金 seasonal/month surface'], scope: 'source-local clause surface only' },
+    applicability: ['辛 day stem, exact month/season, conditions, and clause boundary must be bound'],
+    exceptions: ['do not use 庚 or modern metal prescriptions'],
+    sourceObservation: 'p.64–p.73 directly provide the separate 辛金 section.',
+    compositionState: 'unresolved_composition_frontier',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.qiongtong-ren-month-clauses.v0',
+    work: WORKS.qiongtong,
+    lineage: 'qiongtong_local_export',
+    sourceIds: ['saju-source-qiongtong-baojian'],
+    locatorIds: ['qiongtong-p75-ren-section'],
+    status: 'context_bound_entry',
+    target: { symbolOrStructure: '壬水 month clauses', kind: 'source_prescription_vocabulary' },
+    sourceTerm: '論壬水 · 三春壬水',
+    directMeaningRange: { kind: 'source_month_condition_surface', supportedClaims: ['p.75–p.82 provide a separate 壬水 seasonal/month surface'], scope: 'source-local clause surface only' },
+    applicability: ['壬 day stem, exact month/season, conditions, and clause boundary must be bound'],
+    exceptions: ['do not infer water strength or personal meaning'],
+    sourceObservation: 'p.75–p.82 directly provide the separate 壬水 section.',
+    compositionState: 'unresolved_composition_frontier',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.qiongtong-gui-month-clauses.v0',
+    work: WORKS.qiongtong,
+    lineage: 'qiongtong_local_export',
+    sourceIds: ['saju-source-qiongtong-baojian'],
+    locatorIds: ['qiongtong-p83-gui-section'],
+    status: 'context_bound_entry',
+    target: { symbolOrStructure: '癸水 month clauses', kind: 'source_prescription_vocabulary' },
+    sourceTerm: '論癸水 · 三春癸水',
+    directMeaningRange: { kind: 'source_month_condition_surface', supportedClaims: ['p.83–p.90 provide a separate 癸水 seasonal/month surface'], scope: 'source-local clause surface only' },
+    applicability: ['癸 day stem, exact month/season, conditions, and clause boundary must be bound'],
+    exceptions: ['do not use 壬 or modern water prescriptions'],
+    sourceObservation: 'p.83–p.90 directly provide the separate 癸水 section.',
+    compositionState: 'unresolved_composition_frontier',
+  }),
+  sourceSemanticLexiconEntry({
+    entryId: 'lexicon.qiongtong-five-phase-nature.v0',
+    work: WORKS.qiongtong,
+    lineage: 'qiongtong_local_export',
+    sourceIds: ['saju-source-qiongtong-baojian'],
+    locatorIds: ['qiongtong-p2-five-phase-number-and-season'],
+    status: 'unsupported',
+    target: { symbolOrStructure: '五行之性', kind: 'personal_semantic_surface' },
+    sourceTerm: '水智 · 火禮 · 木仁 · 金義 · 土信',
+    directMeaningRange: {
+      kind: 'out_of_public_scope',
+      supportedClaims: ['p.2 directly gives five-phase nature/virtue wording'],
+      scope: 'not translated into personality or personal meaning',
+    },
+    applicability: ['personal trait interpretation would be required'],
+    exceptions: ['never map a single element to a user trait'],
+    sourceObservation: 'p.2 contains a direct 五行之性 passage, but the requested lexicon excludes personality translation.',
+  }),
+])
+
+export const SAJU_SOURCE_SEMANTIC_LEXICON_COMMON_CANDIDATES = Object.freeze([])
+
+export const SAJU_SOURCE_SEMANTIC_LEXICON_COMPOSITION_READINESS = Object.freeze({
+  schema: 'saju-source-semantic-lexicon-composition-readiness-v0',
+  sourceProvidesPriority: false,
+  sourceProvidesCombinationRule: false,
+  sourceProvidesTransitionRule: false,
+  compositionReady: false,
+  commonSemanticCandidates: Object.freeze([]),
+  policy: 'preserve source terms and lineage entries independently; do not synthesize a shared meaning',
+})
+
 const ADOPTED_LINEAGE_RULE_IDS = new Set(SAJU_LINEAGE_RULES.filter(ruleItem => ruleItem.status === 'adopted_lineage_rule').map(ruleItem => ruleItem.ruleId))
 
 export const SAJU_FIVE_LINEAGE_COMPOSITION_READINESS = Object.freeze({
@@ -3737,6 +4707,19 @@ export const SAJU_LINEAGE_READING_GRAMMAR = Object.freeze({
     commonRulePromotion: false,
     personalMeaning: false,
     crossLineageMerge: false,
+  },
+  sourceBoundedSemanticLexicon: {
+    schema: SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON_SCHEMA,
+    version: SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON_VERSION,
+    entries: SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON,
+    adoptedEntryIds: SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON
+      .filter(entry => entry.status === 'adopted_semantic_entry')
+      .map(entry => entry.entryId),
+    commonSemanticCandidates: SAJU_SOURCE_SEMANTIC_LEXICON_COMMON_CANDIDATES,
+    compositionReadiness: SAJU_SOURCE_SEMANTIC_LEXICON_COMPOSITION_READINESS,
+    personalMeaning: false,
+    crossLineageMerge: false,
+    interpretationHypothesisGenerated: false,
   },
   commonCandidates: [],
   commonCandidateReviews: commonStructuralRejection,
@@ -4574,12 +5557,118 @@ export function checkSajuLineageReadingGrammar(grammar = SAJU_LINEAGE_READING_GR
   const expectedNewlyAdopted = (semanticInventory || []).filter(item => item.status === 'newly_adopted_executable').map(item => item.inventoryId)
   if (JSON.stringify(grammar.sourceBoundedSemanticGrammar?.newlyAdoptedRuleIds || []) !== JSON.stringify(expectedNewlyAdopted)) fail('semantic_inventory_newly_adopted_mismatch')
 
+  const semanticLexicon = grammar.sourceBoundedSemanticLexicon
+  if (!isObject(semanticLexicon)
+    || semanticLexicon.schema !== SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON_SCHEMA
+    || semanticLexicon.version !== SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON_VERSION
+    || semanticLexicon.personalMeaning !== false
+    || semanticLexicon.crossLineageMerge !== false
+    || semanticLexicon.interpretationHypothesisGenerated !== false
+    || !Array.isArray(semanticLexicon.entries)
+    || !Array.isArray(semanticLexicon.commonSemanticCandidates)
+    || semanticLexicon.commonSemanticCandidates.length !== 0) {
+    fail('semantic_lexicon_boundary')
+  } else {
+    for (const error of checkSajuSourceBoundedSemanticLexicon(semanticLexicon.entries)) fail('semantic_lexicon:' + error)
+    const expectedAdoptedEntryIds = semanticLexicon.entries
+      .filter(entry => entry.status === 'adopted_semantic_entry')
+      .map(entry => entry.entryId)
+    if (JSON.stringify(semanticLexicon.adoptedEntryIds) !== JSON.stringify(expectedAdoptedEntryIds)) fail('semantic_lexicon_adopted_ids')
+    if (!isObject(semanticLexicon.compositionReadiness)
+      || semanticLexicon.compositionReadiness.compositionReady !== false
+      || semanticLexicon.compositionReadiness.sourceProvidesPriority !== false
+      || semanticLexicon.compositionReadiness.sourceProvidesCombinationRule !== false
+      || semanticLexicon.compositionReadiness.sourceProvidesTransitionRule !== false
+      || !Array.isArray(semanticLexicon.compositionReadiness.commonSemanticCandidates)
+      || semanticLexicon.compositionReadiness.commonSemanticCandidates.length !== 0) {
+      fail('semantic_lexicon_composition_readiness')
+    }
+  }
+
   for (const candidate of grammar.commonCandidates || []) {
     if (candidate.adoptionStatus !== 'not_adopted') fail(`common_candidate_promoted:${candidate.candidateId}`)
     if (candidate.independenceStatus !== 'INDEPENDENT') fail(`common_candidate_independence:${candidate.candidateId}`)
     if (new Set(candidate.sourceIds || []).size < 2) fail(`common_candidate_sources:${candidate.candidateId}`)
   }
 
+  return unique(errors).sort()
+}
+
+export function checkSajuSourceBoundedSemanticLexicon(entries = SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON) {
+  const errors = []
+  const fail = message => errors.push(message)
+  if (!Array.isArray(entries)) return ['lexicon_not_array']
+
+  const sourceIds = new Set(SAJU_LINEAGE_SOURCE_PROFILES.map(source => source.sourceId))
+  const locatorsById = new Map(SAJU_LINEAGE_LOCATORS.map(locator => [locator.observationId, locator]))
+  const structuralRulesById = new Map(SAJU_LINEAGE_RULES.map(ruleItem => [ruleItem.ruleId, ruleItem]))
+  const semanticRulesById = new Map([
+    ...SAJU_ZIPING_SOURCE_SEMANTIC_RULES,
+    ...SAJU_SANMING_SOURCE_SEMANTIC_RULES,
+  ].map(ruleItem => [ruleItem.ruleId, ruleItem]))
+  const entryIds = new Set()
+
+  for (const entry of entries) {
+    if (!isObject(entry)) {
+      fail('lexicon_entry_not_object')
+      continue
+    }
+    if (!entry.entryId || entryIds.has(entry.entryId)) fail('lexicon_entry_id_duplicate:' + (entry.entryId || 'missing'))
+    entryIds.add(entry.entryId)
+    if (!SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON_STATUSES.includes(entry.status)) fail('lexicon_entry_status:' + entry.entryId)
+    if (entry.claimPromotion !== false || entry.semanticAuthority !== 'not_established') fail('lexicon_entry_boundary:' + entry.entryId)
+    if (!entry.work || !entry.lineage || !Array.isArray(entry.sourceIds) || entry.sourceIds.length !== 1) fail('lexicon_entry_identity:' + entry.entryId)
+    for (const sourceId of entry.sourceIds || []) if (!sourceIds.has(sourceId)) fail('lexicon_entry_source:' + entry.entryId + ':' + sourceId)
+    if (!Array.isArray(entry.locatorIds) || entry.locatorIds.length === 0) fail('lexicon_entry_locators:' + entry.entryId)
+    for (const locatorId of entry.locatorIds || []) {
+      const locator = locatorsById.get(locatorId)
+      if (!locator) fail('lexicon_entry_locator_unknown:' + entry.entryId + ':' + locatorId)
+      else if (locator.sourceId !== entry.sourceIds[0]) fail('lexicon_entry_locator_source:' + entry.entryId + ':' + locatorId)
+    }
+    if (typeof entry.sourceTerm !== 'string' || entry.sourceTerm.length === 0) fail('lexicon_entry_term:' + entry.entryId)
+    if (!isObject(entry.target) || typeof entry.target.symbolOrStructure !== 'string' || typeof entry.target.kind !== 'string') fail('lexicon_entry_target:' + entry.entryId)
+    if (!isObject(entry.directMeaningRange)
+      || typeof entry.directMeaningRange.kind !== 'string'
+      || !Array.isArray(entry.directMeaningRange.supportedClaims)
+      || entry.directMeaningRange.supportedClaims.length === 0
+      || typeof entry.directMeaningRange.scope !== 'string') {
+      fail('lexicon_entry_meaning_range:' + entry.entryId)
+    }
+    if (!Array.isArray(entry.applicability) || entry.applicability.length === 0 || !Array.isArray(entry.exceptions) || entry.exceptions.length === 0) fail('lexicon_entry_conditions:' + entry.entryId)
+    if (!Array.isArray(entry.forbiddenExtensions) || entry.forbiddenExtensions.length === 0 || !entry.forbiddenExtensions.includes('single_symbol_personal_meaning') || !entry.forbiddenExtensions.includes('cross_lineage_rule_merge')) fail('lexicon_entry_forbidden_boundary:' + entry.entryId)
+    if (!SOURCE_SEMANTIC_LEXICON_COMPOSITION_STATES.includes(entry.compositionState)) fail('lexicon_entry_composition:' + entry.entryId)
+    if (!['catalog_only_source_vocabulary', 'linked_result_only'].includes(entry.materializationMode)) fail('lexicon_entry_materialization_mode:' + entry.entryId)
+    if (!isObject(entry.requiredStructuralResult) || !Array.isArray(entry.requiredStructuralResult.ruleIds) || !Array.isArray(entry.requiredStructuralResult.fields) || typeof entry.requiredStructuralResult.closure !== 'string') fail('lexicon_entry_structural:' + entry.entryId)
+    if (!Array.isArray(entry.linkedStructuralRuleIds) || !Array.isArray(entry.linkedSemanticRuleIds)) fail('lexicon_entry_links:' + entry.entryId)
+
+    for (const ruleId of entry.linkedStructuralRuleIds || []) {
+      const ruleItem = structuralRulesById.get(ruleId)
+      if (!ruleItem) fail('lexicon_entry_structural_rule_unknown:' + entry.entryId + ':' + ruleId)
+      else if (ruleItem.sourceIds.some(sourceId => !entry.sourceIds.includes(sourceId))) fail('lexicon_entry_structural_rule_source:' + entry.entryId + ':' + ruleId)
+    }
+    for (const ruleId of entry.linkedSemanticRuleIds || []) {
+      const ruleItem = semanticRulesById.get(ruleId)
+      if (!ruleItem) fail('lexicon_entry_semantic_rule_unknown:' + entry.entryId + ':' + ruleId)
+      else if (ruleItem.sourceIds.some(sourceId => !entry.sourceIds.includes(sourceId))) fail('lexicon_entry_semantic_rule_source:' + entry.entryId + ':' + ruleId)
+    }
+    if (entry.status === 'adopted_semantic_entry' && entry.requiredStructuralResult.closure === 'closed_in_existing_contract') {
+      if (entry.linkedStructuralRuleIds.length === 0 && entry.linkedSemanticRuleIds.length === 0) fail('lexicon_entry_adopted_unlinked:' + entry.entryId)
+      if (entry.materializationMode !== 'linked_result_only') fail('lexicon_entry_adopted_materialization:' + entry.entryId)
+    }
+    if (entry.materializationMode === 'linked_result_only' && entry.linkedStructuralRuleIds.length === 0 && entry.linkedSemanticRuleIds.length === 0) fail('lexicon_entry_linked_without_rule:' + entry.entryId)
+    if (!isObject(entry.provenance)
+      || entry.provenance.schema !== SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON_SCHEMA
+      || entry.provenance.version !== SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON_VERSION
+      || JSON.stringify(entry.provenance.sourceIds) !== JSON.stringify(entry.sourceIds)
+      || JSON.stringify(entry.provenance.locatorIds) !== JSON.stringify(entry.locatorIds)
+      || !isObject(entry.provenance.sourceByteSha256)) {
+      fail('lexicon_entry_provenance:' + entry.entryId)
+    } else {
+      const expectedHashes = sourceByteSha256ForIds(entry.sourceIds)
+      if (JSON.stringify(entry.provenance.sourceByteSha256) !== JSON.stringify(expectedHashes)) fail('lexicon_entry_provenance_hash:' + entry.entryId)
+      for (const sourceId of entry.sourceIds) if (!/^[a-f0-9]{64}$/.test(entry.provenance.sourceByteSha256[sourceId] || '')) fail('lexicon_entry_provenance_source_hash:' + entry.entryId + ':' + sourceId)
+    }
+  }
   return unique(errors).sort()
 }
 
@@ -5289,4 +6378,304 @@ export function deriveSajuLineageSourceSemanticResults(base, structuralResults =
 
 export function deriveSajuSanmingSourceSemanticResults(base, structuralResults = null, contracts = SAJU_SANMING_SOURCE_SEMANTIC_CONTRACTS) {
   return deriveSourceSemanticResults(base, structuralResults, contracts, SAJU_SANMING_SOURCE_SEMANTIC_RULES, executeSanmingSourceSemanticRule)
+}
+
+function semanticLexiconResultDescriptor(entry, lookupStatus, extra = {}) {
+  return {
+    entryId: entry.entryId,
+    status: entry.status,
+    lookupStatus,
+    work: entry.work,
+    lineage: entry.lineage,
+    sourceIds: [...entry.sourceIds],
+    locatorIds: [...entry.locatorIds],
+    sourceTerm: entry.sourceTerm,
+    target: { ...entry.target },
+    directMeaningRange: {
+      ...entry.directMeaningRange,
+      supportedClaims: [...entry.directMeaningRange.supportedClaims],
+    },
+    applicability: [...entry.applicability],
+    exceptions: [...entry.exceptions],
+    forbiddenExtensions: [...entry.forbiddenExtensions],
+    requiredStructuralResult: {
+      ...entry.requiredStructuralResult,
+      ruleIds: [...entry.requiredStructuralResult.ruleIds],
+      fields: [...entry.requiredStructuralResult.fields],
+    },
+    linkedStructuralRuleIds: [...entry.linkedStructuralRuleIds],
+    linkedSemanticRuleIds: [...entry.linkedSemanticRuleIds],
+    provenance: {
+      ...entry.provenance,
+      sourceIds: [...entry.provenance.sourceIds],
+      locatorIds: [...entry.provenance.locatorIds],
+      sourceByteSha256: { ...entry.provenance.sourceByteSha256 },
+    },
+    deterministic: true,
+    noPersonalMeaning: true,
+    noCrossLineageMerge: true,
+    interpretationHypothesis: false,
+    ...extra,
+  }
+}
+
+function sourceResultCollection(semanticResults) {
+  return [
+    ...(semanticResults?.ziping?.categories?.derivedSourceBoundedSemanticResults || []),
+    ...(semanticResults?.sanming?.categories?.derivedSourceBoundedSemanticResults || []),
+  ]
+}
+
+function sourceResultGapCollection(semanticResults) {
+  return [
+    ...(semanticResults?.ziping?.categories?.prerequisiteGaps || []),
+    ...(semanticResults?.sanming?.categories?.prerequisiteGaps || []),
+  ]
+}
+
+function sourceResultNotApplicableCollection(semanticResults) {
+  return [
+    ...(semanticResults?.ziping?.categories?.notApplicableRules || []),
+    ...(semanticResults?.sanming?.categories?.notApplicableRules || []),
+  ]
+}
+
+function sourceSemanticLexiconChain(entry, structuralResults, semanticResults) {
+  const derivedStructural = structuralResults.categories.derivedStructuralResults || []
+  const structuralGaps = structuralResults.categories.prerequisiteGaps || []
+  const structuralNotApplicable = structuralResults.categories.notApplicableRules || []
+  const structuralConflicts = structuralResults.categories.lineageConflicts || []
+  const derivedSemantic = sourceResultCollection(semanticResults)
+  const semanticGaps = sourceResultGapCollection(semanticResults)
+  const semanticNotApplicable = sourceResultNotApplicableCollection(semanticResults)
+  const semanticConflicts = [
+    ...(semanticResults?.ziping?.categories?.lineageConflicts || []),
+    ...(semanticResults?.sanming?.categories?.lineageConflicts || []),
+  ]
+  const structuralLinks = entry.linkedStructuralRuleIds.map(ruleId => ({
+    ruleId,
+    derived: derivedStructural.find(result => result.ruleId === ruleId) || null,
+    gap: structuralGaps.find(result => result.ruleId === ruleId) || null,
+    notApplicable: structuralNotApplicable.find(result => result.ruleId === ruleId) || null,
+  }))
+  const semanticLinks = entry.linkedSemanticRuleIds.map(ruleId => ({
+    ruleId,
+    derived: derivedSemantic.find(result => result.ruleId === ruleId) || null,
+    gap: semanticGaps.find(result => result.ruleId === ruleId) || null,
+    notApplicable: semanticNotApplicable.find(result => result.ruleId === ruleId) || null,
+  }))
+  const allLinks = [...structuralLinks, ...semanticLinks]
+  const linkedResults = allLinks.flatMap(link => link.derived ? [link.derived] : [])
+  const linkedConflicts = [...structuralConflicts, ...semanticConflicts].filter(conflict => (
+    (conflict.ruleIds || []).some(ruleId => entry.linkedStructuralRuleIds.includes(ruleId) || entry.linkedSemanticRuleIds.includes(ruleId))
+  ))
+  const sourceMismatch = linkedResults.some(result => (
+    result.lineage !== entry.lineage
+      || (result.sourceIds || []).some(sourceId => !entry.sourceIds.includes(sourceId))
+  ))
+  const missingLinks = allLinks.filter(link => !link.derived && !link.notApplicable && !link.gap)
+  const blockedLinks = allLinks.filter(link => link.gap)
+  const notApplicableLinks = allLinks.filter(link => link.notApplicable)
+
+  return {
+    structuralLinks,
+    semanticLinks,
+    linkedResults,
+    linkedConflicts,
+    sourceMismatch,
+    missingLinks,
+    blockedLinks,
+    notApplicableLinks,
+  }
+}
+
+/**
+ * Resolve only the source terms whose named lineage rule/result chain is
+ * already present.  Catalog entries remain source vocabulary; they are never
+ * converted into a person-level interpretation.
+ */
+export function deriveSajuSourceBoundedSemanticLexiconEntries(
+  base,
+  structuralResults = null,
+  semanticResults = null,
+  entries = SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON,
+) {
+  const lexiconErrors = checkSajuSourceBoundedSemanticLexicon(entries)
+  const baseValidation = validateDeterministicBaseForInterpretation(base)
+  const structural = structuralResults || deriveSajuLineageStructuralResults(base)
+  const resolvedSemanticResults = semanticResults || {
+    ziping: deriveSajuLineageSourceSemanticResults(base, structural),
+    sanming: deriveSajuSanmingSourceSemanticResults(base, structural),
+  }
+  const emptyCategories = {
+    catalogSemanticEntries: [],
+    resolvedSemanticEntries: [],
+    contextBoundEntries: [],
+    unresolvedEntries: [],
+    unsupportedEntries: [],
+    blockedEntries: [],
+    notApplicableEntries: [],
+    ambiguousEntries: [],
+    lineageConflicts: [],
+    commonSemanticCandidates: [],
+  }
+  if (lexiconErrors.length > 0 || !baseValidation.valid || !structural.contractValidation?.valid) {
+    return {
+      schemaVersion: SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON_SCHEMA,
+      version: SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON_VERSION,
+      lexiconValidation: { valid: lexiconErrors.length === 0, errors: lexiconErrors },
+      baseValidation,
+      structuralResultContractValidation: structural.contractValidation,
+      categories: emptyCategories,
+      boundary: {
+        noRecalculation: true,
+        baseMutation: false,
+        noPersonalMeaning: true,
+        interpretationHypothesis: false,
+        crossLineageMerge: false,
+        conflictsPreserved: true,
+      },
+    }
+  }
+
+  const categories = { ...emptyCategories }
+  for (const entry of entries) {
+    if (entry.status === 'context_bound_entry') {
+      categories.contextBoundEntries.push(semanticLexiconResultDescriptor(entry, 'not_materialized'))
+      continue
+    }
+    if (entry.status === 'unresolved') {
+      categories.unresolvedEntries.push(semanticLexiconResultDescriptor(entry, 'unresolved'))
+      continue
+    }
+    if (entry.status === 'unsupported') {
+      categories.unsupportedEntries.push(semanticLexiconResultDescriptor(entry, 'unsupported'))
+      continue
+    }
+
+    if (entry.materializationMode === 'catalog_only_source_vocabulary') {
+      categories.catalogSemanticEntries.push(semanticLexiconResultDescriptor(entry, 'catalog_only'))
+      continue
+    }
+
+    const chain = sourceSemanticLexiconChain(entry, structural, resolvedSemanticResults)
+    const resultIds = chain.linkedResults.map(result => result.resultId)
+    const structuralResultIds = chain.structuralLinks.flatMap(link => link.derived ? [link.derived.resultId] : [])
+    const semanticResultIds = chain.semanticLinks.flatMap(link => link.derived ? [link.derived.resultId] : [])
+    const chainProvenance = {
+      structuralRuleIds: [...entry.linkedStructuralRuleIds],
+      structuralResultIds,
+      semanticRuleIds: [...entry.linkedSemanticRuleIds],
+      semanticResultIds,
+      resultIds,
+      baseFactRefs: [
+        ...chain.linkedResults.flatMap(result => (result.commonBaseFacts || []).map(binding => binding.factRef)),
+      ],
+    }
+
+    if (chain.linkedConflicts.length > 0 || chain.sourceMismatch) {
+      const conflictId = chain.linkedConflicts[0]?.conflictId || null
+      const descriptor = semanticLexiconResultDescriptor(entry, 'conflict_preserved', {
+        conflictState: {
+          status: 'preserved_tension_fail_closed',
+          conflictId,
+          winnerSelected: false,
+          sourceMismatch: chain.sourceMismatch,
+        },
+        provenance: {
+          ...semanticLexiconResultDescriptor(entry, 'conflict_preserved').provenance,
+          chain: chainProvenance,
+        },
+      })
+      categories.ambiguousEntries.push(descriptor)
+      categories.lineageConflicts.push({
+        conflictId: conflictId || 'conflict.semantic-lexicon-source-isolation',
+        classification: 'lineage_conflict',
+        entryId: entry.entryId,
+        ruleIds: [...entry.linkedStructuralRuleIds, ...entry.linkedSemanticRuleIds],
+        sourceIds: [...entry.sourceIds],
+        status: 'preserved_tension_fail_closed',
+        reason: chain.sourceMismatch
+          ? 'lexicon entry and linked result do not share one source/lineage'
+          : 'linked structural or semantic conflict was preserved; no lexicon winner was selected',
+        deterministic: true,
+        noPersonalMeaning: true,
+      })
+      continue
+    }
+    if (chain.blockedLinks.length > 0 || chain.missingLinks.length > 0) {
+      const gap = chain.blockedLinks[0]?.gap || null
+      categories.blockedEntries.push(semanticLexiconResultDescriptor(entry, 'blocked_missing_result', {
+        blockedByRuleIds: [...chain.blockedLinks.map(link => link.ruleId), ...chain.missingLinks.map(link => link.ruleId)],
+        structuralGapResultIds: chain.blockedLinks.map(link => link.gap?.resultId).filter(Boolean),
+        provenance: {
+          ...semanticLexiconResultDescriptor(entry, 'blocked_missing_result').provenance,
+          chain: chainProvenance,
+        },
+        reason: gap?.reason || 'named lineage result is not available; lexicon entry is not materialized',
+      }))
+      continue
+    }
+    if (chain.notApplicableLinks.length > 0) {
+      categories.notApplicableEntries.push(semanticLexiconResultDescriptor(entry, 'not_applicable_fixture', {
+        notApplicableRuleIds: chain.notApplicableLinks.map(link => link.ruleId),
+        provenance: {
+          ...semanticLexiconResultDescriptor(entry, 'not_applicable_fixture').provenance,
+          chain: chainProvenance,
+        },
+      }))
+      continue
+    }
+
+    const lineages = unique(chain.linkedResults.map(result => result.lineage))
+    if (lineages.length !== 1 || lineages[0] !== entry.lineage || chain.linkedResults.length !== entry.linkedStructuralRuleIds.length + entry.linkedSemanticRuleIds.length) {
+      categories.ambiguousEntries.push(semanticLexiconResultDescriptor(entry, 'ambiguous_source_chain', {
+        conflictState: {
+          status: 'preserved_tension_fail_closed',
+          conflictId: 'conflict.semantic-lexicon-source-isolation',
+          winnerSelected: false,
+          lineages,
+        },
+        provenance: {
+          ...semanticLexiconResultDescriptor(entry, 'ambiguous_source_chain').provenance,
+          chain: chainProvenance,
+        },
+      }))
+      continue
+    }
+
+    categories.resolvedSemanticEntries.push(semanticLexiconResultDescriptor(entry, 'resolved_from_lineage_result', {
+      linkedResults: chain.linkedResults.map(result => ({
+        ruleId: result.ruleId,
+        resultId: result.resultId,
+        sourceIds: [...result.sourceIds],
+        lineage: result.lineage,
+      })),
+      provenance: {
+        ...semanticLexiconResultDescriptor(entry, 'resolved_from_lineage_result').provenance,
+        chain: chainProvenance,
+      },
+    }))
+  }
+
+  return {
+    schemaVersion: SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON_SCHEMA,
+    version: SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON_VERSION,
+    lexiconValidation: { valid: true, errors: [] },
+    baseValidation,
+    structuralResultContractValidation: structural.contractValidation,
+    semanticResultContractValidation: {
+      ziping: resolvedSemanticResults.ziping?.contractValidation || null,
+      sanming: resolvedSemanticResults.sanming?.contractValidation || null,
+    },
+    categories,
+    boundary: {
+      noRecalculation: true,
+      baseMutation: false,
+      noPersonalMeaning: true,
+      interpretationHypothesis: false,
+      crossLineageMerge: false,
+      conflictsPreserved: true,
+    },
+  }
 }

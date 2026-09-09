@@ -373,3 +373,21 @@ structural result contract를 같은 서울 fixture에 두 번 적용하면 동�
 5. 독립 textual witness와 판본/전승 관계가 확인되기 전까지 common rule을 생성하지 않는다.
 
 semantic frontier는 p.7의 exact local clause와 p.10의 exact source-role lane만 닫혔다. 이는 공통 semantic grammar나 공개 Base 승격이 아니며, 다음 단계는 새 Base FACT 승격이 아니라 p.7 global 우선순위·p.11 composition·p.10 밖의 통근/투간 정의·우선순위·예외를 독립적으로 닫고, 계속 구조 결과와 source-bounded semantic result를 별도 계약으로 유지하는 것이다.
+
+## Source-bounded semantic lexicon v0
+
+다섯 문헌에서 원문이 직접 부여한 용어·역할·상태·작용 어휘만 `saju-source-bounded-semantic-lexicon-v0` inventory로 보존했다. 이 lexicon은 현대적 의미표나 개인 해석 사전이 아니며, `SAJU_LINEAGE_READING_GRAMMAR.sourceBoundedSemanticLexicon`으로 기존 grammar와 분리된다. 각 entry는 다음을 함께 가진다.
+
+- source/lineage, 직접 locator, source term, 대상 symbol/structure
+- 직접 지원되는 wording/role/state 범위와 적용 전제
+- 예외·미완결 조건·금지 확장, source byte SHA provenance
+- 필요한 structural result와 연결된 lineage rule/semantic rule ID
+- `adopted_semantic_entry`, `context_bound_entry`, `unresolved`, `unsupported` 상태
+
+현재 inventory는 43개다. 子平真詮은 adopted 3, context-bound 3, unresolved 1, unsupported 1; 淵海子平은 adopted 2, context-bound 1, unresolved 1, unsupported 2; 三命通會는 adopted 5, unresolved 1, unsupported 1; 滴天髓는 adopted 4, context-bound 2, unresolved 2; 窮通寶鑑은 adopted 1, context-bound 11, unresolved 1, unsupported 1이다. 전체 합계는 adopted 15, context-bound 17, unresolved 6, unsupported 5다. adopted는 원문 용어/구조 frame이 닫혔다는 뜻이며, 자동으로 개인 의미나 semantic synthesis를 뜻하지 않는다.
+
+직접 닫힌 범위는 子平真詮 p.3의 생사 단계 어휘, p.7의 exact `不透甲而透丙` clause, p.10의 `甲生辰月` role-label lane; 淵海子平 p.6·p.9의 day/timing frame; 三命通會 p.4–6·p.65–68·p.162의 구조/role nomenclature; 滴天髓 p.2·p.10·p.12·p.13의 `天元/地元/人元`, branch category, `形全/形缺`, `方/局`; 窮通寶鑑 p.2의 오행 수치 vocabulary다. p.3의 `有根/無根`, p.5 관계 작용, p.11 `有情/無情`, Ditian p.3·p.13–14의 문맥 용어, Qiongtong의 월별 일간 절은 context-bound로만 둔다. 用神 선택, 生旺/死絶 resolver, 복수 결과 조합·우선순위, 육친·성격·길흉·예측은 unresolved 또는 unsupported로 유지한다.
+
+기존 source-bounded semantic rule과의 연결은 子平真詮 p.7·p.10 및 三命通會 p.162의 이미 채택된 lane으로 한정한다. 그 외 adopted entry는 기존 structural result가 제공하는 source vocabulary만 연결하며, 여러 entry를 합성하거나 다른 lineage와 병합하지 않는다. `commonSemanticCandidates=[]`, `compositionReady=false`, `personalMeaning=false`, `crossLineageMerge=false`를 유지한다. 다섯 문헌의 비슷한 단어는 입력·조건·출력 범위가 실질적으로 동일하다고 입증되지 않았으므로 common semantic 후보로 올리지 않았다.
+
+실제 fixture에서 동일 입력의 lookup은 동일한 entry/result/provenance chain을 재현한다. structural result 또는 semantic result가 없거나, source/lineage가 어긋나거나, 충돌이 보존된 경우에는 winner나 fallback을 만들지 않고 각각 blocked/ambiguous로 닫힌다. 이 변경은 Deterministic Base, Constitution, 계산·activation 경계와 공개 Base 필드를 변경하지 않으며, lexicon 자체도 개인에 대한 interpretation hypothesis를 생성하지 않는다.
