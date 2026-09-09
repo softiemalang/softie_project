@@ -176,6 +176,14 @@ export const SAJU_LINEAGE_LOCATORS = Object.freeze([
 
 const LOCATOR_BY_ID = new Map(SAJU_LINEAGE_LOCATORS.map(item => [item.observationId, item]))
 
+// These are the three exact source-listed targets in the p.10 甲生辰月
+// example.  They are deliberately not a complete 透/透干 map.
+const ZIPING_P10_EXPOSURE_TARGETS = Object.freeze([
+  Object.freeze({ sourceStem: '戊', inputStems: Object.freeze(['무', '戊']), sourceRole: '偏财' }),
+  Object.freeze({ sourceStem: '癸', inputStems: Object.freeze(['계', '癸']), sourceRole: '正印' }),
+  Object.freeze({ sourceStem: '乙', inputStems: Object.freeze(['을', '乙']), sourceRole: '月劫' }),
+])
+
 // Source-bounded research metadata only. This is not a public Base field or
 // a resolver: p.2 closes the conditional arithmetic vocabulary, but not how
 // 生旺/死绝 is obtained for an input chart.
@@ -301,6 +309,16 @@ export const SAJU_ZIPING_ROOT_EXPOSURE_ANALYSIS = Object.freeze({
       outputScope: 'context-bound relation; no semantic-free result',
     }),
   ]),
+  sourceBoundedSemanticSurface: Object.freeze({
+    ruleId: 'rule.ziping.chen-exposure-use-role.v0',
+    status: 'adopted_exact_context_clause',
+    structuralPrerequisiteRuleId: 'rule.ziping.chen-exposure-inventory.v0',
+    locatorId: 'ziping-p10-chen-exposed-stem-definition',
+    exactCondition: '甲生辰月 with one or more of the source-listed visible targets 戊、癸、乙',
+    sourceRoleMapping: Object.freeze({ 戊: '偏财', 癸: '正印', 乙: '月劫' }),
+    outputScope: 'source role labels only; no personal meaning, strength, fortune, or cross-lineage rule',
+    boundary: 'does not define a universal 透/透干 predicate; p.7 and p.11 remain outside this adopted semantic lane',
+  }),
   exposurePredicate: Object.freeze({
     status: 'unresolved_general_predicate',
     exactLocalSurface: 'p.7 寅月 不透甲而透丙; p.10 甲生辰月 with 透戊/透癸/透乙; p.11 透干/會支 interaction cases',
@@ -457,6 +475,23 @@ export const SAJU_LINEAGE_RULES = Object.freeze([
     structuralOutput: ['jiaRootBranchMatches', 'haiVisibleStemRelations', 'visibleStemAnchors'],
     exceptions: ['the predicate is only for source-listed 甲/亥 relations', 'p.3 yin/tomb qualifications and p.5 category comparisons are not generalized to other stems', 'duplicate visible 甲 positions are preserved as anchors but do not create a new weighting rule', '透/透干 examples from p.10–11 remain outside this rule'],
     conflictPolicy: 'preserve every source-listed match and visible position; no merge with another lineage or with the unresolved generic root/exposure rule',
+  }),
+  rule({
+    ruleId: 'rule.ziping.chen-exposure-inventory.v0',
+    work: WORKS.ziping,
+    lineage: 'ziping_local_export',
+    status: 'adopted_lineage_rule',
+    ruleCompleteness: 'bounded_exact_exposure_example_predicate',
+    executionStatus: 'executable_from_frozen_base',
+    sourceIds: ['saju-source-ziping-zhenquan'],
+    locatorIds: ['ziping-p10-chen-exposed-stem-definition'],
+    observedRule: 'p.10 asks 何謂透干 and names only the 甲生辰月 targets 戊、癸、乙; this contract materializes that named exposure inventory without defining 透/透干 outside the exact example.',
+    preconditions: ['day-master stem is 甲', 'month branch is 辰', 'the month hidden-stem inventory contains the three source-listed targets', 'all four supplied visible stem positions are present'],
+    inputFacts: [FACT_REFS.dayMaster, FACT_REFS.monthBranch, FACT_REFS.pillarFacts, FACT_REFS.timeAccuracy],
+    orderedSteps: ['check the exact 甲生辰月 source window', 'read the supplied month hidden-stem inventory without rebuilding it', 'scan only the four supplied visible stem fields for 戊、癸、乙', 'retain every matching position and the source stem identity', 'stop at the named exposure inventory before applying any source role label'],
+    structuralOutput: ['chenNamedExposureInventory'],
+    exceptions: ['an empty match is not evidence that other stems are not 透; it only records no match among the three named targets', 'no other month branch, day-master stem, hidden-stem table, 透/透干 target, or duplicate priority is inferred', '會支, 用神变化, 有情/無情, 格局, strength, and personal meaning are outside this structural result'],
+    conflictPolicy: 'preserve all named target matches and do not merge this exact inventory with the unresolved generic root/exposure rule or another lineage',
   }),
   rule({
     ruleId: 'rule.ziping.month-command-selection.v0',
@@ -901,6 +936,39 @@ export const SAJU_LINEAGE_STRUCTURAL_CONTRACTS = Object.freeze([
       semanticExpansion: false,
     },
   }),
+  structuralContractSpec('rule.ziping.chen-exposure-inventory.v0', {
+    commonBaseFacts: [
+      { factRef: FACT_REFS.dayMaster, origin: 'frozen_base_common_fact' },
+      { factRef: FACT_REFS.monthBranch, origin: 'frozen_base_common_fact' },
+      { factRef: FACT_REFS.pillarFacts, origin: 'frozen_base_common_fact' },
+      { factRef: FACT_REFS.timeAccuracy, origin: 'frozen_normalized_input' },
+    ],
+    applicability: [
+      'day-master stem must be 甲',
+      'month branch must be 辰',
+      'the supplied 辰 hidden-stem inventory must contain the three p.10 named targets 戊、癸、乙',
+      'all four supplied visible stem positions must be present',
+    ],
+    procedure: [
+      'accept the frozen day-master and month-branch FACTs as the exact source window',
+      'read the supplied month hidden-stem inventory without reconstructing a branch table',
+      'scan only the four supplied visible stem fields for the p.10 named targets',
+      'retain every matching position and source stem, including multiple matches',
+      'emit the named exposure inventory without assigning a source role label',
+    ],
+    stopConditions: [
+      'return not_applicable_fixture when the day-master is not 甲 or the month branch is not 辰',
+      'return prerequisite_gap when exact time, the month hidden-stem inventory, or a visible stem position is missing',
+      'do not infer a target outside 戊、癸、乙 or a 透/透干 rule for another month/day-master window',
+      'do not apply 會支, 用神变化, 有情/無情, 格局, strength, or personal meaning here',
+    ],
+    output: {
+      origin: 'lineage_derived_structural_result',
+      resultKey: 'ziping.chenNamedExposureInventory',
+      fields: ['sourceCondition', 'namedTargets', 'namedExposureMatches', 'multiplicity', 'sourcePredicateScope'],
+      semanticExpansion: false,
+    },
+  }),
   structuralContractSpec('rule.ditian.jia-wood-seasonal-condition.v0', {
     commonBaseFacts: [
       { factRef: FACT_REFS.dayMaster, origin: 'frozen_base_common_fact' },
@@ -1008,6 +1076,145 @@ export const SAJU_LINEAGE_STRUCTURAL_CONTRACTS = Object.freeze([
   }),
 ])
 
+export const SAJU_LINEAGE_SOURCE_SEMANTIC_RESULT_SCHEMA = 'saju-lineage-source-bounded-semantic-result-v0'
+export const SAJU_LINEAGE_SOURCE_SEMANTIC_RESULT_VERSION = '0.1.0'
+
+export const SAJU_LINEAGE_SOURCE_SEMANTIC_RULE_STATUSES = Object.freeze([
+  'adopted_lineage_semantic_rule',
+  'context_bound_candidate',
+  'unresolved',
+])
+
+const sourceSemanticRule = value => ({
+  adoptionScope: 'source_bounded_semantic_rule_only',
+  claimPromotion: false,
+  semanticAuthority: 'not_established',
+  readinessImpact: 'none',
+  activationImpact: 'none',
+  semanticBoundary: {
+    sourceRoleLabelsOnly: true,
+    personalMeaning: false,
+    crossLineageMerge: false,
+    commonRulePromotion: false,
+  },
+  forbiddenExtensions: FORBIDDEN_EXTENSIONS,
+  ...value,
+})
+
+export const SAJU_ZIPING_SOURCE_SEMANTIC_RULES = Object.freeze([
+  sourceSemanticRule({
+    ruleId: 'rule.ziping.chen-exposure-use-role.v0',
+    work: WORKS.ziping,
+    lineage: 'ziping_local_export',
+    status: 'adopted_lineage_semantic_rule',
+    ruleCompleteness: 'bounded_exact_source_role_clause',
+    sourceIds: ['saju-source-ziping-zhenquan'],
+    locatorIds: ['ziping-p10-chen-exposed-stem-definition'],
+    structuralPrerequisiteRuleIds: ['rule.ziping.chen-exposure-inventory.v0'],
+    observedRule: 'p.10 explicitly maps the exact 甲生辰月 named exposure targets 戊、癸、乙 to the source role labels 偏财、正印、月劫 and states that one or multiple named exposures are retained separately.',
+    preconditions: ['the exact p.10 甲生辰月 exposure inventory has executed', 'the source-listed target stem is visible in a supplied pillar position'],
+    inputFacts: [FACT_REFS.dayMaster, FACT_REFS.monthBranch, FACT_REFS.pillarFacts, FACT_REFS.timeAccuracy],
+    orderedSteps: ['consume only the derived p.10 named exposure inventory', 'map 戊、癸、乙 matches to the source labels 偏财、正印、月劫 respectively', 'preserve one-versus-multiple exposure multiplicity as stated by the source', 'stop before 會支, 用神变化, 格局, strength, fortune, personality, or personal meaning'],
+    semanticOutput: ['sourceRoleLabelInventory'],
+    exceptions: ['an empty named exposure inventory yields no semantic result', 'a missing or conflicting structural prerequisite blocks the semantic result', 'the mapping is not extended to other stems, month branches, day masters, or a modern meaning table'],
+    conflictPolicy: 'preserve every source role label and fail closed if another lineage or an unresolved p.11 interaction would be needed',
+    output: {
+      origin: 'lineage_derived_source_bounded_semantic_result',
+      resultKey: 'ziping.chenExposureUseRole',
+      fields: ['sourceCondition', 'matchedSourceRoleLabels', 'multiplicityPolicy', 'sourceSemanticScope'],
+      semanticExpansion: false,
+      personalMeaning: false,
+    },
+  }),
+  sourceSemanticRule({
+    ruleId: 'rule.ziping.yin-month-exposure-change.v0',
+    work: WORKS.ziping,
+    lineage: 'ziping_local_export',
+    status: 'context_bound_candidate',
+    ruleCompleteness: 'context_bound_semantic_clause',
+    sourceIds: ['saju-source-ziping-zhenquan'],
+    locatorIds: ['page.local.ziping.p7-yongshin-continuation'],
+    structuralPrerequisiteRuleIds: [],
+    observedRule: 'p.7 contrasts 不透甲而透丙 inside an 寅月 用神变化 example, but the source does not provide an independent exposure input contract or a complete use-selection precedence procedure there.',
+    preconditions: ['寅月', 'the source-specific 用神变化 context', 'a closed source-defined exposure relation'],
+    inputFacts: [FACT_REFS.dayMaster, FACT_REFS.monthBranch, FACT_REFS.pillarFacts],
+    orderedSteps: ['not executed; retain as a context-bound candidate only'],
+    semanticOutput: ['source-local change clause, if its missing context is separately closed'],
+    exceptions: ['do not reduce the sentence to a universal visible-stem predicate or personal conclusion'],
+    conflictPolicy: 'remain separate from p.10 role mapping and p.11 interaction cases',
+    output: {
+      origin: 'lineage_derived_source_bounded_semantic_result',
+      resultKey: 'ziping.yinMonthExposureChange',
+      fields: ['sourceCondition', 'sourceClause'],
+      semanticExpansion: false,
+      personalMeaning: false,
+    },
+  }),
+  sourceSemanticRule({
+    ruleId: 'rule.ziping.exposure-branch-sentiment.v0',
+    work: WORKS.ziping,
+    lineage: 'ziping_local_export',
+    status: 'unresolved',
+    ruleCompleteness: 'unresolved_interaction_semantic_clause',
+    sourceIds: ['saju-source-ziping-zhenquan'],
+    locatorIds: ['ziping-p11-exposed-stem-and-branch-context'],
+    structuralPrerequisiteRuleIds: [],
+    observedRule: 'p.11 defines 有情/無情 through combined 透干, 會支, multiple exposure, 格局-preserving/change cases and counterexamples; an isolated source predicate and precedence procedure are not closed.',
+    preconditions: ['a complete p.11 exposure/branch-meeting interaction contract would be required'],
+    inputFacts: [FACT_REFS.pillarFacts, FACT_REFS.branchRelations],
+    orderedSteps: ['not executed; preserve the source interaction frontier as unresolved'],
+    semanticOutput: [],
+    exceptions: ['do not choose a winner among 有情/無情 examples or translate them into 吉凶/personal meaning'],
+    conflictPolicy: 'preserve unresolved interaction and do not merge with p.10 or another lineage',
+    output: {
+      origin: 'lineage_derived_source_bounded_semantic_result',
+      resultKey: 'ziping.exposureBranchSentiment',
+      fields: ['sourceInteractionWindow'],
+      semanticExpansion: false,
+      personalMeaning: false,
+    },
+  }),
+])
+
+const sourceSemanticContractSpec = (ruleId, value) => {
+  const ruleItem = SAJU_ZIPING_SOURCE_SEMANTIC_RULES.find(item => item.ruleId === ruleId)
+  if (!ruleItem) throw new Error(`unknown source semantic rule contract: ${ruleId}`)
+  return {
+    contractId: `contract.${ruleId}`,
+    ruleId,
+    ruleStatus: ruleItem.status,
+    work: ruleItem.work,
+    lineage: ruleItem.lineage,
+    sourceIds: [...ruleItem.sourceIds],
+    locatorIds: [...ruleItem.locatorIds],
+    commonBaseFacts: ruleItem.inputFacts.map(factRef => ({ factRef, origin: 'frozen_base_common_fact' })),
+    structuralPrerequisites: ruleItem.structuralPrerequisiteRuleIds.map(prerequisiteRuleId => ({
+      prerequisiteRuleId,
+      status: 'adopted_lineage_structural_result',
+      resultOrigin: 'lineage_derived_structural_result',
+    })),
+    applicability: [...ruleItem.preconditions],
+    procedure: [...ruleItem.orderedSteps],
+    stopConditions: [...ruleItem.exceptions],
+    output: { ...ruleItem.output },
+    conflictPolicy: ruleItem.conflictPolicy,
+    ...value,
+  }
+}
+
+export const SAJU_ZIPING_SOURCE_SEMANTIC_CONTRACTS = Object.freeze([
+  sourceSemanticContractSpec('rule.ziping.chen-exposure-use-role.v0', {
+    commonBaseFacts: [
+      { factRef: FACT_REFS.dayMaster, origin: 'frozen_base_common_fact' },
+      { factRef: FACT_REFS.monthBranch, origin: 'frozen_base_common_fact' },
+      { factRef: FACT_REFS.pillarFacts, origin: 'frozen_base_common_fact' },
+      { factRef: FACT_REFS.timeAccuracy, origin: 'frozen_normalized_input' },
+    ],
+  }),
+  sourceSemanticContractSpec('rule.ziping.yin-month-exposure-change.v0'),
+  sourceSemanticContractSpec('rule.ziping.exposure-branch-sentiment.v0'),
+])
+
 const ADOPTED_LINEAGE_RULE_IDS = new Set(SAJU_LINEAGE_RULES.filter(ruleItem => ruleItem.status === 'adopted_lineage_rule').map(ruleItem => ruleItem.ruleId))
 
 export const SAJU_LINEAGE_READING_GRAMMAR = Object.freeze({
@@ -1042,6 +1249,16 @@ export const SAJU_LINEAGE_READING_GRAMMAR = Object.freeze({
     derivedResultOrigin: 'lineage_derived_structural_result',
     semanticExpansion: false,
   },
+  sourceBoundedSemanticGrammar: {
+    schema: SAJU_LINEAGE_SOURCE_SEMANTIC_RESULT_SCHEMA,
+    version: SAJU_LINEAGE_SOURCE_SEMANTIC_RESULT_VERSION,
+    ruleIds: SAJU_ZIPING_SOURCE_SEMANTIC_RULES.map(ruleItem => ruleItem.ruleId),
+    contractIds: SAJU_ZIPING_SOURCE_SEMANTIC_CONTRACTS.map(contract => contract.contractId),
+    adoptedRuleIds: SAJU_ZIPING_SOURCE_SEMANTIC_RULES.filter(ruleItem => ruleItem.status === 'adopted_lineage_semantic_rule').map(ruleItem => ruleItem.ruleId),
+    commonRulePromotion: false,
+    personalMeaning: false,
+    crossLineageMerge: false,
+  },
   commonCandidates: [],
   commonCandidateReviews: commonStructuralRejection,
   frontier: {
@@ -1051,7 +1268,8 @@ export const SAJU_LINEAGE_READING_GRAMMAR = Object.freeze({
     unsupportedRuleIds: SAJU_LINEAGE_RULES.filter(ruleItem => ruleItem.status === 'unsupported').map(ruleItem => ruleItem.ruleId),
     nextChecks: [
       'source-specific season/solar-term state must be added as a frozen FACT before Ditian/Qiongtong conditional clauses can execute',
-      'the bounded 甲 root scan is executable, but a complete all-stem root/exposure and 透干 definition is still required before generic classification',
+      'the bounded 甲 root scan and exact p.10 甲生辰月 named exposure lane are executable, but a complete all-stem root/exposure and 透干 definition is still required before generic classification',
+      'p.7 用神变化 and p.11 會支/有情/無情 remain separate source-bounded semantic frontiers until their structural context and precedence close',
       'exact timing rules require the existing timing authority frontier to close; do not infer them from a section heading',
       'an independent, lineage-identified witness is required before any common candidate is emitted',
     ],
@@ -1062,6 +1280,11 @@ const unique = values => [...new Set(values)]
 const isObject = value => value !== null && typeof value === 'object' && !Array.isArray(value)
 const PILLAR_POSITIONS = Object.freeze(['year', 'month', 'day', 'hour'])
 const isJiaStem = value => value === '甲' || value === '갑'
+const isChenBranch = value => value === '辰' || value === '진'
+
+function p10ExposureTargetForStem(stem) {
+  return ZIPING_P10_EXPOSURE_TARGETS.find(target => target.inputStems.includes(stem)) || null
+}
 
 function readPath(root, path) {
   let value = root
@@ -1118,6 +1341,18 @@ function hasCompleteZipingJiaRootScanInput(base) {
   })
 }
 
+function hasCompleteZipingChenExposureInput(base) {
+  if (!hasExactTime(base)) return false
+  const month = readPath(base, 'systems.saju.fact.pillarFacts.month').value
+  if (!isObject(month) || !isChenBranch(month.branch) || !Array.isArray(month.hiddenStems)) return false
+  const monthHiddenStems = month.hiddenStems.map(entry => entry?.stem).filter(stem => typeof stem === 'string')
+  if (!ZIPING_P10_EXPOSURE_TARGETS.every(target => target.inputStems.some(stem => monthHiddenStems.includes(stem)))) return false
+  return PILLAR_POSITIONS.every(position => {
+    const pillar = readPath(base, `systems.saju.fact.pillarFacts.${position}`).value
+    return isObject(pillar) && typeof pillar.stem === 'string'
+  })
+}
+
 function explicitZipingStemBranchExamples(pillarFacts, dayMasterStem) {
   const matches = []
   for (const position of PILLAR_POSITIONS) {
@@ -1167,6 +1402,26 @@ function zipingJiaRootBranchScan(pillarFacts) {
       }))
   })
   return { visibleStemAnchors, jiaRootBranchMatches, haiVisibleStemRelations }
+}
+
+function zipingChenExposureInventory(pillarFacts) {
+  const namedExposureMatches = PILLAR_POSITIONS.flatMap(position => {
+    const visibleStem = pillarFacts[position]?.stem
+    const target = p10ExposureTargetForStem(visibleStem)
+    if (!target) return []
+    return [{
+      position,
+      visibleStem,
+      sourceStem: target.sourceStem,
+      sourceScope: 'ziping-p10-甲生辰月-named-target-only',
+    }]
+  })
+  return {
+    sourceCondition: { dayMaster: '甲', monthBranch: '辰' },
+    namedTargets: ZIPING_P10_EXPOSURE_TARGETS.map(target => target.sourceStem),
+    namedExposureMatches,
+    multiplicity: namedExposureMatches.length > 1 ? 'multiple_named_exposures' : namedExposureMatches.length === 1 ? 'single_named_exposure' : 'no_named_exposure',
+  }
 }
 
 function sourceSeasonContext(base) {
@@ -1267,6 +1522,15 @@ function executeRule(ruleItem, base) {
         sourcePredicateScope: 'ziping-p16-jia-and-hai-examples-only',
       })
     }
+    case 'rule.ziping.chen-exposure-inventory.v0': {
+      if (!isJiaStem(fact.dayMaster) && !isJiaStem(fact.dayMasterDetails?.stem)) return ruleResult(ruleItem, 'not_applicable_fixture', {}, 'fixture day-master is not 甲/갑; no transfer to another source window')
+      if (!isChenBranch(pillarFacts.month?.branch)) return ruleResult(ruleItem, 'not_applicable_fixture', {}, 'fixture month branch is not 辰/진; no transfer to another source window')
+      if (!hasCompleteZipingChenExposureInput(base)) return ruleResult(ruleItem, 'blocked_missing_base_fact', {}, 'exact time, month hidden-stem inventory, or visible stem FACT is missing or not the source-listed 辰 window')
+      return ruleResult(ruleItem, 'executable_from_frozen_base', {
+        ...zipingChenExposureInventory(pillarFacts),
+        sourcePredicateScope: 'ziping-p10-甲生辰月-named-targets-only',
+      })
+    }
     case 'rule.ditian.jia-wood-seasonal-condition.v0':
     case 'rule.qiongtong.jia-wood-seasonal-clauses.v0':
       if (!isJiaStem(fact.dayMaster) && !isJiaStem(fact.dayMasterDetails?.stem)) return ruleResult(ruleItem, 'not_applicable_fixture', {}, 'fixture day-master is not 甲/갑; no transfer to another stem')
@@ -1332,7 +1596,7 @@ export function checkSajuLineageReadingGrammar(grammar = SAJU_LINEAGE_READING_GR
       if (!locator) fail(`rule_locator:${item.ruleId}:${locatorId}`)
       else if (!(item.sourceIds || []).includes(locator.sourceId)) fail(`rule_locator_source:${item.ruleId}:${locatorId}`)
     }
-    if (item.status === 'adopted_lineage_rule' && !['bounded_complete_structural_frame', 'bounded_complete_procedure_frame', 'bounded_label_inventory_only', 'bounded_role_scope_not_service_day_table', 'bounded_relation_vocabulary', 'bounded_relation_inventory_not_resolution', 'bounded_explicit_example_predicate', 'bounded_stem_specific_predicate', 'bounded_condition_clause_for_jia_only', 'bounded_numeric_state_clause', 'bounded_numeric_operation_without_state_resolver', 'bounded_month_specific_condition_clauses'].includes(item.ruleCompleteness)) fail(`adopted_rule_incomplete:${item.ruleId}`)
+    if (item.status === 'adopted_lineage_rule' && !['bounded_complete_structural_frame', 'bounded_complete_procedure_frame', 'bounded_label_inventory_only', 'bounded_role_scope_not_service_day_table', 'bounded_relation_vocabulary', 'bounded_relation_inventory_not_resolution', 'bounded_explicit_example_predicate', 'bounded_stem_specific_predicate', 'bounded_exact_exposure_example_predicate', 'bounded_condition_clause_for_jia_only', 'bounded_numeric_state_clause', 'bounded_numeric_operation_without_state_resolver', 'bounded_month_specific_condition_clauses'].includes(item.ruleCompleteness)) fail(`adopted_rule_incomplete:${item.ruleId}`)
     if ((item.status === 'unresolved' || item.status === 'unsupported') && (!item.observedRule || item.observedRule.length === 0)) fail(`unresolved_reason_missing:${item.ruleId}`)
   }
 
@@ -1439,6 +1703,7 @@ function unsatisfiedStructuralConditions(contract, base) {
   if (contract.ruleId === 'rule.ziping.branch-relation-inventory.v0' && !Array.isArray(readPath(base, FACT_REFS.branchRelations).value)) conditions.push('branch_relation_list_missing')
   if (contract.ruleId === 'rule.ziping.explicit-stem-branch-example-match.v0' && !hasCompleteZipingStemBranchExampleInput(base)) conditions.push('complete_stem_branch_example_input_missing')
   if (contract.ruleId === 'rule.ziping.jia-root-branch-scan.v0' && !hasCompleteZipingJiaRootScanInput(base)) conditions.push('complete_jia_root_scan_input_missing')
+  if (contract.ruleId === 'rule.ziping.chen-exposure-inventory.v0' && !hasCompleteZipingChenExposureInput(base)) conditions.push('complete_chen_exposure_input_missing')
   if (contract.ruleId === 'rule.ditian.jia-wood-seasonal-condition.v0' || contract.ruleId === 'rule.qiongtong.jia-wood-seasonal-clauses.v0') {
     if (isJiaStem(readPath(base, FACT_REFS.dayMaster).value) && !sourceSeasonContext(base)) conditions.push('explicit_season_or_solar_term_context_missing')
   }
@@ -1671,6 +1936,237 @@ export function deriveSajuLineageStructuralResults(base, grammar = SAJU_LINEAGE_
       noSemanticInterpretation: grammarEvaluation.boundary.noSemanticInterpretation,
       baseMutation: false,
       lineageMerge: categories.lineageConflicts.length === 0,
+      conflictsPreserved: true,
+    },
+  }
+}
+
+function sourceSemanticRuleResult(ruleItem, status, output = {}, reason = null, extra = {}) {
+  return {
+    ruleId: ruleItem.ruleId,
+    work: ruleItem.work,
+    ruleStatus: ruleItem.status,
+    executionStatus: status,
+    sourceIds: [...ruleItem.sourceIds],
+    locatorIds: [...ruleItem.locatorIds],
+    output,
+    reason,
+    structuralPrerequisiteRuleIds: [...ruleItem.structuralPrerequisiteRuleIds],
+    noRecalculation: true,
+    noPersonalMeaning: true,
+    noCrossLineageMerge: true,
+    semanticExpansion: false,
+    ...extra,
+  }
+}
+
+function executeZipingSourceSemanticRule(ruleItem, base, structuralResults) {
+  if (ruleItem.ruleId !== 'rule.ziping.chen-exposure-use-role.v0') {
+    return sourceSemanticRuleResult(ruleItem, 'not_executable_by_contract', {}, ruleItem.observedRule)
+  }
+
+  const structuralConflict = (structuralResults.categories.lineageConflicts || []).find(conflict => conflict.ruleIds?.includes('rule.ziping.chen-exposure-inventory.v0'))
+  if (structuralConflict) return sourceSemanticRuleResult(ruleItem, 'not_executable_by_contract', {}, 'the p.10 semantic result is blocked by a preserved structural lineage conflict', {
+    structuralConflictId: structuralConflict.conflictId,
+  })
+
+  const structuralResult = structuralResults.categories.derivedStructuralResults.find(item => item.ruleId === 'rule.ziping.chen-exposure-inventory.v0')
+  if (!structuralResult) {
+    const structuralGap = structuralResults.categories.prerequisiteGaps.find(item => item.ruleId === 'rule.ziping.chen-exposure-inventory.v0')
+    if (structuralGap) return sourceSemanticRuleResult(ruleItem, 'blocked_missing_base_fact', {}, 'the p.10 semantic rule is blocked by its missing or malformed structural exposure prerequisite', {
+      missingStructuralPrerequisite: 'rule.ziping.chen-exposure-inventory.v0',
+      structuralGapResultId: structuralGap.resultId,
+    })
+    return sourceSemanticRuleResult(ruleItem, 'not_executable_by_contract', {}, 'the p.10 semantic rule has no executed structural exposure prerequisite')
+  }
+
+  const matches = structuralResult.output.namedExposureMatches || []
+  if (matches.length === 0) return sourceSemanticRuleResult(ruleItem, 'not_applicable_fixture', {}, 'the exact 甲生辰月 window is present but none of the three source-listed exposure targets is visible')
+
+  const matchedSourceRoleLabels = matches.map(match => {
+    const target = ZIPING_P10_EXPOSURE_TARGETS.find(candidate => candidate.sourceStem === match.sourceStem)
+    return {
+      position: match.position,
+      visibleStem: match.visibleStem,
+      sourceStem: match.sourceStem,
+      sourceRole: target?.sourceRole || null,
+    }
+  })
+
+  return sourceSemanticRuleResult(ruleItem, 'executable_from_frozen_base', {
+    sourceCondition: structuralResult.output.sourceCondition,
+    matchedSourceRoleLabels,
+    multiplicityPolicy: matches.length > 1 ? '兼透兼用' : '一透一用',
+    sourceSemanticScope: 'ziping-p10-甲生辰月-named-source-role-labels-only',
+  }, null, {
+    structuralPrerequisiteResultIds: [structuralResult.resultId],
+  })
+}
+
+function sourceSemanticResultDescriptor(contract, ruleEvaluation, classification, extra = {}) {
+  const sourceProvenance = Object.fromEntries(contract.sourceIds.map(sourceId => {
+    const source = SAJU_LINEAGE_SOURCE_PROFILES.find(item => item.sourceId === sourceId)
+    return [sourceId, source?.byteSha256 || null]
+  }))
+  return {
+    resultId: `semantic-result.${contract.ruleId}`,
+    classification,
+    ruleId: contract.ruleId,
+    work: contract.work,
+    lineage: contract.lineage,
+    sourceIds: [...contract.sourceIds],
+    locatorIds: [...contract.locatorIds],
+    sourceProvenance,
+    commonBaseFacts: contract.commonBaseFacts.map(binding => ({ ...binding })),
+    structuralPrerequisites: contract.structuralPrerequisites.map(prerequisite => ({ ...prerequisite })),
+    applicability: [...contract.applicability],
+    procedure: [...contract.procedure],
+    stopConditions: [...contract.stopConditions],
+    outputContract: { ...contract.output, fields: [...contract.output.fields] },
+    executionStatus: ruleEvaluation.executionStatus,
+    ruleStatus: ruleEvaluation.ruleStatus,
+    output: classification === 'derived_source_bounded_semantic_result' ? ruleEvaluation.output : null,
+    reason: ruleEvaluation.reason,
+    structuralPrerequisiteResultIds: [...(ruleEvaluation.structuralPrerequisiteResultIds || [])],
+    structuralGapResultId: ruleEvaluation.structuralGapResultId || null,
+    structuralConflictId: ruleEvaluation.structuralConflictId || null,
+    deterministic: true,
+    noRecalculation: true,
+    noPersonalMeaning: true,
+    noCrossLineageMerge: true,
+    semanticExpansion: false,
+    ...extra,
+  }
+}
+
+export function checkSajuLineageSourceSemanticResultContract(contracts = SAJU_ZIPING_SOURCE_SEMANTIC_CONTRACTS) {
+  const errors = []
+  const fail = message => errors.push(message)
+  if (!Array.isArray(contracts)) return ['contract_not_array']
+
+  const sourceIds = new Set(SAJU_LINEAGE_SOURCE_PROFILES.map(source => source.sourceId))
+  const locatorIds = new Set(SAJU_LINEAGE_LOCATORS.map(locator => locator.observationId))
+  const semanticRuleIds = new Set(SAJU_ZIPING_SOURCE_SEMANTIC_RULES.map(ruleItem => ruleItem.ruleId))
+  const structuralRuleIds = new Set(SAJU_LINEAGE_RULES.map(ruleItem => ruleItem.ruleId))
+  const contractIds = new Set()
+  const coveredRuleIds = new Set()
+
+  for (const contract of contracts) {
+    if (!isObject(contract)) {
+      fail('contract_not_object')
+      continue
+    }
+    if (!contract.contractId || contractIds.has(contract.contractId)) fail(`contract_id_duplicate:${contract.contractId || 'missing'}`)
+    contractIds.add(contract.contractId)
+    if (!semanticRuleIds.has(contract.ruleId)) fail(`contract_rule_unknown:${contract.ruleId}`)
+    if (coveredRuleIds.has(contract.ruleId)) fail(`contract_rule_duplicate:${contract.ruleId}`)
+    coveredRuleIds.add(contract.ruleId)
+    const ruleItem = SAJU_ZIPING_SOURCE_SEMANTIC_RULES.find(item => item.ruleId === contract.ruleId)
+    if (!ruleItem) continue
+    if (!SAJU_LINEAGE_SOURCE_SEMANTIC_RULE_STATUSES.includes(contract.ruleStatus)) fail(`contract_rule_status:${contract.ruleId}`)
+    if (contract.ruleStatus !== ruleItem.status) fail(`contract_rule_status_mismatch:${contract.ruleId}`)
+    if (JSON.stringify(contract.sourceIds) !== JSON.stringify(ruleItem.sourceIds)) fail(`contract_sources:${contract.ruleId}`)
+    if (JSON.stringify(contract.locatorIds) !== JSON.stringify(ruleItem.locatorIds)) fail(`contract_locators:${contract.ruleId}`)
+    for (const sourceId of contract.sourceIds || []) if (!sourceIds.has(sourceId)) fail(`contract_source_unknown:${contract.ruleId}:${sourceId}`)
+    for (const locatorId of contract.locatorIds || []) if (!locatorIds.has(locatorId)) fail(`contract_locator_unknown:${contract.ruleId}:${locatorId}`)
+    if (!Array.isArray(contract.commonBaseFacts) || contract.commonBaseFacts.length === 0) fail(`contract_common_facts:${contract.ruleId}`)
+    if (!Array.isArray(contract.structuralPrerequisites)) fail(`contract_structural_prerequisites:${contract.ruleId}`)
+    for (const prerequisite of contract.structuralPrerequisites || []) {
+      if (!isObject(prerequisite) || !structuralRuleIds.has(prerequisite.prerequisiteRuleId) || prerequisite.status !== 'adopted_lineage_structural_result' || prerequisite.resultOrigin !== 'lineage_derived_structural_result') fail(`contract_structural_prerequisite_shape:${contract.ruleId}`)
+    }
+    for (const key of ['applicability', 'procedure', 'stopConditions']) if (!Array.isArray(contract[key]) || contract[key].length === 0) fail(`contract_${key}:${contract.ruleId}`)
+    if (!isObject(contract.output) || contract.output.origin !== 'lineage_derived_source_bounded_semantic_result' || contract.output.semanticExpansion !== false || contract.output.personalMeaning !== false || !contract.output.resultKey || !Array.isArray(contract.output.fields) || contract.output.fields.length === 0) fail(`contract_output:${contract.ruleId}`)
+    if (ruleItem.status === 'adopted_lineage_semantic_rule' && contract.structuralPrerequisites.length === 0) fail(`adopted_semantic_prerequisite_missing:${contract.ruleId}`)
+    if (ruleItem.semanticBoundary?.personalMeaning !== false || ruleItem.semanticBoundary?.crossLineageMerge !== false || ruleItem.semanticBoundary?.commonRulePromotion !== false) fail(`semantic_boundary:${contract.ruleId}`)
+  }
+
+  for (const ruleItem of SAJU_ZIPING_SOURCE_SEMANTIC_RULES) if (!coveredRuleIds.has(ruleItem.ruleId)) fail(`contract_missing_semantic_rule:${ruleItem.ruleId}`)
+  return unique(errors).sort()
+}
+
+export function deriveSajuLineageSourceSemanticResults(base, structuralResults = null, contracts = SAJU_ZIPING_SOURCE_SEMANTIC_CONTRACTS) {
+  const contractErrors = checkSajuLineageSourceSemanticResultContract(contracts)
+  const baseValidation = validateDeterministicBaseForInterpretation(base)
+  const structural = structuralResults || deriveSajuLineageStructuralResults(base)
+  const emptyCategories = {
+    adoptedSemanticRules: [],
+    contextBoundCandidates: [],
+    unresolvedBoundaries: [],
+    prerequisiteGaps: [],
+    notApplicableRules: [],
+    derivedSourceBoundedSemanticResults: [],
+    lineageConflicts: [],
+  }
+  if (contractErrors.length > 0 || !baseValidation.valid || !structural.contractValidation?.valid) {
+    return {
+      schemaVersion: SAJU_LINEAGE_SOURCE_SEMANTIC_RESULT_SCHEMA,
+      version: SAJU_LINEAGE_SOURCE_SEMANTIC_RESULT_VERSION,
+      contractValidation: { valid: contractErrors.length === 0, errors: contractErrors },
+      baseValidation,
+      structuralResultContractValidation: structural.contractValidation,
+      categories: emptyCategories,
+      boundary: {
+        noRecalculation: true,
+        baseMutation: false,
+        publicBaseMutation: false,
+        sourceAuthorityPromotion: false,
+        commonRulePromotion: false,
+        crossLineageMerge: false,
+        personalMeaning: false,
+        semanticExpansion: false,
+        conflictsPreserved: true,
+      },
+    }
+  }
+
+  const ruleEvaluationById = new Map(SAJU_ZIPING_SOURCE_SEMANTIC_RULES.map(ruleItem => [ruleItem.ruleId, executeZipingSourceSemanticRule(ruleItem, base, structural)]))
+  const contractsByRuleId = new Map(contracts.map(contract => [contract.ruleId, contract]))
+  const categories = { ...emptyCategories }
+
+  for (const ruleItem of SAJU_ZIPING_SOURCE_SEMANTIC_RULES) {
+    const contract = contractsByRuleId.get(ruleItem.ruleId)
+    const evaluation = ruleEvaluationById.get(ruleItem.ruleId)
+    if (!contract || !evaluation) continue
+
+    if (ruleItem.status === 'adopted_lineage_semantic_rule') categories.adoptedSemanticRules.push(sourceSemanticResultDescriptor(contract, evaluation, 'executable_semantic_rule'))
+    if (ruleItem.status === 'context_bound_candidate') categories.contextBoundCandidates.push(sourceSemanticResultDescriptor(contract, evaluation, 'context_bound_candidate'))
+    if (ruleItem.status === 'unresolved') categories.unresolvedBoundaries.push(sourceSemanticResultDescriptor(contract, evaluation, 'unresolved_boundary'))
+
+    if (evaluation.executionStatus === 'executable_from_frozen_base') {
+      categories.derivedSourceBoundedSemanticResults.push(sourceSemanticResultDescriptor(contract, evaluation, 'derived_source_bounded_semantic_result'))
+    } else if (evaluation.executionStatus === 'blocked_missing_base_fact') {
+      categories.prerequisiteGaps.push(sourceSemanticResultDescriptor(contract, evaluation, 'prerequisite_gap'))
+    } else if (evaluation.executionStatus === 'not_applicable_fixture') {
+      categories.notApplicableRules.push(sourceSemanticResultDescriptor(contract, evaluation, 'not_applicable_fixture'))
+    }
+    if (evaluation.structuralConflictId) categories.lineageConflicts.push({
+      conflictId: evaluation.structuralConflictId,
+      classification: 'lineage_conflict',
+      ruleIds: [...ruleItem.structuralPrerequisiteRuleIds],
+      sourceIds: [...ruleItem.sourceIds],
+      status: 'preserved_tension_fail_closed',
+      reason: 'semantic result was not materialized because its structural prerequisite conflict was preserved',
+      deterministic: true,
+      noPersonalMeaning: true,
+    })
+  }
+
+  return {
+    schemaVersion: SAJU_LINEAGE_SOURCE_SEMANTIC_RESULT_SCHEMA,
+    version: SAJU_LINEAGE_SOURCE_SEMANTIC_RESULT_VERSION,
+    contractValidation: { valid: true, errors: [] },
+    baseValidation,
+    structuralResultContractValidation: structural.contractValidation,
+    categories,
+    boundary: {
+      noRecalculation: categories.derivedSourceBoundedSemanticResults.every(result => result.noRecalculation),
+      baseMutation: false,
+      publicBaseMutation: false,
+      sourceAuthorityPromotion: false,
+      commonRulePromotion: false,
+      crossLineageMerge: false,
+      personalMeaning: categories.derivedSourceBoundedSemanticResults.every(result => result.noPersonalMeaning),
+      semanticExpansion: categories.derivedSourceBoundedSemanticResults.some(result => result.semanticExpansion),
       conflictsPreserved: true,
     },
   }

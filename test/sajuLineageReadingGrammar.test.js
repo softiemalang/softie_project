@@ -10,8 +10,12 @@ import {
   SAJU_QIONGTONG_SHENGWANG_JUE_ANALYSIS,
   SAJU_ZIPING_EXPLICIT_STEM_BRANCH_ANALYSIS,
   SAJU_ZIPING_ROOT_EXPOSURE_ANALYSIS,
+  SAJU_ZIPING_SOURCE_SEMANTIC_CONTRACTS,
+  SAJU_ZIPING_SOURCE_SEMANTIC_RULES,
   checkSajuLineageReadingGrammar,
+  checkSajuLineageSourceSemanticResultContract,
   checkSajuLineageStructuralResultContract,
+  deriveSajuLineageSourceSemanticResults,
   deriveSajuLineageStructuralResults,
   evaluateSajuLineageReadingGrammar,
 } from '../src/interpretationPrep/sajuLineageReadingGrammar.js'
@@ -36,6 +40,20 @@ const JIA_BIRTH_INPUT = {
   ...REAL_BIRTH_INPUT,
   subjectName: 'lineage-grammar-jia-fixture',
   birthDate: '1997-04-22',
+}
+
+const ZIPING_P10_BIRTH_INPUT = {
+  ...REAL_BIRTH_INPUT,
+  subjectName: 'lineage-grammar-ziping-p10-fixture',
+  birthDate: '1997-04-12',
+  birthTime: '08:30',
+}
+
+const ZIPING_P10_MULTI_BIRTH_INPUT = {
+  ...REAL_BIRTH_INPUT,
+  subjectName: 'lineage-grammar-ziping-p10-multi-fixture',
+  birthDate: '1963-04-11',
+  birthTime: '08:30',
 }
 
 function buildFrozenBase(input = REAL_BIRTH_INPUT) {
@@ -120,7 +138,7 @@ test('missing hour, timing, and relation facts fail closed without source-rule i
 
 test('adopted rules have complete structural result contracts and keep common facts separate from lineage outputs', () => {
   assert.deepEqual(checkSajuLineageStructuralResultContract(), [])
-  assert.equal(SAJU_LINEAGE_STRUCTURAL_CONTRACTS.length, 11)
+  assert.equal(SAJU_LINEAGE_STRUCTURAL_CONTRACTS.length, 12)
   assert.deepEqual(
     SAJU_LINEAGE_STRUCTURAL_CONTRACTS.map(contract => contract.ruleId),
     SAJU_LINEAGE_RULES.filter(rule => rule.status === 'adopted_lineage_rule').map(rule => rule.ruleId),
@@ -135,6 +153,7 @@ test('adopted rules have complete structural result contracts and keep common fa
   }
   assert.ok(SAJU_LINEAGE_STRUCTURAL_CONTRACTS.find(contract => contract.ruleId === 'rule.ziping.root-exposure.v0') === undefined)
   assert.equal(SAJU_LINEAGE_RULES.find(rule => rule.ruleId === 'rule.ziping.root-exposure.v0').status, 'unresolved')
+  assert.ok(SAJU_LINEAGE_STRUCTURAL_CONTRACTS.find(contract => contract.ruleId === 'rule.ziping.chen-exposure-inventory.v0'))
 })
 
 test('Ziping exact stem/branch examples are deterministic without promoting generic rooting or exposure', () => {
@@ -240,6 +259,110 @@ test('Ziping p.7 and p.10–11 exposure surfaces remain context-bound and do not
   assert.equal(first.boundary.noSemanticInterpretation, true)
 })
 
+test('Ziping p.10 exact 甲生辰月 inventory feeds only its source-bounded role-label semantic result', () => {
+  assert.deepEqual(checkSajuLineageSourceSemanticResultContract(), [])
+  assert.deepEqual(
+    SAJU_ZIPING_SOURCE_SEMANTIC_RULES.map(rule => rule.status),
+    ['adopted_lineage_semantic_rule', 'context_bound_candidate', 'unresolved'],
+  )
+  assert.deepEqual(
+    SAJU_ZIPING_SOURCE_SEMANTIC_CONTRACTS.map(contract => contract.ruleId),
+    SAJU_ZIPING_SOURCE_SEMANTIC_RULES.map(rule => rule.ruleId),
+  )
+
+  const base = buildFrozenBase(ZIPING_P10_BIRTH_INPUT)
+  const structural = deriveSajuLineageStructuralResults(base)
+  const structuralResult = structural.categories.derivedStructuralResults.find(item => item.ruleId === 'rule.ziping.chen-exposure-inventory.v0')
+  assert.ok(structuralResult)
+  assert.deepEqual(structuralResult.output.namedExposureMatches, [{
+    position: 'hour',
+    visibleStem: '무',
+    sourceStem: '戊',
+    sourceScope: 'ziping-p10-甲生辰月-named-target-only',
+  }])
+
+  const first = deriveSajuLineageSourceSemanticResults(base, structural)
+  const second = deriveSajuLineageSourceSemanticResults(base, structural)
+  assert.deepEqual(first, second)
+  assert.equal(first.boundary.baseMutation, false)
+  assert.equal(first.boundary.publicBaseMutation, false)
+  assert.equal(first.boundary.personalMeaning, true)
+  assert.equal(first.boundary.crossLineageMerge, false)
+  assert.deepEqual(first.categories.lineageConflicts, [])
+
+  const semantic = first.categories.derivedSourceBoundedSemanticResults.find(item => item.ruleId === 'rule.ziping.chen-exposure-use-role.v0')
+  assert.ok(semantic)
+  assert.equal(semantic.output.multiplicityPolicy, '一透一用')
+  assert.deepEqual(semantic.output.matchedSourceRoleLabels, [{
+    position: 'hour',
+    visibleStem: '무',
+    sourceStem: '戊',
+    sourceRole: '偏财',
+  }])
+  assert.deepEqual(semantic.structuralPrerequisiteResultIds, [structuralResult.resultId])
+  assert.equal(semantic.sourceProvenance['saju-source-ziping-zhenquan'], '449336b5e35aa6811b0462093d0175c45a0add44065bf2d3845cff75981db692')
+  assert.equal(semantic.noPersonalMeaning, true)
+  assert.equal(semantic.semanticExpansion, false)
+  assert.equal(first.categories.contextBoundCandidates[0].ruleId, 'rule.ziping.yin-month-exposure-change.v0')
+  assert.equal(first.categories.unresolvedBoundaries[0].ruleId, 'rule.ziping.exposure-branch-sentiment.v0')
+
+  const multiBase = buildFrozenBase(ZIPING_P10_MULTI_BIRTH_INPUT)
+  const multiStructural = deriveSajuLineageStructuralResults(multiBase)
+  const multiSemantic = deriveSajuLineageSourceSemanticResults(multiBase, multiStructural)
+  const multiResult = multiSemantic.categories.derivedSourceBoundedSemanticResults.find(item => item.ruleId === 'rule.ziping.chen-exposure-use-role.v0')
+  assert.ok(multiResult)
+  assert.equal(multiResult.output.multiplicityPolicy, '兼透兼用')
+  assert.deepEqual(multiResult.output.matchedSourceRoleLabels, [
+    { position: 'year', visibleStem: '계', sourceStem: '癸', sourceRole: '正印' },
+    { position: 'hour', visibleStem: '무', sourceStem: '戊', sourceRole: '偏财' },
+  ])
+})
+
+test('Ziping p.10 semantic result fails closed when its structural exposure prerequisite is incomplete', () => {
+  const base = buildFrozenBase(ZIPING_P10_BIRTH_INPUT)
+  base.systems.saju.fact.pillarFacts.hour.stem = null
+  const structural = deriveSajuLineageStructuralResults(base)
+  const gap = structural.categories.prerequisiteGaps.find(item => item.ruleId === 'rule.ziping.chen-exposure-inventory.v0')
+  assert.ok(gap)
+  assert.ok(gap.unsatisfiedConditions.includes('complete_chen_exposure_input_missing'))
+
+  const semantic = deriveSajuLineageSourceSemanticResults(base, structural)
+  assert.equal(semantic.categories.derivedSourceBoundedSemanticResults.length, 0)
+  const semanticGap = semantic.categories.prerequisiteGaps.find(item => item.ruleId === 'rule.ziping.chen-exposure-use-role.v0')
+  assert.ok(semanticGap)
+  assert.equal(semanticGap.structuralGapResultId, gap.resultId)
+  assert.equal(semantic.boundary.personalMeaning, true)
+  assert.equal(semantic.boundary.publicBaseMutation, false)
+})
+
+test('Ziping p.10 semantic result preserves a structural lineage conflict instead of selecting a winner', () => {
+  const base = buildFrozenBase(ZIPING_P10_BIRTH_INPUT)
+  const structural = deriveSajuLineageStructuralResults(base)
+  const conflictedStructural = {
+    ...structural,
+    categories: {
+      ...structural.categories,
+      lineageConflicts: [{
+        conflictId: 'conflict.test-chen-exposure',
+        ruleIds: ['rule.ziping.chen-exposure-inventory.v0', 'rule.synthetic.other-lineage.v0'],
+      }],
+    },
+  }
+  const semantic = deriveSajuLineageSourceSemanticResults(base, conflictedStructural)
+  assert.equal(semantic.categories.derivedSourceBoundedSemanticResults.length, 0)
+  assert.deepEqual(semantic.categories.lineageConflicts, [{
+    conflictId: 'conflict.test-chen-exposure',
+    classification: 'lineage_conflict',
+    ruleIds: ['rule.ziping.chen-exposure-inventory.v0'],
+    sourceIds: ['saju-source-ziping-zhenquan'],
+    status: 'preserved_tension_fail_closed',
+    reason: 'semantic result was not materialized because its structural prerequisite conflict was preserved',
+    deterministic: true,
+    noPersonalMeaning: true,
+  }])
+  assert.equal(semantic.boundary.crossLineageMerge, false)
+})
+
 test('real frozen Base yields deterministic structural results with explicit prerequisite gaps and unresolved lanes', () => {
   const base = buildFrozenBase()
   const first = deriveSajuLineageStructuralResults(base)
@@ -253,7 +376,7 @@ test('real frozen Base yields deterministic structural results with explicit pre
   assert.equal(first.categories.prerequisiteGaps.length, 1)
   assert.equal(first.categories.unresolvedRules.length, 5)
   assert.equal(first.categories.unsupportedRules.length, 2)
-  assert.equal(first.categories.notApplicableRules.length, 2)
+  assert.equal(first.categories.notApplicableRules.length, 3)
   assert.deepEqual(first.categories.lineageConflicts, [])
   const qiongtongGap = first.categories.prerequisiteGaps.find(item => item.ruleId === 'rule.qiongtong.five-phase-number-season-state.v0')
   assert.deepEqual(qiongtongGap.missingLineagePrerequisiteIds, ['source-specific-shengwang-jue-state'])
