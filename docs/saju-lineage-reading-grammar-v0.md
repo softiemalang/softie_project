@@ -391,3 +391,56 @@ semantic frontier는 p.7의 exact local clause와 p.10의 exact source-role lane
 기존 source-bounded semantic rule과의 연결은 子平真詮 p.7·p.10 및 三命通會 p.162의 이미 채택된 lane으로 한정한다. 그 외 adopted entry는 기존 structural result가 제공하는 source vocabulary만 연결하며, 여러 entry를 합성하거나 다른 lineage와 병합하지 않는다. `commonSemanticCandidates=[]`, `compositionReady=false`, `personalMeaning=false`, `crossLineageMerge=false`를 유지한다. 다섯 문헌의 비슷한 단어는 입력·조건·출력 범위가 실질적으로 동일하다고 입증되지 않았으므로 common semantic 후보로 올리지 않았다.
 
 실제 fixture에서 동일 입력의 lookup은 동일한 entry/result/provenance chain을 재현한다. structural result 또는 semantic result가 없거나, source/lineage가 어긋나거나, 충돌이 보존된 경우에는 winner나 fallback을 만들지 않고 각각 blocked/ambiguous로 닫힌다. 이 변경은 Deterministic Base, Constitution, 계산·activation 경계와 공개 Base 필드를 변경하지 않으며, lexicon 자체도 개인에 대한 interpretation hypothesis를 생성하지 않는다.
+
+## Source-local semantic composition grammar v0
+
+다섯 lineage의 semantic lexicon과 이미 채택된 structural/semantic result를 같은 source 안에서만 조합하는 별도 `saju-source-local-semantic-composition-v0` 계약을 추가했다. 이 계약은 Base나 기존 result를 재계산·변경하지 않으며, source가 직접 닫은 조합 창과 닫히지 않은 composition frontier를 분리한다. 각 descriptor는 `sourceIds`, `lineage`, `locatorIds`, 필요한 structural/semantic/lexicon result, 적용 조건·절차·중단 조건, composition의 priority/combination/transition, conflict state, 금지 확장, source byte SHA provenance를 보존한다.
+
+### 직접 대조한 source surface와 판정
+
+| source/locator | 원문이 직접 닫는 조합 surface | 상태 | 출력 경계 |
+|---|---|---|---|
+| 子平真詮 p.10 `ziping-p10-chen-exposed-stem-definition` | `甲生辰月`에서 `一透则一用`, `兼透则兼用`, `逢申與子會局`의 `水印`, `透而又會則透與會並用` | `adopted_composition` | named exposure role component와 exact `申子辰` meeting component을 모두 보존; 우승자·有情/無情·格局·吉凶은 출력하지 않음 |
+| 子平真詮 p.7 `page.local.ziping.p7-yongshin-continuation` | `寅月`의 `不透甲而透丙` 뒤 `同知得以作主` | `bounded_role_use_transition` | 기존 exact clause를 source-local transition으로 연결; global 用神 우선순위나 일반 透/透干으로 확장하지 않음 |
+| 子平真詮 p.11 `ziping-p11-exposed-stem-and-branch-context` | 透干·會支·복수 노출과 `有情/無情`; `有情而卒成無情`·`無情而終有情` | `unresolved` | 정적 valence, 전이 함수, 우선순위가 닫히지 않아 결과를 materialize하지 않음 |
+| 淵海子平 p.6·p.9 `yuanhai-p6-day-as-host`, `yuanhai-p9-dayun-focus-lens` | 日主/연·월·일·시의 frame과 `大運看支·歲君看干` focus | composition 제외, 기존 structural frame | 이미 하나의 bounded frame/focus result로 닫혔으나 복수 semantic result의 조합·전이는 source가 닫지 않음. p.197 role prohibition은 unresolved로 보존 |
+| 三命通會 p.78–93 `sanming-p78-stem-combination` 외 | 천간합·化氣·六合/三合·刑·沖이 함께 나타나는 관계 surface | `unresolved` | 관계 목록은 기존 structural inventory로 유지하되 化氣/관계 winner, 우선·전이·결과는 생성하지 않음 |
+| 滴天髓 p.13·p.18–20 `ditian-p13-fang-ju-examples`, `ditian-p18-p20-tiyong` | 方/局의 병존, 體/用의 여러 축과 `最要緊者` 언급 | `unresolved` | `干頭無反覆`·`一元神`·體用 weighting과 用神 선택 절차가 기계적으로 닫히지 않아 exact branch inventory 이상으로 조합하지 않음 |
+| 窮通寶鑑 p.2·p.3–p.90 `qiongtong-p2-five-phase-number-and-season` 외 | 오행 수치의 `生旺加倍·死絕減半`과 일간별 월 조건 | `unresolved` | source-specific state resolver와 section 간 priority가 없으므로 일반 十二運星·현대 처방·다른 lineage로 보간하지 않음 |
+
+추가로 Yuanhai의 개인/가족 surface와 窮通의 五行之性→개인 trait surface는 `unsupported`로 분류했다. 이들은 composition grammar가 개인 의미를 생성하지 않도록 명시적으로 차단한다. inventory에는 adopted composition 1개, bounded role/use transition 1개, unresolved composition 6개, unsupported composition 2개가 있으며 `commonCompositionCandidates=[]`다.
+
+### 채택한 source-local 계약
+
+`composition.ziping.p10-chen-use-components.v0`만 p.10의 조합 조건·결합 방식이 exact `甲生辰月` 창 안에서 닫혔으므로 adopted다. 이 결과는 다음 네 상태를 구분한다.
+
+- `exposure_only_single`: source-listed visible target 하나 → source role component 하나
+- `exposure_only_multiple`: source-listed visible target 복수 → 모든 source role component 보존
+- `branch_meeting_only`: visible target 없이 공급된 완전 `申子辰` meeting record만 존재 → `水印` component
+- `exposure_and_branch_meeting`: 두 종류가 함께 존재 → 두 component set을 병존
+
+`rule.ziping.chen-exposure-inventory.v0`와 `rule.ziping.branch-relation-inventory.v0`의 같은 source structural result, 조건부 p.10 semantic result, p.10 lexicon entry를 prerequisite로 삼는다. `會支`는 supplied relation record를 읽을 뿐 재계산하지 않으며, 이름이 source-listed meeting이고 branches가 정확히 `申子辰`, positions가 중복 없이 `month`를 포함할 때만 인정한다. qualifying meeting record가 둘 이상이면 p.10에 duplicate precedence가 없으므로 `ambiguous_composition`으로 중단한다. 노출이 있으면 p.10 role semantic result와 lexicon link가 반드시 있어야 하며, source/lineage mismatch는 conflict로 보존하고 결과를 만들지 않는다.
+
+`transition.ziping.p7-yin-month-use-change.v0`는 새 global selector가 아니다. 기존 p.7 structural result → p.7 source semantic result → p.7 lexicon entry chain을 확인한 뒤 `同知得以作主`를 exact source clause로만 보존한다. 이 두 결과 모두 `winnerSelected=false`, `noPersonalMeaning=true`, `noCrossLineageMerge=true`, `interpretationHypothesis=false`다.
+
+### fixture·fail-closed 검증
+
+실제 생성 frozen Base fixture를 사용해 다음을 재현했다.
+
+- `1997-04-12 08:30`: `甲生辰月` + visible `戊` → `exposure_only_single`
+- `1963-04-11 08:30`: `甲生辰月` + visible `癸`,`戊` → `exposure_only_multiple`
+- `1992-04-18 14:30`: `甲生辰月` + supplied exact `申子辰` relation, named exposure 없음 → `branch_meeting_only`
+- `1992-04-18 18:30`: 같은 exact `申子辰` relation + visible `癸` → `exposure_and_branch_meeting`
+- `1990-02-07 08:30`: exact p.7 `寅月 / 不透甲 / 단일 透丙` → bounded role/use transition
+
+각 fixture는 두 번 실행한 결과 object가 동일하고, composition provenance chain에 structural rule/result ID, semantic rule/result ID, lexicon entry/result ID, Base fact ref가 함께 남는다. relation list 또는 source-role/lexicon prerequisite를 제거하면 `blocked_missing_base_fact`, duplicate `申子辰`을 추가하면 `ambiguous_composition`, 다른 lineage/source를 주입하면 `preserved_tension_fail_closed`와 no-result가 된다. p.11은 모든 fixture에서 unresolved composition으로 남고 output을 내지 않는다. 입력 Base는 실행 전후 byte-equivalent이며, 기존 five-lineage grammar·semantic lexicon·계산 FACT·Constitution·activation은 변경하지 않는다.
+
+### readiness 판정
+
+- `localCompositionReady=true`: p.10 exact source-local composition과 p.7 exact bounded transition은 실행 가능
+- `compositionReady=false`, `globalCompositionReady=false`: source 전역 priority·composition·transition grammar는 닫히지 않음
+- `interpretationHypothesisReady=false`: 개인 해석 가설을 생성하지 않음
+- `commonCompositionCandidates=[]`: lineage 간 유사성을 상호검증·다수결·통합 근거로 사용하지 않음
+- `personalMeaning=false`, `crossLineageMerge=false`, `winnerSelection=false`: source-local 결과를 사용자 의미나 cross-lineage winner로 확장하지 않음
+
+따라서 이번 frontier에서 허용되는 것은 p.10의 exact component coexistence와 p.7의 exact source clause transition뿐이다. p.11 有情/無情, Yuanhai role prohibition, Sanming relation transformation, Ditian 方局/體用, Qiongtong state/month operation은 각각 원문 우선순위·전이·적용 조건이 닫힐 때까지 unresolved/unsupported로 유지하며 interpretation-hypothesis readiness를 열지 않는다.

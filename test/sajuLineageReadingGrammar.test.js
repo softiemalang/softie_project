@@ -19,6 +19,8 @@ import {
   SAJU_QIONGTONG_SHENGWANG_JUE_ANALYSIS,
   SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON,
   SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON_STATUSES,
+  SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_READINESS,
+  SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_RULES,
   SAJU_SOURCE_SEMANTIC_LEXICON_COMPOSITION_READINESS,
   SAJU_ZIPING_CANDIDATE_CLOSABILITY,
   SAJU_ZIPING_EXPLICIT_STEM_BRANCH_ANALYSIS,
@@ -35,9 +37,11 @@ import {
   checkSajuSanmingSourceSemanticResultContract,
   checkSajuLineageSourceSemanticResultContract,
   checkSajuLineageStructuralResultContract,
+  checkSajuSourceLocalSemanticComposition,
   deriveSajuLineageSourceSemanticResults,
   deriveSajuSanmingSourceSemanticResults,
   deriveSajuLineageStructuralResults,
+  deriveSajuSourceLocalSemanticCompositions,
   deriveSajuSourceBoundedSemanticLexiconEntries,
   evaluateSajuLineageReadingGrammar,
 } from '../src/interpretationPrep/sajuLineageReadingGrammar.js'
@@ -76,6 +80,20 @@ const ZIPING_P10_MULTI_BIRTH_INPUT = {
   subjectName: 'lineage-grammar-ziping-p10-multi-fixture',
   birthDate: '1963-04-11',
   birthTime: '08:30',
+}
+
+const ZIPING_P10_COMPOSITION_BIRTH_INPUT = {
+  ...REAL_BIRTH_INPUT,
+  subjectName: 'lineage-grammar-ziping-p10-composition-fixture',
+  birthDate: '1992-04-18',
+  birthTime: '18:30',
+}
+
+const ZIPING_P10_BRANCH_ONLY_BIRTH_INPUT = {
+  ...REAL_BIRTH_INPUT,
+  subjectName: 'lineage-grammar-ziping-p10-branch-only-fixture',
+  birthDate: '1992-04-18',
+  birthTime: '14:30',
 }
 
 const ZIPING_P7_BIRTH_INPUT = {
@@ -1099,4 +1117,181 @@ test('semantic lexicon rejects a cross-lineage result even when a named rule id 
   assert.equal(ambiguous.lookupStatus, 'conflict_preserved')
   assert.equal(ambiguous.conflictState.sourceMismatch, true)
   assert.equal(result.boundary.crossLineageMerge, false)
+})
+
+test('source-local composition inventory separates adopted composition, bounded transition, unresolved surfaces, and unsupported surfaces', () => {
+  assert.deepEqual(checkSajuSourceLocalSemanticComposition(), [])
+  assert.deepEqual(
+    SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_RULES.filter(rule => rule.status === 'adopted_composition').map(rule => rule.compositionId),
+    ['composition.ziping.p10-chen-use-components.v0'],
+  )
+  assert.deepEqual(
+    SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_RULES.filter(rule => rule.status === 'bounded_role_use_transition').map(rule => rule.compositionId),
+    ['transition.ziping.p7-yin-month-use-change.v0'],
+  )
+  assert.equal(SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_RULES.filter(rule => rule.status === 'unresolved').length, 6)
+  assert.equal(SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_RULES.filter(rule => rule.status === 'unsupported').length, 2)
+  assert.equal(SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_READINESS.localCompositionReady, true)
+  assert.equal(SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_READINESS.compositionReady, false)
+  assert.equal(SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_READINESS.globalCompositionReady, false)
+  assert.equal(SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_READINESS.interpretationHypothesisReady, false)
+  assert.equal(SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_READINESS.sourceProvidesLocalCombinationRule, true)
+  assert.equal(SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_READINESS.sourceProvidesGlobalCombinationRule, false)
+  assert.deepEqual(SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_READINESS.commonCompositionCandidates, [])
+  assert.deepEqual(checkSajuLineageReadingGrammar(), [])
+  assert.deepEqual(SAJU_LINEAGE_READING_GRAMMAR.sourceLocalSemanticComposition.commonCompositionCandidates, [])
+  assert.equal(SAJU_LINEAGE_READING_GRAMMAR.sourceLocalSemanticComposition.interpretationHypothesisReady, false)
+})
+
+test('Ziping p.10 local composition deterministically preserves single, multiple, branch-only, and combined source components', () => {
+  const cases = [
+    [ZIPING_P10_BIRTH_INPUT, 'exposure_only_single', 1, 0, 'satisfied', 'satisfied'],
+    [ZIPING_P10_MULTI_BIRTH_INPUT, 'exposure_only_multiple', 2, 0, 'satisfied', 'satisfied'],
+    [ZIPING_P10_BRANCH_ONLY_BIRTH_INPUT, 'branch_meeting_only', 0, 1, 'not_required_for_no_exposure', 'not_required_for_no_exposure'],
+    [ZIPING_P10_COMPOSITION_BIRTH_INPUT, 'exposure_and_branch_meeting', 1, 1, 'satisfied', 'satisfied'],
+  ]
+
+  for (const [input, mode, exposureCount, meetingCount, semanticState, lexiconState] of cases) {
+    const base = buildFrozenBase(input)
+    const before = JSON.stringify(base)
+    const first = deriveSajuSourceLocalSemanticCompositions(base)
+    const second = deriveSajuSourceLocalSemanticCompositions(base)
+    assert.deepEqual(first, second, mode)
+    assert.equal(first.compositionValidation.valid, true)
+    assert.equal(first.baseValidation.valid, true)
+    assert.deepEqual(first.categories.lineageConflicts, [])
+    const result = first.categories.derivedCompositionResults.find(item => item.compositionId === 'composition.ziping.p10-chen-use-components.v0')
+    assert.ok(result, mode)
+    assert.equal(result.executionStatus, 'executable_from_frozen_base', mode)
+    assert.equal(result.output.compositionMode, mode)
+    assert.equal(result.output.exposureComponents.length, exposureCount, mode)
+    assert.equal(result.output.branchMeetingComponents.length, meetingCount, mode)
+    assert.equal(result.output.winnerSelected, false, mode)
+    assert.equal(result.requiredStructuralResults.state, 'satisfied', mode)
+    assert.equal(result.requiredSemanticResults.state, semanticState, mode)
+    assert.equal(result.requiredSemanticLexiconEntries.state, lexiconState, mode)
+    assert.deepEqual(result.provenance.chain.structuralRuleIds, [
+      'rule.ziping.chen-exposure-inventory.v0',
+      'rule.ziping.branch-relation-inventory.v0',
+    ], mode)
+    assert.deepEqual(result.provenance.chain.semanticRuleIds, ['rule.ziping.chen-exposure-use-role.v0'], mode)
+    assert.deepEqual(result.provenance.chain.semanticLexiconEntryIds, ['lexicon.ziping.p10-role-labels.v0'], mode)
+    assert.equal(result.provenance.sourceIds[0], 'saju-source-ziping-zhenquan', mode)
+    assert.equal(result.provenance.lineage, 'ziping_local_export', mode)
+    assert.equal(result.noRecalculation, true, mode)
+    assert.equal(result.noPersonalMeaning, true, mode)
+    assert.equal(result.noCrossLineageMerge, true, mode)
+    assert.equal(result.interpretationHypothesis, false, mode)
+    assert.equal(JSON.stringify(base), before, mode)
+  }
+
+  const combined = deriveSajuSourceLocalSemanticCompositions(buildFrozenBase(ZIPING_P10_COMPOSITION_BIRTH_INPUT))
+    .categories.derivedCompositionResults.find(item => item.compositionId === 'composition.ziping.p10-chen-use-components.v0')
+  assert.deepEqual(combined.output.exposureComponents, [{ position: 'hour', sourceStem: '癸', sourceRole: '正印' }])
+  assert.deepEqual(combined.output.branchMeetingComponents, [{
+    relationName: '삼합',
+    sourceBranches: ['申', '子', '辰'],
+    positions: ['year', 'month', 'day'],
+    sourceUseComponent: '水印',
+  }])
+  assert.equal(combined.output.sourceCombinationStatement, '一透则一用；兼透则兼用；透而又会，则透与会并用')
+  assert.equal(combined.requiredSemanticResults.resultIds.length, 1)
+  assert.equal(combined.requiredSemanticLexiconEntries.resultIds.length, 2)
+})
+
+test('Ziping p.7 source-local transition remains bounded and does not create global 用神 priority', () => {
+  const base = buildFrozenBase(ZIPING_P7_BIRTH_INPUT)
+  const first = deriveSajuSourceLocalSemanticCompositions(base)
+  const second = deriveSajuSourceLocalSemanticCompositions(base)
+  assert.deepEqual(first, second)
+  const transition = first.categories.derivedCompositionResults.find(item => item.compositionId === 'transition.ziping.p7-yin-month-use-change.v0')
+  assert.ok(transition)
+  assert.equal(transition.classification, 'derived_bounded_role_use_transition_result')
+  assert.equal(transition.status, 'bounded_role_use_transition')
+  assert.equal(transition.output.sourceSelectionStatement, '同知得以作主')
+  assert.equal(transition.output.winnerSelected, false)
+  assert.equal(transition.requiredStructuralResults.state, 'satisfied')
+  assert.equal(transition.requiredSemanticResults.state, 'satisfied')
+  assert.equal(transition.requiredSemanticLexiconEntries.state, 'satisfied')
+  assert.deepEqual(transition.provenance.chain.structuralRuleIds, ['rule.ziping.yin-month-exposure-contrast.v0'])
+  assert.deepEqual(transition.provenance.chain.semanticRuleIds, ['rule.ziping.yin-month-exposure-change.v0'])
+  assert.deepEqual(transition.provenance.chain.semanticLexiconEntryIds, ['lexicon.ziping.p7-selection-clause.v0'])
+  assert.equal(transition.noPersonalMeaning, true)
+  assert.equal(transition.interpretationHypothesis, false)
+  assert.equal(first.readiness.compositionReady, false)
+  assert.equal(first.readiness.interpretationHypothesisReady, false)
+})
+
+test('source-local composition fails closed on missing prerequisites, duplicate meetings, source mismatch, and preserves unresolved p.11', () => {
+  const base = buildFrozenBase(ZIPING_P10_COMPOSITION_BIRTH_INPUT)
+  const structural = deriveSajuLineageStructuralResults(base)
+  const branchResult = structural.categories.derivedStructuralResults.find(item => item.ruleId === 'rule.ziping.branch-relation-inventory.v0')
+  const missingBranch = {
+    ...structural,
+    categories: {
+      ...structural.categories,
+      derivedStructuralResults: structural.categories.derivedStructuralResults.filter(item => item.ruleId !== 'rule.ziping.branch-relation-inventory.v0'),
+      prerequisiteGaps: [...structural.categories.prerequisiteGaps, {
+        resultId: 'result.rule.ziping.branch-relation-inventory.v0',
+        ruleId: 'rule.ziping.branch-relation-inventory.v0',
+        reason: 'test missing relation inventory',
+      }],
+    },
+  }
+  const blocked = deriveSajuSourceLocalSemanticCompositions(base, missingBranch)
+  assert.equal(blocked.categories.derivedCompositionResults.some(item => item.compositionId === 'composition.ziping.p10-chen-use-components.v0'), false)
+  const blockedP10 = blocked.categories.blockedCompositions.find(item => item.compositionId === 'composition.ziping.p10-chen-use-components.v0')
+  assert.ok(blockedP10)
+  assert.equal(blockedP10.executionStatus, 'blocked_missing_base_fact')
+  assert.equal(blockedP10.requiredStructuralResults.state, 'blocked_missing')
+  assert.equal(blockedP10.noPersonalMeaning, true)
+
+  const duplicateRelation = {
+    ...branchResult,
+    output: {
+      ...branchResult.output,
+      relations: [...branchResult.output.relations, {
+        name: '삼합',
+        branches: ['신', '자', '진'],
+        positions: ['year', 'month', 'day'],
+      }],
+    },
+  }
+  const duplicateStructural = {
+    ...structural,
+    categories: {
+      ...structural.categories,
+      derivedStructuralResults: structural.categories.derivedStructuralResults.map(item => item.ruleId === 'rule.ziping.branch-relation-inventory.v0' ? duplicateRelation : item),
+    },
+  }
+  const ambiguous = deriveSajuSourceLocalSemanticCompositions(base, duplicateStructural)
+  assert.equal(ambiguous.categories.derivedCompositionResults.some(item => item.compositionId === 'composition.ziping.p10-chen-use-components.v0'), false)
+  const duplicateResult = ambiguous.categories.ambiguousCompositions.find(item => item.compositionId === 'composition.ziping.p10-chen-use-components.v0')
+  assert.ok(duplicateResult)
+  assert.equal(duplicateResult.executionStatus, 'ambiguous_composition')
+  assert.equal(duplicateResult.conflictState.winnerSelected, false)
+
+  const mismatchedStructural = {
+    ...structural,
+    categories: {
+      ...structural.categories,
+      derivedStructuralResults: structural.categories.derivedStructuralResults.map(item => item.ruleId === 'rule.ziping.chen-exposure-inventory.v0'
+        ? { ...item, work: '滴天髓', lineage: 'ditian_local_export', sourceIds: ['saju-source-ditian-sui'] }
+        : item),
+    },
+  }
+  const sourceMismatch = deriveSajuSourceLocalSemanticCompositions(base, mismatchedStructural)
+  assert.equal(sourceMismatch.categories.derivedCompositionResults.some(item => item.compositionId === 'composition.ziping.p10-chen-use-components.v0'), false)
+  const mismatchResult = sourceMismatch.categories.ambiguousCompositions.find(item => item.compositionId === 'composition.ziping.p10-chen-use-components.v0')
+  assert.ok(mismatchResult)
+  assert.equal(mismatchResult.conflictState.status, 'preserved_tension_fail_closed')
+  assert.equal(mismatchResult.conflictState.sourceMismatch, true)
+  assert.equal(sourceMismatch.categories.lineageConflicts[0].status, 'preserved_tension_fail_closed')
+  assert.equal(sourceMismatch.boundary.crossLineageMerge, false)
+
+  const p11 = sourceMismatch.categories.unresolvedCompositions.find(item => item.compositionId === 'composition.ziping.p11-exposure-branch-sentiment.v0')
+  assert.ok(p11)
+  assert.equal(p11.output, null)
+  assert.equal(p11.executionStatus, 'not_executable_by_contract')
+  assert.equal(sourceMismatch.categories.derivedCompositionResults.some(item => item.compositionId === 'composition.ziping.p11-exposure-branch-sentiment.v0'), false)
 })

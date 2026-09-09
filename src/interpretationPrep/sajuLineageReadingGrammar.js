@@ -4617,6 +4617,512 @@ export const SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON = Object.freeze([
   }),
 ])
 
+export const SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_SCHEMA = 'saju-source-local-semantic-composition-v0'
+export const SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_VERSION = '0.1.0'
+export const SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_STATUSES = Object.freeze([
+  'adopted_composition',
+  'bounded_role_use_transition',
+  'unresolved',
+  'unsupported',
+])
+
+export const SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_EXECUTION_STATUSES = Object.freeze([
+  'executable_from_frozen_base',
+  'blocked_missing_base_fact',
+  'not_applicable_fixture',
+  'ambiguous_composition',
+  'not_executable_by_contract',
+  'unsupported',
+])
+
+const sourceLocalSemanticCompositionRule = value => {
+  const sourceIds = [...(value.sourceIds || [])]
+  const locatorIds = [...(value.locatorIds || [])]
+  return {
+    schema: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_SCHEMA,
+    version: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_VERSION,
+    compositionId: null,
+    status: 'unresolved',
+    work: '',
+    lineage: '',
+    claimPromotion: false,
+    semanticAuthority: 'not_established',
+    readinessImpact: 'none',
+    activationImpact: 'none',
+    sourceIds,
+    locatorIds,
+    requiredStructuralResults: {
+      ruleIds: [],
+      fields: [],
+      closure: 'not_closed',
+    },
+    requiredSemanticResults: {
+      ruleIds: [],
+      fields: [],
+      closure: 'not_closed',
+    },
+    requiredSemanticLexiconEntries: {
+      entryIds: [],
+      fields: [],
+      closure: 'not_required',
+    },
+    applicability: [],
+    procedure: [],
+    composition: {
+      conditions: [],
+      priority: 'not_closed',
+      combination: 'not_closed',
+      transition: 'not_closed',
+    },
+    output: {
+      origin: 'lineage_derived_source_local_semantic_composition_result',
+      resultKey: '',
+      fields: [],
+      semanticExpansion: false,
+      personalMeaning: false,
+    },
+    conflictState: {
+      status: 'preserve_and_fail_closed',
+      winnerSelected: false,
+      failClosed: true,
+    },
+    stopConditions: [],
+    forbiddenExtensions: [...FORBIDDEN_EXTENSIONS],
+    provenance: {
+      schema: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_SCHEMA,
+      version: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_VERSION,
+      sourceIds,
+      locatorIds,
+      sourceByteSha256: sourceByteSha256ForIds(sourceIds),
+    },
+    noRecalculation: true,
+    noPersonalMeaning: true,
+    noCrossLineageMerge: true,
+    interpretationHypothesis: false,
+    ...value,
+    sourceIds,
+    locatorIds,
+    provenance: value.provenance || {
+      schema: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_SCHEMA,
+      version: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_VERSION,
+      sourceIds,
+      locatorIds,
+      sourceByteSha256: sourceByteSha256ForIds(sourceIds),
+    },
+  }
+}
+
+/**
+ * A source-local composition catalog.  An adopted entry means only that the
+ * named source closes this exact combination window.  It does not create a
+ * cross-lineage grammar, a global priority resolver, or a person-level
+ * interpretation hypothesis.
+ */
+export const SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_RULES = Object.freeze([
+  sourceLocalSemanticCompositionRule({
+    compositionId: 'composition.ziping.p10-chen-use-components.v0',
+    status: 'adopted_composition',
+    work: WORKS.ziping,
+    lineage: 'ziping_local_export',
+    sourceIds: ['saju-source-ziping-zhenquan'],
+    locatorIds: ['ziping-p10-chen-exposed-stem-definition'],
+    requiredStructuralResults: {
+      ruleIds: ['rule.ziping.chen-exposure-inventory.v0', 'rule.ziping.branch-relation-inventory.v0'],
+      fields: ['sourceCondition', 'namedExposureMatches', 'relations'],
+      closure: 'closed_exact_甲生辰月_component_composition',
+    },
+    requiredSemanticResults: {
+      ruleIds: ['rule.ziping.chen-exposure-use-role.v0'],
+      fields: ['matchedSourceRoleLabels', 'multiplicityPolicy'],
+      closure: 'conditional_named_exposure_components_only',
+      requirement: 'required_when_named_exposure_is_present',
+    },
+    requiredSemanticLexiconEntries: {
+      entryIds: ['lexicon.ziping.p10-role-labels.v0'],
+      fields: ['sourceTerm', 'linkedResults'],
+      closure: 'conditional_named_exposure_components_only',
+      requirement: 'required_when_named_exposure_is_present',
+    },
+    applicability: [
+      'the p.10 structural result binds day-master 甲 and month branch 辰',
+      'the supplied branch-relation inventory is present; an empty relation array is a valid no-meeting inventory',
+      'a meeting component requires one exact source-listed 申子辰 relation record including the 辰 month position',
+    ],
+    procedure: [
+      'consume the p.10 named-exposure structural and source-role results without recalculating stems',
+      'retain one named exposure as one source use component and retain every named exposure when multiple are present',
+      'recognize only a complete supplied 申子辰 會局/三合 record as the p.10 branch-meeting component',
+      'when exposure and meeting are both present, emit both component sets because the source states 透與會並用',
+      'do not select a winner or continue into 有情/無情, 格局, outcome, or personal meaning',
+    ],
+    composition: {
+      conditions: [
+        '一透則一用: one named visible exposure yields one source use component',
+        '兼透則兼用: multiple named visible exposures yield multiple source use components',
+        '逢申與子會局: with 辰月, a complete 申子辰 meeting yields the source 水印 component',
+        '透而又會則透與會並用: exposure and meeting components coexist',
+      ],
+      priority: 'none; p.10 closes coexistence, not ranking or winner selection',
+      combination: 'retain all qualifying exposure and meeting components in source order',
+      transition: 'not defined by p.10; no dynamic change is emitted',
+    },
+    output: {
+      origin: 'lineage_derived_source_local_semantic_composition_result',
+      resultKey: 'ziping.chenUseComponents',
+      fields: ['sourceCondition', 'compositionMode', 'exposureComponents', 'branchMeetingComponents', 'sourceCombinationStatement', 'winnerSelected'],
+      semanticExpansion: false,
+      personalMeaning: false,
+    },
+    conflictState: {
+      status: 'preserve_and_fail_closed',
+      policy: 'preserve simultaneous same-source components; ambiguous duplicate meeting records or any source/lineage mismatch produce no result',
+      winnerSelected: false,
+      failClosed: true,
+    },
+    stopConditions: [
+      'stop when either required structural result is missing, malformed, source-mismatched, or in preserved conflict',
+      'stop when a named exposure is present but its p.10 semantic role result or lexicon link is missing or source-mismatched',
+      'stop when more than one qualifying 申子辰 meeting record is supplied because duplicate-meeting precedence is not closed',
+      'stop before interpreting 有情/無情, 吉凶, 格局, strength, fortune, personality, prediction, or personal meaning',
+    ],
+  }),
+  sourceLocalSemanticCompositionRule({
+    compositionId: 'transition.ziping.p7-yin-month-use-change.v0',
+    status: 'bounded_role_use_transition',
+    work: WORKS.ziping,
+    lineage: 'ziping_local_export',
+    sourceIds: ['saju-source-ziping-zhenquan'],
+    locatorIds: ['page.local.ziping.p7-yongshin-continuation'],
+    requiredStructuralResults: {
+      ruleIds: ['rule.ziping.yin-month-exposure-contrast.v0'],
+      fields: ['sourceCondition', 'absentVisibleStem', 'exposedVisibleStem', 'exposedPositions'],
+      closure: 'closed_exact_寅月_contrast',
+    },
+    requiredSemanticResults: {
+      ruleIds: ['rule.ziping.yin-month-exposure-change.v0'],
+      fields: ['sourceCondition', 'sourceSelectionStatement'],
+      closure: 'closed_exact_source_clause_only',
+    },
+    requiredSemanticLexiconEntries: {
+      entryIds: ['lexicon.ziping.p7-selection-clause.v0'],
+      fields: ['sourceTerm', 'linkedResults'],
+      closure: 'closed_exact_source_clause_only',
+    },
+    applicability: [
+      'the exact p.7 寅月 contrast is materialized: no supplied visible 甲 and exactly one supplied visible 丙',
+      'the existing p.7 source semantic result and linked lexicon entry are both materialized',
+    ],
+    procedure: [
+      'consume the exact p.7 structural contrast result',
+      'retain the source clause 同知得以作主 as the bounded selection/use change statement',
+      'keep the clause separate from p.10 components and do not infer a global 用神 priority or transition grammar',
+    ],
+    composition: {
+      conditions: ['不透甲而透丙 under 寅月 is the sole executable condition'],
+      priority: 'not closed outside this exact local contrast',
+      combination: 'not a multi-result combination; retain the single source clause as a bounded transition',
+      transition: 'source clause only: 同知得以作主',
+    },
+    output: {
+      origin: 'lineage_derived_source_local_semantic_composition_result',
+      resultKey: 'ziping.yinMonthUseTransition',
+      fields: ['sourceCondition', 'exposedPositions', 'sourceSelectionStatement', 'winnerSelected'],
+      semanticExpansion: false,
+      personalMeaning: false,
+    },
+    conflictState: {
+      status: 'preserve_and_fail_closed',
+      policy: 'preserve the exact clause and stop on missing, duplicate, or cross-lineage input',
+      winnerSelected: false,
+      failClosed: true,
+    },
+    stopConditions: [
+      'stop when the p.7 structural or semantic prerequisite is missing, duplicated, malformed, or conflicted',
+      'stop before extending the clause to another month, another exposed stem, a global 用神 priority, or a personal result',
+    ],
+  }),
+  sourceLocalSemanticCompositionRule({
+    compositionId: 'composition.ziping.p11-exposure-branch-sentiment.v0',
+    status: 'unresolved',
+    work: WORKS.ziping,
+    lineage: 'ziping_local_export',
+    sourceIds: ['saju-source-ziping-zhenquan'],
+    locatorIds: ['ziping-p11-exposed-stem-and-branch-context'],
+    requiredStructuralResults: {
+      ruleIds: ['rule.ziping.chen-exposure-inventory.v0', 'rule.ziping.branch-relation-inventory.v0'],
+      fields: ['namedExposureMatches', 'relations'],
+      closure: 'relation_binding_and_transition_not_closed',
+    },
+    requiredSemanticResults: {
+      ruleIds: ['rule.ziping.chen-exposure-use-role.v0', 'rule.ziping.exposure-branch-sentiment.v0'],
+      fields: ['sourceRoleLabelInventory', '有情/無情 transition state'],
+      closure: 'source_context_and_transition_not_closed',
+    },
+    applicability: ['p.11 combines 透干, 會支, multiple exposure, 格局 context, and 有情/無情 wording'],
+    procedure: ['preserve the p.11 interaction surface as an unresolved composition frontier'],
+    composition: {
+      conditions: ['有情 = 順而相成 and 無情 = 逆而相背 are source definitions, not a closed static classifier'],
+      priority: 'not closed',
+      combination: 'not closed across exposure, meeting, and pattern context',
+      transition: '有情而卒成無情 and 無情而終有情 remain unresolved transitions',
+    },
+    output: {
+      origin: 'lineage_derived_source_local_semantic_composition_result',
+      resultKey: 'ziping.exposureBranchSentimentComposition',
+      fields: [],
+      semanticExpansion: false,
+      personalMeaning: false,
+    },
+    stopConditions: ['do not emit a winner, valence, 格局, 吉凶, or personal result while source context and transition conditions remain open'],
+  }),
+  sourceLocalSemanticCompositionRule({
+    compositionId: 'composition.ziping.p8-p12-use-pattern-composition.v0',
+    status: 'unresolved',
+    work: WORKS.ziping,
+    lineage: 'ziping_local_export',
+    sourceIds: ['saju-source-ziping-zhenquan'],
+    locatorIds: ['ziping-p8-yongshen-pure-mixed', 'ziping-p8-yongshen-pattern-level', 'ziping-p9-yongshen-success-failure-transition', 'ziping-p12-good-symbol-break-pattern', 'ziping-p12-bad-symbol-make-pattern', 'ziping-p12-generation-control-order'],
+    requiredStructuralResults: {
+      ruleIds: [],
+      fields: ['source use roles', 'relation order', 'case conditions'],
+      closure: 'use_selection_and_pattern_context_not_closed',
+    },
+    requiredSemanticResults: {
+      ruleIds: ['rule.ziping.exposure-branch-sentiment.v0'],
+      fields: ['pure/mixed', 'success/failure transition', 'good/bad pattern'],
+      closure: 'semantic_synthesis_not_closed',
+    },
+    applicability: ['p.8–p.12 describe pure/mixed, 有情/有力, success/failure, and pattern cases'],
+    procedure: ['retain each case inventory independently; do not compose across pages without a source-defined priority or transition procedure'],
+    composition: {
+      conditions: ['multiple source use/pattern cases are visible'],
+      priority: 'not closed',
+      combination: 'coexistence only',
+      transition: 'not closed',
+    },
+    output: {
+      origin: 'lineage_derived_source_local_semantic_composition_result',
+      resultKey: 'ziping.usePatternComposition',
+      fields: [],
+      semanticExpansion: false,
+      personalMeaning: false,
+    },
+    stopConditions: ['do not emit pure/mixed, pattern, 吉凶, or personal meaning as an executable composition result'],
+  }),
+  sourceLocalSemanticCompositionRule({
+    compositionId: 'composition.yuanhai.p197-role-prohibition.v0',
+    status: 'unresolved',
+    work: WORKS.yuanhai,
+    lineage: 'yuanhai_local_export',
+    sourceIds: ['saju-source-yuanhai-ziping'],
+    locatorIds: ['yuanhai-p197-eight-character-summary'],
+    requiredStructuralResults: {
+      ruleIds: ['rule.yuanhai.day-anchor-month-command-frame.v0'],
+      fields: ['source role frame', 'role condition'],
+      closure: 'role_condition_and_precedence_not_closed',
+    },
+    requiredSemanticResults: {
+      ruleIds: [],
+      fields: ['role prohibition'],
+      closure: 'not_materialized',
+    },
+    applicability: ['p.197 places role prohibitions inside a compiled summary of role/pattern conditions'],
+    procedure: ['retain the summary clause as source-local inventory only'],
+    composition: {
+      conditions: ['a selected source role and its opposing relation would both be required'],
+      priority: 'not closed',
+      combination: 'not closed',
+      transition: 'not closed',
+    },
+    output: {
+      origin: 'lineage_derived_source_local_semantic_composition_result',
+      resultKey: 'yuanhai.roleProhibitionComposition',
+      fields: [],
+      semanticExpansion: false,
+      personalMeaning: false,
+    },
+    stopConditions: ['do not infer role selection, outcome, or personal meaning from the summary phrase'],
+  }),
+  sourceLocalSemanticCompositionRule({
+    compositionId: 'composition.sanming.stem-branch-transformation.v0',
+    status: 'unresolved',
+    work: WORKS.sanming,
+    lineage: 'sanming_local_export',
+    sourceIds: ['saju-source-sanming-tonghui'],
+    locatorIds: ['sanming-p78-stem-combination', 'sanming-p81-stem-transformation', 'sanming-p85-branch-combinations', 'sanming-p90-three-punishments', 'sanming-p93-branch-conflict'],
+    requiredStructuralResults: {
+      ruleIds: ['rule.sanming.element-generation-control-v0'],
+      fields: ['stem relation inventory', 'branch relation inventory'],
+      closure: 'transformation_and_relation_precedence_not_closed',
+    },
+    requiredSemanticResults: {
+      ruleIds: [],
+      fields: ['化氣', '六合/三合', '沖擊'],
+      closure: 'not_materialized',
+    },
+    applicability: ['p.78–p.93 list stem/branch relations and transformation conditions with adjacent outcome language'],
+    procedure: ['keep each relation family and its source condition separate'],
+    composition: {
+      conditions: ['multiple stem/branch relation families may coexist'],
+      priority: 'not closed',
+      combination: 'not closed',
+      transition: 'not closed',
+    },
+    output: {
+      origin: 'lineage_derived_source_local_semantic_composition_result',
+      resultKey: 'sanming.stemBranchTransformationComposition',
+      fields: [],
+      semanticExpansion: false,
+      personalMeaning: false,
+    },
+    stopConditions: ['do not import Ziping relation precedence or modern transformation tables'],
+  }),
+  sourceLocalSemanticCompositionRule({
+    compositionId: 'composition.ditian.fang-ju-tiyong.v0',
+    status: 'unresolved',
+    work: WORKS.ditian,
+    lineage: 'ditian_local_export',
+    sourceIds: ['saju-source-ditian-sui'],
+    locatorIds: ['ditian-p13-fang-ju-examples', 'ditian-p13-p14-geju-surface', 'ditian-p18-p20-tiyong'],
+    requiredStructuralResults: {
+      ruleIds: ['rule.ditian.fang-ju-example-inventory.v0'],
+      fields: ['matchedExamples', 'branch set', '干頭 condition'],
+      closure: '方局_and_體用_weighting_not_closed',
+    },
+    requiredSemanticResults: {
+      ruleIds: [],
+      fields: ['格局', '體用', '用神'],
+      closure: 'not_materialized',
+    },
+    applicability: ['p.13 and p.18–p.20 describe 方/局 coexistence and multiple 體用 configurations'],
+    procedure: ['retain exact branch-set examples; do not apply the adjacent 格局 or 體用 weighting prose'],
+    composition: {
+      conditions: ['方/局 and a body/use configuration would both be present'],
+      priority: 'the source does not close a machine-readable most-important weighting rule',
+      combination: 'coexistence only',
+      transition: 'not closed',
+    },
+    output: {
+      origin: 'lineage_derived_source_local_semantic_composition_result',
+      resultKey: 'ditian.fangJuTiyongComposition',
+      fields: [],
+      semanticExpansion: false,
+      personalMeaning: false,
+    },
+    stopConditions: ['do not output 格局, 體用 selection, 用神 priority, outcome, or personal meaning'],
+  }),
+  sourceLocalSemanticCompositionRule({
+    compositionId: 'composition.qiongtong.state-month-operation.v0',
+    status: 'unresolved',
+    work: WORKS.qiongtong,
+    lineage: 'qiongtong_local_export',
+    sourceIds: ['saju-source-qiongtong-baojian'],
+    locatorIds: ['qiongtong-p2-five-phase-number-and-season', 'qiongtong-p3-jia-section', 'qiongtong-p13-yi-section', 'qiongtong-p21-bing-section', 'qiongtong-p32-ding-section', 'qiongtong-p40-wu-section', 'qiongtong-p49-ji-section', 'qiongtong-p55-geng-section', 'qiongtong-p64-xin-section', 'qiongtong-p75-ren-section', 'qiongtong-p83-gui-section'],
+    requiredStructuralResults: {
+      ruleIds: ['rule.qiongtong.five-phase-number-inventory.v0', 'rule.qiongtong.day-stem-section-frame.v0'],
+      fields: ['sourceElementNumbers', 'day-stem section', 'state label'],
+      closure: 'source_specific_state_resolver_and_cross_section_priority_not_closed',
+    },
+    requiredSemanticResults: {
+      ruleIds: [],
+      fields: ['month prescription'],
+      closure: 'not_materialized',
+    },
+    applicability: ['p.2 supplies the double/half operation and later sections supply day-stem/month clauses'],
+    procedure: ['retain the numeric operation and each day-stem section independently; do not compose them without the unresolved 生旺/死绝 resolver'],
+    composition: {
+      conditions: ['element number, source state, day-stem section, and month clause would all be needed'],
+      priority: 'cross-section priority not closed',
+      combination: 'not closed',
+      transition: 'not closed',
+    },
+    output: {
+      origin: 'lineage_derived_source_local_semantic_composition_result',
+      resultKey: 'qiongtong.stateMonthOperationComposition',
+      fields: [],
+      semanticExpansion: false,
+      personalMeaning: false,
+    },
+    stopConditions: ['do not substitute generic 十二運星, another lineage, strength, 用神, or personal meaning'],
+  }),
+  sourceLocalSemanticCompositionRule({
+    compositionId: 'composition.yuanhai.personal-outcome-surface.v0',
+    status: 'unsupported',
+    work: WORKS.yuanhai,
+    lineage: 'yuanhai_local_export',
+    sourceIds: ['saju-source-yuanhai-ziping'],
+    locatorIds: ['yuanhai-p13-temperament', 'yuanhai-p48-six-relations'],
+    applicability: ['a personal, family, or temperament conclusion would be required'],
+    procedure: ['do not materialize this composition surface in the bounded grammar'],
+    composition: {
+      conditions: ['personal semantic mapping'],
+      priority: 'unsupported',
+      combination: 'unsupported',
+      transition: 'unsupported',
+    },
+    output: {
+      origin: 'lineage_derived_source_local_semantic_composition_result',
+      resultKey: 'yuanhai.personalOutcomeComposition',
+      fields: [],
+      semanticExpansion: false,
+      personalMeaning: false,
+    },
+    stopConditions: ['never expose family, temperament, or personal outcome claims'],
+  }),
+  sourceLocalSemanticCompositionRule({
+    compositionId: 'composition.qiongtong.five-phase-nature-personal.v0',
+    status: 'unsupported',
+    work: WORKS.qiongtong,
+    lineage: 'qiongtong_local_export',
+    sourceIds: ['saju-source-qiongtong-baojian'],
+    locatorIds: ['qiongtong-p2-five-phase-number-and-season'],
+    applicability: ['a five-phase nature/virtue phrase would be translated into a personal trait'],
+    procedure: ['retain the phrase as out of public semantic scope'],
+    composition: {
+      conditions: ['single element or phase-to-person mapping'],
+      priority: 'unsupported',
+      combination: 'unsupported',
+      transition: 'unsupported',
+    },
+    output: {
+      origin: 'lineage_derived_source_local_semantic_composition_result',
+      resultKey: 'qiongtong.fivePhaseNaturePersonalComposition',
+      fields: [],
+      semanticExpansion: false,
+      personalMeaning: false,
+    },
+    stopConditions: ['never translate 五行之性 into personality or personal meaning'],
+  }),
+])
+
+const compositionIdsByStatus = status => SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_RULES
+  .filter(ruleItem => ruleItem.status === status)
+  .map(ruleItem => ruleItem.compositionId)
+
+export const SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_READINESS = Object.freeze({
+  schema: 'saju-source-local-semantic-composition-readiness-v0',
+  version: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_VERSION,
+  localCompositionReady: true,
+  compositionReady: false,
+  globalCompositionReady: false,
+  interpretationHypothesisReady: false,
+  adoptedCompositionIds: Object.freeze(compositionIdsByStatus('adopted_composition')),
+  boundedRoleUseTransitionIds: Object.freeze(compositionIdsByStatus('bounded_role_use_transition')),
+  unresolvedCompositionIds: Object.freeze(compositionIdsByStatus('unresolved')),
+  unsupportedCompositionIds: Object.freeze(compositionIdsByStatus('unsupported')),
+  commonCompositionCandidates: Object.freeze([]),
+  sourceProvidesLocalPriority: false,
+  sourceProvidesLocalCombinationRule: true,
+  sourceProvidesLocalTransitionRule: true,
+  sourceProvidesGlobalPriority: false,
+  sourceProvidesGlobalCombinationRule: false,
+  sourceProvidesGlobalTransitionRule: false,
+  personalMeaning: false,
+  crossLineageMerge: false,
+  winnerSelection: false,
+  policy: 'adopt only exact same-source composition windows; preserve simultaneous components, lineage isolation, and unresolved transitions without synthesis',
+})
+
 export const SAJU_SOURCE_SEMANTIC_LEXICON_COMMON_CANDIDATES = Object.freeze([])
 
 export const SAJU_SOURCE_SEMANTIC_LEXICON_COMPOSITION_READINESS = Object.freeze({
@@ -4720,6 +5226,24 @@ export const SAJU_LINEAGE_READING_GRAMMAR = Object.freeze({
     personalMeaning: false,
     crossLineageMerge: false,
     interpretationHypothesisGenerated: false,
+  },
+  sourceLocalSemanticComposition: {
+    schema: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_SCHEMA,
+    version: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_VERSION,
+    rules: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_RULES,
+    adoptedCompositionIds: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_READINESS.adoptedCompositionIds,
+    boundedRoleUseTransitionIds: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_READINESS.boundedRoleUseTransitionIds,
+    unresolvedCompositionIds: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_READINESS.unresolvedCompositionIds,
+    unsupportedCompositionIds: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_READINESS.unsupportedCompositionIds,
+    commonCompositionCandidates: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_READINESS.commonCompositionCandidates,
+    readiness: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_READINESS,
+    localCompositionReady: true,
+    compositionReady: false,
+    globalCompositionReady: false,
+    interpretationHypothesisReady: false,
+    personalMeaning: false,
+    crossLineageMerge: false,
+    winnerSelection: false,
   },
   commonCandidates: [],
   commonCandidateReviews: commonStructuralRejection,
@@ -5585,6 +6109,45 @@ export function checkSajuLineageReadingGrammar(grammar = SAJU_LINEAGE_READING_GR
     }
   }
 
+  const sourceLocalComposition = grammar.sourceLocalSemanticComposition
+  if (!isObject(sourceLocalComposition)
+    || sourceLocalComposition.schema !== SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_SCHEMA
+    || sourceLocalComposition.version !== SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_VERSION
+    || !Array.isArray(sourceLocalComposition.rules)
+    || sourceLocalComposition.localCompositionReady !== true
+    || sourceLocalComposition.compositionReady !== false
+    || sourceLocalComposition.globalCompositionReady !== false
+    || sourceLocalComposition.interpretationHypothesisReady !== false
+    || sourceLocalComposition.personalMeaning !== false
+    || sourceLocalComposition.crossLineageMerge !== false
+    || sourceLocalComposition.winnerSelection !== false
+    || !Array.isArray(sourceLocalComposition.commonCompositionCandidates)
+    || sourceLocalComposition.commonCompositionCandidates.length !== 0) {
+    fail('source_local_semantic_composition_boundary')
+  } else {
+    for (const error of checkSajuSourceLocalSemanticComposition(sourceLocalComposition.rules)) fail('source_local_semantic_composition:' + error)
+    for (const [status, field] of [
+      ['adopted_composition', 'adoptedCompositionIds'],
+      ['bounded_role_use_transition', 'boundedRoleUseTransitionIds'],
+      ['unresolved', 'unresolvedCompositionIds'],
+      ['unsupported', 'unsupportedCompositionIds'],
+    ]) {
+      const expectedIds = sourceLocalComposition.rules.filter(ruleItem => ruleItem.status === status).map(ruleItem => ruleItem.compositionId)
+      if (JSON.stringify(sourceLocalComposition[field] || []) !== JSON.stringify(expectedIds)) fail(`source_local_semantic_composition_ids:${field}`)
+    }
+    const readiness = sourceLocalComposition.readiness
+    if (!isObject(readiness)
+      || readiness.schema !== SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_READINESS.schema
+      || readiness.compositionReady !== false
+      || readiness.globalCompositionReady !== false
+      || readiness.interpretationHypothesisReady !== false
+      || !Array.isArray(readiness.commonCompositionCandidates)
+      || readiness.commonCompositionCandidates.length !== 0
+      || readiness.personalMeaning !== false
+      || readiness.crossLineageMerge !== false
+      || readiness.winnerSelection !== false) fail('source_local_semantic_composition_readiness')
+  }
+
   for (const candidate of grammar.commonCandidates || []) {
     if (candidate.adoptionStatus !== 'not_adopted') fail(`common_candidate_promoted:${candidate.candidateId}`)
     if (candidate.independenceStatus !== 'INDEPENDENT') fail(`common_candidate_independence:${candidate.candidateId}`)
@@ -5669,6 +6232,109 @@ export function checkSajuSourceBoundedSemanticLexicon(entries = SAJU_SOURCE_BOUN
       for (const sourceId of entry.sourceIds) if (!/^[a-f0-9]{64}$/.test(entry.provenance.sourceByteSha256[sourceId] || '')) fail('lexicon_entry_provenance_source_hash:' + entry.entryId + ':' + sourceId)
     }
   }
+  return unique(errors).sort()
+}
+
+export function checkSajuSourceLocalSemanticComposition(rules = SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_RULES) {
+  const errors = []
+  const fail = message => errors.push(message)
+  if (!Array.isArray(rules)) return ['composition_not_array']
+
+  const sourceById = new Map(SAJU_LINEAGE_SOURCE_PROFILES.map(source => [source.sourceId, source]))
+  const locatorsById = new Map(SAJU_LINEAGE_LOCATORS.map(locator => [locator.observationId, locator]))
+  const structuralRulesById = new Map(SAJU_LINEAGE_RULES.map(ruleItem => [ruleItem.ruleId, ruleItem]))
+  const semanticRules = [...SAJU_ZIPING_SOURCE_SEMANTIC_RULES, ...SAJU_SANMING_SOURCE_SEMANTIC_RULES]
+  const semanticRulesById = new Map(semanticRules.map(ruleItem => [ruleItem.ruleId, ruleItem]))
+  const lexiconById = new Map(SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON.map(entry => [entry.entryId, entry]))
+  const lineageBySourceId = new Map([
+    ...SAJU_LINEAGE_RULES.flatMap(ruleItem => ruleItem.sourceIds.map(sourceId => [sourceId, ruleItem.lineage])),
+    ...semanticRules.flatMap(ruleItem => ruleItem.sourceIds.map(sourceId => [sourceId, ruleItem.lineage])),
+    ...SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON.flatMap(entry => entry.sourceIds.map(sourceId => [sourceId, entry.lineage])),
+  ])
+  const compositionIds = new Set()
+
+  const checkRequiredResults = (composition, key, idKey, knownById, label) => {
+    const requirement = composition[key]
+    if (!isObject(requirement)
+      || !Array.isArray(requirement[idKey])
+      || !Array.isArray(requirement.fields)
+      || typeof requirement.closure !== 'string') {
+      fail(`composition_${label}_shape:${composition.compositionId || 'missing'}`)
+      return
+    }
+    for (const requiredId of requirement[idKey]) {
+      const known = knownById.get(requiredId)
+      if (!known) fail(`composition_${label}_unknown:${composition.compositionId}:${requiredId}`)
+      else if ((known.sourceIds || []).some(sourceId => !(composition.sourceIds || []).includes(sourceId))) fail(`composition_${label}_source:${composition.compositionId}:${requiredId}`)
+    }
+  }
+
+  for (const composition of rules) {
+    if (!isObject(composition)) {
+      fail('composition_item_not_object')
+      continue
+    }
+    if (composition.schema !== SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_SCHEMA || composition.version !== SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_VERSION) fail(`composition_schema:${composition.compositionId || 'missing'}`)
+    if (!composition.compositionId || compositionIds.has(composition.compositionId)) fail(`composition_id_duplicate:${composition.compositionId || 'missing'}`)
+    compositionIds.add(composition.compositionId)
+    if (!SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_STATUSES.includes(composition.status)) fail(`composition_status:${composition.compositionId}`)
+    if (composition.claimPromotion !== false || composition.semanticAuthority !== 'not_established' || composition.noRecalculation !== true || composition.noPersonalMeaning !== true || composition.noCrossLineageMerge !== true || composition.interpretationHypothesis !== false) fail(`composition_boundary:${composition.compositionId}`)
+    if (!composition.work || !composition.lineage || !Array.isArray(composition.sourceIds) || composition.sourceIds.length !== 1) fail(`composition_identity:${composition.compositionId}`)
+    const sourceId = composition.sourceIds?.[0]
+    const source = sourceById.get(sourceId)
+    if (!source) fail(`composition_source_unknown:${composition.compositionId}:${sourceId}`)
+    else {
+      if (source.work !== composition.work) fail(`composition_work_mismatch:${composition.compositionId}`)
+      if (lineageBySourceId.get(sourceId) !== composition.lineage) fail(`composition_lineage_mismatch:${composition.compositionId}`)
+    }
+    if (!Array.isArray(composition.locatorIds) || composition.locatorIds.length === 0) fail(`composition_locators:${composition.compositionId}`)
+    for (const locatorId of composition.locatorIds || []) {
+      const locator = locatorsById.get(locatorId)
+      if (!locator) fail(`composition_locator_unknown:${composition.compositionId}:${locatorId}`)
+      else if (locator.sourceId !== sourceId) fail(`composition_locator_source:${composition.compositionId}:${locatorId}`)
+    }
+
+    checkRequiredResults(composition, 'requiredStructuralResults', 'ruleIds', structuralRulesById, 'structural')
+    checkRequiredResults(composition, 'requiredSemanticResults', 'ruleIds', semanticRulesById, 'semantic')
+    checkRequiredResults(composition, 'requiredSemanticLexiconEntries', 'entryIds', lexiconById, 'lexicon')
+    for (const requiredId of composition.requiredSemanticLexiconEntries?.entryIds || []) {
+      const entry = lexiconById.get(requiredId)
+      if (entry && (entry.sourceIds || []).some(entrySourceId => entrySourceId !== sourceId)) fail(`composition_lexicon_source:${composition.compositionId}:${requiredId}`)
+    }
+
+    for (const key of ['applicability', 'procedure', 'stopConditions', 'forbiddenExtensions']) if (!Array.isArray(composition[key]) || composition[key].length === 0) fail(`composition_${key}:${composition.compositionId}`)
+    if (!isObject(composition.composition)
+      || !Array.isArray(composition.composition.conditions)
+      || composition.composition.conditions.length === 0
+      || typeof composition.composition.priority !== 'string'
+      || typeof composition.composition.combination !== 'string'
+      || typeof composition.composition.transition !== 'string') fail(`composition_surface:${composition.compositionId}`)
+    if (!isObject(composition.output)
+      || composition.output.origin !== 'lineage_derived_source_local_semantic_composition_result'
+      || composition.output.semanticExpansion !== false
+      || composition.output.personalMeaning !== false
+      || typeof composition.output.resultKey !== 'string'
+      || !Array.isArray(composition.output.fields)) fail(`composition_output:${composition.compositionId}`)
+    if (['adopted_composition', 'bounded_role_use_transition'].includes(composition.status) && composition.output.fields.length === 0) fail(`composition_adopted_output:${composition.compositionId}`)
+    if (['unresolved', 'unsupported'].includes(composition.status) && composition.output.fields.length !== 0) fail(`composition_unresolved_output:${composition.compositionId}`)
+    if (!isObject(composition.conflictState)
+      || composition.conflictState.winnerSelected !== false
+      || composition.conflictState.failClosed !== true) fail(`composition_conflict_state:${composition.compositionId}`)
+    if (!isObject(composition.provenance)
+      || composition.provenance.schema !== SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_SCHEMA
+      || composition.provenance.version !== SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_VERSION
+      || JSON.stringify(composition.provenance.sourceIds) !== JSON.stringify(composition.sourceIds)
+      || JSON.stringify(composition.provenance.locatorIds) !== JSON.stringify(composition.locatorIds)
+      || !isObject(composition.provenance.sourceByteSha256)) {
+      fail(`composition_provenance:${composition.compositionId}`)
+    } else {
+      const expectedHashes = sourceByteSha256ForIds(composition.sourceIds)
+      if (JSON.stringify(composition.provenance.sourceByteSha256) !== JSON.stringify(expectedHashes)) fail(`composition_provenance_hash:${composition.compositionId}`)
+      for (const requiredSourceId of composition.sourceIds) if (!/^[a-f0-9]{64}$/.test(composition.provenance.sourceByteSha256[requiredSourceId] || '')) fail(`composition_provenance_source_hash:${composition.compositionId}:${requiredSourceId}`)
+    }
+    if (containsForbiddenStructuralTerm(JSON.stringify(composition.output))) fail(`composition_semantic_output:${composition.compositionId}`)
+  }
+
   return unique(errors).sort()
 }
 
@@ -6378,6 +7044,650 @@ export function deriveSajuLineageSourceSemanticResults(base, structuralResults =
 
 export function deriveSajuSanmingSourceSemanticResults(base, structuralResults = null, contracts = SAJU_SANMING_SOURCE_SEMANTIC_CONTRACTS) {
   return deriveSourceSemanticResults(base, structuralResults, contracts, SAJU_SANMING_SOURCE_SEMANTIC_RULES, executeSanmingSourceSemanticRule)
+}
+
+const ZIPING_P10_MEETING_RELATION_NAMES = Object.freeze(['會', '会', '회', '삼會', '삼회', '삼合', '삼합'])
+const ZIPING_P10_SOURCE_MEETING_BRANCHES = Object.freeze(['申', '子', '辰'])
+
+function compositionSourceSemanticResults(semanticResults) {
+  return [
+    ...(semanticResults?.ziping?.categories?.derivedSourceBoundedSemanticResults || []),
+    ...(semanticResults?.sanming?.categories?.derivedSourceBoundedSemanticResults || []),
+  ]
+}
+
+function compositionSourceSemanticGaps(semanticResults) {
+  return [
+    ...(semanticResults?.ziping?.categories?.prerequisiteGaps || []),
+    ...(semanticResults?.sanming?.categories?.prerequisiteGaps || []),
+  ]
+}
+
+function compositionSourceSemanticNotApplicable(semanticResults) {
+  return [
+    ...(semanticResults?.ziping?.categories?.notApplicableRules || []),
+    ...(semanticResults?.sanming?.categories?.notApplicableRules || []),
+  ]
+}
+
+function compositionSourceSemanticConflicts(semanticResults) {
+  return [
+    ...(semanticResults?.ziping?.categories?.lineageConflicts || []),
+    ...(semanticResults?.sanming?.categories?.lineageConflicts || []),
+  ]
+}
+
+function compositionStructuralResultState(structuralResults, ruleId) {
+  return {
+    derived: structuralResults?.categories?.derivedStructuralResults?.find(result => result.ruleId === ruleId) || null,
+    gap: structuralResults?.categories?.prerequisiteGaps?.find(result => result.ruleId === ruleId) || null,
+    notApplicable: structuralResults?.categories?.notApplicableRules?.find(result => result.ruleId === ruleId) || null,
+    unresolved: structuralResults?.categories?.unresolvedRules?.find(result => result.ruleId === ruleId) || null,
+    conflict: (structuralResults?.categories?.lineageConflicts || []).find(conflict => (conflict.ruleIds || []).includes(ruleId)) || null,
+  }
+}
+
+function compositionSourceResultState(semanticResults, ruleId) {
+  return {
+    derived: compositionSourceSemanticResults(semanticResults).find(result => result.ruleId === ruleId) || null,
+    gap: compositionSourceSemanticGaps(semanticResults).find(result => result.ruleId === ruleId) || null,
+    notApplicable: compositionSourceSemanticNotApplicable(semanticResults).find(result => result.ruleId === ruleId) || null,
+    conflict: compositionSourceSemanticConflicts(semanticResults).find(conflict => (conflict.ruleIds || []).includes(ruleId)) || null,
+  }
+}
+
+function compositionLexiconResultState(lexiconResults, entryId) {
+  return {
+    resolved: lexiconResults?.categories?.resolvedSemanticEntries?.find(entry => entry.entryId === entryId) || null,
+    blocked: lexiconResults?.categories?.blockedEntries?.find(entry => entry.entryId === entryId) || null,
+    notApplicable: lexiconResults?.categories?.notApplicableEntries?.find(entry => entry.entryId === entryId) || null,
+    ambiguous: lexiconResults?.categories?.ambiguousEntries?.find(entry => entry.entryId === entryId) || null,
+  }
+}
+
+function sameCompositionSource(result, composition) {
+  return Boolean(result)
+    && result.work === composition.work
+    && result.lineage === composition.lineage
+    && JSON.stringify(result.sourceIds || []) === JSON.stringify(composition.sourceIds)
+}
+
+function sameDeclaredRuleResult(result, ruleId) {
+  const declared = [...SAJU_LINEAGE_RULES, ...SAJU_ZIPING_SOURCE_SEMANTIC_RULES, ...SAJU_SANMING_SOURCE_SEMANTIC_RULES]
+    .find(ruleItem => ruleItem.ruleId === ruleId)
+  return Boolean(declared)
+    && sameCompositionSource(result, declared)
+    && JSON.stringify(result.locatorIds || []) === JSON.stringify(declared.locatorIds)
+}
+
+function sameDeclaredLexiconResult(result, entryId) {
+  const declared = SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON.find(entry => entry.entryId === entryId)
+  return Boolean(declared)
+    && sameCompositionSource(result, declared)
+    && JSON.stringify(result.locatorIds || []) === JSON.stringify(declared.locatorIds)
+}
+
+function lexiconLinksResults(entry, resultIds) {
+  const linkedResultIds = new Set((entry?.linkedResults || []).map(result => result.resultId).filter(Boolean))
+  return resultIds.every(resultId => linkedResultIds.has(resultId))
+}
+
+function compositionConflictForRuleIds(structuralResults, semanticResults, ruleIds) {
+  return [
+    ...(structuralResults?.categories?.lineageConflicts || []),
+    ...compositionSourceSemanticConflicts(semanticResults),
+  ].find(conflict => (conflict.ruleIds || []).some(ruleId => ruleIds.includes(ruleId))) || null
+}
+
+function sourceBranchesForComposition(values) {
+  return values.map(value => sourceBranchForInput(value)).filter(Boolean)
+}
+
+function isExactZipingP10Meeting(relation) {
+  if (!isObject(relation) || !ZIPING_P10_MEETING_RELATION_NAMES.includes(relation.name)) return false
+  if (!Array.isArray(relation.branches) || relation.branches.length !== ZIPING_P10_SOURCE_MEETING_BRANCHES.length) return false
+  if (!Array.isArray(relation.positions) || relation.positions.length !== ZIPING_P10_SOURCE_MEETING_BRANCHES.length) return false
+  const sourceBranches = sourceBranchesForComposition(relation.branches)
+  const sourcePositions = unique(relation.positions)
+  return sourceBranches.length === ZIPING_P10_SOURCE_MEETING_BRANCHES.length
+    && unique(sourceBranches).sort().join('|') === [...ZIPING_P10_SOURCE_MEETING_BRANCHES].sort().join('|')
+    && sourcePositions.length === relation.positions.length
+    && sourcePositions.includes('month')
+}
+
+function compositionBaseFactRefs(structuralResults, semanticResults, lexiconResults, ruleIds, semanticRuleIds, entryIds) {
+  const structural = structuralResults?.categories?.derivedStructuralResults || []
+  const semantic = compositionSourceSemanticResults(semanticResults)
+  const lexicon = lexiconResults?.categories?.resolvedSemanticEntries || []
+  return unique([
+    ...structural.filter(result => ruleIds.includes(result.ruleId)).flatMap(result => (result.commonBaseFacts || []).map(binding => binding.factRef)),
+    ...semantic.filter(result => semanticRuleIds.includes(result.ruleId)).flatMap(result => (result.commonBaseFacts || []).map(binding => binding.factRef)),
+    ...lexicon.filter(entry => entryIds.includes(entry.entryId)).flatMap(entry => entry.provenance?.chain?.baseFactRefs || []),
+  ])
+}
+
+function compositionEvaluation(status, output = {}, reason = null, extra = {}) {
+  return {
+    executionStatus: status,
+    output,
+    reason,
+    structuralResultIds: [],
+    semanticResultIds: [],
+    semanticLexiconResultIds: [],
+    baseFactRefs: [],
+    structuralState: null,
+    semanticState: null,
+    semanticLexiconState: null,
+    ...extra,
+  }
+}
+
+function executeZipingP10CompositionRule(composition, structuralResults, semanticResults, lexiconResults) {
+  const structuralRuleIds = composition.requiredStructuralResults.ruleIds
+  const exposureState = compositionStructuralResultState(structuralResults, 'rule.ziping.chen-exposure-inventory.v0')
+  const relationState = compositionStructuralResultState(structuralResults, 'rule.ziping.branch-relation-inventory.v0')
+  const structuralConflict = compositionConflictForRuleIds(structuralResults, null, structuralRuleIds)
+  if (structuralConflict) return compositionEvaluation('ambiguous_composition', {}, 'p.10 composition is blocked by a preserved structural conflict', {
+    conflictId: structuralConflict.conflictId,
+    structuralState: 'conflict_preserved',
+  })
+  if (!exposureState.derived || !relationState.derived) {
+    const missing = [exposureState, relationState]
+    const gap = missing.find(state => state.gap)
+    if (gap) return compositionEvaluation('blocked_missing_base_fact', {}, 'p.10 composition is blocked by a missing structural prerequisite', {
+      structuralGapResultIds: missing.filter(state => state.gap).map(state => state.gap.resultId),
+      structuralState: 'blocked_missing',
+    })
+    const notApplicable = missing.find(state => state.notApplicable)
+    if (notApplicable) return compositionEvaluation('not_applicable_fixture', {}, 'p.10 composition is not applicable to this fixture', {
+      structuralState: 'not_applicable',
+    })
+    return compositionEvaluation('not_executable_by_contract', {}, 'p.10 composition has no complete structural prerequisite', {
+      structuralState: 'not_satisfied',
+    })
+  }
+  if (!sameDeclaredRuleResult(exposureState.derived, 'rule.ziping.chen-exposure-inventory.v0') || !sameDeclaredRuleResult(relationState.derived, 'rule.ziping.branch-relation-inventory.v0')) return compositionEvaluation('ambiguous_composition', {}, 'p.10 structural prerequisites do not share the declared source, lineage, and locator contract', {
+    sourceMismatch: true,
+    structuralState: 'conflict_preserved',
+  })
+
+  const exposureOutput = exposureState.derived.output
+  const relationOutput = relationState.derived.output
+  if (!isObject(exposureOutput)
+    || exposureOutput.sourceCondition?.dayMaster !== '甲'
+    || exposureOutput.sourceCondition?.monthBranch !== '辰'
+    || !Array.isArray(exposureOutput.namedExposureMatches)
+    || !isObject(relationOutput)
+    || !Array.isArray(relationOutput.relations)) return compositionEvaluation('ambiguous_composition', {}, 'p.10 structural prerequisite output is malformed or outside the exact 甲生辰月 window', {
+    structuralState: 'conflict_preserved',
+  })
+
+  const matches = exposureOutput.namedExposureMatches
+  const semanticState = compositionSourceResultState(semanticResults, 'rule.ziping.chen-exposure-use-role.v0')
+  const lexiconState = compositionLexiconResultState(lexiconResults, 'lexicon.ziping.p10-role-labels.v0')
+  const structuralResultIds = [exposureState.derived.resultId, relationState.derived.resultId]
+  let semanticResultIds = []
+  let semanticLexiconResultIds = []
+  let semanticStateName = 'not_required_for_no_exposure'
+  let semanticLexiconStateName = 'not_required_for_no_exposure'
+  let matchedSourceRoleLabels = []
+  if (matches.length > 0) {
+    if (!semanticState.derived) {
+      if (semanticState.gap) return compositionEvaluation('blocked_missing_base_fact', {}, 'p.10 exposure components are blocked by the missing source-role result', {
+        structuralResultIds,
+        structuralState: 'satisfied',
+        semanticState: 'blocked_missing',
+        semanticGapResultIds: [semanticState.gap.resultId],
+      })
+      if (semanticState.conflict) return compositionEvaluation('ambiguous_composition', {}, 'p.10 exposure components are blocked by a preserved semantic conflict', {
+        structuralResultIds,
+        structuralState: 'satisfied',
+        semanticState: 'conflict_preserved',
+        conflictId: semanticState.conflict.conflictId,
+      })
+      return compositionEvaluation('not_executable_by_contract', {}, 'p.10 exposure components have no executed source-role result', {
+        structuralResultIds,
+        structuralState: 'satisfied',
+        semanticState: 'not_satisfied',
+      })
+    }
+    if (!sameDeclaredRuleResult(semanticState.derived, 'rule.ziping.chen-exposure-use-role.v0')) return compositionEvaluation('ambiguous_composition', {}, 'p.10 source-role result does not share the declared source, lineage, and locator contract', {
+      structuralResultIds,
+      structuralState: 'satisfied',
+      semanticState: 'conflict_preserved',
+      sourceMismatch: true,
+    })
+    if (!isObject(semanticState.derived.output) || !Array.isArray(semanticState.derived.output.matchedSourceRoleLabels) || semanticState.derived.output.matchedSourceRoleLabels.length !== matches.length) return compositionEvaluation('ambiguous_composition', {}, 'p.10 source-role result does not match the supplied exposure inventory', {
+      structuralResultIds,
+      structuralState: 'satisfied',
+      semanticState: 'conflict_preserved',
+    })
+    matchedSourceRoleLabels = semanticState.derived.output.matchedSourceRoleLabels
+    if (matchedSourceRoleLabels.some(item => !isObject(item) || typeof item.position !== 'string' || typeof item.sourceStem !== 'string' || typeof item.sourceRole !== 'string' || item.sourceRole.length === 0)) return compositionEvaluation('ambiguous_composition', {}, 'p.10 source-role result contains an incomplete role label', {
+      structuralResultIds,
+      structuralState: 'satisfied',
+      semanticState: 'conflict_preserved',
+    })
+    if (matchedSourceRoleLabels.some((item, index) => item.position !== matches[index].position || item.sourceStem !== matches[index].sourceStem || item.visibleStem !== matches[index].visibleStem)) return compositionEvaluation('ambiguous_composition', {}, 'p.10 source-role result does not align with the named exposure inventory', {
+      structuralResultIds,
+      structuralState: 'satisfied',
+      semanticState: 'conflict_preserved',
+    })
+    semanticResultIds = [semanticState.derived.resultId]
+    semanticStateName = 'satisfied'
+    if (!lexiconState.resolved) {
+      if (lexiconState.ambiguous) return compositionEvaluation('ambiguous_composition', {}, 'p.10 exposure lexicon link is ambiguous', {
+        structuralResultIds,
+        semanticResultIds,
+        structuralState: 'satisfied',
+        semanticState: 'satisfied',
+        semanticLexiconState: 'conflict_preserved',
+        conflictId: lexiconState.ambiguous.conflictState?.conflictId || 'conflict.semantic-lexicon-source-isolation',
+      })
+      return compositionEvaluation('blocked_missing_base_fact', {}, 'p.10 exposure lexicon link is not materialized', {
+        structuralResultIds,
+        semanticResultIds,
+        structuralState: 'satisfied',
+        semanticState: 'satisfied',
+        semanticLexiconState: 'blocked_missing',
+      })
+    }
+    if (!sameDeclaredLexiconResult(lexiconState.resolved, 'lexicon.ziping.p10-role-labels.v0') || !lexiconLinksResults(lexiconState.resolved, [exposureState.derived.resultId, ...semanticResultIds])) return compositionEvaluation('ambiguous_composition', {}, 'p.10 exposure lexicon result does not share the declared source chain', {
+      structuralResultIds,
+      semanticResultIds,
+      structuralState: 'satisfied',
+      semanticState: 'satisfied',
+      semanticLexiconState: 'conflict_preserved',
+      sourceMismatch: true,
+    })
+    semanticLexiconResultIds = (lexiconState.resolved.linkedResults || []).map(result => result.resultId).filter(Boolean)
+    semanticLexiconStateName = 'satisfied'
+  }
+
+  const meetingCandidates = relationOutput.relations.filter(isExactZipingP10Meeting)
+  if (meetingCandidates.length > 1) return compositionEvaluation('ambiguous_composition', {}, 'p.10 does not close duplicate 申子辰 meeting handling', {
+    structuralResultIds,
+    semanticResultIds,
+    semanticLexiconResultIds,
+    structuralState: 'satisfied',
+    semanticState: semanticStateName,
+    semanticLexiconState: semanticLexiconStateName,
+  })
+  const branchMeetingComponents = meetingCandidates.length === 1
+    ? [{
+      relationName: meetingCandidates[0].name,
+      sourceBranches: [...ZIPING_P10_SOURCE_MEETING_BRANCHES],
+      positions: [...meetingCandidates[0].positions],
+      sourceUseComponent: '水印',
+    }]
+    : []
+  const exposureComponents = matchedSourceRoleLabels.map(item => ({
+    position: item.position,
+    sourceStem: item.sourceStem,
+    sourceRole: item.sourceRole,
+  }))
+  if (exposureComponents.length === 0 && branchMeetingComponents.length === 0) return compositionEvaluation('not_applicable_fixture', {}, 'p.10 exact 甲生辰月 window has neither a named exposure nor a 申子辰 meeting component', {
+    structuralResultIds,
+    structuralState: 'satisfied',
+    semanticState: semanticStateName,
+    semanticLexiconState: semanticLexiconStateName,
+  })
+  const compositionMode = exposureComponents.length > 0 && branchMeetingComponents.length > 0
+    ? 'exposure_and_branch_meeting'
+    : exposureComponents.length > 0
+      ? exposureComponents.length > 1 ? 'exposure_only_multiple' : 'exposure_only_single'
+      : 'branch_meeting_only'
+  return compositionEvaluation('executable_from_frozen_base', {
+    sourceCondition: { dayMaster: '甲', monthBranch: '辰' },
+    compositionMode,
+    exposureComponents,
+    branchMeetingComponents,
+    sourceCombinationStatement: '一透则一用；兼透则兼用；透而又会，则透与会并用',
+    winnerSelected: false,
+  }, null, {
+    structuralResultIds,
+    semanticResultIds,
+    semanticLexiconResultIds,
+    structuralState: 'satisfied',
+    semanticState: semanticStateName,
+    semanticLexiconState: semanticLexiconStateName,
+    baseFactRefs: compositionBaseFactRefs(structuralResults, semanticResults, lexiconResults, structuralRuleIds, composition.requiredSemanticResults.ruleIds, composition.requiredSemanticLexiconEntries.entryIds),
+  })
+}
+
+function executeZipingP7RoleUseTransition(composition, structuralResults, semanticResults, lexiconResults) {
+  const structuralRuleId = 'rule.ziping.yin-month-exposure-contrast.v0'
+  const semanticRuleId = 'rule.ziping.yin-month-exposure-change.v0'
+  const structuralState = compositionStructuralResultState(structuralResults, structuralRuleId)
+  const semanticState = compositionSourceResultState(semanticResults, semanticRuleId)
+  const lexiconState = compositionLexiconResultState(lexiconResults, 'lexicon.ziping.p7-selection-clause.v0')
+  const conflict = compositionConflictForRuleIds(structuralResults, semanticResults, [structuralRuleId, semanticRuleId])
+  if (conflict) return compositionEvaluation('ambiguous_composition', {}, 'p.7 transition is blocked by a preserved conflict', {
+    conflictId: conflict.conflictId,
+    structuralState: 'conflict_preserved',
+    semanticState: 'conflict_preserved',
+  })
+  if (!structuralState.derived) {
+    if (structuralState.gap) return compositionEvaluation('blocked_missing_base_fact', {}, 'p.7 transition is blocked by its missing structural prerequisite', { structuralState: 'blocked_missing' })
+    if (structuralState.notApplicable) return compositionEvaluation('not_applicable_fixture', {}, 'fixture does not satisfy the exact p.7 contrast', { structuralState: 'not_applicable' })
+    return compositionEvaluation('not_executable_by_contract', {}, 'p.7 transition has no executed structural prerequisite', { structuralState: 'not_satisfied' })
+  }
+  if (!sameDeclaredRuleResult(structuralState.derived, structuralRuleId)) return compositionEvaluation('ambiguous_composition', {}, 'p.7 structural result does not share the declared source, lineage, and locator contract', { sourceMismatch: true, structuralState: 'conflict_preserved' })
+  if (!semanticState.derived) {
+    if (semanticState.gap) return compositionEvaluation('blocked_missing_base_fact', {}, 'p.7 transition is blocked by its missing source semantic result', {
+      structuralResultIds: [structuralState.derived.resultId],
+      structuralState: 'satisfied',
+      semanticState: 'blocked_missing',
+    })
+    return compositionEvaluation('not_executable_by_contract', {}, 'p.7 transition has no executed source semantic result', {
+      structuralResultIds: [structuralState.derived.resultId],
+      structuralState: 'satisfied',
+      semanticState: 'not_satisfied',
+    })
+  }
+  if (!sameDeclaredRuleResult(semanticState.derived, semanticRuleId)) return compositionEvaluation('ambiguous_composition', {}, 'p.7 semantic result does not share the declared source, lineage, and locator contract', {
+    structuralResultIds: [structuralState.derived.resultId],
+    structuralState: 'satisfied',
+    semanticState: 'conflict_preserved',
+    sourceMismatch: true,
+  })
+  if (!lexiconState.resolved) {
+    if (lexiconState.ambiguous) return compositionEvaluation('ambiguous_composition', {}, 'p.7 lexicon link is ambiguous', {
+      structuralResultIds: [structuralState.derived.resultId],
+      semanticResultIds: [semanticState.derived.resultId],
+      structuralState: 'satisfied',
+      semanticState: 'satisfied',
+      semanticLexiconState: 'conflict_preserved',
+      conflictId: lexiconState.ambiguous.conflictState?.conflictId || 'conflict.semantic-lexicon-source-isolation',
+    })
+    return compositionEvaluation('blocked_missing_base_fact', {}, 'p.7 lexicon link is not materialized', {
+      structuralResultIds: [structuralState.derived.resultId],
+      semanticResultIds: [semanticState.derived.resultId],
+      structuralState: 'satisfied',
+      semanticState: 'satisfied',
+      semanticLexiconState: 'blocked_missing',
+    })
+  }
+  if (!sameDeclaredLexiconResult(lexiconState.resolved, 'lexicon.ziping.p7-selection-clause.v0') || !lexiconLinksResults(lexiconState.resolved, [structuralState.derived.resultId, semanticState.derived.resultId])) return compositionEvaluation('ambiguous_composition', {}, 'p.7 lexicon result does not share the declared source chain', {
+    structuralResultIds: [structuralState.derived.resultId],
+    semanticResultIds: [semanticState.derived.resultId],
+    structuralState: 'satisfied',
+    semanticState: 'satisfied',
+    semanticLexiconState: 'conflict_preserved',
+    sourceMismatch: true,
+  })
+  const output = semanticState.derived.output
+  if (!isObject(output) || !isObject(output.sourceCondition) || !Array.isArray(output.exposedPositions) || output.sourceSelectionStatement !== '同知得以作主') return compositionEvaluation('ambiguous_composition', {}, 'p.7 semantic result is outside the exact source clause contract', {
+    structuralResultIds: [structuralState.derived.resultId],
+    semanticResultIds: [semanticState.derived.resultId],
+    structuralState: 'satisfied',
+    semanticState: 'conflict_preserved',
+  })
+  return compositionEvaluation('executable_from_frozen_base', {
+    sourceCondition: { ...output.sourceCondition },
+    exposedPositions: output.exposedPositions.map(item => ({ ...item })),
+    sourceSelectionStatement: output.sourceSelectionStatement,
+    winnerSelected: false,
+  }, null, {
+    structuralResultIds: [structuralState.derived.resultId],
+    semanticResultIds: [semanticState.derived.resultId],
+    semanticLexiconResultIds: (lexiconState.resolved.linkedResults || []).map(result => result.resultId).filter(Boolean),
+    structuralState: 'satisfied',
+    semanticState: 'satisfied',
+    semanticLexiconState: 'satisfied',
+    baseFactRefs: compositionBaseFactRefs(structuralResults, semanticResults, lexiconResults, composition.requiredStructuralResults.ruleIds, composition.requiredSemanticResults.ruleIds, composition.requiredSemanticLexiconEntries.entryIds),
+  })
+}
+
+function executeSourceLocalSemanticComposition(composition, structuralResults, semanticResults, lexiconResults) {
+  if (composition.status === 'unsupported') return compositionEvaluation('unsupported', {}, 'composition surface is outside the supported bounded grammar')
+  if (composition.status === 'unresolved') return compositionEvaluation('not_executable_by_contract', {}, 'source-local composition priority, combination, or transition is unresolved')
+  if (composition.compositionId === 'composition.ziping.p10-chen-use-components.v0') return executeZipingP10CompositionRule(composition, structuralResults, semanticResults, lexiconResults)
+  if (composition.compositionId === 'transition.ziping.p7-yin-month-use-change.v0') return executeZipingP7RoleUseTransition(composition, structuralResults, semanticResults, lexiconResults)
+  return compositionEvaluation('not_executable_by_contract', {}, 'composition is not registered for execution')
+}
+
+function compositionRequirementState(requirement, resultIds, fallback = 'not_required') {
+  if (!requirement?.ruleIds && !requirement?.entryIds) return fallback
+  const requiredIds = requirement.ruleIds || requirement.entryIds || []
+  if (requiredIds.length === 0) return fallback
+  return resultIds.length === requiredIds.length ? 'satisfied' : 'not_satisfied'
+}
+
+function sourceLocalSemanticCompositionDescriptor(composition, evaluation, classification) {
+  const structuralResultIds = [...(evaluation.structuralResultIds || [])]
+  const semanticResultIds = [...(evaluation.semanticResultIds || [])]
+  const semanticLexiconResultIds = [...(evaluation.semanticLexiconResultIds || [])]
+  const structuralState = evaluation.structuralState || compositionRequirementState(composition.requiredStructuralResults, structuralResultIds)
+  const semanticState = evaluation.semanticState || compositionRequirementState(composition.requiredSemanticResults, semanticResultIds)
+  const semanticLexiconState = evaluation.semanticLexiconState || compositionRequirementState(composition.requiredSemanticLexiconEntries, semanticLexiconResultIds, 'not_required')
+  const conflictState = evaluation.conflictId || evaluation.sourceMismatch
+    ? {
+      status: 'preserved_tension_fail_closed',
+      conflictId: evaluation.conflictId || null,
+      sourceMismatch: evaluation.sourceMismatch === true,
+      policy: composition.conflictState.policy,
+      winnerSelected: false,
+      failClosed: true,
+    }
+    : {
+      status: 'not_observed',
+      conflictId: null,
+      sourceMismatch: false,
+      policy: composition.conflictState.policy,
+      winnerSelected: false,
+      failClosed: true,
+    }
+  const sourceProvenance = Object.fromEntries(composition.sourceIds.map(sourceId => [
+    sourceId,
+    SAJU_LINEAGE_SOURCE_PROFILES.find(source => source.sourceId === sourceId)?.byteSha256 || null,
+  ]))
+  const chain = {
+    structuralRuleIds: [...composition.requiredStructuralResults.ruleIds],
+    structuralResultIds,
+    semanticRuleIds: [...composition.requiredSemanticResults.ruleIds],
+    semanticResultIds,
+    semanticLexiconEntryIds: [...composition.requiredSemanticLexiconEntries.entryIds],
+    semanticLexiconResultIds,
+    baseFactRefs: [...(evaluation.baseFactRefs || [])],
+  }
+  const materialized = classification === 'derived_source_local_semantic_composition_result' || classification === 'derived_bounded_role_use_transition_result'
+  return {
+    resultId: `composition-result.${composition.compositionId}`,
+    classification,
+    compositionId: composition.compositionId,
+    status: composition.status,
+    work: composition.work,
+    lineage: composition.lineage,
+    sourceIds: [...composition.sourceIds],
+    locatorIds: [...composition.locatorIds],
+    sourceProvenance,
+    provenance: {
+      schema: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_SCHEMA,
+      version: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_VERSION,
+      compositionId: composition.compositionId,
+      sourceIds: [...composition.sourceIds],
+      lineage: composition.lineage,
+      locatorIds: [...composition.locatorIds],
+      sourceByteSha256: { ...sourceProvenance },
+      chain,
+    },
+    commonBaseFacts: chain.baseFactRefs.map(factRef => ({ factRef, origin: 'composition_prerequisite_chain' })),
+    requiredStructuralResults: {
+      ...composition.requiredStructuralResults,
+      ruleIds: [...composition.requiredStructuralResults.ruleIds],
+      fields: [...composition.requiredStructuralResults.fields],
+      resultIds: structuralResultIds,
+      state: structuralState,
+    },
+    requiredSemanticResults: {
+      ...composition.requiredSemanticResults,
+      ruleIds: [...composition.requiredSemanticResults.ruleIds],
+      fields: [...composition.requiredSemanticResults.fields],
+      resultIds: semanticResultIds,
+      state: semanticState,
+    },
+    requiredSemanticLexiconEntries: {
+      ...composition.requiredSemanticLexiconEntries,
+      entryIds: [...composition.requiredSemanticLexiconEntries.entryIds],
+      fields: [...composition.requiredSemanticLexiconEntries.fields],
+      resultIds: semanticLexiconResultIds,
+      state: semanticLexiconState,
+    },
+    applicability: [...composition.applicability],
+    procedure: [...composition.procedure],
+    composition: {
+      ...composition.composition,
+      conditions: [...composition.composition.conditions],
+    },
+    outputContract: {
+      ...composition.output,
+      fields: [...composition.output.fields],
+    },
+    semanticRoleResult: {
+      resultKey: composition.output.resultKey,
+      fields: [...composition.output.fields],
+      origin: composition.output.origin,
+      materialized,
+    },
+    conflictState,
+    stopConditions: [...composition.stopConditions],
+    forbiddenExtensions: [...composition.forbiddenExtensions],
+    executionStatus: evaluation.executionStatus,
+    ruleStatus: composition.status,
+    output: materialized ? evaluation.output : null,
+    reason: evaluation.reason,
+    structuralResultIds,
+    semanticResultIds,
+    semanticLexiconResultIds,
+    deterministic: true,
+    noRecalculation: true,
+    noPersonalMeaning: true,
+    noCrossLineageMerge: true,
+    interpretationHypothesis: false,
+    winnerSelected: false,
+    semanticExpansion: false,
+  }
+}
+
+export function deriveSajuSourceLocalSemanticCompositions(
+  base,
+  structuralResults = null,
+  semanticResults = null,
+  lexiconResults = null,
+  compositions = SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_RULES,
+) {
+  const compositionErrors = checkSajuSourceLocalSemanticComposition(compositions)
+  const baseValidation = validateDeterministicBaseForInterpretation(base)
+  const structural = structuralResults || deriveSajuLineageStructuralResults(base)
+  const resolvedSemanticResults = semanticResults || {
+    ziping: deriveSajuLineageSourceSemanticResults(base, structural),
+    sanming: deriveSajuSanmingSourceSemanticResults(base, structural),
+  }
+  const resolvedLexiconResults = lexiconResults || deriveSajuSourceBoundedSemanticLexiconEntries(base, structural, resolvedSemanticResults)
+  const emptyCategories = {
+    adoptedCompositions: [],
+    boundedRoleUseTransitions: [],
+    unresolvedCompositions: [],
+    unsupportedCompositions: [],
+    blockedCompositions: [],
+    notApplicableCompositions: [],
+    ambiguousCompositions: [],
+    derivedCompositionResults: [],
+    lineageConflicts: [],
+  }
+  const semanticValidation = {
+    ziping: resolvedSemanticResults.ziping?.contractValidation || null,
+    sanming: resolvedSemanticResults.sanming?.contractValidation || null,
+  }
+  const prerequisitesValid = compositionErrors.length === 0
+    && baseValidation.valid
+    && structural.contractValidation?.valid === true
+    && Object.values(semanticValidation).every(validation => validation?.valid === true)
+    && resolvedLexiconResults.lexiconValidation?.valid === true
+  if (!prerequisitesValid) return {
+    schemaVersion: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_SCHEMA,
+    version: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_VERSION,
+    compositionValidation: { valid: compositionErrors.length === 0, errors: compositionErrors },
+    baseValidation,
+    structuralResultContractValidation: structural.contractValidation,
+    semanticResultContractValidation: semanticValidation,
+    lexiconValidation: resolvedLexiconResults.lexiconValidation || null,
+    categories: emptyCategories,
+    boundary: {
+      noRecalculation: true,
+      baseMutation: false,
+      noPersonalMeaning: true,
+      interpretationHypothesis: false,
+      crossLineageMerge: false,
+      winnerSelection: false,
+      conflictsPreserved: true,
+    },
+  }
+
+  const categories = { ...emptyCategories }
+  for (const composition of compositions) {
+    const evaluation = executeSourceLocalSemanticComposition(composition, structural, resolvedSemanticResults, resolvedLexiconResults)
+    const catalogClassification = composition.status === 'adopted_composition'
+      ? 'adopted_composition'
+      : composition.status === 'bounded_role_use_transition'
+        ? 'bounded_role_use_transition'
+        : composition.status === 'unsupported'
+          ? 'unsupported_composition'
+          : 'unresolved_composition'
+    const catalogDescriptor = sourceLocalSemanticCompositionDescriptor(composition, evaluation, catalogClassification)
+    if (composition.status === 'adopted_composition') categories.adoptedCompositions.push(catalogDescriptor)
+    if (composition.status === 'bounded_role_use_transition') categories.boundedRoleUseTransitions.push(catalogDescriptor)
+    if (composition.status === 'unresolved') categories.unresolvedCompositions.push(catalogDescriptor)
+    if (composition.status === 'unsupported') categories.unsupportedCompositions.push(catalogDescriptor)
+
+    if (evaluation.executionStatus === 'executable_from_frozen_base') {
+      const materializedClassification = composition.status === 'bounded_role_use_transition'
+        ? 'derived_bounded_role_use_transition_result'
+        : 'derived_source_local_semantic_composition_result'
+      categories.derivedCompositionResults.push(sourceLocalSemanticCompositionDescriptor(composition, evaluation, materializedClassification))
+    } else if (evaluation.executionStatus === 'blocked_missing_base_fact') {
+      categories.blockedCompositions.push(sourceLocalSemanticCompositionDescriptor(composition, evaluation, 'blocked_composition'))
+    } else if (evaluation.executionStatus === 'not_applicable_fixture') {
+      categories.notApplicableCompositions.push(sourceLocalSemanticCompositionDescriptor(composition, evaluation, 'not_applicable_composition'))
+    } else if (evaluation.executionStatus === 'ambiguous_composition' || (evaluation.executionStatus === 'not_executable_by_contract' && ['adopted_composition', 'bounded_role_use_transition'].includes(composition.status))) {
+      const descriptor = sourceLocalSemanticCompositionDescriptor(composition, evaluation, 'ambiguous_composition')
+      categories.ambiguousCompositions.push(descriptor)
+      if (evaluation.conflictId || evaluation.sourceMismatch) categories.lineageConflicts.push({
+        conflictId: evaluation.conflictId || 'conflict.source-local-composition-lineage-isolation',
+        classification: 'lineage_conflict',
+        compositionId: composition.compositionId,
+        ruleIds: [...composition.requiredStructuralResults.ruleIds, ...composition.requiredSemanticResults.ruleIds],
+        sourceIds: [...composition.sourceIds],
+        status: 'preserved_tension_fail_closed',
+        reason: evaluation.reason || 'source-local composition was not materialized because source/lineage conflict was preserved',
+        deterministic: true,
+        noPersonalMeaning: true,
+      })
+    }
+  }
+
+  return {
+    schemaVersion: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_SCHEMA,
+    version: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_VERSION,
+    compositionValidation: { valid: true, errors: [] },
+    baseValidation,
+    structuralResultContractValidation: structural.contractValidation,
+    semanticResultContractValidation: semanticValidation,
+    lexiconValidation: resolvedLexiconResults.lexiconValidation,
+    categories,
+    commonCompositionCandidates: [],
+    readiness: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_READINESS,
+    boundary: {
+      noRecalculation: true,
+      baseMutation: false,
+      noPersonalMeaning: true,
+      interpretationHypothesis: false,
+      crossLineageMerge: false,
+      winnerSelection: false,
+      conflictsPreserved: true,
+    },
+  }
 }
 
 function semanticLexiconResultDescriptor(entry, lookupStatus, extra = {}) {
