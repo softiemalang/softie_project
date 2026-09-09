@@ -179,8 +179,28 @@ export const SAJU_LINEAGE_LOCATORS = Object.freeze([
   loc('saju-source-sanming-tonghui', 'sanming-p6-stem-branch-origin', 6, '6', '論支干源流', 'stem/branch origin and generation/control framing', '論支干源流'),
   loc('saju-source-sanming-tonghui', 'sanming-p65-human-element-and-month-command', 65, '65', '論人元司事', 'human-element and month-command role', '人元 · 司事之神 · 月令'),
   loc('saju-source-sanming-tonghui', 'sanming-p66-seasonal-hidden-stem-service', 66, '66', '論四時節氣', 'one explicit hidden-stem service-day example and seasonal cycle framing', '寅中有艮土用事五日 · 丙火五日 · 甲木二十日'),
+  loc('saju-source-sanming-tonghui', 'sanming-p67-seasonal-state', 67, '67', '論五行旺相休囚死并寄生十二宮', 'seasonal five-phase state vocabulary and the source-local spring/summer/long-summer/autumn/winter windows', '春木旺 · 夏火旺 · 六月土旺 · 秋金旺 · 冬水旺'),
+  loc('saju-source-sanming-tonghui', 'sanming-p68-twelve-palace-vocabulary', 68, '68', '論五行旺相休囚死并寄生十二宮', 'the twelve source stage labels and their bounded vocabulary; no modern stage resolver is imported', '長生 · 沐浴 · 冠帶 · 臨官 · 帝旺 · 衰 · 病 · 死 · 墓 · 絕 · 胎 · 養'),
   loc('saju-source-sanming-tonghui', 'sanming-p69-month-hour-method', 69, '69', '論遁月時', 'month-from-year and hour-from-day procedure surface', '遁月从年 · 遁时从日'),
   loc('saju-source-sanming-tonghui', 'sanming-p70-year-month-day-hour', 70, '70', '論年月日時', 'four-pillar framing and day-as-host comparison', '年月日時排成四柱 · 子平以日看'),
+  loc('saju-source-sanming-tonghui', 'sanming-p72-fetal-and-seat', 72, '72', '論胎元 / 論坐命官', '胎元 and 坐命官 calculation surfaces without a public Base prerequisite contract', '論胎元 · 論坐命官'),
+  loc('saju-source-sanming-tonghui', 'sanming-p73-dayun-procedure', 73, '73', '論大運', 'direction, section-distance, start-age and time-conversion wording; exact policy bridge remains separate', '陽男陰女 · 三日為一歲 · 一日四個月 · 一時辰十日'),
+  loc('saju-source-sanming-tonghui', 'sanming-p77-timing-outcome-summary', 77, '77', '總論歲運', 'timing and outcome composition surface; source priority is not adopted', '大運 · 流年 · 吉凶'),
+  loc('saju-source-sanming-tonghui', 'sanming-p78-stem-combination', 78, '78', '論十干合', 'stem-combination surface with source-local relation and transformation wording', '甲己合 · 乙庚合 · 丙辛合 · 丁壬合 · 戊癸合'),
+  loc('saju-source-sanming-tonghui', 'sanming-p81-stem-transformation', 81, '81', '論十干化氣', '化氣 conditions and outcome-adjacent clauses; no complete independent priority resolver adopted', '化氣 · 得時 · 得地'),
+  loc('saju-source-sanming-tonghui', 'sanming-p85-branch-combinations', 85, '85', '論支元六合 / 論支元三合', 'branch combination inventories and transformation context', '六合 · 三合'),
+  loc('saju-source-sanming-tonghui', 'sanming-p90-three-punishments', 90, '90', '論三刑', 'branch punishment surface; interaction and outcome conditions remain context-bound', '三刑'),
+  loc('saju-source-sanming-tonghui', 'sanming-p93-branch-conflict', 93, '93', '論沖擊', 'branch conflict surface with source-local interpretation context', '沖擊'),
+  loc('saju-source-sanming-tonghui', 'sanming-p95-stem-lu', 95, '95', '論十干禄', 'stem-to-禄 mapping surface; personal/outcome extension is not adopted', '十干禄'),
+  loc('saju-source-sanming-tonghui', 'sanming-p100-travel-horse', 100, '100', '論驛馬', '驛馬 mapping surface with source-local conditions', '驛馬'),
+  loc('saju-source-sanming-tonghui', 'sanming-p106-shensha', 106, '106', '論天乙貴人', '神煞 inventory beginning; no public semantic result is adopted', '天乙貴人'),
+  loc('saju-source-sanming-tonghui', 'sanming-p130-shensha-summary', 130, '130', '總論諸神煞', 'compiled shensha summary and outcome clauses', '總論諸神煞'),
+  loc('saju-source-sanming-tonghui', 'sanming-p137-stem-branch-outcomes', 137, '137', '論十干坐支兼得月時及行運吉凶', 'stem/branch, month/hour and luck-outcome surface', '行運吉凶'),
+  loc('saju-source-sanming-tonghui', 'sanming-p159-elemental-outcomes', 159, '159', '論水',  'elemental month/region outcome surface through the five-phase sections', '五行時地分野吉凶'),
+  loc('saju-source-sanming-tonghui', 'sanming-p162-role-nomenclature', 162, '162', '論古人立印食官财名义', 'source-defined role nomenclature from supplied stem-role labels; family analogy and outcome prose are excluded', '印绶 · 食神 · 官煞 · 妻财'),
+  loc('saju-source-sanming-tonghui', 'sanming-p164-239-role-chapters', 164, '164–239', '論正官 and role chapters', 'role-specific chapter surfaces with month-command, pattern, support/opposition and outcome conditions', '正官 · 偏官 · 正財 · 印綬 · 傷官 · 食神'),
+  loc('saju-source-sanming-tonghui', 'sanming-p242-261-personal-surfaces', 242, '242–261', '論性情相貌 / 論六親', 'personality, body, gender, childhood and family surfaces outside the public grammar', '性情相貌 · 疾病 · 女命 · 六親'),
+  loc('saju-source-sanming-tonghui', 'sanming-p300-370-worked-cases', 300, '300–370', '時斷 and worked cases', 'worked examples and case-bound outcome prose without a universal source predicate', '時斷'),
   loc('saju-source-ziping-zhenquan', 'ziping-p3-yang-yin-root-cycle-and-tomb-exception', 3, '3', '論陰陽生死', 'source-local life-cycle vocabulary and yang-rooted versus yin/tomb qualification', '長生循環 · 得長生祿旺 · 逢庫 · 陽為有根 · 陰為無用'),
   loc('saju-source-ziping-zhenquan', 'ziping-p5-branch-relations-definition-and-examples', 5, '5', '論刑沖會合解法', 'explicit stem/branch examples, exceptions, and adjacent branch-relation definitions', '长生禄旺 · 根之重者也 · 甲逢未 · 乙逢戌 · 通根'),
   loc('saju-source-ziping-zhenquan', 'page.local.ziping.p6-yongshin', 6, '6', '論用神', 'month-command-first use-selection wording', '用神专求月令'),
@@ -243,6 +263,61 @@ const ZIPING_P10_EXPOSURE_TARGETS = Object.freeze([
   Object.freeze({ sourceStem: '癸', inputStems: Object.freeze(['계', '癸']), sourceRole: '正印' }),
   Object.freeze({ sourceStem: '乙', inputStems: Object.freeze(['을', '乙']), sourceRole: '月劫' }),
 ])
+
+const SANMING_SEASONAL_WINDOWS = Object.freeze([
+  Object.freeze({
+    seasonWindow: 'spring',
+    monthBranches: Object.freeze(['寅', '인', '卯', '묘', '辰', '진']),
+    elementStates: Object.freeze({ 목: '旺', 화: '相', 수: '休', 금: '囚', 토: '死' }),
+  }),
+  Object.freeze({
+    seasonWindow: 'summer',
+    monthBranches: Object.freeze(['巳', '사', '午', '오']),
+    elementStates: Object.freeze({ 목: '休', 화: '旺', 토: '相', 수: '囚', 금: '死' }),
+  }),
+  Object.freeze({
+    seasonWindow: 'long_summer',
+    monthBranches: Object.freeze(['未', '미']),
+    elementStates: Object.freeze({ 목: '囚', 화: '休', 토: '旺', 금: '相', 수: '死' }),
+  }),
+  Object.freeze({
+    seasonWindow: 'autumn',
+    monthBranches: Object.freeze(['申', '신', '酉', '유', '戌', '술']),
+    elementStates: Object.freeze({ 목: '死', 화: '囚', 토: '休', 금: '旺', 수: '相' }),
+  }),
+  Object.freeze({
+    seasonWindow: 'winter',
+    monthBranches: Object.freeze(['亥', '해', '子', '자', '丑', '축']),
+    elementStates: Object.freeze({ 목: '相', 화: '死', 토: '囚', 금: '休', 수: '旺' }),
+  }),
+])
+
+const SANMING_TWELVE_PALACE_LABELS = Object.freeze([
+  '長生',
+  '沐浴',
+  '冠帶',
+  '臨官',
+  '帝旺',
+  '衰',
+  '病',
+  '死',
+  '墓',
+  '絕',
+  '胎',
+  '養',
+])
+
+const SANMING_SOURCE_ROLE_BY_SUPPLIED_LABEL = Object.freeze({
+  정인: '印綬',
+  편인: '枭',
+  식신: '食神',
+  상관: '傷官',
+  정관: '正官',
+  편관: '偏官',
+  정재: '妻財',
+  편재: '妻財',
+  겁재: '劫',
+})
 
 // Source-bounded research metadata only. This is not a public Base field or
 // a resolver: p.2 closes the conditional arithmetic vocabulary, but not how
@@ -513,6 +588,40 @@ export const SAJU_LINEAGE_RULES = Object.freeze([
     structuralOutput: ['elementInventory', 'existingStemRelationInventory'],
     exceptions: ['source numerical or directional prose is not used to recalculate the Base'],
     conflictPolicy: 'relation vocabulary is not a precedence rule and does not resolve other lineage clauses',
+  }),
+  rule({
+    ruleId: 'rule.sanming.seasonal-state-inventory.v0',
+    work: WORKS.sanming,
+    lineage: 'sanming_local_export',
+    status: 'adopted_lineage_rule',
+    ruleCompleteness: 'bounded_seasonal_state_inventory',
+    executionStatus: 'executable_from_frozen_base',
+    sourceIds: ['saju-source-sanming-tonghui'],
+    locatorIds: ['sanming-p67-seasonal-state', 'sanming-p68-twelve-palace-vocabulary'],
+    observedRule: 'p.67 directly orders the source seasonal state vocabulary as spring 木旺, summer 火旺, sixth-month 土旺, autumn 金旺, winter 水旺; p.68 lists the twelve source stage labels. The adopted result is a vocabulary/window inventory only.',
+    preconditions: ['the supplied month branch maps to one source seasonal window', 'the supplied element distribution envelope contains the five element keys'],
+    inputFacts: [FACT_REFS.monthBranch, FACT_REFS.elements],
+    orderedSteps: ['bind the supplied month branch to the explicitly listed source seasonal window', 'emit the p.67 旺相休囚死 vocabulary by element for that window', 'retain the p.68 twelve stage labels as an un-applied source vocabulary', 'stop before balance, force, use selection, fortune, or personal meaning'],
+    structuralOutput: ['seasonalStateInventory', 'sourceTwelvePalaceVocabulary'],
+    exceptions: ['未 is retained as the source sixth-month 土旺 window rather than folded into the summer window', 'no generic 十二運星 table or other lineage state resolver is used'],
+    conflictPolicy: 'preserve the Sanming seasonal window as a lineage-specific classification; do not merge it with Qiongtong 生旺/死绝 or another lineage seasonal clause',
+  }),
+  rule({
+    ruleId: 'rule.sanming.visible-stem-frame.v0',
+    work: WORKS.sanming,
+    lineage: 'sanming_local_export',
+    status: 'adopted_lineage_rule',
+    ruleCompleteness: 'bounded_visible_stem_frame',
+    executionStatus: 'executable_from_frozen_base',
+    sourceIds: ['saju-source-sanming-tonghui'],
+    locatorIds: ['sanming-p162-role-nomenclature'],
+    observedRule: 'p.162 opens its role-nomenclature explanation from the day-master and supplied visible stem relations; this structural prerequisite records that visible-stem frame without assigning a role or family meaning.',
+    preconditions: ['exact time and day-master FACT are present', 'all four supplied pillarFacts entries contain a visible stem'],
+    inputFacts: [FACT_REFS.dayMaster, FACT_REFS.pillarFacts, FACT_REFS.timeAccuracy],
+    orderedSteps: ['bind the supplied day-master as the source anchor', 'enumerate the four supplied visible stems by pillar position', 'pass the frame to the separate p.162 role-nomenclature rule', 'stop before any role, family, outcome, or personal meaning'],
+    structuralOutput: ['visibleStemFrame'],
+    exceptions: ['the frame is an input inventory, not a generic ten-god calculator', 'an unavailable visible stem blocks the dependent semantic rule'],
+    conflictPolicy: 'keep the visible-stem frame lineage-local and never merge its role lane with another source semantic rule',
   }),
   rule({
     ruleId: 'rule.ziping.branch-relation-inventory.v0',
@@ -985,6 +1094,60 @@ export const SAJU_LINEAGE_STRUCTURAL_CONTRACTS = Object.freeze([
       semanticExpansion: false,
     },
   }),
+  structuralContractSpec('rule.sanming.seasonal-state-inventory.v0', {
+    commonBaseFacts: [
+      { factRef: FACT_REFS.monthBranch, origin: 'frozen_base_common_fact' },
+      { factRef: FACT_REFS.elements, origin: 'frozen_base_common_fact' },
+    ],
+    applicability: [
+      'month branch must map to one of the p.67 source seasonal windows',
+      'the supplied element distribution must contain the five element keys',
+    ],
+    procedure: [
+      'bind the supplied month branch to spring, summer, sixth-month, autumn, or winter as explicitly listed by the source',
+      'emit the source 旺相休囚死 label by element for that window',
+      'retain the p.68 twelve stage labels as vocabulary only',
+      'emit no balance, force, use-selection, fortune, or personal result',
+    ],
+    stopConditions: [
+      'stop when month branch or element distribution is missing or malformed',
+      'stop when the month branch is not in the source seasonal window list',
+      'do not replace the sixth-month 土旺 window with a generic summer grouping',
+      'do not apply generic 十二運星 or Qiongtong 生旺/死绝 state resolution',
+    ],
+    output: {
+      origin: 'lineage_derived_structural_result',
+      resultKey: 'sanming.seasonalStateInventory',
+      fields: ['monthBranch', 'seasonWindow', 'elementStateBySeason', 'twelvePalaceVocabulary', 'sourceScope'],
+      semanticExpansion: false,
+    },
+  }),
+  structuralContractSpec('rule.sanming.visible-stem-frame.v0', {
+    commonBaseFacts: [
+      { factRef: FACT_REFS.dayMaster, origin: 'frozen_base_common_fact' },
+      { factRef: FACT_REFS.pillarFacts, origin: 'frozen_base_common_fact' },
+      { factRef: FACT_REFS.timeAccuracy, origin: 'frozen_normalized_input' },
+    ],
+    applicability: [
+      'timeAccuracy must be exact',
+      'day-master stem and all four supplied visible stem positions must be present',
+    ],
+    procedure: [
+      'bind the supplied day-master stem as the source anchor',
+      'enumerate the four visible stem values by pillar position',
+      'pass only this input frame to the p.162 role-nomenclature rule',
+    ],
+    stopConditions: [
+      'stop when timeAccuracy is not exact or day-master/visible stem input is missing or malformed',
+      'do not calculate ten-god labels or attach family, outcome, or personal meaning',
+    ],
+    output: {
+      origin: 'lineage_derived_structural_result',
+      resultKey: 'sanming.visibleStemFrame',
+      fields: ['dayMasterStem', 'visibleStemInventory', 'sourceInputScope'],
+      semanticExpansion: false,
+    },
+  }),
   structuralContractSpec('rule.ziping.branch-relation-inventory.v0', {
     commonBaseFacts: [
       { factRef: FACT_REFS.branchRelations, origin: 'frozen_base_common_fact' },
@@ -1352,6 +1515,33 @@ export const SAJU_ZIPING_SOURCE_SEMANTIC_RULES = Object.freeze([
       origin: 'lineage_derived_source_bounded_semantic_result',
       resultKey: 'ziping.exposureBranchSentiment',
       fields: ['sourceInteractionWindow'],
+      semanticExpansion: false,
+      personalMeaning: false,
+    },
+  }),
+])
+
+export const SAJU_SANMING_SOURCE_SEMANTIC_RULES = Object.freeze([
+  sourceSemanticRule({
+    ruleId: 'rule.sanming.role-nomenclature.v0',
+    work: WORKS.sanming,
+    lineage: 'sanming_local_export',
+    status: 'adopted_lineage_semantic_rule',
+    ruleCompleteness: 'bounded_source_role_nomenclature',
+    sourceIds: ['saju-source-sanming-tonghui'],
+    locatorIds: ['sanming-p162-role-nomenclature'],
+    structuralPrerequisiteRuleIds: ['rule.sanming.visible-stem-frame.v0'],
+    observedRule: 'p.162 explains the source role nomenclature from day-master/stem relations: 印绶, 食神, 官煞, 妻财 and the named 正/偏 role labels. The adopted output translates only the already supplied visible ten-god label inventory into those source labels; it does not emit the adjacent family analogy or any outcome.',
+    preconditions: ['the Sanming visible-stem frame has executed', 'the frozen Base supplies a non-empty visible ten-god label inventory', 'every supplied label is one of the p.162 role labels retained by this narrow contract'],
+    inputFacts: [FACT_REFS.dayMaster, FACT_REFS.pillarFacts, FACT_REFS.visibleTenGods, FACT_REFS.timeAccuracy],
+    orderedSteps: ['consume the Sanming visible-stem frame without recalculating its stems', 'consume the supplied visible ten-god labels as FACTs', 'map only the exact supplied labels to the source role labels 印綬/枭/食神/傷官/正官/偏官/妻財/劫', 'preserve counts and stop before family analogy, use selection, pattern, outcome, fortune, or personal meaning'],
+    semanticOutput: ['sourceRoleLabelInventory'],
+    exceptions: ['an unknown or same-element label outside the p.162 retained vocabulary blocks the complete result rather than being filled by a modern table', 'the source role labels are not personal or family conclusions', 'do not merge this role-nomenclature lane with Ziping/Yuanhai role chapters or promote it to a common rule'],
+    conflictPolicy: 'preserve the Sanming role-label result and fail closed on a structural conflict; no cross-lineage winner is selected',
+    output: {
+      origin: 'lineage_derived_source_bounded_semantic_result',
+      resultKey: 'sanming.roleNomenclature',
+      fields: ['sourceCondition', 'suppliedLabelCounts', 'sourceRoleLabelInventory', 'sourceSemanticScope'],
       semanticExpansion: false,
       personalMeaning: false,
     },
@@ -2411,6 +2601,340 @@ export const SAJU_YUANHAI_RULE_INVENTORY = Object.freeze([
   }),
 ])
 
+export const SAJU_SANMING_INVENTORY_STATUSES = Object.freeze([
+  'adopted_structural_rule',
+  'adopted_semantic_rule',
+  'context_bound_candidate',
+  'unresolved',
+  'unsupported',
+])
+
+const sanmingInventoryEntry = value => ({
+  inventorySchema: 'saju-sanming-source-rule-inventory-v0',
+  work: WORKS.sanming,
+  lineage: 'sanming_local_export',
+  sourceIds: ['saju-source-sanming-tonghui'],
+  locatorIds: [],
+  requiredStructuralResult: {
+    ruleIds: [],
+    fields: [],
+    closure: 'not_closed',
+  },
+  sourceDefinedOutput: {
+    kind: 'not_materialized',
+    role: 'source-bounded rule surface',
+    outputShape: [],
+    scope: 'sanming-local-only',
+  },
+  applicability: [],
+  exceptions: [],
+  forbiddenExtensions: [...FORBIDDEN_EXTENSIONS],
+  compositionState: 'coexistence_only_until_source_priority_is_closed',
+  sourceObservation: '',
+  ...value,
+})
+
+/**
+ * Whole local-work inventory for 三命通會.  The direct page bands are kept
+ * separate from the Ziping/Yuanhai inventories.  Only the p.4-p.6 relation
+ * vocabulary, p.65-p.70 frames, p.67 seasonal state vocabulary, and the
+ * narrow p.162 role nomenclature have closed non-personal outputs here.
+ */
+export const SAJU_SANMING_RULE_INVENTORY = Object.freeze([
+  sanmingInventoryEntry({
+    inventoryId: 'inventory.sanming.p4-p6-generation-control.v0',
+    status: 'adopted_structural_rule',
+    contractRuleId: 'rule.sanming.element-generation-control-v0',
+    locatorIds: ['sanming-p4-element-generation', 'sanming-p5-element-generation-control', 'sanming-p6-stem-branch-origin'],
+    applicability: ['the frozen element distribution, pillarFacts envelope, and supplied stem-relation inventory are present'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.sanming.element-generation-control-v0'],
+      fields: ['elementInventory', 'existingStemRelations', 'relationGraph'],
+      closure: 'closed_in_existing_contract',
+    },
+    sourceDefinedOutput: {
+      kind: 'structural',
+      role: 'five-phase generation/control relation vocabulary',
+      outputShape: ['element inventory', 'supplied stem relation inventory'],
+      scope: 'relation vocabulary only; no force or personal result',
+    },
+    exceptions: ['source numerical prose is not used to recalculate the frozen Base'],
+    sourceObservation: 'p.4-p.6 present generation/control and stem/branch origin as relation vocabulary; the adopted rule retains the already supplied FACTs.',
+  }),
+  sanmingInventoryEntry({
+    inventoryId: 'inventory.sanming.p65-p66-human-element.v0',
+    status: 'adopted_structural_rule',
+    contractRuleId: 'rule.sanming.human-element-month-command.v0',
+    locatorIds: ['sanming-p65-human-element-and-month-command', 'sanming-p66-seasonal-hidden-stem-service'],
+    applicability: ['month branch and supplied month hidden-stem inventory are present'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.sanming.human-element-month-command.v0'],
+      fields: ['monthCommandBranch', 'hiddenStems', 'serviceDayArithmetic'],
+      closure: 'closed_in_existing_contract',
+    },
+    sourceDefinedOutput: {
+      kind: 'structural',
+      role: '人元/月令 inventory',
+      outputShape: ['month branch', 'hidden stems', 'service-day arithmetic not applied'],
+      scope: 'inventory only; no service-day weight table',
+    },
+    exceptions: ['the p.66 service-day example is not generalized to a twelve-month arithmetic table'],
+    sourceObservation: 'p.65-p.66 identify 人元/司事 and show one service-day example, but the existing rule intentionally stops at the supplied hidden-stem inventory.',
+  }),
+  sanmingInventoryEntry({
+    inventoryId: 'inventory.sanming.p67-p68-seasonal-state.v0',
+    status: 'adopted_structural_rule',
+    contractRuleId: 'rule.sanming.seasonal-state-inventory.v0',
+    locatorIds: ['sanming-p67-seasonal-state', 'sanming-p68-twelve-palace-vocabulary'],
+    applicability: ['month branch is in the source seasonal window list', 'the five element keys are supplied'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.sanming.seasonal-state-inventory.v0'],
+      fields: ['monthBranch', 'seasonWindow', 'elementStateBySeason', 'twelvePalaceVocabulary'],
+      closure: 'closed_in_existing_contract',
+    },
+    sourceDefinedOutput: {
+      kind: 'structural',
+      role: 'source seasonal-state vocabulary/window',
+      outputShape: ['season window', '旺相休囚死 labels by element', 'twelve source stage labels'],
+      scope: 'source vocabulary/classification only; no balance or personal result',
+    },
+    exceptions: ['未 is retained as the source sixth-month 土旺 window', 'p.68 labels are not used as a generic twelve-stage resolver'],
+    sourceObservation: 'p.67 directly states the five seasonal state windows and p.68 lists the twelve source labels; no cross-lineage state mapping is used.',
+  }),
+  sanmingInventoryEntry({
+    inventoryId: 'inventory.sanming.p69-p70-four-pillar-frame.v0',
+    status: 'adopted_structural_rule',
+    contractRuleId: 'rule.sanming.four-pillars-month-hour-frame.v0',
+    locatorIds: ['sanming-p69-month-hour-method', 'sanming-p70-year-month-day-hour'],
+    applicability: ['four supplied pillars and exact time are present'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.sanming.four-pillars-month-hour-frame.v0'],
+      fields: ['fourPillars', 'procedureLabels', 'recalculation'],
+      closure: 'closed_in_existing_contract',
+    },
+    sourceDefinedOutput: {
+      kind: 'structural',
+      role: 'four-pillar and month/hour procedure frame',
+      outputShape: ['four pillars', 'month-from-year', 'hour-from-day'],
+      scope: 'frozen frame only; no recalculation',
+    },
+    exceptions: ['calendar boundary and time policy remain in the Base engine'],
+    sourceObservation: 'p.69-p.70 explicitly frame year/month/day/hour and the month/hour derivation direction.',
+  }),
+  sanmingInventoryEntry({
+    inventoryId: 'inventory.sanming.p72-fetal-seat.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['sanming-p72-fetal-and-seat'],
+    applicability: ['source-defined 胎元/坐命官 inputs and exact calculation procedure are supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['胎元', '坐命官', 'calculation boundary'],
+      closure: 'separate_input_and_engine_policy_not_closed',
+    },
+    sourceDefinedOutput: {
+      kind: 'structural_candidate',
+      role: '胎元/坐命官 calculation surface',
+      outputShape: [],
+      scope: 'candidate only; no value is materialized',
+    },
+    exceptions: ['do not derive these values from adjacent month/hour rules or modern calculators'],
+    sourceObservation: 'p.72 has direct headings but the current contract has no source-bounded input/output bridge for either calculation.',
+  }),
+  sanmingInventoryEntry({
+    inventoryId: 'inventory.sanming.p73-p77-dayun.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['sanming-p73-dayun-procedure', 'sanming-p77-timing-outcome-summary'],
+    applicability: ['gender, birth-to-term distance, direction, start-age conversion, and source transition conditions are bound to the same source policy'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['direction', 'term-distance', 'start age', 'conversion', 'active cycle'],
+      closure: 'source_timing_policy_bridge_not_closed',
+    },
+    sourceDefinedOutput: {
+      kind: 'structural_candidate',
+      role: '大運 direction/start-age procedure',
+      outputShape: [],
+      scope: 'candidate only; no timing recomputation or outcome',
+    },
+    exceptions: ['the direct formulas are not promoted into a new timing engine or connected to fortune outcomes'],
+    sourceObservation: 'p.73 states gender-dependent direction, three-day/year conversion, and shorter unit conversions; p.77 mixes timing with outcome language, so the current timing bridge remains candidate.',
+  }),
+  sanmingInventoryEntry({
+    inventoryId: 'inventory.sanming.p78-p93-composition.v0',
+    status: 'unresolved',
+    locatorIds: ['sanming-p78-stem-combination', 'sanming-p81-stem-transformation', 'sanming-p85-branch-combinations', 'sanming-p90-three-punishments', 'sanming-p93-branch-conflict'],
+    applicability: ['source-specific combination/化氣/刑沖 definitions, precedence, and exceptions are independently closed'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['relation inventory', 'transformation condition', 'precedence', 'exception'],
+      closure: 'composition_and_priority_not_closed',
+    },
+    sourceDefinedOutput: {
+      kind: 'not_materialized',
+      role: 'stem/branch composition surface',
+      outputShape: [],
+      scope: 'inventory only; no relation winner or transformation result',
+    },
+    exceptions: ['do not merge source combinations with Ziping relation labels or modern合化 tables'],
+    sourceObservation: 'p.78-p.93 provide multiple relation and transformation sections, but the current direct locators do not close a single precedence/composition grammar.',
+    compositionState: 'unresolved_composition_frontier',
+  }),
+  sanmingInventoryEntry({
+    inventoryId: 'inventory.sanming.p95-p105-lu-horse.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['sanming-p95-stem-lu', 'sanming-p100-travel-horse'],
+    applicability: ['source-specific stem/year/branch inputs and non-outcome output scope are closed'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['禄 mapping', '驛馬 mapping', 'source position rule'],
+      closure: 'mapping_scope_and_non_outcome_boundary_not_closed',
+    },
+    sourceDefinedOutput: {
+      kind: 'structural_candidate',
+      role: '禄/驛馬 relation inventory',
+      outputShape: [],
+      scope: 'candidate only; no shensha meaning or outcome',
+    },
+    exceptions: ['do not treat a familiar name as proof of the source rule or add a modern 神煞 table'],
+    sourceObservation: 'p.95 and p.100 have direct mapping headings, but the source input axis and public non-outcome output are not yet closed in the current contract.',
+  }),
+  sanmingInventoryEntry({
+    inventoryId: 'inventory.sanming.p106-p130-shensha.v0',
+    status: 'unsupported',
+    locatorIds: ['sanming-p106-shensha', 'sanming-p130-shensha-summary'],
+    applicability: ['a source-complete non-outcome shensha mapping would be required'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['source axis', 'mapping', 'exception', 'output boundary'],
+      closure: 'public_non_outcome_shensha_contract_not_closed',
+    },
+    sourceDefinedOutput: {
+      kind: 'unsupported_semantic',
+      role: '神煞 names and outcome clauses',
+      outputShape: [],
+      scope: 'not materialized in the public grammar',
+    },
+    exceptions: ['do not expose 貴人/驛馬/羊刃 or other shensha as personal or fortune claims'],
+    sourceObservation: 'p.106-p.130 are direct shensha sections and a compiled summary, but no narrow public non-outcome rule has been closed.',
+  }),
+  sanmingInventoryEntry({
+    inventoryId: 'inventory.sanming.p137-p159-outcome-surfaces.v0',
+    status: 'unsupported',
+    locatorIds: ['sanming-p137-stem-branch-outcomes', 'sanming-p159-elemental-outcomes'],
+    applicability: ['source role/pattern/season and outcome context would be required'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['month/hour/운 context', 'seasonal condition', 'outcome'],
+      closure: 'fortune_and_personal_outcome_surface_outside_v0',
+    },
+    sourceDefinedOutput: {
+      kind: 'unsupported_semantic',
+      role: '吉凶/富貴/seasonal personal outcomes',
+      outputShape: [],
+      scope: 'not materialized',
+    },
+    exceptions: ['do not turn a seasonal state label into a balance, fate, or personal conclusion'],
+    sourceObservation: 'p.137-p.159 repeatedly connect stem/branch and elemental regional conditions to 吉凶/outcome language.',
+  }),
+  sanmingInventoryEntry({
+    inventoryId: 'inventory.sanming.p162-role-nomenclature.v0',
+    status: 'adopted_semantic_rule',
+    contractRuleId: 'rule.sanming.role-nomenclature.v0',
+    locatorIds: ['sanming-p162-role-nomenclature'],
+    applicability: ['the visible-stem frame has executed', 'supplied visible ten-god labels are all in the narrow retained source vocabulary'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.sanming.visible-stem-frame.v0'],
+      fields: ['dayMasterStem', 'visibleStemInventory'],
+      closure: 'closed_in_existing_contract',
+    },
+    sourceDefinedOutput: {
+      kind: 'semantic_role_label_inventory',
+      role: 'source role nomenclature only',
+      outputShape: ['supplied label', 'source role label', 'count'],
+      scope: 'p.162 role names only; no family analogy, pattern, outcome, or personal meaning',
+    },
+    exceptions: ['unknown/same-element labels are fail-closed rather than completed by modern terminology'],
+    sourceObservation: 'p.162 explicitly names 印绶, 食神, 官煞, 妻财 and the bounded 正/偏 role labels; the adopted result preserves only the nomenclature lane.',
+  }),
+  sanmingInventoryEntry({
+    inventoryId: 'inventory.sanming.p162-visible-stem-frame.v0',
+    status: 'adopted_structural_rule',
+    contractRuleId: 'rule.sanming.visible-stem-frame.v0',
+    locatorIds: ['sanming-p162-role-nomenclature'],
+    applicability: ['exact time, day-master and all four visible stem positions are present'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.sanming.visible-stem-frame.v0'],
+      fields: ['dayMasterStem', 'visibleStemInventory', 'sourceInputScope'],
+      closure: 'closed_in_existing_contract',
+    },
+    sourceDefinedOutput: {
+      kind: 'structural',
+      role: 'visible stem input frame for p.162 role nomenclature',
+      outputShape: ['day-master anchor', 'visible stem by pillar position'],
+      scope: 'input frame only; no role calculation or personal meaning',
+    },
+    exceptions: ['do not calculate ten-god labels or complete unlisted source role mappings from this frame'],
+    sourceObservation: 'the p.162 role-nomenclature passage starts from the day-master and stem relation frame; this adopted structural result preserves only that frame.',
+  }),
+  sanmingInventoryEntry({
+    inventoryId: 'inventory.sanming.p164-p239-role-chapters.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['sanming-p164-239-role-chapters'],
+    applicability: ['role identity, month-command conditions, support/opposition, pattern context, and source priority are all closed'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['role identity', 'month-command state', 'relation conditions', 'priority'],
+      closure: 'chapter_context_and_priority_not_closed',
+    },
+    sourceDefinedOutput: {
+      kind: 'semantic_candidate',
+      role: '官/財/印/食 role chapter qualification',
+      outputShape: ['source-local case label'],
+      scope: 'chapter-specific; no general role meaning or outcome',
+    },
+    exceptions: ['p.164 onward includes body/strength and outcome clauses; do not use modern 格局/strength rules to complete them'],
+    sourceObservation: 'p.164-p.239 contain detailed role chapters, but their applicability and priority are not one closed non-personal grammar.',
+  }),
+  sanmingInventoryEntry({
+    inventoryId: 'inventory.sanming.p242-p261-personal-surfaces.v0',
+    status: 'unsupported',
+    locatorIds: ['sanming-p242-261-personal-surfaces'],
+    applicability: ['personal, health, gender, childhood, or family context would be required'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['personality', 'body', 'gender', 'family', 'outcome'],
+      closure: 'personal_semantic_surface_outside_v0',
+    },
+    sourceDefinedOutput: {
+      kind: 'unsupported_semantic',
+      role: '性情/疾病/女命/六親 surface',
+      outputShape: [],
+      scope: 'not materialized',
+    },
+    exceptions: ['do not expose these chapters as personal meaning or prediction'],
+    sourceObservation: 'p.242-p.261 explicitly enter personality, body, gender, childhood, and family surfaces.',
+  }),
+  sanmingInventoryEntry({
+    inventoryId: 'inventory.sanming.p300-p370-worked-cases.v0',
+    status: 'unsupported',
+    locatorIds: ['sanming-p300-370-worked-cases'],
+    applicability: ['a case-specific source identity and non-outcome structural extraction would be required'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['case input', 'case condition', 'case output boundary'],
+      closure: 'worked_case_not_a_universal_predicate',
+    },
+    sourceDefinedOutput: {
+      kind: 'unsupported_semantic',
+      role: 'worked-hour case outcomes',
+      outputShape: [],
+      scope: 'not materialized',
+    },
+    exceptions: ['do not generalize a worked case into a rule or prediction'],
+    sourceObservation: 'p.300-p.370 collect 時斷 and worked cases whose result prose is case-bound and outcome-oriented.',
+  }),
+])
+
 export const SAJU_ZIPING_SEMANTIC_COMPOSITION_FRONTIER = Object.freeze({
   status: 'unresolved_composition_frontier',
   compositionReady: false,
@@ -2429,8 +2953,8 @@ export const SAJU_ZIPING_SEMANTIC_COMPOSITION_FRONTIER = Object.freeze({
   forbiddenPromotion: ['common semantic rule', 'majority vote across cases', 'modern synthesis', 'personal meaning', 'good/bad or fortune result'],
 })
 
-const sourceSemanticContractSpec = (ruleId, value) => {
-  const ruleItem = SAJU_ZIPING_SOURCE_SEMANTIC_RULES.find(item => item.ruleId === ruleId)
+const sourceSemanticContractSpecForRules = (rules, ruleId, value) => {
+  const ruleItem = rules.find(item => item.ruleId === ruleId)
   if (!ruleItem) throw new Error(`unknown source semantic rule contract: ${ruleId}`)
   return {
     contractId: `contract.${ruleId}`,
@@ -2458,6 +2982,9 @@ const sourceSemanticContractSpec = (ruleId, value) => {
   }
 }
 
+const sourceSemanticContractSpec = (ruleId, value) => sourceSemanticContractSpecForRules(SAJU_ZIPING_SOURCE_SEMANTIC_RULES, ruleId, value)
+const sanmingSourceSemanticContractSpec = (ruleId, value) => sourceSemanticContractSpecForRules(SAJU_SANMING_SOURCE_SEMANTIC_RULES, ruleId, value)
+
 export const SAJU_ZIPING_SOURCE_SEMANTIC_CONTRACTS = Object.freeze([
   sourceSemanticContractSpec('rule.ziping.chen-exposure-use-role.v0', {
     commonBaseFacts: [
@@ -2469,6 +2996,10 @@ export const SAJU_ZIPING_SOURCE_SEMANTIC_CONTRACTS = Object.freeze([
   }),
   sourceSemanticContractSpec('rule.ziping.yin-month-exposure-change.v0'),
   sourceSemanticContractSpec('rule.ziping.exposure-branch-sentiment.v0'),
+])
+
+export const SAJU_SANMING_SOURCE_SEMANTIC_CONTRACTS = Object.freeze([
+  sanmingSourceSemanticContractSpec('rule.sanming.role-nomenclature.v0'),
 ])
 
 const ADOPTED_LINEAGE_RULE_IDS = new Set(SAJU_LINEAGE_RULES.filter(ruleItem => ruleItem.status === 'adopted_lineage_rule').map(ruleItem => ruleItem.ruleId))
@@ -2515,6 +3046,13 @@ export const SAJU_LINEAGE_READING_GRAMMAR = Object.freeze({
     candidateClosability: SAJU_ZIPING_CANDIDATE_CLOSABILITY,
     lineageRuleInventories: {
       yuanhai: SAJU_YUANHAI_RULE_INVENTORY,
+      sanming: SAJU_SANMING_RULE_INVENTORY,
+    },
+    lineageSemanticRules: {
+      sanming: SAJU_SANMING_SOURCE_SEMANTIC_RULES,
+    },
+    lineageSemanticContracts: {
+      sanming: SAJU_SANMING_SOURCE_SEMANTIC_CONTRACTS,
     },
     newlyAdoptedRuleIds: SAJU_ZIPING_SEMANTIC_RULE_INVENTORY
       .filter(item => item.status === 'newly_adopted_executable')
@@ -2639,6 +3177,51 @@ function hasCompleteYuanhaiDayunFocusLensInput(base) {
   return isObject(activeCycle)
     && typeof activeCycle.branch === 'string'
     && typeof timing.seUn.stem === 'string'
+}
+
+function sanmingSeasonalWindowForBranch(branch) {
+  return SANMING_SEASONAL_WINDOWS.find(window => window.monthBranches.includes(branch)) || null
+}
+
+function hasCompleteSanmingSeasonalStateInput(base) {
+  if (!hasAllFacts(base, [FACT_REFS.monthBranch, FACT_REFS.elements])) return false
+  const monthBranch = readPath(base, FACT_REFS.monthBranch).value
+  const elements = readPath(base, FACT_REFS.elements).value
+  if (!sanmingSeasonalWindowForBranch(monthBranch) || !isObject(elements)) return false
+  return ['목', '화', '토', '금', '수'].every(element => typeof elements[element] === 'number' && Number.isFinite(elements[element]))
+}
+
+function sanmingSeasonalStateInventory(base) {
+  const monthBranch = readPath(base, FACT_REFS.monthBranch).value
+  const window = sanmingSeasonalWindowForBranch(monthBranch)
+  return {
+    monthBranch,
+    seasonWindow: window.seasonWindow,
+    elementStateBySeason: { ...window.elementStates },
+    twelvePalaceVocabulary: [...SANMING_TWELVE_PALACE_LABELS],
+    sourceScope: 'sanming-p67-seasonal-state-and-p68-vocabulary-only',
+  }
+}
+
+function hasCompleteSanmingVisibleStemFrameInput(base) {
+  if (!hasExactTime(base) || !hasAllFacts(base, [FACT_REFS.dayMaster, FACT_REFS.pillarFacts])) return false
+  if (typeof readPath(base, FACT_REFS.dayMaster).value !== 'string') return false
+  return PILLAR_POSITIONS.every(position => {
+    const pillar = readPath(base, `systems.saju.fact.pillarFacts.${position}`).value
+    return isObject(pillar) && typeof pillar.stem === 'string'
+  })
+}
+
+function sanmingVisibleStemFrame(base) {
+  const fact = base.systems.saju.fact
+  return {
+    dayMasterStem: fact.dayMasterDetails.stem,
+    visibleStemInventory: PILLAR_POSITIONS.map(position => ({
+      position,
+      visibleStem: fact.pillarFacts[position].stem,
+    })),
+    sourceInputScope: 'sanming-p162-visible-stem-role-nomenclature-input-only',
+  }
 }
 
 function yuanhaiDayunFocusLens(base) {
@@ -2832,6 +3415,14 @@ function executeRule(ruleItem, base) {
         relationGraph: 'not_recalculated',
       })
     }
+    case 'rule.sanming.seasonal-state-inventory.v0': {
+      if (!hasCompleteSanmingSeasonalStateInput(base)) return ruleResult(ruleItem, 'blocked_missing_base_fact', {}, 'month branch or five-element distribution FACT is missing or not in the source seasonal window list')
+      return ruleResult(ruleItem, 'executable_from_frozen_base', sanmingSeasonalStateInventory(base))
+    }
+    case 'rule.sanming.visible-stem-frame.v0': {
+      if (!hasCompleteSanmingVisibleStemFrameInput(base)) return ruleResult(ruleItem, 'blocked_missing_base_fact', {}, 'exact time, day-master, or visible stem FACT is missing or malformed')
+      return ruleResult(ruleItem, 'executable_from_frozen_base', sanmingVisibleStemFrame(base))
+    }
     case 'rule.ziping.branch-relation-inventory.v0': {
       if (!Array.isArray(fact.branchRelations)) return ruleResult(ruleItem, 'blocked_missing_base_fact', {}, 'branch relation FACT list missing')
       const sourceListed = new Set(['형', '충', '회', '합', '삼회', '삼합', '육합'])
@@ -2950,7 +3541,7 @@ export function checkSajuLineageReadingGrammar(grammar = SAJU_LINEAGE_READING_GR
       if (!locator) fail(`rule_locator:${item.ruleId}:${locatorId}`)
       else if (!(item.sourceIds || []).includes(locator.sourceId)) fail(`rule_locator_source:${item.ruleId}:${locatorId}`)
     }
-    if (item.status === 'adopted_lineage_rule' && !['bounded_complete_structural_frame', 'bounded_complete_procedure_frame', 'bounded_label_inventory_only', 'bounded_role_scope_not_service_day_table', 'bounded_relation_vocabulary', 'bounded_relation_inventory_not_resolution', 'bounded_explicit_example_predicate', 'bounded_stem_specific_predicate', 'bounded_exact_exposure_example_predicate', 'bounded_exact_source_clause_predicate', 'bounded_condition_clause_for_jia_only', 'bounded_numeric_state_clause', 'bounded_numeric_operation_without_state_resolver', 'bounded_month_specific_condition_clauses', 'bounded_timing_lens_frame'].includes(item.ruleCompleteness)) fail(`adopted_rule_incomplete:${item.ruleId}`)
+    if (item.status === 'adopted_lineage_rule' && !['bounded_complete_structural_frame', 'bounded_complete_procedure_frame', 'bounded_label_inventory_only', 'bounded_role_scope_not_service_day_table', 'bounded_relation_vocabulary', 'bounded_relation_inventory_not_resolution', 'bounded_explicit_example_predicate', 'bounded_stem_specific_predicate', 'bounded_exact_exposure_example_predicate', 'bounded_exact_source_clause_predicate', 'bounded_condition_clause_for_jia_only', 'bounded_numeric_state_clause', 'bounded_numeric_operation_without_state_resolver', 'bounded_month_specific_condition_clauses', 'bounded_timing_lens_frame', 'bounded_seasonal_state_inventory', 'bounded_visible_stem_frame'].includes(item.ruleCompleteness)) fail(`adopted_rule_incomplete:${item.ruleId}`)
     if ((item.status === 'unresolved' || item.status === 'unsupported') && (!item.observedRule || item.observedRule.length === 0)) fail(`unresolved_reason_missing:${item.ruleId}`)
   }
 
@@ -3038,6 +3629,45 @@ export function checkSajuLineageReadingGrammar(grammar = SAJU_LINEAGE_READING_GR
         if (!semanticRule || semanticRule.work !== WORKS.yuanhai || semanticRule.status !== 'adopted_lineage_semantic_rule') fail(`yuanhai_inventory_semantic_contract:${item.inventoryId}`)
       } else if (item.contractRuleId !== undefined) {
         fail(`yuanhai_inventory_unadopted_contract:${item.inventoryId}`)
+      }
+    }
+  }
+  const sanmingInventory = grammar.sourceBoundedSemanticGrammar?.lineageRuleInventories?.sanming
+  if (!Array.isArray(sanmingInventory) || sanmingInventory.length === 0) fail('sanming_inventory_missing')
+  else {
+    const sanmingInventoryIds = new Set()
+    const structuralContractsByRuleId = new Map(SAJU_LINEAGE_STRUCTURAL_CONTRACTS.map(contract => [contract.ruleId, contract]))
+    const sourceSemanticRulesByRuleId = new Map(SAJU_SANMING_SOURCE_SEMANTIC_RULES.map(ruleItem => [ruleItem.ruleId, ruleItem]))
+    const sourceSemanticContractsByRuleId = new Map(SAJU_SANMING_SOURCE_SEMANTIC_CONTRACTS.map(contract => [contract.ruleId, contract]))
+    for (const item of sanmingInventory) {
+      if (!isObject(item)) {
+        fail('sanming_inventory_item_not_object')
+        continue
+      }
+      if (!item.inventoryId || sanmingInventoryIds.has(item.inventoryId)) fail(`sanming_inventory_id_duplicate:${item.inventoryId || 'missing'}`)
+      sanmingInventoryIds.add(item.inventoryId)
+      if (!SAJU_SANMING_INVENTORY_STATUSES.includes(item.status)) fail(`sanming_inventory_status:${item.inventoryId}`)
+      if (JSON.stringify(item.sourceIds) !== JSON.stringify(['saju-source-sanming-tonghui'])) fail(`sanming_inventory_source:${item.inventoryId}`)
+      if (!Array.isArray(item.locatorIds) || item.locatorIds.length === 0) fail(`sanming_inventory_locators:${item.inventoryId}`)
+      for (const locatorId of item.locatorIds || []) {
+        const locator = locatorsById.get(locatorId)
+        if (!locator) fail(`sanming_inventory_locator_unknown:${item.inventoryId}:${locatorId}`)
+        else if (locator.sourceId !== 'saju-source-sanming-tonghui') fail(`sanming_inventory_locator_source:${item.inventoryId}:${locatorId}`)
+      }
+      if (!Array.isArray(item.applicability) || item.applicability.length === 0 || !Array.isArray(item.exceptions) || item.exceptions.length === 0 || !Array.isArray(item.forbiddenExtensions) || item.forbiddenExtensions.length === 0) fail(`sanming_inventory_boundary:${item.inventoryId}`)
+      if (!isObject(item.requiredStructuralResult) || !Array.isArray(item.requiredStructuralResult.ruleIds) || !Array.isArray(item.requiredStructuralResult.fields) || typeof item.requiredStructuralResult.closure !== 'string') fail(`sanming_inventory_structural:${item.inventoryId}`)
+      if (!isObject(item.sourceDefinedOutput) || typeof item.sourceDefinedOutput.kind !== 'string' || typeof item.sourceDefinedOutput.role !== 'string' || !Array.isArray(item.sourceDefinedOutput.outputShape) || typeof item.sourceDefinedOutput.scope !== 'string') fail(`sanming_inventory_output:${item.inventoryId}`)
+      if (!['coexistence_only_until_source_priority_is_closed', 'unresolved_composition_frontier'].includes(item.compositionState)) fail(`sanming_inventory_composition:${item.inventoryId}`)
+      if (item.status === 'adopted_structural_rule') {
+        const contract = structuralContractsByRuleId.get(item.contractRuleId)
+        if (!contract || contract.work !== WORKS.sanming || contract.ruleStatus !== 'adopted_lineage_rule') fail(`sanming_inventory_contract:${item.inventoryId}`)
+        if (item.requiredStructuralResult.closure !== 'closed_in_existing_contract') fail(`sanming_inventory_adopted_closure:${item.inventoryId}`)
+      } else if (item.status === 'adopted_semantic_rule') {
+        const semanticRule = sourceSemanticRulesByRuleId.get(item.contractRuleId)
+        const semanticContract = sourceSemanticContractsByRuleId.get(item.contractRuleId)
+        if (!semanticRule || semanticRule.work !== WORKS.sanming || semanticRule.status !== 'adopted_lineage_semantic_rule' || !semanticContract) fail(`sanming_inventory_semantic_contract:${item.inventoryId}`)
+      } else if (item.contractRuleId !== undefined) {
+        fail(`sanming_inventory_unadopted_contract:${item.inventoryId}`)
       }
     }
   }
@@ -3482,6 +4112,47 @@ function executeZipingSourceSemanticRule(ruleItem, base, structuralResults) {
   })
 }
 
+function executeSanmingSourceSemanticRule(ruleItem, base, structuralResults) {
+  const prerequisiteRuleId = 'rule.sanming.visible-stem-frame.v0'
+  const structuralConflict = (structuralResults.categories.lineageConflicts || []).find(conflict => conflict.ruleIds?.includes(prerequisiteRuleId))
+  if (structuralConflict) return sourceSemanticRuleResult(ruleItem, 'not_executable_by_contract', {}, 'the Sanming role-nomenclature result is blocked by a preserved structural lineage conflict', {
+    structuralConflictId: structuralConflict.conflictId,
+  })
+
+  const structuralResult = structuralResults.categories.derivedStructuralResults.find(item => item.ruleId === prerequisiteRuleId)
+  if (!structuralResult) {
+    const structuralGap = structuralResults.categories.prerequisiteGaps.find(item => item.ruleId === prerequisiteRuleId)
+    if (structuralGap) return sourceSemanticRuleResult(ruleItem, 'blocked_missing_base_fact', {}, 'the Sanming role-nomenclature result is blocked by its missing visible-stem frame', {
+      missingStructuralPrerequisite: prerequisiteRuleId,
+      structuralGapResultId: structuralGap.resultId,
+    })
+    return sourceSemanticRuleResult(ruleItem, 'not_executable_by_contract', {}, 'the Sanming role-nomenclature result has no executed visible-stem frame prerequisite')
+  }
+
+  const suppliedLabelCounts = readPath(base, FACT_REFS.visibleTenGods).value
+  if (!isObject(suppliedLabelCounts) || Object.keys(suppliedLabelCounts).length === 0) return sourceSemanticRuleResult(ruleItem, 'blocked_missing_base_fact', {}, 'the supplied visible ten-god label inventory is missing or empty', {
+    structuralPrerequisiteResultIds: [structuralResult.resultId],
+  })
+  const sourceRoleLabelInventory = Object.entries(suppliedLabelCounts).map(([suppliedLabel, count]) => ({
+    suppliedLabel,
+    count,
+    sourceRoleLabel: SANMING_SOURCE_ROLE_BY_SUPPLIED_LABEL[suppliedLabel] || null,
+  }))
+  if (sourceRoleLabelInventory.some(item => item.sourceRoleLabel === null)) return sourceSemanticRuleResult(ruleItem, 'not_executable_by_contract', {}, 'the p.162 role-nomenclature contract does not close an unknown or same-element supplied label', {
+    structuralPrerequisiteResultIds: [structuralResult.resultId],
+    unsupportedSuppliedLabels: sourceRoleLabelInventory.filter(item => item.sourceRoleLabel === null).map(item => item.suppliedLabel),
+  })
+
+  return sourceSemanticRuleResult(ruleItem, 'executable_from_frozen_base', {
+    sourceCondition: 'sanming-p162-supplied-visible-ten-god-labels-only',
+    suppliedLabelCounts: { ...suppliedLabelCounts },
+    sourceRoleLabelInventory,
+    sourceSemanticScope: 'sanming-p162-role-nomenclature-without-family-or-outcome-expansion',
+  }, null, {
+    structuralPrerequisiteResultIds: [structuralResult.resultId],
+  })
+}
+
 function sourceSemanticResultDescriptor(contract, ruleEvaluation, classification, extra = {}) {
   const sourceProvenance = Object.fromEntries(contract.sourceIds.map(sourceId => {
     const source = SAJU_LINEAGE_SOURCE_PROFILES.find(item => item.sourceId === sourceId)
@@ -3550,6 +4221,7 @@ function sourceSemanticResultDescriptor(contract, ruleEvaluation, classification
     ruleStatus: ruleEvaluation.ruleStatus,
     output: classification === 'derived_source_bounded_semantic_result' ? ruleEvaluation.output : null,
     reason: ruleEvaluation.reason,
+    ...(Array.isArray(ruleEvaluation.unsupportedSuppliedLabels) ? { unsupportedSuppliedLabels: [...ruleEvaluation.unsupportedSuppliedLabels] } : {}),
     structuralPrerequisiteResultIds,
     structuralGapResultId: ruleEvaluation.structuralGapResultId || null,
     structuralConflictId: ruleEvaluation.structuralConflictId || null,
@@ -3562,14 +4234,14 @@ function sourceSemanticResultDescriptor(contract, ruleEvaluation, classification
   }
 }
 
-export function checkSajuLineageSourceSemanticResultContract(contracts = SAJU_ZIPING_SOURCE_SEMANTIC_CONTRACTS) {
+function checkSourceSemanticResultContractForRules(contracts, semanticRules) {
   const errors = []
   const fail = message => errors.push(message)
   if (!Array.isArray(contracts)) return ['contract_not_array']
 
   const sourceIds = new Set(SAJU_LINEAGE_SOURCE_PROFILES.map(source => source.sourceId))
   const locatorIds = new Set(SAJU_LINEAGE_LOCATORS.map(locator => locator.observationId))
-  const semanticRuleIds = new Set(SAJU_ZIPING_SOURCE_SEMANTIC_RULES.map(ruleItem => ruleItem.ruleId))
+  const semanticRuleIds = new Set(semanticRules.map(ruleItem => ruleItem.ruleId))
   const structuralRuleIds = new Set(SAJU_LINEAGE_RULES.map(ruleItem => ruleItem.ruleId))
   const contractIds = new Set()
   const coveredRuleIds = new Set()
@@ -3584,7 +4256,7 @@ export function checkSajuLineageSourceSemanticResultContract(contracts = SAJU_ZI
     if (!semanticRuleIds.has(contract.ruleId)) fail(`contract_rule_unknown:${contract.ruleId}`)
     if (coveredRuleIds.has(contract.ruleId)) fail(`contract_rule_duplicate:${contract.ruleId}`)
     coveredRuleIds.add(contract.ruleId)
-    const ruleItem = SAJU_ZIPING_SOURCE_SEMANTIC_RULES.find(item => item.ruleId === contract.ruleId)
+    const ruleItem = semanticRules.find(item => item.ruleId === contract.ruleId)
     if (!ruleItem) continue
     if (!SAJU_LINEAGE_SOURCE_SEMANTIC_RULE_STATUSES.includes(contract.ruleStatus)) fail(`contract_rule_status:${contract.ruleId}`)
     if (contract.ruleStatus !== ruleItem.status) fail(`contract_rule_status_mismatch:${contract.ruleId}`)
@@ -3607,12 +4279,20 @@ export function checkSajuLineageSourceSemanticResultContract(contracts = SAJU_ZI
     if (ruleItem.semanticBoundary?.personalMeaning !== false || ruleItem.semanticBoundary?.crossLineageMerge !== false || ruleItem.semanticBoundary?.commonRulePromotion !== false) fail(`semantic_boundary:${contract.ruleId}`)
   }
 
-  for (const ruleItem of SAJU_ZIPING_SOURCE_SEMANTIC_RULES) if (!coveredRuleIds.has(ruleItem.ruleId)) fail(`contract_missing_semantic_rule:${ruleItem.ruleId}`)
+  for (const ruleItem of semanticRules) if (!coveredRuleIds.has(ruleItem.ruleId)) fail(`contract_missing_semantic_rule:${ruleItem.ruleId}`)
   return unique(errors).sort()
 }
 
-export function deriveSajuLineageSourceSemanticResults(base, structuralResults = null, contracts = SAJU_ZIPING_SOURCE_SEMANTIC_CONTRACTS) {
-  const contractErrors = checkSajuLineageSourceSemanticResultContract(contracts)
+export function checkSajuLineageSourceSemanticResultContract(contracts = SAJU_ZIPING_SOURCE_SEMANTIC_CONTRACTS) {
+  return checkSourceSemanticResultContractForRules(contracts, SAJU_ZIPING_SOURCE_SEMANTIC_RULES)
+}
+
+export function checkSajuSanmingSourceSemanticResultContract(contracts = SAJU_SANMING_SOURCE_SEMANTIC_CONTRACTS) {
+  return checkSourceSemanticResultContractForRules(contracts, SAJU_SANMING_SOURCE_SEMANTIC_RULES)
+}
+
+function deriveSourceSemanticResults(base, structuralResults, contracts, semanticRules, executor) {
+  const contractErrors = checkSourceSemanticResultContractForRules(contracts, semanticRules)
   const baseValidation = validateDeterministicBaseForInterpretation(base)
   const structural = structuralResults || deriveSajuLineageStructuralResults(base)
   const emptyCategories = {
@@ -3646,11 +4326,11 @@ export function deriveSajuLineageSourceSemanticResults(base, structuralResults =
     }
   }
 
-  const ruleEvaluationById = new Map(SAJU_ZIPING_SOURCE_SEMANTIC_RULES.map(ruleItem => [ruleItem.ruleId, executeZipingSourceSemanticRule(ruleItem, base, structural)]))
+  const ruleEvaluationById = new Map(semanticRules.map(ruleItem => [ruleItem.ruleId, executor(ruleItem, base, structural)]))
   const contractsByRuleId = new Map(contracts.map(contract => [contract.ruleId, contract]))
   const categories = { ...emptyCategories }
 
-  for (const ruleItem of SAJU_ZIPING_SOURCE_SEMANTIC_RULES) {
+  for (const ruleItem of semanticRules) {
     const contract = contractsByRuleId.get(ruleItem.ruleId)
     const evaluation = ruleEvaluationById.get(ruleItem.ruleId)
     if (!contract || !evaluation) continue
@@ -3697,4 +4377,12 @@ export function deriveSajuLineageSourceSemanticResults(base, structuralResults =
       conflictsPreserved: true,
     },
   }
+}
+
+export function deriveSajuLineageSourceSemanticResults(base, structuralResults = null, contracts = SAJU_ZIPING_SOURCE_SEMANTIC_CONTRACTS) {
+  return deriveSourceSemanticResults(base, structuralResults, contracts, SAJU_ZIPING_SOURCE_SEMANTIC_RULES, executeZipingSourceSemanticRule)
+}
+
+export function deriveSajuSanmingSourceSemanticResults(base, structuralResults = null, contracts = SAJU_SANMING_SOURCE_SEMANTIC_CONTRACTS) {
+  return deriveSourceSemanticResults(base, structuralResults, contracts, SAJU_SANMING_SOURCE_SEMANTIC_RULES, executeSanmingSourceSemanticRule)
 }

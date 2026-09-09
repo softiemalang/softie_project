@@ -7,6 +7,10 @@ import {
   SAJU_LINEAGE_READING_GRAMMAR,
   SAJU_LINEAGE_RULES,
   SAJU_LINEAGE_STRUCTURAL_CONTRACTS,
+  SAJU_SANMING_INVENTORY_STATUSES,
+  SAJU_SANMING_RULE_INVENTORY,
+  SAJU_SANMING_SOURCE_SEMANTIC_CONTRACTS,
+  SAJU_SANMING_SOURCE_SEMANTIC_RULES,
   SAJU_QIONGTONG_SHENGWANG_JUE_ANALYSIS,
   SAJU_ZIPING_CANDIDATE_CLOSABILITY,
   SAJU_ZIPING_EXPLICIT_STEM_BRANCH_ANALYSIS,
@@ -19,9 +23,11 @@ import {
   SAJU_YUANHAI_INVENTORY_STATUSES,
   SAJU_YUANHAI_RULE_INVENTORY,
   checkSajuLineageReadingGrammar,
+  checkSajuSanmingSourceSemanticResultContract,
   checkSajuLineageSourceSemanticResultContract,
   checkSajuLineageStructuralResultContract,
   deriveSajuLineageSourceSemanticResults,
+  deriveSajuSanmingSourceSemanticResults,
   deriveSajuLineageStructuralResults,
   evaluateSajuLineageReadingGrammar,
 } from '../src/interpretationPrep/sajuLineageReadingGrammar.js'
@@ -147,6 +153,32 @@ test('Yuanhai whole-work inventory separates adopted structural frames from sema
   assert.equal(SAJU_LINEAGE_READING_GRAMMAR.sourceBoundedSemanticGrammar.lineageRuleInventories.yuanhai.length, SAJU_YUANHAI_RULE_INVENTORY.length)
 })
 
+test('Sanming whole-work inventory keeps direct structural windows and one narrow role-nomenclature lane separate', () => {
+  assert.ok(SAJU_SANMING_RULE_INVENTORY.length >= 14)
+  assert.ok(SAJU_SANMING_RULE_INVENTORY.every(item => SAJU_SANMING_INVENTORY_STATUSES.includes(item.status)))
+  assert.deepEqual(
+    SAJU_SANMING_RULE_INVENTORY.filter(item => item.status === 'adopted_structural_rule').map(item => item.contractRuleId),
+    [
+      'rule.sanming.element-generation-control-v0',
+      'rule.sanming.human-element-month-command.v0',
+      'rule.sanming.seasonal-state-inventory.v0',
+      'rule.sanming.four-pillars-month-hour-frame.v0',
+      'rule.sanming.visible-stem-frame.v0',
+    ],
+  )
+  assert.deepEqual(
+    SAJU_SANMING_RULE_INVENTORY.filter(item => item.status === 'adopted_semantic_rule').map(item => item.contractRuleId),
+    ['rule.sanming.role-nomenclature.v0'],
+  )
+  assert.equal(SAJU_SANMING_RULE_INVENTORY.filter(item => item.status === 'context_bound_candidate').length, 4)
+  assert.equal(SAJU_SANMING_RULE_INVENTORY.filter(item => item.status === 'unresolved').length, 1)
+  assert.equal(SAJU_SANMING_RULE_INVENTORY.filter(item => item.status === 'unsupported').length, 4)
+  assert.deepEqual(SAJU_SANMING_SOURCE_SEMANTIC_CONTRACTS.map(contract => contract.ruleId), SAJU_SANMING_SOURCE_SEMANTIC_RULES.map(rule => rule.ruleId))
+  assert.deepEqual(checkSajuSanmingSourceSemanticResultContract(), [])
+  assert.equal(SAJU_LINEAGE_READING_GRAMMAR.sourceBoundedSemanticGrammar.lineageRuleInventories.sanming.length, SAJU_SANMING_RULE_INVENTORY.length)
+  assert.deepEqual(SAJU_LINEAGE_READING_GRAMMAR.commonCandidates, [])
+})
+
 test('real frozen Base executes only bounded structural rules and preserves lineage blockers', () => {
   const base = buildFrozenBase()
   const result = evaluateSajuLineageReadingGrammar(base)
@@ -165,6 +197,8 @@ test('real frozen Base executes only bounded structural rules and preserves line
     'rule.sanming.four-pillars-month-hour-frame.v0',
     'rule.sanming.human-element-month-command.v0',
     'rule.sanming.element-generation-control-v0',
+    'rule.sanming.seasonal-state-inventory.v0',
+    'rule.sanming.visible-stem-frame.v0',
     'rule.ziping.branch-relation-inventory.v0',
     'rule.ziping.explicit-stem-branch-example-match.v0',
     'rule.ziping.jia-root-branch-scan.v0',
@@ -187,6 +221,14 @@ test('real frozen Base executes only bounded structural rules and preserves line
   assert.equal(byId['rule.yuanhai.dayun-branch-seun-stem-lens.v0'].output.activeDayun.branch, '축')
   assert.equal(byId['rule.yuanhai.dayun-branch-seun-stem-lens.v0'].output.seUn.stem, '병')
   assert.equal(byId['rule.yuanhai.dayun-branch-seun-stem-lens.v0'].output.sourceScope, 'yuanhai-p9-大运看支-岁君看干-focus-lens-only')
+  assert.equal(byId['rule.sanming.seasonal-state-inventory.v0'].output.seasonWindow, 'spring')
+  assert.deepEqual(byId['rule.sanming.seasonal-state-inventory.v0'].output.elementStateBySeason, { 목: '旺', 화: '相', 수: '休', 금: '囚', 토: '死' })
+  assert.deepEqual(byId['rule.sanming.visible-stem-frame.v0'].output.visibleStemInventory, [
+    { position: 'year', visibleStem: '정' },
+    { position: 'month', visibleStem: '갑' },
+    { position: 'day', visibleStem: '계' },
+    { position: 'hour', visibleStem: '기' },
+  ])
   assert.equal(byId['rule.qiongtong.five-phase-number-season-state.v0'].executionStatus, 'blocked_missing_base_fact')
   assert.equal(byId['rule.ditian.jia-wood-seasonal-condition.v0'].executionStatus, 'not_applicable_fixture')
   assert.equal(byId['rule.qiongtong.jia-wood-seasonal-clauses.v0'].executionStatus, 'not_applicable_fixture')
@@ -246,9 +288,85 @@ test('Yuanhai 大運看支/歲君看干 lens is deterministic, provenance-bounde
   assert.equal(blocked.boundary.noSemanticInterpretation, true)
 })
 
+test('Sanming p.67 seasonal state and p.162 role nomenclature are deterministic, source-bounded, and fail closed', () => {
+  const base = buildFrozenBase(ZIPING_P7_BIRTH_INPUT)
+  const firstStructural = deriveSajuLineageStructuralResults(base)
+  const secondStructural = deriveSajuLineageStructuralResults(base)
+  assert.deepEqual(firstStructural, secondStructural)
+
+  const seasonal = firstStructural.categories.derivedStructuralResults.find(item => item.ruleId === 'rule.sanming.seasonal-state-inventory.v0')
+  const visibleFrame = firstStructural.categories.derivedStructuralResults.find(item => item.ruleId === 'rule.sanming.visible-stem-frame.v0')
+  assert.ok(seasonal)
+  assert.ok(visibleFrame)
+  assert.equal(seasonal.work, '三命通會')
+  assert.equal(seasonal.lineage, 'sanming_local_export')
+  assert.deepEqual(seasonal.locatorIds, ['sanming-p67-seasonal-state', 'sanming-p68-twelve-palace-vocabulary'])
+  assert.equal(seasonal.output.seasonWindow, 'spring')
+  assert.equal(seasonal.output.sourceScope, 'sanming-p67-seasonal-state-and-p68-vocabulary-only')
+  assert.equal(seasonal.output.twelvePalaceVocabulary.length, 12)
+  assert.equal(seasonal.outputContract.semanticExpansion, false)
+  assert.equal(seasonal.noSemanticMeaning, true)
+
+  const firstSemantic = deriveSajuSanmingSourceSemanticResults(base, firstStructural)
+  const secondSemantic = deriveSajuSanmingSourceSemanticResults(base, secondStructural)
+  assert.deepEqual(firstSemantic, secondSemantic)
+  const semantic = firstSemantic.categories.derivedSourceBoundedSemanticResults.find(item => item.ruleId === 'rule.sanming.role-nomenclature.v0')
+  assert.ok(semantic)
+  assert.equal(semantic.work, '三命通會')
+  assert.equal(semantic.lineage, 'sanming_local_export')
+  assert.deepEqual(semantic.provenance.locatorIds, ['sanming-p162-role-nomenclature'])
+  assert.deepEqual(semantic.output.sourceRoleLabelInventory, [
+    { suppliedLabel: '정인', count: 1, sourceRoleLabel: '印綬' },
+    { suppliedLabel: '편재', count: 1, sourceRoleLabel: '妻財' },
+    { suppliedLabel: '정관', count: 2, sourceRoleLabel: '正官' },
+    { suppliedLabel: '상관', count: 1, sourceRoleLabel: '傷官' },
+    { suppliedLabel: '식신', count: 1, sourceRoleLabel: '食神' },
+    { suppliedLabel: '정재', count: 1, sourceRoleLabel: '妻財' },
+  ])
+  assert.equal(semantic.semanticBoundary.sourceRoleLabelsOnly, true)
+  assert.equal(semantic.semanticBoundary.personalMeaning, false)
+  assert.equal(semantic.semanticBoundary.crossLineageMerge, false)
+  assert.equal(semantic.noPersonalMeaning, true)
+  assert.equal(semantic.semanticExpansion, false)
+
+  const unknownLabelBase = buildFrozenBase(ZIPING_P10_BIRTH_INPUT)
+  const unknownStructural = deriveSajuLineageStructuralResults(unknownLabelBase)
+  const unknownSemantic = deriveSajuSanmingSourceSemanticResults(unknownLabelBase, unknownStructural)
+  const unknownDescriptor = unknownSemantic.categories.adoptedSemanticRules.find(item => item.ruleId === 'rule.sanming.role-nomenclature.v0')
+  assert.ok(unknownDescriptor)
+  assert.equal(unknownDescriptor.executionStatus, 'not_executable_by_contract')
+  assert.deepEqual(unknownDescriptor.unsupportedSuppliedLabels, ['비견'])
+  assert.equal(unknownSemantic.categories.derivedSourceBoundedSemanticResults.length, 0)
+
+  const missingBase = buildFrozenBase(ZIPING_P7_BIRTH_INPUT)
+  missingBase.systems.saju.fact.pillarFacts.hour.stem = null
+  const missingStructural = deriveSajuLineageStructuralResults(missingBase)
+  const missingSemantic = deriveSajuSanmingSourceSemanticResults(missingBase, missingStructural)
+  const missingGap = missingSemantic.categories.prerequisiteGaps.find(item => item.ruleId === 'rule.sanming.role-nomenclature.v0')
+  assert.ok(missingGap)
+  assert.equal(missingGap.requiredStructuralResult.state, 'blocked_missing')
+
+  const conflictedStructural = {
+    ...firstStructural,
+    categories: {
+      ...firstStructural.categories,
+      lineageConflicts: [{
+        conflictId: 'conflict.test-sanming-role',
+        ruleIds: ['rule.sanming.visible-stem-frame.v0', 'rule.synthetic.other-lineage.v0'],
+      }],
+    },
+  }
+  const conflictedSemantic = deriveSajuSanmingSourceSemanticResults(base, conflictedStructural)
+  const conflicted = conflictedSemantic.categories.adoptedSemanticRules.find(item => item.ruleId === 'rule.sanming.role-nomenclature.v0')
+  assert.equal(conflicted.executionStatus, 'not_executable_by_contract')
+  assert.equal(conflicted.conflictState.status, 'preserved_tension_fail_closed')
+  assert.equal(conflicted.conflictState.winnerSelected, false)
+  assert.equal(conflictedSemantic.boundary.crossLineageMerge, false)
+})
+
 test('adopted rules have complete structural result contracts and keep common facts separate from lineage outputs', () => {
   assert.deepEqual(checkSajuLineageStructuralResultContract(), [])
-  assert.equal(SAJU_LINEAGE_STRUCTURAL_CONTRACTS.length, 14)
+  assert.equal(SAJU_LINEAGE_STRUCTURAL_CONTRACTS.length, 16)
   assert.deepEqual(
     SAJU_LINEAGE_STRUCTURAL_CONTRACTS.map(contract => contract.ruleId),
     SAJU_LINEAGE_RULES.filter(rule => rule.status === 'adopted_lineage_rule').map(rule => rule.ruleId),
@@ -678,8 +796,8 @@ test('real frozen Base yields deterministic structural results with explicit pre
   assert.deepEqual(first, second)
   assert.equal(first.contractValidation.valid, true)
   assert.equal(first.baseValidation.valid, true)
-  assert.equal(first.categories.executableRules.length, 9)
-  assert.equal(first.categories.derivedStructuralResults.length, 9)
+  assert.equal(first.categories.executableRules.length, 11)
+  assert.equal(first.categories.derivedStructuralResults.length, 11)
   assert.equal(first.categories.prerequisiteGaps.length, 1)
   assert.equal(first.categories.unresolvedRules.length, 5)
   assert.equal(first.categories.unsupportedRules.length, 2)

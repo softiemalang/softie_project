@@ -21,6 +21,8 @@
 | `rule.sanming.four-pillars-month-hour-frame.v0` | 三命通會 p.69–70, `論遁月時`·`論年月日時` | 네 기둥 | 네 기둥 구조와 월간/시간 도출 절차 표면 | 현재 Base의 절기·일경계·진태양시를 원전 규칙으로 재계산하지 않음 |
 | `rule.sanming.human-element-month-command.v0` | 三命通會 p.65–66, `論人元司事`·`論四時節氣` | 월지·월지장간 | 월령/인원 구조와 지장간 목록 | 한 사령 일수 예시를 전체 가중표로 일반화하지 않음 |
 | `rule.sanming.element-generation-control.v0` | 三命通會 p.4–6 | 오행·기존 관계 FACT | 오행 목록·기존 천간관계 확인 | 균형·세력·개인 의미 도출 금지 |
+| `rule.sanming.seasonal-state-inventory.v0` | 三命通會 p.67–68, `論五行旺相休囚死并寄生十二宮` | 월지·오행 분포 envelope | source seasonal window와 旺相休囚死 label inventory, p.68 twelve-label vocabulary | `未`의 六月土旺을 여름에 합치지 않음; 일반 十二運星·窮通 生旺/死绝·강약 결론 금지 |
+| `rule.sanming.visible-stem-frame.v0` | 三命通會 p.162, `論古人立印食官财名义` | 일간·위치별 visible stem·exact `timeAccuracy` | p.162 역할 명명에 공급하는 day-master/visible-stem frame | 십성 재계산·가족 비유·길흉·개인 의미 금지 |
 | `rule.ziping.branch-relation-inventory.v0` | 子平真詮 p.5, `論刑沖會合解法` | 지지 관계 목록 | 관계·지지·위치 목록, 동시 관계 보존 | 관계 우선순위·해소·변화·길흉 금지; `破/害/半合`은 이 locator의 증거로 확장하지 않음 |
 | `rule.ziping.explicit-stem-branch-example-match.v0` | 子平真詮 p.5, `論刑沖會合解法` | 일간·네 지지·위치별 기존 지장간 목록 | p.5에 실제 열거된 stem–branch 예시의 일치 inventory만 산출 | 열거되지 않은 조합, 본기/중기/여기 전체표, 순위·강도·통근/투간 일반화 금지; `乙逢午`·`丁逢酉` 예외는 unresolved로 유지 |
 | `rule.ziping.jia-root-branch-scan.v0` | 子平真詮 p.3 `論陰陽生死`, p.16 `論支中喜忌逢運透清` | 네 위치의 visible stem·branch, exact `timeAccuracy` | visible `甲`가 있을 때 `寅·亥·卯·未` root match와 `亥`–visible `壬/甲` source-named relation inventory | 甲 한정; 전 천간 mapping·p.3 음간/묘고 예외·p.5 순위·透/透干 일반화 금지 |
@@ -186,7 +188,7 @@ p.10의 `何謂透干` 문답은 `甲生辰月`이라는 월령·일간 조건 �
 | `near_candidate` | p.4 `inventory.ziping.p4-stem-combination-nonmerge.v0` | 기존 `stemRelations`의 stem pair·position·합 상태 | 원문이 직접 규정한 해당 pair의 separation/distance와 合/合化 우선 조건 한 묶음만 source locator에서 재확인하면, 관찰된 window의 구조적 non-merge qualification을 좁힐 수 있다. 일반 합·합화 classifier로 확장하지 않는다. |
 | `v0_frozen` (22개) | p.3 stem-combination role, p.5 relation resolution, p.7 나머지 用神 변화, p.6/8/9/10 用神·相神·純雜·成敗, p.12–13 pattern, p.17–27 role/pattern/timing | 일부 stem/branch/relation FACT는 존재 | source use/pattern 선행 바인더, 복수 결과의 우선·전이, 운 입력, 또는 개인/길흉 출력이 둘 이상 남는다. `requiredStructuralResult.closure`의 원인을 그대로 유지하고 modern practice·다른 lineage·자유 synthesis로 채우지 않는다. |
 
-따라서 근거리 후보도 아직 executable rule로 승격하지 않았다. 현재 신규 semantic executable rule은 0개이고, 기존 p.7·p.10 두 contract만 실행된다. p.4 후보는 `near_candidate`라는 연구 우선순위일 뿐 source-defined distance/precedence 확인 전에는 결과를 materialize하지 않는다.
+따라서 근거리 후보도 아직 executable rule로 승격하지 않았다. 子平真詮 inventory 기준 신규 semantic executable rule은 0개이고, 기존 p.7·p.10 두 contract만 실행된다. p.4 후보는 `near_candidate`라는 연구 우선순위일 뿐 source-defined distance/precedence 확인 전에는 결과를 materialize하지 않는다. 三命通會 p.162의 별도 role-nomenclature rule은 다음 lineage section에서 독립적으로 판정한다.
 
 ## 淵海子平 독립 lineage 전권 inventory v0
 
@@ -222,13 +224,48 @@ p.10의 `何謂透干` 문답은 `甲生辰月`이라는 월령·일간 조건 �
 - `common candidates`: `[]` 유지. 淵海의 `日为主·月为提纲` 또는 p.9 focus가 子平·三命과 유사해 보여도 독립 textual collation이 닫히지 않았으므로 common rule로 합치지 않는다.
 - `composition readiness`: `compositionReady=false` 유지. source가 동시 결과의 전역 우선·결합·전이 규칙을 직접 닫지 않았으며, 새 p.9 lens도 단일 구조 focus 결과일 뿐 composition 규칙이 아니다.
 
+## 三命通會 독립 lineage 전권 inventory v0
+
+대상 local witness는 `/Users/hangyukim/Documents/malang_lab/documents/三命通會.pdf` 370쪽, 7,601,079바이트, SHA-256 `f09bce7c6dbe1e222746ad8c97f49d132ed4e8da6d3c1d0399b0824b3794593f`다. PDF 표지/본문의 `三命通會`·萬民英 표기를 확인했지만, 판본·물리적 전승·독립 textual authority는 기존 admission boundary대로 `UNRESOLVED`다. p.4–p.370의 heading과 대표 본문을 직접 대조해 page surface를 묶었고, 비슷한 문구를 子平真詮·淵海子平에서 보충하지 않았다.
+
+기계적으로는 `SAJU_SANMING_RULE_INVENTORY`가 15개 surface를 `sourceIds`, 직접 locator, applicability, required structural result, source-defined output, 예외, 금지 확장, composition 상태와 함께 보존한다. 현재 분류는 adopted structural 5개, adopted semantic 1개, context-bound candidate 4개, unresolved 1개, unsupported 4개다. `commonCandidates=[]`와 `compositionReady=false`는 그대로다.
+
+| locator 범위 | 구조 입력 → 원문 surface | 상태 | 판정/금지 확장 |
+|---|---|---|---|
+| p.4–6 `sanming-p4-element-generation` 외 | 오행·천간/지지 관계 FACT → 생극제화 vocabulary/inventory | `adopted_structural_rule` | 기존 `element-generation-control` 계약; 숫자·방향 문구로 Base 재계산하거나 세력·개인 의미로 확장하지 않음 |
+| p.65–66 `sanming-p65-human-element-and-month-command` 외 | 월지·공급된 지장간 → 人元/月令 inventory | `adopted_structural_rule` | 기존 계약; p.66의 한 사령 일수 예시를 전체 가중표로 만들지 않음 |
+| p.67–68 `sanming-p67-seasonal-state`, `sanming-p68-twelve-palace-vocabulary` | 월지 → 春木/夏火/六月土/秋金/冬水 window와 旺相休囚死 labels, p.68 twelve-label vocabulary | `adopted_structural_rule` | `未`는 별도 `long_summer`로 유지; 이는 source vocabulary/classification일 뿐 균형·강약·용신이 아니다. 일반 十二運星 또는 窮通 상태로 대체하지 않음 |
+| p.69–70 `sanming-p69-month-hour-method` 외 | 네 기둥 → year/month/day/hour frame와 month-from-year/hour-from-day procedure label | `adopted_structural_rule` | 기존 계약; 절기·일경계·진태양시를 三命 rule로 재계산하지 않음 |
+| p.72 `sanming-p72-fetal-and-seat` | source 胎元/坐命官 조건 → 계산 surface | `context_bound_candidate` | 현재 Base와 source policy bridge가 닫히지 않아 값 materialize 안 함 |
+| p.73–77 `sanming-p73-dayun-procedure` 외 | 성별·절기거리·방향·기산·환산·운 전이 → 大運 절차 | `context_bound_candidate` | 원문 수식은 locator로 보존하지만 timing engine·운의 길흉·예측으로 승격하지 않음 |
+| p.78–93 `sanming-p78-stem-combination` 외 | 천간합/化氣·六合/三合·刑/沖 → composition/priority 후보 | `unresolved` | source 내부 우선관계·예외·전이 출력이 하나의 계약으로 닫히지 않아 합화 winner를 만들지 않음 |
+| p.95–105 `sanming-p95-stem-lu` 외 | 禄/驛馬 이름과 줄기·지지 조건 → relation inventory 후보 | `context_bound_candidate` | source input axis와 non-outcome 경계 추가 확인 전에는 현대 신살표를 사용하지 않음 |
+| p.106–130 `sanming-p106-shensha` 외 | 神煞 섹션 → mapping·吉凶 clauses | `unsupported` | 공개 Base에서 신살 이름을 개인 의미·길흉으로 materialize하지 않음 |
+| p.137–159 `sanming-p137-stem-branch-outcomes` 외 | 월·시·운·오행 조건 → 吉凶/富貴/지역·계절 결과 | `unsupported` | outcome surface는 공개 grammar 밖; p.67 상태를 개인 결과로 바꾸지 않음 |
+| p.162 `sanming-p162-role-nomenclature` | visible-stem frame + frozen visible 십성 label inventory → source role label inventory | `adopted_semantic_rule` | `印綬/枭/食神/傷官/正官/偏官/妻財/劫` 명명만 보존. 가족 비유, 격국, 용신, 길흉, 개인 의미로 확장하지 않음; 비견 등 p.162 좁은 vocabulary 밖 label은 fail-closed |
+| p.164–239 `sanming-p164-239-role-chapters` | 官/財/印/食 chapter 조건 → role qualification | `context_bound_candidate` | 월령·관계·지원/제어·격국·우선관계가 chapter별로 필요하며 일반 십성 의미표로 통합하지 않음 |
+| p.242–261 `sanming-p242-261-personal-surfaces` | 性情·疾病·女命·六親 입력 → 개인/가족 결과 | `unsupported` | 공개 semantic grammar 밖 |
+| p.300–370 `sanming-p300-370-worked-cases` | 時斷/사례 입력 → case-bound outcome | `unsupported` | 단일 사례를 universal predicate나 예측으로 일반화하지 않음 |
+
+### 三命通會 채택 결과와 공통 후보
+
+- `adopted structural rules`: p.4–6 생극제화 vocabulary, p.65–66 人元/月令 inventory, p.67–68 seasonal state vocabulary, p.69–70 four-pillar frame, p.162 semantic rule의 visible-stem prerequisite frame 등 5개다.
+- `adopted semantic rules`: p.162의 source role-nomenclature 1개다. 이 결과는 frozen visible 십성 label을 source label로 옮기는 명명 inventory일 뿐, p.162의 부모·자식·관직·처재 비유나 결과 문장을 실행하지 않는다.
+- `context-bound candidates`: 胎元/坐命官, 大運 절차, 禄/驛馬 mapping, p.164–239 role chapters다. 필요한 단일 source 조건·입력 axis·우선관계가 닫히기 전에는 materialize하지 않는다.
+- `unresolved`: p.78–93 합·화기·刑沖 composition. 동시 결과의 우선·결합·전이를 source가 현재 contract만으로 닫지 않는다.
+- `unsupported`: p.106–130 神煞, p.137–159 吉凶/富貴 및 지역·계절 outcome, p.242–261 개인/가족 표면, p.300–370 사례 outcome.
+- `common candidates`: `[]` 유지. p.67 계절 상태, p.69 일간/월령, p.162 역할 명명이 다른 문헌과 비슷해도 독립 textual collation이 닫히지 않았으므로 common rule로 통합하지 않는다.
+- `composition readiness`: `compositionReady=false`. p.78–93과 p.164 이후의 복수 semantic surface는 병존·충돌 보존만 가능하며 winner/다수결/자유 synthesis를 하지 않는다.
+
+실제 frozen Base fixture에서 p.67 결과는 `진/辰` 월지를 `spring`으로 읽고 `{목: 旺, 화: 相, 수: 休, 금: 囚, 토: 死}`와 p.68의 12개 label을 결정적으로 반환한다. p.162 역할 rule은 p.7 fixture의 supplied visible label inventory를 `印綬/妻財/正官/傷官/食神` source labels로 보존한다. p.10 fixture처럼 `비견`이 섞여 p.162 좁은 vocabulary 밖이면 결과를 materialize하지 않고 `not_executable_by_contract`와 미지원 label을 남긴다. visible stem 누락은 structural prerequisite gap, prerequisite conflict는 `preserved_tension_fail_closed`로 닫히며 다른 lineage 결과와 합치지 않는다.
+
 ### composition grammar frontier
 
 p.3–4의 합 관계, p.8–9의 纯/杂·成败 전이, p.11의 透干·會支·有情/無情, p.12의 破格/成格가 동시에 성립할 수 있는 surface다. 그러나 원문은 이 결과들의 전역 우선순위·결합 연산·상태 전이표를 직접 제공하지 않는다. 따라서 `compositionReady=false`로 두고 결과를 병존시키며, winner 선택·다수결·문헌 간 합성·현대적 synthesis를 금지한다. 특히 p.11의 `有情而卒成无情`과 `无情而终有情`은 단일 정적 분류가 아니라는 직접 경계로 보존한다.
 
 ### inventory에서 contract로 승격하지 않은 이유
 
-새 executable semantic rule은 없다. candidate/unresolved 항목들은 공통적으로 (a) source가 먼저 선택한 用神·格局을 요구하거나, (b) 여러 결과의 우선/전이를 닫지 않거나, (c) 출력이 吉凶·개인 관계·예측으로 넘어간다. 이 gap을 Base FACT, 현대 통관표, 다른 원전 lineage, 자유 자연어 추론으로 채우지 않았다. 기존 p.7·p.10 결과만 `Base FACT → lineage structural result → source-bounded semantic result → provenance` 순서를 유지한다.
+三命通會 p.162의 좁은 role-nomenclature를 제외하면 새 executable semantic rule은 없다. candidate/unresolved 항목들은 공통적으로 (a) source가 먼저 선택한 用神·格局을 요구하거나, (b) 여러 결과의 우선/전이를 닫지 않거나, (c) 출력이 吉凶·개인 관계·예측으로 넘어간다. 이 gap을 Base FACT, 현대 통관표, 다른 원전 lineage, 자유 자연어 추론으로 채우지 않았다. p.7·p.10과 p.162 결과 모두 `Base FACT → lineage structural result → source-bounded semantic result → provenance` 순서를 유지한다.
 
 ### source-bounded semantic-result contract
 
@@ -274,7 +311,7 @@ p.3–4의 합 관계, p.8–9의 纯/杂·成败 전이, p.11의 透干·會支
 - 甲木 전용 Ditian/Qiongtong rule은 계 일간 fixture에 적용하지 않는다.
 - `noRecalculation=true`, `noSemanticInterpretation=true`, `commonRulePromotion=false`를 유지한다.
 
-structural result contract를 같은 서울 fixture에 두 번 적용하면 동일한 결과 object가 재현된다. 서울 `계` fixture의 구조 결과 분류는 adopted contract 14개 중 `executable_rule` 9개, `derived_structural_result` 9개, `prerequisite_gap` 1개(窮通의 生旺/死绝 상태 resolver), unresolved 5개, unsupported 2개, not-applicable 4개(p.7/p.10 exact window 포함)다. 새 淵海 p.9 결과도 `lineage=yuanhai_local_export`, locator `yuanhai-p9-dayun-focus-lens`, `noSemanticMeaning=true`로만 materialize된다. p.10 exact fixture와 p.7 exact fixture의 semantic 결과는 각각 adopted semantic rule 1개와 derived source-bounded result 1개이며, p.11 unresolved composition은 결과를 내보내지 않는다. 상태 문자열과 일반 `twelveStage`를 test-only supplement로 넣어도 같은 prerequisite gap이 유지되고 Base는 변하지 않는다. 시간 미상 fixture에서는 淵海/三命의 완전한 네 기둥 rule과 p.9 timing lens 및 exact-example/甲 root scan/p.7 contrast의 불완전 입력이 prerequisite gap으로 닫힌다. 별도 `갑` fixture에 test-only 계절 context를 공급하면 滴天髓와 窮通의 계절 창이 동시에 적용되지만, 두 결과는 `lineage_conflict`로 보존되고 병합 결과는 생성되지 않는다.
+structural result contract를 같은 서울 fixture에 두 번 적용하면 동일한 결과 object가 재현된다. 서울 `계` fixture의 구조 결과 분류는 adopted contract 16개 중 `executable_rule` 11개, `derived_structural_result` 11개, `prerequisite_gap` 1개(窮通의 生旺/死绝 상태 resolver), unresolved 5개, unsupported 2개, not-applicable 4개(p.7/p.10 exact window 포함)다. 새 淵海 p.9 결과도 `lineage=yuanhai_local_export`, locator `yuanhai-p9-dayun-focus-lens`, `noSemanticMeaning=true`로만 materialize된다. p.10 exact fixture와 p.7 exact fixture의 子平 semantic 결과는 각각 adopted semantic rule 1개와 derived source-bounded result 1개이며, p.7 fixture에서는 三命 p.162 role-nomenclature result도 별도 lineage로 materialize된다. p.10 fixture에 `비견`이 섞이면 三命 p.162 결과는 좁은 source vocabulary 밖으로 fail-closed한다. p.11 unresolved composition은 결과를 내보내지 않는다. 상태 문자열과 일반 `twelveStage`를 test-only supplement로 넣어도 같은 prerequisite gap이 유지되고 Base는 변하지 않는다. 시간 미상 fixture에서는 淵海/三命의 완전한 네 기둥 rule과 p.9 timing lens 및 exact-example/甲 root scan/p.7 contrast의 불완전 입력이 prerequisite gap으로 닫힌다. 별도 `갑` fixture에 test-only 계절 context를 공급하면 滴天髓와 窮通의 계절 창이 동시에 적용되지만, 두 결과는 `lineage_conflict`로 보존되고 병합 결과는 생성되지 않는다.
 
 최소 fixture와 checker는 `test/sajuLineageReadingGrammar.test.js`에 있다.
 
