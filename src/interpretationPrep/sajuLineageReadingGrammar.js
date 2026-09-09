@@ -206,6 +206,7 @@ export const SAJU_LINEAGE_LOCATORS = Object.freeze([
   loc('saju-source-sanming-tonghui', 'sanming-p73-dayun-procedure', 73, '73', '論大運', 'direction, section-distance, start-age and time-conversion wording; exact policy bridge remains separate', '陽男陰女 · 三日為一歲 · 一日四個月 · 一時辰十日'),
   loc('saju-source-sanming-tonghui', 'sanming-p77-timing-outcome-summary', 77, '77', '總論歲運', 'timing and outcome composition surface; source priority is not adopted', '大運 · 流年 · 吉凶'),
   loc('saju-source-sanming-tonghui', 'sanming-p78-stem-combination', 78, '78', '論十干合', 'stem-combination surface with source-local relation and transformation wording', '甲己合 · 乙庚合 · 丙辛合 · 丁壬合 · 戊癸合'),
+  loc('saju-source-sanming-tonghui', 'sanming-p80-stem-transformation-general', 80, '80', '論進交退伏', 'general 化氣 prerequisite wording for day stem, month, time, and 旺氣', '大凡化氣 · 得旺氣於時 · 月中旺氣 · 全吉'),
   loc('saju-source-sanming-tonghui', 'sanming-p81-stem-transformation', 81, '81', '論十干化氣', '化氣 conditions and outcome-adjacent clauses; no complete independent priority resolver adopted', '化氣 · 得時 · 得地'),
   loc('saju-source-sanming-tonghui', 'sanming-p85-branch-combinations', 85, '85', '論支元六合 / 論支元三合', 'branch combination inventories and transformation context', '六合 · 三合'),
   loc('saju-source-sanming-tonghui', 'sanming-p90-three-punishments', 90, '90', '論三刑', 'branch punishment surface; interaction and outcome conditions remain context-bound', '三刑'),
@@ -3116,7 +3117,7 @@ export const SAJU_SANMING_RULE_INVENTORY = Object.freeze([
   sanmingInventoryEntry({
     inventoryId: 'inventory.sanming.p78-p93-composition.v0',
     status: 'unresolved',
-    locatorIds: ['sanming-p78-stem-combination', 'sanming-p81-stem-transformation', 'sanming-p85-branch-combinations', 'sanming-p90-three-punishments', 'sanming-p93-branch-conflict'],
+    locatorIds: ['sanming-p78-stem-combination', 'sanming-p80-stem-transformation-general', 'sanming-p81-stem-transformation', 'sanming-p85-branch-combinations', 'sanming-p90-three-punishments', 'sanming-p93-branch-conflict'],
     applicability: ['source-specific combination/化氣/刑沖 definitions, precedence, and exceptions are independently closed'],
     requiredStructuralResult: {
       ruleIds: [],
@@ -4164,7 +4165,7 @@ export const SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON = Object.freeze([
     work: WORKS.sanming,
     lineage: 'sanming_local_export',
     sourceIds: ['saju-source-sanming-tonghui'],
-    locatorIds: ['sanming-p78-stem-combination', 'sanming-p81-stem-transformation', 'sanming-p85-branch-combinations', 'sanming-p90-three-punishments', 'sanming-p93-branch-conflict'],
+    locatorIds: ['sanming-p78-stem-combination', 'sanming-p80-stem-transformation-general', 'sanming-p81-stem-transformation', 'sanming-p85-branch-combinations', 'sanming-p90-three-punishments', 'sanming-p93-branch-conflict'],
     status: 'unresolved',
     target: { symbolOrStructure: 'stem/branch composition', kind: 'source_composition_vocabulary' },
     sourceTerm: '合 · 化 · 刑 · 沖',
@@ -4949,7 +4950,7 @@ export const SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_RULES = Object.freeze([
     work: WORKS.sanming,
     lineage: 'sanming_local_export',
     sourceIds: ['saju-source-sanming-tonghui'],
-    locatorIds: ['sanming-p78-stem-combination', 'sanming-p81-stem-transformation', 'sanming-p85-branch-combinations', 'sanming-p90-three-punishments', 'sanming-p93-branch-conflict'],
+    locatorIds: ['sanming-p78-stem-combination', 'sanming-p80-stem-transformation-general', 'sanming-p81-stem-transformation', 'sanming-p85-branch-combinations', 'sanming-p90-three-punishments', 'sanming-p93-branch-conflict'],
     requiredStructuralResults: {
       ruleIds: ['rule.sanming.element-generation-control-v0'],
       fields: ['stem relation inventory', 'branch relation inventory'],
@@ -5099,6 +5100,198 @@ const compositionIdsByStatus = status => SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_
   .filter(ruleItem => ruleItem.status === status)
   .map(ruleItem => ruleItem.compositionId)
 
+export const SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_REVIEW_SCHEMA = 'saju-source-local-semantic-composition-closability-review-v0'
+export const SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_REVIEW_VERSION = '0.1.0'
+export const SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_STATUSES = Object.freeze([
+  'near_candidate',
+  'v0_frozen',
+])
+
+const sourceLocalSemanticCompositionClosabilityReview = value => {
+  const sourceIds = [...(value.sourceIds || [])]
+  const locatorIds = [...(value.locatorIds || [])]
+  return {
+    schema: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_REVIEW_SCHEMA,
+    version: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_REVIEW_VERSION,
+    compositionId: null,
+    sourceIds,
+    locatorIds,
+    closability: 'v0_frozen',
+    endToEndClosed: false,
+    currentBaseCoverage: [],
+    sourceObservation: '',
+    explicitPrerequisitesRemaining: [],
+    closureGap: '',
+    promotionDecision: 'retain_unresolved_v0',
+    requiredAdditionalCheck: null,
+    provenance: {
+      schema: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_REVIEW_SCHEMA,
+      version: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_REVIEW_VERSION,
+      sourceIds,
+      locatorIds,
+      sourceByteSha256: sourceByteSha256ForIds(sourceIds),
+    },
+    noPromotion: true,
+    noRecalculation: true,
+    noPersonalMeaning: true,
+    noCrossLineageMerge: true,
+    ...value,
+    sourceIds,
+    locatorIds,
+    provenance: value.provenance || {
+      schema: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_REVIEW_SCHEMA,
+      version: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_REVIEW_VERSION,
+      sourceIds,
+      locatorIds,
+      sourceByteSha256: sourceByteSha256ForIds(sourceIds),
+    },
+  }
+}
+
+/**
+ * A finite review of the six unresolved composition surfaces.  `near_candidate`
+ * means that a small, explicit source-local prerequisite is worth a bounded
+ * follow-up; it does not mean the composition is executable.  `v0_frozen`
+ * records that the remaining gap is semantic context, priority, transition,
+ * or source definition rather than a safe small prerequisite.
+ */
+export const SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_REVIEW = Object.freeze([
+  sourceLocalSemanticCompositionClosabilityReview({
+    compositionId: 'composition.ziping.p11-exposure-branch-sentiment.v0',
+    sourceIds: ['saju-source-ziping-zhenquan'],
+    locatorIds: ['ziping-p11-exposed-stem-and-branch-context'],
+    closability: 'v0_frozen',
+    currentBaseCoverage: ['p.10 named exposure components', 'supplied branch-relation inventory', 'source role labels'],
+    sourceObservation: 'p.11 defines 有情 as 順而相成 and 無情 as 逆而相背, then gives exposure/meeting examples and records both 有情而卒成無情 and 無情而終有情 transitions.',
+    explicitPrerequisitesRemaining: [
+      'a source-defined mapping from each role/meeting combination to 順而相成 or 逆而相背',
+      'a closed condition for both recorded transition forms',
+      'source-local priority across exposure, 會支, and 格局 context',
+    ],
+    closureGap: 'the definitions and examples do not provide a static classifier or transition function that can consume the current structural results without semantic context',
+    requiredAdditionalCheck: null,
+  }),
+  sourceLocalSemanticCompositionClosabilityReview({
+    compositionId: 'composition.ziping.p8-p12-use-pattern-composition.v0',
+    sourceIds: ['saju-source-ziping-zhenquan'],
+    locatorIds: [
+      'ziping-p8-yongshen-pure-mixed',
+      'ziping-p8-yongshen-pattern-level',
+      'ziping-p9-yongshen-success-failure-transition',
+      'ziping-p12-good-symbol-break-pattern',
+      'ziping-p12-bad-symbol-make-pattern',
+      'ziping-p12-generation-control-order',
+    ],
+    closability: 'v0_frozen',
+    currentBaseCoverage: ['source-local role and relation inventories'],
+    sourceObservation: 'p.8–p.12 place pure/mixed, success/failure, pattern, and generation/control order cases inside 用神·格局·吉凶 discussions with case-specific conditions.',
+    explicitPrerequisitesRemaining: [
+      'source-defined use/pattern identity and applicability',
+      'source-defined priority and transition across the cases',
+      'a non-outcome output boundary independent of semantic synthesis',
+    ],
+    closureGap: 'the pages supply multiple case surfaces but not one source-complete composition procedure; combining them would require semantic synthesis and outcome interpretation',
+    requiredAdditionalCheck: null,
+  }),
+  sourceLocalSemanticCompositionClosabilityReview({
+    compositionId: 'composition.yuanhai.p197-role-prohibition.v0',
+    sourceIds: ['saju-source-yuanhai-ziping'],
+    locatorIds: ['yuanhai-p197-eight-character-summary'],
+    closability: 'near_candidate',
+    currentBaseCoverage: ['day-as-host/month-command frame', 'supplied role-label inventory'],
+    sourceObservation: 'p.197 gives compact role-conditioned clauses: 用之为官不可伤, 用之为财不可劫, 用之为印不可破, 用之食神不可破, 用之为禄不可冲, plus a 制伏太过 exception.',
+    explicitPrerequisitesRemaining: [
+      'a Yuanhai-local selected-use role result for 用之为官/财/印/食神/禄',
+      'a Yuanhai-local opposing-relation result for 伤/劫/破/冲 and the 制伏太过 exception',
+    ],
+    closureGap: 'the clauses are source-local and finite but the current Base has no selected-use result or source-complete opposing-relation contract, so no prohibition result can be emitted yet',
+    requiredAdditionalCheck: 'close the selected-use plus named-opposing-relation contract in the Yuanhai lineage without emitting outcome or personal meaning',
+  }),
+  sourceLocalSemanticCompositionClosabilityReview({
+    compositionId: 'composition.sanming.stem-branch-transformation.v0',
+    sourceIds: ['saju-source-sanming-tonghui'],
+    locatorIds: [
+      'sanming-p78-stem-combination',
+      'sanming-p80-stem-transformation-general',
+      'sanming-p81-stem-transformation',
+      'sanming-p85-branch-combinations',
+      'sanming-p90-three-punishments',
+      'sanming-p93-branch-conflict',
+    ],
+    closability: 'near_candidate',
+    currentBaseCoverage: ['visible stem/branch frame', 'supplied relation inventory', 'month branch'],
+    sourceObservation: 'p.80–p.81 give pair-specific 化氣 windows and non-化 conditions such as month windows and 妒合, while p.85–p.93 keep separate 六合/三合/刑/沖 surfaces.',
+    explicitPrerequisitesRemaining: [
+      'a Sanming-local supplied stem-pair relation result with the exact pair and intervening-stem condition',
+      'a source-specific 旺氣/得時/得地 state result for the p.80 general condition',
+      'a source-local boundary distinguishing eligibility/condition output from 化氣 or outcome meaning',
+    ],
+    closureGap: 'p.81 is a narrow candidate surface, but current Base does not provide the source-specific state or relation contract; the broader relation families also have no source-defined precedence or transition',
+    requiredAdditionalCheck: 'test only the p.80–p.81 exact pair/month/妒合 lane after the two source-specific prerequisites are independently closed; do not merge branch relation families',
+  }),
+  sourceLocalSemanticCompositionClosabilityReview({
+    compositionId: 'composition.ditian.fang-ju-tiyong.v0',
+    sourceIds: ['saju-source-ditian-sui'],
+    locatorIds: ['ditian-p13-fang-ju-examples', 'ditian-p13-p14-geju-surface', 'ditian-p18-p20-tiyong'],
+    closability: 'v0_frozen',
+    currentBaseCoverage: ['exact 方/局 branch-set examples', 'branch-category inventory'],
+    sourceObservation: 'p.13 distinguishes 方 and 局 and warns against mixing; p.18–p.20 enumerate several 體用 configurations and state that the most important axis must be weighed.',
+    explicitPrerequisitesRemaining: [
+      'source-defined 體/用 axis selection',
+      'source-defined weighting for 最要緊者 and 二三用神',
+      'a closed relation between the p.13 方/局 examples and the p.18–p.20 configurations',
+    ],
+    closureGap: 'the exact branch examples are already structural, but the requested composition begins at source-defined weighting and 用神 selection, which the source does not reduce to a reproducible priority/transition function',
+    requiredAdditionalCheck: null,
+  }),
+  sourceLocalSemanticCompositionClosabilityReview({
+    compositionId: 'composition.qiongtong.state-month-operation.v0',
+    sourceIds: ['saju-source-qiongtong-baojian'],
+    locatorIds: [
+      'qiongtong-p2-five-phase-number-and-season',
+      'qiongtong-p3-jia-section',
+      'qiongtong-p13-yi-section',
+      'qiongtong-p21-bing-section',
+      'qiongtong-p32-ding-section',
+      'qiongtong-p40-wu-section',
+      'qiongtong-p49-ji-section',
+      'qiongtong-p55-geng-section',
+      'qiongtong-p64-xin-section',
+      'qiongtong-p75-ren-section',
+      'qiongtong-p83-gui-section',
+    ],
+    closability: 'v0_frozen',
+    currentBaseCoverage: ['source element-number inventory', 'day-stem section frame'],
+    sourceObservation: 'p.2 closes the wording 生旺加倍·死绝减半, while p.3–p.90 provide ten day-stem sections and month clauses with condition and prescription language.',
+    explicitPrerequisitesRemaining: [
+      'the unresolved source-specific 生旺/死绝 resolver and input shape',
+      'section/month clause selection and cross-section priority',
+      'a source-local non-prescription output boundary',
+    ],
+    closureGap: 'the operation is known but its state is not derivable from the source locator, and the later sections do not provide a single priority/transition procedure',
+    requiredAdditionalCheck: null,
+  }),
+])
+
+const compositionClosabilityIdsBy = closability => SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_REVIEW
+  .filter(item => item.closability === closability)
+  .map(item => item.compositionId)
+
+export const SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_FREEZE_DECISION = Object.freeze({
+  schema: 'saju-source-local-semantic-composition-freeze-decision-v0',
+  version: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_REVIEW_VERSION,
+  v0FreezeReady: true,
+  compositionExecutionReady: false,
+  endToEndClosedCompositionIds: Object.freeze([]),
+  nearCandidateIds: Object.freeze(compositionClosabilityIdsBy('near_candidate')),
+  frozenUnresolvedIds: Object.freeze(compositionClosabilityIdsBy('v0_frozen')),
+  unsupportedCompositionIds: Object.freeze(compositionIdsByStatus('unsupported')),
+  commonCompositionCandidates: Object.freeze([]),
+  interpretationHypothesisLayerReady: false,
+  reason: 'no unresolved candidate closed end-to-end; two finite near-candidate checks remain explicitly outside the frozen v0 contract, and all other gaps are normal unresolved boundaries',
+  policy: 'freeze current executable surfaces and retain every non-closed candidate as unresolved; no source-local or cross-lineage semantic synthesis is emitted',
+})
+
 export const SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_READINESS = Object.freeze({
   schema: 'saju-source-local-semantic-composition-readiness-v0',
   version: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_VERSION,
@@ -5120,6 +5313,9 @@ export const SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_READINESS = Object.freeze({
   personalMeaning: false,
   crossLineageMerge: false,
   winnerSelection: false,
+  closabilityReview: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_REVIEW,
+  freezeDecision: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_FREEZE_DECISION,
+  v0FreezeReady: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_FREEZE_DECISION.v0FreezeReady,
   policy: 'adopt only exact same-source composition windows; preserve simultaneous components, lineage isolation, and unresolved transitions without synthesis',
 })
 
@@ -5237,6 +5433,9 @@ export const SAJU_LINEAGE_READING_GRAMMAR = Object.freeze({
     unsupportedCompositionIds: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_READINESS.unsupportedCompositionIds,
     commonCompositionCandidates: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_READINESS.commonCompositionCandidates,
     readiness: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_READINESS,
+    closabilityReview: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_REVIEW,
+    freezeDecision: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_FREEZE_DECISION,
+    v0FreezeReady: SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_FREEZE_DECISION.v0FreezeReady,
     localCompositionReady: true,
     compositionReady: false,
     globalCompositionReady: false,
@@ -6121,6 +6320,7 @@ export function checkSajuLineageReadingGrammar(grammar = SAJU_LINEAGE_READING_GR
     || sourceLocalComposition.personalMeaning !== false
     || sourceLocalComposition.crossLineageMerge !== false
     || sourceLocalComposition.winnerSelection !== false
+    || sourceLocalComposition.v0FreezeReady !== true
     || !Array.isArray(sourceLocalComposition.commonCompositionCandidates)
     || sourceLocalComposition.commonCompositionCandidates.length !== 0) {
     fail('source_local_semantic_composition_boundary')
@@ -6145,7 +6345,25 @@ export function checkSajuLineageReadingGrammar(grammar = SAJU_LINEAGE_READING_GR
       || readiness.commonCompositionCandidates.length !== 0
       || readiness.personalMeaning !== false
       || readiness.crossLineageMerge !== false
-      || readiness.winnerSelection !== false) fail('source_local_semantic_composition_readiness')
+      || readiness.winnerSelection !== false
+      || readiness.v0FreezeReady !== true) fail('source_local_semantic_composition_readiness')
+    for (const error of checkSajuSourceLocalSemanticCompositionClosabilityReview(sourceLocalComposition.closabilityReview)) fail('source_local_semantic_composition_closability:' + error)
+    if (JSON.stringify(sourceLocalComposition.closabilityReview || []) !== JSON.stringify(readiness.closabilityReview || [])) fail('source_local_semantic_composition_closability_mismatch')
+    if (JSON.stringify(sourceLocalComposition.freezeDecision || {}) !== JSON.stringify(readiness.freezeDecision || {})) fail('source_local_semantic_composition_freeze_decision_mismatch')
+    const freezeDecision = sourceLocalComposition.freezeDecision
+    if (!isObject(freezeDecision)
+      || freezeDecision.schema !== SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_FREEZE_DECISION.schema
+      || freezeDecision.version !== SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_FREEZE_DECISION.version
+      || freezeDecision.v0FreezeReady !== true
+      || freezeDecision.compositionExecutionReady !== false
+      || !Array.isArray(freezeDecision.endToEndClosedCompositionIds)
+      || freezeDecision.endToEndClosedCompositionIds.length !== 0
+      || JSON.stringify(freezeDecision.nearCandidateIds || []) !== JSON.stringify(SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_FREEZE_DECISION.nearCandidateIds)
+      || JSON.stringify(freezeDecision.frozenUnresolvedIds || []) !== JSON.stringify(SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_FREEZE_DECISION.frozenUnresolvedIds)
+      || JSON.stringify(freezeDecision.unsupportedCompositionIds || []) !== JSON.stringify(SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_FREEZE_DECISION.unsupportedCompositionIds)
+      || !Array.isArray(freezeDecision.commonCompositionCandidates)
+      || freezeDecision.commonCompositionCandidates.length !== 0
+      || freezeDecision.interpretationHypothesisLayerReady !== false) fail('source_local_semantic_composition_freeze_decision')
   }
 
   for (const candidate of grammar.commonCandidates || []) {
@@ -6335,6 +6553,69 @@ export function checkSajuSourceLocalSemanticComposition(rules = SAJU_SOURCE_LOCA
     if (containsForbiddenStructuralTerm(JSON.stringify(composition.output))) fail(`composition_semantic_output:${composition.compositionId}`)
   }
 
+  return unique(errors).sort()
+}
+
+export function checkSajuSourceLocalSemanticCompositionClosabilityReview(
+  reviews = SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_REVIEW,
+) {
+  const errors = []
+  const fail = message => errors.push(message)
+  if (!Array.isArray(reviews)) return ['closability_review_not_array']
+
+  const sourceById = new Map(SAJU_LINEAGE_SOURCE_PROFILES.map(source => [source.sourceId, source]))
+  const locatorsById = new Map(SAJU_LINEAGE_LOCATORS.map(locator => [locator.observationId, locator]))
+  const compositionsById = new Map(SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_RULES.map(composition => [composition.compositionId, composition]))
+  const expectedIds = SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_RULES
+    .filter(composition => composition.status === 'unresolved')
+    .map(composition => composition.compositionId)
+  const reviewIds = []
+  const reviewIdSet = new Set()
+
+  for (const review of reviews) {
+    if (!isObject(review)) {
+      fail('closability_review_item_not_object')
+      continue
+    }
+    const id = review.compositionId || 'missing'
+    reviewIds.push(review.compositionId)
+    if (!review.compositionId || reviewIdSet.has(review.compositionId)) fail(`closability_review_id_duplicate:${id}`)
+    reviewIdSet.add(review.compositionId)
+    if (review.schema !== SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_REVIEW_SCHEMA || review.version !== SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_REVIEW_VERSION) fail(`closability_review_schema:${id}`)
+    if (!SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_STATUSES.includes(review.closability)) fail(`closability_review_status:${id}`)
+    const composition = compositionsById.get(review.compositionId)
+    if (!composition || composition.status !== 'unresolved') fail(`closability_review_composition:${id}`)
+    if (!Array.isArray(review.sourceIds) || review.sourceIds.length !== 1 || JSON.stringify(review.sourceIds) !== JSON.stringify(composition.sourceIds)) fail(`closability_review_sources:${id}`)
+    if (!Array.isArray(review.locatorIds) || review.locatorIds.length === 0) fail(`closability_review_locators:${id}`)
+    for (const sourceId of review.sourceIds || []) if (!sourceById.has(sourceId)) fail(`closability_review_source_unknown:${id}:${sourceId}`)
+    for (const locatorId of review.locatorIds || []) {
+      const locator = locatorsById.get(locatorId)
+      if (!locator) fail(`closability_review_locator_unknown:${id}:${locatorId}`)
+      else if (locator.sourceId !== review.sourceIds[0]) fail(`closability_review_locator_source:${id}:${locatorId}`)
+    }
+    if (!Array.isArray(review.currentBaseCoverage) || review.currentBaseCoverage.length === 0) fail(`closability_review_base_coverage:${id}`)
+    if (typeof review.sourceObservation !== 'string' || review.sourceObservation.length === 0) fail(`closability_review_observation:${id}`)
+    if (!Array.isArray(review.explicitPrerequisitesRemaining) || review.explicitPrerequisitesRemaining.length === 0) fail(`closability_review_prerequisites:${id}`)
+    if (typeof review.closureGap !== 'string' || review.closureGap.length === 0) fail(`closability_review_gap:${id}`)
+    if (review.endToEndClosed !== false || review.promotionDecision !== 'retain_unresolved_v0' || review.noPromotion !== true || review.noRecalculation !== true || review.noPersonalMeaning !== true || review.noCrossLineageMerge !== true) fail(`closability_review_boundary:${id}`)
+    if (review.closability === 'near_candidate' && typeof review.requiredAdditionalCheck !== 'string') fail(`closability_review_near_check:${id}`)
+    if (review.closability === 'v0_frozen' && review.requiredAdditionalCheck !== null) fail(`closability_review_frozen_check:${id}`)
+    if (!isObject(review.provenance)
+      || review.provenance.schema !== SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_REVIEW_SCHEMA
+      || review.provenance.version !== SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_REVIEW_VERSION
+      || JSON.stringify(review.provenance.sourceIds) !== JSON.stringify(review.sourceIds)
+      || JSON.stringify(review.provenance.locatorIds) !== JSON.stringify(review.locatorIds)
+      || !isObject(review.provenance.sourceByteSha256)) {
+      fail(`closability_review_provenance:${id}`)
+    } else {
+      const expectedHashes = sourceByteSha256ForIds(review.sourceIds)
+      if (JSON.stringify(review.provenance.sourceByteSha256) !== JSON.stringify(expectedHashes)) fail(`closability_review_provenance_hash:${id}`)
+      for (const sourceId of review.sourceIds) if (!/^[a-f0-9]{64}$/.test(review.provenance.sourceByteSha256[sourceId] || '')) fail(`closability_review_provenance_source_hash:${id}:${sourceId}`)
+    }
+  }
+  if (JSON.stringify(reviewIds) !== JSON.stringify(expectedIds)) fail('closability_review_ids')
+  const expectedNear = expectedIds.filter(id => reviews.find(review => review.compositionId === id)?.closability === 'near_candidate')
+  if (expectedNear.length === 0 || expectedNear.length > 2) fail('closability_review_near_candidate_count')
   return unique(errors).sort()
 }
 

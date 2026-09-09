@@ -21,6 +21,8 @@ import {
   SAJU_SOURCE_BOUNDED_SEMANTIC_LEXICON_STATUSES,
   SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_READINESS,
   SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_RULES,
+  SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_REVIEW,
+  SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_FREEZE_DECISION,
   SAJU_SOURCE_SEMANTIC_LEXICON_COMPOSITION_READINESS,
   SAJU_ZIPING_CANDIDATE_CLOSABILITY,
   SAJU_ZIPING_EXPLICIT_STEM_BRANCH_ANALYSIS,
@@ -38,6 +40,7 @@ import {
   checkSajuLineageSourceSemanticResultContract,
   checkSajuLineageStructuralResultContract,
   checkSajuSourceLocalSemanticComposition,
+  checkSajuSourceLocalSemanticCompositionClosabilityReview,
   deriveSajuLineageSourceSemanticResults,
   deriveSajuSanmingSourceSemanticResults,
   deriveSajuLineageStructuralResults,
@@ -1141,6 +1144,47 @@ test('source-local composition inventory separates adopted composition, bounded 
   assert.deepEqual(checkSajuLineageReadingGrammar(), [])
   assert.deepEqual(SAJU_LINEAGE_READING_GRAMMAR.sourceLocalSemanticComposition.commonCompositionCandidates, [])
   assert.equal(SAJU_LINEAGE_READING_GRAMMAR.sourceLocalSemanticComposition.interpretationHypothesisReady, false)
+})
+
+test('source-local composition closability review freezes unresolved boundaries without promoting near candidates', () => {
+  assert.deepEqual(checkSajuSourceLocalSemanticCompositionClosabilityReview(), [])
+  assert.deepEqual(
+    SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_REVIEW.map(review => review.compositionId),
+    SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_RULES.filter(rule => rule.status === 'unresolved').map(rule => rule.compositionId),
+  )
+  assert.deepEqual(
+    SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_REVIEW
+      .filter(review => review.closability === 'near_candidate')
+      .map(review => review.compositionId),
+    [
+      'composition.yuanhai.p197-role-prohibition.v0',
+      'composition.sanming.stem-branch-transformation.v0',
+    ],
+  )
+  assert.ok(SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_REVIEW.every(review => review.endToEndClosed === false && review.promotionDecision === 'retain_unresolved_v0'))
+  assert.ok(SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_REVIEW
+    .filter(review => review.closability === 'v0_frozen')
+    .every(review => review.requiredAdditionalCheck === null))
+  assert.ok(SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_REVIEW
+    .filter(review => review.closability === 'near_candidate')
+    .every(review => typeof review.requiredAdditionalCheck === 'string' && review.requiredAdditionalCheck.length > 0))
+
+  assert.equal(SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_FREEZE_DECISION.v0FreezeReady, true)
+  assert.equal(SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_FREEZE_DECISION.compositionExecutionReady, false)
+  assert.deepEqual(SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_FREEZE_DECISION.endToEndClosedCompositionIds, [])
+  assert.equal(SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_FREEZE_DECISION.interpretationHypothesisLayerReady, false)
+  assert.deepEqual(SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_READINESS.freezeDecision, SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_FREEZE_DECISION)
+
+  const base = buildFrozenBase(ZIPING_P10_COMPOSITION_BIRTH_INPUT)
+  const first = deriveSajuSourceLocalSemanticCompositions(base)
+  const second = deriveSajuSourceLocalSemanticCompositions(base)
+  assert.deepEqual(first, second)
+  assert.equal(first.categories.derivedCompositionResults.length, 1)
+  assert.deepEqual(first.categories.unresolvedCompositions.map(item => item.compositionId), SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_READINESS.unresolvedCompositionIds)
+  assert.ok(first.categories.unresolvedCompositions.every(item => item.output === null && item.executionStatus === 'not_executable_by_contract'))
+  assert.equal(first.readiness.v0FreezeReady, true)
+  assert.equal(first.readiness.compositionReady, false)
+  assert.equal(first.readiness.interpretationHypothesisReady, false)
 })
 
 test('Ziping p.10 local composition deterministically preserves single, multiple, branch-only, and combined source components', () => {

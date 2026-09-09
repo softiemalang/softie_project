@@ -444,3 +444,26 @@ semantic frontier는 p.7의 exact local clause와 p.10의 exact source-role lane
 - `personalMeaning=false`, `crossLineageMerge=false`, `winnerSelection=false`: source-local 결과를 사용자 의미나 cross-lineage winner로 확장하지 않음
 
 따라서 이번 frontier에서 허용되는 것은 p.10의 exact component coexistence와 p.7의 exact source clause transition뿐이다. p.11 有情/無情, Yuanhai role prohibition, Sanming relation transformation, Ditian 方局/體用, Qiongtong state/month operation은 각각 원문 우선순위·전이·적용 조건이 닫힐 때까지 unresolved/unsupported로 유지하며 interpretation-hypothesis readiness를 열지 않는다.
+
+## Source-local composition closability review v0
+
+현재 `unresolved` composition 6개를 `SAJU_SOURCE_LOCAL_SEMANTIC_COMPOSITION_CLOSABILITY_REVIEW`로 재평가했다. `near_candidate`는 source-local 표면은 좁고 추가 확인 항목이 유한하지만, 아직 end-to-end executable rule이 아니라는 뜻이다. `v0_frozen`은 남은 문제가 단순 입력 보완이 아니라 source 정의·semantic context·우선순위·전이 또는 출력 경계의 미폐쇄이므로, 현 v0에서 더 확장하지 않는다는 뜻이다. 두 상태 모두 promotion이 아니다.
+
+| composition | 직접 대조한 locator | closability | 현재 Base가 제공하는 범위 | 남은 명시 전제와 판정 |
+|---|---|---|---|---|
+| `composition.ziping.p11-exposure-branch-sentiment.v0` | 子平真詮 p.11 `ziping-p11-exposed-stem-and-branch-context` | `v0_frozen` | p.10 노출 component, 공급된 會支 inventory, source role label | `有情/無情`의 조합별 판정과 두 전이(`有情而卒成無情`·`無情而終有情`), 格局 문맥의 우선순위가 닫히지 않았다. |
+| `composition.ziping.p8-p12-use-pattern-composition.v0` | p.8–p.12 `ziping-p8-yongshen-pure-mixed`, `ziping-p8-yongshen-pattern-level`, `ziping-p9-yongshen-success-failure-transition`, `ziping-p12-good-symbol-break-pattern`, `ziping-p12-bad-symbol-make-pattern`, `ziping-p12-generation-control-order` | `v0_frozen` | source-local role/relation inventory | 用神·格局 identity, 사례 간 우선·전이, 결과 문맥에서 분리된 non-outcome 출력이 없으므로 semantic synthesis 없이는 닫히지 않는다. |
+| `composition.yuanhai.p197-role-prohibition.v0` | 淵海子平 p.197 `yuanhai-p197-eight-character-summary` | `near_candidate` | 일간/월령 frame과 공급된 role label inventory | `用之为官/财/印/食神/禄`를 제공하는 Yuanhai-local selected-use result와 `伤/劫/破/冲`, `制伏太过`의 source relation result가 필요하다. 이 둘을 독립적으로 닫기 전에는 금지 결과를 내지 않는다. |
+| `composition.sanming.stem-branch-transformation.v0` | 三命通會 p.78 `sanming-p78-stem-combination`, p.80 `sanming-p80-stem-transformation-general`, p.81 `sanming-p81-stem-transformation`, p.85 `sanming-p85-branch-combinations`, p.90 `sanming-p90-three-punishments`, p.93 `sanming-p93-branch-conflict` | `near_candidate` | visible stem/branch frame, 공급된 relation inventory, 월지 | p.80–p.81의 정확한 합화 pair/month/妒合 lane에는 Sanming-local stem-pair result와 source-specific 旺氣·得時·得地 state result가 필요하다. 이 좁은 lane도 닫히기 전에는 化氣 결과를 내지 않으며, 六合/三合/刑/沖을 서로 합치지 않는다. |
+| `composition.ditian.fang-ju-tiyong.v0` | 滴天髓 p.13 `ditian-p13-fang-ju-examples`, p.13–14 `ditian-p13-p14-geju-surface`, p.18–20 `ditian-p18-p20-tiyong` | `v0_frozen` | exact 方/局 branch-set example과 branch category | p.13의 方/局 membership는 이미 별도 structural rule로 닫혔지만, p.18–p.20의 體用 축·`最要緊者` weighting·用神 선택 및 둘 사이의 연결 절차는 기계적으로 닫히지 않는다. |
+| `composition.qiongtong.state-month-operation.v0` | 窮通寶鑑 p.2 `qiongtong-p2-five-phase-number-and-season`, p.3–p.90 각 일간 section locators | `v0_frozen` | 오행 수치와 day-stem section frame | p.2의 `生旺加倍·死绝减半` operation은 확인되지만 상태 resolver/input shape가 없다. 이후 월별 문단의 선택·교차 section priority와 처방 문맥의 분리도 닫히지 않아 기존 生旺/死绝 gap을 유지한다. |
+
+추가 직접 대조에서 p.197은 역할별 금지 문장을 짧게 제공하지만 현재 Base에 selected-use와 source relation 입력이 없고, 三命 p.80–p.81은 `甲己` 등 pair별 월 조건과 `妒合` 예외를 제공하지만 일반 조건의 旺氣·得時 문맥과 현재 relation contract가 없다. 따라서 두 항목만 제한적 `near_candidate`로 남겼고, 실제 composition을 닫은 항목은 0개다. p.11·p.8–p.12·滴天髓·窮通寶鑑은 추가 확인이 단일 prerequisite를 넘어 semantic context 또는 source-local composition grammar 자체를 요구하므로 `v0_frozen`으로 고정했다.
+
+### Freeze 및 interpretation hypothesis 판정
+
+- `v0FreezeReady=true`: 새로 end-to-end closed 된 unresolved composition은 없고, 모든 미폐쇄 surface가 명시적인 `near_candidate` 또는 `v0_frozen` 경계로 분류됐다. 기존 p.10 adopted composition과 p.7 bounded transition의 실행 계약은 변경하지 않았다.
+- `compositionExecutionReady=false`: composition 전체의 전역 우선·결합·전이 규칙은 여전히 없다. `commonCompositionCandidates=[]`, cross-lineage merge와 winner selection도 그대로다.
+- `interpretationHypothesisLayerReady=false`: source-local composition이 개인 해석 가설의 입력 계약을 제공할 정도로 닫히지 않았고, Constitution의 사용자 경험 우선·충돌 보존·미지원 추정 금지 경계도 열지 않는다.
+
+따라서 composition v0는 현재 실행 surface와 unresolved 경계를 함께 freeze할 수 있다. Yuanhai p.197과 Sanming p.80–p.81은 향후 별도의 좁은 prerequisite 연구를 재개할 때만 열 수 있는 frontier이며, 그때에도 source-local contract가 끝까지 닫히지 않으면 계속 unresolved로 남긴다. 이번 review는 Deterministic Base, Constitution, 계산 FACT, activation, semantic lexicon, 기존 composition 결과를 변경하지 않는다.
