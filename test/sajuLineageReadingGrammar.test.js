@@ -205,6 +205,41 @@ test('Ziping p.16 root scan fails closed when the four visible stem/branch frame
   assert.equal(result.boundary.noSemanticInterpretation, true)
 })
 
+test('Ziping p.7 and p.10–11 exposure surfaces remain context-bound and do not emit a generic predicate', () => {
+  const analysis = SAJU_ZIPING_ROOT_EXPOSURE_ANALYSIS
+  assert.deepEqual(
+    analysis.directObservations.map(observation => observation.locatorId),
+    [
+      'ziping-p3-yang-yin-root-cycle-and-tomb-exception',
+      'ziping-p16-branch-stem-root-scan',
+      'page.local.ziping.p7-yongshin-continuation',
+      'ziping-p10-chen-exposed-stem-definition',
+      'ziping-p11-exposed-stem-and-branch-context',
+    ],
+  )
+  assert.deepEqual(
+    analysis.contextBoundRelations.map(relation => relation.relationId),
+    [
+      'ziping.p7.yin-month-jia-bing-exposure-change',
+      'ziping.p10-chen-three-exposure-examples',
+      'ziping.p11-exposure-and-branch-meeting',
+    ],
+  )
+  assert.equal(analysis.exposurePredicate.status, 'unresolved_general_predicate')
+
+  const first = deriveSajuLineageStructuralResults(buildFrozenBase())
+  const second = deriveSajuLineageStructuralResults(buildFrozenBase())
+  assert.deepEqual(first, second)
+  assert.equal(first.categories.derivedStructuralResults.some(item => item.ruleId === 'rule.ziping.root-exposure.v0'), false)
+  const unresolved = first.categories.unresolvedRules.find(item => item.ruleId === 'rule.ziping.root-exposure.v0')
+  assert.ok(unresolved)
+  assert.ok(unresolved.locatorIds.includes('page.local.ziping.p7-yongshin-continuation'))
+  assert.ok(unresolved.locatorIds.includes('ziping-p10-chen-exposed-stem-definition'))
+  assert.ok(unresolved.locatorIds.includes('ziping-p11-exposed-stem-and-branch-context'))
+  assert.deepEqual(first.categories.lineageConflicts, [])
+  assert.equal(first.boundary.noSemanticInterpretation, true)
+})
+
 test('real frozen Base yields deterministic structural results with explicit prerequisite gaps and unresolved lanes', () => {
   const base = buildFrozenBase()
   const first = deriveSajuLineageStructuralResults(base)

@@ -96,9 +96,15 @@ PDF p.16 `論支中喜忌逢運透清`은 `有一甲字`이면 네 지지를 모
 
 PDF p.3 `論陰陽生死`와 p.5의 根 분류는 양/음, 묘고·여기·장생록왕의 source-local qualification을 보여주지만, p.16의 甲 predicate를 다른 천간으로 확장할 완전한 mapping은 제공하지 않는다. 따라서 이 rule은 all-stem 通根 rule이 아니라 `甲`/`亥` 관계에 한정된 bounded predicate다.
 
-### 透/透干: local example만 확인, 일반 predicate는 unresolved
+### 透/透干: context-bound relation만 확인, 일반 predicate는 unresolved
 
-PDF p.10 `論雜氣如何取用`의 `何謂透干`은 `甲生辰月`에서 `透戊·透癸·透乙`을 각각 用神 명칭과 연결하고 `一透則一用·兼透兼用`을 말한다. p.11은 `透干會支`와 합·충·용신의 성패 문맥을 계속 전개하고, p.7의 `不透甲而透丙`도 寅月 用神变化의 local example이다. 이 locator들은 `透干`이라는 용례와 몇 가지 조건을 직접 보여주지만, 모든 월지·모든 visible/hidden stem 대상의 identity, 중복 처리, 우선순위, semantic-free 출력 계약을 닫지 않는다. 그러므로 `透/透干` 일반 predicate는 새 executable rule로 만들지 않고 unresolved로 유지한다.
+이번 p.7·p.10–11 원면 대조에서 `透/透干`은 세 종류의 context-bound surface로 분리된다.
+
+- p.7 `寅月`은 `不透甲而透丙`을 用神 변화의 사례로 제시한다. visible stem 조건은 월령·用神 선택과 함께 제시되며, 독립적인 노출 판정 정의로 분리되지 않는다.
+- p.10 `何謂透干`은 `甲生辰月`에서 `透戊·透癸·透乙`을 각각 用神 선택과 연결하고, 한 개/복수 투간 및 透干·會支 병존을 이어서 설명한다. 이 면은 `辰`의 named example inventory로는 닫히지만 전 지지·전 천간 predicate는 아니다.
+- p.11은 `透干`과 `會支`, 복수 투간, 有情/無情 및 格局 보존·변화 사례를 함께 평가한다. 같은 노출 표면이 결합 조건에 따라 다른 문맥 결과에 참여하므로 semantic-free output으로 추출할 수 없다.
+
+따라서 이 페이지들의 **context-bound relation**은 locator·조건·의존 문맥을 연구 metadata로 보존하되, `visible stem ∈ hidden stem`이라는 현대적·보편적 통간 공식으로 재명명하지 않는다. 현재 새로 승격된 executable rule은 없으며, `rule.ziping.root-exposure.v0`는 p.7·p.10·p.11을 포함한 generic all-stem predicate unresolved 상태로 유지한다. 이미 닫힌 p.16 `甲` root scan은 이 문맥 surface와 병합하지 않는다.
 
 淵海子平 p.4의 지장간·월별 사령 문구, 三命通會 p.65–66의 `人元`·`司事`와 월별 service-day 예시, 滴天髓 p.4의 甲木 계절/根 조건은 각각 직접 관찰된 별도 source surface다. 이들은 지장간 inventory·월령 frame·甲木 조건문을 지지하지만, 子平의 exact-example predicate를 채우거나 generic 통근/투간 표를 제공하는 것으로 합치지 않았다. 子平 p.7의 `寅月`에서 `不透甲而透丙`을 대비하는 문장은 用神变化 문맥의 local example로만 남겨 일반적인 투간 resolver로 승격하지 않았다.
 
@@ -111,7 +117,7 @@ PDF p.10 `論雜氣如何取用`의 `何謂透干`은 `甲生辰月`에서 `透�
 - p.10–11의 `透干`을 semantic-free exposure relation으로 분리할 수 있는지와 用神·格局으로 이어지는 경계
 - p.5의 `乙逢午`·`丁逢酉` 음간 장생 예외를 어떤 입력관계로 재현할지
 
-따라서 `rule.ziping.root-exposure.v0`는 generic all-stem root/exposure와 透干을 계속 `unresolved`로 둔다. exact-example inventory와 甲 root scan의 출력만 각각 보존하고, 여러 match를 ranking하지 않는다. 淵海의 지장간/십성 label inventory, 三命의 인원·사령 예시, 窮通·滴天髓의 계절 조건은 각각 별도 lineage 입력/출력으로 유지하고 통근·투간으로 합치지 않는다.
+따라서 `rule.ziping.root-exposure.v0`는 generic all-stem root/exposure와 透干을 계속 `unresolved`로 둔다. exact-example inventory와 甲 root scan의 출력만 각각 보존하고, 여러 match를 ranking하지 않는다. p.7·p.10–11은 context-bound relation으로만 남기며, 해당 문맥을 제거한 새 executable result는 생성하지 않는다. 淵海의 지장간/십성 label inventory, 三命의 인원·사령 예시, 窮通·滴天髓의 계절 조건은 각각 별도 lineage 입력/출력으로 유지하고 통근·투간으로 합치지 않는다.
 
 ## Base 실행 검증
 
@@ -119,6 +125,7 @@ PDF p.10 `論雜氣如何取用`의 `何謂透干`은 `甲生辰月`에서 `透�
 
 - Yuanhai·Sanming의 구조 frame, Sanming의 인원/오행 목록, Ziping의 지지 관계 목록, p.5 exact-example inventory와 p.16 甲 root scan은 재계산 없이 실행된다.
 - 기존 서울 `계` fixture에서는 visible `甲`가 month 위치에 있고 branch `未`가 있어 p.16 predicate가 해당 root match를 deterministic result로 남긴다. `透/透干` 결과는 생성하지 않는다.
+- 같은 fixture를 두 번 실행해도 p.7·p.10–11 context-bound relation은 derived result로 materialize되지 않고, generic `root-exposure` unresolved rule의 locator/provenance만 유지된다. 다른 lineage와의 merge나 semantic fallback도 없다.
 - `갑` fixture에서는 hour branch `未`가 p.5의 `甲逢未`와 일치하여 해당 위치·기존 hidden-stem 목록·source category가 deterministic result로 남고, 일반 통근/투간 result는 생성되지 않는다. 기존 서울 `계` fixture에서는 exact-example match가 빈 inventory로 결정된다.
 - 동일 지지쌍의 `충`·`형`은 동시에 유지되고 우선순위를 부여하지 않는다.
 - 시간 미상·시주 누락·운 누락은 해당 rule을 `blocked_missing_base_fact` 또는 `not_executable_by_contract`로 닫는다.
