@@ -38,9 +38,9 @@ function runnerCoverage() {
   return {
     coverageStartEt: COVERAGE.startEt,
     coverageEndEt: COVERAGE.endEt,
+    objectCount: COVERAGE.objectCount,
     coverageTool: COVERAGE.tool,
     coverageToolVersion: COVERAGE.toolVersion,
-    objectCount: COVERAGE.objectCount,
   }
 }
 

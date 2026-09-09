@@ -19,7 +19,7 @@ function fixtureManifest() {
     artifactId: 'de405-linux-producer-v0',
     artifactVersion: '0.1.0',
     target: TARGET,
-    runner: { ...RUNNER, binarySha256: files['bin/de405-canonical-v2-runner'].sha256, coverage: { coverageStartEt: COVERAGE.startEt, coverageEndEt: COVERAGE.endEt, coverageTool: COVERAGE.tool, coverageToolVersion: COVERAGE.toolVersion, objectCount: COVERAGE.objectCount } },
+    runner: { ...RUNNER, binarySha256: files['bin/de405-canonical-v2-runner'].sha256, coverage: { coverageStartEt: COVERAGE.startEt, coverageEndEt: COVERAGE.endEt, objectCount: COVERAGE.objectCount, coverageTool: COVERAGE.tool, coverageToolVersion: COVERAGE.toolVersion } },
     source: sourceIdentity(),
     build: {
       sourceCommit: 'a'.repeat(40),
