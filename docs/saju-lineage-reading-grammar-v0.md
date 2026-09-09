@@ -1,0 +1,110 @@
+# 사주 source-bounded / lineage-bounded reading grammar v0
+
+이 문서는 다섯 확보 문헌의 제한된 locator에서 직접 관찰된 규칙 표면만 별도 lineage로 보존한다. 공통 semantic grammar, 원전 권위, readiness, activation, Base 계산은 변경하지 않는다.
+
+## 판정 규칙
+
+- `adopted_lineage_rule`: 해당 local witness 범위에서 조건·순서·출력 범위가 충분히 닫힌 규칙 표면. 역사적 권위나 공통 규칙 승격은 아님.
+- `common candidate`: 독립 textual source가 같은 bounded claim을 직접 지지할 때만 허용. 현재는 독립성·판본·전승이 닫힌 source pair가 없어 0건이다.
+- `unresolved`: locator는 있으나 조건, 우선관계, 완결성, 충돌 원인이 닫히지 않은 규칙.
+- `unsupported`: 현재 허용 locator로 직접 닫힌 규칙이 없는 영역.
+
+모든 rule은 [sajuLineageReadingGrammar.js](../src/interpretationPrep/sajuLineageReadingGrammar.js)에 source identity, locator, 전제, 입력 FACT, 구조 출력, 예외, 충돌 정책과 함께 정의되어 있다. adopted rule에는 별도의 `saju-lineage-derived-structural-result-v0` 계약이 붙어 있어 공통 Base FACT와 lineage-derived 출력의 출처를 분리한다.
+
+## 채택된 lineage 규칙
+
+| Rule | 문헌 locator | 입력 FACT | Base에서 가능한 구조 출력 | 예외/금지 확장 |
+|---|---|---|---|---|
+| `rule.yuanhai.day-anchor-month-command-frame.v0` | 淵海子平 p.6–7, `論日為主`·`論月令` | 일간, 연·월·일·시주 | 일간 기준점, 연·월·일·시 순서, 월령 맥락 | 시주 미상 시 중단; 성격·강약·용신 금지 |
+| `rule.yuanhai.hidden-stem-ten-god-label-inventory.v0` | 淵海子平 p.4, `論天地干支暗藏總訣` | 위치별 지장간·기존 십성 라벨 | 지장간/십성 라벨 목록 | 여러 전통 명칭을 하나의 개인 의미로 합치지 않음 |
+| `rule.sanming.four-pillars-month-hour-frame.v0` | 三命通會 p.69–70, `論遁月時`·`論年月日時` | 네 기둥 | 네 기둥 구조와 월간/시간 도출 절차 표면 | 현재 Base의 절기·일경계·진태양시를 원전 규칙으로 재계산하지 않음 |
+| `rule.sanming.human-element-month-command.v0` | 三命通會 p.65–66, `論人元司事`·`論四時節氣` | 월지·월지장간 | 월령/인원 구조와 지장간 목록 | 한 사령 일수 예시를 전체 가중표로 일반화하지 않음 |
+| `rule.sanming.element-generation-control.v0` | 三命通會 p.4–6 | 오행·기존 관계 FACT | 오행 목록·기존 천간관계 확인 | 균형·세력·개인 의미 도출 금지 |
+| `rule.ziping.branch-relation-inventory.v0` | 子平真詮 p.5, `論刑沖會合解法` | 지지 관계 목록 | 관계·지지·위치 목록, 동시 관계 보존 | 관계 우선순위·해소·변화·길흉 금지; `破/害/半合`은 이 locator의 증거로 확장하지 않음 |
+| `rule.ditian.jia-wood-seasonal-condition.v0` | 滴天髓 p.4, `天干論 / 甲木` | 일간과 명시적 계절 FACT 필요 | 甲木 조건문 일치 여부만 | 甲木 외 일간으로 전이하지 않음; 성격·강약 결론 금지 |
+| `rule.qiongtong.five-phase-number-season-state.v0` | 窮通寶鑑 p.2, `五行總論` | 오행 기본 수와 별도 source-specific 상태 resolver 필요 | `生旺`/`死绝`의 조건부 double/half 연산 표면만 기록; resolver가 닫히기 전 실행하지 않음 | Base 분포/지장간 가중치·일반 十二運星과 합치지 않음 |
+| `rule.qiongtong.jia-wood-seasonal-clauses.v0` | 窮通寶鑑 p.4–5·p.7, `三春甲木`·`正月甲木`·`三夏甲木` | 甲 일간과 명시적 월령/계절 필요 | 해당 월별 조건문만 선택 | 월별 문단을 하나의 보편 처방으로 통합하지 않음 |
+
+## 병존·미해결·미지원
+
+- 子平真詮의 `用神`·`相神`·`用神變化`, 통근·투간의 완전한 우선순위는 원문 구간은 있으나 현재 Base 입력과 규칙 완결성이 부족해 `unresolved`다.
+- 子平真詮 p.15·p.25와 淵海子平 p.9의 운 locator는 운과 원국을 함께 보는 범위만 남기고, 방향·절기 거리·환산·정확한 기산일은 `unresolved`다.
+- 窮通寶鑑의 월별 조건은 source-bounded rule로 병존시키되, 현재 Base에는 명시적 계절/절기 상태가 없어 fixture에서 실행하지 않는다.
+- 신살의 reference axis/mapping, 단일 상징의 성격·개인 특성·사건 예측은 `unsupported`다.
+
+### 窮通寶鑑 生旺/死绝 상태 audit
+
+로컬 witness `/Users/hangyukim/Documents/malang_lab/documents/穷通宝鉴.pdf`(92쪽, SHA-256 `36d54cdc995d203fdceafcb52b2a0d4f57093ab1765c532db5418b46a96c4b19`)의 p.2 `五行總論`을 직접 시각 판독했다. 해당 면에서 닫히는 표면은 다음뿐이다.
+
+- 기본 수: 水=1, 火=2, 木=3, 金=4, 土=5
+- 상태 연산: `生旺`이면 가배(double), `死绝`이면 감반(half)
+- 적용 범위: 같은 문단의 `其数`에 대한 source-local 수치 연산. 현재 Base의 분포 count나 지장간 가중치를 수정하는 규칙이 아니다.
+
+같은 면의 `形色` 문장은 상태 라벨과 색 관계를 언급하지만, 생년·월령·지지·계절에서 `生旺`/`死绝`을 결정하는 표, 입력 구조, 원소별 적용 방식, 우선관계, 예외를 제공하지 않는다. 그러므로 다음은 닫히지 않은 상태로 남긴다.
+
+- `resolved prerequisite`: 원소별 기본 수와 조건부 `double`/`half` 어휘만 source-bounded로 확인됨.
+- `executable structural result`: 실제 frozen Base에서는 0건. p.2가 상태 resolver를 닫지 않으므로 명시 문자열만 추가한 test supplement도 실행 입력으로 승격하지 않는다.
+- `unresolved remainder`: source-specific 상태의 취득 규칙, 입력 shape(단일 label인지 원소별 map인지), source 내부 우선관계·예외. 일반 十二運星·현대 명리 표·다른 lineage에서 상태를 가져오는 것은 금지한다.
+
+이 결과는 `rule.qiongtong.five-phase-number-season-state.v0`의 bounded numeric operation과 그 prerequisite gap을 분리한 것이다. `seasonState`를 공용 Deterministic Base에 추가하지 않았고, 상태 문자열이나 `twelveStage` 대체 입력도 fail-closed로 처리한다.
+
+현재 다섯 문헌 사이에 독립 textual lineage가 확인된 source pair가 없으므로 `commonCandidates=[]`로 유지한다. 일간 기준·월령 확인처럼 유사한 구조는 공통 후보로 승격하지 않고 각 문헌 rule에만 남긴다.
+
+## 재현 가능한 structural result 계약
+
+각 adopted rule의 결과 계약은 다음 네 층을 분리한다.
+
+- `executable_rule`: 현재 frozen Base와 필요한 조건이 모두 충족되어 실행 가능한 rule 표면.
+- `prerequisite_gap`: rule은 채택되었지만 Base에 없는 결정적 입력 또는 명시 조건 때문에 실행을 중단한 상태.
+- `unresolved_rule`: locator는 있으나 정의·우선관계·예외·완결성이 닫히지 않아 실행 rule로 만들 수 없는 상태.
+- `derived_structural_result`: 실행된 결과. 입력은 `frozen_base_common_fact` 또는 `frozen_normalized_input`, 출력은 `lineage_derived_structural_result`로만 표시한다.
+
+추가로 서로 다른 lineage가 같은 구조 출력 슬롯에 동시에 도달하면 `lineage_conflict`로 보존하고 결과를 내보내지 않는다. `not_applicable_fixture`와 `unsupported`는 별도 목록으로 남긴다. 계약은 각 rule의 common Base FACT, lineage prerequisite, 적용 조건, 순서, stop condition, 출력 field를 기계적으로 검사한다.
+
+| Rule | 공통 Base FACT | 추가 prerequisite / 현재 gap | 구조 절차와 출력 | 중단 조건 |
+|---|---|---|---|---|
+| 淵海 `day-anchor-month-command-frame` | 일간·연/월/일/시주·`timeAccuracy` | 없음 | 일간 anchor → 연·월·일·시 순서 → 월령/시 보조 role. `sourceRoleFrame` | exact 시간이 아니거나 네 기둥/일간 누락 |
+| 淵海 `hidden-stem-ten-god-label-inventory` | 위치별 지장간·기존 십성 라벨·`timeAccuracy` | 없음 | 위치별 라벨 inventory와 visible label map 분리 | exact 시간이 아니거나 어느 위치의 지장간/라벨 map 누락 |
+| 三命 `four-pillars-month-hour-frame` | 네 기둥·`timeAccuracy` | 없음 | frozen 네 기둥을 읽고 month-from-year/hour-from-day 절차 label만 기록 | exact 시간이 아니거나 기둥 누락; 재계산 금지 |
+| 三命 `human-element-month-command` | 월지·월지장간 | 없음 | 월령 위치와 지장간 inventory만 산출 | 월지/지장간 누락; 사령 일수 일반화 금지 |
+| 三命 `element-generation-control` | 오행 분포·pillarFacts·기존 천간관계 | 없음 | 기존 오행/관계 inventory만 읽음 | 입력 envelope 누락; 균형·세력·선호 도출 금지 |
+| 子平 `branch-relation-inventory` | 지지 관계 array | 없음; 빈 array는 빈 inventory로 허용 | 관계명·지지·위치와 locator 범위 안/밖 이름, precedence=`none` | array 누락/비배열; 충돌 관계 삭제·순위화 금지 |
+| 滴天髓 `jia-wood-seasonal-condition` | 일간·월지 | `seasonContext`가 frozen public Base에 없음 | 甲/갑 조건과 명시 계절 창만 기록 | 甲/갑 이외는 비적용; 계절 context 없으면 gap |
+| 窮通 `five-phase-number-season-state` | 오행 기본 수 | p.2의 상태 resolver와 입력 shape가 frozen public Base에 없음 | 조건부 `生旺` double / `死绝` half 연산 어휘만 기록 | resolver 미완결이면 gap; 문자열·十二運星·Base count로 추정 금지 |
+| 窮通 `jia-wood-seasonal-clauses` | 일간·월지 | 명시 month/season `seasonContext`가 frozen public Base에 없음 | 일치하는 source section window와 clause sequence만 보존 | 甲/갑 이외는 비적용; context 없으면 gap; lineage 병합 금지 |
+
+현재 fixture의 `갑`↔원문 `甲` 대응은 표기 정규화일 뿐, 의미 규칙이 아니다. `seasonContext`와 `seasonState`는 공개 Base 생성기에 추가하지 않았다.
+
+## 통근·투간 구조 판단의 좁은 frontier
+
+`子平真詮` p.5·p.6–7 locator에는 통근/투간과 월령·용신 관련 표현이 보이지만, 현재 확보 범위만으로는 다음이 닫히지 않는다.
+
+- 어떤 천간/지장간 존재를 통근으로 판정하는지에 대한 전 위치 정의
+- 여기·중기·본기와 투간이 동시에 있을 때의 우선순위
+- 월지 외 지지, 일간 제외 여부, 충·합 등 상호작용의 예외
+- 통근/투간 판정이 用神·格局으로 이어지는 경계
+
+따라서 `rule.ziping.root-exposure.v0`는 `unresolved`이며, 현재 `pillarFacts`의 raw stem/hidden-stem 존재를 통근·투간 결과로 재명명하지 않는다. 淵海의 지장간/십성 label inventory, 三命의 인원·사령 예시, 窮通·滴天髓의 계절 조건은 각각 별도 lineage 입력/출력으로 유지하고 통근·투간으로 합치지 않는다.
+
+## Base 실행 검증
+
+실제 frozen `tri-system-deterministic-base-v0` fixture에서 다음을 확인한다.
+
+- Yuanhai·Sanming의 구조 frame, Sanming의 인원/오행 목록, Ziping의 지지 관계 목록은 재계산 없이 실행된다.
+- 동일 지지쌍의 `충`·`형`은 동시에 유지되고 우선순위를 부여하지 않는다.
+- 시간 미상·시주 누락·운 누락은 해당 rule을 `blocked_missing_base_fact` 또는 `not_executable_by_contract`로 닫는다.
+- 甲木 전용 Ditian/Qiongtong rule은 계 일간 fixture에 적용하지 않는다.
+- `noRecalculation=true`, `noSemanticInterpretation=true`, `commonRulePromotion=false`를 유지한다.
+
+structural result contract를 같은 서울 fixture에 두 번 적용하면 동일한 결과 object가 재현된다. 결과 분류는 `executable_rule` 6개, `derived_structural_result` 6개, `prerequisite_gap` 1개(窮通의 生旺/死绝 상태 resolver), unresolved 5개, unsupported 2개, not-applicable 2개다. 상태 문자열과 일반 `twelveStage`를 test-only supplement로 넣어도 같은 prerequisite gap이 유지되고 Base는 변하지 않는다. 시간 미상 fixture에서는 淵海/三命의 완전한 네 기둥 rule이 prerequisite gap으로 닫힌다. 별도 `갑` fixture에 test-only 계절 context를 공급하면 滴天髓와 窮通의 계절 창이 동시에 적용되지만, 두 결과는 `lineage_conflict`로 보존되고 병합 결과는 생성되지 않는다.
+
+최소 fixture와 checker는 `test/sajuLineageReadingGrammar.test.js`에 있다.
+
+## 다음 frontier
+
+1. 窮通 p.2의 상태 resolver가 실제 source locator와 입력 shape까지 닫히는지 별도 확인한다. 일반 十二運星을 대입하지 않으며, 현재 Base에는 추가하지 않는다.
+2. 통근·투간을 판정하려면 문헌별 완전한 정의·대상·우선순위·예외를 별도로 닫는다.
+3. 운은 기존 timing authority frontier의 exact start-time·direction·conversion blocker를 먼저 닫는다.
+4. 독립 textual witness와 판본/전승 관계가 확인되기 전까지 common rule을 생성하지 않는다.
+
+semantic frontier는 여전히 열지 않는다. 다음 단계는 새 Base FACT 승격이 아니라, 먼저 각 lineage의 source-specific 계절 상태와 통근·투간 정의/우선순위/예외를 독립적으로 닫고, 그 후에도 구조 결과와 semantic 해석을 별도 계약으로 유지하는 것이다.
