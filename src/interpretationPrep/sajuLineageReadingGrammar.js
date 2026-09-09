@@ -145,10 +145,35 @@ export const SAJU_LINEAGE_SOURCE_PROFILES = Object.freeze([
 ])
 
 export const SAJU_LINEAGE_LOCATORS = Object.freeze([
+  loc('saju-source-yuanhai-ziping', 'yuanhai-p2-foundation', 2, '2', '基礎', 'stem polarity and named role-label opening; semantic outcomes remain context-bound', '五干属阳 · 喜合 · 五干属阴 · 喜冲'),
   loc('saju-source-yuanhai-ziping', 'yuanhai-p4-hidden-stems-and-ten-god-labels', 4, '4', '論天地干支暗藏總訣', 'hidden-stem/ten-god labels and adjacent seasonal-month material', '暗藏總訣 · 偏官/印綬/偏印 labels'),
+  loc('saju-source-yuanhai-ziping', 'yuanhai-p5-hidden-stem-song-and-generation-control', 5, '5', '又地支藏遁歌 / 論五行生剋制化', 'hidden-stem sequence and five-phase relation vocabulary; no complete source service resolver adopted', '地支藏遁歌 · 各有所喜所害 · 生剋制化'),
   loc('saju-source-yuanhai-ziping', 'yuanhai-p6-day-as-host', 6, '6', '論日為主', 'day-as-host frame and year/month/day/hour role labels', '日为主 · 年为根 · 月为提纲 · 时为辅佐'),
   loc('saju-source-yuanhai-ziping', 'yuanhai-p7-month-command', 7, '7', '論月令', 'month-command context after the day-as-host statement', '以日为主 · 月为提纲'),
   loc('saju-source-yuanhai-ziping', 'page.local.yuanhai.p9-dayun-section', 9, '9', '論大運', 'bounded 大運 section locator; not a complete exact-timing rule', '論大運'),
+  loc('saju-source-yuanhai-ziping', 'yuanhai-p9-dayun-focus-lens', 9, '9', '論大運', 'source-defined focus lens for an already supplied 大運 and 歲君 record', '大运看支 · 岁君看干 · 交运同接木'),
+  loc('saju-source-yuanhai-ziping', 'yuanhai-p8-taisui-annual-judgment', 8, '8', '論太歲吉凶 / 論征太歲', 'annual-year interaction and fortune wording; outcome semantics not adopted', '太岁乃年中天子 · 日犯岁君'),
+  loc('saju-source-yuanhai-ziping', 'yuanhai-p11-disease', 11, '11', '論疾病', 'body/illness correspondences and outcome claims outside the structural contract', '論疾病 · 五行生剋'),
+  loc('saju-source-yuanhai-ziping', 'yuanhai-p13-temperament', 13, '13', '性情', 'temperament and single-element personal descriptions outside the public grammar', '性情者 · 木盛主仁 · 五行性情'),
+  loc('saju-source-yuanhai-ziping', 'yuanhai-p14-stem-body-poems', 14, '14', '干體詩', 'stem-specific poetic descriptions and semantic outcomes; no generic predicate', '干體詩 · 甲乙丙丁'),
+  loc('saju-source-yuanhai-ziping', 'yuanhai-p17-injury-officer', 17, '17', '論傷官', 'role-specific conditions and outcomes requiring pattern/use context', '論傷官 · 傷官傷盡'),
+  loc('saju-source-yuanhai-ziping', 'yuanhai-p24-regular-wealth', 24, '24', '何謂正財', 'wealth-role conditions tied to strength and outcome language', '何谓正财 · 财多身弱'),
+  loc('saju-source-yuanhai-ziping', 'yuanhai-p28-regular-officer', 28, '28', '正官', 'officer-role conditions, pattern state, and outcome claims', '正官 · 用提纲作正官'),
+  loc('saju-source-yuanhai-ziping', 'yuanhai-p30-partial-officer', 30, '30', '論偏官', 'seven-killing role conditions and control/fortune outcomes', '论偏官 · 制伏'),
+  loc('saju-source-yuanhai-ziping', 'yuanhai-p35-seal', 35, '35', '論印綬', 'seal-role conditions and parent/outcome claims', '论印绶 · 生我'),
+  loc('saju-source-yuanhai-ziping', 'yuanhai-p48-six-relations', 48, '48', '六親總篇', 'six-relations and family mapping outside the public semantic boundary', '六亲总篇 · 父母兄弟妻财子孙'),
+  loc('saju-source-yuanhai-ziping', 'yuanhai-p56-womens-fate', 56, '56', '女命總訣', 'gender-specific and personal-outcome clauses outside the public grammar', '女命总诀 · 取官为夫'),
+  loc('saju-source-yuanhai-ziping', 'yuanhai-p67-ziping-essentials', 67, '67', '子平舉要歌', 'compressed maxims with structural order mixed with semantic outcomes', '子平举要歌 · 造化先须看日主'),
+  loc('saju-source-yuanhai-ziping', 'yuanhai-p69-preferences', 69, '69', '喜忌篇', 'ordered reading language mixed with strength/use/outcome semantics', '四柱排定 · 先看月令'),
+  loc('saju-source-yuanhai-ziping', 'yuanhai-p80-miscellaneous-maxims', 80, '80', '雜論口訣', 'miscellaneous condition/result maxims without a closed predicate family', '杂论口诀 · 看子平之法'),
+  loc('saju-source-yuanhai-ziping', 'yuanhai-p90-late-rule-collection', 90, '90', '《寸金搜髓論》', 'later compiled rule collection with role/pattern and fortune outcomes', '造化先须看日主 · 四柱专论其财官'),
+  loc('saju-source-yuanhai-ziping', 'yuanhai-p103-omens-fu', 103, '103', '妖祥賦', 'omens, body, temperament, and fortune statements without a public structural output', '命理深微 · 妖祥'),
+  loc('saju-source-yuanhai-ziping', 'yuanhai-p110-omens-fu-continuation', 110, '110', '妖祥賦續', 'continuation of the compiled omen/personal-description surface; no public structural output', '偏官七杀 · 枭印 · 偏财 · 伤官 personal descriptions'),
+  loc('saju-source-yuanhai-ziping', 'yuanhai-p162-wanjin-fu', 162, '162', '萬金賦', 'compiled pattern/fortune maxims with no source-complete priority resolver', '欲识五行生死诀 · 先看何格隨时节'),
+  loc('saju-source-yuanhai-ziping', 'yuanhai-p164-jiechisu-miao-jue', 164, '164', '畢要捷馳玄妙訣', 'timing and role maxims with unresolved exact applicability', '以日为主 · 专论财官 · 先观节气之深浅'),
+  loc('saju-source-yuanhai-ziping', 'yuanhai-p173-four-line-independent-step', 173, '173', '四言獨步', 'late compiled maxims with repeated role/order language and semantic outcomes', '先看月令 · 次看浅深 · 年根为本 · 月令为中'),
+  loc('saju-source-yuanhai-ziping', 'yuanhai-p197-eight-character-summary', 197, '197', '論八字撮要法', 'summary prohibitions and role conditions; no universal semantic composition', '用之为官不可伤 · 用之为财不可劫'),
+  loc('saju-source-yuanhai-ziping', 'yuanhai-p199-compilation-summary', 199, '199', '會要命書說', 'editorial/compiled summary and source-boundary notice; no new executable rule', '会要命书说 · 合成一集'),
   loc('saju-source-sanming-tonghui', 'sanming-p4-element-generation', 4, '4', '論五行生成', 'five-phase generation ordering', '五行生成'),
   loc('saju-source-sanming-tonghui', 'sanming-p5-element-generation-control', 5, '5', '論五行生克', 'five-phase generation/control and directional presentation', '五行相生相克'),
   loc('saju-source-sanming-tonghui', 'sanming-p6-stem-branch-origin', 6, '6', '論支干源流', 'stem/branch origin and generation/control framing', '論支干源流'),
@@ -420,6 +445,23 @@ export const SAJU_LINEAGE_RULES = Object.freeze([
     structuralOutput: ['hiddenStemLabelInventory', 'visibleTenGodLabelInventory'],
     exceptions: ['the page uses multiple traditional labels; one label is not normalized into a single personal meaning'],
     conflictPolicy: 'preserve visible and hidden label lanes separately',
+  }),
+  rule({
+    ruleId: 'rule.yuanhai.dayun-branch-seun-stem-lens.v0',
+    work: WORKS.yuanhai,
+    lineage: 'yuanhai_local_export',
+    status: 'adopted_lineage_rule',
+    ruleCompleteness: 'bounded_timing_lens_frame',
+    executionStatus: 'executable_from_frozen_base',
+    sourceIds: ['saju-source-yuanhai-ziping'],
+    locatorIds: ['yuanhai-p9-dayun-focus-lens'],
+    observedRule: 'p.9 states 大运看支、岁君看干; the adopted output is only this source focus lens over already supplied timing FACTs, not direction, start-age, conversion, or outcome inference.',
+    preconditions: ['timeAccuracy is exact', 'the frozen Base supplies an active 大運 cycle with a branch', 'the frozen Base supplies the 歲君/seUn stem'],
+    inputFacts: [FACT_REFS.timing, FACT_REFS.timeAccuracy],
+    orderedSteps: ['consume the supplied active 大運 cycle and retain its branch as the source focus', 'consume the supplied seUn/歲君 stem and retain it as the source focus', 'emit the two source focus labels and fact references', 'stop before timing recalculation, pattern selection, or life-outcome semantics'],
+    structuralOutput: ['dayunBranchFocus', 'seUnStemFocus', 'activeDayunBranch', 'timingFactRefs'],
+    exceptions: ['missing or non-exact timing input blocks the lens', 'missing active-cycle branch or seUn stem blocks the lens', 'do not derive direction, first-start date, age conversion, or fortune meaning from this phrase'],
+    conflictPolicy: 'preserve the Yuanhai focus lens as a lineage-specific structural result; do not merge it with another lineage timing rule',
   }),
   rule({
     ruleId: 'rule.sanming.four-pillars-month-hour-frame.v0',
@@ -831,6 +873,33 @@ export const SAJU_LINEAGE_STRUCTURAL_CONTRACTS = Object.freeze([
       origin: 'lineage_derived_structural_result',
       resultKey: 'yuanhai.hiddenStemLabelInventory',
       fields: ['hiddenStemLabels', 'visibleTenGods'],
+      semanticExpansion: false,
+    },
+  }),
+  structuralContractSpec('rule.yuanhai.dayun-branch-seun-stem-lens.v0', {
+    commonBaseFacts: [
+      { factRef: FACT_REFS.timing, origin: 'frozen_base_common_fact' },
+      { factRef: FACT_REFS.timeAccuracy, origin: 'frozen_normalized_input' },
+    ],
+    applicability: [
+      'timeAccuracy must be exact',
+      'the frozen timing FACT must contain an active 大運 cycle with a branch and a seUn/歲君 stem',
+    ],
+    procedure: [
+      'read the already supplied active 大運 cycle and expose its branch as the source focus',
+      'read the already supplied seUn/歲君 stem and expose it as the source focus',
+      'emit the two focus labels, selected values, and timing fact references',
+      'do not recalculate timing or attach an outcome meaning',
+    ],
+    stopConditions: [
+      'stop when timeAccuracy is not exact',
+      'stop when timing, daYun cycles, active cycle, or seUn stem is missing or malformed',
+      'never infer direction, first-start date, age conversion, or fortune outcome from the focus phrase',
+    ],
+    output: {
+      origin: 'lineage_derived_structural_result',
+      resultKey: 'yuanhai.dayunFocusLens',
+      fields: ['focusFrame', 'activeDayun', 'seUn', 'factRefs', 'timeAccuracy'],
       semanticExpansion: false,
     },
   }),
@@ -1983,6 +2052,365 @@ export const SAJU_ZIPING_SEMANTIC_RULE_INVENTORY = Object.freeze([
   }),
 ])
 
+export const SAJU_ZIPING_CANDIDATE_CLOSABILITY = Object.freeze({
+  schema: 'saju-ziping-candidate-closability-v0',
+  candidateCount: SAJU_ZIPING_SEMANTIC_RULE_INVENTORY.filter(item => item.status === 'context_bound_candidate').length,
+  nearCandidateIds: Object.freeze([
+    'inventory.ziping.p4-stem-combination-nonmerge.v0',
+  ]),
+  frozenV0CandidateIds: Object.freeze(
+    SAJU_ZIPING_SEMANTIC_RULE_INVENTORY
+      .filter(item => item.status === 'context_bound_candidate' && item.inventoryId !== 'inventory.ziping.p4-stem-combination-nonmerge.v0')
+      .map(item => item.inventoryId),
+  ),
+  entries: Object.freeze(
+    SAJU_ZIPING_SEMANTIC_RULE_INVENTORY
+      .filter(item => item.status === 'context_bound_candidate')
+      .map(item => Object.freeze({
+        candidateId: item.inventoryId,
+        locatorIds: [...item.locatorIds],
+        closability: item.inventoryId === 'inventory.ziping.p4-stem-combination-nonmerge.v0' ? 'near_candidate' : 'v0_frozen',
+        requiredAdditionalCheck: item.inventoryId === 'inventory.ziping.p4-stem-combination-nonmerge.v0'
+          ? '원문이 직접 규정한 해당 stem pair의 separation/distance와 合/合化 우선 조건 한 묶음'
+          : null,
+        reason: item.inventoryId === 'inventory.ziping.p4-stem-combination-nonmerge.v0'
+          ? '현재 stemRelations가 pair/position을 공급하지만 source-defined distance/precedence 한정이 닫히기 전에는 일반 합·합화 classifier를 만들 수 없다.'
+          : `v0 고정: ${item.requiredStructuralResult.closure}. 현재 Base/structural result만으로는 source use/pattern/운 문맥 또는 복합 우선관계를 대체할 수 없다.`,
+        promotionBoundary: 'modern practice, another lineage, free synthesis, and personal/fortune meaning remain forbidden',
+      })),
+  ),
+})
+
+export const SAJU_YUANHAI_INVENTORY_STATUSES = Object.freeze([
+  'adopted_structural_rule',
+  'adopted_semantic_rule',
+  'context_bound_candidate',
+  'unresolved',
+  'unsupported',
+])
+
+const yuanhaiInventoryEntry = value => ({
+  inventorySchema: 'saju-yuanhai-source-rule-inventory-v0',
+  work: WORKS.yuanhai,
+  lineage: 'yuanhai_local_export',
+  sourceIds: ['saju-source-yuanhai-ziping'],
+  locatorIds: [],
+  requiredStructuralResult: {
+    ruleIds: [],
+    fields: [],
+    closure: 'not_closed',
+  },
+  sourceDefinedOutput: {
+    kind: 'not_materialized',
+    role: null,
+    outputShape: [],
+    scope: 'source_bounded_only',
+  },
+  applicability: [],
+  exceptions: [],
+  forbiddenExtensions: [...FORBIDDEN_EXTENSIONS],
+  compositionState: 'coexistence_only_until_source_priority_is_closed',
+  sourceObservation: '',
+  ...value,
+})
+
+/**
+ * Whole local-work inventory for 淵海子平.  The page band is reviewed as a
+ * source surface, but only direct role/order frames with a closed output are
+ * executable.  Outcome, family, gender, health, temperament, pattern, and
+ * timing prose remains candidate, unresolved, or unsupported.
+ */
+export const SAJU_YUANHAI_RULE_INVENTORY = Object.freeze([
+  yuanhaiInventoryEntry({
+    inventoryId: 'inventory.yuanhai.p2-foundation-labels.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['yuanhai-p2-foundation'],
+    applicability: ['visible stem and day-master context are supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['visible stem polarity', 'named role-label relation'],
+      closure: 'semantic_role_context_and_exception_scope_not_closed',
+    },
+    sourceDefinedOutput: {
+      kind: 'semantic_candidate',
+      role: 'stem-to-role labels in the opening surface',
+      outputShape: ['source label only'],
+      scope: 'p.2 opening examples; not a universal personal-meaning table',
+    },
+    exceptions: ['the opening labels are adjacent to personal/family outcome prose', 'no complete role precedence is supplied'],
+    sourceObservation: 'p.2 begins with polarity and named stem relations, but the following lines immediately enter outcome/family language.',
+  }),
+  yuanhaiInventoryEntry({
+    inventoryId: 'inventory.yuanhai.p4-hidden-stem-labels.v0',
+    status: 'adopted_structural_rule',
+    contractRuleId: 'rule.yuanhai.hidden-stem-ten-god-label-inventory.v0',
+    locatorIds: ['yuanhai-p4-hidden-stems-and-ten-god-labels'],
+    applicability: ['supplied pillar hidden-stems and visible ten-god labels are complete', 'timeAccuracy is exact'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.yuanhai.hidden-stem-ten-god-label-inventory.v0'],
+      fields: ['hiddenStemLabels', 'visibleTenGods'],
+      closure: 'closed_in_existing_contract',
+    },
+    sourceDefinedOutput: {
+      kind: 'structural',
+      role: 'hidden/visible label inventory',
+      outputShape: ['hidden stem and supplied ten-god label by pillar'],
+      scope: 'label inventory only; no priority or personal meaning',
+    },
+    exceptions: ['do not turn seasonal lines into a service-day table', 'do not rank repeated labels'],
+    sourceObservation: 'p.4 directly presents the 暗藏總訣 surface beside seasonal material; the adopted rule retains supplied labels only.',
+  }),
+  yuanhaiInventoryEntry({
+    inventoryId: 'inventory.yuanhai.p5-hidden-stem-service-scope.v0',
+    status: 'unresolved',
+    locatorIds: ['yuanhai-p5-hidden-stem-song-and-generation-control'],
+    applicability: ['a complete source-defined hidden-stem/service sequence would be supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['ordered hidden-stem sequence', 'seasonal service scope', 'priority'],
+      closure: 'source_service_scope_and_complete_table_not_closed',
+    },
+    sourceDefinedOutput: {
+      kind: 'not_materialized',
+      role: 'hidden-stem/service vocabulary',
+      outputShape: [],
+      scope: 'no public result until the source procedure is complete',
+    },
+    exceptions: ['do not replace the source sequence with a modern hidden-stem weight table', 'do not merge with 三命通會 service-day examples'],
+    sourceObservation: 'p.5 lists branch-hidden-stem material and five-phase relation prose, but does not close a complete executable service resolver.',
+  }),
+  yuanhaiInventoryEntry({
+    inventoryId: 'inventory.yuanhai.p6-p7-role-frame.v0',
+    status: 'adopted_structural_rule',
+    contractRuleId: 'rule.yuanhai.day-anchor-month-command-frame.v0',
+    locatorIds: ['yuanhai-p6-day-as-host', 'yuanhai-p7-month-command'],
+    applicability: ['day-master and all four supplied pillars are present', 'timeAccuracy is exact'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.yuanhai.day-anchor-month-command-frame.v0'],
+      fields: ['sourceRoleFrame', 'orderedFactRefs'],
+      closure: 'closed_in_existing_contract',
+    },
+    sourceDefinedOutput: {
+      kind: 'structural',
+      role: 'day-anchor and year/month/day/hour role frame',
+      outputShape: ['anchor', 'ordered positions', 'month-command', 'auxiliary hour'],
+      scope: 'role frame only; no life-domain or strength result',
+    },
+    exceptions: ['unknown or missing hour stops the complete four-role frame'],
+    sourceObservation: 'p.6–7 directly state 日为主, 年为根, 月为提纲, 时为辅佐 and then continue into outcome prose.',
+  }),
+  yuanhaiInventoryEntry({
+    inventoryId: 'inventory.yuanhai.p8-taisui-outcome.v0',
+    status: 'unsupported',
+    locatorIds: ['yuanhai-p8-taisui-annual-judgment'],
+    applicability: ['annual relation and source fortune context would be required'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['year/day relation', 'annual interaction priority'],
+      closure: 'fortune-outcome_surface_outside_v0',
+    },
+    sourceDefinedOutput: {
+      kind: 'unsupported_semantic',
+      role: '太歲吉凶/征太歲 outcome',
+      outputShape: [],
+      scope: 'not part of the executable public grammar',
+    },
+    exceptions: ['no annual good/bad or event result is materialized'],
+    sourceObservation: 'p.8 directly frames 太歲 and annual conflict in outcome terms.',
+  }),
+  yuanhaiInventoryEntry({
+    inventoryId: 'inventory.yuanhai.p9-dayun-focus-lens.v0',
+    status: 'adopted_structural_rule',
+    contractRuleId: 'rule.yuanhai.dayun-branch-seun-stem-lens.v0',
+    locatorIds: ['yuanhai-p9-dayun-focus-lens'],
+    applicability: ['the frozen Base supplies an active 大運 branch and seUn/歲君 stem', 'timeAccuracy is exact'],
+    requiredStructuralResult: {
+      ruleIds: ['rule.yuanhai.dayun-branch-seun-stem-lens.v0'],
+      fields: ['focusFrame', 'activeDayun', 'seUn', 'factRefs'],
+      closure: 'closed_in_existing_contract',
+    },
+    sourceDefinedOutput: {
+      kind: 'structural',
+      role: '大運看支 / 歲君看干 focus lens',
+      outputShape: ['dayun branch focus', 'seUn stem focus'],
+      scope: 'lens over supplied timing FACTs; no timing calculation or outcome',
+    },
+    exceptions: ['direction, first-start date, age conversion, and outcome remain outside this rule'],
+    sourceObservation: 'p.9 directly states 大运看支、岁君看干; the source phrase is adopted only as a role/focus frame.',
+  }),
+  yuanhaiInventoryEntry({
+    inventoryId: 'inventory.yuanhai.p9-p10-timing-composition.v0',
+    status: 'unresolved',
+    locatorIds: ['page.local.yuanhai.p9-dayun-section', 'yuanhai-p8-taisui-annual-judgment'],
+    applicability: ['direction, start-age, term-distance, transition, and source outcome conditions are all closed'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['direction', 'start age', 'term-distance conversion', 'transition condition'],
+      closure: 'exact_timing_and_outcome_procedure_not_closed',
+    },
+    sourceDefinedOutput: {
+      kind: 'not_materialized',
+      role: '大運/歲君 transition surface',
+      outputShape: [],
+      scope: 'section locator only',
+    },
+    exceptions: ['the focus lens above must not be expanded into timing recalculation', 'do not convert annual prose into prediction'],
+    sourceObservation: 'p.9–10 continue from the focus phrase into transition and outcome clauses without a complete timing contract.',
+  }),
+  yuanhaiInventoryEntry({
+    inventoryId: 'inventory.yuanhai.p11-p14-body-temperament.v0',
+    status: 'unsupported',
+    locatorIds: ['yuanhai-p11-disease', 'yuanhai-p13-temperament', 'yuanhai-p14-stem-body-poems'],
+    applicability: ['body/temperament context would be required'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['body correspondence', 'temperament correspondence'],
+      closure: 'personal_semantic_surface_outside_v0',
+    },
+    sourceDefinedOutput: {
+      kind: 'unsupported_semantic',
+      role: 'disease, temperament, and stem-body meaning',
+      outputShape: [],
+      scope: 'not materialized',
+    },
+    exceptions: ['do not treat element/stem labels as personal traits or health claims'],
+    sourceObservation: 'p.11–14 directly move from structural vocabulary into disease, temperament, and poetic personal descriptions.',
+  }),
+  yuanhaiInventoryEntry({
+    inventoryId: 'inventory.yuanhai.p17-p35-role-chapters.v0',
+    status: 'context_bound_candidate',
+    locatorIds: ['yuanhai-p17-injury-officer', 'yuanhai-p24-regular-wealth', 'yuanhai-p28-regular-officer', 'yuanhai-p30-partial-officer', 'yuanhai-p35-seal'],
+    applicability: ['role identity, pattern/use context, relation conditions, and source priority are supplied'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['role identity', 'relation inventory', 'pattern/use context', 'priority'],
+      closure: 'role_case_context_and_priority_missing',
+    },
+    sourceDefinedOutput: {
+      kind: 'semantic_candidate',
+      role: '伤官/财/官/偏官/印绶 case qualification',
+      outputShape: ['source-local case label'],
+      scope: 'chapter-specific; no general ten-god meaning table',
+    },
+    exceptions: ['do not merge role chapters or infer personal outcomes', 'do not use modern strength/格局 conventions to fill gaps'],
+    sourceObservation: 'p.17–35 present role-specific conditions, examples, and outcomes, but no single cross-chapter resolver.',
+  }),
+  yuanhaiInventoryEntry({
+    inventoryId: 'inventory.yuanhai.p48-p66-family-gender.v0',
+    status: 'unsupported',
+    locatorIds: ['yuanhai-p48-six-relations', 'yuanhai-p56-womens-fate'],
+    applicability: ['family/gender role context would be required'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['six-relation mapping', 'gender-specific role mapping'],
+      closure: 'personal_family_semantic_surface_outside_v0',
+    },
+    sourceDefinedOutput: {
+      kind: 'unsupported_semantic',
+      role: '六親/女命 outcome',
+      outputShape: [],
+      scope: 'not materialized',
+    },
+    exceptions: ['do not expose family, spouse, children, or gender conclusions'],
+    sourceObservation: 'p.48–66 contain explicit 六親 and 女命 sections with personal/family outcome claims.',
+  }),
+  yuanhaiInventoryEntry({
+    inventoryId: 'inventory.yuanhai.p67-p80-summary-maxims.v0',
+    status: 'unresolved',
+    locatorIds: ['yuanhai-p67-ziping-essentials', 'yuanhai-p69-preferences', 'yuanhai-p80-miscellaneous-maxims'],
+    applicability: ['the compressed maxim must be expanded into a source-complete structural predicate'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['reading order', 'condition', 'exception', 'output'],
+      closure: 'compressed_maxim_lacks_complete_predicate_and_priority',
+    },
+    sourceDefinedOutput: {
+      kind: 'not_materialized',
+      role: 'summary/maxim surface',
+      outputShape: [],
+      scope: 'inventory only',
+    },
+    exceptions: ['retain order phrases as locator evidence; do not infer a universal reading algorithm'],
+    sourceObservation: 'p.67–80 collect condensed songs, preferences, and miscellaneous maxims with mixed structural and outcome language.',
+  }),
+  yuanhaiInventoryEntry({
+    inventoryId: 'inventory.yuanhai.p90-p103-compiled-rules.v0',
+    status: 'unresolved',
+    locatorIds: ['yuanhai-p90-late-rule-collection', 'yuanhai-p103-omens-fu'],
+    applicability: ['compiled rule identity, exact condition window, and non-outcome output are separately closed'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['condition window', 'role/pattern relation', 'stop condition'],
+      closure: 'compiled_rule_scope_not_closed',
+    },
+    sourceDefinedOutput: {
+      kind: 'not_materialized',
+      role: 'compiled rule/妖祥 surface',
+      outputShape: [],
+      scope: 'locator inventory only',
+    },
+    exceptions: ['do not convert compiled outcome lines into prediction or personal meaning'],
+    sourceObservation: 'p.90–103 are later compiled rule/赋 surfaces with mixed role, fortune, and personal-outcome clauses.',
+  }),
+  yuanhaiInventoryEntry({
+    inventoryId: 'inventory.yuanhai.p104-p161-late-collections.v0',
+    status: 'unresolved',
+    locatorIds: ['yuanhai-p110-omens-fu-continuation'],
+    applicability: ['a stable section boundary and source-complete condition/output pair are required'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['section identity', 'condition', 'priority', 'output boundary'],
+      closure: 'late_compilation_scope_and_composition_not_closed',
+    },
+    sourceDefinedOutput: {
+      kind: 'not_materialized',
+      role: 'late compiled prose/赋/诀',
+      outputShape: [],
+      scope: 'inventory only',
+    },
+    exceptions: ['page-range locator is not treated as a semantic rule', 'do not backfill missing conditions from Ziping or modern practice'],
+    sourceObservation: 'the middle late-work pages continue compiled maxims and outcome prose; no independent executable predicate was closed.',
+  }),
+  yuanhaiInventoryEntry({
+    inventoryId: 'inventory.yuanhai.p162-p164-compiled-fu.v0',
+    status: 'unresolved',
+    locatorIds: ['yuanhai-p162-wanjin-fu', 'yuanhai-p164-jiechisu-miao-jue'],
+    applicability: ['role/pattern/timing conditions and output limits are source-complete'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['role/pattern state', 'timing relation', 'priority'],
+      closure: 'compiled_fortune_rule_scope_not_closed',
+    },
+    sourceDefinedOutput: {
+      kind: 'not_materialized',
+      role: '萬金賦/畢要捷馳玄妙訣',
+      outputShape: [],
+      scope: 'inventory only',
+    },
+    exceptions: ['do not promote first-look/month-command phrases into a common resolver'],
+    sourceObservation: 'p.162–164 directly contain compiled maxims that mix structural order with fortune outcomes.',
+  }),
+  yuanhaiInventoryEntry({
+    inventoryId: 'inventory.yuanhai.p165-p199-late-summary.v0',
+    status: 'unresolved',
+    locatorIds: ['yuanhai-p173-four-line-independent-step', 'yuanhai-p197-eight-character-summary', 'yuanhai-p199-compilation-summary'],
+    applicability: ['late summary clause has an exact non-outcome structural output and source priority'],
+    requiredStructuralResult: {
+      ruleIds: [],
+      fields: ['summary condition', 'priority', 'conflict handling'],
+      closure: 'summary_rules_mix_outcomes_and_lack_composition_contract',
+    },
+    sourceDefinedOutput: {
+      kind: 'not_materialized',
+      role: '四言獨步/撮要/會要 summary surfaces',
+      outputShape: [],
+      scope: 'inventory only',
+    },
+    exceptions: ['retain summary prohibitions as unresolved evidence, not as a universal semantic grammar'],
+    sourceObservation: 'p.173–199 contain late summary verses, timing/pattern claims, and compilation notes; no new executable rule is adopted.',
+  }),
+])
+
 export const SAJU_ZIPING_SEMANTIC_COMPOSITION_FRONTIER = Object.freeze({
   status: 'unresolved_composition_frontier',
   compositionReady: false,
@@ -2084,6 +2512,10 @@ export const SAJU_LINEAGE_READING_GRAMMAR = Object.freeze({
     contractIds: SAJU_ZIPING_SOURCE_SEMANTIC_CONTRACTS.map(contract => contract.contractId),
     adoptedRuleIds: SAJU_ZIPING_SOURCE_SEMANTIC_RULES.filter(ruleItem => ruleItem.status === 'adopted_lineage_semantic_rule').map(ruleItem => ruleItem.ruleId),
     semanticRuleInventory: SAJU_ZIPING_SEMANTIC_RULE_INVENTORY,
+    candidateClosability: SAJU_ZIPING_CANDIDATE_CLOSABILITY,
+    lineageRuleInventories: {
+      yuanhai: SAJU_YUANHAI_RULE_INVENTORY,
+    },
     newlyAdoptedRuleIds: SAJU_ZIPING_SEMANTIC_RULE_INVENTORY
       .filter(item => item.status === 'newly_adopted_executable')
       .map(item => item.inventoryId),
@@ -2196,6 +2628,35 @@ function hasCompleteZipingYinMonthExposureInput(base) {
     const pillar = readPath(base, `systems.saju.fact.pillarFacts.${position}`).value
     return isObject(pillar) && typeof pillar.stem === 'string'
   })
+}
+
+function hasCompleteYuanhaiDayunFocusLensInput(base) {
+  if (!hasExactTime(base)) return false
+  const timing = readPath(base, FACT_REFS.timing).value
+  if (!isObject(timing) || !isObject(timing.daYun) || !Array.isArray(timing.daYun.cycles) || !isObject(timing.seUn)) return false
+  if (!Number.isInteger(timing.daYun.activeCycleIndex)) return false
+  const activeCycle = timing.daYun.cycles.find(cycle => cycle?.index === timing.daYun.activeCycleIndex)
+  return isObject(activeCycle)
+    && typeof activeCycle.branch === 'string'
+    && typeof timing.seUn.stem === 'string'
+}
+
+function yuanhaiDayunFocusLens(base) {
+  const timing = readPath(base, FACT_REFS.timing).value
+  const activeCycle = timing.daYun.cycles.find(cycle => cycle?.index === timing.daYun.activeCycleIndex)
+  return {
+    focusFrame: { dayun: 'branch', seUn: 'stem' },
+    activeDayun: {
+      index: activeCycle.index,
+      branch: activeCycle.branch,
+    },
+    seUn: {
+      stem: timing.seUn.stem,
+    },
+    factRefs: [FACT_REFS.timing, FACT_REFS.timeAccuracy],
+    timeAccuracy: readPath(base, FACT_REFS.timeAccuracy).value,
+    sourceScope: 'yuanhai-p9-大运看支-岁君看干-focus-lens-only',
+  }
 }
 
 function explicitZipingStemBranchExamples(pillarFacts, dayMasterStem) {
@@ -2342,6 +2803,10 @@ function executeRule(ruleItem, base) {
         visibleTenGods: { ...fact.tenGodsVisible },
       })
     }
+    case 'rule.yuanhai.dayun-branch-seun-stem-lens.v0': {
+      if (!hasCompleteYuanhaiDayunFocusLensInput(base)) return ruleResult(ruleItem, 'blocked_missing_base_fact', {}, 'exact timing, active 大運 branch, or seUn/歲君 stem FACT missing')
+      return ruleResult(ruleItem, 'executable_from_frozen_base', yuanhaiDayunFocusLens(base))
+    }
     case 'rule.sanming.four-pillars-month-hour-frame.v0': {
       const refs = [FACT_REFS.yearPillar, FACT_REFS.monthPillar, FACT_REFS.dayPillar, FACT_REFS.hourPillar]
       if (!hasExactTime(base) || !hasAllFacts(base, refs) || !hasCompletePillarValues(base)) return ruleResult(ruleItem, 'blocked_missing_base_fact', {}, 'exact four-pillar FACT missing')
@@ -2485,7 +2950,7 @@ export function checkSajuLineageReadingGrammar(grammar = SAJU_LINEAGE_READING_GR
       if (!locator) fail(`rule_locator:${item.ruleId}:${locatorId}`)
       else if (!(item.sourceIds || []).includes(locator.sourceId)) fail(`rule_locator_source:${item.ruleId}:${locatorId}`)
     }
-    if (item.status === 'adopted_lineage_rule' && !['bounded_complete_structural_frame', 'bounded_complete_procedure_frame', 'bounded_label_inventory_only', 'bounded_role_scope_not_service_day_table', 'bounded_relation_vocabulary', 'bounded_relation_inventory_not_resolution', 'bounded_explicit_example_predicate', 'bounded_stem_specific_predicate', 'bounded_exact_exposure_example_predicate', 'bounded_exact_source_clause_predicate', 'bounded_condition_clause_for_jia_only', 'bounded_numeric_state_clause', 'bounded_numeric_operation_without_state_resolver', 'bounded_month_specific_condition_clauses'].includes(item.ruleCompleteness)) fail(`adopted_rule_incomplete:${item.ruleId}`)
+    if (item.status === 'adopted_lineage_rule' && !['bounded_complete_structural_frame', 'bounded_complete_procedure_frame', 'bounded_label_inventory_only', 'bounded_role_scope_not_service_day_table', 'bounded_relation_vocabulary', 'bounded_relation_inventory_not_resolution', 'bounded_explicit_example_predicate', 'bounded_stem_specific_predicate', 'bounded_exact_exposure_example_predicate', 'bounded_exact_source_clause_predicate', 'bounded_condition_clause_for_jia_only', 'bounded_numeric_state_clause', 'bounded_numeric_operation_without_state_resolver', 'bounded_month_specific_condition_clauses', 'bounded_timing_lens_frame'].includes(item.ruleCompleteness)) fail(`adopted_rule_incomplete:${item.ruleId}`)
     if ((item.status === 'unresolved' || item.status === 'unsupported') && (!item.observedRule || item.observedRule.length === 0)) fail(`unresolved_reason_missing:${item.ruleId}`)
   }
 
@@ -2520,6 +2985,60 @@ export function checkSajuLineageReadingGrammar(grammar = SAJU_LINEAGE_READING_GR
       if (item.requiredStructuralResult.closure !== 'closed_in_existing_contract' && item.status === 'adopted_existing_executable') fail(`semantic_inventory_adopted_closure:${item.inventoryId}`)
     } else if (item.contractRuleId !== undefined) {
       fail(`semantic_inventory_unadopted_contract:${item.inventoryId}`)
+    }
+  }
+  const candidateClosability = grammar.sourceBoundedSemanticGrammar?.candidateClosability
+  const contextCandidateIds = (semanticInventory || []).filter(item => item.status === 'context_bound_candidate').map(item => item.inventoryId)
+  if (!isObject(candidateClosability) || candidateClosability.schema !== 'saju-ziping-candidate-closability-v0') fail('ziping_candidate_closability_missing')
+  else {
+    if (candidateClosability.candidateCount !== contextCandidateIds.length) fail('ziping_candidate_closability_count')
+    const closabilityEntries = Array.isArray(candidateClosability.entries) ? candidateClosability.entries : []
+    if (closabilityEntries.length !== contextCandidateIds.length) fail('ziping_candidate_closability_entries')
+    const closabilityIds = new Set(closabilityEntries.map(entry => entry?.candidateId))
+    if (closabilityIds.size !== closabilityEntries.length || contextCandidateIds.some(id => !closabilityIds.has(id))) fail('ziping_candidate_closability_ids')
+    if (!Array.isArray(candidateClosability.nearCandidateIds) || candidateClosability.nearCandidateIds.length !== 1) fail('ziping_candidate_near_count')
+    if (!Array.isArray(candidateClosability.frozenV0CandidateIds) || candidateClosability.frozenV0CandidateIds.length !== contextCandidateIds.length - 1) fail('ziping_candidate_frozen_count')
+    for (const entry of closabilityEntries) {
+      if (!isObject(entry) || !['near_candidate', 'v0_frozen'].includes(entry.closability) || !Array.isArray(entry.locatorIds) || typeof entry.reason !== 'string' || typeof entry.promotionBoundary !== 'string') fail(`ziping_candidate_closability_shape:${entry?.candidateId || 'missing'}`)
+      if (entry.closability === 'near_candidate' && typeof entry.requiredAdditionalCheck !== 'string') fail(`ziping_candidate_near_check:${entry?.candidateId || 'missing'}`)
+      if (entry.closability === 'v0_frozen' && entry.requiredAdditionalCheck !== null) fail(`ziping_candidate_frozen_check:${entry?.candidateId || 'missing'}`)
+    }
+  }
+  const yuanhaiInventory = grammar.sourceBoundedSemanticGrammar?.lineageRuleInventories?.yuanhai
+  if (!Array.isArray(yuanhaiInventory) || yuanhaiInventory.length === 0) fail('yuanhai_inventory_missing')
+  else {
+    const yuanhaiInventoryIds = new Set()
+    const structuralContractsByRuleId = new Map(SAJU_LINEAGE_STRUCTURAL_CONTRACTS.map(contract => [contract.ruleId, contract]))
+    const sourceSemanticRulesByRuleId = new Map(SAJU_ZIPING_SOURCE_SEMANTIC_RULES.map(ruleItem => [ruleItem.ruleId, ruleItem]))
+    for (const item of yuanhaiInventory) {
+      if (!isObject(item)) {
+        fail('yuanhai_inventory_item_not_object')
+        continue
+      }
+      if (!item.inventoryId || yuanhaiInventoryIds.has(item.inventoryId)) fail(`yuanhai_inventory_id_duplicate:${item.inventoryId || 'missing'}`)
+      yuanhaiInventoryIds.add(item.inventoryId)
+      if (!SAJU_YUANHAI_INVENTORY_STATUSES.includes(item.status)) fail(`yuanhai_inventory_status:${item.inventoryId}`)
+      if (JSON.stringify(item.sourceIds) !== JSON.stringify(['saju-source-yuanhai-ziping'])) fail(`yuanhai_inventory_source:${item.inventoryId}`)
+      if (!Array.isArray(item.locatorIds) || item.locatorIds.length === 0) fail(`yuanhai_inventory_locators:${item.inventoryId}`)
+      for (const locatorId of item.locatorIds || []) {
+        const locator = locatorsById.get(locatorId)
+        if (!locator) fail(`yuanhai_inventory_locator_unknown:${item.inventoryId}:${locatorId}`)
+        else if (locator.sourceId !== 'saju-source-yuanhai-ziping') fail(`yuanhai_inventory_locator_source:${item.inventoryId}:${locatorId}`)
+      }
+      if (!Array.isArray(item.applicability) || item.applicability.length === 0 || !Array.isArray(item.exceptions) || item.exceptions.length === 0 || !Array.isArray(item.forbiddenExtensions) || item.forbiddenExtensions.length === 0) fail(`yuanhai_inventory_boundary:${item.inventoryId}`)
+      if (!isObject(item.requiredStructuralResult) || !Array.isArray(item.requiredStructuralResult.ruleIds) || !Array.isArray(item.requiredStructuralResult.fields) || typeof item.requiredStructuralResult.closure !== 'string') fail(`yuanhai_inventory_structural:${item.inventoryId}`)
+      if (!isObject(item.sourceDefinedOutput) || typeof item.sourceDefinedOutput.kind !== 'string' || typeof item.sourceDefinedOutput.role !== 'string' || !Array.isArray(item.sourceDefinedOutput.outputShape) || typeof item.sourceDefinedOutput.scope !== 'string') fail(`yuanhai_inventory_output:${item.inventoryId}`)
+      if (!['coexistence_only_until_source_priority_is_closed', 'unresolved_composition_frontier'].includes(item.compositionState)) fail(`yuanhai_inventory_composition:${item.inventoryId}`)
+      if (item.status === 'adopted_structural_rule') {
+        const contract = structuralContractsByRuleId.get(item.contractRuleId)
+        if (!contract || contract.work !== WORKS.yuanhai || contract.ruleStatus !== 'adopted_lineage_rule') fail(`yuanhai_inventory_contract:${item.inventoryId}`)
+        if (item.requiredStructuralResult.closure !== 'closed_in_existing_contract') fail(`yuanhai_inventory_adopted_closure:${item.inventoryId}`)
+      } else if (item.status === 'adopted_semantic_rule') {
+        const semanticRule = sourceSemanticRulesByRuleId.get(item.contractRuleId)
+        if (!semanticRule || semanticRule.work !== WORKS.yuanhai || semanticRule.status !== 'adopted_lineage_semantic_rule') fail(`yuanhai_inventory_semantic_contract:${item.inventoryId}`)
+      } else if (item.contractRuleId !== undefined) {
+        fail(`yuanhai_inventory_unadopted_contract:${item.inventoryId}`)
+      }
     }
   }
   const compositionFrontier = grammar.sourceBoundedSemanticGrammar?.compositionFrontier
@@ -2626,6 +3145,7 @@ function unsatisfiedStructuralConditions(contract, base) {
   if (contract.applicability.some(condition => condition.includes('timeAccuracy must be exact')) && !hasExactTime(base)) conditions.push('timeAccuracy_not_exact')
   if (contract.applicability.some(condition => condition.includes('all four supplied pillar')) && !hasCompletePillarValues(base)) conditions.push('complete_four_pillar_frame_missing')
   if (contract.ruleId === 'rule.yuanhai.hidden-stem-ten-god-label-inventory.v0' && !hasCompleteHiddenStemInventory(base)) conditions.push('complete_hidden_stem_inventory_missing')
+  if (contract.ruleId === 'rule.yuanhai.dayun-branch-seun-stem-lens.v0' && !hasCompleteYuanhaiDayunFocusLensInput(base)) conditions.push('complete_dayun_branch_seun_stem_lens_missing')
   if (contract.ruleId === 'rule.sanming.human-element-month-command.v0' && !Array.isArray(readPath(base, FACT_REFS.monthHiddenStems).value)) conditions.push('month_hidden_stem_list_missing')
   if (contract.ruleId === 'rule.ziping.branch-relation-inventory.v0' && !Array.isArray(readPath(base, FACT_REFS.branchRelations).value)) conditions.push('branch_relation_list_missing')
   if (contract.ruleId === 'rule.ziping.explicit-stem-branch-example-match.v0' && !hasCompleteZipingStemBranchExampleInput(base)) conditions.push('complete_stem_branch_example_input_missing')
