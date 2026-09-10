@@ -50,6 +50,8 @@ test('preview route is explicitly Python 3.14, fixture-bound, and separate from 
   assert.doesNotMatch(config, /"runtime":\s*"python3\.14"/)
   assert.equal(await readFile('.python-version', 'utf8'), '3.14.7\n')
   assert.match(config, /api\/provider\/de405\.bsp/)
+  assert.match(config, /api\/provider\/de405-only-release-contract-v1\.json/)
+  assert.match(config, /api\/provider\/NOTICE\.md/)
   assert.match(config, /scripts\/astrology-jplephem-producer\.py/)
   assert.match(config, /\.env/)
   assert.match(config, /\.agents\/\*\*/)

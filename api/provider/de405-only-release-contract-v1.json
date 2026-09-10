@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "astrology-de405-only-release-contract-v1",
+  "contractVersion": "1.0.0",
+  "scope": "cspice_free_function_bundle_with_unmodified_de405_kernel",
+  "publicReleaseAllowed": true,
+  "releaseStatus": "allowed_for_unmodified_naif_kernel_scope",
+  "provider": {
+    "id": "jplephem-2.24-direct-spk",
+    "jplephemVersion": "2.24",
+    "numpyVersion": "2.5.3",
+    "pythonVersion": "3.14.7",
+    "implementation": "direct_spk",
+    "cspiceIncluded": false,
+    "spiceToolkitIncluded": false
+  },
+  "source": {
+    "sourceUrl": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/a_old_versions/de405.bsp",
+    "sha256": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+    "bytes": 10898432,
+    "identity": "unmodified_official_naif_de405_bsp",
+    "embeddedCommentsRetained": true,
+    "coverage": {
+      "startEt": "-1.5778799588160586e+09",
+      "endEt": "1.5778800641839132e+09"
+    }
+  },
+  "notice": {
+    "path": "api/provider/NOTICE.md",
+    "sha256": "b9f19cbceebb8ab4f42e48f08542d15f01b0118d71740d816753a89ea3086d5a",
+    "bytes": 3781,
+    "containsNaifSourceAndCredit": true,
+    "containsDependencyLicenseSummary": true
+  },
+  "basis": {
+    "naifKernelRedistribution": {
+      "status": "permitted_when_unmodified",
+      "ruleUrl": "https://naif.jpl.nasa.gov/naif/rules.html",
+      "scopeMatch": true
+    },
+    "acknowledgement": {
+      "status": "included_and_encouraged",
+      "guidanceUrl": "https://naif.jpl.nasa.gov/naif/credit.html"
+    },
+    "cspiceToolkitRedistribution": {
+      "status": "not_applicable",
+      "reason": "the_function_bundle_contains_no_cspice_or_spice_toolkit_software"
+    },
+    "cspiceDerivedExportDesignation": {
+      "status": "not_in_scope",
+      "reason": "the_function_bundle_contains_no_cspice_or_spice_toolkit_software",
+      "boundary": "this_contract_does_not_clear_other_spice_software_or_project_specific_exports"
+    }
+  },
+  "provenance": {
+    "kernelPath": "api/provider/de405.bsp",
+    "noticePath": "api/provider/NOTICE.md",
+    "contractPath": "api/provider/de405-only-release-contract-v1.json",
+    "verification": "runtime_and_fresh_file_checker_must_match_all_fixed_identity_fields",
+    "runtimeDownload": false
+  },
+  "boundaries": {
+    "onlyUnmodifiedDe405Kernel": true,
+    "noCspiceProductionDependency": true,
+    "noRuntimeProviderDownload": true,
+    "noSemanticInterpretation": true,
+    "noTrueNode": true,
+    "interpretationActivation": false
+  }
+}

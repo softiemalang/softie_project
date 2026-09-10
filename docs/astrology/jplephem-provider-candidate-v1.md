@@ -86,12 +86,35 @@ deterministically derived technical FACTs and retains the jplephem/DE405
 identity. It does not rewrite the frozen CSPICE packet schema or activate
 interpretation.
 
-The route is therefore a preview/package candidate, not a public production
-route. Actual Vercel Preview deployment still requires a fresh authenticated
-Vercel session and the separate review of DE405 redistribution, attribution,
-and derived-product export conditions. Until those gates close, the producer
-remains `candidate_only_not_production` and `availableForInterpretation` is
-false.
+The route is therefore still a preview/package candidate, not a public
+production route. The DE405-only release contract closes the narrow
+kernel-redistribution and notice boundary, but actual Vercel Preview still
+requires a fresh authenticated Vercel session and cloud-side parity checks.
+The producer remains `candidate_only_not_production` for runtime-selection
+purposes and `availableForInterpretation` is false.
+
+## DE405-only release boundary
+
+The older `de405-linux-producer-v0` release gate is intentionally unchanged.
+That contract covers a Linux artifact containing CSPICE libraries and
+Toolkit-derived build material, so its `publicReleaseAllowed: false` and
+external-review state remain applicable to that artifact only.
+
+The CSPICE-free Function has a separate, narrower contract at
+`api/provider/de405-only-release-contract-v1.json`. Its scope is limited to
+the jplephem/NumPy runtime and the byte-for-byte unmodified NAIF `de405.bsp`.
+The contract binds the provider identity, source URL, BSP bytes/SHA-256,
+coverage, retained kernel comments, and the human-readable
+`api/provider/NOTICE.md`. It also asserts that CSPICE and the SPICE Toolkit
+are absent; the Function fails closed if the contract, notice, or BSP is
+missing or altered.
+
+For this data-only scope, the contract records
+`publicReleaseAllowed: true` based on NAIF's kernel-redistribution rule for
+unmodified NAIF kernels. It does not authorize distribution of CSPICE or the
+SPICE Toolkit, does not make a project-specific export determination for
+other products, and does not change interpretation activation. NAIF/PDS and
+the ancillary-data provider credit are included in the notice.
 
 ## Boundary and authority rules
 

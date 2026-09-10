@@ -21,10 +21,17 @@ ROOT = Path(__file__).resolve().parents[1]
 PRODUCER_PATH = ROOT / "scripts" / "astrology-jplephem-producer.py"
 FIXTURE_PATH = ROOT / "test" / "fixtures" / "astrology" / "provider-equivalence-v1.json"
 BSP_PATH = ROOT / "api" / "provider" / "de405.bsp"
+RELEASE_CONTRACT_PATH = ROOT / "api" / "provider" / "de405-only-release-contract-v1.json"
+NOTICE_PATH = ROOT / "api" / "provider" / "NOTICE.md"
 REQUEST_SCHEMA = "astrology-jplephem-preview-request-v1"
 RESPONSE_SCHEMA = "astrology-jplephem-fact-handoff-v1"
 PACKET_SCHEMA = "astrology-jplephem-fact-packet-v1"
 PACKET_VERSION = "1.0.0"
+EXPECTED_RELEASE_CONTRACT_SHA256 = "d1d8c2907358f9c7bd0c4d3f306b85d5fd9cae48a4249d8fd7b4f4a941ea29a7"
+EXPECTED_NOTICE_SHA256 = "b9f19cbceebb8ab4f42e48f08542d15f01b0118d71740d816753a89ea3086d5a"
+EXPECTED_NOTICE_BYTES = 3781
+EXPECTED_DE405_SHA256 = "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89"
+EXPECTED_DE405_BYTES = 10898432
 MAX_REQUEST_BYTES = 64 * 1024
 DAY_SECONDS = 86400.0
 J2000 = 2451545.0
@@ -152,6 +159,56 @@ def _stable_json(value: Any) -> str:
 
 def _sha256_value(value: Any) -> str:
     return hashlib.sha256(_stable_json(value).encode("utf-8")).hexdigest()
+
+
+def _load_de405_release_contract() -> dict[str, Any]:
+    if not RELEASE_CONTRACT_PATH.is_file() or not NOTICE_PATH.is_file():
+        raise PreviewError("de405_release_contract_missing")
+    if _sha256_file(RELEASE_CONTRACT_PATH) != EXPECTED_RELEASE_CONTRACT_SHA256:
+        raise PreviewError("de405_release_contract_sha_mismatch")
+    try:
+        contract = json.loads(RELEASE_CONTRACT_PATH.read_text(encoding="utf-8"))
+        notice = NOTICE_PATH.read_text(encoding="utf-8")
+    except (OSError, UnicodeError, json.JSONDecodeError) as error:
+        raise PreviewError("de405_release_contract_unreadable") from error
+    if not isinstance(contract, dict) or contract.get("schemaVersion") != "astrology-de405-only-release-contract-v1":
+        raise PreviewError("de405_release_contract_schema_mismatch")
+    if contract.get("contractVersion") != "1.0.0" or contract.get("scope") != "cspice_free_function_bundle_with_unmodified_de405_kernel":
+        raise PreviewError("de405_release_contract_version_mismatch")
+    if contract.get("publicReleaseAllowed") is not True or contract.get("releaseStatus") != "allowed_for_unmodified_naif_kernel_scope":
+        raise PreviewError("de405_public_release_gate_closed")
+    if contract.get("provider") != {
+        "id": "jplephem-2.24-direct-spk",
+        "jplephemVersion": "2.24",
+        "numpyVersion": "2.5.3",
+        "pythonVersion": "3.14.7",
+        "implementation": "direct_spk",
+        "cspiceIncluded": False,
+        "spiceToolkitIncluded": False,
+    }:
+        raise PreviewError("de405_release_provider_mismatch")
+    source = contract.get("source")
+    if not isinstance(source, dict) or source.get("sha256") != EXPECTED_DE405_SHA256 or source.get("bytes") != EXPECTED_DE405_BYTES or source.get("identity") != "unmodified_official_naif_de405_bsp" or source.get("embeddedCommentsRetained") is not True:
+        raise PreviewError("de405_release_source_mismatch")
+    notice = contract.get("notice")
+    if not isinstance(notice, dict) or notice.get("path") != "api/provider/NOTICE.md" or notice.get("sha256") != EXPECTED_NOTICE_SHA256 or notice.get("bytes") != EXPECTED_NOTICE_BYTES or notice.get("containsNaifSourceAndCredit") is not True:
+        raise PreviewError("de405_release_notice_mismatch")
+    if _sha256_file(NOTICE_PATH) != EXPECTED_NOTICE_SHA256 or NOTICE_PATH.stat().st_size != EXPECTED_NOTICE_BYTES:
+        raise PreviewError("de405_notice_integrity_mismatch")
+    for marker in ("de405.bsp", EXPECTED_DE405_SHA256, "NAIF rules", "NAIF credit guidance", "does not include CSPICE"):
+        if marker not in NOTICE_PATH.read_text(encoding="utf-8"):
+            raise PreviewError("de405_notice_content_mismatch")
+    if contract.get("basis", {}).get("naifKernelRedistribution", {}).get("status") != "permitted_when_unmodified":
+        raise PreviewError("de405_release_basis_mismatch")
+    if contract.get("basis", {}).get("cspiceToolkitRedistribution", {}).get("status") != "not_applicable" or contract.get("basis", {}).get("cspiceDerivedExportDesignation", {}).get("status") != "not_in_scope":
+        raise PreviewError("de405_release_cspice_boundary_mismatch")
+    boundaries = contract.get("boundaries", {})
+    if boundaries.get("onlyUnmodifiedDe405Kernel") is not True or boundaries.get("noCspiceProductionDependency") is not True or boundaries.get("noRuntimeProviderDownload") is not True or boundaries.get("interpretationActivation") is not False:
+        raise PreviewError("de405_release_boundary_mismatch")
+    for path in NOTICE_PATH.parent.iterdir():
+        if path.is_file() and (path.suffix.lower() in {".a", ".so", ".dylib", ".dll", ".elf"} or "cspice" in path.name.lower() or "toolkit" in path.name.lower()):
+            raise PreviewError("de405_release_forbidden_provider_asset")
+    return contract
 
 
 def _normalize_degrees(value: float) -> float:
@@ -594,6 +651,7 @@ def _evaluate_states(item: dict[str, Any], fixture: dict[str, Any]) -> list[dict
 
 
 def _build_preview(payload: Any) -> dict[str, Any]:
+    _load_de405_release_contract()
     fixture = _load_fixture()
     item, location = _validate_request(payload, fixture)
     rows = _evaluate_states(item, fixture)

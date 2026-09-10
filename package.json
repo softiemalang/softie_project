@@ -134,6 +134,7 @@
     "build:de405:linux-producer": "node scripts/build-de405-linux-producer-v0.mjs",
     "check:de405:linux-producer": "node scripts/check-de405-linux-producer-artifact.mjs",
     "check:astrology:jplephem-preview": "node scripts/check-astrology-jplephem-preview-v1.mjs",
+    "check:astrology:de405-release": "node scripts/check-astrology-de405-only-release-v1.mjs",
     "de405:overlap:sweep": "node scripts/run-de405-jpl-cspice-residual-sweep.mjs",
     "de405:jpl:build-runner": "node tools/de405-jpl-reader/build.mjs",
     "de405:jpl:fetch-sources": "node scripts/fetch-de405-jpl-sources.mjs",
