@@ -22,7 +22,7 @@ async function main() {
   const left = JSON.parse(leftBytes); const right = JSON.parse(rightBytes)
   const leftManifest = JSON.parse(leftManifestBytes); const rightManifest = JSON.parse(rightManifestBytes)
   if (left.schemaVersion !== 'astrology-jplephem-producer-output-v1' || right.schemaVersion !== left.schemaVersion) fail('candidate schema mismatch')
-  if (left.provider?.id !== 'jplephem' || right.provider?.id !== 'jplephem' || left.provider?.version !== right.provider?.version || left.provider?.numpyVersion !== right.provider?.numpyVersion || left.provider?.pythonVersion !== right.provider?.pythonVersion) fail('candidate runtime identity mismatch')
+  if (left.provider?.id !== 'jplephem' || right.provider?.id !== 'jplephem' || left.provider?.version !== right.provider?.version || left.provider?.numpyVersion !== right.provider?.numpyVersion || left.provider?.pythonVersion !== right.provider?.pythonVersion || left.provider?.pythonImplementation !== right.provider?.pythonImplementation || left.provider?.pythonAbi !== right.provider?.pythonAbi) fail('candidate runtime identity mismatch')
   if (left.source?.sha256 !== right.source?.sha256 || left.fixture?.sha256 !== right.fixture?.sha256 || left.fixture?.fixtureId !== right.fixture?.fixtureId) fail('candidate source/fixture identity mismatch')
   if (!Buffer.from(leftBytes).equals(Buffer.from(rightBytes))) fail('candidate bytes differ across Linux platforms')
   if (leftManifest.candidateSha256 !== sha256(leftBytes) || rightManifest.candidateSha256 !== sha256(rightBytes)) fail('candidate manifest payload hash mismatch')

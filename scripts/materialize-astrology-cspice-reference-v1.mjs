@@ -14,7 +14,7 @@ const EXPECTED_KERNEL_BYTES = 10898432
 const EXPECTED_FIXTURE_SHA256 = '8cb64320ebfe24bc2654b920da27af370cc78b4c0f7c663898933aea67a2355d'
 
 const args = Object.fromEntries(process.argv.slice(2).map((value, index, all) => value.startsWith('--') ? [value.slice(2), all[index + 1]] : []).filter(Boolean))
-const fixturePath = resolve(args.fixture || 'test/fixtures/astrology/provider-equivalence-v1.json')
+const fixturePath = resolve(args.fixture || 'api/provider/provider-equivalence-v1.json')
 const bspPath = resolve(args.bsp || '')
 const runnerPath = resolve(args.runner || '')
 const outputPath = resolve(args.output || '')

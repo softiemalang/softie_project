@@ -18,8 +18,8 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PRODUCER_PATH = ROOT / "scripts" / "astrology-jplephem-producer.py"
-FIXTURE_PATH = ROOT / "test" / "fixtures" / "astrology" / "provider-equivalence-v1.json"
+PRODUCER_PATH = ROOT / "api" / "provider" / "astrology-jplephem-producer.py"
+FIXTURE_PATH = ROOT / "api" / "provider" / "provider-equivalence-v1.json"
 BSP_PATH = ROOT / "api" / "provider" / "de405.bsp"
 RELEASE_CONTRACT_PATH = ROOT / "api" / "provider" / "de405-only-release-contract-v1.json"
 NOTICE_PATH = ROOT / "api" / "provider" / "NOTICE.md"
@@ -27,7 +27,7 @@ REQUEST_SCHEMA = "astrology-jplephem-preview-request-v1"
 RESPONSE_SCHEMA = "astrology-jplephem-fact-handoff-v1"
 PACKET_SCHEMA = "astrology-jplephem-fact-packet-v1"
 PACKET_VERSION = "1.0.0"
-EXPECTED_RELEASE_CONTRACT_SHA256 = "d1d8c2907358f9c7bd0c4d3f306b85d5fd9cae48a4249d8fd7b4f4a941ea29a7"
+EXPECTED_RELEASE_CONTRACT_SHA256 = "7a83e01e8ef24eefb4124d5021711ae8392ee6c40b4e2986fed543081c68209f"
 EXPECTED_NOTICE_SHA256 = "b9f19cbceebb8ab4f42e48f08542d15f01b0118d71740d816753a89ea3086d5a"
 EXPECTED_NOTICE_BYTES = 3781
 EXPECTED_DE405_SHA256 = "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89"
@@ -181,12 +181,28 @@ def _load_de405_release_contract() -> dict[str, Any]:
         "id": "jplephem-2.24-direct-spk",
         "jplephemVersion": "2.24",
         "numpyVersion": "2.5.3",
-        "pythonVersion": "3.14.7",
         "implementation": "direct_spk",
         "cspiceIncluded": False,
         "spiceToolkitIncluded": False,
     }:
         raise PreviewError("de405_release_provider_mismatch")
+    if contract.get("runtimeCompatibility") != {
+        "python": {
+            "implementation": "cpython",
+            "versionSeries": "3.14.x",
+            "abiTag": "cpython-314",
+            "referenceVersion": "3.14.7",
+            "exactVersionEqualityRequired": False,
+        },
+        "dependencies": {"jplephem": "2.24", "numpy": "2.5.3"},
+        "verification": {
+            "importsRequired": ["jplephem.spk", "numpy"],
+            "patchVersionRecordedInPacket": True,
+            "patchVersionUsedAsAcceptanceGate": False,
+            "abiValidation": "sys.implementation.name_and_cache_tag",
+        },
+    }:
+        raise PreviewError("de405_runtime_compatibility_mismatch")
     source = contract.get("source")
     if not isinstance(source, dict) or source.get("sha256") != EXPECTED_DE405_SHA256 or source.get("bytes") != EXPECTED_DE405_BYTES or source.get("identity") != "unmodified_official_naif_de405_bsp" or source.get("embeddedCommentsRetained") is not True:
         raise PreviewError("de405_release_source_mismatch")
@@ -634,7 +650,7 @@ def _evaluate_states(item: dict[str, Any], fixture: dict[str, Any]) -> list[dict
     kernel_sha = _sha256_file(BSP_PATH)
     if kernel_sha != producer.EXPECTED_KERNEL_SHA256:
         raise PreviewError("de405_bsp_sha_mismatch")
-    python_version, jplephem_version, numpy_version = producer.validate_runtime()
+    python_version, python_implementation, python_abi, jplephem_version, numpy_version = producer.validate_runtime()
     if not hasattr(producer, "SPK"):
         raise PreviewError("jplephem_provider_missing")
     try:
@@ -646,7 +662,7 @@ def _evaluate_states(item: dict[str, Any], fixture: dict[str, Any]) -> list[dict
         state = producer.relative_to_earth(kernel, mapping["targetId"], float(item["jdTdb"]))
         if not isinstance(state, list) or len(state) != 6 or not all(_finite(value) for value in state):
             raise PreviewError(f"state_unavailable:{mapping['id']}")
-        rows.append({"mapping": mapping, "state": state, "pythonVersion": python_version, "jplephemVersion": jplephem_version, "numpyVersion": numpy_version, "kernelSha256": kernel_sha})
+        rows.append({"mapping": mapping, "state": state, "pythonVersion": python_version, "pythonImplementation": python_implementation, "pythonAbi": python_abi, "jplephemVersion": jplephem_version, "numpyVersion": numpy_version, "kernelSha256": kernel_sha})
     return rows
 
 
@@ -657,7 +673,7 @@ def _build_preview(payload: Any) -> dict[str, Any]:
     rows = _evaluate_states(item, fixture)
     time = _time_angles(item, location)
     raw_bodies = []
-    provider_info = {"id": "jplephem", "implementation": "direct_spk", "version": rows[0]["jplephemVersion"], "numpyVersion": rows[0]["numpyVersion"], "pythonVersion": rows[0]["pythonVersion"], "license": "MIT"}
+    provider_info = {"id": "jplephem", "implementation": "direct_spk", "version": rows[0]["jplephemVersion"], "numpyVersion": rows[0]["numpyVersion"], "pythonVersion": rows[0]["pythonVersion"], "pythonImplementation": rows[0]["pythonImplementation"], "pythonAbi": rows[0]["pythonAbi"], "license": "MIT"}
     for row in rows:
         converted = _convert_state(row["state"], time["jdTt"])
         raw_bodies.append({"id": row["mapping"]["id"], "longitudeDegrees": converted["longitude"], "longitudeSpeedDegreesPerDay": converted["speed"], "state": converted})
@@ -787,8 +803,11 @@ def verify_preview_response(response: Any) -> list[str]:
     provider = packet.get("provider")
     require(isinstance(provider, dict), "provider_missing")
     if isinstance(provider, dict):
-        for key, expected in {"id": "jplephem", "implementation": "direct_spk", "version": "2.24", "numpyVersion": "2.5.3", "pythonVersion": "3.14.7", "sourceSha256": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89", "sourceBytes": 10898432, "sourceIdentity": "unmodified_official_naif_de405_bsp"}.items():
+        for key, expected in {"id": "jplephem", "implementation": "direct_spk", "version": "2.24", "numpyVersion": "2.5.3", "pythonImplementation": "cpython", "pythonAbi": "cpython-314", "sourceSha256": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89", "sourceBytes": 10898432, "sourceIdentity": "unmodified_official_naif_de405_bsp"}.items():
             require(provider.get(key) == expected, f"provider_{key}_mismatch")
+        python_version = provider.get("pythonVersion")
+        version_parts = python_version.split(".") if isinstance(python_version, str) else []
+        require(len(version_parts) == 3 and version_parts[:2] == ["3", "14"] and version_parts[2].isdigit(), "provider_pythonVersion_series_mismatch")
     raw = packet.get("rawChart")
     rule = packet.get("ruleChart")
     require(isinstance(raw, dict) and raw.get("schemaVersion") == "astrology-raw-chart-v1" and raw.get("availability") == "available" and raw.get("verificationStatus") == "verified", "raw_chart_invalid")

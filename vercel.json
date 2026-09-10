@@ -3,8 +3,8 @@
   "functions": {
     "api/astrology.py": {
       "maxDuration": 60,
-      "includeFiles": "{api/provider/de405.bsp,api/provider/de405-only-release-contract-v1.json,api/provider/NOTICE.md,scripts/astrology-jplephem-producer.py,test/fixtures/astrology/provider-equivalence-v1.json}",
-      "excludeFiles": "{.env,.env.*,**/.env,**/.env.*,.agents/**,.codex/**,.git/**,.vercel/**,docs/**,artifacts/**,src/**,tools/**,test/**/*.test.js,test/**/*.test.mjs}"
+      "includeFiles": "{api/provider/de405.bsp,api/provider/de405-only-release-contract-v1.json,api/provider/NOTICE.md,api/provider/astrology-jplephem-producer.py,api/provider/provider-equivalence-v1.json}",
+      "excludeFiles": "{.env,.env.*,**/.env,**/.env.*,.agents/**,.{codex,github}/**,{docs,artifacts,src,tools,ops,references,schemas,scratch,spikes,supabase,scripts,test,dist}/**,.vercel_python_packages/**,*.*,JPLEPH}"
     }
   },
   "rewrites": [

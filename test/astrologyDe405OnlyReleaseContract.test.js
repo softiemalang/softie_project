@@ -26,6 +26,14 @@ test('DE405-only release contract is source-bounded and CSPICE-free', async () =
   assert.equal(result.contract.source.identity, 'unmodified_official_naif_de405_bsp')
   assert.equal(result.contract.provider.cspiceIncluded, false)
   assert.equal(result.contract.provider.spiceToolkitIncluded, false)
+  assert.deepEqual(result.contract.runtimeCompatibility.python, {
+    implementation: 'cpython',
+    versionSeries: '3.14.x',
+    abiTag: 'cpython-314',
+    referenceVersion: '3.14.7',
+    exactVersionEqualityRequired: false,
+  })
+  assert.deepEqual(result.contract.runtimeCompatibility.dependencies, { jplephem: '2.24', numpy: '2.5.3' })
   assert.equal((await stat(join(PROVIDER, 'de405.bsp'))).size, 10898432)
 })
 

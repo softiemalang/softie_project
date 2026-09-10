@@ -1,0 +1,20 @@
+# Keep source deployments free of local research corpus and developer-only data.
+.agents/**
+.codex/**
+.vercel/**
+.vercel_python_packages/**
+pyproject*.toml
+uv*.lock
+.github/**
+artifacts/**
+docs/**
+ops/**
+references/**
+schemas/**
+scratch/**
+spikes/**
+supabase/**
+test/**
+tools/**
+opencode.json
+JPLEPH

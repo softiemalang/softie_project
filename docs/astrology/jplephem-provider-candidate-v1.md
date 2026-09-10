@@ -9,13 +9,14 @@ Node, or generate semantic or personal interpretation.
 
 The CSPICE runner in the GitHub Actions `reference` job is an offline
 comparison oracle only. It is not part of the jplephem candidate payload and
-is not required by `scripts/astrology-jplephem-producer.py`.
+is not required by `api/provider/astrology-jplephem-producer.py`.
 
 ## Fixed inputs and runtime
 
 | Item | Fixed value |
 |---|---|
-| Python | `3.14.7` CPython |
+| Python build reference | `3.14.7` CPython |
+| Python runtime compatibility | CPython `3.14.x`, ABI tag `cpython-314` |
 | jplephem | `2.24` |
 | NumPy | `2.5.3` |
 | Python dependency license | MIT |
@@ -29,7 +30,10 @@ is not required by `scripts/astrology-jplephem-producer.py`.
 
 The producer has no network or runtime-download path. It rejects a missing,
 wrong-size, or wrong-hash BSP, an altered fixture, a wrong provider identity,
-an unavailable required SPK segment, and an ABI/dependency version mismatch.
+an unavailable required SPK segment, and a runtime ABI/dependency mismatch.
+The exact interpreter patch version is recorded in each output for provenance;
+acceptance uses the CPython `3.14.x`/`cpython-314` compatibility contract rather
+than requiring the build reference patch.
 
 ## Candidate output
 
@@ -71,8 +75,9 @@ activation gates close.
 ## Vercel preview packaging
 
 `api/astrology.py` is the smallest file-based Python Function candidate. Its
-root `requirements.txt` pins CPython-compatible `jplephem==2.24` and
-`numpy==2.5.3`; `.python-version` records `3.14.7`; and `vercel.json`
+root `requirements.txt` pins `jplephem==2.24` and `numpy==2.5.3`; `.python-version`
+records the reproducible build reference `3.14.7`; the runtime contract accepts
+CPython `3.14.x` with ABI tag `cpython-314`; and `vercel.json`
 includes the immutable BSP, producer module, and equivalence fixture in the
 function bundle. The function has no runtime network or provider-download
 path and uses a 64 KiB request cap.
@@ -87,9 +92,26 @@ identity. It does not rewrite the frozen CSPICE packet schema or activate
 interpretation.
 
 The route is therefore still a preview/package candidate, not a public
-production route. The DE405-only release contract closes the narrow
-kernel-redistribution and notice boundary, but actual Vercel Preview still
-requires a fresh authenticated Vercel session and cloud-side parity checks.
+production route. An authenticated Vercel Preview check observed CPython
+`3.14.7` during the build and CPython `3.14.6` while executing the Function;
+the response recorded that exact runtime and passed the `cpython-314` runtime
+contract. The same request produced byte-identical repeated responses, passed
+the fresh-file checker, and rejected tampered, missing-handoff, and
+wrong-provider responses.
+
+That check closes only the fixture-bound cloud compatibility path. The cloud
+request uses `golden_2000:seoul`, while the existing Mac golden uses a
+synthetic `0/0` observer location; therefore location-dependent angles,
+Whole Sign houses, chart rulers, and angle aspects are not claimed as
+same-input Mac parity by this record. The cloud output does match the Mac
+golden's provider-sensitive raw body values and location-independent discrete
+body/aspect/distribution FACTs within the frozen equivalence contract.
+
+The route must remain fixture-bound until an independently verified input
+boundary and date-valid provider evidence are packaged for arbitrary users:
+IANA timezone/DST-to-UTC resolution, DUT1 and leap-second/TT-UTC provenance,
+deterministic TDB-TT values, verified locations, and DE405 coverage checks.
+The fixture's fixed offsets and locations are not reusable defaults.
 The producer remains `candidate_only_not_production` for runtime-selection
 purposes and `availableForInterpretation` is false.
 

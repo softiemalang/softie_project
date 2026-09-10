@@ -8,10 +8,28 @@
     "id": "jplephem-2.24-direct-spk",
     "jplephemVersion": "2.24",
     "numpyVersion": "2.5.3",
-    "pythonVersion": "3.14.7",
     "implementation": "direct_spk",
     "cspiceIncluded": false,
     "spiceToolkitIncluded": false
+  },
+  "runtimeCompatibility": {
+    "python": {
+      "implementation": "cpython",
+      "versionSeries": "3.14.x",
+      "abiTag": "cpython-314",
+      "referenceVersion": "3.14.7",
+      "exactVersionEqualityRequired": false
+    },
+    "dependencies": {
+      "jplephem": "2.24",
+      "numpy": "2.5.3"
+    },
+    "verification": {
+      "importsRequired": ["jplephem.spk", "numpy"],
+      "patchVersionRecordedInPacket": true,
+      "patchVersionUsedAsAcceptanceGate": false,
+      "abiValidation": "sys.implementation.name_and_cache_tag"
+    }
   },
   "source": {
     "sourceUrl": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/a_old_versions/de405.bsp",

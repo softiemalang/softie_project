@@ -22,7 +22,10 @@ from jplephem.spk import SPK
 EXPECTED_PROVIDER_ID = "jplephem-2.24-direct-spk"
 EXPECTED_JPLEPHEM_VERSION = "2.24"
 EXPECTED_NUMPY_VERSION = "2.5.3"
-EXPECTED_PYTHON_VERSION = "3.14.7"
+EXPECTED_PYTHON_IMPLEMENTATION = "cpython"
+EXPECTED_PYTHON_VERSION_SERIES = (3, 14)
+EXPECTED_PYTHON_ABI = "cpython-314"
+REFERENCE_PYTHON_VERSION = "3.14.7"
 EXPECTED_KERNEL_URL = "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/a_old_versions/de405.bsp"
 EXPECTED_KERNEL_SHA256 = "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89"
 EXPECTED_KERNEL_BYTES = 10898432
@@ -171,8 +174,10 @@ def validate_fixture(fixture_path, fixture):
 
 def validate_runtime():
     python_version = ".".join(str(part) for part in sys.version_info[:3])
-    if python_version != EXPECTED_PYTHON_VERSION:
-        fail(f"Python ABI/version mismatch: {python_version}")
+    python_implementation = sys.implementation.name
+    python_abi = sys.implementation.cache_tag
+    if sys.version_info[:2] != EXPECTED_PYTHON_VERSION_SERIES or python_implementation != EXPECTED_PYTHON_IMPLEMENTATION or python_abi != EXPECTED_PYTHON_ABI:
+        fail(f"Python runtime ABI mismatch: {python_version}/{python_implementation}/{python_abi}")
     try:
         jplephem_version = importlib.metadata.version("jplephem")
         numpy_version = importlib.metadata.version("numpy")
@@ -182,7 +187,7 @@ def validate_runtime():
         fail(f"jplephem version mismatch: {jplephem_version}")
     if numpy_version != EXPECTED_NUMPY_VERSION:
         fail(f"numpy version mismatch: {numpy_version}")
-    return python_version, jplephem_version, numpy_version
+    return python_version, python_implementation, python_abi, jplephem_version, numpy_version
 
 
 def produce(fixture_path, bsp_path, output_path, provider_id):
@@ -199,7 +204,7 @@ def produce(fixture_path, bsp_path, output_path, provider_id):
         fail("equivalence fixture is missing")
     fixture = json.loads(fixture_path.read_text(encoding="utf-8"))
     fixtures = validate_fixture(fixture_path, fixture)
-    python_version, jplephem_version, numpy_version = validate_runtime()
+    python_version, python_implementation, python_abi, jplephem_version, numpy_version = validate_runtime()
 
     try:
         kernel = SPK.open(str(bsp_path))
@@ -237,6 +242,8 @@ def produce(fixture_path, bsp_path, output_path, provider_id):
             "version": jplephem_version,
             "numpyVersion": numpy_version,
             "pythonVersion": python_version,
+            "pythonImplementation": python_implementation,
+            "pythonAbi": python_abi,
             "license": "MIT",
         },
         "source": {

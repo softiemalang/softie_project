@@ -7,7 +7,7 @@ const ROOT = resolve(new URL('..', import.meta.url).pathname)
 const CONTRACT_PATH = join(ROOT, 'api/provider/de405-only-release-contract-v1.json')
 const NOTICE_PATH = join(ROOT, 'api/provider/NOTICE.md')
 const BSP_PATH = join(ROOT, 'api/provider/de405.bsp')
-const EXPECTED_CONTRACT_SHA256 = 'd1d8c2907358f9c7bd0c4d3f306b85d5fd9cae48a4249d8fd7b4f4a941ea29a7'
+const EXPECTED_CONTRACT_SHA256 = '7a83e01e8ef24eefb4124d5021711ae8392ee6c40b4e2986fed543081c68209f'
 const EXPECTED_NOTICE_SHA256 = 'b9f19cbceebb8ab4f42e48f08542d15f01b0118d71740d816753a89ea3086d5a'
 const EXPECTED_BSP_SHA256 = '30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89'
 const EXPECTED_BSP_BYTES = 10898432
@@ -15,10 +15,25 @@ const EXPECTED_PROVIDER = Object.freeze({
   id: 'jplephem-2.24-direct-spk',
   jplephemVersion: '2.24',
   numpyVersion: '2.5.3',
-  pythonVersion: '3.14.7',
   implementation: 'direct_spk',
   cspiceIncluded: false,
   spiceToolkitIncluded: false,
+})
+const EXPECTED_RUNTIME_COMPATIBILITY = Object.freeze({
+  python: {
+    implementation: 'cpython',
+    versionSeries: '3.14.x',
+    abiTag: 'cpython-314',
+    referenceVersion: '3.14.7',
+    exactVersionEqualityRequired: false,
+  },
+  dependencies: { jplephem: '2.24', numpy: '2.5.3' },
+  verification: {
+    importsRequired: ['jplephem.spk', 'numpy'],
+    patchVersionRecordedInPacket: true,
+    patchVersionUsedAsAcceptanceGate: false,
+    abiValidation: 'sys.implementation.name_and_cache_tag',
+  },
 })
 
 async function sha256File(path) {
@@ -66,6 +81,7 @@ export async function checkDe405OnlyRelease({ root = ROOT } = {}) {
     if (contract.scope !== 'cspice_free_function_bundle_with_unmodified_de405_kernel') errors.push('release_scope_mismatch')
     if (contract.publicReleaseAllowed !== true || contract.releaseStatus !== 'allowed_for_unmodified_naif_kernel_scope') errors.push('public_release_gate_not_open_for_declared_scope')
     if (!same(contract.provider, EXPECTED_PROVIDER)) errors.push('provider_identity_mismatch')
+    if (!same(contract.runtimeCompatibility, EXPECTED_RUNTIME_COMPATIBILITY)) errors.push('runtime_compatibility_mismatch')
     if (!same(contract.source, {
       sourceUrl: 'https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/a_old_versions/de405.bsp',
       sha256: EXPECTED_BSP_SHA256,

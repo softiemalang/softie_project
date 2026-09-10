@@ -16,7 +16,7 @@ const EXPECTED_KERNEL_URL = 'https://naif.jpl.nasa.gov/pub/naif/generic_kernels/
 const EXPECTED_KERNEL_SHA256 = '30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89'
 const EXPECTED_KERNEL_BYTES = 10898432
 const EXPECTED_FIXTURE_SHA256 = '8cb64320ebfe24bc2654b920da27af370cc78b4c0f7c663898933aea67a2355d'
-const EXPECTED_PROVIDER = { id: 'jplephem', implementation: 'direct_spk', version: '2.24', numpyVersion: '2.5.3', pythonVersion: '3.14.7' }
+const EXPECTED_PROVIDER = { id: 'jplephem', implementation: 'direct_spk', version: '2.24', numpyVersion: '2.5.3', pythonVersion: '3.14.7', pythonImplementation: 'cpython', pythonAbi: 'cpython-314' }
 const EXPECTED_BODY_MAPPING = [
   ['sun', 10, 'body'], ['moon', 301, 'body'], ['mercury', 1, 'barycenter'], ['venus', 2, 'barycenter'],
   ['mars', 4, 'barycenter'], ['jupiter', 5, 'barycenter'], ['saturn', 6, 'barycenter'], ['uranus', 7, 'barycenter'],

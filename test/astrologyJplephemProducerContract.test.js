@@ -3,11 +3,11 @@ import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import test from 'node:test'
 
-const fixturePath = 'test/fixtures/astrology/provider-equivalence-v1.json'
+const fixturePath = 'api/provider/provider-equivalence-v1.json'
 const fixtureBytes = readFileSync(fixturePath)
 const fixture = JSON.parse(fixtureBytes)
 const workflow = readFileSync('.github/workflows/astrology-jplephem-equivalence-v1.yml', 'utf8')
-const producer = readFileSync('scripts/astrology-jplephem-producer.py', 'utf8')
+const producer = readFileSync('api/provider/astrology-jplephem-producer.py', 'utf8')
 
 test('jplephem candidate fixture pins source, runtime, mappings, and boundary suite', () => {
   assert.equal(createHash('sha256').update(fixtureBytes).digest('hex'), '8cb64320ebfe24bc2654b920da27af370cc78b4c0f7c663898933aea67a2355d')
@@ -25,6 +25,9 @@ test('candidate producer is offline and workflow fixes fresh install/process/pla
   assert.match(producer, /from jplephem\.spk import SPK/)
   assert.match(producer, /EXPECTED_JPLEPHEM_VERSION = "2\.24"/)
   assert.match(producer, /EXPECTED_NUMPY_VERSION = "2\.5\.3"/)
+  assert.match(producer, /EXPECTED_PYTHON_VERSION_SERIES = \(3, 14\)/)
+  assert.match(producer, /EXPECTED_PYTHON_ABI = "cpython-314"/)
+  assert.match(producer, /sys\.implementation\.cache_tag/)
   assert.doesNotMatch(producer, /requests|urllib|httpx|fetch\(/i)
   assert.match(workflow, /actions\/setup-python@42375524e23c412d93fb67b49958b491fce71c38/)
   assert.match(workflow, /python-version: 3\.14\.7/)

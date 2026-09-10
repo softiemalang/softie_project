@@ -55,7 +55,7 @@ jobs:
           set -euo pipefail
           mkdir -p "${RUNNER_TEMP}/astrology-cspice-reference-v1"
           node scripts/materialize-astrology-cspice-reference-v1.mjs \
-            --fixture test/fixtures/astrology/provider-equivalence-v1.json \
+            --fixture api/provider/provider-equivalence-v1.json \
             --bsp "${RUNNER_TEMP}/de405-reference-inputs/de405.bsp" \
             --runner tools/de405-cspice-runner/build/de405-canonical-v2-runner \
             --output "${RUNNER_TEMP}/astrology-cspice-reference-v1/reference.json"
@@ -91,6 +91,7 @@ jobs:
           test "$(uname -m)" = "x86_64"
           test "$(python -c 'import platform; print(platform.python_version())')" = "3.14.7"
           test "$(python -c 'import sys; print(sys.implementation.name)')" = "cpython"
+          test "$(python -c 'import sys; print(sys.implementation.cache_tag)')" = "cpython-314"
       - name: Download and verify the immutable DE405 BSP
         shell: bash
         run: |
@@ -112,12 +113,12 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "${RUNNER_TEMP}/astrology-jplephem-candidate"
-          python scripts/astrology-jplephem-producer.py \
-            --fixture test/fixtures/astrology/provider-equivalence-v1.json \
+          python api/provider/astrology-jplephem-producer.py \
+            --fixture api/provider/provider-equivalence-v1.json \
             --bsp "${RUNNER_TEMP}/de405.bsp" \
             --output "${RUNNER_TEMP}/astrology-jplephem-candidate/candidate-1.json"
-          python scripts/astrology-jplephem-producer.py \
-            --fixture test/fixtures/astrology/provider-equivalence-v1.json \
+          python api/provider/astrology-jplephem-producer.py \
+            --fixture api/provider/provider-equivalence-v1.json \
             --bsp "${RUNNER_TEMP}/de405.bsp" \
             --output "${RUNNER_TEMP}/astrology-jplephem-candidate/candidate-2.json"
           cmp "${RUNNER_TEMP}/astrology-jplephem-candidate/candidate-1.json" "${RUNNER_TEMP}/astrology-jplephem-candidate/candidate-2.json"
@@ -133,7 +134,7 @@ jobs:
           set -euo pipefail
           mkdir -p "${RUNNER_TEMP}/astrology-jplephem-candidate"
           node scripts/check-astrology-jplephem-equivalence-v1.mjs \
-            --fixture test/fixtures/astrology/provider-equivalence-v1.json \
+            --fixture api/provider/provider-equivalence-v1.json \
             --candidate "${RUNNER_TEMP}/astrology-jplephem-candidate/candidate-1.json" \
             --reference "${RUNNER_TEMP}/astrology-cspice-reference-v1/reference.json" \
             --summary "${RUNNER_TEMP}/astrology-jplephem-candidate/equivalence-report.json"
@@ -143,9 +144,9 @@ jobs:
           set -euo pipefail
           candidate="${RUNNER_TEMP}/astrology-jplephem-candidate/candidate-1.json"
           reference="${RUNNER_TEMP}/astrology-cspice-reference-v1/reference.json"
-          fixture="test/fixtures/astrology/provider-equivalence-v1.json"
-          if python scripts/astrology-jplephem-producer.py --provider wrong-provider --fixture "$fixture" --bsp "${RUNNER_TEMP}/de405.bsp" --output "${RUNNER_TEMP}/wrong-provider.json"; then exit 1; fi
-          if python scripts/astrology-jplephem-producer.py --fixture "$fixture" --bsp "${RUNNER_TEMP}/missing.bsp" --output "${RUNNER_TEMP}/missing-bsp.json"; then exit 1; fi
+          fixture="api/provider/provider-equivalence-v1.json"
+          if python api/provider/astrology-jplephem-producer.py --provider wrong-provider --fixture "$fixture" --bsp "${RUNNER_TEMP}/de405.bsp" --output "${RUNNER_TEMP}/wrong-provider.json"; then exit 1; fi
+          if python api/provider/astrology-jplephem-producer.py --fixture "$fixture" --bsp "${RUNNER_TEMP}/missing.bsp" --output "${RUNNER_TEMP}/missing-bsp.json"; then exit 1; fi
           cp "$candidate" "${RUNNER_TEMP}/tampered.json"
           CANDIDATE="${RUNNER_TEMP}/tampered.json" node --input-type=module -e 'import fs from "node:fs"; const p=process.env.CANDIDATE; const x=JSON.parse(fs.readFileSync(p, "utf8")); x.rows[0].positionKm[0] += 1; fs.writeFileSync(p, JSON.stringify(x));'
           if node scripts/check-astrology-jplephem-equivalence-v1.mjs --fixture "$fixture" --candidate "${RUNNER_TEMP}/tampered.json" --reference "$reference"; then exit 1; fi
