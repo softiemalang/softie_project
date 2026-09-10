@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "astrology-provider-equivalence-fixture-v1",
+  "fixtureId": "jplephem-de405-equivalence-suite-v1",
+  "kernel": {
+    "sourceUrl": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/a_old_versions/de405.bsp",
+    "sha256": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+    "bytes": 10898432,
+    "identity": "unmodified_official_naif_de405_bsp",
+    "coverage": {
+      "startEt": "-1.5778799588160586e+09",
+      "endEt": "1.5778800641839132e+09"
+    }
+  },
+  "time": {
+    "timeScale": "TDB",
+    "ttMinusUtcSeconds": 64.184,
+    "ut1MinusUtcSeconds": 0,
+    "tdbModel": "explicit_fixture_value",
+    "observerId": 399,
+    "frame": "J2000",
+    "aberrationCorrection": "NONE"
+  },
+  "bodies": [
+    { "id": "sun", "targetId": 10, "targetType": "body" },
+    { "id": "moon", "targetId": 301, "targetType": "body" },
+    { "id": "mercury", "targetId": 1, "targetType": "barycenter" },
+    { "id": "venus", "targetId": 2, "targetType": "barycenter" },
+    { "id": "mars", "targetId": 4, "targetType": "barycenter" },
+    { "id": "jupiter", "targetId": 5, "targetType": "barycenter" },
+    { "id": "saturn", "targetId": 6, "targetType": "barycenter" },
+    { "id": "uranus", "targetId": 7, "targetType": "barycenter" },
+    { "id": "neptune", "targetId": 8, "targetType": "barycenter" },
+    { "id": "pluto", "targetId": 9, "targetType": "barycenter" }
+  ],
+  "locations": [
+    { "id": "seoul", "latitudeDegrees": 37.5665, "longitudeDegreesEast": 126.978 },
+    { "id": "busan", "latitudeDegrees": 35.1796, "longitudeDegreesEast": 129.0756 },
+    { "id": "jeju", "latitudeDegrees": 33.4996, "longitudeDegreesEast": 126.5312 },
+    { "id": "incheon", "latitudeDegrees": 37.4563, "longitudeDegreesEast": 126.7052 }
+  ],
+  "fixtures": [
+    { "id": "coverage_start_margin", "utc": { "year": 1950, "month": 1, "day": 1, "hour": 0, "minute": 0, "second": 42 }, "et": -1577879893.816043, "jdTt": 2433282.5012289817, "jdTdb": 2433282.501228981, "tdbMinusTtSeconds": -0.000057697296142578125 },
+    { "id": "date_1960", "utc": { "year": 1960, "month": 1, "day": 1, "hour": 0, "minute": 0, "second": 0 }, "et": -1262347135.8160737, "jdTt": 2436934.5007428704, "jdTdb": 2436934.5007428695, "tdbMinusTtSeconds": -0.00007462501525878906 },
+    { "id": "date_1975", "utc": { "year": 1975, "month": 3, "day": 21, "hour": 0, "minute": 0, "second": 0 }, "et": -782135935.8143955, "jdTt": 2442492.5007428704, "jdTdb": 2442492.500742889, "tdbMinusTtSeconds": 0.0016033649444580078 },
+    { "id": "date_1988", "utc": { "year": 1988, "month": 8, "day": 17, "hour": 12, "minute": 0, "second": 0 }, "et": -358905535.8171363, "jdTt": 2447391.0007428704, "jdTdb": 2447391.0007428573, "tdbMinusTtSeconds": -0.001137375831604004 },
+    { "id": "golden_2000", "utc": { "year": 2000, "month": 1, "day": 1, "hour": 12, "minute": 0, "second": 0 }, "et": 64.18392969875967, "jdTt": 2451545.0007428704, "jdTdb": 2451545.0007428695, "tdbMinusTtSeconds": -0.00007138938272532869 },
+    { "id": "date_2008", "utc": { "year": 2008, "month": 9, "day": 1, "hour": 0, "minute": 0, "second": 0 }, "et": 273499264.1826044, "jdTt": 2454710.5007428704, "jdTdb": 2454710.500742854, "tdbMinusTtSeconds": -0.0013967156410217285 },
+    { "id": "date_2012", "utc": { "year": 2012, "month": 1, "day": 1, "hour": 0, "minute": 0, "second": 0 }, "et": 378648064.18391216, "jdTt": 2455927.5007428704, "jdTdb": 2455927.5007428695, "tdbMinusTtSeconds": -0.00008893013000488281 },
+    { "id": "date_2020", "utc": { "year": 2020, "month": 3, "day": 24, "hour": 0, "minute": 0, "second": 0 }, "et": 638280064.1856257, "jdTt": 2458932.5007428704, "jdTdb": 2458932.500742889, "tdbMinusTtSeconds": 0.0016245841979980469 },
+    { "id": "date_2024", "utc": { "year": 2024, "month": 4, "day": 8, "hour": 18, "minute": 0, "second": 0 }, "et": 765871264.1856538, "jdTt": 2460409.2507428704, "jdTdb": 2460409.2507428895, "tdbMinusTtSeconds": 0.0016527175903320312 },
+    { "id": "date_2025", "utc": { "year": 2025, "month": 3, "day": 15, "hour": 0, "minute": 0, "second": 0 }, "et": 795268864.1855531, "jdTt": 2460749.5007428704, "jdTdb": 2460749.5007428885, "tdbMinusTtSeconds": 0.001551985740661621 },
+    { "id": "date_2049", "utc": { "year": 2049, "month": 12, "day": 31, "hour": 0, "minute": 0, "second": 0 }, "et": 1577793664.1838875, "jdTt": 2469806.5007428704, "jdTdb": 2469806.500742869, "tdbMinusTtSeconds": -0.00011348724365234375 },
+    { "id": "mercury_retrograde_sample", "utc": { "year": 1965, "month": 4, "day": 1, "hour": 0, "minute": 0, "second": 0 }, "et": -1096718335.8143446, "jdTt": 2438851.5007428704, "jdTdb": 2438851.5007428895, "tdbMinusTtSeconds": 0.0016543865203857422 },
+    { "id": "venus_retrograde_sample", "utc": { "year": 1980, "month": 7, "day": 1, "hour": 0, "minute": 0, "second": 0 }, "et": -615470335.8159008, "jdTt": 2444421.5007428704, "jdTdb": 2444421.5007428713, "tdbMinusTtSeconds": 0.00009810924530029297 },
+    { "id": "mars_retrograde_sample", "utc": { "year": 1950, "month": 4, "day": 1, "hour": 0, "minute": 0, "second": 0 }, "et": -1570103935.8143446, "jdTt": 2433372.5007428704, "jdTdb": 2433372.5007428895, "tdbMinusTtSeconds": 0.0016543865203857422 },
+    { "id": "jupiter_retrograde_sample", "utc": { "year": 1950, "month": 7, "day": 1, "hour": 0, "minute": 0, "second": 0 }, "et": -1562241535.8158948, "jdTt": 2433463.5007428704, "jdTdb": 2433463.500742872, "tdbMinusTtSeconds": 0.00010418891906738281 },
+    { "id": "saturn_retrograde_sample", "utc": { "year": 1950, "month": 4, "day": 1, "hour": 0, "minute": 0, "second": 0 }, "et": -1570103935.8143446, "jdTt": 2433372.5007428704, "jdTdb": 2433372.5007428895, "tdbMinusTtSeconds": 0.0016543865203857422 },
+    { "id": "uranus_retrograde_sample", "utc": { "year": 1955, "month": 1, "day": 1, "hour": 0, "minute": 0, "second": 0 }, "et": -1420113535.8160653, "jdTt": 2435108.5007428704, "jdTdb": 2435108.5007428695, "tdbMinusTtSeconds": -0.00006628036499023438 },
+    { "id": "neptune_retrograde_sample", "utc": { "year": 1950, "month": 4, "day": 1, "hour": 0, "minute": 0, "second": 0 }, "et": -1570103935.8143446, "jdTt": 2433372.5007428704, "jdTdb": 2433372.5007428895, "tdbMinusTtSeconds": 0.0016543865203857422 },
+    { "id": "pluto_retrograde_sample", "utc": { "year": 1950, "month": 4, "day": 1, "hour": 0, "minute": 0, "second": 0 }, "et": -1570103935.8143446, "jdTt": 2433372.5007428704, "jdTdb": 2433372.5007428895, "tdbMinusTtSeconds": 0.0016543865203857422 }
+  ]
+}

@@ -1,0 +1,198 @@
+name: Astrology jplephem equivalence v1
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  LC_ALL: C.UTF-8
+  LANG: C.UTF-8
+  TZ: UTC
+  DE405_BSP_URL: https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/a_old_versions/de405.bsp
+  DE405_BSP_SHA256: 30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89
+  DE405_BSP_BYTES: '10898432'
+
+jobs:
+  # CSPICE is used in this job only to materialize the pre-declared offline
+  # reference oracle. It is not installed, imported, or bundled by candidate.
+  reference:
+    runs-on: ubuntu-24.04
+    env:
+      CC: gcc
+      DE405_CSPICE_CFLAGS: -std=c89 -O2 -ffp-contract=off -fno-fast-math -fPIC -DNON_UNIX_STDIO
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22.23.1
+      - name: Bind reference to the dispatched main commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = "refs/heads/main"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(uname -s)" = "Linux"
+          test "$(uname -m)" = "x86_64"
+      - name: Acquire the pinned oracle inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/fetch-de405-linux-official-inputs.mjs --output "${RUNNER_TEMP}/de405-reference-inputs"
+      - name: Build the offline CSPICE reference runner
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/build-de405-linux-cspice.mjs \
+            --cspice "${RUNNER_TEMP}/de405-reference-inputs/cspice/N0067" \
+            --output "${RUNNER_TEMP}/de405-reference-cspice/N0067"
+          CSPICE_DIR="${RUNNER_TEMP}/de405-reference-cspice/N0067" \
+            CC=gcc node tools/de405-cspice-runner/build.mjs
+      - name: Materialize the CSPICE reference file
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "${RUNNER_TEMP}/astrology-cspice-reference-v1"
+          node scripts/materialize-astrology-cspice-reference-v1.mjs \
+            --fixture test/fixtures/astrology/provider-equivalence-v1.json \
+            --bsp "${RUNNER_TEMP}/de405-reference-inputs/de405.bsp" \
+            --runner tools/de405-cspice-runner/build/de405-canonical-v2-runner \
+            --output "${RUNNER_TEMP}/astrology-cspice-reference-v1/reference.json"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: astrology-cspice-reference-v1
+          path: ${{ runner.temp }}/astrology-cspice-reference-v1/reference.json
+          if-no-files-found: error
+          retention-days: 14
+
+  candidate:
+    needs: reference
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, ubuntu-24.04]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22.23.1
+      - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # v5.4.0
+        with:
+          python-version: 3.14.7
+          cache: pip
+          cache-dependency-path: scripts/astrology-jplephem-requirements.txt
+      - name: Bind candidate to the dispatched Linux commit and ABI
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = "refs/heads/main"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(uname -s)" = "Linux"
+          test "$(uname -m)" = "x86_64"
+          test "$(python -c 'import platform; print(platform.python_version())')" = "3.14.7"
+          test "$(python -c 'import sys; print(sys.implementation.name)')" = "cpython"
+      - name: Download and verify the immutable DE405 BSP
+        shell: bash
+        run: |
+          set -euo pipefail
+          bsp="${RUNNER_TEMP}/de405.bsp"
+          curl --fail --location --proto '=https' --tlsv1.2 --retry 2 --output "$bsp" "$DE405_BSP_URL"
+          printf '%s  %s\n' "$DE405_BSP_SHA256" "$bsp" | sha256sum --check
+          test "$(stat -c '%s' "$bsp")" = "$DE405_BSP_BYTES"
+      - name: Fresh-install the pinned Python provider
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --no-cache-dir --requirement scripts/astrology-jplephem-requirements.txt
+          python -m pip check
+          test "$(python -c 'import importlib.metadata as m; print(m.version("jplephem"))')" = "2.24"
+          test "$(python -c 'import importlib.metadata as m; print(m.version("numpy"))')" = "2.5.3"
+      - name: Produce two fresh-process candidate outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "${RUNNER_TEMP}/astrology-jplephem-candidate"
+          python scripts/astrology-jplephem-producer.py \
+            --fixture test/fixtures/astrology/provider-equivalence-v1.json \
+            --bsp "${RUNNER_TEMP}/de405.bsp" \
+            --output "${RUNNER_TEMP}/astrology-jplephem-candidate/candidate-1.json"
+          python scripts/astrology-jplephem-producer.py \
+            --fixture test/fixtures/astrology/provider-equivalence-v1.json \
+            --bsp "${RUNNER_TEMP}/de405.bsp" \
+            --output "${RUNNER_TEMP}/astrology-jplephem-candidate/candidate-2.json"
+          cmp "${RUNNER_TEMP}/astrology-jplephem-candidate/candidate-1.json" "${RUNNER_TEMP}/astrology-jplephem-candidate/candidate-2.json"
+          sha256sum "${RUNNER_TEMP}/astrology-jplephem-candidate/candidate-1.json" > "${RUNNER_TEMP}/astrology-jplephem-candidate/candidate-1.json.sha256"
+          sha256sum --check "${RUNNER_TEMP}/astrology-jplephem-candidate/candidate-1.json.sha256"
+      - name: Compare raw, derived, and discrete FACTs with the CSPICE oracle
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "${RUNNER_TEMP}/astrology-jplephem-candidate"
+          node scripts/check-astrology-jplephem-equivalence-v1.mjs \
+            --fixture test/fixtures/astrology/provider-equivalence-v1.json \
+            --candidate "${RUNNER_TEMP}/astrology-jplephem-candidate/candidate-1.json" \
+            --reference "${RUNNER_TEMP}/astrology-cspice-reference-v1/reference.json" \
+            --summary "${RUNNER_TEMP}/astrology-jplephem-candidate/equivalence-report.json"
+      - name: Exercise producer and checker fail-closed cases
+        shell: bash
+        run: |
+          set -euo pipefail
+          candidate="${RUNNER_TEMP}/astrology-jplephem-candidate/candidate-1.json"
+          reference="${RUNNER_TEMP}/astrology-cspice-reference-v1/reference.json"
+          fixture="test/fixtures/astrology/provider-equivalence-v1.json"
+          if python scripts/astrology-jplephem-producer.py --provider wrong-provider --fixture "$fixture" --bsp "${RUNNER_TEMP}/de405.bsp" --output "${RUNNER_TEMP}/wrong-provider.json"; then exit 1; fi
+          if python scripts/astrology-jplephem-producer.py --fixture "$fixture" --bsp "${RUNNER_TEMP}/missing.bsp" --output "${RUNNER_TEMP}/missing-bsp.json"; then exit 1; fi
+          cp "$candidate" "${RUNNER_TEMP}/tampered.json"
+          CANDIDATE="${RUNNER_TEMP}/tampered.json" node --input-type=module -e 'import fs from "node:fs"; const p=process.env.CANDIDATE; const x=JSON.parse(fs.readFileSync(p, "utf8")); x.rows[0].positionKm[0] += 1; fs.writeFileSync(p, JSON.stringify(x));'
+          if node scripts/check-astrology-jplephem-equivalence-v1.mjs --fixture "$fixture" --candidate "${RUNNER_TEMP}/tampered.json" --reference "$reference"; then exit 1; fi
+          cp "$candidate" "${RUNNER_TEMP}/missing-row.json"
+          CANDIDATE="${RUNNER_TEMP}/missing-row.json" node --input-type=module -e 'import fs from "node:fs"; const p=process.env.CANDIDATE; const x=JSON.parse(fs.readFileSync(p, "utf8")); x.rows.pop(); fs.writeFileSync(p, JSON.stringify(x));'
+          if node scripts/check-astrology-jplephem-equivalence-v1.mjs --fixture "$fixture" --candidate "${RUNNER_TEMP}/missing-row.json" --reference "$reference"; then exit 1; fi
+          cp "$candidate" "${RUNNER_TEMP}/wrong-provider.json"
+          CANDIDATE="${RUNNER_TEMP}/wrong-provider.json" node --input-type=module -e 'import fs from "node:fs"; const p=process.env.CANDIDATE; const x=JSON.parse(fs.readFileSync(p, "utf8")); x.provider.id = "cspice"; fs.writeFileSync(p, JSON.stringify(x));'
+          if node scripts/check-astrology-jplephem-equivalence-v1.mjs --fixture "$fixture" --candidate "${RUNNER_TEMP}/wrong-provider.json" --reference "$reference"; then exit 1; fi
+          cp "$candidate" "${RUNNER_TEMP}/wrong-source.json"
+          CANDIDATE="${RUNNER_TEMP}/wrong-source.json" node --input-type=module -e 'import fs from "node:fs"; const p=process.env.CANDIDATE; const x=JSON.parse(fs.readFileSync(p, "utf8")); x.source.sha256 = "0".repeat(64); fs.writeFileSync(p, JSON.stringify(x));'
+          if node scripts/check-astrology-jplephem-equivalence-v1.mjs --fixture "$fixture" --candidate "${RUNNER_TEMP}/wrong-source.json" --reference "$reference"; then exit 1; fi
+      - name: Materialize a stable candidate manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          CANDIDATE="${RUNNER_TEMP}/astrology-jplephem-candidate/candidate-1.json" \
+          REPORT="${RUNNER_TEMP}/astrology-jplephem-candidate/equivalence-report.json" \
+          MANIFEST="${RUNNER_TEMP}/astrology-jplephem-candidate/manifest.json" \
+          BSP_SHA256="$DE405_BSP_SHA256" \
+          node --input-type=module -e 'import fs from "node:fs"; import crypto from "node:crypto"; const hash = p => crypto.createHash("sha256").update(fs.readFileSync(p)).digest("hex"); const candidate = JSON.parse(fs.readFileSync(process.env.CANDIDATE, "utf8")); const report = JSON.parse(fs.readFileSync(process.env.REPORT, "utf8")); const manifest = { schemaVersion: "astrology-jplephem-ci-manifest-v1", provider: candidate.provider, sourceSha256: candidate.source.sha256, bspSha256: process.env.BSP_SHA256, fixtureSha256: candidate.fixture.sha256, candidateSha256: hash(process.env.CANDIDATE), candidateRepeatSha256: hash(process.env.CANDIDATE.replace("candidate-1", "candidate-2")), reportSha256: hash(process.env.REPORT), candidateEquivalenceStatus: report.status, contractStatus: report.productionStatus, rowCount: candidate.rows.length }; fs.writeFileSync(process.env.MANIFEST, JSON.stringify(manifest, null, 2) + "\n");'
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: astrology-jplephem-candidate-${{ matrix.os }}
+          path: |
+            ${{ runner.temp }}/astrology-jplephem-candidate/candidate-1.json
+            ${{ runner.temp }}/astrology-jplephem-candidate/candidate-2.json
+            ${{ runner.temp }}/astrology-jplephem-candidate/candidate-1.json.sha256
+            ${{ runner.temp }}/astrology-jplephem-candidate/equivalence-report.json
+            ${{ runner.temp }}/astrology-jplephem-candidate/manifest.json
+          if-no-files-found: error
+          retention-days: 14
+
+  platform:
+    needs: candidate
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          pattern: astrology-jplephem-candidate-*
+          path: ${{ runner.temp }}/astrology-jplephem-platform
+          merge-multiple: false
+      - name: Require byte-stable candidate payload and manifest across hosted Linux variants
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/check-astrology-jplephem-platform-v1.mjs \
+            --left "${RUNNER_TEMP}/astrology-jplephem-platform/astrology-jplephem-candidate-ubuntu-22.04/candidate-1.json" \
+            --right "${RUNNER_TEMP}/astrology-jplephem-platform/astrology-jplephem-candidate-ubuntu-24.04/candidate-1.json" \
+            --left-manifest "${RUNNER_TEMP}/astrology-jplephem-platform/astrology-jplephem-candidate-ubuntu-22.04/manifest.json" \
+            --right-manifest "${RUNNER_TEMP}/astrology-jplephem-platform/astrology-jplephem-candidate-ubuntu-24.04/manifest.json"
