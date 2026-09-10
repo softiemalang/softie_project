@@ -68,6 +68,31 @@ policy. A passing comparison is still `candidate_only_not_production` until
 the separate package, platform, compliance, deployment, and existing
 activation gates close.
 
+## Vercel preview packaging
+
+`api/astrology.py` is the smallest file-based Python Function candidate. Its
+root `requirements.txt` pins CPython-compatible `jplephem==2.24` and
+`numpy==2.5.3`; `.python-version` records `3.14.7`; and `vercel.json`
+includes the immutable BSP, producer module, and equivalence fixture in the
+function bundle. The function has no runtime network or provider-download
+path and uses a 64 KiB request cap.
+
+The preview request is deliberately bound to a fixture case and a declared
+fixture location. It accepts no caller-supplied coordinates or arbitrary
+date that has not passed the existing verified-fixture contract. A successful
+response is emitted as `astrology-jplephem-fact-packet-v1` plus
+`astrology-jplephem-fact-handoff-v1`; the handoff projects only raw and
+deterministically derived technical FACTs and retains the jplephem/DE405
+identity. It does not rewrite the frozen CSPICE packet schema or activate
+interpretation.
+
+The route is therefore a preview/package candidate, not a public production
+route. Actual Vercel Preview deployment still requires a fresh authenticated
+Vercel session and the separate review of DE405 redistribution, attribution,
+and derived-product export conditions. Until those gates close, the producer
+remains `candidate_only_not_production` and `availableForInterpretation` is
+false.
+
 ## Boundary and authority rules
 
 Numeric closeness never overrides a discrete mismatch. `near_sign_boundary`,
