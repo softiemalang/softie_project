@@ -31,6 +31,7 @@ test('candidate producer is offline and workflow fixes fresh install/process/pla
   assert.match(workflow, /ubuntu-22\.04, ubuntu-24\.04/)
   assert.match(workflow, /candidate-1\.json.*candidate-2\.json/s)
   assert.match(workflow, /actions\/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093[\s\S]*name: astrology-cspice-reference-v1[\s\S]*path: \$\{\{ runner\.temp \}\}\/astrology-cspice-reference-v1/)
+  assert.doesNotMatch(workflow, /cache:\s*pip/)
   assert.match(workflow, /wrong-provider|missing-bsp|tampered\.json|missing-row\.json/)
 })
 
