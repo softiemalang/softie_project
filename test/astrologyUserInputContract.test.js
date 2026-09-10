@@ -42,14 +42,14 @@ function semanticProjection(rule) {
   }
 }
 
-test('user input normalization produces a verified canonical input and the existing FACT-only handoff', { skip: !PYTHON_READY }, () => {
+test('user input normalization produces a source-relative canonical input and the existing FACT-only handoff', { skip: !PYTHON_READY }, () => {
   const { value } = runPath(REQUEST)
   const canonical = value.canonicalInput
   const packet = value.verifiedResponse.packet
   assert.equal(value.schemaVersion, 'astrology-jplephem-user-input-handoff-v1')
   assert.equal(value.status, 'complete')
-  assert.equal(value.normalizationStatus, 'verified_fixture')
-  assert.equal(canonical.status, 'verified_fixture')
+  assert.equal(value.normalizationStatus, 'verified_source_relative')
+  assert.equal(canonical.status, 'verified_source_relative')
   assert.equal(canonical.userInput.locationId, 'sgg:41210')
   assert.equal(canonical.civilTime.status, 'exact')
   assert.deepEqual(canonical.civilTime.utc, { year: 2000, month: 1, day: 1, hour: 12, minute: 0, second: 0 })
@@ -61,16 +61,22 @@ test('user input normalization produces a verified canonical input and the exist
   assert.equal(canonical.location.latitudeDegrees, 37.447293)
   assert.equal(canonical.location.longitudeDegreesEast, 126.866995)
   assert.equal(canonical.location.coordinateProvenance.sourceSha256, 'e612605e957e71ea2770876331eb20965820590bc57e5a98a91bc9307a678ec9')
-  assert.equal(canonical.timeScale.status, 'verified_fixture')
-  assert.equal(canonical.timeScale.outputScale, 'TDB')
+  assert.equal(canonical.timeScale.status, 'verified_source_relative')
+  assert.equal(canonical.timeScale.schemaVersion, 'astrology-verified-time-scales-v1')
+  assert.equal(canonical.timeScale.provenance.bundle.canonicalSha256, 'eec8801b2c7b4a0c002a3bf24a76714f60c2c334c5ea63113c37a24ef6f6cf2b')
+  assert.equal(canonical.timeScale.provenance.dut1.provider.observedProvider.identity, 'iers-eop-c04-20u24-dpsi-deps-0hutc-1962-now')
   assert.equal(canonical.ephemeris.status, 'verified')
   assert.equal(canonical.ephemeris.sourceSha256, packet.provider.sourceSha256)
   assert.equal(packet.input.locationId, 'sgg:41210')
   assert.deepEqual(packet.input.utc, canonical.civilTime.utc)
   assert.equal(packet.input.location.latitudeDegrees, canonical.location.latitudeDegrees)
   assert.equal(packet.input.location.longitudeDegreesEast, canonical.location.longitudeDegreesEast)
-  assert.equal(packet.input.fixtureCaseId, 'golden_2000')
-  assert.equal(packet.rawChart.inputStatus, 'user_input_normalized_fixture_verified')
+  assert.equal(packet.input.schemaVersion, 'astrology-canonical-astronomy-input-v1')
+  assert.equal('fixtureCaseId' in packet.input, false)
+  assert.equal(packet.rawChart.inputStatus, 'user_input_normalized_source_relative_verified')
+  assert.equal(packet.factFrame.mode, 'source_relative_deterministic')
+  assert.equal(packet.boundaryAssessment.status, 'indeterminate')
+  assert.equal(packet.boundaryAssessment.intervalBacked.status, 'blocked')
   assert.deepEqual(semanticProjection(packet.ruleChart), semanticProjection(deriveAstrologyRuleChart(packet.rawChart)))
   for (const [actual, expected] of packet.rawChart.bodies.map((body, index) => [body, GOLDEN.rawChart.value.bodies[index]])) {
     assert.ok(Math.abs(actual.longitudeDegrees - expected.longitudeDegrees) <= 0.01, `${actual.id} longitude`)
@@ -129,8 +135,10 @@ test('normalization rejects DST gaps, unresolved folds, and direct timezone/coor
   assert.equal(first.value.canonicalInput.civilTime.status, 'overlap_resolved')
   assert.equal(second.value.canonicalInput.civilTime.status, 'overlap_resolved')
   assert.notDeepEqual(first.value.canonicalInput.civilTime.utc, second.value.canonicalInput.civilTime.utc)
-  assert.equal(first.value.reason, 'time_scale_evidence_unavailable')
-  assert.equal(second.value.reason, 'time_scale_evidence_unavailable')
+  assert.equal(first.value.status, 'complete')
+  assert.equal(second.value.status, 'complete')
+  assert.equal(first.value.canonicalInput.timeScale.status, 'verified_source_relative')
+  assert.equal(second.value.canonicalInput.timeScale.status, 'verified_source_relative')
 
   const injected = structuredClone(REQUEST_VALUE)
   injected.userInput.utc = injected.userInput.localDateTime
@@ -145,18 +153,33 @@ test('normalization rejects DST gaps, unresolved folds, and direct timezone/coor
   assert.equal(result.value.reason, 'request_fields_mismatch')
 })
 
-test('valid civil/location input stops at missing time-scale evidence instead of estimating or extrapolating', { skip: !PYTHON_READY }, async () => {
+test('valid civil/location input uses the pinned time-scale interval and stops at its boundaries', { skip: !PYTHON_READY }, async () => {
   const directory = await mkdtemp(join(tmpdir(), 'astrology-user-input-timescale-'))
   const request = structuredClone(REQUEST_VALUE)
   request.userInput.localDateTime = { year: 2024, month: 1, day: 1, hour: 12, minute: 0, second: 0 }
   const { value } = await runValue(request, directory)
-  assert.equal(value.status, 'blocked')
-  assert.equal(value.reason, 'time_scale_evidence_unavailable')
+  assert.equal(value.status, 'complete')
   assert.equal(value.canonicalInput.civilTime.status, 'exact')
-  assert.equal(value.canonicalInput.timeScale.status, 'blocked')
-  assert.equal(value.canonicalInput.timeScale.fallbackPolicy, 'none')
-  assert.equal(value.canonicalInput.ephemeris.status, 'not_evaluated')
-  assert.equal('verifiedResponse' in value, false)
+  assert.equal(value.canonicalInput.timeScale.status, 'verified_source_relative')
+  assert.equal(value.canonicalInput.ephemeris.status, 'verified')
+
+  const beforeStart = structuredClone(REQUEST_VALUE)
+  beforeStart.userInput.localDateTime = { year: 1962, month: 1, day: 1, hour: 8, minute: 59, second: 59 }
+  const before = (await runValue(beforeStart, directory)).value
+  assert.equal(before.status, 'blocked')
+  assert.equal(before.reason, 'outside_C04_snapshot_coverage')
+
+  const afterEnd = structuredClone(REQUEST_VALUE)
+  afterEnd.userInput.localDateTime = { year: 2026, month: 8, day: 10, hour: 9, minute: 0, second: 1 }
+  const after = (await runValue(afterEnd, directory)).value
+  assert.equal(after.status, 'blocked')
+  assert.equal(after.reason, 'outside_C04_snapshot_coverage')
+
+  const segmentBoundary = structuredClone(REQUEST_VALUE)
+  segmentBoundary.userInput.localDateTime = { year: 1972, month: 1, day: 1, hour: 21, minute: 0, second: 0 }
+  const segment = (await runValue(segmentBoundary, directory)).value
+  assert.equal(segment.status, 'blocked')
+  assert.equal(segment.reason, 'interpolation_window_crosses_UTC_TAI_segment_boundary')
 })
 
 test('fresh-file user handoff checker rejects canonical, provider, missing, and asset-tampered artifacts', { skip: !PYTHON_READY }, async () => {

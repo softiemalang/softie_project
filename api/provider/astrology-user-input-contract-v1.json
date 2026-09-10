@@ -1,7 +1,7 @@
 {
   "schemaVersion": "astrology-user-input-normalization-contract-v1",
   "contractVersion": "1.0.0",
-  "scope": "korea_sgg_local_civil_time_to_fixture_verified_astrology_packet",
+  "scope": "korea_sgg_local_civil_time_to_source_relative_astrology_fact_packet",
   "requestSchema": "astrology-jplephem-user-input-request-v1",
   "responseSchema": "astrology-jplephem-user-input-handoff-v1",
   "supportedUserInput": {
@@ -41,11 +41,15 @@
   },
   "timeScale": {
     "required": ["ut1MinusUtcSeconds", "ttMinusUtcSeconds", "tdbMinusTtSeconds"],
-    "acceptedEvidence": "existing_provider_equivalence_fixture_exact_utc_only",
-    "fixturePath": "api/provider/provider-equivalence-v1.json",
+    "acceptedEvidence": "immutable_offline_time_scale_bundle_v1",
+    "bundlePath": "api/provider/astrology-time-scale-bundle-v1.json",
+    "bundleCanonicalSha256": "eec8801b2c7b4a0c002a3bf24a76714f60c2c334c5ea63113c37a24ef6f6cf2b",
+    "providerOutputSchema": "astrology-verified-time-scales-v1",
+    "supportedRange": {"startUtc": "1962-01-01T00:00:00.000Z", "endUtc": "2026-08-10T00:00:00.000Z", "endInclusive": true},
     "noImplicitZero": true,
     "noFormulaSubstitution": true,
     "noRuntimeFetch": true,
+    "noFixtureValueReuse": true,
     "outsideEvidencePolicy": "blocked"
   },
   "ephemeris": {
@@ -68,9 +72,21 @@
     "location_source_missing",
     "location_source_sha_mismatch",
     "location_unsupported",
-    "time_scale_evidence_unavailable",
-    "time_scale_fixture_mismatch",
-    "de405_coverage_outside"
+    "time_scale_bundle_missing_or_hash_mismatch",
+    "dut1_source_missing_or_tampered",
+    "dut1_coverage_outside",
+    "tt_minus_utc_provenance_missing",
+    "tdb_minus_tt_source_missing_or_tampered",
+    "time_scale_boundary_indeterminate",
+    "outside_C04_snapshot_coverage",
+    "endpoint_neighbour_window_unavailable",
+    "interpolation_window_crosses_UTC_TAI_segment_boundary",
+    "de405_coverage_outside",
+    "de405_bsp_missing",
+    "de405_bsp_size_mismatch",
+    "de405_bsp_sha_mismatch",
+    "de405_bsp_open_failed",
+    "de405_required_segment_missing"
   ],
   "forbiddenFallbacks": [
     "implicit_utc",
@@ -80,6 +96,7 @@
     "gap_time_adjustment",
     "zero_ut1_or_tt_offset",
     "estimated_tdb_minus_tt",
+    "fixture_time_value_reuse",
     "runtime_provider_download",
     "out_of_coverage_extrapolation"
   ]

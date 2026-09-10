@@ -40,8 +40,8 @@ test('candidate producer is offline and workflow fixes fresh install/process/pla
 
 test('candidate path does not change the frozen production activation boundary', () => {
   const docs = readFileSync('docs/astrology/jplephem-provider-candidate-v1.md', 'utf8')
-  assert.match(docs, /evaluation path only/)
-  assert.match(docs, /does not select a runtime\s+provider/)
-  assert.match(docs, /candidate_only_not_production/)
+  assert.match(docs, /CSPICE-free jplephem producer/)
+  assert.match(docs, /source-relative/)
+  assert.match(docs, /arbitrary-date route/)
   assert.match(docs, /offline\s+comparison oracle only/)
 })

@@ -34,20 +34,27 @@ chosen.
 
 ## Verified handoff boundary
 
-The current verified time-scale evidence is intentionally only the existing
-provider-equivalence fixture. A normalized UTC instant can reach the existing
-packet producer only when it exactly matches one of that fixture's UTC rows.
-That preserves the already verified `UT1−UTC`, `TT−UTC`, and `TDB−TT` values,
-DE405 coverage, raw chart, Rule Core chart, and FACT-only handoff without
-estimating or substituting a time-scale value.
+After civil-time resolution, the route consumes the immutable offline
+`astrology-time-scale-bundle-v1` for `DUT1`, `TT−UTC`, and `TDB−TT`. The
+bundle is source-relative and supports only `1962-01-01T00:00:00.000Z` through
+`2026-08-10T00:00:00.000Z` inclusive. It verifies the C04 snapshot,
+UTC−TAI history, HF2002/IERS/TN36/IAU 2006 B3 bridge, component identities,
+and all declared asset hashes before returning time values. No fixture time
+value is reused for arbitrary input.
 
-For any other exact local time, the response contains a `blocked` canonical
-input with `time_scale_evidence_unavailable`. It does not emit a packet. This
-is the current production blocker for arbitrary-date input: a pinned,
-source-identified time-scale provider covering the required dates is not yet
-part of the verified bundle. DE405 coverage is checked only after exact
-time-scale materialization; out-of-coverage requests remain blocked and are
-never extrapolated.
+The resulting ET is checked against the immutable DE405 coverage and is then
+evaluated by the pinned jplephem/NumPy provider using the existing two-part JD
+ABI. The existing raw chart, Rule Core chart, source-relative boundary
+assessment, and FACT-only handoff are emitted without semantic interpretation.
+The central Rule Core values remain available as source-relative technical
+FACTs; the separate boundary assessment remains `indeterminate` when no final
+observable interval is supplied.
+
+Requests outside the time-scale snapshot, at a C04 interpolation boundary
+without the required neighbour window, across a protected UTC−TAI segment
+boundary, outside DE405 coverage, or with any missing/tampered dependency are
+blocked. No prediction, extrapolation, implicit offset, or runtime download is
+used.
 
 The user-input response schema is
 `astrology-jplephem-user-input-handoff-v1`. A complete response contains one
@@ -60,10 +67,11 @@ state.
 ## Provenance and forbidden behavior
 
 The canonical input retains the location source and coordinate-source hashes,
-TZif asset hash and IANA release label, exact Python runtime identity, fixture
-time-scale references, DE405 source identity/SHA, coverage, and deterministic
-source references. Missing or changed contract, location source, timezone
-asset, fixture, BSP, provider, or packet integrity fails closed.
+TZif asset hash and IANA release label, Python runtime identity, time-scale
+bundle/component identities, DE405 source identity/SHA, coverage, and
+deterministic source references. Missing or changed contract, location source,
+timezone asset, time-scale asset, BSP, provider, or packet integrity fails
+closed.
 
 The boundary never uses implicit UTC or timezone, coordinates from the caller,
 an implicit fold choice, gap adjustment, zero DUT1/TT−UTC, an estimated TDB−TT,
@@ -73,8 +81,10 @@ personalization.
 
 ## Readiness result
 
-The exact fixture-date vertical slice is locally executable and can be tested
-in a Linux Vercel Preview. Astrology technical FACT production readiness for
-arbitrary user dates remains `NO-GO` until the time-scale provider closes the
-date/range evidence boundary and the same local/Linux/Preview parity checks
-are rerun for that range.
+The arbitrary-date technical vertical slice is locally executable and reuses
+the verified Linux/Vercel-compatible jplephem producer. Internal technical
+FACT readiness is `ready_source_relative` for the stated interval, subject to
+the existing local/Linux/Preview parity and fail-closed checks. Public
+redistribution of the complete time-scale bundle remains a separate
+external-review gate; interpretation activation remains unchanged and
+blocked.

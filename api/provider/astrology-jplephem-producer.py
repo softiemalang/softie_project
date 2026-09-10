@@ -153,6 +153,95 @@ def relative_to_earth(kernel, target_id, tdb1, tdb2):
     return vector_add(target, earth, sign=-1.0)
 
 
+def validate_kernel_asset(bsp_path, coverage):
+    """Validate the immutable DE405 asset before an arbitrary evaluation."""
+
+    if not bsp_path.is_file():
+        fail("DE405 BSP is missing")
+    if bsp_path.stat().st_size != EXPECTED_KERNEL_BYTES:
+        fail("DE405 BSP byte size mismatch")
+    actual_kernel_sha = sha256_file(bsp_path)
+    if actual_kernel_sha != EXPECTED_KERNEL_SHA256:
+        fail(f"DE405 BSP SHA mismatch: {actual_kernel_sha}")
+    if not isinstance(coverage, dict):
+        fail("DE405 coverage contract missing")
+    try:
+        coverage_start = float(coverage["startEt"])
+        coverage_end = float(coverage["endEt"])
+    except (KeyError, TypeError, ValueError) as error:
+        fail("DE405 coverage contract invalid")
+    if not finite(coverage_start) or not finite(coverage_end) or coverage_start > coverage_end:
+        fail("DE405 coverage contract invalid")
+    return actual_kernel_sha
+
+
+def evaluate_states(bsp_path, et_seconds, coverage):
+    """Evaluate the fixed ten-body mapping for one verified TDB epoch.
+
+    This is the arbitrary-date entry point.  It deliberately consumes an
+    already verified time-scale result and only adds the immutable DE405
+    coverage, provider, two-part-JD, and SPK checks.
+    """
+
+    if not finite(et_seconds):
+        fail("ET input is non-finite")
+    coverage_start = float(coverage["startEt"])
+    coverage_end = float(coverage["endEt"])
+    if not coverage_start <= float(et_seconds) <= coverage_end:
+        fail("de405_coverage_outside")
+    kernel_sha = validate_kernel_asset(bsp_path, coverage)
+    python_version, python_implementation, python_abi, jplephem_version, numpy_version = validate_runtime()
+    tdb1, tdb2 = et_seconds_to_two_part_jd(float(et_seconds))
+    representation_bound = two_part_representation_error_bound_seconds(float(et_seconds))
+    if representation_bound > TWO_PART_JD_ERROR_BUDGET_SECONDS:
+        fail("two-part TDB representation budget exceeded")
+    try:
+        kernel = SPK.open(str(bsp_path))
+    except Exception as error:
+        fail(f"DE405 BSP open failed: {error}")
+
+    rows = []
+    for body_id, (target_id, target_type) in EXPECTED_BODY_IDS.items():
+        state = relative_to_earth(kernel, target_id, tdb1, tdb2)
+        rows.append({
+            "body": body_id,
+            "targetId": target_id,
+            "targetType": target_type,
+            "observerId": 399,
+            "observer": "EARTH",
+            "frame": "J2000/ICRF",
+            "aberrationCorrection": "NONE",
+            "et": float(et_seconds),
+            "queryEtHex": et_bits(float(et_seconds)),
+            "twoPartTdbJd": {"primary": tdb1, "secondary": tdb2},
+            "positionKm": state[:3],
+            "velocityKmPerSecond": state[3:],
+            "selectionEvidenceStatus": "verified",
+        })
+    return {
+        "rows": rows,
+        "provider": {
+            "id": "jplephem",
+            "implementation": "direct_spk",
+            "version": jplephem_version,
+            "numpyVersion": numpy_version,
+            "pythonVersion": python_version,
+            "pythonImplementation": python_implementation,
+            "pythonAbi": python_abi,
+            "license": "MIT",
+        },
+        "source": {
+            "sourceUrl": EXPECTED_KERNEL_URL,
+            "sha256": kernel_sha,
+            "bytes": EXPECTED_KERNEL_BYTES,
+            "identity": EXPECTED_KERNEL_IDENTITY,
+            "coverage": dict(coverage),
+        },
+        "twoPartJd": {"primary": tdb1, "secondary": tdb2},
+        "twoPartRepresentationBoundSeconds": representation_bound,
+    }
+
+
 def validate_fixture(fixture_path, fixture):
     if fixture.get("schemaVersion") != "astrology-provider-equivalence-fixture-v1":
         fail("unsupported fixture schema")

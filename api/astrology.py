@@ -1,8 +1,10 @@
-"""Fixture-bound CSPICE-free Astrology preview function.
+"""CSPICE-free Astrology technical FACT function.
 
-The endpoint is a small Vercel file-based Python Function.  It consumes only
-the immutable DE405 fixture cases and the packaged BSP; it does not download
-providers, call the old CSPICE packet contract, or generate interpretation.
+The endpoint is a small Vercel file-based Python Function.  It retains the
+fixture request as a comparison surface and also accepts the strict Korea-only
+local-civil-time input contract for the already verified offline time-scale
+bundle.  It does not download providers, call the old CSPICE packet contract,
+or generate interpretation.
 """
 
 from __future__ import annotations
@@ -22,6 +24,7 @@ from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 PRODUCER_PATH = ROOT / "api" / "provider" / "astrology-jplephem-producer.py"
+TIME_SCALE_PROVIDER_PATH = ROOT / "api" / "provider" / "astrology_time_scale_provider.py"
 FIXTURE_PATH = ROOT / "api" / "provider" / "provider-equivalence-v1.json"
 BSP_PATH = ROOT / "api" / "provider" / "de405.bsp"
 RELEASE_CONTRACT_PATH = ROOT / "api" / "provider" / "de405-only-release-contract-v1.json"
@@ -37,12 +40,15 @@ RESPONSE_SCHEMA = "astrology-jplephem-fact-handoff-v1"
 PACKET_SCHEMA = "astrology-jplephem-fact-packet-v1"
 PACKET_VERSION = "1.0.0"
 USER_INPUT_VERSION = "1.0.0"
+TIME_SCALE_SCHEMA = "astrology-verified-time-scales-v1"
 EXPECTED_RELEASE_CONTRACT_SHA256 = "7a83e01e8ef24eefb4124d5021711ae8392ee6c40b4e2986fed543081c68209f"
 EXPECTED_NOTICE_SHA256 = "b9f19cbceebb8ab4f42e48f08542d15f01b0118d71740d816753a89ea3086d5a"
 EXPECTED_NOTICE_BYTES = 3781
 EXPECTED_DE405_SHA256 = "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89"
 EXPECTED_DE405_BYTES = 10898432
-EXPECTED_INPUT_CONTRACT_SHA256 = "5a488ed37b1a4d56bde02bbc17c81a5c17a849970f631df15f89bc332ff64cb6"
+EXPECTED_INPUT_CONTRACT_SHA256 = "1375c906e25b4dc1bf442c2628ffee1fa615165f9aba8126dc9ed159c3671976"
+EXPECTED_TIME_SCALE_BUNDLE_CANONICAL_SHA256 = "eec8801b2c7b4a0c002a3bf24a76714f60c2c334c5ea63113c37a24ef6f6cf2b"
+EXPECTED_DISCRETE_BOUNDARY_CONTRACT_CANONICAL_SHA256 = "a8451af3e48b2183c21d90ded20e2dcde6fd968f4e5fc6a45fce4ba353bae014"
 EXPECTED_TIMEZONE_ASSET_SHA256 = "2c8f4bb15dd77090b497e2a841ff3323ecbbae4f9dbb9edead2f8dd8fb5d8bb4"
 EXPECTED_TIMEZONE_ASSET_BYTES = 617
 EXPECTED_LOCATION_SOURCE_SHA256 = "35dfca5a7b6a9e8dcf247a25e6a2e8da30fac0726b8f57fb0726c6d24aff4964"
@@ -136,6 +142,8 @@ class PreviewError(RuntimeError):
 
 _producer_module: Any = None
 _producer_error: str | None = None
+_time_scale_provider_module: Any = None
+_time_scale_provider_error: str | None = None
 
 
 def _load_producer() -> Any:
@@ -155,6 +163,25 @@ def _load_producer() -> Any:
     except Exception as error:  # pragma: no cover - dependency failure is exercised through the handler
         _producer_error = f"provider_dependency_unavailable:{type(error).__name__}"
         raise PreviewError(_producer_error) from error
+
+
+def _load_time_scale_provider() -> Any:
+    global _time_scale_provider_module, _time_scale_provider_error
+    if _time_scale_provider_module is not None:
+        return _time_scale_provider_module
+    if _time_scale_provider_error is not None:
+        raise PreviewError(_time_scale_provider_error)
+    try:
+        spec = importlib.util.spec_from_file_location("astrology_time_scale_provider", TIME_SCALE_PROVIDER_PATH)
+        if spec is None or spec.loader is None:
+            raise RuntimeError("time-scale provider module cannot be loaded")
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        _time_scale_provider_module = module
+        return module
+    except Exception as error:  # pragma: no cover - dependency failure is exercised through the handler
+        _time_scale_provider_error = f"time_scale_provider_unavailable:{type(error).__name__}"
+        raise PreviewError(_time_scale_provider_error) from error
 
 
 def _finite(value: Any) -> bool:
@@ -416,13 +443,11 @@ def _compute_julian_date_utc(utc: dict[str, Any]) -> float:
     return jdn - 0.5 + seconds / DAY_SECONDS
 
 
-def _time_angles(item: dict[str, Any], location: dict[str, Any]) -> dict[str, float]:
-    utc = item["utc"]
+def _time_angles_from_values(utc: dict[str, Any], location: dict[str, Any], jd_ut1: float, jd_tt: float, *, expected_jd_tt: float | None = None) -> dict[str, float]:
     jd_utc = _compute_julian_date_utc(utc)
-    time_contract = _load_fixture()["time"]
-    jd_ut1 = jd_utc + time_contract["ut1MinusUtcSeconds"] / DAY_SECONDS
-    jd_tt = jd_utc + time_contract["ttMinusUtcSeconds"] / DAY_SECONDS
-    if abs(jd_tt - item["jdTt"]) > 1e-12:
+    if not _finite(jd_ut1) or not _finite(jd_tt):
+        raise PreviewError("time_scale_values_invalid")
+    if expected_jd_tt is not None and abs(jd_tt - expected_jd_tt) > 1e-12:
         raise PreviewError("fixture_time_mapping_mismatch")
     d_ut1 = jd_ut1 - J2000
     day_fraction = d_ut1 - math.floor(d_ut1)
@@ -442,6 +467,14 @@ def _time_angles(item: dict[str, Any], location: dict[str, Any]) -> dict[str, fl
     asc_base = math.atan2(-math.cos(theta), math.sin(theta) * math.cos(epsilon) + math.tan(latitude) * math.sin(epsilon))
     asc = _normalize_degrees(asc_base * RAD_TO_DEG + 180.0)
     return {"ascendant": asc, "midheaven": mc, "jdUtc": jd_utc, "jdTt": jd_tt}
+
+
+def _time_angles(item: dict[str, Any], location: dict[str, Any]) -> dict[str, float]:
+    time_contract = _load_fixture()["time"]
+    jd_utc = _compute_julian_date_utc(item["utc"])
+    jd_ut1 = jd_utc + time_contract["ut1MinusUtcSeconds"] / DAY_SECONDS
+    jd_tt = jd_utc + time_contract["ttMinusUtcSeconds"] / DAY_SECONDS
+    return _time_angles_from_values(item["utc"], location, jd_ut1, jd_tt, expected_jd_tt=item["jdTt"])
 
 
 def _sign_placement(longitude: float, source_ref: str) -> dict[str, Any]:
@@ -622,6 +655,254 @@ def _derive_rule_chart(raw: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _boundary_assessment(rule: dict[str, Any], time_scales: dict[str, Any], provider_identity: str) -> dict[str, Any]:
+    """Record the frozen boundary decision without inventing final intervals.
+
+    The source-relative packet may carry central Rule Core values.  The
+    existing boundary contract requires an independently materialized final
+    observable interval before a discrete result can be called confirmed, so
+    this producer reports interval-backed assessment as indeterminate and
+    preserves the central near-boundary markers already emitted by Rule Core.
+    """
+
+    reasons: list[str] = []
+
+    def point_result(point: dict[str, Any], kind: str) -> dict[str, Any]:
+        central_status = point.get("boundaryStatus")
+        reason = "sign_interval_crosses_or_approaches_boundary" if central_status == "near_sign_boundary" else "uncertainty_interval_missing"
+        reasons.append(reason)
+        return {"status": "indeterminate", "reason": reason, "centralBoundaryStatus": central_status, "sourceRefs": [f"ruleChart.{kind}"]}
+
+    points: dict[str, Any] = {}
+    for body in rule.get("bodies", []):
+        body_id = body.get("id")
+        points[body_id] = {
+            "sign": point_result(body, f"bodies.{body_id}.sign"),
+            "motion": {"status": "indeterminate", "reason": "uncertainty_interval_missing", "centralMotionState": body.get("motionState"), "sourceRefs": [f"ruleChart.bodies.{body_id}.motion"]},
+        }
+        reasons.append("uncertainty_interval_missing")
+    for angle_id in ("ascendant", "midheaven"):
+        angle = rule.get("angles", {}).get(angle_id, {})
+        points[angle_id] = {"sign": point_result(angle, f"angles.{angle_id}.sign")}
+
+    aspects = []
+    for aspect in rule.get("aspects", []):
+        reason = "aspect_interval_overlaps_or_approaches_orb_boundary" if aspect.get("orbBoundaryStatus") == "near_orb_boundary" else "uncertainty_interval_missing"
+        reasons.append(reason)
+        aspects.append({
+            "key": f"{aspect.get('pointA')}__{aspect.get('pointB')}",
+            "status": "indeterminate",
+            "reason": reason,
+            "centralAspectId": aspect.get("aspectId"),
+            "centralOrbBoundaryStatus": aspect.get("orbBoundaryStatus"),
+            "sourceRefs": [f"ruleChart.aspects.{aspect.get('id') or 'unknown'}"],
+        })
+
+    composition = {}
+    for name in ("wholeSignHouses", "chartRulers", "distribution"):
+        composition[name] = {"status": "indeterminate", "reason": "uncertainty_interval_missing", "sourceRefs": [f"ruleChart.{name}"]}
+        reasons.append("uncertainty_interval_missing")
+
+    return {
+        "schemaVersion": "astrology-discrete-fact-boundary-v1",
+        "contractVersion": "1.0.0",
+        "factFrame": {"mode": "source_relative_deterministic", "physicalTruthGuarantee": False, "universalAbsoluteBoundRequired": False},
+        "status": "indeterminate",
+        "mode": "central_rule_output_without_final_observable_interval",
+        "intervalBacked": {"status": "blocked", "reason": "uncertainty_interval_missing", "finalObservableIntervalSupplied": False},
+        "ruleSetVersion": "mallang-astrology-rule-core-v0",
+        "source": {
+            "timeScaleBundleSchemaVersion": TIME_SCALE_SCHEMA,
+            "timeScaleBundleCanonicalSha256": EXPECTED_TIME_SCALE_BUNDLE_CANONICAL_SHA256,
+            "ruleSetVersion": "mallang-astrology-rule-core-v0",
+            "providerIdentity": provider_identity,
+            "sourceRefs": ["timeScaleBundle", "rawChart.provenance", "ruleChart"],
+        },
+        "points": points,
+        "aspects": aspects,
+        "wholeSignHouses": composition["wholeSignHouses"],
+        "chartRulers": composition["chartRulers"],
+        "distribution": composition["distribution"],
+        "reasonCodes": sorted(set(reasons)),
+        "promotion": {"calculationFactsChanged": False, "existingToleranceChanged": False, "activationChanged": False, "semanticMeaningAdded": False},
+    }
+
+
+def _build_arbitrary_preview(
+    *,
+    verified_context: dict[str, Any],
+    location: dict[str, Any],
+    input_status: str,
+) -> dict[str, Any]:
+    """Build the source-relative packet from an already verified user context."""
+
+    release_contract = _load_de405_release_contract()
+    source = release_contract["source"]
+    time_scales = verified_context["timeScales"]
+    rows = _evaluate_states(
+        None,
+        None,
+        et_seconds=time_scales["etSeconds"],
+        coverage=verified_context["coverage"],
+    )
+    time_values = time_scales["julianDates"]
+    time = _time_angles_from_values(
+        verified_context["utc"],
+        location,
+        float(time_values["ut1"]),
+        float(time_values["tt"]["value"]),
+    )
+    provider_info = {
+        "id": "jplephem",
+        "implementation": "direct_spk",
+        "version": rows[0]["jplephemVersion"],
+        "numpyVersion": rows[0]["numpyVersion"],
+        "pythonVersion": rows[0]["pythonVersion"],
+        "pythonImplementation": rows[0]["pythonImplementation"],
+        "pythonAbi": rows[0]["pythonAbi"],
+        "license": "MIT",
+    }
+    raw_bodies = []
+    for row in rows:
+        converted = _convert_state(row["state"], time["jdTt"])
+        raw_bodies.append({
+            "id": row["mapping"]["id"],
+            "longitudeDegrees": converted["longitude"],
+            "longitudeSpeedDegreesPerDay": converted["speed"],
+            "state": converted,
+        })
+
+    canonical_input_sha = verified_context.get("canonicalInputContentSha256")
+    if not isinstance(canonical_input_sha, str) or not re.fullmatch(r"[0-9a-f]{64}", canonical_input_sha):
+        raise PreviewError("canonical_input_hash_missing")
+    utc = verified_context["utc"]
+    utc_iso = verified_context["utcIso"]
+    candidate_id = f"{utc_iso}:{location['id']}"
+    coverage = dict(verified_context["coverage"])
+    raw = {
+        "schemaVersion": "astrology-raw-chart-v1",
+        "availability": "available",
+        "candidateId": candidate_id,
+        "inputStatus": input_status,
+        "verificationStatus": "verified",
+        "availableForInterpretation": False,
+        "integrationStatus": "not_connected",
+        "zodiac": "tropical",
+        "referenceFrame": "geocentric",
+        "coordinateBasis": "ecliptic-of-date",
+        "geometry": "geometric",
+        "bodies": raw_bodies,
+        "angles": {"ascendant": {"longitudeDegrees": time["ascendant"]}, "midheaven": {"longitudeDegrees": time["midheaven"]}},
+        "provenance": {
+            "timeAngleCore": {"schemaVersion": "astrology-time-angle-result-v0", "ruleSetVersion": "mallang-time-angle-core-v0", "modelId": "iau2000-era__iau2006-gmst-mean-obliquity"},
+            "ephemerisTime": {
+                "inputScale": "TT",
+                "suppliedTdbMinusTtSeconds": time_scales["values"]["tdbMinusTtSeconds"],
+                "etSeconds": time_scales["etSeconds"],
+                "model": "HF2002_IERS_TN36_10_5_IAU2006_B3_TDB_MINUS_TT",
+                "timeScaleBundleCanonicalSha256": time_scales["provenance"]["bundle"]["canonicalSha256"],
+                "sourceRefs": ["timeScaleBundle", "timeScales.values.tdbMinusTtSeconds", "timeScales.etSeconds"],
+            },
+            "de405": {
+                "evaluator": "jplephem-2.24-direct-spk",
+                "source": source["identity"],
+                "sourceUrl": source["sourceUrl"],
+                "kernelSha256": rows[0]["kernelSha256"],
+                "coverage": {"coverageStartEt": coverage["startEt"], "coverageEndEt": coverage["endEt"]},
+                "observerId": 399,
+                "observer": "EARTH",
+                "frame": "J2000",
+                "aberrationCorrection": "NONE",
+                "units": {"position": "km", "velocity": "km/s"},
+                "bodyMapping": BODY_MAPPING,
+                "sourceRefs": ["de405.releaseContract", "provider.de405.bsp"],
+            },
+            "location": {"sourceRefs": ["canonicalInput.location", "canonicalInput.location.coordinateProvenance"]},
+            "transform": {"model": "iau2006_fukushima_williams_precession_plus_mean_obliquity", "input": "J2000/ICRF_mean_equator", "output": "mean_ecliptic_and_equinox_of_date", "speed": "analytic_moving_date_frame_derivative", "frozenFrameDiagnostic": "frozen_frame_xy_angular_rate_only"},
+        },
+    }
+    rule = _derive_rule_chart(raw)
+    boundary = _boundary_assessment(rule, time_scales, "jplephem-2.24-direct-spk")
+    source_refs = [
+        "canonicalInput",
+        "canonicalInput.userInput",
+        "canonicalInput.civilTime",
+        "canonicalInput.location",
+        "timeScaleBundle",
+        "timeScales.values",
+        "timeScales.julianDates",
+        "timeScales.provenance",
+        "de405.releaseContract",
+        "provider.de405.bsp",
+        "provider.jplephem",
+        "rawChart.provenance.timeAngleCore",
+        "rawChart.provenance.ephemerisTime",
+        "rawChart.provenance.transform",
+        "ruleChart.ruleSetVersion",
+        "boundaryAssessment",
+    ]
+    packet = {
+        "schemaVersion": PACKET_SCHEMA,
+        "packetVersion": PACKET_VERSION,
+        "packetStatus": "complete",
+        "usableForFactConsumption": True,
+        "availableForInterpretation": False,
+        "activation": dict(ACTIVATION),
+        "factFrame": {"mode": "source_relative_deterministic", "physicalTruthGuarantee": False, "universalAbsoluteBoundRequired": False},
+        "input": {
+            "schemaVersion": CANONICAL_INPUT_SCHEMA,
+            "canonicalInputContentSha256": canonical_input_sha,
+            "utc": utc,
+            "utcIso": utc_iso,
+            "locationId": location["id"],
+            "location": _canonical_location(location),
+            "timeScale": "TDB",
+            "timeScales": {"schemaVersion": time_scales["schemaVersion"], "status": time_scales["status"], "values": time_scales["values"], "julianDates": time_scales["julianDates"], "etSeconds": time_scales["etSeconds"]},
+            "observerId": 399,
+            "frame": "J2000/ICRF",
+            "aberrationCorrection": "NONE",
+        },
+        "provider": {**provider_info, "sourceUrl": source["sourceUrl"], "sourceSha256": rows[0]["kernelSha256"], "sourceBytes": source["bytes"], "sourceIdentity": source["identity"], "coverage": coverage},
+        "rawChart": raw,
+        "ruleChart": rule,
+        "boundaryAssessment": boundary,
+        "unsupportedFeatures": [{"feature": "true_node", "status": "unsupported", "reason": "not_calculated_by_current_verified_technical_scope"}, {"feature": "chiron_lilith_asteroids_fixed_stars_arabic_parts_vertex", "status": "unsupported", "reason": "not_calculated_by_current_verified_technical_scope"}],
+        "blockedFeatures": [{"feature": "interpretation_service_activation", "status": "blocked", "reason": ACTIVATION["reason"]}],
+        "epistemicBoundary": {"raw": "calculated_fact", "derived": "deterministically_derived_fact", "unsupported": "not_a_fact", "boundary": "source_relative_interval_guard", "activation": "service_not_connected"},
+        "provenance": {
+            "sourceRefs": source_refs,
+            "canonicalInputSha256": canonical_input_sha,
+            "timeScaleBundle": time_scales["provenance"]["bundle"],
+            "providerSha256": rows[0]["kernelSha256"],
+            "rawChartSha256": _sha256_value(raw),
+            "ruleChartSha256": _sha256_value(rule),
+            "boundaryContractCanonicalSha256": EXPECTED_DISCRETE_BOUNDARY_CONTRACT_CANONICAL_SHA256,
+            "claimSourceRefs": {"input": "canonicalInput", "bodyLongitudes": "rawChart.bodies[*].longitudeDegrees", "bodyMotion": "rawChart.bodies[*].longitudeSpeedDegreesPerDay", "angles": "rawChart.angles", "houses": "ruleChart.houses", "aspects": "ruleChart.aspects", "distribution": "ruleChart.distribution", "chartRulers": "ruleChart.chartRulers", "boundaryAssessment": "boundaryAssessment"},
+        },
+        "consumption": {"allowed": ["use included raw and derived FACT values", "retain provider/source identity and sourceRefs", "describe source-relative boundary status as stated", "describe unsupported or blocked state as stated"], "requiresUserContext": True, "forbidden": ["invent missing calculations", "replace jplephem with another provider", "infer personality, fate, prediction, or personal certainty", "merge with another lineage or source", "treat indeterminate boundary output as confirmed", "promote interpretation activation"]},
+    }
+    packet["packetContentSha256"] = _sha256_value(packet)
+    handoff = {
+        "schemaVersion": RESPONSE_SCHEMA,
+        "handoffVersion": PACKET_VERSION,
+        "handoffStatus": "complete",
+        "usable": True,
+        "activation": dict(ACTIVATION),
+        "factFrame": packet["factFrame"],
+        "sourcePacket": {"schemaVersion": packet["schemaVersion"], "packetVersion": packet["packetVersion"], "packetContentSha256": packet["packetContentSha256"]},
+        "facts": {"raw": raw, "derived": rule},
+        "boundaryAssessment": boundary,
+        "unsupportedFeatures": packet["unsupportedFeatures"],
+        "blockedFeatures": packet["blockedFeatures"],
+        "provenance": {"sourceRefs": source_refs, "canonicalInputSha256": canonical_input_sha, "timeScaleBundle": packet["provenance"]["timeScaleBundle"], "providerSha256": packet["provenance"]["providerSha256"], "rawChartSha256": packet["provenance"]["rawChartSha256"], "ruleChartSha256": packet["provenance"]["ruleChartSha256"], "boundaryContractCanonicalSha256": packet["provenance"]["boundaryContractCanonicalSha256"]},
+        "deliveryPolicy": {"relationSemantics": "structural_fact_reference_only", "noInterpretationText": True, "noPromptTemplate": True, "noLlmCall": True, "noActivation": True, "forbiddenUsages": packet["consumption"]["forbidden"]},
+    }
+    handoff["handoffContentSha256"] = _sha256_value(handoff)
+    response = {"schemaVersion": RESPONSE_SCHEMA, "responseVersion": PACKET_VERSION, "status": "complete", "packet": packet, "factOnlyHandoff": handoff}
+    response["responseContentSha256"] = _sha256_value(response)
+    return response
+
+
 def _load_fixture() -> dict[str, Any]:
     if not FIXTURE_PATH.is_file():
         raise PreviewError("fixture_missing")
@@ -668,7 +949,7 @@ def _load_user_input_contract() -> dict[str, Any]:
     if ephemeris.get("providerId") != "jplephem-2.24-direct-spk" or ephemeris.get("sourceIdentity") != "unmodified_official_naif_de405_bsp" or ephemeris.get("sourceSha256") != EXPECTED_DE405_SHA256:
         raise PreviewError("input_contract_ephemeris_mismatch")
     time_scale = contract.get("timeScale", {})
-    if time_scale.get("fixturePath") != "api/provider/provider-equivalence-v1.json" or time_scale.get("noImplicitZero") is not True or time_scale.get("noFormulaSubstitution") is not True or time_scale.get("noRuntimeFetch") is not True:
+    if time_scale.get("bundlePath") != "api/provider/astrology-time-scale-bundle-v1.json" or time_scale.get("bundleCanonicalSha256") != EXPECTED_TIME_SCALE_BUNDLE_CANONICAL_SHA256 or time_scale.get("providerOutputSchema") != TIME_SCALE_SCHEMA or time_scale.get("noImplicitZero") is not True or time_scale.get("noFormulaSubstitution") is not True or time_scale.get("noRuntimeFetch") is not True or time_scale.get("noFixtureValueReuse") is not True:
         raise PreviewError("input_contract_time_scale_mismatch")
     return contract
 
@@ -762,6 +1043,12 @@ def _utc_object(value: datetime) -> dict[str, Any]:
         "minute": value.minute,
         "second": value.second,
     }
+
+
+def _utc_iso(value: dict[str, Any]) -> str:
+    if not isinstance(value, dict) or set(value) != LOCAL_DATETIME_KEYS:
+        raise PreviewError("utc_record_invalid")
+    return f"{value['year']:04d}-{value['month']:02d}-{value['day']:02d}T{value['hour']:02d}:{value['minute']:02d}:{value['second']:02d}Z"
 
 
 def _validate_local_datetime(value: Any) -> dict[str, int]:
@@ -922,78 +1209,54 @@ def _normalize_user_input(payload: Any, fixture: dict[str, Any] | None = None) -
         canonical["blockedReasons"] = [reason]
         return canonical, None
 
-    if fixture is None:
-        fixture = _load_fixture()
     utc = selected["utc"]
-    item = next((candidate for candidate in fixture["fixtures"] if candidate.get("utc") == utc), None)
-    if item is None:
-        canonical["timeScale"] = {
-            "status": "blocked",
-            "reason": "time_scale_evidence_unavailable",
-            "required": ["ut1MinusUtcSeconds", "ttMinusUtcSeconds", "tdbMinusTtSeconds"],
-            "evidenceScope": "existing_provider_equivalence_fixture_exact_utc_only",
-            "fallbackPolicy": "none",
-        }
-        canonical["ephemeris"] = {"status": "not_evaluated", "reason": "time_scale_evidence_unavailable"}
-        canonical["blockedReasons"] = ["time_scale_evidence_unavailable"]
+    utc_iso = _utc_iso(utc)
+    try:
+        time_scale_provider = _load_time_scale_provider()
+        time_scales = time_scale_provider.produce(utc_iso)
+    except Exception as error:
+        reason = getattr(error, "reason", None) or str(error) or "time_scale_provider_failure"
+        canonical["timeScale"] = {"status": "blocked", "reason": reason, "fallbackPolicy": "none"}
+        canonical["ephemeris"] = {"status": "not_evaluated", "reason": reason}
+        canonical["blockedReasons"] = [reason]
         return canonical, None
 
-    time_contract = fixture.get("time")
-    if not isinstance(time_contract, dict) or not all(_finite(time_contract.get(key)) for key in ("ut1MinusUtcSeconds", "ttMinusUtcSeconds")) or not _finite(item.get("tdbMinusTtSeconds")):
-        canonical["timeScale"] = {"status": "blocked", "reason": "time_scale_fixture_mismatch", "fallbackPolicy": "none"}
-        canonical["blockedReasons"] = ["time_scale_fixture_mismatch"]
-        return canonical, None
-    jd_utc = _compute_julian_date_utc(utc)
-    jd_tt = jd_utc + float(time_contract["ttMinusUtcSeconds"]) / DAY_SECONDS
-    jd_tdb = jd_tt + float(item["tdbMinusTtSeconds"]) / DAY_SECONDS
-    et_seconds = (jd_tdb - J2000) * DAY_SECONDS
-    if abs(jd_tt - float(item["jdTt"])) > 1e-12 or abs(jd_tdb - float(item["jdTdb"])) > 1e-12 or abs(et_seconds - float(item["et"])) > 5e-5:
-        canonical["timeScale"] = {"status": "blocked", "reason": "time_scale_fixture_mismatch", "fallbackPolicy": "none"}
-        canonical["blockedReasons"] = ["time_scale_fixture_mismatch"]
-        return canonical, None
-    canonical_jd_tt = float(item["jdTt"])
-    canonical_jd_tdb = float(item["jdTdb"])
-    canonical_et_seconds = float(item["et"])
-    coverage = fixture["kernel"].get("coverage", {})
+    release_contract = _load_de405_release_contract()
+    coverage = release_contract["source"].get("coverage", {})
     try:
         coverage_start = float(coverage["startEt"])
         coverage_end = float(coverage["endEt"])
     except (KeyError, TypeError, ValueError) as error:
-        raise PreviewError("time_scale_fixture_mismatch") from error
+        raise PreviewError("de405_coverage_contract_invalid") from error
+    canonical_et_seconds = time_scales["etSeconds"]
+    if not _finite(canonical_et_seconds):
+        raise PreviewError("time_scale_values_invalid")
     if not coverage_start <= canonical_et_seconds <= coverage_end:
-        canonical["timeScale"] = {"status": "verified_fixture", "jdUtc": jd_utc, "jdTt": canonical_jd_tt, "jdTdb": canonical_jd_tdb, "etSeconds": canonical_et_seconds, "sourceRefs": [f"fixture.fixtures.{item['id']}", "fixture.time"]}
+        canonical["timeScale"] = time_scales
         canonical["ephemeris"] = {"status": "blocked", "reason": "de405_coverage_outside", "coverage": {"startEt": coverage["startEt"], "endEt": coverage["endEt"]}}
         canonical["blockedReasons"] = ["de405_coverage_outside"]
         return canonical, None
-    canonical["timeScale"] = {
-        "status": "verified_fixture",
-        "utcScale": "UTC",
-        "outputScale": "TDB",
-        "ut1MinusUtcSeconds": time_contract["ut1MinusUtcSeconds"],
-        "ttMinusUtcSeconds": time_contract["ttMinusUtcSeconds"],
-        "tdbMinusTtSeconds": item["tdbMinusTtSeconds"],
-        "tdbModel": time_contract.get("tdbModel"),
-        "jdUtc": jd_utc,
-        "jdTt": canonical_jd_tt,
-        "jdTdb": canonical_jd_tdb,
-        "etSeconds": canonical_et_seconds,
-        "sourceRefs": [f"fixture.fixtures.{item['id']}", "fixture.time"],
-        "evidenceScope": "existing_provider_equivalence_fixture_exact_utc_only",
-    }
+    canonical["timeScale"] = time_scales
     canonical["ephemeris"] = {
         "status": "verified",
         "providerId": "jplephem-2.24-direct-spk",
-        "sourceIdentity": fixture["kernel"]["identity"],
-        "sourceSha256": fixture["kernel"]["sha256"],
+        "sourceIdentity": release_contract["source"]["identity"],
+        "sourceSha256": release_contract["source"]["sha256"],
         "coverage": dict(coverage),
         "requestedEtSeconds": canonical_et_seconds,
-        "sourceRefs": ["fixture.kernel", "timeScale.etSeconds"],
+        "sourceRefs": ["de405.releaseContract", "timeScale.etSeconds"],
     }
-    canonical["fixtureEvidence"] = {"fixtureId": fixture["fixtureId"], "fixtureCaseId": item["id"], "fixtureSha256": _sha256_file(FIXTURE_PATH)}
-    canonical["status"] = "verified_fixture"
-    canonical["provenance"]["sourceRefs"].extend([f"fixture.fixtures.{item['id']}", "fixture.time", "fixture.kernel"])
-    normalized_request = {"schemaVersion": REQUEST_SCHEMA, "fixtureId": fixture["fixtureId"], "fixtureCaseId": item["id"], "locationId": location["id"], "utc": utc}
-    return canonical, {"request": normalized_request, "item": item, "location": location}
+    canonical["status"] = "verified_source_relative"
+    canonical["provenance"]["sourceRefs"].extend(["timeScaleBundle", "de405.releaseContract", "timeScale.etSeconds"])
+    return canonical, {
+        "utc": utc,
+        "utcIso": utc_iso,
+        "location": location,
+        "timeScales": time_scales,
+        "coverage": coverage,
+        "canonicalInput": canonical,
+        "canonicalInputContentSha256": _sha256_value(canonical),
+    }
 
 
 def _validate_request(payload: Any, fixture: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any]]:
@@ -1019,8 +1282,51 @@ def _validate_request(payload: Any, fixture: dict[str, Any]) -> tuple[dict[str, 
     return item, location
 
 
-def _evaluate_states(item: dict[str, Any], fixture: dict[str, Any]) -> list[dict[str, Any]]:
+def _evaluate_states(item: dict[str, Any] | None, fixture: dict[str, Any] | None, *, et_seconds: float | None = None, coverage: dict[str, Any] | None = None) -> list[dict[str, Any]]:
     producer = _load_producer()
+    if et_seconds is not None:
+        if coverage is None:
+            raise PreviewError("de405_coverage_contract_missing")
+        try:
+            evaluated = producer.evaluate_states(BSP_PATH, et_seconds, coverage)
+        except Exception as error:
+            message = str(error)
+            if message.startswith("DE405 BSP is missing"):
+                reason = "de405_bsp_missing"
+            elif message.startswith("DE405 BSP byte size mismatch"):
+                reason = "de405_bsp_size_mismatch"
+            elif message.startswith("DE405 BSP SHA mismatch"):
+                reason = "de405_bsp_sha_mismatch"
+            elif message.startswith("DE405 BSP open failed"):
+                reason = "de405_bsp_open_failed"
+            elif message.startswith("required DE405 segment missing"):
+                reason = "de405_required_segment_missing"
+            else:
+                reason = getattr(error, "args", [None])[0] or "de405_state_unavailable"
+            raise PreviewError(str(reason)) from error
+        rows = []
+        mappings = {mapping["id"]: mapping for mapping in BODY_MAPPING}
+        for evaluated_row in evaluated["rows"]:
+            body_id = evaluated_row.get("body")
+            mapping = mappings.get(body_id)
+            if mapping is None:
+                raise PreviewError("de405_body_mapping_mismatch")
+            state = [*evaluated_row["positionKm"], *evaluated_row["velocityKmPerSecond"]]
+            rows.append({
+                "mapping": mapping,
+                "state": state,
+                "pythonVersion": evaluated["provider"]["pythonVersion"],
+                "pythonImplementation": evaluated["provider"]["pythonImplementation"],
+                "pythonAbi": evaluated["provider"]["pythonAbi"],
+                "jplephemVersion": evaluated["provider"]["version"],
+                "numpyVersion": evaluated["provider"]["numpyVersion"],
+                "kernelSha256": evaluated["source"]["sha256"],
+            })
+        if len(rows) != len(BODY_MAPPING):
+            raise PreviewError("de405_body_inventory_incomplete")
+        return rows
+    if item is None or fixture is None:
+        raise PreviewError("fixture_state_input_missing")
     if not BSP_PATH.is_file():
         raise PreviewError("de405_bsp_missing")
     if BSP_PATH.stat().st_size != producer.EXPECTED_KERNEL_BYTES:
@@ -1053,15 +1359,40 @@ def _build_preview(
     verified_item: dict[str, Any] | None = None,
     verified_location: dict[str, Any] | None = None,
     input_status: str = "fixture_validated_preview",
+    verified_context: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    _load_de405_release_contract()
-    fixture = _load_fixture()
-    if verified_item is None or verified_location is None:
+    if verified_context is not None:
+        if not isinstance(verified_location, dict):
+            raise PreviewError("location_unavailable")
+        return _build_arbitrary_preview(verified_context=verified_context, location=verified_location, input_status=input_status)
+    release_contract = _load_de405_release_contract()
+    fixture = None if verified_context is not None else _load_fixture()
+    if verified_context is not None:
+        item = None
+        location = verified_location
+        if not isinstance(location, dict):
+            raise PreviewError("location_unavailable")
+        rows = _evaluate_states(
+            None,
+            None,
+            et_seconds=verified_context["timeScales"]["etSeconds"],
+            coverage=verified_context["coverage"],
+        )
+        time_values = verified_context["timeScales"]["julianDates"]
+        time = _time_angles_from_values(
+            verified_context["utc"],
+            location,
+            float(time_values["ut1"]),
+            float(time_values["tt"]["value"]),
+        )
+    elif verified_item is None or verified_location is None:
         item, location = _validate_request(payload, fixture)
+        rows = _evaluate_states(item, fixture)
+        time = _time_angles(item, location)
     else:
         item, location = verified_item, verified_location
-    rows = _evaluate_states(item, fixture)
-    time = _time_angles(item, location)
+        rows = _evaluate_states(item, fixture)
+        time = _time_angles(item, location)
     raw_bodies = []
     provider_info = {"id": "jplephem", "implementation": "direct_spk", "version": rows[0]["jplephemVersion"], "numpyVersion": rows[0]["numpyVersion"], "pythonVersion": rows[0]["pythonVersion"], "pythonImplementation": rows[0]["pythonImplementation"], "pythonAbi": rows[0]["pythonAbi"], "license": "MIT"}
     for row in rows:
@@ -1178,7 +1509,7 @@ def _finalize_user_input_response(canonical: dict[str, Any], reason: str | None 
 
 
 def build_user_input_preview(payload: Any) -> dict[str, Any]:
-    """Normalize supported user input and bridge only exact fixture time evidence."""
+    """Normalize supported user input and build a source-relative FACT packet."""
 
     try:
         _load_user_input_contract()
@@ -1187,15 +1518,20 @@ def build_user_input_preview(payload: Any) -> dict[str, Any]:
             reason = canonical.get("blockedReasons", ["input_normalization_blocked"])[0]
             return _finalize_user_input_response(canonical, reason)
         verified_response = _build_preview(
-            resolved["request"],
-            verified_item=resolved["item"],
+            payload,
             verified_location=resolved["location"],
-            input_status="user_input_normalized_fixture_verified",
+            input_status="user_input_normalized_source_relative_verified",
+            verified_context=resolved,
         )
         return _finalize_user_input_response(canonical, verified_response=verified_response)
     except PreviewError as error:
         reason = str(error)
-        return _finalize_user_input_response(_blocked_user_input_canonical(reason, payload), reason)
+        blocked = canonical if "canonical" in locals() and isinstance(canonical, dict) else _blocked_user_input_canonical(reason, payload)
+        blocked["status"] = "blocked"
+        blocked["blockedReasons"] = [reason]
+        if "timeScale" in blocked and isinstance(blocked["timeScale"], dict) and blocked["timeScale"].get("status") != "blocked":
+            blocked["ephemeris"] = {"status": "not_evaluated", "reason": reason}
+        return _finalize_user_input_response(blocked, reason)
 
 
 def _blocked_response(reason: str) -> dict[str, Any]:
@@ -1301,7 +1637,7 @@ def verify_user_input_response(response: Any) -> list[str]:
     require(isinstance(canonical_hash, str) and canonical_hash == _sha256_value(canonical_copy), "canonical_input_content_hash_mismatch")
     require(canonical.get("schemaVersion") == CANONICAL_INPUT_SCHEMA, "canonical_input_schema_mismatch")
     require(canonical.get("canonicalVersion") == USER_INPUT_VERSION, "canonical_input_version_mismatch")
-    require(canonical.get("status") in {"verified_fixture", "blocked"}, "canonical_input_status_invalid")
+    require(canonical.get("status") in {"verified_source_relative", "verified_fixture", "blocked"}, "canonical_input_status_invalid")
 
     civil = canonical.get("civilTime")
     if isinstance(civil, dict):
@@ -1339,7 +1675,7 @@ def verify_user_input_response(response: Any) -> list[str]:
             require(provenance.get("sourceSha256") == EXPECTED_LOCATION_COORDINATE_SOURCE_SHA256, "canonical_location_provenance_sha_mismatch")
 
     if response.get("status") == "complete":
-        require(canonical.get("status") == "verified_fixture", "complete_without_verified_canonical_input")
+        require(canonical.get("status") in {"verified_source_relative", "verified_fixture"}, "complete_without_verified_canonical_input")
         verified_response = response.get("verifiedResponse")
         require(isinstance(verified_response, dict), "verified_response_missing")
         if isinstance(verified_response, dict):
@@ -1351,6 +1687,31 @@ def verify_user_input_response(response: Any) -> list[str]:
                 require(packet.get("input", {}).get("locationId") == canonical.get("location", {}).get("id"), "canonical_packet_location_mismatch")
                 require(packet.get("input", {}).get("location", {}).get("latitudeDegrees") == canonical.get("location", {}).get("latitudeDegrees"), "canonical_packet_latitude_mismatch")
                 require(packet.get("input", {}).get("location", {}).get("longitudeDegreesEast") == canonical.get("location", {}).get("longitudeDegreesEast"), "canonical_packet_longitude_mismatch")
+                if canonical.get("status") == "verified_source_relative":
+                    require(canonical.get("timeScale", {}).get("schemaVersion") == TIME_SCALE_SCHEMA, "canonical_time_scale_schema_mismatch")
+                    require(canonical.get("timeScale", {}).get("status") == "verified_source_relative", "canonical_time_scale_status_mismatch")
+                    require(canonical.get("ephemeris", {}).get("status") == "verified", "canonical_ephemeris_status_mismatch")
+                    require(packet.get("input", {}).get("schemaVersion") == CANONICAL_INPUT_SCHEMA, "canonical_packet_input_schema_mismatch")
+                    require(packet.get("input", {}).get("canonicalInputContentSha256") == canonical_hash, "canonical_packet_input_hash_mismatch")
+                    require("fixtureId" not in packet.get("input", {}) and "fixtureCaseId" not in packet.get("input", {}), "arbitrary_packet_contains_fixture_identity")
+                    canonical_utc = canonical.get("civilTime", {}).get("utc")
+                    expected_utc_iso = _utc_iso(canonical_utc) if isinstance(canonical_utc, dict) else None
+                    require(packet.get("input", {}).get("utcIso") == expected_utc_iso, "canonical_packet_utc_iso_mismatch")
+                    require(packet.get("input", {}).get("location") == canonical.get("location"), "canonical_packet_location_projection_mismatch")
+                    expected_time_scale_projection = {key: canonical["timeScale"].get(key) for key in ("schemaVersion", "status", "values", "julianDates", "etSeconds")}
+                    require(packet.get("input", {}).get("timeScales") == expected_time_scale_projection, "canonical_packet_time_scale_projection_mismatch")
+                    require(packet.get("provenance", {}).get("canonicalInputSha256") == canonical_hash, "canonical_packet_provenance_input_hash_mismatch")
+                    require(packet.get("provenance", {}).get("timeScaleBundle", {}).get("canonicalSha256") == EXPECTED_TIME_SCALE_BUNDLE_CANONICAL_SHA256, "canonical_packet_time_scale_bundle_mismatch")
+                    boundary = packet.get("boundaryAssessment")
+                    require(isinstance(boundary, dict), "boundary_assessment_missing")
+                    if isinstance(boundary, dict):
+                        require(boundary.get("schemaVersion") == "astrology-discrete-fact-boundary-v1", "boundary_assessment_schema_mismatch")
+                        require(boundary.get("factFrame", {}).get("mode") == "source_relative_deterministic", "boundary_assessment_fact_frame_mismatch")
+                        require(boundary.get("status") == "indeterminate", "boundary_assessment_status_invalid")
+                        require(boundary.get("intervalBacked", {}).get("status") == "blocked" and boundary.get("intervalBacked", {}).get("finalObservableIntervalSupplied") is False, "boundary_assessment_interval_gate_invalid")
+                        require(boundary.get("source", {}).get("timeScaleBundleCanonicalSha256") == EXPECTED_TIME_SCALE_BUNDLE_CANONICAL_SHA256, "boundary_assessment_provenance_mismatch")
+                    require(verified_response.get("factOnlyHandoff", {}).get("factFrame") == packet.get("factFrame"), "handoff_fact_frame_projection_mismatch")
+                    require(verified_response.get("factOnlyHandoff", {}).get("boundaryAssessment") == boundary, "handoff_boundary_projection_mismatch")
         require(response.get("blockedFeatures") == response.get("verifiedResponse", {}).get("packet", {}).get("blockedFeatures"), "blocked_feature_projection_mismatch")
         require(response.get("unsupportedFeatures") == response.get("verifiedResponse", {}).get("packet", {}).get("unsupportedFeatures"), "unsupported_feature_projection_mismatch")
     else:

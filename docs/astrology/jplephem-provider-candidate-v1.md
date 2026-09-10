@@ -2,10 +2,12 @@
 
 ## Scope and status
 
-This is a CSPICE-free alternate-provider candidate for the technical
-Astrology layer. It is an evaluation path only. It does not select a runtime
-provider, change the existing CSPICE/JPL route, alter activation, add True
-Node, or generate semantic or personal interpretation.
+This is the CSPICE-free jplephem producer for the technical Astrology layer.
+Its arbitrary-date route is source-relative and internal-ready for the fixed
+time-scale interval in the offline bundle. It does not alter activation, add
+True Node, or generate semantic or personal interpretation. The legacy
+fixture route remains as a comparison surface and is not the arbitrary-date
+input source.
 
 The CSPICE runner in the GitHub Actions `reference` job is an offline
 comparison oracle only. It is not part of the jplephem candidate payload and
@@ -23,7 +25,7 @@ is not required by `api/provider/astrology-jplephem-producer.py`.
 | DE405 source | official unmodified NAIF `de405.bsp` |
 | DE405 SHA-256 | `30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89` |
 | DE405 bytes | `10,898,432` |
-| time | supplied fixture TDB/JD and ET values |
+| time | verified offline DUT1/TT−UTC/TDB−TT bundle; two-part JD |
 | observer | Earth geocenter `399` |
 | frame | `J2000/ICRF` |
 | correction | geometric `NONE` |
@@ -37,12 +39,12 @@ than requiring the build reference patch.
 
 ## Candidate output
 
-`astrology-jplephem-producer.py` emits a canonical, newline-terminated JSON
-state packet containing ten DE405 body mappings across the fixed 19-date
-suite. It preserves provider/source identity, fixture SHA, time/frame/observer
-semantics, units, and row-level selection evidence. It emits no Rule Core
-meaning by itself; the existing JavaScript transform and Rule Core consume
-the states in the checker only.
+`astrology-jplephem-producer.py` emits the verified ten-body DE405 state rows
+for a supplied ET after the caller has passed the time-scale and coverage
+contracts. It preserves provider/source identity, time/frame/observer
+semantics, units, two-part-JD evidence, and row-level selection evidence. The
+Python Function then applies the existing transform and Rule Core without
+adding semantic meaning.
 
 The fixture covers the verified DE405 overlap window, multiple historical and
 future dates, and explicit retrograde samples. Four locations (Seoul, Busan,
@@ -68,52 +70,51 @@ dispatchable on `main` and runs:
 
 The comparison uses the frozen
 `provider-equivalence-contract-v1` candidate thresholds and exact discrete
-policy. A passing comparison is still `candidate_only_not_production` until
-the separate package, platform, compliance, deployment, and existing
-activation gates close.
+policy. It is a comparison oracle for the same producer; the separate public
+redistribution and interpretation-activation gates remain independent of the
+internal source-relative FACT route.
 
 ## Vercel preview packaging
 
 `api/astrology.py` is the smallest file-based Python Function candidate. Its
 root `requirements.txt` pins `jplephem==2.24` and `numpy==2.5.3`; `.python-version`
 records the reproducible build reference `3.14.7`; the runtime contract accepts
-CPython `3.14.x` with ABI tag `cpython-314`; and `vercel.json`
-includes the immutable BSP, producer module, and equivalence fixture in the
-function bundle. The function has no runtime network or provider-download
-path and uses a 64 KiB request cap.
+CPython `3.14.x` with ABI tag `cpython-314`; and `vercel.json` includes the
+immutable BSP, provider modules, time-scale bundle, and declared assets in the
+function bundle. The function has no runtime network or provider-download path
+and uses a 64 KiB request cap.
 
-The preview request is deliberately bound to a fixture case and a declared
-fixture location. It accepts no caller-supplied coordinates or arbitrary
-date that has not passed the existing verified-fixture contract. A successful
-response is emitted as `astrology-jplephem-fact-packet-v1` plus
+The user-input request accepts only the existing Korea SGG local-civil-time
+and location contract. It derives UTC through the pinned TZif resolver,
+consumes the immutable time-scale bundle for the supported interval, checks
+DE405 coverage, and then emits `astrology-jplephem-fact-packet-v1` plus
 `astrology-jplephem-fact-handoff-v1`; the handoff projects only raw and
 deterministically derived technical FACTs and retains the jplephem/DE405
 identity. It does not rewrite the frozen CSPICE packet schema or activate
 interpretation.
 
-The route is therefore still a preview/package candidate, not a public
-production route. An authenticated Vercel Preview check observed CPython
+The route is an internal technical producer, not an interpretation or public
+activation route. An authenticated Vercel Preview check observed CPython
 `3.14.7` during the build and CPython `3.14.6` while executing the Function;
 the response recorded that exact runtime and passed the `cpython-314` runtime
 contract. The same request produced byte-identical repeated responses, passed
 the fresh-file checker, and rejected tampered, missing-handoff, and
 wrong-provider responses.
 
-That check closes only the fixture-bound cloud compatibility path. The cloud
-request uses `golden_2000:seoul`, while the existing Mac golden uses a
-synthetic `0/0` observer location; therefore location-dependent angles,
-Whole Sign houses, chart rulers, and angle aspects are not claimed as
-same-input Mac parity by this record. The cloud output does match the Mac
-golden's provider-sensitive raw body values and location-independent discrete
-body/aspect/distribution FACTs within the frozen equivalence contract.
+The earlier cloud check used `golden_2000:seoul`, while the existing Mac golden
+used a synthetic `0/0` observer location; therefore location-dependent angles,
+Whole Sign houses, chart rulers, and angle aspects were not claimed as
+same-input Mac parity by that record. It remains a fixture comparison record,
+not a substitute for the arbitrary-date input and time-scale checks described
+above.
 
-The route must remain fixture-bound until an independently verified input
-boundary and date-valid provider evidence are packaged for arbitrary users:
-IANA timezone/DST-to-UTC resolution, DUT1 and leap-second/TT-UTC provenance,
-deterministic TDB-TT values, verified locations, and DE405 coverage checks.
-The fixture's fixed offsets and locations are not reusable defaults.
-The producer remains `candidate_only_not_production` for runtime-selection
-purposes and `availableForInterpretation` is false.
+The user-input path is re-evaluated through the same local/Linux provider for
+multiple dates and locations, including the supported interval endpoints, and
+carries the source-relative boundary assessment. The existing fixture's fixed
+offsets and locations remain comparison data only. The producer's
+`availableForInterpretation` value remains false because interpretation
+integration is not activated; it does not prohibit a downstream conversational
+consumer from describing included FACTs under its separate contract.
 
 ## DE405-only release boundary
 
