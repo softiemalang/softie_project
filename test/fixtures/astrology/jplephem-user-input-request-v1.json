@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "astrology-jplephem-user-input-request-v1",
+  "userInput": {
+    "localDateTime": {
+      "year": 2000,
+      "month": 1,
+      "day": 1,
+      "hour": 21,
+      "minute": 0,
+      "second": 0
+    },
+    "locationId": "sgg:41210",
+    "fold": null
+  }
+}

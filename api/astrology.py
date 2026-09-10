@@ -11,10 +11,13 @@ import hashlib
 import importlib.util
 import json
 import math
+import re
 import sys
+from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler
 from pathlib import Path
 from typing import Any
+from zoneinfo import ZoneInfo
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -23,15 +26,28 @@ FIXTURE_PATH = ROOT / "api" / "provider" / "provider-equivalence-v1.json"
 BSP_PATH = ROOT / "api" / "provider" / "de405.bsp"
 RELEASE_CONTRACT_PATH = ROOT / "api" / "provider" / "de405-only-release-contract-v1.json"
 NOTICE_PATH = ROOT / "api" / "provider" / "NOTICE.md"
+INPUT_CONTRACT_PATH = ROOT / "api" / "provider" / "astrology-user-input-contract-v1.json"
+TIMEZONE_ASSET_PATH = ROOT / "api" / "provider" / "asia-seoul.tzif"
+LOCATION_SOURCE_PATH = ROOT / "src" / "interpretationPrep" / "koreaAdministrativeLocations.js"
 REQUEST_SCHEMA = "astrology-jplephem-preview-request-v1"
+USER_INPUT_REQUEST_SCHEMA = "astrology-jplephem-user-input-request-v1"
+USER_INPUT_RESPONSE_SCHEMA = "astrology-jplephem-user-input-handoff-v1"
+CANONICAL_INPUT_SCHEMA = "astrology-canonical-astronomy-input-v1"
 RESPONSE_SCHEMA = "astrology-jplephem-fact-handoff-v1"
 PACKET_SCHEMA = "astrology-jplephem-fact-packet-v1"
 PACKET_VERSION = "1.0.0"
+USER_INPUT_VERSION = "1.0.0"
 EXPECTED_RELEASE_CONTRACT_SHA256 = "7a83e01e8ef24eefb4124d5021711ae8392ee6c40b4e2986fed543081c68209f"
 EXPECTED_NOTICE_SHA256 = "b9f19cbceebb8ab4f42e48f08542d15f01b0118d71740d816753a89ea3086d5a"
 EXPECTED_NOTICE_BYTES = 3781
 EXPECTED_DE405_SHA256 = "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89"
 EXPECTED_DE405_BYTES = 10898432
+EXPECTED_INPUT_CONTRACT_SHA256 = "5a488ed37b1a4d56bde02bbc17c81a5c17a849970f631df15f89bc332ff64cb6"
+EXPECTED_TIMEZONE_ASSET_SHA256 = "2c8f4bb15dd77090b497e2a841ff3323ecbbae4f9dbb9edead2f8dd8fb5d8bb4"
+EXPECTED_TIMEZONE_ASSET_BYTES = 617
+EXPECTED_LOCATION_SOURCE_SHA256 = "35dfca5a7b6a9e8dcf247a25e6a2e8da30fac0726b8f57fb0726c6d24aff4964"
+EXPECTED_LOCATION_COORDINATE_SOURCE_SHA256 = "e612605e957e71ea2770876331eb20965820590bc57e5a98a91bc9307a678ec9"
+EXPECTED_LOCATION_ROW_COUNT = 252
 MAX_REQUEST_BYTES = 64 * 1024
 DAY_SECONDS = 86400.0
 J2000 = 2451545.0
@@ -41,6 +57,9 @@ SIGN_BOUNDARY_THRESHOLD = 1.0 / 60.0
 ORB_BOUNDARY_THRESHOLD = 1.0 / 60.0
 MOTION_EPSILON = 1e-7
 GEOGRAPHIC_POLE_EPSILON = 1e-10
+LOCAL_DATETIME_KEYS = {"year", "month", "day", "hour", "minute", "second"}
+USER_INPUT_KEYS = {"localDateTime", "locationId", "fold"}
+LOCATION_ROW_PATTERN = re.compile(r'^\s*"(?P<row>\d{5}\|[^"\n]+)"\s*,?\s*$', re.MULTILINE)
 
 ACTIVATION = {
     "availableForInterpretation": False,
@@ -618,6 +637,365 @@ def _load_fixture() -> dict[str, Any]:
     return fixture
 
 
+def _load_user_input_contract() -> dict[str, Any]:
+    if not INPUT_CONTRACT_PATH.is_file():
+        raise PreviewError("input_contract_missing")
+    try:
+        contract_bytes = INPUT_CONTRACT_PATH.read_bytes()
+        contract = json.loads(contract_bytes.decode("utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as error:
+        raise PreviewError("input_contract_unreadable") from error
+    if _sha256_file(INPUT_CONTRACT_PATH) != EXPECTED_INPUT_CONTRACT_SHA256:
+        raise PreviewError("input_contract_sha_mismatch")
+    if not isinstance(contract, dict) or contract.get("schemaVersion") != "astrology-user-input-normalization-contract-v1" or contract.get("contractVersion") != USER_INPUT_VERSION:
+        raise PreviewError("input_contract_schema_mismatch")
+    if contract.get("requestSchema") != USER_INPUT_REQUEST_SCHEMA or contract.get("responseSchema") != USER_INPUT_RESPONSE_SCHEMA:
+        raise PreviewError("input_contract_schema_mismatch")
+    resolver = contract.get("civilTime", {}).get("resolver", {})
+    if resolver != {
+        "id": "python-zoneinfo-from-pinned-tzif-v1",
+        "ianaZone": "Asia/Seoul",
+        "ianaRelease": "2026c",
+        "assetPath": "api/provider/asia-seoul.tzif",
+        "assetSha256": EXPECTED_TIMEZONE_ASSET_SHA256,
+        "assetBytes": EXPECTED_TIMEZONE_ASSET_BYTES,
+    }:
+        raise PreviewError("input_contract_timezone_mismatch")
+    location = contract.get("location", {})
+    if location.get("sourcePath") != "src/interpretationPrep/koreaAdministrativeLocations.js" or location.get("sourceSha256") != EXPECTED_LOCATION_SOURCE_SHA256 or location.get("coordinateSourceSha256") != EXPECTED_LOCATION_COORDINATE_SOURCE_SHA256 or location.get("requiredRowCount") != EXPECTED_LOCATION_ROW_COUNT:
+        raise PreviewError("input_contract_location_mismatch")
+    ephemeris = contract.get("ephemeris", {})
+    if ephemeris.get("providerId") != "jplephem-2.24-direct-spk" or ephemeris.get("sourceIdentity") != "unmodified_official_naif_de405_bsp" or ephemeris.get("sourceSha256") != EXPECTED_DE405_SHA256:
+        raise PreviewError("input_contract_ephemeris_mismatch")
+    time_scale = contract.get("timeScale", {})
+    if time_scale.get("fixturePath") != "api/provider/provider-equivalence-v1.json" or time_scale.get("noImplicitZero") is not True or time_scale.get("noFormulaSubstitution") is not True or time_scale.get("noRuntimeFetch") is not True:
+        raise PreviewError("input_contract_time_scale_mismatch")
+    return contract
+
+
+def _load_korea_location_snapshot() -> dict[str, dict[str, Any]]:
+    if not LOCATION_SOURCE_PATH.is_file():
+        raise PreviewError("location_source_missing")
+    if _sha256_file(LOCATION_SOURCE_PATH) != EXPECTED_LOCATION_SOURCE_SHA256:
+        raise PreviewError("location_source_sha_mismatch")
+    try:
+        source = LOCATION_SOURCE_PATH.read_text(encoding="utf-8")
+    except (OSError, UnicodeError) as error:
+        raise PreviewError("location_source_missing") from error
+    required_markers = (
+        "schemaVersion: 'korea-sgg-location-provenance-v1'",
+        "timezone: 'Asia/Seoul'",
+        "supportedCountry: '대한민국'",
+        f"sha256: '{EXPECTED_LOCATION_COORDINATE_SOURCE_SHA256}'",
+    )
+    if any(marker not in source for marker in required_markers):
+        raise PreviewError("location_source_provenance_mismatch")
+    rows = LOCATION_ROW_PATTERN.findall(source)
+    if len(rows) != EXPECTED_LOCATION_ROW_COUNT:
+        raise PreviewError("location_source_row_count_mismatch")
+    locations: dict[str, dict[str, Any]] = {}
+    for row in rows:
+        parts = row.split("|")
+        if len(parts) != 7:
+            raise PreviewError("location_source_row_malformed")
+        code, sido_code, sido_name, sgg_name, latitude_text, longitude_text, coordinate_method = parts
+        try:
+            latitude = float(latitude_text)
+            longitude = float(longitude_text)
+        except ValueError as error:
+            raise PreviewError("location_source_coordinate_invalid") from error
+        if not re.fullmatch(r"\d{5}", code) or not _finite(latitude) or not _finite(longitude) or not 33.0 <= latitude <= 39.0 or not 124.0 <= longitude <= 132.0 or not coordinate_method:
+            raise PreviewError("location_source_coordinate_invalid")
+        location_id = f"sgg:{code}"
+        if location_id in locations:
+            raise PreviewError("location_source_duplicate_code")
+        locations[location_id] = {
+            "id": location_id,
+            "code": code,
+            "sidoCode": sido_code,
+            "sidoName": sido_name,
+            "sggName": sgg_name,
+            "label": f"{sido_name} {sgg_name}",
+            "country": "대한민국",
+            "timezone": "Asia/Seoul",
+            "latitudeDegrees": latitude,
+            "longitudeDegreesEast": longitude,
+            "resolution": "administrative_area_representative_point",
+            "coordinateMethod": coordinate_method,
+            "coordinateProvenance": {
+                "schemaVersion": "korea-sgg-location-provenance-v1",
+                "sourceIdentity": "admdongkor MDIS administrative-boundary center snapshot",
+                "coordinateReferenceSystem": "WGS84 / EPSG:4326",
+                "sourceSha256": EXPECTED_LOCATION_COORDINATE_SOURCE_SHA256,
+                "sourcePath": "src/interpretationPrep/koreaAdministrativeLocations.js",
+            },
+        }
+    if len(locations) != EXPECTED_LOCATION_ROW_COUNT:
+        raise PreviewError("location_source_row_count_mismatch")
+    return locations
+
+
+def _load_pinned_seoul_timezone() -> ZoneInfo:
+    if not TIMEZONE_ASSET_PATH.is_file():
+        raise PreviewError("timezone_asset_missing")
+    try:
+        if TIMEZONE_ASSET_PATH.stat().st_size != EXPECTED_TIMEZONE_ASSET_BYTES:
+            raise PreviewError("timezone_asset_size_mismatch")
+    except OSError as error:
+        raise PreviewError("timezone_asset_missing") from error
+    if _sha256_file(TIMEZONE_ASSET_PATH) != EXPECTED_TIMEZONE_ASSET_SHA256:
+        raise PreviewError("timezone_asset_sha_mismatch")
+    try:
+        with TIMEZONE_ASSET_PATH.open("rb") as stream:
+            zone = ZoneInfo.from_file(stream, key="Asia/Seoul")
+    except (OSError, ValueError) as error:
+        raise PreviewError("timezone_resolution_failed") from error
+    return zone
+
+
+def _utc_object(value: datetime) -> dict[str, Any]:
+    return {
+        "year": value.year,
+        "month": value.month,
+        "day": value.day,
+        "hour": value.hour,
+        "minute": value.minute,
+        "second": value.second,
+    }
+
+
+def _validate_local_datetime(value: Any) -> dict[str, int]:
+    if not isinstance(value, dict) or isinstance(value, list) or set(value) != LOCAL_DATETIME_KEYS:
+        raise PreviewError("local_datetime_invalid")
+    if any(isinstance(value[key], bool) or not isinstance(value[key], int) for key in LOCAL_DATETIME_KEYS):
+        raise PreviewError("local_datetime_invalid")
+    if value["year"] < 1900 or value["year"] > 2100 or value["month"] < 1 or value["month"] > 12 or value["day"] < 1 or value["hour"] < 0 or value["hour"] > 23 or value["minute"] < 0 or value["minute"] > 59 or value["second"] < 0 or value["second"] > 59:
+        raise PreviewError("local_datetime_invalid")
+    try:
+        datetime(value["year"], value["month"], value["day"], value["hour"], value["minute"], value["second"])
+    except ValueError as error:
+        raise PreviewError("local_datetime_invalid") from error
+    return {key: value[key] for key in ("year", "month", "day", "hour", "minute", "second")}
+
+
+def _resolve_pinned_local_time(local: dict[str, int], zone: ZoneInfo, requested_fold: Any) -> tuple[dict[str, Any], dict[str, Any]]:
+    naive = datetime(**local)
+    candidates: list[dict[str, Any]] = []
+    seen_utc: set[str] = set()
+    for fold_value in (0, 1):
+        aware = naive.replace(tzinfo=zone, fold=fold_value)
+        utc_value = aware.astimezone(timezone.utc)
+        round_trip = utc_value.astimezone(zone).replace(tzinfo=None)
+        if round_trip != naive:
+            continue
+        utc_key = utc_value.isoformat()
+        if utc_key in seen_utc:
+            continue
+        seen_utc.add(utc_key)
+        offset = aware.utcoffset()
+        if offset is None:
+            raise PreviewError("timezone_resolution_failed")
+        candidates.append({"fold": fold_value, "utc": _utc_object(utc_value), "offsetSeconds": int(offset.total_seconds())})
+
+    resolver = {
+        "id": "python-zoneinfo-from-pinned-tzif-v1",
+        "ianaZone": "Asia/Seoul",
+        "ianaRelease": "2026c",
+        "assetSha256": EXPECTED_TIMEZONE_ASSET_SHA256,
+        "assetBytes": EXPECTED_TIMEZONE_ASSET_BYTES,
+        "runtime": {
+            "pythonVersion": ".".join(str(part) for part in sys.version_info[:3]),
+            "pythonImplementation": sys.implementation.name,
+            "pythonAbi": sys.implementation.cache_tag,
+        },
+    }
+    if not candidates:
+        return {
+            "status": "gap",
+            "localDateTime": local,
+            "timeZone": "Asia/Seoul",
+            "candidates": [],
+            "resolver": resolver,
+        }, {}
+    if len(candidates) > 1:
+        if requested_fold is None:
+            return {
+                "status": "overlap",
+                "localDateTime": local,
+                "timeZone": "Asia/Seoul",
+                "candidates": candidates,
+                "resolver": resolver,
+            }, {}
+        if isinstance(requested_fold, bool) or requested_fold not in (0, 1):
+            raise PreviewError("civil_time_fold_invalid")
+        selected = next((candidate for candidate in candidates if candidate["fold"] == requested_fold), None)
+        if selected is None:
+            raise PreviewError("civil_time_fold_invalid")
+        return {
+            "status": "overlap_resolved",
+            "localDateTime": local,
+            "timeZone": "Asia/Seoul",
+            "selectedFold": requested_fold,
+            "candidates": candidates,
+            "resolver": resolver,
+            "utc": selected["utc"],
+            "offsetSeconds": selected["offsetSeconds"],
+        }, selected
+    if requested_fold is not None:
+        raise PreviewError("civil_time_fold_invalid")
+    selected = candidates[0]
+    return {
+        "status": "exact",
+        "localDateTime": local,
+        "timeZone": "Asia/Seoul",
+        "selectedFold": "not_applicable",
+        "candidates": candidates,
+        "resolver": resolver,
+        "utc": selected["utc"],
+        "offsetSeconds": selected["offsetSeconds"],
+    }, selected
+
+
+def _canonical_location(location: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "id": location["id"],
+        "code": location["code"],
+        "label": location["label"],
+        "country": location["country"],
+        "timezone": location["timezone"],
+        "latitudeDegrees": location["latitudeDegrees"],
+        "longitudeDegreesEast": location["longitudeDegreesEast"],
+        "resolution": location["resolution"],
+        "coordinateMethod": location["coordinateMethod"],
+        "coordinateProvenance": dict(location["coordinateProvenance"]),
+    }
+
+
+def _base_canonical_user_input(user_input: dict[str, Any] | None = None) -> dict[str, Any]:
+    canonical: dict[str, Any] = {
+        "schemaVersion": CANONICAL_INPUT_SCHEMA,
+        "canonicalVersion": USER_INPUT_VERSION,
+        "status": "blocked",
+        "provenance": {"sourceRefs": ["userInput"]},
+    }
+    if user_input is not None:
+        canonical["userInput"] = user_input
+    return canonical
+
+
+def _normalize_user_input(payload: Any, fixture: dict[str, Any] | None = None) -> tuple[dict[str, Any], dict[str, Any] | None]:
+    if not isinstance(payload, dict) or isinstance(payload, list):
+        raise PreviewError("request_not_object")
+    if set(payload) != {"schemaVersion", "userInput"}:
+        raise PreviewError("request_fields_mismatch")
+    if payload["schemaVersion"] != USER_INPUT_REQUEST_SCHEMA:
+        raise PreviewError("request_schema_mismatch")
+    user_input = payload["userInput"]
+    if not isinstance(user_input, dict) or isinstance(user_input, list) or set(user_input) != USER_INPUT_KEYS:
+        raise PreviewError("request_fields_mismatch")
+    local = _validate_local_datetime(user_input["localDateTime"])
+    location_id = user_input["locationId"]
+    if not isinstance(location_id, str) or not re.fullmatch(r"sgg:\d{5}", location_id):
+        raise PreviewError("location_unsupported")
+    requested_fold = user_input["fold"]
+    if requested_fold is not None and (isinstance(requested_fold, bool) or requested_fold not in (0, 1)):
+        raise PreviewError("civil_time_fold_invalid")
+    contract = _load_user_input_contract()
+    locations = _load_korea_location_snapshot()
+    location = locations.get(location_id)
+    if location is None:
+        raise PreviewError("location_unsupported")
+    if location["timezone"] != contract["location"]["timezone"] or location["country"] != contract["location"]["country"]:
+        raise PreviewError("location_unsupported")
+    zone = _load_pinned_seoul_timezone()
+    civil, selected = _resolve_pinned_local_time(local, zone, requested_fold)
+    canonical = _base_canonical_user_input({"localDateTime": local, "locationId": location_id, "fold": requested_fold})
+    canonical["civilTime"] = civil
+    canonical["location"] = _canonical_location(location)
+    canonical["provenance"] = {
+        "sourceRefs": ["userInput.localDateTime", "userInput.locationId", "civilTime.resolver", "location.coordinateProvenance"],
+        "locationSourceSha256": EXPECTED_LOCATION_SOURCE_SHA256,
+        "timezoneAssetSha256": EXPECTED_TIMEZONE_ASSET_SHA256,
+    }
+    if not selected:
+        reason = "civil_time_nonexistent" if civil["status"] == "gap" else "civil_time_ambiguous"
+        canonical["blockedReasons"] = [reason]
+        return canonical, None
+
+    if fixture is None:
+        fixture = _load_fixture()
+    utc = selected["utc"]
+    item = next((candidate for candidate in fixture["fixtures"] if candidate.get("utc") == utc), None)
+    if item is None:
+        canonical["timeScale"] = {
+            "status": "blocked",
+            "reason": "time_scale_evidence_unavailable",
+            "required": ["ut1MinusUtcSeconds", "ttMinusUtcSeconds", "tdbMinusTtSeconds"],
+            "evidenceScope": "existing_provider_equivalence_fixture_exact_utc_only",
+            "fallbackPolicy": "none",
+        }
+        canonical["ephemeris"] = {"status": "not_evaluated", "reason": "time_scale_evidence_unavailable"}
+        canonical["blockedReasons"] = ["time_scale_evidence_unavailable"]
+        return canonical, None
+
+    time_contract = fixture.get("time")
+    if not isinstance(time_contract, dict) or not all(_finite(time_contract.get(key)) for key in ("ut1MinusUtcSeconds", "ttMinusUtcSeconds")) or not _finite(item.get("tdbMinusTtSeconds")):
+        canonical["timeScale"] = {"status": "blocked", "reason": "time_scale_fixture_mismatch", "fallbackPolicy": "none"}
+        canonical["blockedReasons"] = ["time_scale_fixture_mismatch"]
+        return canonical, None
+    jd_utc = _compute_julian_date_utc(utc)
+    jd_tt = jd_utc + float(time_contract["ttMinusUtcSeconds"]) / DAY_SECONDS
+    jd_tdb = jd_tt + float(item["tdbMinusTtSeconds"]) / DAY_SECONDS
+    et_seconds = (jd_tdb - J2000) * DAY_SECONDS
+    if abs(jd_tt - float(item["jdTt"])) > 1e-12 or abs(jd_tdb - float(item["jdTdb"])) > 1e-12 or abs(et_seconds - float(item["et"])) > 5e-5:
+        canonical["timeScale"] = {"status": "blocked", "reason": "time_scale_fixture_mismatch", "fallbackPolicy": "none"}
+        canonical["blockedReasons"] = ["time_scale_fixture_mismatch"]
+        return canonical, None
+    canonical_jd_tt = float(item["jdTt"])
+    canonical_jd_tdb = float(item["jdTdb"])
+    canonical_et_seconds = float(item["et"])
+    coverage = fixture["kernel"].get("coverage", {})
+    try:
+        coverage_start = float(coverage["startEt"])
+        coverage_end = float(coverage["endEt"])
+    except (KeyError, TypeError, ValueError) as error:
+        raise PreviewError("time_scale_fixture_mismatch") from error
+    if not coverage_start <= canonical_et_seconds <= coverage_end:
+        canonical["timeScale"] = {"status": "verified_fixture", "jdUtc": jd_utc, "jdTt": canonical_jd_tt, "jdTdb": canonical_jd_tdb, "etSeconds": canonical_et_seconds, "sourceRefs": [f"fixture.fixtures.{item['id']}", "fixture.time"]}
+        canonical["ephemeris"] = {"status": "blocked", "reason": "de405_coverage_outside", "coverage": {"startEt": coverage["startEt"], "endEt": coverage["endEt"]}}
+        canonical["blockedReasons"] = ["de405_coverage_outside"]
+        return canonical, None
+    canonical["timeScale"] = {
+        "status": "verified_fixture",
+        "utcScale": "UTC",
+        "outputScale": "TDB",
+        "ut1MinusUtcSeconds": time_contract["ut1MinusUtcSeconds"],
+        "ttMinusUtcSeconds": time_contract["ttMinusUtcSeconds"],
+        "tdbMinusTtSeconds": item["tdbMinusTtSeconds"],
+        "tdbModel": time_contract.get("tdbModel"),
+        "jdUtc": jd_utc,
+        "jdTt": canonical_jd_tt,
+        "jdTdb": canonical_jd_tdb,
+        "etSeconds": canonical_et_seconds,
+        "sourceRefs": [f"fixture.fixtures.{item['id']}", "fixture.time"],
+        "evidenceScope": "existing_provider_equivalence_fixture_exact_utc_only",
+    }
+    canonical["ephemeris"] = {
+        "status": "verified",
+        "providerId": "jplephem-2.24-direct-spk",
+        "sourceIdentity": fixture["kernel"]["identity"],
+        "sourceSha256": fixture["kernel"]["sha256"],
+        "coverage": dict(coverage),
+        "requestedEtSeconds": canonical_et_seconds,
+        "sourceRefs": ["fixture.kernel", "timeScale.etSeconds"],
+    }
+    canonical["fixtureEvidence"] = {"fixtureId": fixture["fixtureId"], "fixtureCaseId": item["id"], "fixtureSha256": _sha256_file(FIXTURE_PATH)}
+    canonical["status"] = "verified_fixture"
+    canonical["provenance"]["sourceRefs"].extend([f"fixture.fixtures.{item['id']}", "fixture.time", "fixture.kernel"])
+    normalized_request = {"schemaVersion": REQUEST_SCHEMA, "fixtureId": fixture["fixtureId"], "fixtureCaseId": item["id"], "locationId": location["id"], "utc": utc}
+    return canonical, {"request": normalized_request, "item": item, "location": location}
+
+
 def _validate_request(payload: Any, fixture: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any]]:
     if not isinstance(payload, dict) or isinstance(payload, list):
         raise PreviewError("request_not_object")
@@ -666,10 +1044,19 @@ def _evaluate_states(item: dict[str, Any], fixture: dict[str, Any]) -> list[dict
     return rows
 
 
-def _build_preview(payload: Any) -> dict[str, Any]:
+def _build_preview(
+    payload: Any,
+    *,
+    verified_item: dict[str, Any] | None = None,
+    verified_location: dict[str, Any] | None = None,
+    input_status: str = "fixture_validated_preview",
+) -> dict[str, Any]:
     _load_de405_release_contract()
     fixture = _load_fixture()
-    item, location = _validate_request(payload, fixture)
+    if verified_item is None or verified_location is None:
+        item, location = _validate_request(payload, fixture)
+    else:
+        item, location = verified_item, verified_location
     rows = _evaluate_states(item, fixture)
     time = _time_angles(item, location)
     raw_bodies = []
@@ -681,7 +1068,7 @@ def _build_preview(payload: Any) -> dict[str, Any]:
         "schemaVersion": "astrology-raw-chart-v1",
         "availability": "available",
         "candidateId": f"{item['id']}:{location['id']}",
-        "inputStatus": "fixture_validated_preview",
+        "inputStatus": input_status,
         "verificationStatus": "verified",
         "availableForInterpretation": False,
         "integrationStatus": "not_connected",
@@ -752,6 +1139,60 @@ def build_preview(payload: Any) -> dict[str, Any]:
     """Public pure entrypoint used by the HTTP handler and conformance tests."""
 
     return _build_preview(payload)
+
+
+def _blocked_user_input_canonical(reason: str, payload: Any = None) -> dict[str, Any]:
+    user_input = None
+    if isinstance(payload, dict) and isinstance(payload.get("userInput"), dict):
+        user_input = payload["userInput"]
+    canonical = _base_canonical_user_input(user_input)
+    canonical["blockedReasons"] = [reason]
+    return canonical
+
+
+def _finalize_user_input_response(canonical: dict[str, Any], reason: str | None = None, verified_response: dict[str, Any] | None = None) -> dict[str, Any]:
+    canonical_copy = dict(canonical)
+    canonical_copy["canonicalInputContentSha256"] = _sha256_value(canonical)
+    response: dict[str, Any] = {
+        "schemaVersion": USER_INPUT_RESPONSE_SCHEMA,
+        "responseVersion": USER_INPUT_VERSION,
+        "status": "complete" if verified_response is not None else "blocked",
+        "normalizationStatus": canonical.get("status", "blocked"),
+        "canonicalInput": canonical_copy,
+        "activation": dict(ACTIVATION),
+    }
+    if reason is not None:
+        response["reason"] = reason
+    if verified_response is not None:
+        response["verifiedResponse"] = verified_response
+        response["unsupportedFeatures"] = verified_response.get("packet", {}).get("unsupportedFeatures", [])
+        response["blockedFeatures"] = verified_response.get("packet", {}).get("blockedFeatures", [])
+    else:
+        response["unsupportedFeatures"] = []
+        response["blockedFeatures"] = [{"feature": "astrology_user_input_normalization", "status": "blocked", "reason": reason or "input_normalization_blocked"}]
+    response["responseContentSha256"] = _sha256_value(response)
+    return response
+
+
+def build_user_input_preview(payload: Any) -> dict[str, Any]:
+    """Normalize supported user input and bridge only exact fixture time evidence."""
+
+    try:
+        _load_user_input_contract()
+        canonical, resolved = _normalize_user_input(payload)
+        if resolved is None:
+            reason = canonical.get("blockedReasons", ["input_normalization_blocked"])[0]
+            return _finalize_user_input_response(canonical, reason)
+        verified_response = _build_preview(
+            resolved["request"],
+            verified_item=resolved["item"],
+            verified_location=resolved["location"],
+            input_status="user_input_normalized_fixture_verified",
+        )
+        return _finalize_user_input_response(canonical, verified_response=verified_response)
+    except PreviewError as error:
+        reason = str(error)
+        return _finalize_user_input_response(_blocked_user_input_canonical(reason, payload), reason)
 
 
 def _blocked_response(reason: str) -> dict[str, Any]:
@@ -828,6 +1269,100 @@ def verify_preview_response(response: Any) -> list[str]:
     return sorted(errors)
 
 
+def verify_user_input_response(response: Any) -> list[str]:
+    """Verify a fresh user-input handoff without recalculating its packet."""
+
+    errors: list[str] = []
+
+    def require(condition: bool, code: str) -> None:
+        if not condition and code not in errors:
+            errors.append(code)
+
+    require(isinstance(response, dict), "response_not_object")
+    if not isinstance(response, dict):
+        return errors
+    require(response.get("schemaVersion") == USER_INPUT_RESPONSE_SCHEMA, "response_schema_mismatch")
+    require(response.get("responseVersion") == USER_INPUT_VERSION, "response_version_mismatch")
+    require(response.get("status") in {"complete", "blocked"}, "response_status_invalid")
+    response_copy = dict(response)
+    response_hash = response_copy.pop("responseContentSha256", None)
+    require(isinstance(response_hash, str) and response_hash == _sha256_value(response_copy), "response_content_hash_mismatch")
+    require(response.get("activation") == ACTIVATION, "activation_boundary_mismatch")
+
+    canonical = response.get("canonicalInput")
+    require(isinstance(canonical, dict), "canonical_input_missing")
+    if not isinstance(canonical, dict):
+        return sorted(errors)
+    canonical_copy = dict(canonical)
+    canonical_hash = canonical_copy.pop("canonicalInputContentSha256", None)
+    require(isinstance(canonical_hash, str) and canonical_hash == _sha256_value(canonical_copy), "canonical_input_content_hash_mismatch")
+    require(canonical.get("schemaVersion") == CANONICAL_INPUT_SCHEMA, "canonical_input_schema_mismatch")
+    require(canonical.get("canonicalVersion") == USER_INPUT_VERSION, "canonical_input_version_mismatch")
+    require(canonical.get("status") in {"verified_fixture", "blocked"}, "canonical_input_status_invalid")
+
+    civil = canonical.get("civilTime")
+    if isinstance(civil, dict):
+        require(civil.get("timeZone") == "Asia/Seoul", "canonical_timezone_mismatch")
+        resolver = civil.get("resolver")
+        require(isinstance(resolver, dict), "timezone_resolver_missing")
+        if isinstance(resolver, dict):
+            require(resolver.get("id") == "python-zoneinfo-from-pinned-tzif-v1", "timezone_resolver_id_mismatch")
+            require(resolver.get("ianaZone") == "Asia/Seoul", "timezone_zone_mismatch")
+            require(resolver.get("ianaRelease") == "2026c", "timezone_release_mismatch")
+            require(resolver.get("assetSha256") == EXPECTED_TIMEZONE_ASSET_SHA256, "timezone_asset_sha_mismatch")
+            require(resolver.get("assetBytes") == EXPECTED_TIMEZONE_ASSET_BYTES, "timezone_asset_bytes_mismatch")
+        require(civil.get("status") in {"exact", "overlap_resolved", "overlap", "gap"}, "civil_time_status_invalid")
+        if civil.get("status") in {"exact", "overlap_resolved"}:
+            require(isinstance(civil.get("utc"), dict), "canonical_utc_missing")
+        if civil.get("status") == "overlap":
+            require(len(civil.get("candidates", [])) == 2 and "utc" not in civil, "overlap_selection_invalid")
+        if civil.get("status") == "gap":
+            require(civil.get("candidates") == [] and "utc" not in civil, "gap_selection_invalid")
+
+    location = canonical.get("location")
+    if isinstance(location, dict):
+        location_id = location.get("id")
+        require(isinstance(location_id, str) and bool(re.fullmatch(r"sgg:\d{5}", location_id)), "canonical_location_id_invalid")
+        if isinstance(location_id, str):
+            require(location.get("code") == location_id.removeprefix("sgg:"), "canonical_location_code_mismatch")
+        require(location.get("country") == "대한민국", "canonical_location_country_mismatch")
+        require(location.get("timezone") == "Asia/Seoul", "canonical_location_timezone_mismatch")
+        require(location.get("resolution") == "administrative_area_representative_point", "canonical_location_resolution_mismatch")
+        require(_finite(location.get("latitudeDegrees")) and _finite(location.get("longitudeDegreesEast")), "canonical_location_coordinates_invalid")
+        provenance = location.get("coordinateProvenance")
+        require(isinstance(provenance, dict), "canonical_location_provenance_missing")
+        if isinstance(provenance, dict):
+            require(provenance.get("schemaVersion") == "korea-sgg-location-provenance-v1", "canonical_location_provenance_schema_mismatch")
+            require(provenance.get("sourceSha256") == EXPECTED_LOCATION_COORDINATE_SOURCE_SHA256, "canonical_location_provenance_sha_mismatch")
+
+    if response.get("status") == "complete":
+        require(canonical.get("status") == "verified_fixture", "complete_without_verified_canonical_input")
+        verified_response = response.get("verifiedResponse")
+        require(isinstance(verified_response, dict), "verified_response_missing")
+        if isinstance(verified_response, dict):
+            for code in verify_preview_response(verified_response):
+                require(False, f"verified_{code}")
+            packet = verified_response.get("packet", {})
+            if isinstance(packet, dict):
+                require(packet.get("input", {}).get("utc") == canonical.get("civilTime", {}).get("utc"), "canonical_packet_utc_mismatch")
+                require(packet.get("input", {}).get("locationId") == canonical.get("location", {}).get("id"), "canonical_packet_location_mismatch")
+                require(packet.get("input", {}).get("location", {}).get("latitudeDegrees") == canonical.get("location", {}).get("latitudeDegrees"), "canonical_packet_latitude_mismatch")
+                require(packet.get("input", {}).get("location", {}).get("longitudeDegreesEast") == canonical.get("location", {}).get("longitudeDegreesEast"), "canonical_packet_longitude_mismatch")
+        require(response.get("blockedFeatures") == response.get("verifiedResponse", {}).get("packet", {}).get("blockedFeatures"), "blocked_feature_projection_mismatch")
+        require(response.get("unsupportedFeatures") == response.get("verifiedResponse", {}).get("packet", {}).get("unsupportedFeatures"), "unsupported_feature_projection_mismatch")
+    else:
+        require(canonical.get("status") == "blocked", "blocked_without_blocked_canonical_input")
+        reasons = canonical.get("blockedReasons")
+        require(isinstance(reasons, list) and len(reasons) > 0 and all(isinstance(reason, str) for reason in reasons), "blocked_reason_missing")
+        if isinstance(reasons, list) and reasons:
+            require(response.get("reason") == reasons[0], "blocked_reason_mismatch")
+        require("verifiedResponse" not in response, "blocked_response_contains_verified_response")
+        require(response.get("unsupportedFeatures") == [], "blocked_unsupported_projection_invalid")
+        blocked = response.get("blockedFeatures")
+        require(isinstance(blocked, list) and len(blocked) == 1 and blocked[0].get("status") == "blocked" and blocked[0].get("reason") == response.get("reason"), "blocked_feature_projection_invalid")
+    return sorted(errors)
+
+
 class handler(BaseHTTPRequestHandler):
     """Vercel file-based Python Function handler."""
 
@@ -857,8 +1392,12 @@ class handler(BaseHTTPRequestHandler):
             if len(raw_body) != content_length:
                 raise PreviewError("request_body_incomplete")
             payload = json.loads(raw_body.decode("utf-8"))
-            result = build_preview(payload)
-            self._write_json(200, result)
+            if isinstance(payload, dict) and payload.get("schemaVersion") == USER_INPUT_REQUEST_SCHEMA:
+                result = build_user_input_preview(payload)
+                self._write_json(200 if result.get("status") == "complete" else 422, result)
+            else:
+                result = build_preview(payload)
+                self._write_json(200, result)
         except (PreviewError, UnicodeDecodeError, json.JSONDecodeError) as error:
             self._write_json(422, _blocked_response(str(error)))
         except Exception:
@@ -878,17 +1417,18 @@ class handler(BaseHTTPRequestHandler):
 
 if __name__ == "__main__":
     # This mode is only a local smoke entrypoint; Vercel loads ``handler``.
-    if len(sys.argv) == 3 and sys.argv[1] == "--check":
+    if len(sys.argv) == 3 and sys.argv[1] in {"--check", "--check-user-input"}:
         response_path = Path(sys.argv[2])
         try:
             response = json.loads(response_path.read_text(encoding="utf-8"))
-            errors = verify_preview_response(response)
+            errors = verify_preview_response(response) if sys.argv[1] == "--check" else verify_user_input_response(response)
         except (OSError, UnicodeError, json.JSONDecodeError):
             errors = ["response_unreadable"]
         print(_stable_json({"status": "pass" if not errors else "fail", "errors": errors}), end="")
         raise SystemExit(0 if not errors else 1)
     if len(sys.argv) != 2:
-        raise SystemExit("usage: astrology.py REQUEST.json | astrology.py --check RESPONSE.json")
+        raise SystemExit("usage: astrology.py REQUEST.json | astrology.py --check RESPONSE.json | astrology.py --check-user-input RESPONSE.json")
     request_path = Path(sys.argv[1])
     request = json.loads(request_path.read_text(encoding="utf-8"))
-    print(_stable_json(build_preview(request)), end="")
+    result = build_user_input_preview(request) if isinstance(request, dict) and request.get("schemaVersion") == USER_INPUT_REQUEST_SCHEMA else build_preview(request)
+    print(_stable_json(result), end="")

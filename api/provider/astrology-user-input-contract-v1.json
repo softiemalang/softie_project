@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "astrology-user-input-normalization-contract-v1",
+  "contractVersion": "1.0.0",
+  "scope": "korea_sgg_local_civil_time_to_fixture_verified_astrology_packet",
+  "requestSchema": "astrology-jplephem-user-input-request-v1",
+  "responseSchema": "astrology-jplephem-user-input-handoff-v1",
+  "supportedUserInput": {
+    "fields": ["localDateTime", "locationId", "fold"],
+    "locationIdPattern": "^sgg:[0-9]{5}$",
+    "timezoneSource": "selected_verified_location",
+    "coordinatesSource": "selected_verified_location",
+    "directUtcAllowed": false,
+    "directCoordinatesAllowed": false,
+    "directTimezoneAllowed": false
+  },
+  "civilTime": {
+    "calendar": "proleptic_gregorian",
+    "localDateTimeFields": ["year", "month", "day", "hour", "minute", "second"],
+    "second": "integer_0_to_59",
+    "fold": "null_for_non_overlap_or_0_or_1_for_explicit_overlap_choice",
+    "gapPolicy": "reject_without_adjustment",
+    "overlapPolicy": "reject_without_explicit_fold",
+    "resolver": {
+      "id": "python-zoneinfo-from-pinned-tzif-v1",
+      "ianaZone": "Asia/Seoul",
+      "ianaRelease": "2026c",
+      "assetPath": "api/provider/asia-seoul.tzif",
+      "assetSha256": "2c8f4bb15dd77090b497e2a841ff3323ecbbae4f9dbb9edead2f8dd8fb5d8bb4",
+      "assetBytes": 617
+    }
+  },
+  "location": {
+    "country": "대한민국",
+    "timezone": "Asia/Seoul",
+    "resolution": "administrative_area_representative_point",
+    "sourcePath": "src/interpretationPrep/koreaAdministrativeLocations.js",
+    "sourceSha256": "35dfca5a7b6a9e8dcf247a25e6a2e8da30fac0726b8f57fb0726c6d24aff4964",
+    "coordinateSourceSha256": "e612605e957e71ea2770876331eb20965820590bc57e5a98a91bc9307a678ec9",
+    "requiredRowCount": 252,
+    "unknownLocationPolicy": "reject_without_coordinate_fallback"
+  },
+  "timeScale": {
+    "required": ["ut1MinusUtcSeconds", "ttMinusUtcSeconds", "tdbMinusTtSeconds"],
+    "acceptedEvidence": "existing_provider_equivalence_fixture_exact_utc_only",
+    "fixturePath": "api/provider/provider-equivalence-v1.json",
+    "noImplicitZero": true,
+    "noFormulaSubstitution": true,
+    "noRuntimeFetch": true,
+    "outsideEvidencePolicy": "blocked"
+  },
+  "ephemeris": {
+    "providerId": "jplephem-2.24-direct-spk",
+    "sourceIdentity": "unmodified_official_naif_de405_bsp",
+    "sourceSha256": "30a7113793ee5b6bf1e5546c6dfc21d9682d9ffabfe9b17b4bab27ba2ac75c89",
+    "coveragePolicy": "requested_et_must_be_inside_verified_de405_coverage",
+    "outsideCoveragePolicy": "blocked"
+  },
+  "failClosedReasons": [
+    "request_schema_mismatch",
+    "request_fields_mismatch",
+    "local_datetime_invalid",
+    "civil_time_nonexistent",
+    "civil_time_ambiguous",
+    "civil_time_fold_invalid",
+    "timezone_asset_missing",
+    "timezone_asset_sha_mismatch",
+    "timezone_resolution_failed",
+    "location_source_missing",
+    "location_source_sha_mismatch",
+    "location_unsupported",
+    "time_scale_evidence_unavailable",
+    "time_scale_fixture_mismatch",
+    "de405_coverage_outside"
+  ],
+  "forbiddenFallbacks": [
+    "implicit_utc",
+    "implicit_timezone",
+    "implicit_coordinates",
+    "implicit_fold_choice",
+    "gap_time_adjustment",
+    "zero_ut1_or_tt_offset",
+    "estimated_tdb_minus_tt",
+    "runtime_provider_download",
+    "out_of_coverage_extrapolation"
+  ]
+}
