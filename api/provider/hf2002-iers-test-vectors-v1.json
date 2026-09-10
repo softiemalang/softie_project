@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "astrology-hf2002-iers-test-vectors-v1",
+  "source": {
+    "identity": "HF2002_IERS_TCB_MINUS_TCG_AT_GEOCENTER",
+    "url": "https://iers-conventions.obspm.fr/content/chapter10/software/HF2002_IERS.F",
+    "sha256": "41a1aec5fabd3f4bdd57c0ac77dc5ba86665f48abc9f18743bfb00f3f5ee1cbf",
+    "locator": "HF2002_IERS.F lines 48-51; XHF2002_IERS.F lines 39-87",
+    "officialMeaning": "TCB-TCG in seconds"
+  },
+  "vectors": [
+    { "label": "1600", "jdTt": 2305445.0, "expectedTcbMinusTcgSeconds": -176.1773555610856, "derivedTdbMinusTtSeconds": 0.0000611945123746 },
+    { "label": "1700", "jdTt": 2341970.0, "expectedTcbMinusTcgSeconds": -129.4460764716997, "derivedTdbMinusTtSeconds": -0.0000024005575431 },
+    { "label": "1800", "jdTt": 2378495.0, "expectedTcbMinusTcgSeconds": -82.7147442912425, "derivedTdbMinusTtSeconds": -0.0000129045569059 },
+    { "label": "1900", "jdTt": 2415020.0, "expectedTcbMinusTcgSeconds": -35.9834220078961, "derivedTdbMinusTtSeconds": -0.0000333056669410 },
+    { "label": "2000", "jdTt": 2451545.0, "expectedTcbMinusTcgSeconds": 10.7478546790489, "derivedTdbMinusTtSeconds": -0.0000993031777698 },
+    { "label": "2100", "jdTt": 2488070.0, "expectedTcbMinusTcgSeconds": 57.4792210328145, "derivedTdbMinusTtSeconds": -0.0000756338692318 },
+    { "label": "2200", "jdTt": 2524595.0, "expectedTcbMinusTcgSeconds": 104.2104805049757, "derivedTdbMinusTtSeconds": -0.0001588461634816 }
+  ]
+}

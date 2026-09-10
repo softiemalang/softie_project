@@ -1036,8 +1036,11 @@ def _evaluate_states(item: dict[str, Any], fixture: dict[str, Any]) -> list[dict
     except Exception as error:
         raise PreviewError("de405_bsp_open_failed") from error
     rows = []
+    tdb1, tdb2 = producer.et_seconds_to_two_part_jd(item["et"])
+    if producer.two_part_representation_error_bound_seconds(item["et"]) > producer.TWO_PART_JD_ERROR_BUDGET_SECONDS:
+        raise PreviewError("tdb_two_part_representation_budget_exceeded")
     for mapping in BODY_MAPPING:
-        state = producer.relative_to_earth(kernel, mapping["targetId"], float(item["jdTdb"]))
+        state = producer.relative_to_earth(kernel, mapping["targetId"], tdb1, tdb2)
         if not isinstance(state, list) or len(state) != 6 or not all(_finite(value) for value in state):
             raise PreviewError(f"state_unavailable:{mapping['id']}")
         rows.append({"mapping": mapping, "state": state, "pythonVersion": python_version, "pythonImplementation": python_implementation, "pythonAbi": python_abi, "jplephemVersion": jplephem_version, "numpyVersion": numpy_version, "kernelSha256": kernel_sha})

@@ -10,6 +10,7 @@ fallback, or perform astrology interpretation.
 import argparse
 import hashlib
 import importlib.metadata
+import importlib.util
 import json
 import math
 import struct
@@ -33,6 +34,10 @@ EXPECTED_KERNEL_IDENTITY = "unmodified_official_naif_de405_bsp"
 EXPECTED_FIXTURE_SHA256 = "8cb64320ebfe24bc2654b920da27af370cc78b4c0f7c663898933aea67a2355d"
 DAY_SECONDS = 86400.0
 J2000 = 2451545.0
+TWO_PART_JD_ERROR_BUDGET_SECONDS = 1.770977e-6
+TIME_BRIDGE_PATH = Path(__file__).resolve().with_name("astrology_time_scale_bridge.py")
+_time_bridge_module = None
+_time_bridge_error = None
 EXPECTED_BODY_IDS = {
     "sun": (10, "body"),
     "moon": (301, "body"),
@@ -75,12 +80,47 @@ def et_bits(value):
     return "0x%016x" % struct.unpack(">Q", struct.pack(">d", float(value)))[0]
 
 
+def _load_time_bridge():
+    global _time_bridge_module, _time_bridge_error
+    if _time_bridge_module is not None:
+        return _time_bridge_module
+    if _time_bridge_error is not None:
+        fail(_time_bridge_error)
+    try:
+        spec = importlib.util.spec_from_file_location("astrology_time_scale_bridge", TIME_BRIDGE_PATH)
+        if spec is None or spec.loader is None:
+            raise RuntimeError("time-scale bridge module cannot be loaded")
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        _time_bridge_module = module
+        return module
+    except Exception as error:
+        _time_bridge_error = f"time-scale bridge unavailable: {error}"
+        fail(_time_bridge_error)
+
+
+def et_seconds_to_two_part_jd(et_seconds):
+    try:
+        return _load_time_bridge().et_seconds_to_two_part_jd(et_seconds)
+    except Exception as error:
+        fail(f"ET two-part conversion failed: {error}")
+
+
+def two_part_representation_error_bound_seconds(et_seconds):
+    try:
+        return _load_time_bridge().two_part_representation_error_bound_seconds(et_seconds)
+    except Exception as error:
+        fail(f"ET two-part error bound failed: {error}")
+
+
 def vector_add(left, right, sign=1.0):
     return [float(a + sign * b) for a, b in zip(left, right)]
 
 
-def segment_state(segment, jd_tdb):
-    position, velocity_km_per_day = segment.compute_and_differentiate(jd_tdb)
+def segment_state(segment, tdb1, tdb2):
+    if not finite(tdb1) or not finite(tdb2) or tdb1 != math.floor(tdb1) or not 0.0 <= tdb2 < 1.0:
+        fail("invalid normalized two-part TDB JD")
+    position, velocity_km_per_day = segment.compute_and_differentiate(tdb1, tdb2)
     result = [float(value) for value in position]
     result.extend(float(value) / DAY_SECONDS for value in velocity_km_per_day)
     if len(result) != 6 or not all(finite(value) for value in result):
@@ -95,21 +135,21 @@ def required_segment(kernel, center_id, target_id):
         fail(f"required DE405 segment missing: {center_id}->{target_id}: {error}")
 
 
-def absolute_state(kernel, target_id, jd_tdb):
+def absolute_state(kernel, target_id, tdb1, tdb2):
     if target_id == 301:
-        emb = segment_state(required_segment(kernel, 0, 3), jd_tdb)
-        moon = segment_state(required_segment(kernel, 3, 301), jd_tdb)
+        emb = segment_state(required_segment(kernel, 0, 3), tdb1, tdb2)
+        moon = segment_state(required_segment(kernel, 3, 301), tdb1, tdb2)
         return vector_add(emb, moon)
     if target_id == 399:
-        emb = segment_state(required_segment(kernel, 0, 3), jd_tdb)
-        earth = segment_state(required_segment(kernel, 3, 399), jd_tdb)
+        emb = segment_state(required_segment(kernel, 0, 3), tdb1, tdb2)
+        earth = segment_state(required_segment(kernel, 3, 399), tdb1, tdb2)
         return vector_add(emb, earth)
-    return segment_state(required_segment(kernel, 0, target_id), jd_tdb)
+    return segment_state(required_segment(kernel, 0, target_id), tdb1, tdb2)
 
 
-def relative_to_earth(kernel, target_id, jd_tdb):
-    target = absolute_state(kernel, target_id, jd_tdb)
-    earth = absolute_state(kernel, 399, jd_tdb)
+def relative_to_earth(kernel, target_id, tdb1, tdb2):
+    target = absolute_state(kernel, target_id, tdb1, tdb2)
+    earth = absolute_state(kernel, 399, tdb1, tdb2)
     return vector_add(target, earth, sign=-1.0)
 
 
@@ -214,8 +254,11 @@ def produce(fixture_path, bsp_path, output_path, provider_id):
     rows = []
     for item in fixtures:
         jd_tdb = float(item["jdTdb"])
+        tdb1, tdb2 = et_seconds_to_two_part_jd(item["et"])
+        if two_part_representation_error_bound_seconds(item["et"]) > TWO_PART_JD_ERROR_BUDGET_SECONDS:
+            fail(f"two-part TDB representation budget exceeded: {item['id']}")
         for body_id, (target_id, target_type) in EXPECTED_BODY_IDS.items():
-            state = relative_to_earth(kernel, target_id, jd_tdb)
+            state = relative_to_earth(kernel, target_id, tdb1, tdb2)
             rows.append({
                 "fixtureId": item["id"],
                 "body": body_id,

@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "astrology-tdb-tt-bridge-contract-v1",
+  "contractVersion": "1.0.0",
+  "status": "implemented_source_bounded_binary64",
+  "scope": "geocentric_TT_to_TDB_offset_for_DE405_input",
+  "input": {
+    "scale": "TT",
+    "representation": "two_part_julian_date",
+    "primary": "integer_JD_at_or_before_epoch",
+    "secondary": "fractional_day_0_inclusive_1_exclusive",
+    "onePartFallback": false
+  },
+  "output": {
+    "quantity": "TDB_minus_TT",
+    "unit": "SI_seconds",
+    "location": "geocenter"
+  },
+  "model": {
+    "bridgeId": "HF2002_IERS_TN36_10_5_IAU2006_B3_TDB_MINUS_TT",
+    "hf2002": {
+      "identity": "HF2002_IERS_TCB_MINUS_TCG_AT_GEOCENTER",
+      "sourceUrl": "https://iers-conventions.obspm.fr/content/chapter10/software/HF2002_IERS.F",
+      "sourcePath": "api/provider/iers/HF2002_IERS.F",
+      "sourceSha256": "41a1aec5fabd3f4bdd57c0ac77dc5ba86665f48abc9f18743bfb00f3f5ee1cbf",
+      "sourceBytes": 47641,
+      "meaning": "TCB-TCG at the geocenter in seconds",
+      "officialSourceLocator": "HF2002_IERS.F lines 1-755; test vector lines 48-51",
+      "officialDriverLocator": "XHF2002_IERS.F lines 39-87"
+    },
+    "equations": {
+      "tcgMinusTt": "IERS TN36 Eq. 10.1",
+      "tcbMinusTcg": "IERS TN36 Eq. 10.5 at geocenter",
+      "tdbFromTcb": "IAU 2006 Resolution B3 / IERS TN36 Eq. 10.3"
+    },
+    "sourceReferences": {
+      "tn36Chapter10": "https://iers-conventions.obspm.fr/content/chapter10/tn36_c10.pdf",
+      "tn36Locator": "§10.1 Eq. 10.1, Eq. 10.3, Eq. 10.5; pp. 150-152",
+      "iersStandards": "https://iers-conventions.obspm.fr/content/chapter1/icc1.pdf",
+      "standardsLocator": "Table 1.1, p. 4: LG, LB, TDB0, LC"
+    }
+  },
+  "constants": {
+    "LG": 6.969290134e-10,
+    "LC": 1.48082686741e-8,
+    "LB": 1.550519768e-8,
+    "TDB0Seconds": -6.55e-5,
+    "T0Jd": 2443144.5003725,
+    "c4Terms": 1.15e-16,
+    "daySeconds": 86400.0,
+    "j2000Jd": 2451545.0
+  },
+  "numeric": {
+    "format": "IEEE-754 binary64 / CPython float",
+    "trigonometry": "CPython math.sin/math.cos",
+    "rounding": "binary64 round-to-nearest implementation arithmetic",
+    "runtimeGuard": "radix=2, mant_dig=53, max_exp=1024",
+    "ttInputCollapse": false
+  },
+  "coverage": {
+    "modelStartJdTt": 2305445.0,
+    "modelEndJdTt": 2524595.0,
+    "modelEndInclusive": true,
+    "currentAstrologySupport": "delegated to the existing dated time/provider contract; this bridge does not extend it"
+  },
+  "accuracy": {
+    "hf2002FitRmsSeconds": 4.53e-10,
+    "hf2002FitMaximumSeconds": 2.248e-9,
+    "officialModelNote": "HF2002 is fit to TE405; the source and TN36 note the TT-versus-TDB argument effect is at most approximately 20 ps",
+    "twoPartRepresentationBudgetSeconds": 1.770977e-6,
+    "twoPartGuarantee": "validated ET binary64 conversion bound remains below the fixed budget over the model vector interval"
+  },
+  "failClosed": {
+    "sourceMissing": true,
+    "sourceHashMismatch": true,
+    "sourceSizeMismatch": true,
+    "nonBinary64Runtime": true,
+    "nonFiniteInput": true,
+    "nonNormalizedTwoPartInput": true,
+    "outsideModelCoverage": true,
+    "ttProxy": true,
+    "zeroFallback": true,
+    "simpleSinusoidFallback": true
+  },
+  "testVectors": {
+    "path": "api/provider/hf2002-iers-test-vectors-v1.json",
+    "sourceIdentityRequired": true,
+    "bridgeValuesAre": "derived by applying the fixed equations to the official HF2002 binary64 vector output; not fixture reuse"
+  }
+}
