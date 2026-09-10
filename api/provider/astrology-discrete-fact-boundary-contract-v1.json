@@ -1,0 +1,183 @@
+{
+  "schemaVersion": "astrology-discrete-fact-boundary-contract-v1",
+  "contractVersion": "1.0.0",
+  "status": "implemented_internal_fail_closed",
+  "contractCanonicalSha256": "a8451af3e48b2183c21d90ded20e2dcde6fd968f4e5fc6a45fce4ba353bae014",
+  "scope": "arbitrary_date_astrology_discrete_fact_boundary_classification",
+  "purpose": "Classify existing Rule Core discrete outputs relative to the declared authority, model, rule set, and provenance. An interval-backed boundary confirmation is stricter evidence of stability; neither mode claims absolute physical truth.",
+  "factFrame": {
+    "mode": "source_relative_deterministic",
+    "statement": "A FACT is the deterministic output produced by the declared provider/model and Rule Core for the requested input.",
+    "physicalTruthGuarantee": false,
+    "universalAbsoluteBoundRequired": false,
+    "requiredIdentity": [
+      "verified provider/source identity and applicable coverage",
+      "fixed time-scale and model identity",
+      "Rule Core identity and deterministic output"
+    ],
+    "doesNotMean": [
+      "absolute physical truth",
+      "zero source/model uncertainty",
+      "stability across a decision boundary that the frozen guard does not clear"
+    ]
+  },
+  "references": {
+    "timeScaleBundle": {
+      "path": "api/provider/astrology-time-scale-bundle-v1.json",
+      "schemaVersion": "astrology-time-scale-bundle-v1",
+      "bundleCanonicalSha256": "eec8801b2c7b4a0c002a3bf24a76714f60c2c334c5ea63113c37a24ef6f6cf2b"
+    },
+    "providerEquivalence": {
+      "path": "api/provider/provider-equivalence-v1.json",
+      "schemaVersion": "astrology-provider-equivalence-fixture-v1",
+      "role": "existing acceptance tolerance reference only; never an absolute truth bound"
+    },
+    "ruleCore": {
+      "version": "mallang-astrology-rule-core-v0",
+      "sources": [
+        "src/astrology/astrologySigns.js",
+        "src/astrology/astrologyMotion.js",
+        "src/astrology/astrologyAspects.js",
+        "src/astrology/astrologyHouses.js",
+        "src/astrology/astrologyRulers.js",
+        "src/astrology/astrologyDistribution.js"
+      ]
+    }
+  },
+  "existingFactTolerances": {
+    "longitudeMaxAbsDegrees": 0.01,
+    "longitudeSpeedMaxAbsDegreesPerDay": 1e-7,
+    "aspectDistanceMaxAbsDegrees": 0.02,
+    "aspectOrbMaxAbsDegrees": 0.02,
+    "source": "api/provider/provider-equivalence-v1.json factEquivalence.derived; retained without relaxation"
+  },
+  "boundaryGuards": {
+    "sign": {
+      "ruleId": "sign_from_ecliptic_longitude_v0",
+      "guardDegrees": 0.016666666666666666,
+      "guardDefinition": "1 arcminute from a 30-degree sign boundary",
+      "confirmation": "the complete longitude interval must remain in one half-open sign interval and farther than the guard from every real sign boundary; a central near_sign_boundary is not confirmed"
+    },
+    "aspect": {
+      "ruleId": "major_aspect_v0",
+      "orbGuardDegrees": 0.016666666666666666,
+      "guardDefinition": "1 arcminute from each inclusive max-orb acceptance boundary",
+      "confirmation": "the complete angular-distance interval must remain inside exactly one aspect acceptance region, or outside every region, with the guard margin; selected identity and orbBoundaryStatus must agree"
+    },
+    "motion": {
+      "ruleId": "motion_from_longitude_speed_v0",
+      "epsilonDegreesPerDay": 1e-7,
+      "confirmation": "the complete speed interval must lie strictly above +epsilon for direct, strictly below -epsilon for retrograde, or wholly within [-epsilon,+epsilon] for stationary"
+    },
+    "aspectPhase": {
+      "ruleId": "aspect_phase_from_relative_speed_v0",
+      "epsilonDegreesPerDay": 1e-7,
+      "confirmation": "phase is confirmed only when the signed-offset and relative-speed intervals yield one phase under the existing exact/indeterminate rules; missing angle speed remains unavailable"
+    },
+    "wholeSignHouse": {
+      "ruleId": "whole_sign_house_v0",
+      "houseSystem": "whole_sign",
+      "confirmation": "ASC sign and each requested body sign must be confirmed; no continuous cusp uncertainty is introduced"
+    },
+    "chartRuler": {
+      "ruleId": "chart_ruler_from_ascendant_v0",
+      "mappingModes": ["traditional", "modern"],
+      "confirmation": "ASC sign must be confirmed and both existing mappings must match the Rule Core output"
+    },
+    "distribution": {
+      "ruleId": "distribution_from_body_signs_v0",
+      "overallBodyIds": ["sun", "moon", "mercury", "venus", "mars", "jupiter", "saturn", "uranus", "neptune", "pluto"],
+      "personalBodyIds": ["sun", "moon", "mercury", "venus", "mars"],
+      "confirmation": "all required body signs must be confirmed; counts and tie state are then copied from the existing Rule Core without a tie-break"
+    }
+  },
+  "uncertaintyModel": {
+    "acceptedFinalObservableBases": [
+      "source_relative_model_interval",
+      "source_absolute_bound",
+      "model_absolute_bound",
+      "numerical_rounding_bound",
+      "conservative_sum_of_accepted_bounds"
+    ],
+    "rejectedAsAbsoluteBounds": [
+      "c04_formal_error_only",
+      "empirical_provider_equivalence",
+      "tdb_two_part_representation_only",
+      "fixture_agreement",
+      "unbounded_model_or_numerical_claim"
+    ],
+    "requiredPointEnvelope": {
+      "longitude": "absoluteErrorDegrees must be finite, non-negative, source-referenced, and no larger than the existing 0.01 degree acceptance ceiling",
+      "speed": "absoluteErrorDegreesPerDay must be finite, non-negative, source-referenced, and no larger than the existing 1e-7 degree/day acceptance ceiling when motion or phase is requested",
+      "basis": "source_relative_model_interval may describe a final-observable interval under the fixed source/model; it is not an absolute truth bound",
+      "interval": "the assessor treats the supplied central value ± bound as an interval; this interval is required only for interval-backed boundary confirmation and is never derived from a formal error, provider agreement, or time representation budget"
+    },
+    "componentTreatment": {
+      "dut1": {
+        "source": "C04 UT1-UTC formal error",
+        "meaning": "reported internal formal precision, not a universal absolute truth bound",
+        "absoluteBoundAvailableInCurrentBundle": false,
+        "consumerAction": "retain metadata; source-relative central FACTs keep the fixed provider identity, while interval-backed boundary confirmation must not infer a final bound from formal error alone"
+      },
+      "ttMinusUtc": {
+        "source": "frozen UTC-TAI history plus TT = TAI + 32.184 SI seconds",
+        "meaning": "piecewise source identity is fixed over the snapshot; binary64 arithmetic is a numerical property, not a final angular uncertainty bound",
+        "consumerAction": "require the bundle identity; an explicit final-observable interval is required only for interval-backed boundary confirmation"
+      },
+      "tdbMinusTt": {
+        "source": "HF2002/IERS/TN36/IAU 2006 B3 bridge",
+        "modelMaximumSeconds": 2.248e-9,
+        "twoPartRepresentationBudgetSeconds": 1.770977e-6,
+        "meaning": "model and time-representation quantities are kept separate; neither is silently converted into a longitude or speed bound",
+        "consumerAction": "retain the model identity; an independently justified final longitude/speed interval is required only for interval-backed boundary confirmation"
+      },
+      "providerEquivalence": {
+        "meaning": "raw/derived acceptance thresholds and empirical discrete agreement compare providers; they are not truth guarantees",
+        "consumerAction": "never populate a missing uncertainty interval from equivalence output"
+      }
+    },
+    "combinationPolicy": "Only independently accepted component bounds may be conservatively summed and then recorded as an explicit source-relative final-observable interval. That interval is not a physical-truth bound. The assessor does not perform time-to-angle sensitivity propagation because the current contracts do not supply that derivative/error model."
+  },
+  "resultStatuses": ["confirmed", "indeterminate", "blocked", "unavailable", "unsupported"],
+  "resultRules": {
+    "sign": "a source-relative central sign remains a Rule Core FACT when its declared output is not near a sign boundary; interval-backed confirmation additionally requires the longitude interval to clear the sign guard, and missing/rejected interval is indeterminate or blocked",
+    "motion": "a source-relative central motion state remains a Rule Core FACT under the declared model; interval-backed confirmation requires the speed interval to stay on one side of or wholly inside the frozen epsilon bands, while missing speed remains unavailable",
+    "aspectGeometry": "a source-relative central aspect result remains a Rule Core FACT under the declared model; interval-backed confirmation additionally requires all candidate aspect regions to have a stable guarded match/no-match result, and any overlap or near-orb interval is indeterminate",
+    "aspectPhase": "a geometry-confirmed aspect may carry phaseStatus unavailable or indeterminate; that status must not be upgraded",
+    "wholeSignHouse": "confirmed only as a composition of confirmed ASC/body signs and matching whole_sign output",
+    "chartRuler": "confirmed only as the existing traditional/modern mapping of a confirmed ASC sign",
+    "distribution": "confirmed only for the complete required body set and matching counts/leaders/tie state; partial input is blocked"
+  },
+  "currentProductionAssessment": {
+    "scope": "internal_offline_source_relative_only",
+    "timeScaleBundle": "internal_offline_source_bounded_with_uncertainty",
+    "discreteBoundaryContract": "implemented_fail_closed",
+    "arbitraryDateDiscreteFactReadiness": "ready_source_relative",
+    "intervalBackedBoundaryReadiness": "available_fail_closed_when_interval_supplied",
+    "reasons": [],
+    "notes": [
+      "A universal absolute physical-error bound is not a prerequisite for source-relative FACT consumption.",
+      "C04 formal error, provider-equivalence agreement, and the two-part-JD representation budget remain metadata or acceptance constraints and are not promoted to truth bounds.",
+      "The boundary assessor still returns indeterminate or blocked when a final-observable interval is missing, rejected, or does not clear the frozen guard."
+    ],
+    "publicRedistribution": "separate external_review_required blocker remains unchanged",
+    "activation": "unchanged_and_blocked"
+  },
+  "failClosed": [
+    "contract_missing_or_hash_mismatch",
+    "time_scale_bundle_identity_missing_or_mismatch",
+    "rule_core_version_mismatch",
+    "provider_or_source_provenance_missing",
+    "uncertainty_interval_missing",
+    "uncertainty_basis_rejected",
+    "uncertainty_nonfinite_negative_or_exceeds_existing_tolerance",
+    "central_rule_output_mismatch",
+    "sign_interval_crosses_or_approaches_boundary",
+    "aspect_interval_overlaps_or_approaches_orb_boundary",
+    "motion_interval_crosses_epsilon_boundary",
+    "house_or_ruler_dependency_unconfirmed",
+    "distribution_required_body_missing_or_unconfirmed",
+    "unresolved_component_not_inferred",
+    "activation_or_semantic_promotion_attempt"
+  ]
+}
