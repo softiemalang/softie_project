@@ -1,0 +1,218 @@
+{
+  "schemaVersion": "astrology-dut1-c04-contract-v1",
+  "contractVersion": "1.0.0",
+  "status": "implemented_internal_offline_external_review_required",
+  "scope": "C04_20u24_UT1_minus_UTC_to_arbitrary_UTC_epoch_with_required_subdaily_corrections",
+  "support": {
+    "startUtc": "1962-01-01T00:00:00.000Z",
+    "snapshotCutoffUtc": "2026-08-10T00:00:00.000Z",
+    "endInclusive": true,
+    "epochInput": "UTC ISO-8601 without leap-second second=60",
+    "outsideCoverage": "blocked",
+    "futurePrediction": "blocked",
+    "historicalBeforeStart": "blocked"
+  },
+  "observedProvider": {
+    "identity": "iers-eop-c04-20u24-dpsi-deps-0hutc-1962-now",
+    "provider": "IERS Earth Orientation Centre",
+    "productId": "256",
+    "version": "EOP 20u24 C04 (IAU2000A, dPsi, dEps) 0hUTC - one file (1962-now)",
+    "metadataDate": "2026-09-09",
+    "sourceUrl": "https://datacenter.iers.org/data/256/eopc04_20u24.dPsi_dEps.1962-now.txt",
+    "metadataUrl": "https://datacenter.iers.org/versionMetadata.php?filename=latestVersionMeta%2F256_EOP_C04_20u24_dPsi_dEps_62-NOW_IAU2000256.txt",
+    "assetPath": "api/provider/iers/eopc04_20u24.dPsi_dEps.1962-now.txt",
+    "assetSha256": "24db7a8042c65fa9a94fcd4ac98b0872d775e94134061f8508289cea9d9f95b5",
+    "assetBytes": 5168691,
+    "sample": {
+      "epoch": "0h_UTC",
+      "interval": "1_day",
+      "rowCount": 23598,
+      "firstMjdUtc": 37665.0,
+      "lastMjdUtc": 61262.0,
+      "requiredColumns": [
+        "YR", "MM", "DD", "HH", "MJD", "UT1-UTC(s)", "UT1-UTC Er"
+      ],
+      "ut1MinusUtcUnit": "SI_seconds",
+      "formalErrorUnit": "SI_seconds"
+    },
+    "sourceLocators": {
+      "format": "C04 data header lines 1-6",
+      "dailySolution": "C04 product description: daily values at 0h UTC from 1962",
+      "subdailyBoundary": "C04 guide PDF pp. 5, 9: daily C04 omits diurnal/sub-diurnal ocean information",
+      "officialDistribution": "C04 guide PDF p. 13: archived and made available through web/FTP"
+    },
+    "documentationAssets": [
+      {
+        "path": "api/provider/iers/eopc04-20u24-README.txt",
+        "role": "pinned_C04_product_readme",
+        "sha256": "557e701bbb8d9b02b0095bd20d7f5c0b96499d51b8bde211ed2b580f2374a382",
+        "bytes": 10201
+      },
+      {
+        "path": "api/provider/iers/eopc04-updateC04.txt",
+        "role": "pinned_C04_update_and_product_provenance_note",
+        "sha256": "d54587cc54d40ea418f69560f9aeb004cca9855aa49d7a2e9842d297e2ad5e51",
+        "bytes": 4371
+      }
+    ]
+  },
+  "utcTaiHistory": {
+    "identity": "iers-utc-tai-history-1961-present",
+    "sourceUrl": "https://hpiers.obspm.fr/eoppc/bul/bulc/UTC-TAI.history",
+    "assetPath": "api/provider/iers/UTC-TAI.history",
+    "assetSha256": "54e702abdc388ae3bf8cfc5f126900a5277829ad90e80f6773df6e714a133642",
+    "assetBytes": 2235,
+    "locator": "UTC-TAI.history table; 1962-01-01 through 2017-01-01 and thereafter 37 s",
+    "purpose": "identify UTC-TAI segment boundaries so interpolation never crosses a UTC offset discontinuity",
+    "segments": [
+      { "start": "1962-01-01", "end": "1963-11-01", "baseSeconds": 1.845858, "referenceMjd": 37665.0, "slopeSecondsPerDay": 0.0011232 },
+      { "start": "1963-11-01", "end": "1964-01-01", "baseSeconds": 1.945858, "slopeSecondsPerDay": 0.0 },
+      { "start": "1964-01-01", "end": "1964-04-01", "baseSeconds": 3.240130, "referenceMjd": 38761.0, "slopeSecondsPerDay": 0.001296 },
+      { "start": "1964-04-01", "end": "1964-09-01", "baseSeconds": 3.340130, "slopeSecondsPerDay": 0.0 },
+      { "start": "1964-09-01", "end": "1965-01-01", "baseSeconds": 3.440130, "slopeSecondsPerDay": 0.0 },
+      { "start": "1965-01-01", "end": "1965-03-01", "baseSeconds": 3.540130, "slopeSecondsPerDay": 0.0 },
+      { "start": "1965-03-01", "end": "1965-07-01", "baseSeconds": 3.640130, "slopeSecondsPerDay": 0.0 },
+      { "start": "1965-07-01", "end": "1965-09-01", "baseSeconds": 3.740130, "slopeSecondsPerDay": 0.0 },
+      { "start": "1965-09-01", "end": "1966-01-01", "baseSeconds": 3.840130, "slopeSecondsPerDay": 0.0 },
+      { "start": "1966-01-01", "end": "1968-02-01", "baseSeconds": 4.313170, "referenceMjd": 39126.0, "slopeSecondsPerDay": 0.002592 },
+      { "start": "1968-02-01", "end": "1972-01-01", "baseSeconds": 4.213170, "slopeSecondsPerDay": 0.0 },
+      { "start": "1972-01-01", "end": "1972-07-01", "baseSeconds": 10.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "1972-07-01", "end": "1973-01-01", "baseSeconds": 11.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "1973-01-01", "end": "1974-01-01", "baseSeconds": 12.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "1974-01-01", "end": "1975-01-01", "baseSeconds": 13.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "1975-01-01", "end": "1976-01-01", "baseSeconds": 14.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "1976-01-01", "end": "1977-01-01", "baseSeconds": 15.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "1977-01-01", "end": "1978-01-01", "baseSeconds": 16.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "1978-01-01", "end": "1979-01-01", "baseSeconds": 17.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "1979-01-01", "end": "1980-01-01", "baseSeconds": 18.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "1980-01-01", "end": "1981-07-01", "baseSeconds": 19.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "1981-07-01", "end": "1982-07-01", "baseSeconds": 20.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "1982-07-01", "end": "1983-07-01", "baseSeconds": 21.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "1983-07-01", "end": "1985-07-01", "baseSeconds": 22.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "1985-07-01", "end": "1988-01-01", "baseSeconds": 23.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "1988-01-01", "end": "1990-01-01", "baseSeconds": 24.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "1990-01-01", "end": "1991-01-01", "baseSeconds": 25.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "1991-01-01", "end": "1992-07-01", "baseSeconds": 26.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "1992-07-01", "end": "1993-07-01", "baseSeconds": 27.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "1993-07-01", "end": "1994-07-01", "baseSeconds": 28.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "1994-07-01", "end": "1996-01-01", "baseSeconds": 29.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "1996-01-01", "end": "1997-07-01", "baseSeconds": 30.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "1997-07-01", "end": "1999-01-01", "baseSeconds": 31.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "1999-01-01", "end": "2006-01-01", "baseSeconds": 32.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "2006-01-01", "end": "2009-01-01", "baseSeconds": 33.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "2009-01-01", "end": "2012-07-01", "baseSeconds": 34.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "2012-07-01", "end": "2015-07-01", "baseSeconds": 35.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "2015-07-01", "end": "2017-01-01", "baseSeconds": 36.0, "slopeSecondsPerDay": 0.0 },
+      { "start": "2017-01-01", "end": null, "baseSeconds": 37.0, "slopeSecondsPerDay": 0.0 }
+    ]
+  },
+  "interpolation": {
+    "algorithm": "four_point_lagrange",
+    "sourceIdentity": "iers-eop-product-center-INTERP-F",
+    "sourceUrl": "ftp://hpiers.obspm.fr/eop-pc/models/interp.f",
+    "sourcePath": "api/provider/iers/INTERP.F",
+    "sourceSha256": "9ff5f893ac06c8d4123ec45cecde4df99f18cb2f3b19518bcd7494b6aa35b4e6",
+    "sourceBytes": 16802,
+    "locator": "INTERP.F INTERP and LAGINT subroutines, lines 1-104",
+    "documentationAssets": [
+      {
+        "path": "api/provider/iers/INTERP-README.txt",
+        "role": "pinned_IERS_EOP_interpolation_model_description",
+        "sha256": "becb272b0d153c54d9e31ef8b8ec4d24faa7289e7c163af47f35e9f273c838f2",
+        "bytes": 8450
+      }
+    ],
+    "window": "k-1,k,k+1,k+2",
+    "minimumNeighbours": { "before": 2, "after": 2 },
+    "endpointPolicy": "exact_C04_sample_only_at_first_or_last_row; nonexact_epoch_requires_full_window",
+    "neighbourPolicy": "all_four_rows_must_exist_and_belong_to_one_UTC_TAI_segment",
+    "extrapolation": "blocked",
+    "leapBoundaryPolicy": "exact_sample_allowed; interpolation_window_crossing_any_UTC_TAI_segment_boundary_blocked"
+  },
+  "corrections": {
+    "order": ["four_point_lagrange_C04_UT1_minus_UTC", "ocean_tide", "axial_libration"],
+    "oceanTide": {
+      "identity": "iers-interp-pmut1-oceans-71-term",
+      "sourcePath": "api/provider/iers/INTERP.F",
+      "locator": "INTERP.F PMUT1_OCEANS, lines 105-264; 71 constituents",
+      "terms": 71,
+      "outputsUsed": ["delta_UT1"],
+      "units": "microseconds converted to SI_seconds",
+      "sourceStatus": "official_IERS_EOP_Product_Center_source_hash_verified"
+    },
+    "libration": {
+      "identity": "iers-conventions-2010-utlibr",
+      "sourceUrl": "https://iers-conventions.obspm.fr/content/chapter5/software/UTLIBR.F",
+      "sourcePath": "api/provider/iers/UTLIBR.F",
+      "sourceSha256": "f523335d552ac14b661121a081ad799382312d819853c674bc0102484b5e2406",
+      "sourceBytes": 11782,
+      "locator": "UTLIBR.F source header, Table 5.1b data block, and computation body",
+      "terms": 11,
+      "truncationUt1Microseconds": 0.033,
+      "units": "microseconds converted to SI_seconds",
+      "sourceStatus": "official_IERS_Conventions_2010_v1.0.0_source_hash_verified"
+    },
+    "fundamentalArguments": {
+      "identity": "iers-conventions-2010-fundarg-simon-1994",
+      "sourceUrl": "https://iers-conventions.obspm.fr/content/chapter8/software/FUNDARG.F",
+      "sourcePath": "api/provider/iers/FUNDARG.F",
+      "sourceSha256": "18263cbb1289e222e6ee6e59d52beb343eb77a63ed3212e4f05a4c85d475ae78",
+      "sourceBytes": 9041,
+      "locator": "FUNDARG.F source header and argument polynomials",
+      "purpose": "shared lunisolar arguments for the libration calculation"
+    },
+    "sourceDefinition": "IERS Conventions 2010 Chapter 5 §5.5.3.1-§5.5.3.3 and Chapter 8 §8.3; C04 values are not treated as instantaneous until these corrections are added",
+    "correctionFailure": "missing_or_hash_mismatch_or_term_parse_mismatch_blocks"
+  },
+  "uncertainty": {
+    "input": "C04 UT1-UTC Er formal error column",
+    "status": "reported_formal_error_required_not_absolute_truth_bound",
+    "acceptance": {
+      "required": ["finite_formal_error", "formal_error_greater_or_equal_zero", "correction_sources_verified"],
+      "numericCutoff": null,
+      "reason": "C04 guide PDF pp. 7-8 states formal errors reflect internal precision and are usually not realistic; a universal absolute-error cutoff is not source-defined",
+      "noToleranceRelaxation": true,
+      "downstreamBoundaryUse": "a discrete FACT or boundary claim must remain uncertain/blocked unless its own guard proves stability; this provider does not convert formal error into a certainty claim"
+    },
+    "interpolation": "formal errors are retained for all four source rows; no unsupported statistical propagation is claimed",
+    "libration": "source truncation is recorded as 0.033 microseconds UT1; no stronger total-model bound is claimed",
+    "ocean": "no independent absolute error bound is asserted beyond verified model/source presence"
+  },
+  "output": {
+    "quantity": "UT1_minus_UTC",
+    "unit": "SI_seconds",
+    "includes": ["source_or_four_point_interpolated_C04_value", "ocean_tide_correction", "axial_libration_correction", "formal_uncertainty_metadata", "neighbor_and_boundary_state", "source_and_asset_provenance"],
+    "doesNotInclude": ["TT_minus_UTC", "TDB_minus_TT", "predictions", "fallback_estimates", "personal_or_semantic_results"]
+  },
+  "redistribution": {
+    "status": "external_review_required",
+    "publicReleaseAllowed": false,
+    "dataTermsEvidence": "official C04 pages document online distribution but the pinned data snapshot and UTC-TAI.history file expose no explicit redistribution license in the inspected materials",
+    "iersSoftware": {
+      "status": "derived_work_conditions_recorded",
+      "licenseSource": "official IERS Conventions Software License retained in UTLIBR.F and FUNDARG.F",
+      "requirements": ["clearly identify derived work", "describe differences", "rename modified routines", "retain source and intact notice", "acknowledge use"]
+    },
+    "releaseAction": "internal_offline_bundle_only_until_data_redistribution_terms_are_confirmed"
+  },
+  "failClosed": [
+    "contract_missing_or_hash_mismatch",
+    "data_asset_missing_or_sha_mismatch_or_size_mismatch",
+    "data_header_or_row_count_or_mjd_sequence_mismatch",
+    "history_asset_missing_or_sha_mismatch_or_segment_gap",
+    "correction_source_missing_or_sha_mismatch_or_term_parse_mismatch",
+    "invalid_or_nonfinite_utc",
+    "leap_second_second_60_unsupported",
+    "outside_C04_snapshot_coverage",
+    "future_prediction_requested",
+    "endpoint_neighbour_window_unavailable",
+    "interpolation_window_crosses_UTC_TAI_segment_boundary",
+    "formal_uncertainty_missing_or_nonfinite_or_negative",
+    "uncertainty_boundary_not_proven"
+  ],
+  "relatedContracts": {
+    "ttMinusUtc": "api/provider/astrology-time-scale-bundle-v1.json",
+    "tdbMinusTt": "api/provider/tdb-tt-bridge-contract-v1.json",
+    "timeAngle": "docs/astrology/time-angle-contract.md"
+  }
+}

@@ -1,0 +1,119 @@
+Changes in 2020 C04 / Bulletin B
+
+--------------------------------
+2026 March, 9
+
+Robert Heinkelmann  (GFZ) noticed erroneous pole rates for the year 1984 
+(private communication). The problem has been solved : C04 pole rate values have been 
+recalculated by cubic splines derivative, and updated accordingly. 
+
+
+--------------------------------
+2026 February, 5
+ 
+Fourth update of the 2020 C04 solution (IERS message numero 547)
+
+Following a decision taken during the IERS DB No. 81, the pole
+coordinates (xp, yp) and their rates (xrt, yrt) are updated on the
+period 1/1/2021 - 31/12/2024 by taking the values corresponding to the
+ITRF2020-u2024. 
+
+<https://itrf.ign.fr/ftp/pub/itrf/itrf2020-u2024/ITRF2020-u2024_EOP-F1.DAT>
+
+This change eliminates systematic effects coming from the IGS finals
+solution, that was not fully recalculated in the ITRF2020 solution over
+this period. The name of the updated series remains unchanged as
+well as their path:
+
+https://hpiers.obspm.fr/iers/eop/eopc04
+
+Values for (xp, yp) and (xrt, yrt) sampled at 12h UTC are exactly those
+of ITRF2020-u2024, whereas values at 0h result from a spline
+interpolation.
+
+The change is effective from February 5, 2026 (Thursday).
+
+The former solution is archived in the repository
+ 
+https://hpiers.obspm.fr/iers/eop/eopc04_20_v3
+
+Beyond February 5, 2026 these series no longer have any future
+updates.  
+ 
+
+--------------------------------
+2025 June, 5
+
+Third update of the 2020 C04 solution (IERS message numero 534)
+
+Following a decision taken during the IERS DB #80 in Vienna, Austria, the pole coordinates 
+(xp, yp) and their rates (xrt, yrt) will be updated on the period 1/1/2021 - 24/2/2024 by 
+taking the values corresponding to the ITRF2020-u2023. 
+
+This change will eliminate systematic effects coming from the IGS finals solution, that was 
+not fully recalculated in the ITRF2020 solution over this period. The name of the updated 
+series will remain unchanged as well as their path: 
+
+https://hpiers.obspm.fr/iers/eop/eopc04 
+
+Values for (xp, yp) and (xrt, yrt) sampled at 12h UTC are exactly those of ITRF2020-u2023, 
+whereas values at 0h result from a Lagrange interpolation.
+
+The change will be effective from June 5, 2025 (Thursday). 
+
+The former solution will be archived in the repository
+ 
+https://hpiers.obspm.fr/iers/eop/eopc04_20_v2 
+
+Beyond June 5, 2025 these series will no longer have any future updates.  
+
+
+----------------
+2023 December 12
+
+On December 5 Robert Heinkelman (GFZ) reported to me outliers in UT1 values 
+during the year 2017, confirmed by Manuela Seitz (TU Munchen). We fixed the origin of the 
+problem and recalculated the C04 UT1 values for that period. That 1rst version of the C04 
+series was put in the folder https://hpiers.obspm.fr/iers/eop/eopc04_20_v1
+
+-------------
+2023 April 24
+
+From that date we produce of version of the 20 C04 celestial pole offsets 
+dPsi, dEps with respect to IAU 1980 precession-nutation model and named: 
+eopc04.dPsi_dEps.IAU1980.1962-now.  
+
+-------------
+2023 April 21
+
+Until 2023 April 6, extrapolation of the biases of the inter-technique pole coordinate solution 
+entering the C04 over 2019-2021 to the period 2021-2023, and removed accordingly from those series 
+before combination. But, that caused spurious biases with other pole coordinate series, 
+as Maria Davis points out biases, especially in x: +30 µas in the differences USNO Final / JPL - C04. 
+
+From April 21, intra-technique solutions entering in the C04 over the period 2021-current date are 
+aligned with the IGS repro3 solution recalculated in the ITRF 2020 by Paul Rebishung (IGN).
+
+The UT1, celestial pole offsets dX, dY are aligned with ICRF 3, namely the IVS quarterly solution 
+released on 2022 0ctober 31.
+
+------------
+2023 April 8
+
+Maria Davis (USNO) noticed that the pole coordinates at 0hUTC 
+were unsually noisy over the period 2021-April 2023. The problem was fixed. 
+
+
+----------------
+2023 February 14
+
+The 14 C04 ERP solution is replaced by the series 20 C04, consistent 
+with ITRF 2020. Repertory remains the same. The format is changed, pole rates 
+coordinates are included, except for the file eoppc04_IAU2000.62-now. 
+
+See https://hpiers.obspm.fr/iers/eop/eopc04/eopc04.txt for the description 
+of the new solution. 
+
+The 14 C04 series will be produced until a non defined date, and 
+put in the neighbouring directory eopc04_14.  
+
