@@ -38,6 +38,9 @@ The evidence envelope preserves, without promotion:
 
 - source-locator-bounded observations for 命宮/身宮, the major-star series,
   six lucky stars, and four transformations;
+- independently checked source-locator-bounded observations from the National
+  Library of Korea manuscript `CNTS-00047996572`: p.5 `無論男女皆逆布`,
+  p.6's palace sequence, and p.7's `寅申同宮·巳亥相對` Tianfu relation;
 - the unresolved branch → palace name → physical slot → production ordinal
   binding;
 - NARA's same-catalog-record leaf frontier and the Toyo candidate frontier;
@@ -94,10 +97,16 @@ authority. In particular, the following remain blockers rather than hidden
 defaults:
 
 1. complete 12-field palace semantic binding;
-2. an authoritative and reproducible Tianfu convention;
+2. production coordinate convention and conflict policy for Tianfu;
 3. independent external natal-chart oracle parity;
 4. authoritative calendar/time source identity;
 5. source/edition independence and redistribution review where needed.
+
+The Korean manuscript independently strengthens two source-local structural
+observations and the `(4 - Z)` Tianfu relation. It does not provide a physical
+12-palace chart grid or a production ordinal, so it does not close the
+five-field palace binding. The existing Tianfu conflict therefore remains a
+preserved tension rather than a selected production convention.
 
 The NARA volume-2 leaves 64–80 frontier and the Toyo/AKS candidate remain
 research inputs, not semantic promotion evidence. Same catalog-record volume

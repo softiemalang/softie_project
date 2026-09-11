@@ -122,6 +122,17 @@ export const ZIWEI_SOURCE_PROFILES = Object.freeze([
     byteSha256: null,
     sourceBytesStatus: 'not_embedded',
   }),
+  Object.freeze({
+    sourceId: 'nlk_cnts_00047996572',
+    lineageId: 'ziwei.joseon.national-library-of-korea',
+    work: '紫微斗數方書',
+    editionIdentity: 'National Library of Korea CNTS-00047996572 / 古 1490 52; anonymous Joseon manuscript',
+    identityStatus: 'institution_recorded_direct_scan',
+    independenceStatus: 'independent_manuscript_relative_to_nanyang',
+    authorityStatus: 'source_scope_bounded_semantic_authority_unresolved',
+    byteSha256: 'b21bbf3e2c7cdada4153f847ff9f359dbb29e71998e1f931417d108b571b23c3',
+    sourceBytesStatus: 'verified_outside_repository',
+  }),
 ])
 
 export const ZIWEI_SOURCE_LOCATORS = Object.freeze([
@@ -139,6 +150,9 @@ export const ZIWEI_SOURCE_LOCATORS = Object.freeze([
   Object.freeze({ locatorId: 'nara-v2-leaves-64-80', sourceId: 'nara_f1000000000000101426', label: 'NARA volume 2 leaves 64–80 repeated chart frontier' }),
   Object.freeze({ locatorId: 'nara-v1-leaves-84-88', sourceId: 'nara_f1000000000000101426', label: 'NARA volume 1 leaves 84–88 bureau/branch/table frontier' }),
   Object.freeze({ locatorId: 'toyo-vii3-157', sourceId: 'toyo_1646', label: 'Toyo/AKS TOYO_1646 VII-3-157 candidate witness' }),
+  Object.freeze({ locatorId: 'nlk-p5-palace-direction', sourceId: 'nlk_cnts_00047996572', pdfPage: 5, label: 'NLK CNTS-00047996572 p.5 定十二宮法 / 無論男女皆逆布' }),
+  Object.freeze({ locatorId: 'nlk-p6-palace-sequence', sourceId: 'nlk_cnts_00047996572', pdfPage: 6, label: 'NLK CNTS-00047996572 p.6 十二宮 ordinal sequence' }),
+  Object.freeze({ locatorId: 'nlk-p7-tianfu-rule', sourceId: 'nlk_cnts_00047996572', pdfPage: 7, label: 'NLK CNTS-00047996572 p.7 安天府法 / 寅申同宮·巳亥相對' }),
 ])
 
 const PROFILE_BY_ID = new Map(ZIWEI_SOURCE_PROFILES.map(profile => [profile.sourceId, profile]))
@@ -186,14 +200,44 @@ const ZIWEI_SOURCE_FRONTIER = Object.freeze([
     statement: '생년 천간과 사화 표면은 locator-bound observation으로 전달하되, 표의 완전한 독립 검증이나 해석 의미는 확정하지 않는다.',
   }),
   Object.freeze({
+    id: 'ziwei.source-observation.nlk-palace-direction',
+    status: 'candidate',
+    relation: 'neutral',
+    evidenceRole: 'source_observation',
+    lineages: ['ziwei.joseon.national-library-of-korea'],
+    sourceIds: ['nlk_cnts_00047996572'],
+    locatorIds: ['nlk-p5-palace-direction'],
+    statement: '한국 국립중앙도서관 필사본 p.5의 無論男女 皆逆布는 source-local 12궁 역포 문구를 직접 보여준다. 물리 슬롯과 production ordinal까지의 결속이나 개인 semantic은 닫지 않는다.',
+  }),
+  Object.freeze({
+    id: 'ziwei.source-observation.nlk-palace-sequence',
+    status: 'candidate',
+    relation: 'neutral',
+    evidenceRole: 'source_observation',
+    lineages: ['ziwei.joseon.national-library-of-korea'],
+    sourceIds: ['nlk_cnts_00047996572'],
+    locatorIds: ['nlk-p6-palace-sequence'],
+    statement: '한국 국립중앙도서관 필사본 p.6의 一命宮부터 十二相貌宮까지의 순서를 직접 보존한다. 相貌/父母 명칭 차이와 production enum 결속은 별도 unresolved로 남긴다.',
+  }),
+  Object.freeze({
+    id: 'ziwei.source-observation.nlk-tianfu-axis',
+    status: 'candidate',
+    relation: 'neutral',
+    evidenceRole: 'source_observation',
+    lineages: ['ziwei.joseon.national-library-of-korea'],
+    sourceIds: ['nlk_cnts_00047996572'],
+    locatorIds: ['nlk-p7-tianfu-rule'],
+    statement: '한국 국립중앙도서관 필사본 p.7의 寅申同宮·巳亥相對와 未紫微則酉天府·午紫微則戌天府 예시는 (4 - Z) mod 12에 해당하는 source-local 천부 관계를 독립적으로 지지한다. 물리 좌표계·production convention·개인 semantic의 승자는 정하지 않는다.',
+  }),
+  Object.freeze({
     id: 'ziwei.source-state.palace-semantic-identity',
     status: 'unresolved',
     relation: 'neutral',
     evidenceRole: 'source_state',
-    lineages: ['ziwei.nanbei_shanren', 'ziwei.nara.catalog-record-f1000000000000101426'],
-    sourceIds: ['nanbei_shanren', 'nara_f1000000000000101426'],
-    locatorIds: ['nanbei-p7-twelve-cell-diagram', 'nanbei-p8-ming-shen-rule', 'nara-v2-leaves-64-80'],
-    statement: 'branch token ↔ palace name ↔ physical chart slot ↔ production ordinal의 12개 결속이 닫히지 않아 궁명 기반 semantic 소비를 차단한다.',
+    lineages: ['ziwei.nanbei_shanren', 'ziwei.nara.catalog-record-f1000000000000101426', 'ziwei.joseon.national-library-of-korea'],
+    sourceIds: ['nanbei_shanren', 'nara_f1000000000000101426', 'nlk_cnts_00047996572'],
+    locatorIds: ['nanbei-p7-twelve-cell-diagram', 'nanbei-p8-ming-shen-rule', 'nara-v2-leaves-64-80', 'nlk-p5-palace-direction', 'nlk-p6-palace-sequence'],
+    statement: 'NLK p.5–6은 역포와 궁명 순서를 독립적으로 보강하지만, branch token ↔ palace name ↔ physical chart slot ↔ production ordinal의 12개 결속은 여전히 단일면 직접 증언으로 닫히지 않아 궁명 기반 semantic 소비를 차단한다.',
   }),
   Object.freeze({
     id: 'ziwei.source-state.nara-witness-frontier',
@@ -220,10 +264,10 @@ const ZIWEI_SOURCE_FRONTIER = Object.freeze([
     status: 'conflict',
     relation: 'conflicts',
     evidenceRole: 'source_conflict',
-    lineages: ['ziwei.nanbei_shanren', 'ziwei.ming_nanyangtang'],
-    sourceIds: ['nanbei_shanren', 'ming_nanyangtang'],
-    locatorIds: ['nanbei-p13-sanshisi-tianfu-root', 'nanyang-p151-152-tianfu-series'],
-    statement: '천부 raw anchor/전개 표면의 불일치가 보존된 conflict이다. 어느 공식을 승자로 선택하거나 회전 표현을 semantic authority로 바꾸지 않는다.',
+    lineages: ['ziwei.nanbei_shanren', 'ziwei.ming_nanyangtang', 'ziwei.joseon.national-library-of-korea'],
+    sourceIds: ['nanbei_shanren', 'ming_nanyangtang', 'nlk_cnts_00047996572'],
+    locatorIds: ['nanbei-p13-sanshisi-tianfu-root', 'nanyang-p151-152-tianfu-series', 'nlk-p7-tianfu-rule'],
+    statement: '천부 raw anchor/전개 표면의 불일치가 보존된 conflict이다. NLK p.7은 (4 - Z) source-local 관계를 독립적으로 지지하지만, 물리 좌표계·production convention·기존 충돌의 승자를 선택하지 않는다.',
     conflictId: 'ziwei.conflict.tianfu-raw-placement',
   }),
   Object.freeze({
@@ -1264,6 +1308,10 @@ export function evaluateZiweiInterpretationConstitution({ base, envelope } = {})
 
 export const ZIWEI_SOURCE_FRONTIER_SUMMARY = Object.freeze({
   sourceIdentity: 'candidate_or_unresolved',
+  directStructuralEvidenceCandidates: 3,
+  independentSourceWitnesses: 1,
+  tianfuIndependentCorroboration: 'source_bounded_candidate',
+  fiveFieldPalaceBindingClosed: false,
   directSemanticEntries: 0,
   sourceLocalCompositions: 0,
   commonCandidates: 0,
