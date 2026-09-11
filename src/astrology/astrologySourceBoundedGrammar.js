@@ -248,6 +248,33 @@ export const WESTERN_CONTEXT_BOUND_CANDIDATES = Object.freeze([
     missing: ['source-specific hemisphere/equal-ascension input and method', 'no modern equivalent admitted'],
     reason: 'The relation is explicit but not needed for the adopted v0 surface and has additional astronomical conditions.',
   },
+  {
+    candidateId: 'candidate.ptolemy.familiarity-composition.v0',
+    sourceId: PTOLEMY_SOURCE_ID,
+    lineageId: PTOLEMY_LINEAGE_ID,
+    locatorId: 'ptolemy-I-23-familiarity-composition',
+    status: 'context_bound_candidate',
+    missing: ['complete prior familiarity inputs', 'source-specific dignity and condition inputs', 'closed precedence among face/chariot/throne/rejoicing/alien-region relations'],
+    reason: 'The locator names a composition of prior relations, but the current Rule Core does not carry every source-defined prerequisite or precedence rule.',
+  },
+  {
+    candidateId: 'candidate.ptolemy.application-separation.v0',
+    sourceId: PTOLEMY_SOURCE_ID,
+    lineageId: PTOLEMY_LINEAGE_ID,
+    locatorId: 'ptolemy-I-24-application-separation',
+    status: 'context_bound_candidate',
+    missing: ['source-selected motion ordering', 'latitude/bodily-passage prerequisite', 'near-aspect threshold and exception policy'],
+    reason: 'The direct locator is retained, but an exact source-local predicate cannot be executed from the current FACT and Rule Core contract.',
+  },
+  {
+    candidateId: 'candidate.lilly.primary-text-lineage.v0',
+    sourceId: 'western-source-lilly-christian-astrology',
+    lineageId: 'western-early-modern-lilly',
+    locatorId: 'wellcome-s7z7c46y-whole-item',
+    status: 'context_bound_candidate',
+    missing: ['page-specific original witness inspection', 'stable page/section locator for a closed rule', 'lineage-local prerequisite and exception inventory'],
+    reason: 'The Wellcome record closes the 1647 work identity and digitized item boundary, but no Lilly rule is admitted from a catalog/PDF identity alone.',
+  },
 ])
 
 export const WESTERN_UNSUPPORTED_FRONTIER = Object.freeze([
