@@ -41,6 +41,11 @@ The evidence envelope preserves, without promotion:
 - independently checked source-locator-bounded observations from the National
   Library of Korea manuscript `CNTS-00047996572`: p.5 `無論男女皆逆布`,
   p.6's palace sequence, and p.7's `寅申同宮·巳亥相對` Tianfu relation;
+- an independent National Library of Korea worked-chart witness candidate,
+  `CNTS-00047981909` (`古今命星圖`), with paired chart surfaces at PDF p.2–3
+  and a later worked-chart surface at PDF p.175 / printed p.174. It preserves
+  chart content and a direction conflict as evidence, not as an executable
+  oracle, because the perimeter boxes do not carry branch labels;
 - the unresolved branch → palace name → physical slot → production ordinal
   binding;
 - NARA's same-catalog-record leaf frontier and the Toyo candidate frontier;
@@ -107,6 +112,13 @@ observations and the `(4 - Z)` Tianfu relation. It does not provide a physical
 12-palace chart grid or a production ordinal, so it does not close the
 five-field palace binding. The existing Tianfu conflict therefore remains a
 preserved tension rather than a selected production convention.
+
+The `古今命星圖` witness adds a separate worked-chart research frontier. Its
+charts are useful for future field-level comparison, but the observed
+counter-clockwise and clockwise layouts are retained as conflict. The source
+is not admitted as an external executable oracle until input-to-chart mapping,
+branch coordinates, direction policy, and field-level expected outputs are
+independently closed.
 
 The NARA volume-2 leaves 64–80 frontier and the Toyo/AKS candidate remain
 research inputs, not semantic promotion evidence. Same catalog-record volume

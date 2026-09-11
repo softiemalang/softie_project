@@ -133,6 +133,17 @@ export const ZIWEI_SOURCE_PROFILES = Object.freeze([
     byteSha256: 'b21bbf3e2c7cdada4153f847ff9f359dbb29e71998e1f931417d108b571b23c3',
     sourceBytesStatus: 'verified_outside_repository',
   }),
+  Object.freeze({
+    sourceId: 'nlk_cnts_00047981909',
+    lineageId: 'ziwei.joseon.national-library-of-korea.gujinmingxingtu',
+    work: '古今命星圖',
+    editionIdentity: 'National Library of Korea CNTS-00047981909 / two-volume manuscript; direct scan candidate',
+    identityStatus: 'institution_recorded_direct_scan',
+    independenceStatus: 'independent_worked_chart_manuscript_relative_to_nanyang',
+    authorityStatus: 'source_scope_bounded_oracle_unresolved',
+    byteSha256: '6124b704d0ac70d21e4789435568c6fa49280284110719deee55149969b0872e',
+    sourceBytesStatus: 'verified_outside_repository',
+  }),
 ])
 
 export const ZIWEI_SOURCE_LOCATORS = Object.freeze([
@@ -153,6 +164,9 @@ export const ZIWEI_SOURCE_LOCATORS = Object.freeze([
   Object.freeze({ locatorId: 'nlk-p5-palace-direction', sourceId: 'nlk_cnts_00047996572', pdfPage: 5, label: 'NLK CNTS-00047996572 p.5 定十二宮法 / 無論男女皆逆布' }),
   Object.freeze({ locatorId: 'nlk-p6-palace-sequence', sourceId: 'nlk_cnts_00047996572', pdfPage: 6, label: 'NLK CNTS-00047996572 p.6 十二宮 ordinal sequence' }),
   Object.freeze({ locatorId: 'nlk-p7-tianfu-rule', sourceId: 'nlk_cnts_00047996572', pdfPage: 7, label: 'NLK CNTS-00047996572 p.7 安天府法 / 寅申同宮·巳亥相對' }),
+  Object.freeze({ locatorId: 'nlk-gjms-p2-worked-charts', sourceId: 'nlk_cnts_00047981909', pdfPage: 2, printedPage: 1, label: 'NLK CNTS-00047981909 PDF p.2 / printed p.1 paired worked charts' }),
+  Object.freeze({ locatorId: 'nlk-gjms-p3-worked-charts', sourceId: 'nlk_cnts_00047981909', pdfPage: 3, printedPage: 2, label: 'NLK CNTS-00047981909 PDF p.3 / printed p.2 paired worked charts' }),
+  Object.freeze({ locatorId: 'nlk-gjms-p175-printed-p174', sourceId: 'nlk_cnts_00047981909', pdfPage: 175, printedPage: 174, label: 'NLK CNTS-00047981909 PDF p.175 / printed p.174 worked-chart Tianfu candidate' }),
 ])
 
 const PROFILE_BY_ID = new Map(ZIWEI_SOURCE_PROFILES.map(profile => [profile.sourceId, profile]))
@@ -230,14 +244,35 @@ const ZIWEI_SOURCE_FRONTIER = Object.freeze([
     statement: '한국 국립중앙도서관 필사본 p.7의 寅申同宮·巳亥相對와 未紫微則酉天府·午紫微則戌天府 예시는 (4 - Z) mod 12에 해당하는 source-local 천부 관계를 독립적으로 지지한다. 물리 좌표계·production convention·개인 semantic의 승자는 정하지 않는다.',
   }),
   Object.freeze({
+    id: 'ziwei.source-observation.nlk-gujinmingxingtu-worked-charts',
+    status: 'candidate',
+    relation: 'neutral',
+    evidenceRole: 'source_observation',
+    lineages: ['ziwei.joseon.national-library-of-korea.gujinmingxingtu'],
+    sourceIds: ['nlk_cnts_00047981909'],
+    locatorIds: ['nlk-gjms-p2-worked-charts', 'nlk-gjms-p3-worked-charts', 'nlk-gjms-p175-printed-p174'],
+    statement: '《古今命星圖》의 독립 worked-chart 표면은 궁명·성요가 있는 대규모 명반집으로 보존되지만, 차트 칸의 지지 레이블이 확인되지 않는다. p.2–3의 역·순 방향 혼재와 p.174의 천부 배치 후보를 함께 보존하며, 입력 매핑·방향 규범·실행 oracle로 승격하지 않는다.',
+  }),
+  Object.freeze({
+    id: 'ziwei.source-conflict.nlk-gujinmingxingtu-palace-direction',
+    status: 'conflict',
+    relation: 'conflicts',
+    evidenceRole: 'source_conflict',
+    lineages: ['ziwei.joseon.national-library-of-korea.gujinmingxingtu', 'ziwei.joseon.national-library-of-korea'],
+    sourceIds: ['nlk_cnts_00047981909', 'nlk_cnts_00047996572'],
+    locatorIds: ['nlk-gjms-p2-worked-charts', 'nlk-gjms-p3-worked-charts', 'nlk-p5-palace-direction'],
+    statement: 'NLK 계열에서도 규범 문구의 皆逆布와 worked-chart의 역·순 방향 표면이 함께 관찰된다. 이를 필사/전승 오류로 단정하거나 어느 방향을 production winner로 선택하지 않고 conflict로 보존한다.',
+    conflictId: 'ziwei.conflict.nlk-gujinmingxingtu-palace-direction',
+  }),
+  Object.freeze({
     id: 'ziwei.source-state.palace-semantic-identity',
     status: 'unresolved',
     relation: 'neutral',
     evidenceRole: 'source_state',
-    lineages: ['ziwei.nanbei_shanren', 'ziwei.nara.catalog-record-f1000000000000101426', 'ziwei.joseon.national-library-of-korea'],
-    sourceIds: ['nanbei_shanren', 'nara_f1000000000000101426', 'nlk_cnts_00047996572'],
-    locatorIds: ['nanbei-p7-twelve-cell-diagram', 'nanbei-p8-ming-shen-rule', 'nara-v2-leaves-64-80', 'nlk-p5-palace-direction', 'nlk-p6-palace-sequence'],
-    statement: 'NLK p.5–6은 역포와 궁명 순서를 독립적으로 보강하지만, branch token ↔ palace name ↔ physical chart slot ↔ production ordinal의 12개 결속은 여전히 단일면 직접 증언으로 닫히지 않아 궁명 기반 semantic 소비를 차단한다.',
+    lineages: ['ziwei.nanbei_shanren', 'ziwei.nara.catalog-record-f1000000000000101426', 'ziwei.joseon.national-library-of-korea', 'ziwei.joseon.national-library-of-korea.gujinmingxingtu'],
+    sourceIds: ['nanbei_shanren', 'nara_f1000000000000101426', 'nlk_cnts_00047996572', 'nlk_cnts_00047981909'],
+    locatorIds: ['nanbei-p7-twelve-cell-diagram', 'nanbei-p8-ming-shen-rule', 'nara-v2-leaves-64-80', 'nlk-p5-palace-direction', 'nlk-p6-palace-sequence', 'nlk-gjms-p2-worked-charts', 'nlk-gjms-p3-worked-charts'],
+    statement: 'NLK p.5–6은 역포와 궁명 순서를, 《古今命星圖》 worked charts는 궁명·물리 격자 표면을 독립적으로 보강하지만, 지지 레이블·방향 conflict·production ordinal까지 포함한 12개 결속은 여전히 단일면 직접 증언으로 닫히지 않아 궁명 기반 semantic 소비를 차단한다.',
   }),
   Object.freeze({
     id: 'ziwei.source-state.nara-witness-frontier',
@@ -309,6 +344,16 @@ const ZIWEI_SOURCE_FRONTIER = Object.freeze([
     sourceIds: [],
     locatorIds: [],
     statement: '독립 외부 명반 oracle과 전수 대조가 없어 deterministic calculation을 externally verified claim으로 승격하지 않는다.',
+  }),
+  Object.freeze({
+    id: 'ziwei.source-state.nlk-gujinmingxingtu-oracle-frontier',
+    status: 'unresolved',
+    relation: 'neutral',
+    evidenceRole: 'readiness_state',
+    lineages: ['ziwei.joseon.national-library-of-korea.gujinmingxingtu'],
+    sourceIds: ['nlk_cnts_00047981909'],
+    locatorIds: ['nlk-gjms-p2-worked-charts', 'nlk-gjms-p3-worked-charts', 'nlk-gjms-p175-printed-p174'],
+    statement: '687건으로 보고된 worked-chart 표면은 독립 oracle 후보지만 지지 레이블, 입력-to-chart 매핑, 방향 규범과 field-level expected output이 닫히지 않아 executable external oracle로 채택하지 않는다.',
   }),
   Object.freeze({
     id: 'ziwei.source-state.calendar-time-identity',
@@ -1308,8 +1353,9 @@ export function evaluateZiweiInterpretationConstitution({ base, envelope } = {})
 
 export const ZIWEI_SOURCE_FRONTIER_SUMMARY = Object.freeze({
   sourceIdentity: 'candidate_or_unresolved',
-  directStructuralEvidenceCandidates: 3,
-  independentSourceWitnesses: 1,
+  directStructuralEvidenceCandidates: 4,
+  independentSourceWitnesses: 2,
+  workedChartWitnessCandidates: 687,
   tianfuIndependentCorroboration: 'source_bounded_candidate',
   fiveFieldPalaceBindingClosed: false,
   directSemanticEntries: 0,
