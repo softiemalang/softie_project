@@ -7,20 +7,23 @@
 - Preserve existing tracked and untracked work. Do not overwrite, discard, misattribute, or silently fold unrelated changes into the task.
 - Repository guidance cannot override higher-level platform safety rules or a more specific user request.
 
+## Autonomous execution and communication
+
+- Infer the user's intent and desired outcome from context, and carry authorized work through to completion without intermediate approval pauses. Treat conversational requests such as “can you?”, “help me”, or “shall we try this?” as instructions to act when context indicates a task request.
+- Default to proceeding with read-only and easily reversible work within scope. Ask for user judgment only when unresolved uncertainty could materially change the outcome or an action requires approval under the boundaries below, including hard-to-reverse external actions. Existing authorization for the same action remains valid.
+- Before requesting required approval, complete the authorized preparatory work so the user can assess a concrete result; pause only the dependent action and continue independent work where possible.
+- If an instruction conflict blocks progress, identify the specific instruction and its source, explain what it prevents, and state what user decision is needed. Do not add warnings, checklists, options, or confirmation questions solely for hypothetical risks.
+- Default to natural sentences and paragraphs; use tables, lists, and Markdown when they improve communication.
+
 ## Change and external-impact boundaries
 
 - Keep a change within the requested behavior and the smallest necessary file surface. Do not make adjacent cleanup, refactors, or design changes without authorization.
-- Native Codex is the default task owner/executor: it owns completion criteria and final integration, and may use a registered portable Skill only in a bounded scope when needed; Skill results remain advisory.
+- The parent agent is the default task owner/executor: it owns completion criteria and final integration, and may use a registered portable Skill only in a bounded scope when needed; Skill results remain advisory.
 - Using a portable Skill does not change or bypass existing permission, routing, or independent-review requirements.
 - Local staging and commits are allowed when useful, but include only intentional task changes; a local commit does not authorize any remote action.
 - Do not discard work with destructive Git operations or delete user data, migrations, or localStorage migration logic without explicit approval.
 - Push, merge, force-push, deployment, remote database or migration changes, production configuration, secrets, credentials, and tokens require explicit user approval for that action.
 - Do not expose service-role or other backend secrets to frontend code. Treat current Supabase configuration and handler-level authentication/ownership checks as the security source of truth.
-
-## Mac mini operational boundary
-
-- During an active Codex task, do not directly stop or restart the Router; leave its lifecycle to `launchd`.
-- Perform unavoidable recovery work only after establishing an independent remote access path that will remain available if the Router is disrupted.
 
 ## Product and data invariants
 
@@ -46,16 +49,17 @@
 - Do not fill an evidence gap with inference merely to complete the flow. If direct evidence, identity, locator, lineage, or semantic support does not close, preserve the unresolved state, stop that promotion branch, and report the remaining blocker.
 - Preserve unrelated dirty work, untracked research, protected artifacts, and large source files throughout the autonomous investigation; inspect and alter only the allowlisted task surface.
 
-## Current model-lane boundary
+## Worker and evidence boundaries
 
-- Luna Max remains the default owner, decision maker, and final integrator. The explicit-only `gemini-flash-relay` Skill is an advisory handoff compressor for supplied Chat/Luna/Flash material, not an ordinary-work route.
-- This repository does not launch or re-delegate between apps. Do not edit or remove app data, auth/session material, credentials, or CLI installations as part of the relay.
+- Worker and Skill output remains advisory and does not establish parent approval, source authority, readiness, or activation.
+- Do not modify external application data, authentication/session state, credentials, or tool installations unless the task explicitly includes that change and the user has authorized it.
 - Use the registered `historical-document-evidence` Skill for bounded historical-source/OCR work; its output remains caller-reviewed evidence and cannot promote authority, readiness, or activation.
-- For child execution evidence, use the [`subagent-evidence-contract-v0`](docs/subagent-evidence-contract-v0.md) contract and [`src/subagentEvidenceContract.js`](src/subagentEvidenceContract.js) checker. Child or Flash output is advisory execution provenance/text, not parent acceptance or authority/readiness/activation; shared, tracked, canonical, and publication surfaces remain parent-owned.
+- For child execution evidence, use the [`subagent-evidence-contract-v0`](docs/subagent-evidence-contract-v0.md) contract and [`src/subagentEvidenceContract.js`](src/subagentEvidenceContract.js) checker. Shared, tracked, canonical, and publication surfaces remain parent-owned.
 - Parent verification must use the parent basis and directly reread the relevant locator or rerun the critical check for calculation, source relation, authority, readiness, or activation impact.
-- Separately governed Hermes, Router, OCR, and DE405 workflows remain under their own contracts.
+- Separately governed Hermes, OCR, and DE405 workflows remain under their own contracts.
 - Use the bounded gate in [`docs/bounded-continuation-quality-gate-v0.md`](docs/bounded-continuation-quality-gate-v0.md) and [`src/boundedContinuationGate.js`](src/boundedContinuationGate.js) for workflow decisions only; it does not establish domain readiness or production activation or authorize automatic retries or routing.
 
 ## Verification boundary
 
 - Select checks that cover the changed contract and report their actual result. A local test, build, checker, or structural inspection proves only its own scope; it does not prove UI behavior, external-source authority, deployment, or production state.
+- Scale verification to the scope and risk of the change. Reuse relevant checks already completed unless new changes, failures, or unresolved concerns justify repeating them; retain required checks and independent parent verification.
