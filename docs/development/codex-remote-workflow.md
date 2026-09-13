@@ -9,14 +9,25 @@ credentials, `.env*`, SSH material, symlinks, binary files, and oversized files
 are excluded or rejected. It never reads or changes the tab-worker credential
 directory or operating-state directory.
 
+The bridge is a Mac coordinator interface, not a general SSH proxy. Its only
+public operations are `metadata`, `refresh`, `setup`, `status`, `verify`, and
+`apply`; the package scripts are the supported names. The entrypoint is
+Mac-only, fixes the source, target, private state directory, SSH alias, and
+metadata destination, and rejects path/host/state/boundary overrides. A Tab
+Codex may work inside the local target checkout, but must not open a Mac shell
+or use `ssh`, `scp`, `sftp`, arbitrary remote commands, Mac absolute paths,
+credentials, or operating state.
+
 ## Repeatable cycle
 
 Run these commands from the Mac checkout (or from a Codex Desktop Remote SSH
 terminal attached to the Mac):
 
 ```text
+npm run remote:metadata
 npm run remote:refresh
 npm run remote:setup
+# Use npm run remote:status for a read-only phase/guard check when needed.
 # Work on the Galaxy Tab checkout and make local commits there.
 npm run remote:verify
 npm run remote:apply -- --dry-run
@@ -49,6 +60,17 @@ base path changed. It also aborts if the target is dirty, has a remote, its
 baseline/attestation differs, or a protected path appears. A crash during
 apply leaves an `applying`/`apply_recovery_required` record rather than guessing
 or overwriting state.
+
+`metadata` writes the sanitized manifest to the fixed parent-level target path
+`/data/data/com.termux/files/home/codex-remote-development/mac-softie-candidates.manifest.json`.
+Each item contains only a repository-relative path, existence, Git
+classification, mode, size, hash when safe, and snapshot-exclusion reason. It
+contains no Mac absolute path, file content, credential, or operating-state
+data. The Mac workflow state records only the source fingerprint, manifest
+hash, scope, and delivery time; it does not store the manifest contents.
+`refresh` requires that admission to match the current source fingerprint.
+The portable snapshot allowlist is an exact reviewed set; it does not make the
+general exclusion boundary mutable from the Tab.
 
 The default verification profile intentionally does not run the repository's
 full historical `npm test` profile. That profile depends on excluded evidence

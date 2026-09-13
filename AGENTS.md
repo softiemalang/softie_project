@@ -7,6 +7,16 @@
 - Preserve existing tracked and untracked work. Do not overwrite, discard, misattribute, or silently fold unrelated changes into the task.
 - Repository guidance cannot override higher-level platform safety rules or a more specific user request.
 
+## Codex Remote workflow boundary
+
+- The Mac checkout is the source of truth and the only coordinator. The public interface is limited to `npm run remote:metadata`, `npm run remote:refresh`, `npm run remote:setup`, `npm run remote:status`, `npm run remote:verify`, and `npm run remote:apply` (with `-- --dry-run` only for apply).
+- The normal order is `metadata -> refresh -> setup/status -> work -> verify -> apply`. `metadata` produces only a repository-relative sanitized manifest; it does not transfer file contents or credentials.
+- `remote:refresh` requires a matching private metadata admission for the same source fingerprint; if the Mac tree changes after metadata, metadata must be regenerated before refresh.
+- Galaxy Tab Codex is a local project worker, not a Mac shell. It must not use Mac-wide `ssh`, `scp`, `sftp`, arbitrary remote shell, Mac absolute paths, credential material, or tab-worker operating state. Remote coordination happens only through the named interfaces from the Mac coordinator; path, host, state, boundary-module, and metadata-output overrides are forbidden.
+- `refresh` and `verify` reuse the active snapshot exclusion boundary. Credentials, operating state, generated/native evidence, symlinks, and excluded paths remain isolated; the exact reviewed portable allowlist is the only explicit exception and is still subject to size, path, and content checks.
+- `apply` is attestation- and source-guarded. It writes only verified target changes, never stages or commits Mac Git, preserves unrelated dirty/untracked work, and aborts closed on source drift, dirty overlap, target drift, base mismatch, protected paths, or conflict.
+- The Tab checkout is an independent local Git baseline with no remote. A target change must be committed and pass the recorded verification before it can be applied to Mac.
+
 ## Autonomous execution and communication
 
 - Infer the user's intent and desired outcome from context, and carry authorized work through to completion without intermediate approval pauses. Treat conversational requests such as “can you?”, “help me”, or “shall we try this?” as instructions to act when context indicates a task request.

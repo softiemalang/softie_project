@@ -9,11 +9,31 @@ import { spawn } from "node:child_process";
 import { createHash, randomUUID } from "node:crypto";
 import { pathToFileURL } from "node:url";
 
-const ACTIVE_BOUNDARY_MODULE =
-  process.env.SOFTIE_REMOTE_BOUNDARY_MODULE ||
+import {
+  PORTABLE_SNAPSHOT_ALLOWLIST,
+  PORTABLE_SNAPSHOT_MAX_FILE_BYTES,
+  buildSanitizedRepositoryManifest,
+  isPortableSnapshotAllowlisted,
+  mergePortableSnapshot,
+  serializeSanitizedManifest,
+} from "./sanitized-repository-metadata.mjs";
+
+const DEFAULT_ACTIVE_BOUNDARY_MODULE =
   "/Users/hangyukim/.local/share/tab-worker-mac/current/tools/development-console.mjs";
-const boundary = await import(pathToFileURL(ACTIVE_BOUNDARY_MODULE).href);
-const { repositorySnapshot, repositoryContractStatus, relativeFile, safeFile, snapshotExcluded } = boundary;
+const ACTIVE_BOUNDARY_MODULE = DEFAULT_ACTIVE_BOUNDARY_MODULE;
+let boundary = null;
+if (process.platform === "darwin") {
+  try {
+    boundary = await import(pathToFileURL(ACTIVE_BOUNDARY_MODULE).href);
+  } catch {
+    boundary = null;
+  }
+}
+const repositorySnapshot = boundary?.repositorySnapshot;
+const repositoryContractStatus = boundary?.repositoryContractStatus;
+const relativeFile = boundary?.relativeFile;
+const safeFile = boundary?.safeFile;
+const snapshotExcluded = boundary?.snapshotExcluded;
 
 export const WORKFLOW_VERSION = 1;
 export const DEFAULT_SOURCE_ROOT = "/Users/hangyukim/Documents/softie_project";
@@ -22,6 +42,16 @@ export const DEFAULT_TARGET =
 export const DEFAULT_SSH_HOST = "tab-worker";
 export const DEFAULT_STATE_ROOT =
   "/Users/hangyukim/.local/share/tab-worker-mac/remote-development/softie_project";
+export const DEFAULT_METADATA_TARGET =
+  "/data/data/com.termux/files/home/codex-remote-development/mac-softie-candidates.manifest.json";
+export const REMOTE_INTERFACE_COMMANDS = Object.freeze([
+  "metadata",
+  "refresh",
+  "setup",
+  "status",
+  "verify",
+  "apply",
+]);
 export const REMOTE_TMP_ROOT = "/data/data/com.termux/files/usr/tmp";
 export const MAX_CHANGED_FILES = 30;
 export const MAX_CHANGED_BYTES = 12 * 1024 * 1024;
@@ -48,6 +78,17 @@ const token = () => randomUUID().replaceAll("-", "");
 
 function fail(code) {
   throw new Error(code);
+}
+
+function assertMacCoordinator() {
+  if (process.platform !== "darwin") fail("mac_coordinator_required");
+  if (process.env.SOFTIE_REMOTE_BOUNDARY_MODULE) fail("boundary_override_forbidden");
+  if (ACTIVE_BOUNDARY_MODULE !== DEFAULT_ACTIVE_BOUNDARY_MODULE || !boundary) {
+    fail("active_snapshot_boundary_unavailable");
+  }
+  for (const name of ["repositorySnapshot", "repositoryContractStatus", "relativeFile", "safeFile", "snapshotExcluded"]) {
+    if (typeof boundary[name] !== "function") fail("active_snapshot_boundary_incomplete");
+  }
 }
 
 function ensureAbsolute(value, code) {
@@ -167,7 +208,7 @@ function parseNameStatusZ(buffer) {
     if (status === "R" || status === "C") fail("remote_rename_not_supported");
     if (!["A", "M", "D", "T"].includes(status)) fail("remote_change_type_invalid");
     const safePath = relativeFile(filePath);
-    if (snapshotExcluded(safePath)) fail("remote_change_protected_path");
+    if (snapshotExcluded(safePath) && !isPortableSnapshotAllowlisted(safePath)) fail("remote_change_protected_path");
     changes.push({ status, path: safePath });
   }
   changes.sort((a, b) => a.path.localeCompare(b.path, "en"));
@@ -208,7 +249,8 @@ async function captureSource(root, stateRoot) {
   const indexListing = await gitBytes(root, ["ls-files", "--stage", "-z"], stateRoot);
   const allowedListing = await gitBytes(root, ["ls-files", "--cached", "--others", "--exclude-standard", "-z"], stateRoot);
   const allowedPaths = new Set(allowedListing.toString("utf8").split("\0").filter(Boolean));
-  const snapshot = repositorySnapshot(root, {}, { allowedPaths, maxFiles: MAX_SNAPSHOT_FILES, maxBytes: MAX_SNAPSHOT_BYTES });
+  const baseSnapshot = repositorySnapshot(root, {}, { allowedPaths, maxFiles: MAX_SNAPSHOT_FILES, maxBytes: MAX_SNAPSHOT_BYTES });
+  const snapshot = mergePortableSnapshot(baseSnapshot, root);
   const files = snapshot.files.map((entry) => {
     const stat = fs.lstatSync(safeFile(root, entry.path));
     return { path: entry.path, data: entry.data, hash: sha256(entry.data), mode: stat.mode & 0o777 };
@@ -234,7 +276,7 @@ function buildLocalStage(snapshotFiles) {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), "softie-remote-snapshot-"));
   for (const entry of snapshotFiles) {
     const safePath = relativeFile(entry.path);
-    if (snapshotExcluded(safePath)) fail("local_stage_protected_path");
+    if (snapshotExcluded(safePath) && !isPortableSnapshotAllowlisted(safePath)) fail("local_stage_protected_path");
     const destination = path.join(directory, ...safePath.split("/"));
     fs.mkdirSync(path.dirname(destination), { recursive: true, mode: 0o700 });
     fs.writeFileSync(destination, entry.data, { flag: "wx", mode: entry.mode });
@@ -295,8 +337,9 @@ if test -d "$target/.git"; then
   line HEAD "$(git -C "$target" rev-parse HEAD 2>/dev/null || true)"
   line TREE "$(git -C "$target" rev-parse HEAD^{tree} 2>/dev/null || true)"
   line BRANCH "$(git -C "$target" symbolic-ref --short -q HEAD 2>/dev/null || true)"
-  line ROOT_COMMIT "$(git -C "$target" rev-list --max-parents=0 HEAD 2>/dev/null | tail -n 1 || true)"
-  line ROOT_SUBJECT "$(git -C "$target" log -1 --format=%s --all --max-count=1 2>/dev/null || true)"
+  root_commit=$(git -C "$target" rev-list --max-parents=0 HEAD 2>/dev/null | tail -n 1 || true)
+  line ROOT_COMMIT "$root_commit"
+  line ROOT_SUBJECT "$(test -n "$root_commit" && git -C "$target" log -1 --format=%s "$root_commit" 2>/dev/null || true)"
   line REMOTES "$(git -C "$target" remote -v 2>/dev/null || true)"
   printf 'STATUS_B64='
   git -C "$target" status --porcelain=v1 -z --untracked-files=all | base64 | tr -d '\\n'
@@ -360,6 +403,7 @@ function assertRemoteClean(inspect, target) {
 }
 
 function recordFile(stateRoot) { return path.join(stateRoot, "record.json"); }
+function metadataFile(stateRoot) { return path.join(stateRoot, "metadata.json"); }
 function loadRecord(stateRoot) {
   const record = readJson(recordFile(stateRoot));
   if (!record) return null;
@@ -367,13 +411,35 @@ function loadRecord(stateRoot) {
   return record;
 }
 function saveRecord(stateRoot, record) { atomicJson(recordFile(stateRoot), record); }
+function loadMetadata(stateRoot) {
+  const metadata = readJson(metadataFile(stateRoot));
+  if (!metadata) return null;
+  if (metadata.version !== WORKFLOW_VERSION || metadata.workflow !== "codex-remote-development") {
+    fail("workflow_metadata_version_unsupported");
+  }
+  return metadata;
+}
+function saveMetadata(stateRoot, metadata) { atomicJson(metadataFile(stateRoot), metadata); }
 
-function configFrom(options = {}) {
-  const sourceRoot = fs.realpathSync(ensureAbsolute(options.sourceRoot || DEFAULT_SOURCE_ROOT, "invalid_source_root"));
-  const target = ensureRemotePath(options.target || DEFAULT_TARGET);
-  const stateRoot = ensureAbsolute(options.stateRoot || DEFAULT_STATE_ROOT, "invalid_state_root");
-  const sshHost = options.sshHost || DEFAULT_SSH_HOST;
-  if (!/^[A-Za-z0-9._-]+$/.test(sshHost)) fail("invalid_ssh_host");
+function assertMetadataAdmission(config, source) {
+  const metadata = loadMetadata(config.stateRoot);
+  if (!metadata) fail("metadata_required");
+  if (
+    metadata.sourceRoot !== config.sourceRoot ||
+    metadata.target !== config.target ||
+    metadata.sshHost !== config.sshHost
+  ) fail("workflow_metadata_scope_mismatch");
+  if (metadata.sourceFingerprint !== source.fingerprint) fail("metadata_source_changed");
+  return metadata;
+}
+
+function configFrom() {
+  assertMacCoordinator();
+  const sourceRoot = fs.realpathSync(ensureAbsolute(DEFAULT_SOURCE_ROOT, "invalid_source_root"));
+  if (sourceRoot !== DEFAULT_SOURCE_ROOT) fail("mac_source_root_mismatch");
+  const target = ensureRemotePath(DEFAULT_TARGET);
+  const stateRoot = ensureAbsolute(DEFAULT_STATE_ROOT, "invalid_state_root");
+  const sshHost = DEFAULT_SSH_HOST;
   if (!fs.existsSync(path.join(sourceRoot, ".git"))) fail("mac_repository_git_missing");
   return { sourceRoot, target, stateRoot, sshHost };
 }
@@ -515,6 +581,29 @@ test ! -L "$target"
 tar -cf - -C "$target" .
 `;
 
+const REMOTE_WRITE_METADATA = `
+set -euo pipefail
+output=$1
+case "$output" in
+  /data/data/com.termux/files/home/codex-remote-development/mac-softie-candidates.manifest.json) ;;
+  *)
+    printf '%s\\n' invalid_metadata_output >&2
+    exit 64
+    ;;
+esac
+umask 077
+temporary=$(mktemp "$output.tmp.XXXXXX")
+cleanup() { rm -f -- "$temporary"; }
+trap cleanup EXIT
+cat > "$temporary"
+chmod 600 "$temporary"
+mv -f -- "$temporary" "$output"
+trap - EXIT
+printf 'BYTES=%s\\n' "$(wc -c < "$output" | tr -d ' ')"
+printf 'SHA256=%s\\n' "$(sha256sum "$output" | awk '{print $1}')"
+printf 'MODE=%s\\n' "$(stat -c '%a' "$output")"
+`;
+
 const REMOTE_REMOVE = `
 set -euo pipefail
 target=$1
@@ -632,16 +721,18 @@ function validateDeltaFiles(deltaRoot, changes) {
     maxFiles: MAX_CHANGED_FILES,
     maxBytes: MAX_CHANGED_BYTES,
   });
-  if (snapshot.omitted.length) fail("remote_delta_snapshot_rejected");
+  if (snapshot.omitted.some((entry) => !isPortableSnapshotAllowlisted(entry.path))) fail("remote_delta_snapshot_rejected");
   const files = [];
   let totalBytes = 0;
   for (const filePath of expectedPaths) {
     const entry = actual.get(filePath);
     if (!entry) fail("remote_delta_file_missing");
     relativeFile(filePath);
-    if (snapshotExcluded(filePath)) fail("remote_delta_protected_path");
-    if (entry.data.length > MAX_CHANGED_FILE_BYTES) fail("remote_delta_file_too_large");
-    if (entry.data.includes(0)) fail("remote_delta_binary");
+    const portableAllowlisted = isPortableSnapshotAllowlisted(filePath);
+    if (snapshotExcluded(filePath) && !portableAllowlisted) fail("remote_delta_protected_path");
+    const maxFileBytes = portableAllowlisted ? PORTABLE_SNAPSHOT_MAX_FILE_BYTES : MAX_CHANGED_FILE_BYTES;
+    if (entry.data.length > maxFileBytes) fail("remote_delta_file_too_large");
+    if (entry.data.includes(0) && !portableAllowlisted) fail("remote_delta_binary");
     totalBytes += entry.data.length;
     files.push({ path: filePath, data: entry.data, hash: entry.hash, mode: entry.mode });
   }
@@ -688,9 +779,10 @@ async function refresh(config) {
     const record = loadRecord(config.stateRoot);
     if (record && record.sourceRoot !== config.sourceRoot) fail("workflow_source_mismatch");
     if (record?.status === "verified") fail("remote_verified_changes_pending_apply");
+    const source = await captureSource(config.sourceRoot, config.stateRoot);
+    assertMetadataAdmission(config, source);
     const existing = await remoteInspect(config);
     const oldState = assertInitialRemoteSafe(existing, config, record);
-    const source = await captureSource(config.sourceRoot, config.stateRoot);
     const snapshotId = `${now().replace(/[-:.TZ]/g, "").slice(0, 14)}-${source.fingerprint.slice(0, 16)}`;
     const stage = `${path.posix.dirname(config.target)}/.softie_project.workflow-stage-${token()}`;
     const quarantine = `${path.posix.dirname(config.target)}/.softie_project.workflow-previous-${token()}`;
@@ -749,6 +841,7 @@ async function refresh(config) {
         },
         policy: {
           snapshotExclusion: "active-development-console-boundary",
+          portableSnapshotAllowlist: [...PORTABLE_SNAPSHOT_ALLOWLIST],
           credentialsAndOperatingState: "excluded",
           macMutation: "guarded",
           targetGit: "local-only-no-remote",
@@ -963,7 +1056,9 @@ function backupChangedFiles(config, changes, backupDirectory) {
       continue;
     }
     const backupFile = path.join(backupDirectory, `${String(index++).padStart(3, "0")}.bin`);
-    if (current.data.length > MAX_CHANGED_FILE_BYTES || current.data.includes(0)) fail("mac_apply_backup_rejected");
+    const portableAllowlisted = isPortableSnapshotAllowlisted(change.path);
+    const maxFileBytes = portableAllowlisted ? PORTABLE_SNAPSHOT_MAX_FILE_BYTES : MAX_CHANGED_FILE_BYTES;
+    if (current.data.length > maxFileBytes || (current.data.includes(0) && !portableAllowlisted)) fail("mac_apply_backup_rejected");
     fs.writeFileSync(backupFile, current.data, { flag: "wx", mode: 0o600 });
     backups.push({ path: change.path, existed: true, file: backupFile, hash: current.hash, mode: current.mode });
   }
@@ -1087,10 +1182,13 @@ async function applyVerified(config, dryRun = false) {
 async function status(config) {
   const record = loadRecord(config.stateRoot);
   if (!record) return { ok: true, command: "status", status: "never_refreshed" };
+  const expectedSourceFingerprint = record.status === "applied"
+    ? record.apply?.postcondition?.fingerprint || record.source.fingerprint
+    : record.source.fingerprint;
   let sourceGuard;
   try {
     const source = await captureSource(config.sourceRoot, config.stateRoot);
-    sourceGuard = { match: source.fingerprint === record.source.fingerprint, head: source.head, branch: source.branch };
+    sourceGuard = { match: source.fingerprint === expectedSourceFingerprint, head: source.head, branch: source.branch };
   } catch (error) {
     sourceGuard = { match: false, error: error.message };
   }
@@ -1128,20 +1226,68 @@ async function status(config) {
   };
 }
 
+async function metadata(config) {
+  return withStateLockAsync(config, async () => {
+    const record = loadRecord(config.stateRoot);
+    if (record?.status === "verified") fail("remote_verified_changes_pending_apply");
+    const source = await captureSource(config.sourceRoot, config.stateRoot);
+    const manifest = buildSanitizedRepositoryManifest(config.sourceRoot);
+    const payload = serializeSanitizedManifest(manifest);
+    const output = DEFAULT_METADATA_TARGET;
+    if (output !== `${path.posix.dirname(config.target)}/mac-softie-candidates.manifest.json`) {
+      fail("invalid_metadata_output");
+    }
+    const result = await remoteBash(config, REMOTE_WRITE_METADATA, [output], payload, 8 * 1024 * 1024);
+    const values = plainKeyValue(result);
+    const byteCount = Number(values.BYTES);
+    const expectedHash = sha256(payload);
+    if (
+      !Number.isSafeInteger(byteCount) ||
+      byteCount !== payload.length ||
+      values.SHA256 !== expectedHash ||
+      values.MODE !== "600"
+    ) fail("remote_metadata_result_invalid");
+    const exclusionCounts = {};
+    for (const item of manifest.items) {
+      const reason = item.snapshot_exclusion_reason || "included";
+      exclusionCounts[reason] = (exclusionCounts[reason] || 0) + 1;
+    }
+    saveMetadata(config.stateRoot, {
+      version: WORKFLOW_VERSION,
+      workflow: "codex-remote-development",
+      deliveredAt: now(),
+      sourceRoot: config.sourceRoot,
+      target: config.target,
+      sshHost: config.sshHost,
+      sourceFingerprint: source.fingerprint,
+      manifestSha256: expectedHash,
+      itemCount: manifest.items.length,
+    });
+    return {
+      ok: true,
+      command: "metadata",
+      status: "delivered",
+      schemaVersion: manifest.schema_version,
+      pathBasis: manifest.path_basis,
+      itemCount: manifest.items.length,
+      exclusionCounts,
+      portableSnapshotAllowlist: [...PORTABLE_SNAPSHOT_ALLOWLIST],
+      remote: { bytes: byteCount, sha256: values.SHA256, mode: values.MODE },
+    };
+  });
+}
+
 function parseCli(argv) {
   const [command, ...rest] = argv;
-  const options = {};
   let dryRun = false;
   for (const argument of rest) {
     if (argument === "--dry-run") { dryRun = true; continue; }
     if (argument === "--json") continue;
-    const match = /^--(source-root|target|state-root|ssh-host)=(.*)$/.exec(argument);
-    if (!match) fail("invalid_argument");
-    options[{ "source-root": "sourceRoot", target: "target", "state-root": "stateRoot", "ssh-host": "sshHost" }[match[1]]] = match[2];
+    fail("invalid_argument");
   }
-  if (!["refresh", "setup", "verify", "apply", "status"].includes(command)) fail("invalid_command");
+  if (!REMOTE_INTERFACE_COMMANDS.includes(command)) fail("invalid_command");
   if (dryRun && command !== "apply") fail("invalid_argument");
-  return { command, options, dryRun };
+  return { command, dryRun };
 }
 
 function summarizeResult(result) {
@@ -1173,17 +1319,19 @@ function summarizeResult(result) {
       changes: result.plan.changes, deltaSha256: result.plan.deltaSha256,
     };
   }
+  if (result.command === "metadata") return result;
   return result;
 }
 
 export async function execute(argv = process.argv.slice(2)) {
   const parsed = parseCli(argv);
-  const config = configFrom(parsed.options);
+  const config = configFrom();
   let result;
   if (parsed.command === "refresh") result = await refresh(config);
   else if (parsed.command === "setup") result = await setup(config);
   else if (parsed.command === "verify") result = await verify(config);
   else if (parsed.command === "apply") result = await applyVerified(config, parsed.dryRun);
+  else if (parsed.command === "metadata") result = await metadata(config);
   else result = await status(config);
   return summarizeResult(result);
 }

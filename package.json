@@ -139,6 +139,7 @@
     "de405:jpl:build-runner": "node tools/de405-jpl-reader/build.mjs",
     "de405:jpl:fetch-sources": "node scripts/fetch-de405-jpl-sources.mjs",
     "postinstall": "node scripts/patch-rollup-native.mjs",
+    "remote:metadata": "node tools/codex-remote-workflow.mjs metadata",
     "remote:refresh": "node tools/codex-remote-workflow.mjs refresh",
     "remote:setup": "node tools/codex-remote-workflow.mjs setup",
     "remote:status": "node tools/codex-remote-workflow.mjs status",
