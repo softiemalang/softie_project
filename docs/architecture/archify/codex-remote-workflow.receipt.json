@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "tool": {
+    "name": "Archify",
+    "source": "https://github.com/tt-a1i/archify",
+    "revision": "c826e6c3a7abad19c0f3cd1ca57207d54b1ad8de",
+    "package_version": "2.16.0"
+  },
+  "diagram_type": "architecture",
+  "quality_profile": "showcase",
+  "source": "codex-remote-workflow.architecture.json",
+  "artifact": "codex-remote-workflow.html",
+  "specification": {
+    "sha256": "1a42a650f456e9518bdfff1303613e0402f7093cac0e73f315cccfc8c451c7ad",
+    "bytes": 10684
+  },
+  "delivered_artifact": {
+    "sha256": "51ccd19a88a955a02678490f27627b97c8d3a95c2bba7da3af2d48376657cc8a",
+    "bytes": 727753
+  },
+  "validation": {
+    "checks_passed": 9,
+    "check_count": 9,
+    "composition_status": "pass",
+    "errors": 0,
+    "warnings": 0,
+    "static_html_check": "pass",
+    "browser_visual_check": "not_completed: Chrome DevTools exited with SIGABRT"
+  },
+  "repository_evidence": {
+    "url": "https://github.com/softiemalang/softie_project",
+    "revision": "9759c2213a62edacbff1eee908f52a5fac9ba714",
+    "source_references": 29
+  },
+  "drift_sync": {
+    "detector": "canonical-architecture-json-v1",
+    "meaningful_sha256": "f74e31bec60d367f155da0c3db7fde6f8205e11958c1d9b2f47720d34676786d",
+    "source_input_sha256": "1a42a650f456e9518bdfff1303613e0402f7093cac0e73f315cccfc8c451c7ad",
+    "source_input_bytes": 10684,
+    "reasons": [
+      "meaningful_architecture_change"
+    ],
+    "archify_pin": {
+      "version": "2.16.0",
+      "revision": "c826e6c3a7abad19c0f3cd1ca57207d54b1ad8de"
+    }
+  }
+}

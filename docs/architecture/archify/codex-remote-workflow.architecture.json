@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "softie_project Codex Remote workflow",
+    "subtitle": "Mac coordinator, restricted bridge, Galaxy Tab checkout, and two supported work lanes",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "viewBox": [1350, 950],
+    "views": [
+      {
+        "id": "remote-lifecycle",
+        "label": "Remote lifecycle",
+        "focus": ["mac-source", "mac-bridge", "metadata-admission", "snapshot-boundary", "tab-baseline", "tab-execution", "verification", "safe-apply"],
+        "note": "Follow metadata, refresh, local work, verification, and guarded apply across the two execution environments."
+      },
+      {
+        "id": "work-lanes",
+        "label": "Interactive and autonomous lanes",
+        "focus": ["desktop-lane", "console-lane", "mac-source", "mac-bridge", "tab-execution"],
+        "note": "Keep the Codex Desktop lane and the bounded delegated-worker lane distinct from the Mac coordinator authority."
+      }
+    ],
+    "repository": {
+      "url": "https://github.com/softiemalang/softie_project.git",
+      "revision": "9759c2213a62edacbff1eee908f52a5fac9ba714"
+    }
+  },
+  "components": [
+    {
+      "id": "mac-source",
+      "type": "backend",
+      "label": "Mac source of truth",
+      "sublabel": "Source of truth",
+      "tag": "Mac-only",
+      "pos": [300, 260],
+      "size": [210, 80],
+      "sources": [
+        { "path": "AGENTS.md", "line": 12, "end_line": 18, "label": "repository contract" },
+        { "path": "docs/development/codex-remote-interface.md", "line": 3, "end_line": 4, "label": "interface contract" }
+      ]
+    },
+    {
+      "id": "desktop-lane",
+      "type": "frontend",
+      "label": "Codex Desktop interactive lane",
+      "sublabel": "Fixed remote commands",
+      "tag": "verified",
+      "pos": [70, 80],
+      "size": [210, 70],
+      "sources": [
+        { "path": "docs/development/codex-remote-workflow.md", "line": 21, "end_line": 35, "label": "repeatable cycle" },
+        { "path": "test/codexRemoteWorkflowInterface.test.js", "line": 38, "end_line": 47, "label": "sequence test" }
+      ]
+    },
+    {
+      "id": "console-lane",
+      "type": "external",
+      "label": "Console delegated lane",
+      "sublabel": "Advisory worker lane",
+      "tag": "blocked",
+      "pos": [70, 200],
+      "size": [210, 70],
+      "sources": [
+        { "path": "AGENTS.md", "line": 20, "end_line": 35, "label": "autonomous execution and delegation boundary" },
+        { "path": "docs/subagent-evidence-contract-v0.md", "line": 131, "end_line": 157, "label": "delegated worker evidence contract" }
+      ]
+    },
+    {
+      "id": "mac-bridge",
+      "type": "security",
+      "label": "Restricted Mac bridge",
+      "sublabel": "Six ops; fail-closed",
+      "tag": "Mac-only",
+      "pos": [540, 80],
+      "size": [220, 80],
+      "sources": [
+        { "path": "docs/development/codex-remote-workflow.md", "line": 3, "end_line": 19, "label": "bridge boundary" },
+        { "path": "tools/codex-remote-workflow.mjs", "line": 39, "end_line": 55, "label": "fixed interface constants" },
+        { "path": "test/codexRemoteWorkflowInterface.test.js", "line": 49, "end_line": 79, "label": "boundary tests" }
+      ]
+    },
+    {
+      "id": "metadata-admission",
+      "type": "security",
+      "label": "Sanitized metadata admission",
+      "sublabel": "Manifest + fingerprint",
+      "tag": "verified",
+      "pos": [790, 80],
+      "size": [220, 80],
+      "sources": [
+        { "path": "docs/development/codex-remote-workflow.md", "line": 64, "end_line": 73, "label": "manifest contents and admission" },
+        { "path": "tools/codex-remote-workflow.mjs", "line": 275, "end_line": 295, "label": "source fingerprint" },
+        { "path": "test/sanitizedRepositoryMetadata.test.js", "line": 45, "end_line": 124, "label": "sanitized manifest tests" }
+      ]
+    },
+    {
+      "id": "snapshot-boundary",
+      "type": "security",
+      "label": "Snapshot boundary + allowlist",
+      "sublabel": "Exclusion + 8-file allowlist",
+      "tag": "verified",
+      "pos": [790, 260],
+      "size": [220, 80],
+      "sources": [
+        { "path": "AGENTS.md", "line": 15, "end_line": 17, "label": "isolation and apply boundary" },
+        { "path": "tools/sanitized-repository-metadata.mjs", "line": 9, "end_line": 21, "label": "exact eight-file allowlist" },
+        { "path": "test/sanitizedRepositoryMetadata.test.js", "line": 19, "end_line": 30, "label": "allowlist test" }
+      ]
+    },
+    {
+      "id": "tab-baseline",
+      "type": "backend",
+      "label": "Galaxy Tab local Git baseline",
+      "sublabel": "Local Git; no remote",
+      "tag": "verified",
+      "pos": [1050, 260],
+      "size": [210, 80],
+      "sources": [
+        { "path": "AGENTS.md", "line": 17, "end_line": 18, "label": "target Git boundary" },
+        { "path": "docs/development/codex-remote-workflow.md", "line": 37, "end_line": 42, "label": "refresh and baseline" },
+        { "path": "tools/codex-remote-workflow.mjs", "line": 428, "end_line": 433, "label": "remote clean and no-remote guard" }
+      ]
+    },
+    {
+      "id": "tab-execution",
+      "type": "backend",
+      "label": "Galaxy Tab execution environment",
+      "sublabel": "Work, test, build, serve",
+      "tag": "verified",
+      "pos": [1050, 500],
+      "size": [210, 80],
+      "sources": [
+        { "path": "docs/development/codex-remote-interface.md", "line": 11, "end_line": 15, "label": "local worker boundary" },
+        { "path": "docs/development/codex-remote-workflow.md", "line": 44, "end_line": 47, "label": "setup and verification" },
+        { "path": "tools/codex-remote-workflow.mjs", "line": 531, "end_line": 595, "label": "worker setup and verify" }
+      ]
+    },
+    {
+      "id": "verification",
+      "type": "security",
+      "label": "Verification attestation",
+      "sublabel": "Commit + test/build/smoke",
+      "tag": "verified",
+      "pos": [790, 500],
+      "size": [220, 80],
+      "sources": [
+        { "path": "docs/development/codex-remote-workflow.md", "line": 44, "end_line": 49, "label": "verification evidence" },
+        { "path": "tools/codex-remote-workflow.mjs", "line": 921, "end_line": 929, "label": "committed delta collection" },
+        { "path": "test/codexRemoteWorkflowInterface.test.js", "line": 38, "end_line": 47, "label": "workflow-order test" }
+      ]
+    },
+    {
+      "id": "safe-apply",
+      "type": "security",
+      "label": "Safe apply / conflict gate",
+      "sublabel": "Guarded verified writes",
+      "tag": "verified",
+      "pos": [540, 500],
+      "size": [220, 80],
+      "sources": [
+        { "path": "docs/development/codex-remote-workflow.md", "line": 55, "end_line": 62, "label": "apply fail-closed behavior" },
+        { "path": "tools/codex-remote-workflow.mjs", "line": 1056, "end_line": 1075, "label": "Mac base guard" },
+        { "path": "tools/codex-remote-workflow.mjs", "line": 1116, "end_line": 1147, "label": "attestation and dry-run plan" }
+      ]
+    },
+    {
+      "id": "product-runtime",
+      "type": "frontend",
+      "label": "softie_project product runtime",
+      "sublabel": "No product change",
+      "tag": "pilot",
+      "pos": [1050, 680],
+      "size": [210, 80],
+      "sources": [
+        { "path": "docs/development/codex-remote-workflow.md", "line": 75, "end_line": 79, "label": "verification profile boundary" },
+        { "path": "package.json", "line": 142, "end_line": 147, "label": "existing remote scripts" }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Mac coordinator control plane",
+      "wraps": ["mac-source", "mac-bridge", "metadata-admission", "snapshot-boundary", "verification", "safe-apply"],
+      "pad": 34
+    },
+    {
+      "kind": "security-group",
+      "label": "Galaxy Tab local-only plane",
+      "wraps": ["tab-baseline", "tab-execution", "product-runtime"],
+      "pad": 34
+    },
+    {
+      "kind": "region",
+      "label": "Supported work lanes",
+      "wraps": ["desktop-lane", "console-lane"],
+      "pad": 34
+    }
+  ],
+  "connections": [
+    { "from": "desktop-lane", "to": "mac-bridge", "variant": "emphasis", "fromSide": "right", "toSide": "left" },
+    { "from": "console-lane", "to": "mac-source", "variant": "dashed", "fromSide": "right", "toSide": "left" },
+    { "from": "mac-source", "to": "mac-bridge", "variant": "security", "fromSide": "right", "toSide": "bottom" },
+    { "from": "mac-bridge", "to": "metadata-admission", "label": "remote:metadata", "variant": "emphasis", "fromSide": "right", "toSide": "left", "labelDy": -70 },
+    { "from": "metadata-admission", "to": "snapshot-boundary", "variant": "security", "fromSide": "bottom", "toSide": "top" },
+    { "from": "snapshot-boundary", "to": "tab-baseline", "variant": "emphasis", "fromSide": "right", "toSide": "left" },
+    { "from": "tab-baseline", "to": "tab-execution", "variant": "default", "fromSide": "bottom", "toSide": "top" },
+    { "from": "tab-execution", "to": "verification", "label": "committed target delta", "variant": "emphasis", "fromSide": "left", "toSide": "right", "labelDy": -70 },
+    { "from": "verification", "to": "safe-apply", "label": "verified attestation", "variant": "security", "fromSide": "left", "toSide": "right", "labelDy": -70 },
+    { "from": "safe-apply", "to": "mac-source", "variant": "security", "fromSide": "top", "toSide": "bottom" },
+    { "from": "tab-execution", "to": "product-runtime", "variant": "dashed", "fromSide": "bottom", "toSide": "top" }
+  ],
+  "cards": [
+    {
+      "title": "Lifecycle",
+      "dot": "cyan",
+      "items": ["metadata -> refresh -> setup/status -> work -> verify -> apply"]
+    },
+    {
+      "title": "Isolation",
+      "dot": "emerald",
+      "items": ["No Mac-wide shell, credentials, operating state, or mutable snapshot boundary is exposed to the Tab worker."]
+    },
+    {
+      "title": "Apply gate",
+      "dot": "rose",
+      "items": ["Source drift, dirty overlap, target drift, base mismatch, protected paths, and conflicts fail closed."]
+    },
+    {
+      "title": "Pilot scope",
+      "dot": "amber",
+      "items": ["Checked-in Archify source, delivered HTML, receipt, and reproducibility note only.", "No project dependency, runtime hook, credential, state, or product change."]
+    },
+    {
+      "title": "Status key",
+      "dot": "violet",
+      "items": ["verified = code/contract/test evidence; not completion authority", "pilot = orientation-only or external representation", "blocked = no evidence for a claimed relation; Console -> bridge is not claimed", "Mac-only = coordinator boundary, not a result status"]
+    }
+  ]
+}
