@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "tool": {
+    "name": "Archify",
+    "source": "https://github.com/tt-a1i/archify",
+    "revision": "c826e6c3a7abad19c0f3cd1ca57207d54b1ad8de",
+    "package_version": "2.16.0"
+  },
+  "diagram_type": "architecture",
+  "quality_profile": "showcase",
+  "source": "deterministic-reading.architecture.json",
+  "artifact": "deterministic-reading.html",
+  "specification": {
+    "sha256": "233c5d8304d682fac5c5b161490f57f65c8451682c6052e02dc668a60d6a617d",
+    "bytes": 10916
+  },
+  "delivered_artifact": {
+    "sha256": "30ea5244ad9e78ddcd5512d97adb793d22f8f3856a9e01b1917021aca87aeaf2",
+    "bytes": 727638
+  },
+  "validation": {
+    "checks_passed": 9,
+    "check_count": 9,
+    "composition_status": "pass",
+    "errors": 0,
+    "warnings": 0,
+    "static_html_check": "pass",
+    "browser_visual_check": "not_run_by_drift_sync"
+  },
+  "repository_evidence": {
+    "url": "https://github.com/softiemalang/softie_project",
+    "revision": "ba9e5f21b10bb96d57ebbff8024ca19568e00f33",
+    "source_references": 33
+  },
+  "drift_sync": {
+    "detector": "canonical-architecture-json-v1",
+    "meaningful_sha256": "9ea66270b54b9de77028f8f3de5021256f8511d03ccdd2eaa6d5b8a2db8f5d02",
+    "source_input_sha256": "233c5d8304d682fac5c5b161490f57f65c8451682c6052e02dc668a60d6a617d",
+    "source_input_bytes": 10916,
+    "reasons": [
+      "meaningful_architecture_change"
+    ],
+    "archify_pin": {
+      "version": "2.16.0",
+      "revision": "c826e6c3a7abad19c0f3cd1ca57207d54b1ad8de"
+    }
+  }
+}

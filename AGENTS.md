@@ -72,3 +72,7 @@
 
 - Select checks that cover the changed contract and report their actual result. A local test, build, checker, or structural inspection proves only its own scope; it does not prove UI behavior, external-source authority, deployment, or production state.
 - Scale verification to the scope and risk of the change. Reuse relevant checks already completed unless new changes, failures, or unresolved concerns justify repeating them; retain required checks and independent parent verification.
+
+## Architecture orientation maps
+
+- `docs/architecture/archify/` contains area-specific, non-authoritative orientation maps; when needed, run `node tools/archify-freshness-check.mjs` first and consult a map only with canonical code, contracts, and tests taking precedence on `stale` or `unknown`.
