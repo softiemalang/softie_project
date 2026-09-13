@@ -138,7 +138,12 @@
     "de405:overlap:sweep": "node scripts/run-de405-jpl-cspice-residual-sweep.mjs",
     "de405:jpl:build-runner": "node tools/de405-jpl-reader/build.mjs",
     "de405:jpl:fetch-sources": "node scripts/fetch-de405-jpl-sources.mjs",
-    "postinstall": "node scripts/patch-rollup-native.mjs"
+    "postinstall": "node scripts/patch-rollup-native.mjs",
+    "remote:refresh": "node tools/codex-remote-workflow.mjs refresh",
+    "remote:setup": "node tools/codex-remote-workflow.mjs setup",
+    "remote:status": "node tools/codex-remote-workflow.mjs status",
+    "remote:verify": "node tools/codex-remote-workflow.mjs verify",
+    "remote:apply": "node tools/codex-remote-workflow.mjs apply"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.49.8",
