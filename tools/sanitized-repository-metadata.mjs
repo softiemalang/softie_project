@@ -10,6 +10,10 @@ export const SANITIZED_MANIFEST_PATH_BASIS = "repository-relative";
 // filters.  No credential, generated, ignored, native-output, or evidence
 // path is allowed here.
 export const PORTABLE_SNAPSHOT_ALLOWLIST = Object.freeze([
+  ".github/workflows/astrology-jplephem-equivalence-v1.yml",
+  ".github/workflows/de405-legacy-native-matrix.yml",
+  ".github/workflows/de405-linux-architecture-evidence.yml",
+  ".github/workflows/de405-linux-producer-v0.yml",
   "api/provider/asia-seoul.tzif",
   "src/interpretationPrep/sajuFiveClassicsSourceIdentityFrontier.js",
   "src/interpretationPrep/sajuLineageReadingGrammar.js",

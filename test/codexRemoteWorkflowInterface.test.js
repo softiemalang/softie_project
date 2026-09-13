@@ -17,6 +17,24 @@ function runWorkflow(args, extraEnv = {}) {
   });
 }
 
+function runWorkflowOnPlatform(platform, args, extraEnv = {}) {
+  const script = `
+Object.defineProperty(process, "platform", { value: ${JSON.stringify(platform)} });
+const { execute } = await import(${JSON.stringify(workflow)});
+try {
+  await execute(${JSON.stringify(args)});
+} catch (error) {
+  process.stderr.write("ERROR=" + error.message + "\\n");
+  process.exitCode = 1;
+}
+`;
+  return spawnSync(process.execPath, ["--input-type=module", "-e", script], {
+    cwd: repositoryRoot,
+    encoding: "utf8",
+    env: { ...process.env, ...extraEnv },
+  });
+}
+
 test("public remote interface is the fixed metadata-to-apply sequence", () => {
   assert.deepEqual([...REMOTE_INTERFACE_COMMANDS], [
     "metadata",
@@ -46,6 +64,18 @@ test("boundary module override is rejected before any remote operation", () => {
   const result = runWorkflow(["status"], { SOFTIE_REMOTE_BOUNDARY_MODULE: "/tmp/other-boundary.mjs" });
   assert.equal(result.status, 1);
   assert.match(result.stderr, /ERROR=boundary_override_forbidden/);
+});
+
+test("Linux worker reports boundary override before the Mac coordinator requirement", () => {
+  const linux = runWorkflowOnPlatform("linux", ["status"]);
+  assert.equal(linux.status, 1);
+  assert.match(linux.stderr, /ERROR=mac_coordinator_required/);
+
+  const linuxOverride = runWorkflowOnPlatform("linux", ["status"], {
+    SOFTIE_REMOTE_BOUNDARY_MODULE: "/tmp/other-boundary.mjs",
+  });
+  assert.equal(linuxOverride.status, 1);
+  assert.match(linuxOverride.stderr, /ERROR=boundary_override_forbidden/);
 });
 
 test("workflow entrypoint does not expose repository contents through the interface", () => {

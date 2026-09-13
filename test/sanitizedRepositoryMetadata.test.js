@@ -16,6 +16,19 @@ import {
 
 const hash = (data) => createHash("sha256").update(data).digest("hex");
 
+test("portable snapshot allowlist is exactly the reviewed eight paths", () => {
+  assert.deepEqual([...PORTABLE_SNAPSHOT_ALLOWLIST], [
+    ".github/workflows/astrology-jplephem-equivalence-v1.yml",
+    ".github/workflows/de405-legacy-native-matrix.yml",
+    ".github/workflows/de405-linux-architecture-evidence.yml",
+    ".github/workflows/de405-linux-producer-v0.yml",
+    "api/provider/asia-seoul.tzif",
+    "src/interpretationPrep/sajuFiveClassicsSourceIdentityFrontier.js",
+    "src/interpretationPrep/sajuLineageReadingGrammar.js",
+    "src/scheduler/assets/scheduler-atmosphere-v4.jpg",
+  ]);
+});
+
 async function writeRelative(root, relativePath, data) {
   const destination = path.join(root, ...relativePath.split("/"));
   await mkdir(path.dirname(destination), { recursive: true });
@@ -91,8 +104,8 @@ test("sanitized manifest keeps the portable exception narrow and content-free", 
     assert.match(portableBinary.sha256, /^[a-f0-9]{64}$/);
 
     const portableWorkflow = manifestItem(manifest, ".github/workflows/astrology-jplephem-equivalence-v1.yml");
-    assert.equal(portableWorkflow.snapshot_exclusion_reason, "invalid_path");
-    assert.equal(portableWorkflow.sha256, null);
+    assert.equal(portableWorkflow.snapshot_exclusion_reason, null);
+    assert.equal(portableWorkflow.sha256, hash(Buffer.from("workflow")));
 
     assert.equal(manifestItem(manifest, "assets/preview.jpg").snapshot_exclusion_reason, "binary");
     assert.equal(manifestItem(manifest, ".gitignore").snapshot_exclusion_reason, "invalid_path");

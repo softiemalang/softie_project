@@ -12,6 +12,7 @@ import { pathToFileURL } from "node:url";
 import {
   PORTABLE_SNAPSHOT_ALLOWLIST,
   PORTABLE_SNAPSHOT_MAX_FILE_BYTES,
+  assertRepositoryRelativePath,
   buildSanitizedRepositoryManifest,
   isPortableSnapshotAllowlisted,
   mergePortableSnapshot,
@@ -80,9 +81,38 @@ function fail(code) {
   throw new Error(code);
 }
 
+function coordinatorRelativeFile(value) {
+  const candidate = assertRepositoryRelativePath(value);
+  return isPortableSnapshotAllowlisted(candidate) ? candidate : relativeFile(candidate);
+}
+
+function coordinatorSafeFile(root, value, missing = false) {
+  const candidate = coordinatorRelativeFile(value);
+  if (!isPortableSnapshotAllowlisted(candidate)) return safeFile(root, candidate, missing);
+
+  const destination = path.resolve(root, ...candidate.split("/"));
+  if (destination !== root && !destination.startsWith(`${root}${path.sep}`)) fail("repository_path_escape");
+  let current = root;
+  for (const part of candidate.split("/")) {
+    current = path.join(current, part);
+    let stat;
+    try {
+      stat = fs.lstatSync(current);
+    } catch (error) {
+      if (error.code !== "ENOENT") throw error;
+      if (!missing) fail("file_not_found");
+      continue;
+    }
+    if (stat.isSymbolicLink()) fail("symlink_not_allowed");
+  }
+  return destination;
+}
+
 function assertMacCoordinator() {
-  if (process.platform !== "darwin") fail("mac_coordinator_required");
+  // Boundary replacement is forbidden on every host; reject it before the
+  // platform gate so a Linux worker cannot mask the stronger boundary error.
   if (process.env.SOFTIE_REMOTE_BOUNDARY_MODULE) fail("boundary_override_forbidden");
+  if (process.platform !== "darwin") fail("mac_coordinator_required");
   if (ACTIVE_BOUNDARY_MODULE !== DEFAULT_ACTIVE_BOUNDARY_MODULE || !boundary) {
     fail("active_snapshot_boundary_unavailable");
   }
@@ -207,7 +237,7 @@ function parseNameStatusZ(buffer) {
     if (!status || !filePath) fail("remote_change_path_invalid");
     if (status === "R" || status === "C") fail("remote_rename_not_supported");
     if (!["A", "M", "D", "T"].includes(status)) fail("remote_change_type_invalid");
-    const safePath = relativeFile(filePath);
+    const safePath = coordinatorRelativeFile(filePath);
     if (snapshotExcluded(safePath) && !isPortableSnapshotAllowlisted(safePath)) fail("remote_change_protected_path");
     changes.push({ status, path: safePath });
   }
@@ -237,7 +267,7 @@ function parseDirtyStatusZ(buffer) {
   const paths = [];
   for (const tokenValue of buffer.toString("utf8").split("\0").filter(Boolean)) {
     const filePath = tokenValue.length > 3 ? tokenValue.slice(3) : "";
-    if (filePath) paths.push(relativeFile(filePath));
+    if (filePath) paths.push(coordinatorRelativeFile(filePath));
   }
   return [...new Set(paths)].sort((a, b) => a.localeCompare(b, "en"));
 }
@@ -252,7 +282,7 @@ async function captureSource(root, stateRoot) {
   const baseSnapshot = repositorySnapshot(root, {}, { allowedPaths, maxFiles: MAX_SNAPSHOT_FILES, maxBytes: MAX_SNAPSHOT_BYTES });
   const snapshot = mergePortableSnapshot(baseSnapshot, root);
   const files = snapshot.files.map((entry) => {
-    const stat = fs.lstatSync(safeFile(root, entry.path));
+    const stat = fs.lstatSync(coordinatorSafeFile(root, entry.path));
     return { path: entry.path, data: entry.data, hash: sha256(entry.data), mode: stat.mode & 0o777 };
   });
   const manifest = sortedManifest(files);
@@ -275,7 +305,7 @@ function sourceRecordView(source) {
 function buildLocalStage(snapshotFiles) {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), "softie-remote-snapshot-"));
   for (const entry of snapshotFiles) {
-    const safePath = relativeFile(entry.path);
+    const safePath = coordinatorRelativeFile(entry.path);
     if (snapshotExcluded(safePath) && !isPortableSnapshotAllowlisted(safePath)) fail("local_stage_protected_path");
     const destination = path.join(directory, ...safePath.split("/"));
     fs.mkdirSync(path.dirname(destination), { recursive: true, mode: 0o700 });
@@ -727,7 +757,7 @@ function validateDeltaFiles(deltaRoot, changes) {
   for (const filePath of expectedPaths) {
     const entry = actual.get(filePath);
     if (!entry) fail("remote_delta_file_missing");
-    relativeFile(filePath);
+    coordinatorRelativeFile(filePath);
     const portableAllowlisted = isPortableSnapshotAllowlisted(filePath);
     if (snapshotExcluded(filePath) && !portableAllowlisted) fail("remote_delta_protected_path");
     const maxFileBytes = portableAllowlisted ? PORTABLE_SNAPSHOT_MAX_FILE_BYTES : MAX_CHANGED_FILE_BYTES;
@@ -952,7 +982,7 @@ async function verify(config) {
 }
 
 function readCurrentFile(root, filePath) {
-  const destination = safeFile(root, filePath, true);
+  const destination = coordinatorSafeFile(root, filePath, true);
   let stat;
   try {
     stat = fs.lstatSync(destination);
@@ -984,7 +1014,7 @@ function ensureParentDirectories(root, filePath) {
 }
 
 function writeAtomicFile(root, filePath, data, mode) {
-  const destination = safeFile(root, filePath, true);
+  const destination = coordinatorSafeFile(root, filePath, true);
   ensureParentDirectories(root, filePath);
   const temporary = `${destination}.codex-remote-${token()}.tmp`;
   try {
@@ -997,7 +1027,7 @@ function writeAtomicFile(root, filePath, data, mode) {
 }
 
 function unlinkFile(root, filePath) {
-  const destination = safeFile(root, filePath, true);
+  const destination = coordinatorSafeFile(root, filePath, true);
   let stat;
   try {
     stat = fs.lstatSync(destination);
