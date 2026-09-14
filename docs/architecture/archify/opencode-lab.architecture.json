@@ -23,7 +23,7 @@
     ],
     "repository": {
       "url": "https://github.com/softiemalang/softie_project.git",
-      "revision": "fb66683d8f99f5aa0a66de8fdc26b2a8ca0247a4"
+      "revision": "bcbff9ed6fe203a8c0845b1f60832a7feefb07fb"
     }
   },
   "components": [
@@ -125,13 +125,14 @@
       "id": "lab-tools",
       "type": "backend",
       "label": "Lab file + shell tools",
-      "sublabel": "Permission-gated synthetic smoke",
+      "sublabel": "Auto file/search/web · guarded shell",
       "tag": "verified",
       "pos": [1020, 420],
       "size": [250, 90],
       "sources": [
-        { "path": "docs/development/opencode-lab.md", "line": 108, "end_line": 113, "label": "permission boundary" },
-        { "path": "docs/development/opencode-lab.md", "line": 157, "end_line": 161, "label": "shell and file smoke" }
+        { "path": "docs/development/opencode-lab.md", "line": 108, "end_line": 121, "label": "permission allow/ask/deny boundary" },
+        { "path": "docs/development/opencode-lab.md", "line": 196, "end_line": 201, "label": "automatic file/search/web smoke" },
+        { "path": "docs/development/opencode-lab.md", "line": 202, "end_line": 207, "label": "fail-closed boundary probes" }
       ]
     },
     {
@@ -287,7 +288,7 @@
     {
       "title": "Isolation",
       "dot": "emerald",
-      "items": ["Lab root, HOME/XDG namespace, state, config, proxy, and upstream-only password are separate from Codex Remote/Console.", "No Mac checkout, credential directory, archive, or operating state is bound into the Lab."]
+      "items": ["Lab root, HOME/XDG namespace, state, config, proxy, and upstream-only password are separate from Codex Remote/Console.", "Inside the Lab, native file/search/web tools are automatic while shell remains guarded; external filesystem, secret patterns, remote/destructive commands, and protected paths are denied.", "No Mac checkout, credential directory, archive, or operating state is bound into the Lab."]
     },
     {
       "title": "Resource handoff",

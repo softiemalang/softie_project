@@ -46,7 +46,7 @@ Mac 파일의 snapshot이 아니다.
   - `bin/lab-supervisor`: `02ad2c098cd682ec2323a9900368b5cc1c4509c396999082eeb92484335154cd`
   - `~/.termux/boot/start-opencode-lab`: `5517b28c0cc505f6413b6100e09322e9b243cdf0659631a9a09ba351568f15e0`
   - `bin/guest-opencode`: `b706870d5a04ab0c376da07bb18612a4083d5402165a28e470506b0040f90a4b`
-  - `opencode.json`: `2c9b3791340b824c0c26aec4e7589c68f59a0f2b3e3eda0c901ddfb79fb3fae0`
+  - `opencode.json`: `7e7af9e9e0f3df4f95e285a208201c2e1828377f9b368a490a46132aeb52c0a7`
 
 ## Client and server boundary
 
@@ -105,12 +105,19 @@ credential을 복사하지 않았다. Lab 안에 user auth file을 만들거나 
 contributor prompt/completion이 향후 Meta model training에 사용될 수 있다고
 되어 있으므로 이 경계는 필수다.
 
-`opencode.json`은 default deny를 바탕으로 external directory, task, credential
-유사 파일, `.ssh`를 거부한다. 읽기와 edit는 Lab workspace 내부만 대상으로
-허용하고, bash는 기본 `ask`이며 smoke에 필요한 `pwd`, 목록, synthetic `printf`
-등만 명시적으로 허용한다. `ssh`, `scp`, `sftp`, `proot-distro`, `termux-*`,
-`git push`, `git commit`, destructive `rm`은 deny다. 이 permission layer는
-기존 repository `opencode.json`을 변경하거나 대체하지 않는다.
+`opencode.json`은 Lab 전용 default-deny policy다. Lab workspace 안의 native
+`read`, `edit`, `glob`, `grep`, `list`, `webfetch`, `websearch`는 자동 허용해
+일반적인 파일 조사·수정과 안전한 단일 웹 조회에서 승인 빈도를 줄인다. `.env`,
+key/certificate, token/secret/credential/password, `.ssh`, `.git-credentials`와
+같은 파일명 패턴의 read/edit, `external_directory`, task/subagent는 계속 deny다.
+
+shell은 blanket allow가 아니라 기본 `ask`다. 정확히 제한한 `pwd`, `ls`, `ls -la`,
+`cat README.md`, `node --version`, `git status` 조회만 자동 허용하고, 나머지
+shell 변경·광범위 조회·외부 접근은 승인 대상으로 남긴다. `rm`, Git history/remote
+변경, `ssh`/`scp`/`sftp`, `curl`/`wget`/네트워크 relay, `proot-distro`,
+`termux-*`, Lab state/config 및 기존 `codex-remote-development` 경로 probe는
+명시적으로 deny다. 이 permission layer는 기존 repository `opencode.json`을
+변경하거나 대체하지 않는다.
 
 ## Lifecycle and resource handoff
 
@@ -181,6 +188,23 @@ read-only observation을 사용했으며, Mac에서 workspace나 tool process를
    model/session/tool process는 시작되지 않았다. 실제 Android reboot 자체는
    기존 운영환경을 중단시키므로 수행하지 않고, 재부팅 진입점과 session
    종료에 해당하는 supervisor 재기동 경계를 직접 검증했다.
+10. permission policy를 교체하고 Lab server/proxy만 재시작한 뒤 `debug config`
+    loader가 `read/edit/glob/grep/list/webfetch/websearch=allow`, shell
+    `*=ask`, protected action/path deny를 그대로 인식했고 health는 다시
+    `healthy=true`, version `2.0.3`를 반환했다. 설정 파일은 mode `0600`,
+    SHA-256 `7e7af9e9e0f3df4f95e285a208201c2e1828377f9b368a490a46132aeb52c0a7`다.
+11. Chrome Web의 Spark `xhigh` session에서 shell 없이 native search/read/edit와
+    `https://example.com` 단일 `webfetch`를 실행했다. 승인창 없이 화면에
+    `Used 6 읽기, Glob, Grep, 작성, 웹 가져오기`와
+    `SEARCH_OK EDIT_OK READ_OK WEBFETCH_OK`가 표시됐다. 생성된
+    `permission-policy-smoke.txt`는 Lab workspace 안에서만 mode `0600`, size
+    `27`, SHA-256 `008a3852ee8ea7623a9c4128ce28df6857ae998368366b52dc3c9fb79380eed9`였다.
+12. 같은 session에서 기존 `codex-remote-development` directory list, secret-pattern
+    이름의 synthetic `.env` read, `curl http://127.0.0.1:4097/api/health` shell을
+    각각 한 번 probe했다. 화면에는 `Used 3 읽기, 셸`과
+    `EXTERNAL_DENIED SECRET_DENIED SHELL_DENIED`가 표시됐고 세 probe 모두
+    `permission.rejected`였다. 승인하거나 재시도하지 않았으며, 기존
+    `codex-remote-development/softie_project` status는 비어 있었다.
 
 이 결과에서 `verified`는 위 smoke와 path/config/process 경계가 확인됐다는
 뜻이다. 실제 개인 데이터 보호, Desktop의 remote project-selection task lane,

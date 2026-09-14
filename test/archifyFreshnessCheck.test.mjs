@@ -38,7 +38,7 @@ test("freshness check reports all Archify maps current without changing artifact
   ]);
   assert.equal(report.artifacts[0].evidenceScope.unchanged, 29);
   assert.equal(report.artifacts[1].evidenceScope.unchanged, 33);
-  assert.equal(report.artifacts[2].evidenceScope.unchanged, 36);
+  assert.equal(report.artifacts[2].evidenceScope.unchanged, 37);
   assert.deepEqual(after, before);
   assert.equal(report.authority.artifactMutation, "none");
   assert.equal(report.authority.autoRegeneration, "forbidden");
