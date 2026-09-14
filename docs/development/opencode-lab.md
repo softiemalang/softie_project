@@ -41,22 +41,34 @@ Mac 파일의 snapshot이 아니다.
 - 최종 확인된 Lab controller와 launcher/config의 SHA-256은 다음과 같다.
   값은 내용이 아니라 설치된 파일의 식별자다.
 
-  - `bin/labctl`: `89429accf4557d240a1761f057cb7fe0696abb00a92952f7342381586e405cbd`
+  - `labctl`: `8fab1af4de75dab4b84e9fc8a994b872c1f4a74269630fa5f4b33293e5fd6c32`
+  - `bin/lab-supervisor`: `02ad2c098cd682ec2323a9900368b5cc1c4509c396999082eeb92484335154cd`
+  - `~/.termux/boot/start-opencode-lab`: `5517b28c0cc505f6413b6100e09322e9b243cdf0659631a9a09ba351568f15e0`
   - `bin/guest-opencode`: `b706870d5a04ab0c376da07bb18612a4083d5402165a28e470506b0040f90a4b`
   - `opencode.json`: `2c9b3791340b824c0c26aec4e7589c68f59a0f2b3e3eda0c901ddfb79fb3fae0`
 
 ## Client and server boundary
 
-OpenCode `serve`는 Galaxy Tab loopback `127.0.0.1:4097`에만 listen한다.
-Mac Chrome은 기존 SSH host key와 dedicated key를 사용한 명시적 local port
-forward `127.0.0.1:18497 -> Tab 127.0.0.1:4097`로 접속했다. 이 SSH channel은
-remote shell을 실행하지 않는 `-N` forwarding-only channel이며, Mac에서
-OpenCode workspace/tool을 실행하지 않는다.
+OpenCode `serve`는 Galaxy Tab loopback `127.0.0.1:4097`에만 listen하며
+`opencode` Basic Auth를 요구한다. Mac Chrome은 기존 SSH host key와 dedicated
+key를 사용한 명시적 local port forward
+`127.0.0.1:18497 -> Tab 127.0.0.1:4097`로 접속했다. 이 SSH channel은 remote
+shell을 실행하지 않는 `-N` forwarding-only channel이며, Mac에서 OpenCode
+workspace/tool을 실행하지 않는다.
 
-OpenCode Desktop에도 `Galaxy Tab OpenCode Lab`이라는 별도 server entry를
-등록해 `v2.0.3 · opencode`가 표시되는 것을 확인했다. 실제 task smoke는
-Desktop이 기존 local/remote project를 잘못 선택하지 않도록 Chrome Web client의
-Lab workspace에서 수행했다. 따라서 Desktop entry는 `pilot` 관찰 결과이고,
+Mac의 Tailscale Serve는 이 loopback tunnel만 `tailnet only` HTTPS
+`https://hangyu-macmini.tailf756fe.ts.net/`로 proxy한다. Funnel은 활성화하지
+않으며 Galaxy Tab 주소를 직접 공개하지 않는다. 이 경로의 인증된 Web root와
+health 응답은 Mac에서 확인했고, iPhone Safari는 이 tailnet URL과 동일한
+Basic Auth 경로를 사용한다. 현재 자동화 범위에는 iPhone 화면 자체의 관찰이
+없으므로 device-level UI 성공을 별도로 승격하지 않는다.
+
+OpenCode Desktop에도 `Galaxy Tab OpenCode Lab` server entry를 등록하고
+`http://127.0.0.1:18497`, username `opencode`, Lab-local password로
+authenticated connected state를 확인했다. Desktop은 연결된 remote server의
+workspace를 새 session project picker에 노출하지 않아 task 생성 lane은
+`pilot`/`blocked`로 남긴다. 실제 task smoke는 기존 local/remote project를
+잘못 선택하지 않도록 Chrome Web client의 Lab workspace에서 수행했고,
 Chrome Web session은 `verified` 실행 결과다.
 
 ## Lab-local configuration and privacy boundary
@@ -68,6 +80,11 @@ Chrome Web session은 `verified` 실행 결과다.
 만든다. auto-update, default plugin, LSP download, Claude Code integration,
 auto-share는 끈다. `opencode-lab-v1` marker와 path-overlap guard도 controller가
 확인한다.
+
+Lab server는 `OPENCODE_SERVER_USERNAME=opencode`와 Lab-local
+`state/server-password`로 Basic Auth를 구성하며, health도 같은 인증 경로로
+확인한다. Mac/Desktop, Codex, Console credential을 재사용하거나 문서에
+password를 기록하지 않는다.
 
 Lab config의 기본 model은
 `opencode/muse-spark-1.3-contributor-free`이고 session smoke에서는
@@ -89,11 +106,20 @@ contributor prompt/completion이 향후 Meta model training에 사용될 수 있
 ## Lifecycle and resource handoff
 
 `bin/labctl` public operations are `install`, `start`, `stop`, `restart`,
-`status`, `health`, and Lab-scoped `exec`. `start`는 server PID/process-group을
+`status`, `health`, and Lab-scoped `exec`. `start`는 server PID와 process-group을
 Lab 전용 state에 기록하고 authenticated `/api/health`를 확인한다. `stop`은
-그 process-group만 종료하며 wrapper만 남기지 않도록 child proot까지 종료한다.
-State와 server password는 Lab root의 mode `0600` 파일이며 기존 credential/state와
-공유하지 않는다.
+`state/autostart-disabled` marker를 먼저 만들고 Lab root가 확인된 process-group만
+종료해 wrapper나 child proot가 남지 않도록 한다. controller에는 Lab-local
+atomic control lock이 있고 supervisor의 자동 start는 명시적 stop marker를
+지우지 않으므로 stop/start race에서 fail-closed다. State와 server password는
+Lab root의 mode `0600` 파일이며 기존 credential/state와 공유하지 않는다.
+
+`~/.termux/boot/start-opencode-lab`은 marker가 없을 때 `bin/lab-supervisor`를
+`setsid`로 시작한다. supervisor는 PPID 1의 저부하 loop로 30초마다 기존 Lab
+server만 확인·재시작하고, model/session/tool/실험을 자동 시작하지 않으며
+`termux-wake-lock`도 사용하지 않는다. 명시적 `labctl stop` 뒤에는 marker가
+남아 supervisor가 자원을 다시 점유하지 않는다. 수동 `labctl start`가 marker를
+지우고 server를 복구한다.
 
 메인 SSH 작업이 필요하면 다음처럼 Lab workload만 멈춘다.
 
@@ -130,11 +156,27 @@ read-only observation을 사용했으며, Mac에서 workspace나 tool process를
 6. 실행 중·중지 후 모두 기존 `codex-remote-development/softie_project`의
    `git status --short --untracked-files=all`은 비어 있었다. 기존 운영 파일과
    credential 내용은 읽거나 변경하지 않았다.
+7. 새 Lab password로 직접 `/api/health`, Mac SSH tunnel
+   `http://127.0.0.1:18497/api/health`, Tailscale URL을 각각 확인했다. 세 경로는
+   unauthenticated `401`, authenticated `200 application/json`을 반환했고,
+   인증된 tunnel/Tailscale Web root는 `200 text/html`과 `<title>OpenCode`를
+   반환했다. Tailscale CLI의 Serve와 Funnel 상태 모두 `tailnet only`로
+   표시되어 public Funnel은 사용하지 않았다.
+8. Termux:Boot entry를 재실행해 supervisor를 session-independent PPID 1로
+   올렸고, 확인된 Lab server group만 종료한 뒤 12초에 새 PID와 authenticated
+   health가 복구됐다. supervisor 종료 후 boot entry 재실행도 새 supervisor와
+   server를 복구했다. 명시적 `stop` 뒤에는 35초 관찰 시 `status=stopped`,
+   marker `disabled`, port `4097` closed가 유지됐다.
+9. idle 관찰에서 supervisor는 `0.0% CPU / 3912 KB RSS`, server proot는
+   `0.1% CPU / 28840 KB RSS`였고, 자동 model/session/tool process는 시작되지
+   않았다. 실제 Android reboot 자체는 기존 운영환경을 중단시키므로 수행하지
+   않고, 재부팅 진입점과 session 종료에 해당하는 supervisor 재기동 경계를
+   직접 검증했다.
 
 이 결과에서 `verified`는 위 smoke와 path/config/process 경계가 확인됐다는
-뜻이다. 실제 개인 데이터 보호, 모든 future model/tool, production readiness,
-Desktop의 모든 project-selection 조합은 이 smoke에서 승격하지 않으며
-`pilot` 또는 `blocked`로 별도 표시한다.
+뜻이다. 실제 개인 데이터 보호, Desktop의 remote project-selection task lane,
+iPhone 화면 자체, 모든 future model/tool, production readiness는 이 smoke에서
+승격하지 않으며 `pilot` 또는 `blocked`로 별도 표시한다.
 
 ## Official references
 
