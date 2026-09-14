@@ -14,6 +14,9 @@ const artifactFiles = [
   "docs/architecture/archify/deterministic-reading.architecture.json",
   "docs/architecture/archify/deterministic-reading.html",
   "docs/architecture/archify/deterministic-reading.receipt.json",
+  "docs/architecture/archify/opencode-lab.architecture.json",
+  "docs/architecture/archify/opencode-lab.html",
+  "docs/architecture/archify/opencode-lab.receipt.json",
 ];
 
 function fileFingerprint(relativePath) {
@@ -21,7 +24,7 @@ function fileFingerprint(relativePath) {
   return { bytes: bytes.length, sha256: createHash("sha256").update(bytes).digest("hex") };
 }
 
-test("freshness check reports both Archify maps current without changing artifact bytes", () => {
+test("freshness check reports all Archify maps current without changing artifact bytes", () => {
   const before = artifactFiles.map(fileFingerprint);
   const report = runFreshnessCheck(repositoryRoot);
   const after = artifactFiles.map(fileFingerprint);
@@ -31,9 +34,11 @@ test("freshness check reports both Archify maps current without changing artifac
   assert.deepEqual(report.artifacts.map((artifact) => [artifact.id, artifact.status]), [
     ["codex-remote-workflow", "current"],
     ["deterministic-reading", "current"],
+    ["opencode-lab", "current"],
   ]);
   assert.equal(report.artifacts[0].evidenceScope.unchanged, 29);
   assert.equal(report.artifacts[1].evidenceScope.unchanged, 33);
+  assert.equal(report.artifacts[2].evidenceScope.unchanged, 27);
   assert.deepEqual(after, before);
   assert.equal(report.authority.artifactMutation, "none");
   assert.equal(report.authority.autoRegeneration, "forbidden");
@@ -45,7 +50,7 @@ test("freshness check fails safe as unknown when the repository basis cannot be 
 
   assert.equal(report.ok, false);
   assert.equal(report.status, "unknown");
-  assert.deepEqual(report.artifacts.map((artifact) => artifact.status), ["unknown", "unknown"]);
+  assert.deepEqual(report.artifacts.map((artifact) => artifact.status), ["unknown", "unknown", "unknown"]);
   assert.ok(report.artifacts.every((artifact) => artifact.canonicalFallback === "canonical_code_contracts_tests"));
   assert.equal(report.authority.unknownNeverPromoted, true);
   assert.equal(report.authority.artifactMutation, "none");

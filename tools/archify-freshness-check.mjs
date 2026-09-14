@@ -25,6 +25,11 @@ const ARTIFACT_DEFINITIONS = Object.freeze({
     artifactName: "deterministic-reading.html",
     receiptName: "deterministic-reading.receipt.json",
   }),
+  "opencode-lab": Object.freeze({
+    sourceName: "opencode-lab.architecture.json",
+    artifactName: "opencode-lab.html",
+    receiptName: "opencode-lab.receipt.json",
+  }),
 });
 const REVISION_PATTERN = /^[0-9a-f]{40}$/;
 const HASH_PATTERN = /^[0-9a-f]{64}$/;

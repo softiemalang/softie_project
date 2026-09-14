@@ -22,6 +22,11 @@ const ARTIFACT_CONFIGS = Object.freeze({
     artifactName: "deterministic-reading.html",
     receiptName: "deterministic-reading.receipt.json",
   }),
+  "opencode-lab": Object.freeze({
+    sourceName: "opencode-lab.architecture.json",
+    artifactName: "opencode-lab.html",
+    receiptName: "opencode-lab.receipt.json",
+  }),
 });
 const ARCHIFY_VERSION = "2.16.0";
 const ARCHIFY_REVISION = "c826e6c3a7abad19c0f3cd1ca57207d54b1ad8de";

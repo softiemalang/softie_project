@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "softie_project disposable OpenCode Lab",
+    "subtitle": "Mac Chrome observation, restricted SSH forwarding, Galaxy Tab execution, and protected main-work resources",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "viewBox": [1370, 980],
+    "views": [
+      {
+        "id": "execution-path",
+        "label": "Observation to execution",
+        "focus": ["mac-web", "ssh-forward", "opencode-server", "lab-workspace", "lab-tools", "spark-worker"],
+        "note": "Follow the Mac Chrome client through the explicit SSH port forward to the Tab-local OpenCode server, workspace, model, and tools."
+      },
+      {
+        "id": "isolation-and-handoff",
+        "label": "Isolation and resource handoff",
+        "focus": ["lab-controller", "protected-main", "credential-state", "resource-handoff", "desktop-entry", "future-experiments"],
+        "note": "Keep the disposable Lab lifecycle and experiment surface separate from the existing Codex Remote/Console plane and its credentials/state."
+      }
+    ],
+    "repository": {
+      "url": "https://github.com/softiemalang/softie_project.git",
+      "revision": "df449f83b2b5b14b328547b6913108a6db3a4b38"
+    }
+  },
+  "components": [
+    {
+      "id": "mac-web",
+      "type": "frontend",
+      "label": "Mac Chrome Web client",
+      "sublabel": "Observe / instruct",
+      "tag": "verified",
+      "pos": [60, 100],
+      "size": [230, 80],
+      "sources": [
+        { "path": "docs/development/opencode-lab.md", "line": 48, "end_line": 60, "label": "client and server boundary" },
+        { "path": "docs/development/opencode-lab.md", "line": 108, "end_line": 120, "label": "Chrome task smoke" }
+      ]
+    },
+    {
+      "id": "ssh-forward",
+      "type": "security",
+      "label": "Dedicated SSH port forward",
+      "sublabel": "18497 -> Tab loopback 4097",
+      "tag": "verified",
+      "pos": [360, 100],
+      "size": [240, 80],
+      "sources": [
+        { "path": "docs/development/opencode-lab.md", "line": 50, "end_line": 54, "label": "forwarding-only channel" },
+        { "path": "docs/development/opencode-lab.md", "line": 108, "end_line": 111, "label": "bounded UI control" }
+      ]
+    },
+    {
+      "id": "opencode-server",
+      "type": "backend",
+      "label": "Tab-local OpenCode server",
+      "sublabel": "v2.0.3 · loopback only",
+      "tag": "verified",
+      "pos": [680, 100],
+      "size": [250, 80],
+      "sources": [
+        { "path": "docs/development/opencode-lab.md", "line": 25, "end_line": 40, "label": "isolated execution plane" },
+        { "path": "docs/development/opencode-lab.md", "line": 50, "end_line": 54, "label": "server listen boundary" },
+        { "path": "docs/development/opencode-lab.md", "line": 111, "end_line": 117, "label": "health and session evidence" }
+      ]
+    },
+    {
+      "id": "lab-workspace",
+      "type": "backend",
+      "label": "Disposable Lab workspace",
+      "sublabel": "/opencode-lab/workspace · no Git",
+      "tag": "verified",
+      "pos": [1020, 100],
+      "size": [250, 80],
+      "sources": [
+        { "path": "docs/development/opencode-lab.md", "line": 13, "end_line": 21, "label": "root and synthetic workspace" },
+        { "path": "docs/development/opencode-lab.md", "line": 112, "end_line": 117, "label": "workspace session evidence" },
+        { "path": "docs/development/opencode-lab.md", "line": 121, "end_line": 125, "label": "synthetic file evidence" }
+      ]
+    },
+    {
+      "id": "spark-worker",
+      "type": "backend",
+      "label": "Spark 1.3 Free worker",
+      "sublabel": "Muse Spark 1.3 Contributor Free · Xhigh",
+      "tag": "verified",
+      "pos": [680, 300],
+      "size": [250, 90],
+      "sources": [
+        { "path": "docs/development/opencode-lab.md", "line": 72, "end_line": 80, "label": "model and data boundary" },
+        { "path": "docs/development/opencode-lab.md", "line": 113, "end_line": 120, "label": "model/session smoke" }
+      ]
+    },
+    {
+      "id": "lab-tools",
+      "type": "backend",
+      "label": "Lab file + shell tools",
+      "sublabel": "Permission-gated synthetic smoke",
+      "tag": "verified",
+      "pos": [1020, 300],
+      "size": [250, 90],
+      "sources": [
+        { "path": "docs/development/opencode-lab.md", "line": 82, "end_line": 87, "label": "permission boundary" },
+        { "path": "docs/development/opencode-lab.md", "line": 119, "end_line": 125, "label": "shell and file smoke" }
+      ]
+    },
+    {
+      "id": "lab-controller",
+      "type": "security",
+      "label": "Lab lifecycle controller",
+      "sublabel": "start · stop · health",
+      "tag": "verified",
+      "pos": [360, 300],
+      "size": [240, 90],
+      "sources": [
+        { "path": "docs/development/opencode-lab.md", "line": 89, "end_line": 104, "label": "lifecycle and resource handoff" },
+        { "path": "docs/development/opencode-lab.md", "line": 124, "end_line": 129, "label": "stop and resume evidence" }
+      ]
+    },
+    {
+      "id": "protected-main",
+      "type": "security",
+      "label": "Existing Codex Remote + Console plane",
+      "sublabel": "Protected; unchanged by Lab",
+      "tag": "verified",
+      "pos": [60, 560],
+      "size": [280, 90],
+      "sources": [
+        { "path": "AGENTS.md", "line": 12, "end_line": 35, "label": "source, preservation, and execution boundary" },
+        { "path": "docs/development/opencode-lab.md", "line": 17, "end_line": 21, "label": "main checkout excluded" },
+        { "path": "docs/development/opencode-lab.md", "line": 128, "end_line": 132, "label": "main checkout smoke" }
+      ]
+    },
+    {
+      "id": "credential-state",
+      "type": "security",
+      "label": "Credential and operating state",
+      "sublabel": "Lab-local namespace; no reuse",
+      "tag": "verified",
+      "pos": [420, 560],
+      "size": [250, 90],
+      "sources": [
+        { "path": "docs/development/opencode-lab.md", "line": 64, "end_line": 80, "label": "Lab-local data namespace" },
+        { "path": "docs/development/opencode-lab.md", "line": 89, "end_line": 96, "label": "state and password boundary" }
+      ]
+    },
+    {
+      "id": "resource-handoff",
+      "type": "security",
+      "label": "Main-work resource handoff",
+      "sublabel": "Stop Lab; return Tab capacity",
+      "tag": "verified",
+      "pos": [740, 560],
+      "size": [250, 90],
+      "sources": [
+        { "path": "docs/development/opencode-lab.md", "line": 98, "end_line": 104, "label": "stop before main SSH work" },
+        { "path": "docs/development/opencode-lab.md", "line": 124, "end_line": 129, "label": "stop-start cycle" }
+      ]
+    },
+    {
+      "id": "desktop-entry",
+      "type": "frontend",
+      "label": "OpenCode Desktop Lab entry",
+      "sublabel": "Server entry observed; not task lane",
+      "tag": "pilot",
+      "pos": [1060, 560],
+      "size": [260, 90],
+      "sources": [
+        { "path": "docs/development/opencode-lab.md", "line": 56, "end_line": 60, "label": "Desktop entry observation" },
+        { "path": "docs/development/opencode-lab.md", "line": 132, "end_line": 137, "label": "orientation-only status boundary" }
+      ]
+    },
+    {
+      "id": "future-experiments",
+      "type": "external",
+      "label": "Future free/API/local experiments",
+      "sublabel": "Lab-only candidate surface",
+      "tag": "pilot",
+      "pos": [740, 800],
+      "size": [250, 80],
+      "sources": [
+        { "path": "docs/development/opencode-lab.md", "line": 132, "end_line": 137, "label": "future scope not promoted" },
+        { "path": "docs/development/opencode-lab.md", "line": 82, "end_line": 87, "label": "tool permission boundary" }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Mac observation and control surface",
+      "wraps": ["mac-web", "ssh-forward", "desktop-entry"],
+      "pad": 30
+    },
+    {
+      "kind": "security-group",
+      "label": "Galaxy Tab disposable execution plane",
+      "wraps": ["opencode-server", "lab-workspace", "spark-worker", "lab-tools", "lab-controller", "future-experiments"],
+      "pad": 30
+    },
+    {
+      "kind": "security-group",
+      "label": "Protected main-work plane",
+      "wraps": ["protected-main", "credential-state", "resource-handoff"],
+      "pad": 30
+    }
+  ],
+  "connections": [
+    { "from": "mac-web", "to": "ssh-forward", "label": "Chrome Web", "variant": "emphasis", "fromSide": "right", "toSide": "left", "route": "straight" },
+    { "from": "ssh-forward", "to": "opencode-server", "label": "SSH -N -L", "variant": "security", "fromSide": "right", "toSide": "left", "route": "straight" },
+    { "from": "opencode-server", "to": "lab-workspace", "label": "cwd / project", "variant": "emphasis", "fromSide": "right", "toSide": "left", "route": "straight" },
+    { "from": "opencode-server", "to": "spark-worker", "label": "model + xhigh", "variant": "default", "fromSide": "bottom", "toSide": "top", "route": "straight", "labelAt": [865, 225] },
+    { "from": "lab-workspace", "to": "lab-tools", "label": "file / shell", "variant": "emphasis", "fromSide": "bottom", "toSide": "top", "route": "straight", "labelAt": [1145, 250] },
+    { "from": "lab-controller", "to": "opencode-server", "label": "start / health / stop", "variant": "security", "fromSide": "top", "toSide": "bottom", "route": "orthogonal-v", "via": [[480, 200], [805, 200]], "labelAt": [700, 220] },
+    { "from": "protected-main", "to": "resource-handoff", "label": "main SSH needs capacity", "variant": "dashed", "fromSide": "bottom", "toSide": "bottom", "route": "orthogonal-v", "via": [[200, 720], [865, 720]], "labelAt": [540, 735] },
+    { "from": "credential-state", "to": "opencode-server", "label": "Lab-local only", "variant": "security", "fromSide": "top", "toSide": "bottom", "route": "orthogonal-v", "via": [[545, 520], [650, 520], [650, 250], [805, 250]], "labelAt": [585, 545] },
+    { "from": "desktop-entry", "to": "opencode-server", "label": "pilot connection", "variant": "dashed", "fromSide": "top", "toSide": "right", "route": "orthogonal-h", "via": [[1190, 480], [980, 480], [980, 140]], "labelAt": [1050, 450] }
+  ],
+  "cards": [
+    {
+      "title": "Execution",
+      "dot": "cyan",
+      "items": ["Mac Chrome observes/instructs through an explicit SSH local forward.", "OpenCode server, workspace, model, and tools run on the Galaxy Tab."]
+    },
+    {
+      "title": "Isolation",
+      "dot": "emerald",
+      "items": ["Lab root, HOME/XDG namespace, state, config, and password are separate from Codex Remote/Console.", "No Mac checkout, credential directory, archive, or operating state is bound into the Lab."]
+    },
+    {
+      "title": "Resource handoff",
+      "dot": "rose",
+      "items": ["labctl stop terminates only the Lab server process-group; main SSH daemon and checkout remain available.", "A subsequent start restores the Lab server and session/workspace state."]
+    },
+    {
+      "title": "Experiment scope",
+      "dot": "amber",
+      "items": ["Spark 1.3 Free xhigh is verified with synthetic prompts only.", "Future free/API/local models and tools remain Lab-only pilot candidates, not product or credential paths."]
+    },
+    {
+      "title": "Status key",
+      "dot": "violet",
+      "items": ["verified = direct implementation/config/smoke evidence; not completion authority", "pilot = observed or future orientation surface; blocked = explicitly excluded capability", "canonical server responses, execution results, and repository contracts outrank this map"]
+    }
+  ]
+}

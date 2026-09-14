@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "tool": {
+    "name": "Archify",
+    "source": "https://github.com/tt-a1i/archify",
+    "revision": "c826e6c3a7abad19c0f3cd1ca57207d54b1ad8de",
+    "package_version": "2.16.0"
+  },
+  "diagram_type": "architecture",
+  "quality_profile": "showcase",
+  "source": "opencode-lab.architecture.json",
+  "artifact": "opencode-lab.html",
+  "specification": {
+    "sha256": "8ddecd3405f15dd14804f6a50fae6ddd7753c42e2a6b4b0106364758b9178a34",
+    "bytes": 11578
+  },
+  "delivered_artifact": {
+    "sha256": "8bf0df666d8da9e48916f80322d1c10632c3f9ae13779bd8609d6528f86dd3a9",
+    "bytes": 731579
+  },
+  "validation": {
+    "checks_passed": 9,
+    "check_count": 9,
+    "composition_status": "pass",
+    "errors": 0,
+    "warnings": 0,
+    "static_html_check": "pass",
+    "browser_visual_check": "not_run_by_drift_sync"
+  },
+  "repository_evidence": {
+    "url": "https://github.com/softiemalang/softie_project",
+    "revision": "df449f83b2b5b14b328547b6913108a6db3a4b38",
+    "source_references": 27
+  },
+  "drift_sync": {
+    "detector": "canonical-architecture-json-v1",
+    "meaningful_sha256": "d002d1abb37bf17712b104ea4991c8a084a9c66253a0bf70b757d91f2044d6a0",
+    "source_input_sha256": "8ddecd3405f15dd14804f6a50fae6ddd7753c42e2a6b4b0106364758b9178a34",
+    "source_input_bytes": 11578,
+    "reasons": [
+      "meaningful_architecture_change",
+      "archify_pin_changed",
+      "last_good_artifact_missing"
+    ],
+    "archify_pin": {
+      "version": "2.16.0",
+      "revision": "c826e6c3a7abad19c0f3cd1ca57207d54b1ad8de"
+    }
+  }
+}

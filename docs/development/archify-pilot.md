@@ -8,11 +8,17 @@ worker가 구조를 빠르게 읽는 용도이며, 프로젝트 dependency, runt
 credential, operating state, snapshot boundary, apply 동작은 추가하거나
 변경하지 않는다.
 
-산출물은 다음 세 파일과 drift-sync 실행기다.
+산출물은 각 지도별 source/HTML/receipt와 drift-sync 실행기다.
 
 - `docs/architecture/archify/codex-remote-workflow.architecture.json`: source specification
 - `docs/architecture/archify/codex-remote-workflow.html`: Archify self-contained delivery
 - `docs/architecture/archify/codex-remote-workflow.receipt.json`: tool/spec/artifact/검증 receipt
+- `docs/architecture/archify/deterministic-reading.architecture.json`: source specification
+- `docs/architecture/archify/deterministic-reading.html`: Archify self-contained delivery
+- `docs/architecture/archify/deterministic-reading.receipt.json`: tool/spec/artifact/검증 receipt
+- `docs/architecture/archify/opencode-lab.architecture.json`: disposable Lab source specification
+- `docs/architecture/archify/opencode-lab.html`: disposable Lab self-contained delivery
+- `docs/architecture/archify/opencode-lab.receipt.json`: disposable Lab tool/spec/artifact/검증 receipt
 - `tools/archify-drift-sync.mjs`: stable artifact의 최소 drift-sync 실행기
 
 ## 사실성 경계
@@ -150,8 +156,9 @@ architecture 내용, evidence revision, stable pin, 또는 last-good integrity�
 
 이 저장소에서는 유지할 가치가 있다. 현재 remote workflow의 두 work lane,
 Mac-only coordinator, restricted bridge, snapshot/allowlist, verification,
-fail-closed apply를 하나의 source-evidence-linked artifact로 재생성할 수 있고,
-실제 stable delivery와 drift no-op 검증도 완료되었다. 유지 범위는 이 세
-산출물, drift-sync 실행기, 이 문서의 갱신으로 제한한다. Archify를 package dependency, runtime, CI, daemon, 또는
+fail-closed apply와 disposable OpenCode Lab의 실행·격리·자원 전환 경계를
+각각 source-evidence-linked artifact로 재생성할 수 있고, 실제 stable delivery와
+drift no-op 검증도 완료되었다. 유지 범위는 각 지도별 세 산출물, drift-sync
+실행기, 관련 orientation 문서의 갱신으로 제한한다. Archify를 package dependency, runtime, CI, daemon, 또는
 새 remote infrastructure로 승격하는 것은 이 파일럿의 재현성이나 현재 계약에
 필요하지 않으므로 하지 않는다.
