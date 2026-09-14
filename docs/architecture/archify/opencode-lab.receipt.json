@@ -11,12 +11,12 @@
   "source": "opencode-lab.architecture.json",
   "artifact": "opencode-lab.html",
   "specification": {
-    "sha256": "07889d097599a0e71aca1c3bf55206edd4bde0e5371d9834b6adfb2fe1a50b0e",
-    "bytes": 13624
+    "sha256": "33cecf032ec05aab667830b548a3b8c347821f5aba1c3fc7492f0fbb6f5d91a1",
+    "bytes": 14882
   },
   "delivered_artifact": {
-    "sha256": "a97913eb6d27a92e0fd2e259bcd1709021c5abcdd43c4f6ce4f070d5667c5e91",
-    "bytes": 739079
+    "sha256": "32067e6158b2536e9f8d8ee9ac4898451ba133a76842ad85e4f48f5f60964ec6",
+    "bytes": 742605
   },
   "validation": {
     "checks_passed": 9,
@@ -29,14 +29,14 @@
   },
   "repository_evidence": {
     "url": "https://github.com/softiemalang/softie_project",
-    "revision": "528251407e0527cf77063cdcc6cb29a5965465e5",
-    "source_references": 33
+    "revision": "fb66683d8f99f5aa0a66de8fdc26b2a8ca0247a4",
+    "source_references": 36
   },
   "drift_sync": {
     "detector": "canonical-architecture-json-v1",
-    "meaningful_sha256": "3d66d269e6f375ebd2c134bc9bca6f655bfaeb48ad4f472d5edf9ea7228a32fb",
-    "source_input_sha256": "07889d097599a0e71aca1c3bf55206edd4bde0e5371d9834b6adfb2fe1a50b0e",
-    "source_input_bytes": 13624,
+    "meaningful_sha256": "f25d0c580486c21f15118d76c906d08fcf7b948db20911d86d3297023e746690",
+    "source_input_sha256": "33cecf032ec05aab667830b548a3b8c347821f5aba1c3fc7492f0fbb6f5d91a1",
+    "source_input_bytes": 14882,
     "reasons": [
       "meaningful_architecture_change"
     ],
