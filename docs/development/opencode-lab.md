@@ -205,6 +205,28 @@ read-only observation을 사용했으며, Mac에서 workspace나 tool process를
     `EXTERNAL_DENIED SECRET_DENIED SHELL_DENIED`가 표시됐고 세 probe 모두
     `permission.rejected`였다. 승인하거나 재시도하지 않았으며, 기존
     `codex-remote-development/softie_project` status는 비어 있었다.
+13. Mac의 기존 수동 `18497 -> 4097` SSH process를 동일한 plist의
+    `com.malang.opencode-lab-tunnel` agent로 교체했다. agent가 한 개의
+    forwarding-only child만 유지하고 local/Tailscale health와 Web root를
+    `200`으로 제공하는 것을 확인했다. child를 의도적으로 종료한 뒤 agent가
+    새 child와 동일한 listener를 자동 복구했으며, local/Tailscale health와
+    Desktop/Web 연결이 다시 정상인 것을 확인했다. Tab server/proxy,
+    Tailscale Serve의 tailnet-only 설정, Codex Remote/Console 및 credential/state는
+    이 smoke에서 변경하지 않았다.
+
+## Mac tunnel recovery boundary
+
+Mac의 forwarding channel은 저장소에 고정한
+`ops/opencode-lab/com.malang.opencode-lab-tunnel.plist`를 사용자별
+`launchd` agent `com.malang.opencode-lab-tunnel`로 로드한다. `RunAtLoad`와
+`KeepAlive`가 로그인·네트워크 복구 뒤 같은 `tab-worker` alias로 channel을
+다시 만들고, SSH의 짧은 connect timeout과 10초 throttle이 네트워크 단절 중
+busy loop를 막는다. `ExitOnForwardFailure`, strict host-key 확인,
+`BatchMode`, `-N -T`가 forwarding-only·fail-closed 경계를 유지한다. 이 agent는
+Tab Lab server/proxy를 시작하지 않고, 새로운 credential·shell·workspace를
+생성하지 않는다. Lab workload를 중지할 때는 기존 `labctl stop`과 별개로
+`launchctl bootout gui/$(id -u)/com.malang.opencode-lab-tunnel`을 사용해 이
+Mac tunnel만 내릴 수 있고, 재개할 때 다시 bootstrap/kickstart한다.
 
 이 결과에서 `verified`는 위 smoke와 path/config/process 경계가 확인됐다는
 뜻이다. 실제 개인 데이터 보호, Desktop의 remote project-selection task lane,
